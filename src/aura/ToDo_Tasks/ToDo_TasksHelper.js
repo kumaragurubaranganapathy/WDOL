@@ -236,6 +236,10 @@
         }); 
         $A.enqueueAction(action);         
     },
+    StartPaymentHelper:function(component, event) {
+        var ctarget = event.currentTarget;
+        window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+ctarget.getAttribute("data-license");        
+    },
     //Close the modal popup and redirect to cart page
     closeModel: function(component, event) {
         component.set("v.isOpen", false);

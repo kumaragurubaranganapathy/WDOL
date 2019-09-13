@@ -4,11 +4,11 @@
     <protected>false</protected>
     <values>
         <field>Add_To_Interface__c</field>
-        <value xsi:type="xsd:boolean">true</value>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
         <field>Add_To_PDF__c</field>
-        <value xsi:type="xsd:boolean">true</value>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
         <field>Item_FundAccSystem__c</field>
@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>Item_Fund_GL__c</field>
-        <value xsi:type="xsd:string">3210</value>
+        <value xsi:type="xsd:string">7140</value>
     </values>
     <values>
         <field>Item_Intake_Method__c</field>
@@ -24,11 +24,15 @@
     </values>
     <values>
         <field>Item_Payment_Method__c</field>
-        <value xsi:type="xsd:string">any</value>
+        <value xsi:type="xsd:string">Any</value>
     </values>
     <values>
         <field>Item_Transaction_Code__c</field>
-        <value xsi:type="xsd:string">001</value>
+        <value xsi:type="xsd:string">965</value>
+    </values>
+    <values>
+        <field>Item_Transaction_Type__c</field>
+        <value xsi:type="xsd:string">Reapplied Payment</value>
     </values>
     <values>
         <field>JV_name__c</field>

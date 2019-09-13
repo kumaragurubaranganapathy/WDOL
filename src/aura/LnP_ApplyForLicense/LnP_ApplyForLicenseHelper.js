@@ -1229,6 +1229,7 @@
                             }
                         }
                         var mandatoryqualification = qualificationValidation.split(",");
+                        
                         var qualificationValid = mandatoryqualification.filter(function(item){
                             if(enteredSections.includes(item.trim())){
                                 return true;

@@ -108,7 +108,7 @@
         this.checkFieldValidations(component, event);
         if(component.get("v.nextFlag")==true){
             component.set("v.isSSNchanged", false);
-            component.set("v.showEndoMessage",false);
+            //component.set("v.showEndoMessage",false);
             component.set("v.errorMsgsList", []);
             component.set("v.showErrorMsgs", false); 
         var curTab= component.get("v.currentTab");		

@@ -1,4 +1,4 @@
-<!----
+<!--
 * name          :  DOL_PDFGenerator
 * @description  :  This class is used to get license data for generating PDF
 * @author       :  Gunjit Kaur
@@ -80,26 +80,107 @@
                 </tr>
             </table>
         </div>
-        <apex:outputPanel rendered="{!addressRecordList.size>0}">
-        <div style="margin-top: 30px">
-            <table border="1" width="100%" style="border-collapse: collapse;">
-                <tr>
-                    <th colspan="3"><h3>Address Information</h3></th>
-                </tr>
-                <tr>
-                    <th>Address Type:</th>
-                    <th>Country:</th>
-                    <th>Zip:</th>
-                </tr>
-                <apex:repeat value="{!addressRecordList}" var="addressRecordInstance">
-                <tr>
-                    <td>{!addressRecordInstance.Address_Type__c}</td>
-                    <td>{!addressRecordInstance.Country__c} {!addressRecordInstance.MUSW__State__c} {!addressRecordInstance.Canadian_provinces__c} {!addressRecordInstance.MUSW__City__c} {!addressRecordInstance.MUSW__Unit__c} {!addressRecordInstance.MUSW__Street2__c}</td>
-                    <td>{!addressRecordInstance.Zip_Postal_Code__c}</td>
-                </tr>
-                </apex:repeat>
-            </table>
-        </div>
+        <apex:outputPanel rendered="{!licenseRecordData.MUSW__License2_Parcels__r.size>0}">
+            <div style="margin-top: 30px">
+                <table border="1" width="100%" style="border-collapse: collapse;">
+                    <tr>
+                        <th colspan="2"><h3>Address Information</h3></th>
+                    </tr>
+                    <tr>
+                        <th>Address Type:</th>
+                        <th>Address:</th>
+                    </tr>
+                    <apex:repeat value="{!licenseRecordData.MUSW__License2_Parcels__r}" var="addressRecordInstance">
+                        <tr>
+                            <td>{!IF(addressRecordInstance.Mailing__c, 'Mailing Address', 'Physical Address')}</td>
+                            <td>{!addressRecordInstance.Parcel_Address__c}</td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </div>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!qualifyingEducationRecordList.size>0 || qualifyingExperienceRecordList.size>0}">
+            <div style="margin-top: 30px">
+                <table border="1" width="100%" style="border-collapse: collapse;">
+                    <tr>
+                        <th colspan="2"><h3>Qualifying Information</h3></th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Qualifying Post Education</th>
+                    </tr>
+                    <apex:repeat value="{!qualifyingEducationRecordList}" var="qualifyingEducationRecordInstance">
+                        <tr>
+                            <td>Name of Institution:</td>
+                            <td>{!qualifyingEducationRecordInstance.Name_of_Institution__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Degree:</td>
+                            <td>{!qualifyingEducationRecordInstance.DegreeEarned__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Major:</td>
+                            <td>{!qualifyingEducationRecordInstance.Major__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Minor:</td>
+                            <td>{!qualifyingEducationRecordInstance.Minor__c}</td>
+                        </tr>
+                        <tr>
+                            <td>End Date:</td>
+                            <td>{!qualifyingEducationRecordInstance.End_date__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Country: State / Territory / Province: City:</td>
+                            <td>{!qualifyingEducationRecordInstance.Country__c} : {!qualifyingEducationRecordInstance.State__c} : {!qualifyingEducationRecordInstance.City__c}</td>
+                        </tr>
+                    </apex:repeat>
+                    <tr>
+                        <th colspan="2">Qualifying Experience</th>
+                    </tr>
+                    <apex:repeat value="{!qualifyingExperienceRecordList}" var="qualifyingExperienceRecordInstance">
+                        <tr>
+                            <td>Name of Employer:</td>
+                            <td>{!qualifyingExperienceRecordInstance.Employer__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Position Title:</td>
+                            <td>{!qualifyingExperienceRecordInstance.Job_Title__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Description of Duties:</td>
+                            <td>{!qualifyingExperienceRecordInstance.Description_of_Duties__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Average Monthly Hours Worked in this Position:</td>
+                            <td>{!qualifyingExperienceRecordInstance.Monthly_Hours__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Hours Worked in this Position:</td>
+                            <td>{!qualifyingExperienceRecordInstance.Total_Hours__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Start Date:</td>
+                            <td>{!qualifyingExperienceRecordInstance.Start_Date__c}</td>
+                        </tr>
+                        <tr>
+                            <td>End Date:</td>
+                            <td>{!qualifyingExperienceRecordInstance.End_date__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Country: State / Territory / Province: City:</td>
+                            <td>{!qualifyingExperienceRecordInstance.Country__c} : {!qualifyingExperienceRecordInstance.State__c} : {!qualifyingExperienceRecordInstance.City__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Supervisor Name:</td>
+                            <td>{!qualifyingExperienceRecordInstance.Supervisor_Name__c}</td>
+                        </tr>
+                        <tr>
+                            <td>Supervisor Phone:</td>
+                            <td>{!qualifyingExperienceRecordInstance.Supervisor_Phone_Number__c}</td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </div>
         </apex:outputPanel>
         <apex:outputPanel rendered="{!licenseRecordData.Answers2__r.size>0}">
             <div style="margin-top: 30px">
@@ -130,23 +211,23 @@
         </apex:outputPanel>
         
         <apex:outputPanel rendered="{!licenseRecordData.MUSW__Submissions__r.size>0}">
-        <div style="margin-top: 30px">
-            <table border="1" width="100%" style="border-collapse: collapse;">
-                <tr>
-                    <th colspan="2"><h3>Attachments</h3></th>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                </tr>
-                <apex:repeat value="{!licenseRecordData.MUSW__Submissions__r}" var="licenseRecordInstance">
+            <div style="margin-top: 30px">
+                <table border="1" width="100%" style="border-collapse: collapse;">
                     <tr>
-                        <td>{!licenseRecordInstance.Name}</td>
-                        <td>{!licenseRecordInstance.MUSW__Description__c}</td>
+                        <th colspan="2"><h3>Attachments</h3></th>
                     </tr>
-                </apex:repeat>
-            </table>
-        </div>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                    <apex:repeat value="{!licenseRecordData.MUSW__Submissions__r}" var="licenseRecordInstance">
+                        <tr>
+                            <td>{!licenseRecordInstance.Name}</td>
+                            <td>{!licenseRecordInstance.MUSW__Description__c}</td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </div>
         </apex:outputPanel>
         
         <div style="margin-top: 30px">
@@ -170,33 +251,33 @@
         </div>
         
         <apex:outputPanel rendered="{!questionRecordList.size>0}">
-        <div style="margin-top: 30px">
-            <table border="0" width="100%">
-                <tr>
-                    <th colspan="2"><h3>Review And Submit</h3></th>
-                </tr>
-                <tr>
-                    <th>Certifications</th>
-                </tr>
-                <apex:repeat value="{!questionRecordList}" var="questionRecordInstance">
+            <div style="margin-top: 30px">
+                <table border="0" width="100%">
                     <tr>
-                        <td>{!questionRecordInstance.Question_Body__c}</td>
+                        <th colspan="2"><h3>Review And Submit</h3></th>
                     </tr>
-                </apex:repeat>
-                <tr>
-                    <th style="padding-top: 30px">Declaration</th>
-                </tr>
-                <tr>
-                    <td>{!$Label.Declaration}</td>
-                </tr>
-                <tr>
-                    <th style="padding-top: 30px">Signature</th>
-                </tr>
-                <tr>
-                    <td>{!licenseRecordData.Owner.Name}</td>
-                </tr>
-            </table>
-        </div>
+                    <tr>
+                        <th>Certifications</th>
+                    </tr>
+                    <apex:repeat value="{!questionRecordList}" var="questionRecordInstance">
+                        <tr>
+                            <td>{!questionRecordInstance.Question_Body__c}</td>
+                        </tr>
+                    </apex:repeat>
+                    <tr>
+                        <th style="padding-top: 30px">Declaration</th>
+                    </tr>
+                    <tr>
+                        <td>{!$Label.Declaration}</td>
+                    </tr>
+                    <tr>
+                        <th style="padding-top: 30px">Signature</th>
+                    </tr>
+                    <tr>
+                        <td>{!licenseRecordData.Owner.Name}</td>
+                    </tr>
+                </table>
+            </div>
         </apex:outputPanel>
     </body>
 </apex:page>

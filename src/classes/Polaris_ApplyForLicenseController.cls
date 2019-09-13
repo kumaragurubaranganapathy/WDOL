@@ -1204,8 +1204,9 @@ public class Polaris_ApplyForLicenseController {
                                 submissions.IsSANFileUploadTrue__c = true;
                                 submissions.SAN_Image_Type__c ='Applications';
                                 mapSubmissionToFile.put(submissions.ID, submissions.ContentDocumentId__c.replace(';',''));
+                                lstSubmissions.add(submissions);
                             }
-                            lstSubmissions.add(submissions); 
+                             
                         }
                        update lstSubmissions;                
                     }
@@ -1400,22 +1401,22 @@ public class Polaris_ApplyForLicenseController {
                             }
                             //-----------Completed by Babita------------------
                             if(ans.QuestionDOL__r.Question_Body__c.contains('How will your name appear') && firstName == '' ){
-                                firstName  = ans.Answer_Text__c +' ';
+                                firstName  = ans.Answer_Text__c != null ? ans.Answer_Text__c : ''+' ';
                             }
                             if(ans.QuestionDOL__r.Question_Body__c.contains('First Name or initial') && firstName == '' ){
-                                firstName  = ans.Answer_Text__c +' ';
+                                firstName  = ans.Answer_Text__c != null ? ans.Answer_Text__c : ''+' ';
                             }
                             
                             if(ans.QuestionDOL__r.Question_Body__c.contains('Doing Business As') && doingBusinessAs == '' ){
-                                doingBusinessAs  = ans.Answer_Text__c +' ';
+                                doingBusinessAs  = ans.Answer_Text__c != null ? ans.Answer_Text__c : ''+' ';
                             }
                             
                             if(ans.QuestionDOL__r.Question_Body__c=='Middle Name or initial' && MiddleName == '' ){
-                                MiddleName = ans.Answer_Text__c +' ';
+                                MiddleName = ans.Answer_Text__c != null ? ans.Answer_Text__c : ''+' ';
                             }
                             
                             if(ans.QuestionDOL__r.Question_Body__c=='Last Name' && LastName == '' ){
-                                LastName = ans.Answer_Text__c;
+                                LastName = ans.Answer_Text__c != null ? ans.Answer_Text__c : ''+' ';
                             }
                             
                             if((ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') ||ans.QuestionDOL__r.Question_Body__c.contains('How will you be signing your notary public commission?')) && (ans.Answer_Text__c.contains('Using my full legal name') || ans.Answer_Text__c.contains('Use my full legal name')) && firstName == '' ){
@@ -1482,9 +1483,9 @@ public class Polaris_ApplyForLicenseController {
                     
                     if(mstLicense.RecordTypeId == individualRT){
                         mstLicense.License_Printable_Name__c = (MiddleName == null)?(firstName+' '+ LastName):(firstName+' '+ MiddleName+' '+ LastName);
-                        mstLicense.Print_First_Name__c = firstName;
-                        mstLicense.Print_Middle_Name__c = MiddleName;
-                        mstLicense.Print_Last_Name__c = LastName;
+                        mstLicense.Print_First_Name__c = firstName !=null ? firstName : '';
+                        mstLicense.Print_Middle_Name__c = MiddleName !=null ? MiddleName : '';
+                        mstLicense.Print_Last_Name__c = LastName !=null ? LastName : '';
                     }
                     if(mstLicense.RecordTypeId == businessRT){
                         if(application.Branch_License__c){

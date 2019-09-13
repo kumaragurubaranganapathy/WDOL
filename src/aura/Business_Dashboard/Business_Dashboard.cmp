@@ -4,6 +4,7 @@
     <aura:attribute name="businessAccount" type="Account" />
     <aura:attribute name="recordTypeId" type="String" />
     <aura:attribute name="selectedAccount" type="String" />
+    <aura:attribute name="fetchPersistedAccountData" type="String" />
     <aura:attribute name="accEmail" type="String" />
     <aura:attribute name="accPhone" type="string" />
     <aura:attribute name="accUBI" type="String" />
@@ -206,8 +207,8 @@
                                         </div>
                                         <div class="contact-item">
                                             <span class="label-style">Expiration Date: </span>
-                                            <aura:if isTrue="{!v.LicenseData.Expiration_Date__c}">
-                                                <lightning:formattedDateTime value="{!v.LicenseData.Expiration_Date__c}"/>
+                                            <aura:if isTrue="{!v.LicenseData.MUSW__Expiration_Date__c}">
+                                                <lightning:formattedDateTime value="{!v.LicenseData.MUSW__Expiration_Date__c}"/>
                                                 <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </div>                        
@@ -447,7 +448,7 @@
                                                 <div class="contact-item">
                                                     <div class="label-style">Expiration Date: </div> 
                                                     <div class="data-style">
-                                                        {!v.LicenseData.Expiration_Date__c?v.LicenseData.Expiration_Date__c:'None'}
+                                                        {!v.LicenseData.MUSW__Expiration_Date__c?v.LicenseData.MUSW__Expiration_Date__c:'None'}
                                                     </div>
                                                 </div>      
                                             </lightning:layoutItem>
@@ -571,9 +572,16 @@
                     -->
                 </lightning:tabset>
             </aura:if>
-            <div class="back-btn-wrapper">
-                <lightning:button class="back-btn" label="Back" onclick="{!c.navigateToScreenOne}" />
-            </div>
+            <aura:if isTrue="{!!or(v.licenseDetail, v.courseDetail)}">
+                <div class="back-btn-wrapper" onclick="{!c.navigateToScreenOne}">
+                    <lightning:button class="back-btn" label="Back" />
+                </div>
+            </aura:if> 
+            <aura:if isTrue="{!or(and(v.screenTwo,v.licenseDetail),and(v.screenTwo,v.courseDetail))}">
+                <div class="back-btn-wrapper" onclick="{!c.navigateToBusinessDetails}">
+                    <lightning:button class="back-btn" label="Back"  />
+                </div>
+            </aura:if>
         </aura:if>
         <aura:if isTrue="{!v.screenThree}">
             <c:Business_LicenseScreen />

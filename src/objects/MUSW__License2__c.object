@@ -1701,17 +1701,6 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Expiration_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Expiration Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Expiration_Date_of_Bond__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -1815,7 +1804,7 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
 	<fields>
         <fullName>License_Business_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>MUSW__Primary_Licensee__r.Name</formula>
+        <formula>Ultimate_Parent_Account__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>License Business Name</label>
         <required>false</required>
@@ -2062,6 +2051,18 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_RecordType_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>RecordType.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License RecordType Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -2478,7 +2479,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 </value>
                 <value>
                     <fullName>Submitted</fullName>
-                    <default>false</default>
+                    <default>true</default>
                     <label>Submitted</label>
                 </value>
                 <value>
@@ -2573,13 +2574,18 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 </value>
                 <value>
                     <fullName>Pending</fullName>
-                    <default>true</default>
+                    <default>false</default>
                     <label>Pending</label>
                 </value>
                 <value>
                     <fullName>Unlicensed Activity</fullName>
                     <default>false</default>
                     <label>Unlicensed Activity</label>
+                </value>
+                <value>
+                    <fullName>Pending License Fee</fullName>
+                    <default>false</default>
+                    <label>Pending License Fee</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -20940,7 +20946,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <customTabListAdditionalFields>MUSW__Issue_Date__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>MUSW__Renewal_Date__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>MUSW__Expiration_Date__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>MUSW__Alert_Indicator__c</customTabListAdditionalFields>
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <lookupDialogsAdditionalFields>Credential__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Application_Method__c</lookupDialogsAdditionalFields>
@@ -20959,7 +20964,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <lookupPhoneDialogsAdditionalFields>MUSW__Issue_Date__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>MUSW__Renewal_Date__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>MUSW__Expiration_Date__c</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>MUSW__Alert_Indicator__c</lookupPhoneDialogsAdditionalFields>
         <searchFilterFields>NAME</searchFilterFields>
         <searchFilterFields>Credential__c</searchFilterFields>
         <searchFilterFields>Application_Method__c</searchFilterFields>
@@ -20969,7 +20973,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <searchFilterFields>MUSW__Issue_Date__c</searchFilterFields>
         <searchFilterFields>MUSW__Renewal_Date__c</searchFilterFields>
         <searchFilterFields>MUSW__Expiration_Date__c</searchFilterFields>
-        <searchFilterFields>MUSW__Alert_Indicator__c</searchFilterFields>
         <searchResultsAdditionalFields>Credential_Type__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Application_Method__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>MUSW__Status__c</searchResultsAdditionalFields>
@@ -20978,7 +20981,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <searchResultsAdditionalFields>MUSW__Issue_Date__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>MUSW__Renewal_Date__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>MUSW__Expiration_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>MUSW__Alert_Indicator__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Read</sharingModel>
     <sharingReasons>

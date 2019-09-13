@@ -35,7 +35,7 @@
                     <div class="input-field-wrapper">
                         <h2 class="contact-name">{!v.contactName}</h2>
                         <aura:iteration items="{!v.fieldApiNames}" var="field">
-                            <div class="input-field">
+                            <div class="input-field slds-p-top_large">
                                 <lightning:inputField aura:id="input-fields" fieldName="{!field}" onchange="{!c.maskInput}" class="amrfield" />
                             </div>
                         </aura:iteration>

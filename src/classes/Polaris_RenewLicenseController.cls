@@ -1083,6 +1083,8 @@ listApp.add(applicationChild);*/
                         lstSubmissions.add(submissions);
                         //Creating map for integration team to  store the docs in 3rd party
                         if(submissions!=null && submissions.ContentDocumentId__c != null ) {
+                                submissions.IsSANFileUploadTrue__c = true;
+                                submissions.SAN_Image_Type__c ='Renewal';
                              mapSubmissionToFile.put(submissions.ID, submissions.ContentDocumentId__c.replace(';',''));
                         }
                        

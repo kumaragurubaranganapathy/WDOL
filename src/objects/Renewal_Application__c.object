@@ -643,7 +643,7 @@ Permit__r.Business_License__c
 	<fields>
         <fullName>License_Business_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>License__r.MUSW__Primary_Licensee__r.Name</formula>
+        <formula>License__r.Ultimate_Parent_Account__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>License Business Name</label>
         <required>false</required>

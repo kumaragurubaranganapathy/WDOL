@@ -569,6 +569,17 @@ BGBK__Fund__r.GL__c</formula>
         <type>Text</type>
         <unique>false</unique>
     </fields>
+<fields>
+        <fullName>Transaction_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>RIGHT(TEXT(BGBK__Type__c),LEN(TEXT(BGBK__Type__c))-5)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Transaction Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Transaction_Effective_Date__c</fullName>
         <externalId>false</externalId>

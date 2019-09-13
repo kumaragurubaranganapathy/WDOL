@@ -55,11 +55,26 @@
     businessDetails : function(component, event, helper) {
         console.log("event::"+ event.target.id);
         var accId = event.target.id;
+        if(event !=null && event.target!=null && event.target.id != null){
+            component.set("v.fetchPersistedAccountData",accId);
+        }
         component.set("v.selectedAccount",accId);
         component.set("v.accountDetail",true);
         component.set("v.licenseDetail",false);
         component.set("v.courseDetail",false);
         component.set("v.breadcrumbLabel","courses");
+        helper.businessDetails(component,event,helper);
+        helper.setSelectedAccountData(component,event,helper,accId);
+    },
+    navigateToBusinessDetails : function(component, event, helper){
+        
+        var accId = component.get("v.fetchPersistedAccountData");
+        component.set("v.selectedAccount",accId);
+        component.set("v.accountDetail",true);
+        component.set("v.licenseDetail",false);
+        component.set("v.courseDetail",false);
+        component.set("v.breadcrumbLabel","courses");
+        
         helper.businessDetails(component,event,helper);
         helper.setSelectedAccountData(component,event,helper,accId);
     },

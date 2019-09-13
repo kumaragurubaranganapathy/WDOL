@@ -146,6 +146,12 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
                 ta.Sub_status__c = 'Accepted';
                 lstupdateTask.add(ta);
             }
+			for(Task ta : [SELECT id,Whatid,type,Status,Sub_status__c from task where Whatid IN:childSetLicenseId and id!=null and Type = 'Payment Reminder'])
+            {
+                ta.Status = 'Completed';
+                ta.Sub_status__c = 'Accepted';
+                lstupdateTask.add(ta);
+            }
             if(lstupdateChildAssociation.size() > 0)
             {
                 update lstupdateChildAssociation;

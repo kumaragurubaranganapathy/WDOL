@@ -165,11 +165,11 @@
         .btn {
             font-weight: bold!important;
             border-radius: 4px!important;
-            color: #0872b9!important;
-            border: solid 1px #0872b9!important;
+            color: #0071bc!important;
+            background: white!important;
+            border: solid 1px #0071bc!important;
             margin: 1px!important;
             padding: 6px 6px!important;
-            background: white!important;
             /* font-weight: bold; */
             font-size: .9em!important;
         }
@@ -182,10 +182,17 @@
             font-size: 2em!important;
         }
         
-        .back_btn {}
+        .back_btn {
+           color: #0071bc!important;
+           background: white!important;
+           border: solid 1px #0071bc!important;
+        }
         
         .cont_btn {
-            float: right;
+           float: right;
+           color: white!important;
+           background: #0071bc!important;
+           border: solid 1px #0071bc!important;
         }
         
         .refresh_btn {
@@ -193,7 +200,11 @@
         }
         
         .epay_btn {
-            float: right;
+            text-align: center;
+            float:right;
+            color: white!important;
+            background: #0071bc!important;
+            border: solid 1px #0071bc!important;
         }
         
         .bg-steps {
@@ -225,7 +236,7 @@
             <img class="logo" src="{!$Resource.LnP_Icons+'/LnP_Icons/header-image.PNG'}" style="width: 100%;" alt="WA state department of licencing logo" />
         </apex:outputPanel>
         --->
-        <apex:sectionHeader title="Cart" subtitle="{!IF(isBusinessCart, a.Name + '’s Cart', IF(con != null, con.Name + '’s Cart', 'Your Cart'))}" id="h">
+        <apex:sectionHeader title="Cart" subtitle="{!IF(isBusinessCart, 'Make Payment - '+a.Name , 'Make Payment')}" id="h">
             <apex:pageMessages id="msg" rendered="{!NOT(keepPolling)}"></apex:pageMessages>
             <div id='errorMsg'></div>
         </apex:sectionHeader>
@@ -253,7 +264,7 @@
             <apex:tabPanel switchType="client" value="{!activeTab}" id="tab" headerSpacing="5" activeTabClass="activeTab" inactiveTabClass="inactiveTab" disabledTabClass="disabledTab" rendered="{!feeVOs.size >= 0 || invoiceVOs.size >= 0}">
                 
                 <!---- FEES TAB ---->
-                <apex:tab label="Items" name="fees" disabled="{!processSuccessful}" onTabEnter="setSelected();refreshFees();">
+                <apex:tab label="Fees" name="fees" disabled="{!processSuccessful}" onTabEnter="setSelected();refreshFees();">
                     <apex:outputPanel rendered="{!isPortalUser}">
                         <p>To add fees, view <a href="/apex/PermitTabPortal">your permits</a> and click "Add to Payments" on any permits with an outstanding fee.</p>
                         <p><strong>Note that you must use a valid VISA, MasterCard or Discover credit card to pay online.</strong></p>
@@ -294,9 +305,9 @@
                             --->
                              <apex:column headerValue="Pay" >
                                 <apex:facet name="header"> 
-                                    <apex:inputCheckbox id="cbFeeAll" styleClass="cbFeeAll" onclick="selectAll(this, 'fee')" />
+                                    <apex:inputCheckbox id="cbFeeAll" styleClass="cbFeeAll" onclick="selectAll(this, 'fee');refreshTotalJS(getUnselectedItems());" />
                                 </apex:facet>
-                                <input type="checkbox"  checked="{!IF(fee.isSelected, 'checked', '')}" onclick="check(this,'cbFeeAll')" id="{!fee.f.Id}" />
+                                <input type="checkbox"  checked="{!IF(fee.isSelected, 'checked', '')}" onclick="check(this,'cbFeeAll');refreshTotalJS(getUnselectedItems());" id="{!fee.f.Id}" />
                             </apex:column>
                             <apex:repeat value="{!$ObjectType.MUSW__Fee__c.FieldSets.BGBK__Fee_Basic}" var="ff">  
                                 
@@ -317,9 +328,9 @@
                         <apex:pageBlocktable value="{!depositVOs}" var="dep" style="width:100%">
                             <apex:column headerValue="Pay">
                                 <apex:facet name="header"> 
-                                    <apex:inputCheckbox id="cbDepositAll" styleClass="cbDepositAll" onclick="selectAll(this, 'deposit')" />
+                                    <apex:inputCheckbox id="cbDepositAll" styleClass="cbDepositAll" onclick="selectAll(this, 'deposit');refreshTotalJS(getUnselectedItems());" />
                                 </apex:facet>
-                                <input type="checkbox" checked="{!IF(dep.isSelected, 'checked', '')}" onclick="check(this,'cbDepositAll')" id="{!dep.deposit.Id}"/> 
+                                <input type="checkbox" checked="{!IF(dep.isSelected, 'checked', '')}" onclick="check(this,'cbDepositAll');refreshTotalJS(getUnselectedItems());" id="{!dep.deposit.Id}"/> 
                             </apex:column>
                             <apex:repeat value="{!$ObjectType.MUSW__Deposit__c.FieldSets.BGBK__Deposit_Basic}" var="ff">     
                                 
@@ -338,9 +349,9 @@
                         <apex:pageBlocktable value="{!invoiceVOs}" var="inv" style="width:100%">
                             <apex:column headerValue="Pay">
                                 <apex:facet name="header"> 
-                                    <apex:inputCheckbox id="cbInvoiceAll" styleClass="cbInvoiceAll" onclick="selectAll(this, 'invoice')" />
+                                    <apex:inputCheckbox id="cbInvoiceAll" styleClass="cbInvoiceAll" onclick="selectAll(this, 'invoice');refreshTotalJS(getUnselectedItems());" />
                                 </apex:facet>
-                                <input type="checkbox" checked="{!IF(inv.isSelected, 'checked', '')}" onclick="check(this,'cbInvoiceAll')" id="{!inv.i.Id}"/> 
+                                <input type="checkbox" checked="{!IF(inv.isSelected, 'checked', '')}" onclick="check(this,'cbInvoiceAll');refreshTotalJS(getUnselectedItems());" id="{!inv.i.Id}"/> 
                             </apex:column>
                             
                             <apex:repeat value="{!$ObjectType.BGBK__Bill__c.FieldSets.BGBK__Invoice_Basic}" var="ff">                
@@ -359,9 +370,9 @@
                             <apex:outputText label="Total Selected" value="${!totalSelected}" id="totalSelected"
                                 style="font-weight:bold;font-size:1.5em;" styleClass="bg-float-right"
                             />
-                            <br/>
+                            <!-- Commenting as a part of bug 7018 
                             <apex:outputPanel styleClass="btn refresh_btn" style="margin-left:18%" onclick="refreshTotalJS(getUnselectedItems());"
-                                rendered="{!canCreate && (feeVOs.size > 0 || invoiceVOs.size > 0)}">Refresh Total</apex:outputPanel>
+                                rendered="{!canCreate && (feeVOs.size > 0 || invoiceVOs.size > 0)}">Refresh Total</apex:outputPanel> -->
 
                             <!---
                             <apex:selectList id="accounts" rendered="{!!isPortalUser}" value="{!accountSelected}"
@@ -394,7 +405,7 @@
                             <apex:pageBlockSectionItem rendered="{!!isPortalUser}" />
                             <apex:pageBlockSectionItem rendered="{!!isPortalUser}" />
 
-                            <apex:commandButton styleClass="back_btn" value="Previous" action="{!backToItems}"
+                            <apex:commandButton styleClass="back_btn" value="Pay Later" action="{!backToItems}"
                             />
                             <apex:outputPanel styleClass="btn cont_btn" onclick="checkoutJS(getUnselectedItems());"
                                 rendered="{!canCreate && (feeVOs.size > 0 || invoiceVOs.size > 0 || depositVOs.size > 0)}">Continue</apex:outputPanel>
@@ -647,7 +658,7 @@
                         <!-- Added as a part of bug 6337 by Abhilasha -->
                         <apex:outputPanel id="formNumberInput" rendered="{!rvo.r.MUSW__Payment_Method__c = checkOptionName || rvo.r.MUSW__Payment_Method__c = 'Money Order'}" >
                             <apex:pageBlockSection columns="1" id="formNumberInputCheckout">
-                                <apex:inputField label="Form Number" id="formNumberInputField" value="{!rvo.r.Form_Number__c}"
+                                <apex:inputField label="Cheque Number" id="formNumberInputField" value="{!rvo.r.Form_Number__c}"
                                 />
                             </apex:pageBlockSection>
                         </apex:outputPanel>

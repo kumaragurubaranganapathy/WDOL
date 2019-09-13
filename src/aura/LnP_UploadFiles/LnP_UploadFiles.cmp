@@ -1,5 +1,5 @@
 <aura:component implements="force:appHostable" controller="LnP_FileUploadController">
-    <aura:attribute name="accept" type="List" default="['.jpg', '.jpeg', '.png', '.pdf', '.xlsx']"/>
+    <aura:attribute name="accept" type="List" default="['.jpg', '.jpeg', '.png', '.pdf','.mp4','.xlsx','.txt','.docx','.doc','.rtf']"/>
     <aura:attribute name="uploadedFileList" type="List"/>
     <aura:attribute name="previousFileList" type="List"/>
     

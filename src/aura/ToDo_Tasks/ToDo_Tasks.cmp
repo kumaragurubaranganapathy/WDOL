@@ -195,18 +195,53 @@ _______________________________________________________________
                                 </lightning:layoutItem>
                             </lightning:layout>
                             <div class="button-wrapper license-btn">
-                                 <div class="slds-truncate" onclick="{!c.StartRequestInformation}" data-license="{!task.WhatId}"
-                                             data-recordId="{!task.Id}"
-                                             data-licenseType="{!task.Parent_License_Type__c}"                                             
-                                             data-board="{!task.Parent_Profession__c}"
-                                             data-requestType="Request for Information"
-                                      data-description="{!task.Description}">
-                                            <lightning:button variant="brand" label="Update Information" title="Update Information"/>
-                                        </div>
-                                
+                                <div class="slds-truncate" onclick="{!c.StartRequestInformation}" data-license="{!task.WhatId}"
+                                     data-recordId="{!task.Id}"
+                                     data-licenseType="{!task.Parent_License_Type__c}"                                             
+                                     data-board="{!task.Parent_Profession__c}"
+                                     data-requestType="Request for Information"
+                                     data-description="{!task.Description}">
+                                    <lightning:button variant="brand" label="Update Information" title="Update Information"/>
+                                </div>                                
                             </div>
                         </div>
                     </aura:if>
+                    <aura:if isTrue="{!task.Type == 'Payment Reminder' }"> <!-- Payment Reminder Task-->
+                        <div class="task-wrapper">
+                            <div class="task-subject">
+                                Pay Fees
+                            </div>
+                            <lightning:layout class="license-outer-wrapper slds-wrap">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                    <div class="field-style">
+                                        <span class="label-style">Application Number: </span>
+                                        <span class="data-style">{!task.Parent_License_Name__c}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">License Type: </span>
+                                        <span class="data-style">{!task.Parent_License_Type__c}</span>
+                                    </div>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                    <div class="field-style">
+                                        <span class="label-style">Transaction Type: </span>
+                                        <span class="data-style">{!task.Subject}</span>
+                                    </div>                                    
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <div class="button-wrapper license-btn">
+                                <div class="slds-truncate" onclick="{!c.StartPayment}" data-license="{!task.WhatId}"
+                                     data-recordId="{!task.Id}"
+                                     data-licenseType="{!task.Parent_License_Type__c}"                                             
+                                     data-board="{!task.Parent_Profession__c}"
+                                     data-requestType="Request for Information"
+                                     data-description="{!task.Description}">
+                                    <lightning:button variant="brand" label="Pay" title="Pay"/>
+                                </div>
+                            </div>
+                        </div>
+                    </aura:if>
+
                     <aura:if isTrue="{!task.Type == 'Other' }"> <!-- Education Task-->
                         <div class="task-wrapper">
                             <div class="task-subject">
@@ -260,7 +295,7 @@ _______________________________________________________________
                             <lightning:layout class="license-outer-wrapper slds-wrap">
                                 <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item bad-payment">
                                     <div class="field-style">
-                                        <span class="label-style">Comments: </span>
+                                        <span class="label-style">Comments:</span>
                                         <span class="data-style">{!task.Subject}</span>
                                     </div>
                                 </lightning:layoutItem>

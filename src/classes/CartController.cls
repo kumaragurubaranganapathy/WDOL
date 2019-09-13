@@ -392,14 +392,16 @@ public with sharing class CartController
             for (MUSW__Fee__c f : fees)
             {
                 system.debug('feessss'+f);
-                Boolean selected;
+                //commenting as a part of bug 7018
+               /* Boolean selected;
                 if(m_selectedFees != null){
                     selected = m_selectedFees.containsKey(f.Id);
                 }else{
                     selected = false;
-                }
+                }*/
                 //commented as a part of bug 5532 by Abhilasha
-                //Boolean selected = m_selectedFees == null || m_selectedFees.containsKey(f.Id);
+                //uncommenting as a part of bug 7018
+                Boolean selected = m_selectedFees == null || m_selectedFees.containsKey(f.Id);
                 feeVOs.add(new FeeVO(f, selected));
                 m_totalOwed += f.MUSW__Outstanding_Fee__c;
                 
@@ -514,7 +516,8 @@ public with sharing class CartController
                     pmtMethods.add(new SelectOption('Deposit', 'Deposit'));
                 }
             }
-            pmtMethods.sort(); // added by Abhilasha as a part of CR:6292
+            //Removing sort as a part of BUG: 6985
+            //pmtMethods.sort(); // added by Abhilasha as a part of CR:6292
             return pmtMethods;
         }
         set;

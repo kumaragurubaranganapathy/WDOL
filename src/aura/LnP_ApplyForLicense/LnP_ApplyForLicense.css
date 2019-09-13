@@ -75,7 +75,7 @@ display:none;
     display:flex;
     align-items:center;
 }
-.THIS .slds-form-element__label{
+.THIS .slds-form-element__label,.THIS .slds-form-element__label span{
     font-size: 14px; 
     color:t(sentenceclr);
     word-break: normal;
@@ -123,8 +123,11 @@ display:none;
     height:20px;
     margin-right:12px;
 }
-.THIS .slds-form-element__control .slds-radio{
+/*.THIS .slds-form-element__control .slds-radio{
     display : inline-block !important;
+}*/
+.THIS fieldset .slds-form-element__control{
+    display:flex;
 }
 .THIS .slds-form-element__legend{
     font-size: 14px;
@@ -200,7 +203,7 @@ display:none;
 }
 .THIS .field-item{
     padding-left: 0;
-    padding-bottom:8px;
+    padding-bottom:0;
 }
 .THIS .attestBody{
     font-size:14px;
@@ -362,7 +365,11 @@ color: t(primary);
 .THIS .validate .slds-form-element__label .uiOutputRichText br{
     display:none;
 }
-.THIS .validate .field-item,.THIS .dispItem .field-item{
+/*.THIS .validate .field-item{ 
+    display:inline;
+}*/
+
+.THIS .dispItem .field-item{
     display:inline;
 }
 
