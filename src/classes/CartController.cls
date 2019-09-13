@@ -85,7 +85,6 @@ public with sharing class CartController
     public String encryptedSessionInfo {get; set;}
     public boolean requestFromEPayment {get; set;}
     public DOL_ePaymentReturnSession ePaymentReturnSession {get; set;}
-    public List<Profile> portalProfiles {get;set;}
     public String isBisuneesLic {get;set;}
     public string checkOptionName {get;set;} //- Added as a part of bug 6337 by Abhilasha 
     
@@ -210,10 +209,7 @@ public with sharing class CartController
         system.debug('contact = '+ m_cs.getActiveContact() );
         paymentGatewaySettings = [Select Id, DeveloperName, Endpoint__c, Biller_ID__c, Biller_Group_ID__c, Product_Code__c From Payment_Gateway_Settings__mdt where DeveloperName = 'US_Bank_Settings' limit 1];
         
-        List<String> portalProfileNames = DOL_AppConstants.PORTAL_PROFILES;
-        system.debug('portalProfileNames::'+portalProfileNames);
-        portalProfiles = [Select id, Name from Profile where Id =: userinfo.getProfileid() and Name In: portalProfileNames];
-        system.debug('portalProfiles::'+portalProfiles);
+        
     }
     
     public void initOrder()
@@ -1162,7 +1158,7 @@ public with sharing class CartController
             
             //Added by Nazneen on 31/05 to capture inatke method for portal and counter type of receipts
             if(receipt.Intake_Method__c == null || receipt.Intake_Method__c == ''){
-                if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || portalProfiles.size() == 0){ // added as a part of bug 2164
+                if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || !isPortalUser){ // added as a part of bug 2164
                     receipt.Intake_Method__c='Counter';
                 }
                 else{
@@ -1302,7 +1298,7 @@ public with sharing class CartController
         //Added by Vinanthi for defect 4999
         BGBK__Cart__c cartForIMCheck= [SELECT Id, Name, BGBK__Account__c, BGBK__BG_Payment_Batch__r.id FROM BGBK__Cart__c where Id=: cart.Id];
          if(receipt.Intake_Method__c == null || receipt.Intake_Method__c == ''){
-            if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || portalProfiles.size() == 0){ // added as a part of bug 2164
+            if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || !isPortalUser){ // added as a part of bug 2164
                 receipt.Intake_Method__c='Counter';
             }
             else{
@@ -1413,7 +1409,7 @@ public with sharing class CartController
     //Added for BUG:3573
     public PageReference printReceipt(){
         //onClick="window.open('/apex/BGBK__CartPrint?cartId={!cart.Id}&email={!email}');"
-        if(portalProfiles.size() == 0){
+        if(!isPortalUser){
             PageReference pageRef = new PageReference('/apex/BGBK__CartPrint?cartId='+cart.Id+'&email='+email); 
             return pageRef;
         }else{
@@ -1425,7 +1421,7 @@ public with sharing class CartController
     public PageReference  backToItems()
     {
         //added as a part of BUG: 2965 when paying from back office and clicking back,navigate to correct page.
-        if(portalProfiles.size() == 0){
+        if(!isPortalUser){
             return cancel();
         }else{
             // selectedTab = label.Str_Fees;
