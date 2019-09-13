@@ -184,5 +184,10 @@
         var isbusinsessLicense = businsessLicenseArray.includes(licenseType);        
         component.set('v.isBusinessLicense',isbusinsessLicense);
         component.set("v.isAMRLoaded",true);
+        this.setDataForRedirection(component,event,isbusinsessLicense);
+    },
+    
+    setDataForRedirection : function(component,event,isbusinsessLicense){
+        sessionStorage.setItem("isBuz", isbusinsessLicense); 
     }
 })
