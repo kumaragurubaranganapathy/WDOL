@@ -437,5 +437,34 @@ Parameter      : Nil
             }
         }
     }
+
+    //create Review Record after Payment is completed.
+    @future
+    public static void createReviewOnLicense(List<Id> licenseIdList){
+        
+        List<MUSW__Review__c> revList = new List<MUSW__Review__c>();
+        List<MUSW__License2__c> licToUpdate = new List<MUSW__License2__c>();
+        for(MUSW__License2__c lic : [select id,Name,license_recordtype_name__c,application_method__c,license_business_name__c,Applicant_Full_Name__c,Application_Type__c,Credential_Type__c from MUSW__License2__c where id IN:licenseIdList]){
+            MUSW__Review__c rev = new MUSW__Review__c();
+            rev.name = (lic.license_recordtype_name__c == 'Business' || lic.license_recordtype_name__c == 'Course') ? (lic.application_method__c + ' Review - '+ lic.license_business_name__c + '/'+ lic.Name) : (lic.application_method__c + ' Review - '+ lic.Applicant_Full_Name__c + '/'+ lic.Name) ;
+            rev.MUSW__Status__c = 'Pending';
+            rev.Application_Type__c = lic.Application_Type__c;
+            rev.License_Type__c = lic.Credential_Type__c;
+            rev.Review_Type__c = lic.application_method__c;
+            rev.License__c = lic.id;
+            revList.add(rev);
+            lic.MUSW__Status__c = 'In-Review';
+            licToUpdate.add(lic);
+        }
+         
+        if(!revList.isEmpty()){
+            insert revList;
+        } 
+        
+        if(!licToUpdate.isEmpty()){
+            update licToUpdate;
+        } 
+          
+    }
     
 }
