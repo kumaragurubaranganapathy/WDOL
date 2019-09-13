@@ -1417,6 +1417,15 @@ public class Polaris_ApplyForLicenseController {
                             if(ans.QuestionDOL__r.Question_Body__c=='Middle Name or initial' && MiddleName == '' ){
                                 MiddleName = ans.Answer_Text__c != null ? ans.Answer_Text__c : ''+' ';
                             }
+							
+							if((ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') ||ans.QuestionDOL__r.Question_Body__c.contains('How will you be signing your notary public commission?')) && (ans.Answer_Text__c.contains('Using my full legal name') || ans.Answer_Text__c.contains('Use my full legal name')))
+                            {
+                                mstLicense.Using_my_legal_name_as_print_name__c = true;
+                            }
+                            if((ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') ||ans.QuestionDOL__r.Question_Body__c.contains('How will you be signing your notary public commission?')) && ans.Answer_Text__c.contains('Using a different version of my name'))
+                            {
+                                mstLicense.Using_my_legal_name_as_print_name__c = false;
+                            }
                             
                             if(ans.QuestionDOL__r.Question_Body__c=='Last Name' && LastName == '' ){
                                 LastName = ans.Answer_Text__c != null ? ans.Answer_Text__c : ''+' ';
