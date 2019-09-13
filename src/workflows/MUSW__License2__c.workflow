@@ -227,6 +227,17 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Client_Approved_Built/License_expiration_notice_renewal_allowed_final</template>
     </alerts>
+	<alerts>
+        <fullName>Payment_for_License_Fee_two_step</fullName>
+        <description>Payment for License Fee - two step</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>DOL_Client_Approved_Finance/First_License_Fee</template>
+    </alerts>
     <alerts>
         <fullName>Polaris_License_Expiration_Notice</fullName>
         
