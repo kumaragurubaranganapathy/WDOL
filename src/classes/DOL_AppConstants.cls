@@ -1,5 +1,6 @@
 public class DOL_AppConstants {
 
+    public static final String NULL_EMPTY_STRING = '';
     public static final String ePaymentEncryptionKeyLabel = 'ePayment Encryption Key';
     public static final String ePaymentEncryptionIVLabel = 'ePayment Encryption Init Vector';
     public static final String ePaymentEncryptionAlgoLabel = 'ePayment Encryption Algo Name';
@@ -7,12 +8,45 @@ public class DOL_AppConstants {
     public static final String ePaymentReturnUrlNonPortalUser = 'ePayment Return Url Non Portal User';
     public static final String ePaymentSessionValuesSeperator = '|';
     public static final String ePaymentUrlListValuesSeperator = 'SEPARATOR';
+    
+    //Class DOL_JITHandler
     public static final String sJITErrorMessageOne = 'An SAML error occurred. Please contact us for assistance.';
     public static final String sJITErrorMessageTwo = 'Configuration';
     public static final String sJITErrorMessageThree = 'Missing SAML attributes. Cant initiate JIT creation process. Please check if Custom Label for SAML attributes are set appropriately.';
     public static final String sJITException = 'DOL_JITHandler.JitException';
     public static final String sJITKey = 'IX6Wjpic/pToPXTvi6J0slh9nJuR0sH82+BFsCW13XA=';
     public static final String sJITAlgorithm = 'AES256';
+    
+    //Class Journal_Voucher_Trigger_Handler
+    public static final String sJVTriggerOne = 'Manual CreditJournal - User Created';
+    public static final String sJVTriggerTwo = 'Manual JV -User Created - Correction JV or one system to another JV';
+    public static final String sJVTriggerThree = 'RemittanceTransfer in POLARIS - User Created';
+    public static final String sJVTriggerFour = 'Manual JV -Remittance JV from a validation number';
+    public static final String sJVTriggerFive = 'ManualTransfer - User Created';
+    public static final String sJVTriggerSix = 'ManualTransfer - System Generated to other agencies';
+    public static final String sJVTriggerSeven = 'Manual CRJSfor Daily -Lockbox  240Q';
+    public static final String sJVTriggerEight = 'Manual IAP -user created to ensure document # matches OFM/AFRS';
+    
+    //Class LnP_SaveBackGroundDetails
+    public static final String sSuccessResponse = 'Successfull';
+    public static final String sFailedResponse = 'Fail';
+    
+    //Class Lnp_Journal_Voucher_Generic
+    public static final String sJVAutomated = 'Journal Voucher Automated';
+    public static final String sJVAFRES = 'AFRS';
+    public static final String sJVTMS = 'TMS';
+    
+    //Class Polaris_AMRLinkCntrl
+    public static final String sContactId = '003r000000EOhBB';
+    
+    //Class mapDemo
+    public static final String sRoute = 'https://www.google.com/maps/dir';
+    public static final String sIcon = 'utility:salesforce1';
+    
+    
+    //Class batchSendLicenseCertification
+    public static final String sSubjectLine = 'Dept of Licensing – License Certificate';
+    public static final String sMailBody = 'Please find attached a copy of your License Certificate';
     
     public static Map<String,String> integrationSettingsMetadataMap = new Map<String,String>();
     
@@ -120,6 +154,9 @@ public class DOL_AppConstants {
     public static final String RENEW ='Renew';
     public static final String ELECTRONIC_NOTARY ='Electronic Notary';
     public static final String IN_REVIEW = 'In-Review';
+    public static final String COMPLETE = 'Complete'; //CartController.cls,
+    public static final String COMPLETED = 'Completed';
+    public static final String APPROVED = 'Approved';
     public static final String INSERTLICENSE_LSTENDO = 'insertLicense-lstEndo';
     public static final String INSERTLICENSE_APPLICATIONLIST = 'insertLisence-applicationlist';
     public static final String GET_TOTAL_BALANCE = 'getTotalBalance';
@@ -135,5 +172,142 @@ public class DOL_AppConstants {
     public static final String BUSINESS_INFORMATION = 'Business Information';
     public static final String SUBMISSION = 'Submission'; 
 
+    //Class BusinessUtility
+    public static final String COMMUNITY_PLUS_PROFILE = 'eSLA Customer Community Plus Login User' ;
+    public static final String PREFIX_OLD_FIRSTNAME = 'Old-' ;
+    public static final String EN_US_LANGUAGE_LOCALE = 'en_US' ;
+    public static final String AMERICA_TIMEZONE_KEY = 'America/New_York' ;
+    public static final String UTF_8_ENCODING_KEY = 'UTF-8' ;
+    public static final String EMAIL_SERVICE_ADDRESS_DELEGATED_ADMIN = 'delegateadminemailservice@';
+    public static final String EMAIL_SERVICE_ADDRESS_TEST = 'test@salesforce.com@';
+    public static final String ACTIVE_STATUS_STRING = 'Active';
     
+    //Class CartController
+    public static final String CASHIER_CHECK = 'Check/Cashier\'s Check';
+    public static final String CONFIRM_STRING = 'confirm';
+    public static final String FEE_STRING = 'fees';
+    public static final String REVIEW_STRING = 'review';
+    Public static final String DEPOSIT_STRING = 'Deposit';
+    Public static final String FEE_PAYMENT_SOQL_QUERY_STRING = 'SELECT MUSW__Fee__r.License_Number__c, MUSW__Fee__r.portal_name__c, MUSW__Fee__r.Application_Type__c,'
+            +'MUSW__Fee__r.License_Type__c, MUSW__Fee__r.Application_Method__c, MUSW__Fee__r.MUSW__Amount__c, MUSW__Payment_Amount__c,'
+            +'MUSW__Fee__r.MUSW__Outstanding_Fee__c, Id, MUSW__Fee__c,BGBK__Invoice__c,'
+            +'BGBK__Invoice__r.Name,BGBK__Invoice__r.BGBK__Balance_Due__c,BGBK__Invoice__r.BGBK__Invoice_Date__c,MUSW__Receipt__c '
+            +'FROM MUSW__Fee_Payment__c '
+            +'WHERE MUSW__Receipt__c = :receiptId';
+            
+    //Class ClassTriggerHandler
+    public static final String CLASS_SOBJECT_STATUS_APPLIED = 'Applied';
+    
+    //Class CommunitiesRegistrationController
+    public static final String CONTACT_ACCOUNT_RELATIONSHIP_OWNER = 'Owner';
+    
+    //class ContactTriggerHandler
+    public static final String CONTACT_STATUS_ON_HOLD = 'On Hold';
+    
+    //class ContactValidator
+    public static final String SOQL_WHERE_FILTER_EQUALS_TRUE =  '= true';
+    public static final String SOQL_CREDENTIAL_TYPE_FILTER = 'Select Name From Application_Field__c where Required__c = true and Object_Name__c = \'Contact\' and Parent__r.Parent__r.Parent__r.Credential__c = :licenseType and ' + 
+            ' Parent__r.Parent__r.Parent__r.Credential_Type__c = :grouping and ';
+    public static final String SOQL_PROGRAM_AREA_FILTER = 'Select Name From Application_Field__c where Required__c = true and Object_Name__c = \'Contact\' and Parent__r.Parent__r.Parent__r.Credential__c = :licenseType and ' + 
+            ' Parent__r.Parent__r.Parent__r.Program_Area__c = :grouping and '; 
+    
+    //CreateInspectiononCompletingReview
+    public static final String INSPECTION_CHECKLIST_MHC_INSPECTION_CHECKLIST = 'MHC Inspection checklist';
+    public static final String INSPECTION_CHECKLIST_POWTS_INSPECTION_REPORT  = 'POWTS INSPECTION REPORT';
+    public static final String ANSWER_OBJECT_NAME_NOT_ANSWERED_YET_STRING  = 'Not Answered Yet';
+    
+    //CredAnsSubmissionTriggerHandler
+    public static final String SUBMISSION_OBJECT_FILE_LOCATION_SALESFORCE_STRING = 'Salesforce';
+    
+    //CredCEhoursFix
+    public static final String DOCUMENT_NAME_CE_HOUR_REPORT = 'CEhourreport-';
+    public static final String CSV_COLUMN_HEADER = 'Id, Credential CE hours, Actual CE hours, CE Difference\n';
+    public static final String CE_HOURS_REPORT_STRING = 'CE Hours Report';
+    
+    //CredCEhoursScheduler
+    public static final String QUERY_LICENSE_ELIGIBLE_STRING = 'Select id, name, CE_Hours__c, Renewal_Cycle_End_Date__c, ' + 
+               		 'Renewal_window__c, MUSW__Expiration_Date__c, LastModifiedBy.Name ' +
+               		 'from MUSW__License2__c where CE_Eligible__c = true limit 200';
+               		 
+    //CredentialNotificationScheduler
+    public static final String QUERY_CREDENTIAL_NOTIFICATION_SCHEDULER = 'Select Id, Name, MUSW__Applicant__r.FirstName, MUSW__Applicant__r.LastName, MUSW__Applicant__r.Name, MUSW__Primary_Licensee__r.Email_Primary_Contact__c, MUSW__Status__c, ' + 
+            'MUSW__Expiration_Date__c, Next_Notification_Date__c, Next_Notification_Attempt__c, Business_License__c, OwnerId,Credential__c, ' + 
+            'Is_Renewal_Eligible__c, Account_Email__c,Sub_Status__c ' + 
+            ' From MUSW__License2__c where Next_Notification_Date__c = TODAY '+
+            ' and (MUSW__Status__c = \'Active\'' +
+            ' or (MUSW__Status__c = \'Inactive\' AND Sub_Status__c = \'Expired\'))' ;
+    
+    //DOL_Batch_ApplictionsStatusUpdate
+    public static final String QUERY_DRAFT_APPLICATIONS = 'select id,LastModifiedDate,MUSW__Status__c from MUSW__Application2__c where ((MUSW__Status__c=\'Draft\' OR MUSW__Status__c=\'Withdrawn\') OR (MUSW__Status__c=\'Pending\' OR MUSW__Status__c=\'Under Review\')) OR MUSW__Status__c=\'Abandoned\'';
+    public static final String ABANDONED_STRING = 'Abandoned';
+    
+    //DOL_ContentVersionUtility
+    public static final String CONTENT_LOCATION_SALESFORCE_STRING = 'S';
+    public static final String CONTENT_DOC_LINK_SHARE_TYPE = 'V';
+    
+    //DOL_Epayment_ProcessRemittanceData
+    public static final String PROCESS_COMPLETED_SUCCESSFULLY = 'Process Completed Successfully';
+    public static final String SUCCESSFULL_STRING = 'SUCCESSFUL';
+    public static final String FAILED_STRING = 'FAILED';
+    
+    //DOL_ProcessIntContentDoc_Batch
+    public static final String DATA_LOADING_COMPLETED_STRING ='DATA LOADING COMPLETED' ;
+    public static final String NCR_STRING = 'NCR';
+    public static final String UNPROCESSED_STRING = 'UNPROCESSED';
+    public static final String REMITTANCE_STRING = 'REMITTANCE';
+    public static final String DOR_STRING = 'DOR';
+    
+    //DOL_SaveDataForIntegrationBatch
+    public static final String CONTENT_VERSION_CREATED_STRING = 'CONTENT VERSION CREATED';
+    public static final String INFO_STRING = 'Content Version created , contentDocumentId is ';
+    
+    //DOL_ePaymentRTPC
+    public static final String CREDIT_CARD_STRING = 'Credit Card';
+    
+    public static final String OUT_OF_THE_STATE = 'Out Of State';
+    
+    //Dol_BatchMonitoring
+    public static final String FAILED_STRING_LOWERCASE = 'failed';
+    public static final String SUCCESS_STRING_LOWERCASE = 'success';
+    public static final String RUNNING_STRING_SENTANCECASE = 'Running';
+    
+    //Dol_Batch_UpdtErrorPostElpasedTime
+    public static final String ERROR_STRING = 'Error';
+    
+    //Dol_DeleteAttachmentFromSubmission
+    public static final String NO_IMAGE_URL = 'No Image url';
+    public static final String FAIL_STRING = 'fail';
+    
+    //Dol_LoggerInput
+    public static final String INFO_STRING_UPPERCASE = 'INFO';
+    public static final String ERROR_STRING_UPPERCASE = 'ERROR';
+    
+    //Dol_RestAPIservice
+    public static final string DEV_POLARIS_V1_API_URL = 'https://dol-polaris-exp-dev.us-e2.cloudhub.io/api/v1/sosUbi';
+    public static final string DEV_POLARIS_V1_API_URL_GENERATEIMAGETOKEN_URI = 'https://dol-polaris-exp-dev.us-e2.cloudhub.io/api/v1/generateImageToken';
+    
+    //Dol_ViewTiffFile
+    public static final String IMAGE_TOKEN_STRING = 'imageToken';
+    
+    //ECart_CC
+    public static final String CHECKOUT_STRING = 'checkout';
+    public static final String DRAFT_STRING = 'Draft';
+    
+    //Email_Utility
+    public static final String THREE_STRING = '3';
+    
+    public static final String NORMAL_STRING = 'Normal';
+    //ExamReschedule
+    public static final String EMPTY_SPACE = ' ';
+    public static final String ID_STRING = 'Id';
+    public static final String SELECT_STRING = 'SELECT'; 
+    public static final String CONTACT_ID_EXPLICIT_STRING = '003r000000EOhBB';
+    
+    //FeePaymentCreatedByDelegate
+    public static final String EDIT_STRING = 'Edit';
+    public static final String ROW_CAUSE_STRING_CREATE_FEE_PAYMENT_BY_DELEGATE = 'create_Fee_Payment_By_Delegate__c';
+    
+    //FeePaymentReminderScheduler
+    public static final String FINE_PAYMENT_PAST_DUE_STRING = 'Fine Payment Past Due';
+    public static final String NOTICE_OF_COLLECTIONS_STRING = 'Notice of Collections';
 }
