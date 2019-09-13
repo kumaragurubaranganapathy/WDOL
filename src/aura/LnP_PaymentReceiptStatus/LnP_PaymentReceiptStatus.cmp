@@ -1,0 +1,127 @@
+<!-- *************************************************************************
+Component Name : LnP_PaymentReceiptStatus
+Created By : Kumaragurubaran
+Creation Date : 09-Sep-2019
+
+Modification Log
+Name			Date			Issue
+_______________________________________________________________
+*******************************************************************************-->
+<aura:component controller="LnP_PaymentReceiptStatusCtlr" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,force:hasSObjectName" access="global" >
+	<aura:attribute name="Spinner" type="Boolean" default="false"/>
+
+    <aura:attribute name="processDate" type="Date" />
+    <aura:attribute name="ccCheck" type="boolean" default="false"/>
+    <aura:attribute name="achCheck" type="boolean" default="false"/>
+    <aura:attribute name="displayCreditCard" type="boolean" default="false" />
+    <aura:attribute name="amexCheck" type="boolean" default="false"/>
+    <aura:attribute name="masterCheck" type="boolean" default="false"/>
+    <aura:attribute name="visaCheck" type="boolean" default="false"/>
+    <aura:attribute name="discoverCheck" type="boolean" default="false"/>
+    <aura:attribute name="displayTotalAmount" type="boolean" default="false" />
+    <aura:attribute name="validationErrorMessage" type="String" />
+    <aura:attribute name="hasValidationError" type="Boolean" description="Indicate if there were failures when validating the input."/>
+    <aura:attribute name="totalAmountMap" type="List" />
+    <aura:attribute name="displayUpdateButton" type="boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div aura:id="paymentStatusUpdate" style="position:relative">
+         <!-- Display a header -->
+        <aura:if isTrue="{!v.Spinner}">
+            <div class="slds-spinner_container" aura:id="uploadSpinner">
+                <div class="slds-spinner--brand slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+        </aura:if>
+        <div class="slds-page-header" role="banner">
+            <h1 class="slds-page-header__title slds-m-right--small
+                       slds-truncate slds-align-left">US Bank Settlement</h1>
+        </div>
+        <br/>
+        
+        <table class="slds-table slds-table_cell-buffer slds-table_header-hidden">
+            <tbody>
+                <tr class="slds-hint-parent">
+                    <td width="25%"><ui:inputDate aura:id="mySelectedDate"
+                                      label="Process Date" displayDatePicker="true" value="{!v.processDate}" /></td>
+                    <td>&nbsp;</td>
+                   <!-- <td><lightning:input type="checkbox" aura:id="pmtMethodCheckId" label="Payment Method" value="{!v.paymentMethodCheck}" onchange="{!c.hideUnHidePaymentMethod}"/></td> -->
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+        
+        <table class="slds-table slds-table_cell-buffer slds-table_header-hidden">
+            <thead>
+                <tr class="slds-hint-parent">
+                    <th colspan="2"><div class="slds-text-heading_small"><b>Payment Methods:</b></div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="slds-hint-parent">
+                    <td width="25%"><lightning:input type="checkbox" aura:id="ccCheckId" label="Credit Card" value="{!v.ccCheck}" onchange="{!c.hideUnHideCreditCards}"/></td>
+                    <td><lightning:input type="checkbox" aura:id="achCheckId" label="ACH" value="{!v.achCheck}" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+        
+        <aura:if isTrue="{!v.displayCreditCard}">
+            <table class="slds-table slds-table_cell-buffer slds-table_header-hidden">
+                <thead>
+                    <tr class="slds-hint-parent">
+                        <th colspan="4"><div class="slds-text-heading_small"><b>Credit Card Types:</b></div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <td width="25%"><lightning:input type="checkbox" aura:id="amexCheckId" label="Amex" value="{!v.amexCheck}"/></td>
+                        <td width="25%"><lightning:input type="checkbox" aura:id="masterCheckId" label="MasterCard" value="{!v.masterCheck}"/></td>
+                        <td width="25%"><lightning:input type="checkbox" aura:id="visaCheckId" label="Visa" value="{!v.visaCheck}"/></td>
+                        <td width="25%"><lightning:input type="checkbox" aura:id="discoverCheckId" label="DiscoverCard" value="{!v.discoverCheck}"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </aura:if>
+        <br/>
+        <div class="action-buttons" align="center" data-aura-rendered-by="7:13;a">
+            <button class="slds-button slds-button--brand" onclick="{!c.displayTotalAmounts}">Display Total</button>
+        </div>
+        <br/>
+        <aura:if isTrue="{!v.displayTotalAmount}">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="slds-hint-parent">
+                        <th colspan="4"><div class="slds-text-heading_small"><b>Total Amount:</b></div></th>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <th width="20%">Card Type</th>
+                        <th width="20%" style="text-align: right;">Amount</th>
+                        <th width="30%">&nbsp;</th>
+                        <th width="30%">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.totalAmountMap}" var="amount" indexVar="key">
+                        <tr class="slds-hint-parent">
+                            <td width="20%">{!amount.key}</td>
+                            <td width="20%" style="text-align: right;">{!amount.value}</td>
+                            <th width="30%">&nbsp;</th>
+                            <th width="30%">&nbsp;</th>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+            <br/><br/>
+            <div class="action-buttons" align="center" data-aura-rendered-by="7:13;a">
+                <button class="slds-button slds-button--neutral" onclick="{!c.refreshScreen}">Refresh</button>
+                <aura:if isTrue="{!v.displayUpdateButton}">
+                    <button class="slds-button slds-button--brand" onclick="{!c.updateReceiptPayment}">Update</button>
+                </aura:if>
+            </div>
+        </aura:if>
+        
+    </div>
+</aura:component>
