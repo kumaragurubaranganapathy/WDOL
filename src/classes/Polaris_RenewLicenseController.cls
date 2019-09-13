@@ -1130,12 +1130,11 @@ listApp.add(applicationChild);*/
             //mstLicense.Application_Method__c = application.Application_Method__c;
             if(application.MUSW__Account__c!=null)
             {
-                /*if(application.MUSW__Account__r.Course_Provider__c){
-mstLicense.RecordTypeId = courseRT;
-}else{
-mstLicense.RecordTypeId = businessRT; 
-}*/
-                
+                if(application.MUSW__Account__r.Course_Provider__c){
+                    mstLicense.RecordTypeId = courseRT;
+                }else{
+                    mstLicense.RecordTypeId = businessRT; 
+                }                
             }
             else
             {
