@@ -202,7 +202,12 @@
         
         <div id="usAddr" class ="usAddress">
             <div class="address-type">
-                <h1>Your Mailing Address</h1>
+                <aura:if isTrue="{!not(v.changeOnlyMailingAdd)}">
+                    <h2>Mailing Address</h2>
+                    <aura:set attribute="else">
+                        <h2>Your Mailing Address</h2>
+                    </aura:set>                    
+                </aura:if>
             </div>
             <lightning:select aura:id="countryPicklist" name="country" label="Country" value="{!v.defaultCountry}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onCountryChange}"> 
                 <aura:iteration items="{!v.countryList}" var="countryInstance">

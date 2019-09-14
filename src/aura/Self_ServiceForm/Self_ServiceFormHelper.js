@@ -32,7 +32,7 @@
                     component.set("v.fieldApiNames", ['First_Name_Primary_Contact__c','Last_Name_Primary_Contact__c','Email_Primary_Contact__c','Email__c','Phone_Primary_Contact__c','Extension__c','Business_Phone__c']);
                     component.set("v.recordIDforSSAMR",recordId);
                     component.set("v.recordEditForm",true);
-                    component.set("v.AMRName",'Update Contact Information');
+                    component.set("v.AMRName",'Update Business Information');
                     component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_Business_Dashboard"));
                 }
                     else if(value.toLowerCase() == "mailingaddress"){

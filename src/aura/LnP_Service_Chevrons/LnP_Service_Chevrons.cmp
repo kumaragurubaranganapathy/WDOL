@@ -149,6 +149,7 @@
                                             </div>                                            
                                         </aura:iteration>
                                     </div>
+									<aura:if isTrue="{!not(empty(v.attachmentResponse))}">
                                     <div id="AttachmentValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                         <div class="headings">Mandatory Submission Review</div><br/>
                                         <aura:iteration items="{!v.attachmentResponse}" var="attResponses" indexVar="varRes"> 
@@ -170,6 +171,7 @@
                                             </div>
                                         </aura:iteration>
                                     </div>
+									</aura:if>
                                     <!--<div id="certificationsValidation" class='field-item'> 
                                         <div class="reviewHeading certifications">CERTIFICATIONS</div><br/>
                                         <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
