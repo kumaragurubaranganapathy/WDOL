@@ -428,6 +428,8 @@
     },
     onAttestationChange: function(component, event, helper) {
         this.toEnableSubmitButtonCheck(component, event);
+		var a = component.get('c.onCheckboxChange');
+        $A.enqueueAction(a); 
         var attestedName = component.get("v.currentUser").Name.trim().toLowerCase();
         var givenName = component.get("v.attestValue").trim().toLowerCase();
         if(attestedName == givenName){

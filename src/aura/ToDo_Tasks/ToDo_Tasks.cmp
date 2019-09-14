@@ -241,7 +241,51 @@ _______________________________________________________________
                             </div>
                         </div>
                     </aura:if>
-
+					<aura:if isTrue="{!task.Type == 'Submit Exam' }"> <!-- Education Task-->
+                        <div class="task-wrapper">
+                            <div class="task-subject">
+                                Submit Exam : {!task.Subject}
+                            </div>
+                            <lightning:layout class="license-outer-wrapper slds-wrap">
+                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                    <div class="field-style">
+                                        <span class="label-style">Email: </span>
+                                        <span class="data-style">{!task.Email__c}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">Exam Name: </span>
+                                        <span class="data-style">{!task.Subject}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">Exam Status: </span>
+                                        <span class="data-style">{!task.Description}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">License Number: </span>
+                                        <span class="data-style">{!task.Parent_License_Name__c}</span>
+                                    </div>
+                                    <div class="field-style">
+                                        <span class="label-style">Due Date: </span>
+                                        <span class="data-style">{!task.ActivityDate}</span>
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                            <div class="button-wrapper license-btn">                                    
+                                <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
+                                <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
+                                <div class="slds-truncate" onclick="{!c.StartRequestEducationInformation}" data-license="{!task.Child_License_Id__c}"
+                                             data-recordId="{!task.Id}"
+                                             data-licenseType="{!task.Parent_License_Type__c}"                                             
+                                             data-board="{!task.Parent_Profession__c}"
+                                             data-requestType="Submit Exam Results"
+                                     data-edurecord="{!task.WhatId}"
+                                      data-description="{!task.Description}">
+                                            <lightning:button class="accept-btn"  variant="brand"   label="Submit Exam" />
+                                        </div>                               
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </aura:if>
                     <aura:if isTrue="{!task.Type == 'Other' }"> <!-- Education Task-->
                         <div class="task-wrapper">
                             <div class="task-subject">
