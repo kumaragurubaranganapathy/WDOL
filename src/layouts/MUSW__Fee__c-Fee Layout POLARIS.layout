@@ -51,10 +51,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Handling_Fee__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Account_Number__c</field>
             </layoutItems>
             <layoutItems>
@@ -377,11 +373,7 @@
             <actionType>QuickAction</actionType>
             <sortOrder>8</sortOrder>
         </platformActionListItems>
-		<platformActionListItems>
-            <actionName> MUSW__Fee__c.Handling_Fee__c</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>9</sortOrder>
-        </platformActionListItems>
+		
     </platformActionList>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
