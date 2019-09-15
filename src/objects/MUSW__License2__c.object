@@ -1590,27 +1590,22 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <fullName>Endorsements__c</fullName>
         <externalId>false</externalId>
         <label>Endorsements</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Engineering Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Land Surveying Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Engineering Services</fullName>
-                    <default>false</default>
-                    <label>Engineering Services</label>
-                </value>
-                <value>
-                    <fullName>Land Surveying Services</fullName>
-                    <default>false</default>
-                    <label>Land Surveying Services</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
@@ -4688,28 +4683,6 @@ Original_Issue_Date__c
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Endorsements__c</fullName>
-        <externalId>false</externalId>
-        <label>Endorsements</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Engineering Services</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Land Surveying Services</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Name_on_Certificate__c</fullName>
