@@ -1636,31 +1636,26 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+   <fields>
         <fullName>Endorsements__c</fullName>
         <externalId>false</externalId>
         <label>Endorsements</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Engineering Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Land Surveying Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Engineering Services</fullName>
-                    <default>false</default>
-                    <label>Engineering Services</label>
-                </value>
-                <value>
-                    <fullName>Land Surveying Services</fullName>
-                    <default>false</default>
-                    <label>Land Surveying Services</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
@@ -4550,6 +4545,168 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <restricted>true</restricted>
             <valueSetName>license_specific_email_addresses</valueSetName>
         </valueSet>
+    </fields>
+        <fields>
+        <fullName>Certificate_Address_City_zip__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Credential_Type__c , 
+&quot;Notary Public&quot;, &quot;&quot; , 
+&quot;Embalmer&quot;, &quot;&quot;,
+&quot;Embalmer Intern&quot;, &quot;&quot;,
+&quot;Engineer in Training&quot;, &quot;&quot;,
+&quot;Funeral Director&quot;, &quot;&quot;,
+&quot;Funeral Director Intern&quot;, &quot;&quot;, 
+&quot;Embalmer Intern&quot;, &quot;&quot;, 
+&quot;Land Surveyor in Training&quot;, &quot;&quot;,
+
+&quot;Funeral Establishment&quot;, Public_Address__r.MUSW__City__c + &quot; &quot; + TEXT(Public_Address__r.MUSW__State__c) + &quot; &quot; + Public_Address__r.Zip_Postal_Code__c, 
+&quot;Prearrangement Funeral Services&quot;, Public_Address__r.MUSW__City__c  + &quot; &quot; +   TEXT(Public_Address__r.MUSW__State__c) + &quot; &quot; + Public_Address__r.Zip_Postal_Code__c, 
+
+MUSW__Parcel__r.MUSW__City__c + &quot; &quot; + TEXT(MUSW__Parcel__r.MUSW__State__c) + &quot; &quot; + MUSW__Parcel__r.Zip_Postal_Code__c 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Address City/zip</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certificate_Address_Street__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Credential_Type__c , 
+&quot;Notary Public&quot;, &quot;&quot; , 
+&quot;Embalmer&quot;, &quot;&quot;, 
+&quot;Embalmer Intern&quot;, &quot;&quot;, 
+&quot;Engineer in Training&quot;, &quot;&quot;, 
+&quot;Funeral Director&quot;, &quot;&quot;, 
+&quot;Funeral Director Intern&quot;, &quot;&quot;,
+&quot;Embalmer Intern&quot;, &quot;&quot;,
+&quot;Land Surveyor in Training&quot;, &quot;&quot;, 
+
+&quot;Funeral Establishment&quot;, Public_Address__r.MUSW__Street2__c,
+&quot;Prearrangement Funeral Services&quot;, Public_Address__r.MUSW__Street2__c,
+
+MUSW__Parcel__r.MUSW__Street2__c
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Address Street</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certificate_Issue_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Credential_Type__c , 
+&quot;Notary Public&quot;, MUSW__Issue_Date__c , 
+Original_Issue_Date__c
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Issue Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Certificate_Print_Day__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(DAY(Original_Issue_Date__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Print Day</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certificate_Print_Day_superscript__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(TEXT(DAY(Original_Issue_Date__c)),
+&quot;1&quot;, &quot;st&quot;,
+&quot;2&quot;, &quot;nd&quot;,
+&quot;3&quot;, &quot;rd&quot;,
+&quot;21&quot;,&quot;st&quot;,
+&quot;22&quot;,&quot;nd&quot;,
+&quot;23&quot;,&quot;rd&quot;,
+&quot;31&quot;,&quot;st&quot;,
+&quot;th&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Print Day superscript</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certificate_Print_Month__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(MONTH(Original_Issue_Date__c),
+1, &quot;January&quot;,
+2, &quot;February&quot;,
+3, &quot;March&quot;, 
+4, &quot;April&quot;, 
+5, &quot;May&quot;, 
+6, &quot;June&quot;,
+7, &quot;July&quot;,
+8, &quot;August&quot;,
+9, &quot;September&quot;,
+10, &quot;October&quot;,
+11, &quot;November&quot;,
+12, &quot;December&quot;,
+&quot;None&quot;) &amp; &quot;, &quot; &amp;  TEXT(YEAR(Original_Issue_Date__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Print Month</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certificate_Print_Program__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Application_Type__c , 
+&quot;Notary Public&quot;, &quot;NOTARY PROGRAM&quot;, 
+&quot;Real Estate&quot;, &quot;APPRAISER PROGRAM&quot;, 
+&quot;Appraisers - Real Estate&quot;, &quot;APPRAISER PROGRAM&quot;, 
+&quot;Appraisal Management Companies&quot;, &quot;APPRAISAL MANAGEMENT COMPANY PROGRAM&quot;, 
+&quot;Timeshares&quot;, &quot;TIMESHARE PROGRAM&quot;, 
+&quot;Camping Resorts&quot;, &quot;CAMPING RESORT PROGRAM&quot;, 
+&quot;Geologist&quot;, &quot;GEOLOGIST PROGRAM&quot;, 
+&quot;Architects&quot;, &quot;ARCHITECT PROGRAM&quot;, 
+&quot;Funerals&quot;, &quot;FUNERAL PROGRAM&quot;, 
+&quot;Engineers&quot;, &quot;ENGINEER PROGRAM&quot;, 
+&quot;Land Surveyors&quot;, &quot;ENGINEER PROGRAM&quot;, 
+&quot;On-site Wastewater&quot;, &quot;ENGINEER PROGRAM&quot;, 
+&quot;Landscape Architects&quot;, &quot;LANDSCAPE ARCHITECT PROGRAM&quot;, 
+&quot;Cemeteries&quot;, &quot;CEMETERY PROGRAM&quot;, 
+&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Print Program</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Name_on_Certificate__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(License_Printable_Name__c) ,  MUSW__Primary_Licensee__r.Name , License_Printable_Name__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Name on Certificate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <label>License</label>
     <listViews>
