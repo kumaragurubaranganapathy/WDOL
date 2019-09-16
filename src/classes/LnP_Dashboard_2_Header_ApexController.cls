@@ -15,7 +15,7 @@ public class LnP_Dashboard_2_Header_ApexController {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -25,13 +25,13 @@ public class LnP_Dashboard_2_Header_ApexController {
 List<MUSW__Parcel_Contact2__c> lstContact  = new  List<MUSW__Parcel_Contact2__c>();
 lstContact = [ SELECT MUSW__Parcel__r.Address_Type__c,MUSW__Parcel__r.Country__c,MUSW__Parcel__r.County__c,Id,MUSW__Parcel__r.MUSW__City__c,MUSW__Parcel__r.MUSW__District__c,MUSW__Parcel__r.Zip_Postal_Code__c,
 MUSW__Parcel__r.MUSW__State__c,MUSW__Parcel__r.MUSW__Street2__c,MUSW__Parcel__r.MUSW__Street_Number__c,MUSW__Parcel__r.MUSW__Street_Suffix__c,MUSW__Parcel__r.MUSW__Street__c,Name 
-from MUSW__Parcel_Contact2__c where MUSW__Parcel__r.Address_Type__c IN ('HOME','MAILING ADDRESS') AND MUSW__Parcel__r.Status__c = 'Active'
+from MUSW__Parcel_Contact2__c where MUSW__Parcel__r.Address_Type__c IN ('HOME','MAILING ADDRESS') AND MUSW__Parcel__r.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Active'
 AND MUSW__Contact__c  in (Select ContactId From User Where Id = :UserInfo.getUserId()) Limit 1 ];
 if(!lstContact.isEmpty()){
 conParcel = lstContact[0];
 }*/
         try{
-            String sAddressType ='MAILING ADDRESS';
+            String sAddressType = DOL_AppConstants.NULL_EMPTY_STRING + 'MAILING ADDRESS';
         MUSW__Parcel__c mailingAddressData = new MUSW__Parcel__c();
         for(MUSW__Parcel__c mailingAddressRecord : [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
                                                     MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, 
@@ -46,7 +46,7 @@ conParcel = lstContact[0];
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -54,13 +54,13 @@ conParcel = lstContact[0];
     public static String insertRequest(String ServiceRequestType){
         try{
         List<User> userInfoData = new  List<User>();
-        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
-        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
-        Id getContactId = '003r000000EOhBB';
+        Id getContactId = DOL_AppConstants.NULL_EMPTY_STRING + '003r000000EOhBB';
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
@@ -79,14 +79,14 @@ conParcel = lstContact[0];
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
-        string appId = '';
+        string appId = DOL_AppConstants.NULL_EMPTY_STRING + '';
         return appId = application.Id;
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -95,14 +95,14 @@ conParcel = lstContact[0];
         try{
         Boolean redirect = false;
         List<User> userInfoData = new  List<User>();
-        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
-        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         
-        List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Contact__c =:userInfoData[0].ContactId and BGBK__Status__c = 'Open' and BGBK__Total_Amount__c > 0 ];
+        List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Contact__c =:userInfoData[0].ContactId and BGBK__Status__c =: DOL_AppConstants.NULL_EMPTY_STRING + 'Open' and BGBK__Total_Amount__c > 0 ];
         if(crtList.size() > 0){
             redirect = true;
         }
@@ -110,7 +110,7 @@ conParcel = lstContact[0];
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
 }
