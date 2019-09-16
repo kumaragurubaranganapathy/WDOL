@@ -4,6 +4,7 @@
     padding: 0;
     margin: 0;
     flex: none;
+    width:16px;
 }
 .THIS .slds-path__nav{
     /*padding:0 27px;*/
@@ -66,7 +67,10 @@
 }
 .THIS a[title="Questions"]+span{
     left: -20px;
-}   
+}
+.THIS a[title="Address"]+span{
+    left: -14px;
+}
 .THIS .success li::before{
     content:'';
     position: absolute;
@@ -184,7 +188,7 @@
     .THIS .six-circles hr,.THIS .five-circles hr,.THIS .four-circles hr,.THIS .three-circles hr,.THIS .two-circles hr{
         top:-10px; 
     }
-    .THIS .inactive-path-title,.THIS span.inactive-path-title.slds-path__title,.THIS .span.is-complete-path.slds-path__title{
+    .THIS .inactive-path-title,.THIS span.inactive-path-title.slds-path__title,.THIS span.is-complete-path.slds-path__title{
         display: none;
     }
     .THIS .outer-circle,.THIS .green-circle,.THIS .red-circle  {
@@ -201,6 +205,17 @@
     .THIS .pathwidth {
         width: 100%;
     }
+}
+
+
+@supports (-webkit-overflow-scrolling: touch) {
+  /* CSS specific to iOS devices */ 
+  
+    .THIS .slds-path__item{
+    
+       width:10px;
+}
+    
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px){
     /*.THIS hr {
