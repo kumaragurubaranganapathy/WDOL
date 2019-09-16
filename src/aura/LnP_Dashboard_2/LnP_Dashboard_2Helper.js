@@ -37,7 +37,7 @@
             var toastEvent = $A.get("e.force:showToast");
             toastEvent.setParams({
                 "title": "Error!!!",
-                "message": "Please Apply for AMR to add more trainee",
+                "message": "Please email a written plan to reappraisers@dol.wa.gov and request to apply for approval to supervise more than 3 trainees.",
                 "type": "error"
             });
             toastEvent.fire();
