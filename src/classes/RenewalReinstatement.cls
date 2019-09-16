@@ -45,6 +45,7 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
                 license.MUSW__Issue_Date__c = System.today();
                 system.debug('MUSW__Issue_Date__c ::'+license.MUSW__Issue_Date__c);
                 license.MUSW__Renewal_Date__c = System.today();
+                license.Renew_Reinstatement_in_progress__c = false;
                 system.debug('MUSW__Renewal_Date__c i.e. Renewed/Reinstated Date::'+license.MUSW__Renewal_Date__c);
                 /*if(rene.License__r.Is_Late_Renewal_Eligible__c || rene.License__r.Is_Reinstatement_Eligible__c){
                 
