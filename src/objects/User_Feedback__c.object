@@ -189,6 +189,8 @@ IF(ISPICKVAL(Grade__c,&apos;5&apos;), &quot;/resource/LnP_Icons/LnP_Icons/fivest
     <fields>
         <fullName>Submitted_On__c</fullName>
         <externalId>false</externalId>
+        <formula>CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Submitted On</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -197,38 +199,15 @@ IF(ISPICKVAL(Grade__c,&apos;5&apos;), &quot;/resource/LnP_Icons/LnP_Icons/fivest
     </fields>
     <fields>
         <fullName>Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Type</label>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Add Licensee</fullName>
-                    <default>false</default>
-                    <label>Add Licensee</label>
-                </value>
-                <value>
-                    <fullName>Remove Assumed Names</fullName>
-                    <default>false</default>
-                    <label>Remove Assumed Names</label>
-                </value>
-                <value>
-                    <fullName>Add Licensee Pending Requests</fullName>
-                    <default>false</default>
-                    <label>Add Licensee Pending Requests</label>
-                </value>
-                <value>
-                    <fullName>Renewal Licensee</fullName>
-                    <default>false</default>
-                    <label>Renewal Licensee</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <label>User Feedback</label>
     <listViews>
