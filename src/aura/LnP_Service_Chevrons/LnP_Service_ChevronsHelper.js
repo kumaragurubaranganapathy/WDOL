@@ -1,7 +1,11 @@
 ({
     fetchDataFromServer : function(component, event, helper){
         console.log('fetchData');
-        var licenseType = component.get("v.licenseType");        
+        var licenseType = component.get("v.licenseType");
+        var businessLicenseType =$A.get("$Label.c.Business_Licenses");        
+        var businsessLicenseArray = businessLicenseType.split(',');
+        var isbusinsessLicense = businsessLicenseArray.includes(licenseType);        
+        component.set('v.isbusinsessLicense',isbusinsessLicense);
         var board = component.get("v.board");
         var applicationType = component.get("v.applicationType");
         var flowType = component.get("v.flowType");
@@ -406,9 +410,11 @@
             window.setTimeout(
                 $A.getCallback(function() {
                     if(amr.Generate_Fee__c ){
-                        window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
-                    }else{
-                        document.location = $A.get("$Label.c.Polaris_Portal_URL")+"s/user-feedback" ;
+                        sessionStorage.setItem('isBuz', component.get("v.isbusinsessLicense"));
+                        window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id+'&isBLic='+component.get("v.isbusinsessLicense");
+                    }else{                        
+                        sessionStorage.setItem('isBuz', component.get("v.isbusinsessLicense"));
+                        document.location = $A.get("$Label.c.Polaris_Portal_URL")+"s/user-feedback";
                     }
                     
                 }), 2000);
