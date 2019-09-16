@@ -397,8 +397,10 @@ public with sharing class CartController
                 }*/
                 //commented as a part of bug 5532 by Abhilasha
                 //uncommenting as a part of bug 7018
-                Boolean selected = m_selectedFees == null || m_selectedFees.containsKey(f.Id);
-                feeVOs.add(new FeeVO(f, selected));
+                /*Boolean selected = m_selectedFees == null || m_selectedFees.containsKey(f.Id);
+                feeVOs.add(new FeeVO(f, selected));*/
+				//setting true so that all fees are selected on cart load as a part of bug 7326
+				feeVOs.add(new FeeVO(f, true));
                 m_totalOwed += f.MUSW__Outstanding_Fee__c;
                 
                 if (selected)
