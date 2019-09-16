@@ -61,6 +61,11 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fieldSets>
         <fullName>BGBK__Refund2_Basic</fullName>
+        <availableFields>
+            <field>BGBK__Reason__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
         <description>Adjust screen</description>
         <displayedFields>
             <field>BGBK__Amount__c</field>
@@ -77,7 +82,6 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
-        
         <label>Refund2 Basic</label>
     </fieldSets>
     <fields>
@@ -86,6 +90,7 @@
         <externalId>false</externalId>
         <label>Approval Status</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -115,15 +120,101 @@
         <precision>14</precision>
         <required>true</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
+    <fields>
+        <fullName>BGBK__Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Refund recipient.</description>
+        <externalId>false</externalId>
+        <label>Refundee</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Refunds</relationshipLabel>
+        <relationshipName>Refunds2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Effective_Date__c</fullName>
+        <defaultValue>Today()</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Refund date.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Effective Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Reason__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Used to describe reason for the refund.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Reason</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Fee</label>
+        <referenceTo>MUSW__Fee__c</referenceTo>
+        <relationshipLabel>Refunds</relationshipLabel>
+        <relationshipName>Refunds</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
 	<fields>
+        <fullName>Refund_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Refund Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Program_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(    NOT(ISBLANK( Fee__c ))  ,TEXT(Fee__r.MUSW__License2__r.Application_Type__c), &apos;&apos;)</formula>
+        <label>Program Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Refund_Reason__c</fullName>
         <externalId>false</externalId>
         <label>Refund Reason</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -155,86 +246,12 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>BGBK__Contact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <deprecated>false</deprecated>
-        <description>Refund recipient.</description>
-        <externalId>false</externalId>
-        <label>Refundee</label>
-        <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Refunds</relationshipLabel>
-        <relationshipName>Refunds2</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>BGBK__Effective_Date__c</fullName>
-        <defaultValue>Today()</defaultValue>
-        <deprecated>false</deprecated>
-        <description>Refund date.</description>
-        <externalId>false</externalId>
-        <label>Effective Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-	<fields>
-        <fullName>Revenue_Code__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(ISBLANK(Fee__r.Revenue_Code__c), &quot;&quot;, Fee__r.Revenue_Code__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Revenue Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>BGBK__Reason__c</fullName>
-        <deprecated>false</deprecated>
-        <description>Used to describe reason for the refund.</description>
-        <externalId>false</externalId>
-        <label>Reason</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Fee__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Fee</label>
-        <referenceTo>MUSW__Fee__c</referenceTo>
-        <relationshipLabel>Refunds</relationshipLabel>
-        <relationshipName>Refunds</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Program_Type__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(    NOT(ISBLANK( Fee__c ))  ,TEXT(Fee__r.MUSW__License2__r.Application_Type__c), &apos;&apos;)</formula>
-        <label>Program Type</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Reissue_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Reissue Date</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -244,6 +261,7 @@
         <externalId>false</externalId>
         <label>Reissue Reason</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -264,6 +282,7 @@
         <externalId>false</externalId>
         <label>Rejection Reason</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -284,10 +303,23 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Revenue_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(Fee__r.Revenue_Code__c), &quot;&quot;, Fee__r.Revenue_Code__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Revenue Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Stage__c</fullName>
         <externalId>false</externalId>
         <label>Stage</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -333,6 +365,7 @@
         <externalId>false</externalId>
         <label>Status</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -490,14 +523,56 @@
         <fullName>All</fullName>
         <columns>NAME</columns>
         <columns>Approval_Status__c</columns>
+        <columns>Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>BGBK__Effective_Date__c</columns>
+        <columns>BGBK__Amount__c</columns>
+        <columns>Program_Type__c</columns>
+        <columns>BGBK__Reason__c</columns>
+        <columns>Refund_Reason__c</columns>
+        <columns>BGBK__Contact__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All_details</fullName>
+        <columns>NAME</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>BGBK__Amount__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Fee__c</columns>
+        <columns>Refund_Reason__c</columns>
+        <columns>BGBK__Contact__c</columns>
+        <columns>Stage__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All-details</label>
+    </listViews>
+    <listViews>
+        <fullName>Appraisal_Management_Company_Approval_Q_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Appraisal Management Company Approval Q</label>
+        <queue>Appraisal_Management_Company_Approval_Q</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Appraisal_Management_Company_Queue_Refund2</fullName>
         <filterScope>Queue</filterScope>
         <label>Appraisal Management Company Queue</label>
         <queue>Appraisal_Management_Company_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Camping_Resorts_Approval_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Camping Resorts Approval Queue</label>
+        <queue>Camping_Resorts_Approval_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -541,6 +616,24 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>Notary_Public_Approval_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Notaries Approval Queue</label>
+        <queue>Notary_Public_Approval_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>RBS_Approval_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>RBS Approval Queue</label>
+        <queue>RBS_Approval_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>RBS_Queue_Refund2</fullName>
         <filterScope>Queue</filterScope>
         <label>RBS Queue</label>
@@ -550,10 +643,28 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>Real_Estate_Appraiser_Courses_Approval_Q_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Real Estate Appraiser Courses Approval Q</label>
+        <queue>Real_Estate_Appraiser_Courses_Approval_Q</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Real_Estate_Appraiser_Courses_Queue_Refund2</fullName>
         <filterScope>Queue</filterScope>
         <label>Real Estate Appraiser Courses Queue</label>
         <queue>Real_Estate_Appraiser_Courses_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Real_Estate_Appraisers_Approval_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Real Estate Appraisers Approval Queue</label>
+        <queue>Real_Estate_Appraisers_Approval_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -577,6 +688,34 @@
             <value>Hold</value>
         </filters>
         <label>Refunds on Hold</label>
+    </listViews>
+    <listViews>
+        <fullName>Search</fullName>
+        <columns>NAME</columns>
+        <columns>Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>BGBK__Amount__c</columns>
+        <columns>Program_Type__c</columns>
+        <columns>Refund_Reason__c</columns>
+        <columns>BGBK__Contact__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Stage__c</field>
+            <operation>equals</operation>
+            <value>Send Refund</value>
+        </filters>
+        <label>Search</label>
+    </listViews>
+    <listViews>
+        <fullName>Timeshare_Approval_Queue_Refund2</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Timeshare Approval Queue</label>
+        <queue>Timeshare_Approval_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Timeshare_Queue_Refund2</fullName>
@@ -607,6 +746,7 @@
     <nameField>
         <displayFormat>RFD-{000000}</displayFormat>
         <label>Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
@@ -614,18 +754,4 @@
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
-	 <fields>
-        <fullName>Refund_Id__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>true</externalId>
-        <label>Refund Id</label>
-        <length>60</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
 </CustomObject>
