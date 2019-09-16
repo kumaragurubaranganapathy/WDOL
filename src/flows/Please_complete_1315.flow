@@ -1848,7 +1848,7 @@
             <value>
                 <stringValue>IF(
    [MUSW__License2__c].NoOfDaysExpirePreFuneral__c &lt;90,
-    DATE(YEAR ([MUSW__License2__c].Date_Fiscal_Year_Ends__c )+2,Month([MUSW__License2__c].Date_Fiscal_Year_Ends__c),DAY([MUSW__License2__c].Date_Fiscal_Year_Ends__c)),
+    DATE(YEAR ([MUSW__License2__c].Date_Fiscal_Year_Ends__c )+1,Month([MUSW__License2__c].Date_Fiscal_Year_Ends__c),DAY([MUSW__License2__c].Date_Fiscal_Year_Ends__c)),
     DATE(YEAR ([MUSW__License2__c].Date_Fiscal_Year_Ends__c )+1,Month([MUSW__License2__c].Date_Fiscal_Year_Ends__c),DAY([MUSW__License2__c].Date_Fiscal_Year_Ends__c))
 )</stringValue>
             </value>
