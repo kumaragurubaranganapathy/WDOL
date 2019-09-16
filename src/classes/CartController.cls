@@ -403,7 +403,7 @@ public with sharing class CartController
 				feeVOs.add(new FeeVO(f, true));
                 m_totalOwed += f.MUSW__Outstanding_Fee__c;
                 
-                if (selected)
+                if (true)
                 {
                     totalSelected += f.MUSW__Outstanding_Fee__c;
                     totalSelectedOutstanding += f.MUSW__Outstanding_Fee__c;
