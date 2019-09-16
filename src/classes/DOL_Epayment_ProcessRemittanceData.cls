@@ -6,7 +6,7 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
     private Map<String,String> parameterMap ;
     private DOL_ProcessPayment processPayment;
 
-    private String cartId = '',SFDCfeeIds='',SFDCappId='',receiptId = '';
+    private String cartId = DOL_AppConstants.NULL_EMPTY_STRING, SFDCfeeIds=DOL_AppConstants.NULL_EMPTY_STRING, SFDCappId=DOL_AppConstants.NULL_EMPTY_STRING, receiptId = DOL_AppConstants.NULL_EMPTY_STRING;
 
     private DOL_Dao dao = new DOL_Dao();
 
@@ -26,6 +26,7 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
         
         if(remittanceRecords != null && remittanceRecords.size() > 0){
             Boolean isRecordProcessed;
+            List<MUSW__Receipt__c> lstReceiptData = new List<MUSW__Receipt__c>();
             for(DOL_Integration_Batch_Input__c record : remittanceRecords){
                 tempRecord = record;
                 isRecordProcessed = false;
@@ -45,11 +46,12 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
                     
                     receipt = [ select id, Status__c, Selected_Fees__c, MUSW__Payment_Method__c, MUSW__Paid_By__c, MUSW__Receipt_Paid_by__c 
                                 from MUSW__Receipt__c 
-                                where id =: receiptId ];
+                                where id =: receiptId and id!=null];
                     
                     updateReceiptFromRemittanceInput();
                     if(receipt.Status__c == 'Complete' ){
-                        update receipt;
+                        //update receipt;
+                        lstReceiptData.add(receipt);
                     }else{
                         processPayment = new DOL_ProcessPayment(Id.valueOf(SFDCappId),
                                         Id.valueOf(cartId),
@@ -59,14 +61,17 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
                                         );
                         processPayment.doPayment();
                     }
-                    record.INFO__c = 'Process Completed Successfully';
-                    record.Status__c = 'SUCCESSFUL';
+                    record.INFO__c = DOL_AppConstants.PROCESS_COMPLETED_SUCCESSFULLY;
+                    record.Status__c = DOL_AppConstants.SUCCESSFULL_STRING;
 
                 }catch(Exception error){
                     tempRecord.INFO__c += 'error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString();
-                    record.Status__c = 'FAILED';
+                    record.Status__c = DOL_AppConstants.FAILED_STRING;
                 }
             }
+            if(lstReceiptData <> null && !lstReceiptData.isEmpty())
+            update lstReceiptData;
+            
             DOL_Dao.save(remittanceRecords);
         }
     }
