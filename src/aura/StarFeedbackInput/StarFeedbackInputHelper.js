@@ -1,5 +1,6 @@
 ({
     doInit : function(component) {
+        
         var ratingValues = [
             {
                 "index":1,                 
@@ -75,21 +76,21 @@
             
             /*var halfStar = document.querySelector("#"+halfId);
             var emptyStar = document.querySelector("#"+emptyId);   */                     
-            
+            var elem;
             fullStarArray.forEach(function(element){
-                var elem = element.getElement();
+                 elem = element.getElement();
                 if(elem.dataset.index>=index)
                     $A.util.addClass(elem, 'slds-hide');                     
             });
             halfStarArray.forEach(function(element){
-                var elem = element.getElement();
+                 elem = element.getElement();
                 if(elem.dataset.index>index)
                     $A.util.addClass(elem, 'slds-hide');  
                 if(elem.dataset.index===index)
                     $A.util.removeClass(elem, 'slds-hide');  
             });
             emptyStarArray.forEach(function(element){
-                var elem = element.getElement();
+                 elem = element.getElement();
                 if(elem.dataset.index>index)
                     $A.util.removeClass(elem, 'slds-hide');                         
             });
@@ -109,9 +110,12 @@
         console.log('FeedBack value==' + JSON.stringify(component.get("v.userfeedback")));
         console.log('Create Record...');
         var userfeedback = component.get("v.userfeedback");
+        var licenseId = sessionStorage.getItem('licenseidfeedback');
+        console.log('saveFeedbackForm --> '+licenseId);
         var action = component.get("c.createRecord");
         action.setParams({
-            userfeedback : userfeedback
+            userfeedback : userfeedback,
+            licenseId : licenseId
         });
         
         action.setCallback(this,function(a){
@@ -130,6 +134,7 @@
                 component.set("v.userfeedback",newUserfeedback);
                 var isbusiness;  
                 var v = sessionStorage.getItem('isBuz');
+                
                 //console.log('log on feedabck'+v);
                if(v != undefined && v == 'true') {
                     isbusiness = true;  
@@ -141,6 +146,7 @@
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
                     "url": str
+                   // "url":homePageUrl
                 });
                 urlEvent.fire();
                 sessionStorage.clear();
@@ -151,7 +157,6 @@
             
         });
         $A.enqueueAction(action);
-        //window.location.href='/lightningwashington/s/newdashboard';
         
     },
     skipFeedback : function(component) {
@@ -171,5 +176,4 @@
         urlEvent.fire();    
         sessionStorage.clear();
     }
-    
 })
