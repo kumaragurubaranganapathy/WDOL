@@ -272,6 +272,17 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Archive_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the last date  when the the document would be Archived</inlineHelpText>
+        <label>Archive Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Document_API_Name__c</fullName>
         <description>API name of the document record. This file will be provided as a hyperlink to the user to download from the submission.</description>
         <encryptionScheme>None</encryptionScheme>
