@@ -1049,24 +1049,24 @@
                                                         <tr class="slds-hint-parent">
                                                             <td data-label="License" class="cell-style">
                                                                 
-                                                                <div class="slds-truncate" title="{!tableData.Name}">{!tableData.Name}</div>
+                                                                <div class="slds-truncate" title="{!tableData.License_Number__c}">{!tableData.License_Number__c}</div>
                                                             </td>
                                                             <td data-label="Profession" class="cell-style">
-                                                                <div class="slds-truncate" title="{!tableData.Application_Type__c}">{!tableData.Application_Type__c}</div>
+                                                                <div class="slds-truncate" title="{!tableData.License__r.Application_Type__c}">{!tableData.License__r.Application_Type__c}</div>
                                                             </td>
                                                             <td data-label="License type" class="cell-style">
-                                                                <div class="slds-truncate" title="{!tableData.Credential_Type__c}">{!tableData.Credential_Type__c}</div>
+                                                                <div class="slds-truncate" title="{!tableData.License__r.Credential_Type__c}">{!tableData.License__r.Credential_Type__c}</div>
                                                             </td>
                                                             <td data-label="Expiration date" class="cell-style">
-                                                                <div class="slds-truncate" title="{!tableData.MUSW__Expiration_Date__c}">
+                                                                <div class="slds-truncate" title="{!tableData.License__r.MUSW__Expiration_Date__c}">
                                                                     <lightning:formattedDateTime
-                                                                                                 value="{!tableData.MUSW__Expiration_Date__c}"
+                                                                                                 value="{!tableData.License__r.MUSW__Expiration_Date__c}"
                                                                                                  />
                                                                 </div>
                                                             </td>
                                                             <td data-label="Status" class="cell-style">
                                                                 <div class="help-text-wrapper">
-                                                                    <div class="slds-truncate" title="{!tableData.Application__r.MUSW__Status__c}">{!tableData.Application__r.MUSW__Status__c}</div>
+                                                                    <div class="slds-truncate" title="{!tableData.Renewal_Status__c}">{!tableData.Renewal_Status__c}</div>
                                                                     <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj="	Renewal/Reinstatement"
                                                                          data-status="{!tableData.Application__r.MUSW__Status__c}"
                                                                          data-substatus="">
@@ -1075,19 +1075,19 @@
                                                                 </div>
                                                             </td>
                                                             <td data-label="Last updated" class="cell-style">
-                                                                <div class="slds-truncate" title="{!tableData.Application__r.LastModifiedDate}">
+                                                                <div class="slds-truncate" title="{!tableData.LastModifiedDate}">
                                                                     <ui:outputDateTime
-                                                                                       value="{!tableData.Application__r.LastModifiedDate}"
+                                                                                       value="{!tableData.LastModifiedDate}"
                                                                                        />
                                                                 </div>
                                                             </td>
                                                             
                                                             <td data-label="actions" class="cell-style table-btn">
                                                                 <div class="table-edit" onclick="{!c.editDraftRenewApplications}" data-recordId="{!tableData.Application__c}"
-                                                                     data-licenseType="{!tableData.Credential_Type__c}"
-                                                                     data-board="{!tableData.Application_Type__c}"
-                                                                     data-applicationType="{!tableData.Application_Method__c}"
-                                                                     data-reinstatement="{!tableData.Is_Reinstatement_Eligible__c}">
+                                                                     data-licenseType="{!tableData.License__r.Credential_Type__c}"
+                                                                     data-board="{!tableData.License__r.Application_Type__c}"
+                                                                     data-applicationType="{!tableData.License__r.Application_Method__c}"
+                                                                     data-reinstatement="{!tableData.License__r.Is_Reinstatement_Eligible__c}">
                                                                     <lightning:button variant="brand" label="Edit" title="Neutral action" />
                                                                 </div>
                                                                 <!--<lightning:button variant="base" label="Renewal" value="{!join(',','Renewal',dataCell.Id,dataCell.board,dataCell.type,dataCell.applicationType,dataCell.licenseAppId,dataCell.appIsRenewal)}" title="Renewal" class="btn-lnp bottom-card-font-size view-text datacellId-fontBorder" onclick= "{!c.renewLicense}"/>-->

@@ -305,7 +305,7 @@ public without sharing class LnP_DashboardApexController_2 {
     }
     @AuraEnabled
     public static String setDraftRenewApplicationsTable(){
-        
+        DOL_AppUtility.isAuthenticatedUser();
         try{
         
         Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
@@ -313,9 +313,13 @@ public without sharing class LnP_DashboardApexController_2 {
         List<String> statusFilterList = new List<String>();
         statusFilterList = dashboardSettings.Draft_Applications_statuses__c.split(',');
         
-        List<SObject> columnDataList = [Select id,Name,Application_Type__c,Is_Reinstatement_Eligible__c,Application__c,MUSW__Expiration_Date__c,Application__r.LastModifiedDate,Application__r.isRenewal__c,Credential_Type__c,Application_Method__c, LastModifiedDate,MUSW__Status__c,Application__r.MUSW__Status__c
-                                        from MUSW__License2__c
-                                        where Application__r.MUSW__Status__c IN :statusFilterList AND Application__r.isRenewal__c = True AND RecordType.Name = 'Individual' AND MUSW__Applicant__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY Application__r.CreatedDate asc];
+        List<SObject> columnDataList = [Select id,License_Number__c,License__r.id,License__r.Name,License__r.Application_Type__c,License__r.Is_Reinstatement_Eligible__c,
+                                               License__r.Application__c,License__r.MUSW__Expiration_Date__c,LastModifiedDate,
+                                               Application__r.isRenewal__c,License__r.Credential_Type__c,License__r.Application_Method__c, 
+                                               License__r.LastModifiedDate,License__r.MUSW__Status__c,Application__r.MUSW__Status__c,
+                                               Renewal_Status__c,Sub_Status__c
+                                        from Renewal_Application__c
+                                        where Renewal_Status__c IN :statusFilterList AND RecordType.Name = 'Individual' AND Applicant__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY Application__r.CreatedDate asc]; 
         
        
        
