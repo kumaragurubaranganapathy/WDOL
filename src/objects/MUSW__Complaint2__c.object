@@ -11598,6 +11598,7 @@ false)</errorConditionFormula>
         <errorDisplayField>Complainant_Phone_Main__c</errorDisplayField>
         <errorMessage>Phone numbers length should not be greater than 10.</errorMessage>
     </validationRules>
+	<validationRules>
         <fullName>Status_Needed_to_set_Master_Complaint</fullName>
         <active>true</active>
         <description>&quot;Merged With Complaint&quot; should only be populated when status is closed and sub status is merged.</description>
