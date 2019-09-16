@@ -205,18 +205,13 @@
     .THIS .pathwidth {
         width: 100%;
     }
-}
-
-
-@supports (-webkit-overflow-scrolling: touch) {
-  /* CSS specific to iOS devices */ 
-  
     .THIS .slds-path__item{
-    
-       width:10px;
+        width:12px;
+    }
 }
-    
-}
+
+
+
 @media only screen and (min-width: 768px) and (max-width: 1023px){
     /*.THIS hr {
         width: 45px;
