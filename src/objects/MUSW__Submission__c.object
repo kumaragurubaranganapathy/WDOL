@@ -1218,6 +1218,18 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
             <operation>notEqual</operation>
             <value>Submitted</value>
         </filters>
+		<filters>
+            <field>MUSW__License2__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>License_Renewal__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>MUSW__Application2__c</field>
+            <operation>equals</operation>
+        </filters>
         <label>RBS - Unresolved Submissions</label>
     </listViews>
     <listViews>
@@ -1273,6 +1285,18 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
             <field>Status__c</field>
             <operation>notEqual</operation>
             <value>Submitted</value>
+        </filters>
+		<filters>
+            <field>MUSW__License2__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>License_Renewal__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>MUSW__Application2__c</field>
+            <operation>equals</operation>
         </filters>
         <label>RE - Unresolved Submissions</label>
     </listViews>

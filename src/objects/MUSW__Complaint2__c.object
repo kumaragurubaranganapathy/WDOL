@@ -11590,11 +11590,14 @@ ISCHANGED(Program_Type__c) )</errorConditionFormula>
 	<validationRules>
         <fullName>Phone_Number_Length</fullName>
         <active>true</active>
-        <errorConditionFormula>NOT(REGEX(Complainant_Phone_Main__c , &quot;\\D*?(\\d\\D*?){10}&quot;))</errorConditionFormula>
+        <errorConditionFormula>IF( NOT( ISBLANK(Complainant_Phone_Main__c) ) , 
+LEN(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Complainant_Phone_Main__c ,&quot;(&quot;, &quot;&quot;),&quot;)&quot;, &quot;&quot;),&quot;-&quot;,&quot;&quot;),&quot;.&quot;,&quot;&quot;),&quot; &quot;,&quot;&quot;)) 
+
+&gt; 10, 
+false)</errorConditionFormula>
         <errorDisplayField>Complainant_Phone_Main__c</errorDisplayField>
-        <errorMessage>Phone numbers should be in this format: (999) 999-9999</errorMessage>
+        <errorMessage>Phone numbers length should not be greater than 10.</errorMessage>
     </validationRules>
-    <validationRules>
         <fullName>Status_Needed_to_set_Master_Complaint</fullName>
         <active>true</active>
         <description>&quot;Merged With Complaint&quot; should only be populated when status is closed and sub status is merged.</description>
