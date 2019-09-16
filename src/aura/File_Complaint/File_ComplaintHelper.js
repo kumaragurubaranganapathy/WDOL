@@ -20,7 +20,7 @@
                 var result = response.getReturnValue();
                 if(auraAttr == "v.professionOptions"){
                     var filteredResult = result.filter(function(item){
-                       return item != 'Delegated Municipality' && item != 'Manufactured Homes' && item != 'Misc Payments' && item != 'Regulatory Compliance' && item != 'Update/Close Company' && item != 'Update Legal Name';
+                       return item != 'Delegated Municipality' && item != 'Manufactured Homes' && item != 'Misc Payments' && item != 'Regulatory Compliance' && item != 'Update/Close Company' && item != 'Update Legal Name' && item != 'Remove Owner' && item != 'Collection Agency' && item != 'Update Business Name' && item != 'Update Company Information' && item != 'Program Unknown';
                     });
                     component.set(auraAttr, filteredResult);
                 }else{
