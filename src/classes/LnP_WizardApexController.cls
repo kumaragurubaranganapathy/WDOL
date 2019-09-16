@@ -5,8 +5,8 @@ public class LnP_WizardApexController {
     {
         try{
         List<User> userInfoData = new  List<User>();
-        String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+UserInfo.getUserId()+'\'';
-        String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         Id getContactId;
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         Set<Id> setAcctId = new  Set<Id>();
@@ -14,17 +14,17 @@ public class LnP_WizardApexController {
             getContactId = userInfoData[0].ContactId;
         }
         Set<String>lstChildLicenseType = new Set<String>();
-       // List<Upgrade_License__mdt> lstupgradeLicense = [SELECT id,Child_License_Type__c,Upgrade_License_Type__c FROM Upgrade_License__mdt where Upgrade_License_Type__c=:LicenseType];
-        for(Upgrade_License__mdt ul : [SELECT id,Child_License_Type__c,Upgrade_License_Type__c FROM Upgrade_License__mdt where Upgrade_License_Type__c=:LicenseType] )
+        List<Upgrade_License__mdt> lstupgradeLicense = [SELECT id,Child_License_Type__c,Upgrade_License_Type__c FROM Upgrade_License__mdt where Upgrade_License_Type__c=:LicenseType];
+        for(Upgrade_License__mdt ul : lstupgradeLicense )
         {
             lstChildLicenseType.add(ul.Child_License_Type__c);
         }
-        return [SELECT MUSW__Status__c,Credential_Type__c,Application_Type__c,Name,id FROM MUSW__License2__c where MUSW__Status__c=: DOL_AppConstants.NULL_EMPTY_STRING + 'Active' AND MUSW__Applicant__c=:getContactId AND Credential_Type__c IN:lstChildLicenseType ];
+        return [SELECT MUSW__Status__c,Credential_Type__c,Application_Type__c,Name,id FROM MUSW__License2__c where MUSW__Status__c='Active' AND MUSW__Applicant__c=:getContactId AND Credential_Type__c IN:lstChildLicenseType ];
         }
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+            return null;
         }
     }
     @AuraEnabled
@@ -68,7 +68,7 @@ lstTempLicenses.add(lic);
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+            return null;
         }
     }
     @AuraEnabled
@@ -79,25 +79,25 @@ lstTempLicenses.add(lic);
         List<String> picklistValues = new List<String>();
         system.debug('applicationType: '+ applicationType);
         list<Question__c> QuestionList = new list<Question__c>();
-        String condition = DOL_AppConstants.NULL_EMPTY_STRING + 'Application_Type__c = \''+Board+'\'';
-        String condition1 = DOL_AppConstants.NULL_EMPTY_STRING + 'Credential_Type__c = \''+LicenseType+'\'';
+        String condition = 'Application_Type__c = \''+Board+'\'';
+        String condition1 = 'Credential_Type__c = \''+LicenseType+'\'';
         //Changes done for adding eligibility type
         String condition3 = /*ApplicationType != '' ? 'Record_Type_Name__c = \'Application questions\'' : */'Record_Type_Name__c = \'Eligibility Questions\'';
-        String condition4 = DOL_AppConstants.NULL_EMPTY_STRING + 'Status__c = \'Active\'';
-        String condition5 = DOL_AppConstants.NULL_EMPTY_STRING + 'Application_Method__c = \''+ApplicationType+'\'';
-        String condition6 = DOL_AppConstants.NULL_EMPTY_STRING + 'Parent_Object_API_Name__c = \''+parentObjectAPIName+'\'';
+        String condition4 = 'Status__c = \'Active\'';
+        String condition5 = 'Application_Method__c = \''+ApplicationType+'\'';
+        String condition6 = 'Parent_Object_API_Name__c = \''+parentObjectAPIName+'\'';
         
-        String Str = DOL_AppConstants.NULL_EMPTY_STRING + '';
+        String Str ='';
         //if(string.isEmpty(ApplicationType)){
-        //   Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Eli_Ques_determines_App_Type__c, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Responses__c, License_Type__c, ApplicationType__c, Expected_Answer_To_Show_Question__c, Qualifying_Response_for_App_Type__c, Parent_Question__c, hasEligibilityQuestions__c,Order_Number__c from LnP_Question1__c where '+condition+' AND '+condition1+/*' AND '+condition2+*/' AND '+condition3+' AND '+condition4+' ORDER BY Order_Number__c ASC';
-        //  Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Eli_Ques_determines_App_Type__c, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Responses__c, License_Type__c, ApplicationType__c, Expected_Answer_To_Show_Question__c, Qualifying_Response_for_App_Type__c, Parent_Question__c, hasEligibilityQuestions__c,Order_Number__c from LnP_Question1__c where '+condition+' AND '+condition1+/*' AND '+condition2+*/' AND '+condition3+' AND '+condition4+' ORDER BY Order_Number__c ASC';
-        Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Eli_Ques_determines_App_Type__c, Name, Question_Body__c, Data_Type__c, Qualifying_Response__c,Possible_Responses__c, Application_Method__c, Parent_Question__c,Order_Number__c from Question__c where '+condition+' AND '+condition1+' AND '+condition5+' AND '+condition3+' AND '+condition4+' AND '+condition6+' ORDER BY Order_Number__c ASC';
+        //   Str = 'Select Id, Eli_Ques_determines_App_Type__c, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Responses__c, License_Type__c, ApplicationType__c, Expected_Answer_To_Show_Question__c, Qualifying_Response_for_App_Type__c, Parent_Question__c, hasEligibilityQuestions__c,Order_Number__c from LnP_Question1__c where '+condition+' AND '+condition1+/*' AND '+condition2+*/' AND '+condition3+' AND '+condition4+' ORDER BY Order_Number__c ASC';
+        //  Str = 'Select Id, Eli_Ques_determines_App_Type__c, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Responses__c, License_Type__c, ApplicationType__c, Expected_Answer_To_Show_Question__c, Qualifying_Response_for_App_Type__c, Parent_Question__c, hasEligibilityQuestions__c,Order_Number__c from LnP_Question1__c where '+condition+' AND '+condition1+/*' AND '+condition2+*/' AND '+condition3+' AND '+condition4+' ORDER BY Order_Number__c ASC';
+        Str = 'Select Id, Eli_Ques_determines_App_Type__c, Name, Question_Body__c, Data_Type__c, Qualifying_Response__c,Possible_Responses__c, Application_Method__c, Parent_Question__c,Order_Number__c from Question__c where '+condition+' AND '+condition1+' AND '+condition5+' AND '+condition3+' AND '+condition4+' AND '+condition6+' ORDER BY Order_Number__c ASC';
         system.debug('str1'+str);
         /*} else {
-String condition2 = DOL_AppConstants.NULL_EMPTY_STRING + 'ApplicationType__c = \''+ApplicationType+'\'';
-Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Responses__c, License_Type__c, ApplicationType__c,Expected_Answer_To_Show_Question__c,Parent_Question__c, hasEligibilityQuestions__c from LnP_Question1__c where '+condition+' AND '+condition1+' AND '+condition2+' AND '+condition3+' AND '+condition4+' ORDER BY Name ASC'; 
+String condition2 = 'ApplicationType__c = \''+ApplicationType+'\'';
+Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Responses__c, License_Type__c, ApplicationType__c,Expected_Answer_To_Show_Question__c,Parent_Question__c, hasEligibilityQuestions__c from LnP_Question1__c where '+condition+' AND '+condition1+' AND '+condition2+' AND '+condition3+' AND '+condition4+' ORDER BY Name ASC'; 
 }*/
-        //String Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Responses__c, License_Type__c, ApplicationType__c,Expected_Answer_To_Show_Question__c,Parent_Question__c from LnP_Question1__c where '+condition+' AND '+condition1+/*' AND '+condition2+*/' AND '+condition3+' AND '+condition4+' ORDER BY Name ASC';
+        //String Str = 'Select Id, Name, Board__c, Question_Body__c, Data_Type__c, Possible_Responses__c, License_Type__c, ApplicationType__c,Expected_Answer_To_Show_Question__c,Parent_Question__c from LnP_Question1__c where '+condition+' AND '+condition1+/*' AND '+condition2+*/' AND '+condition3+' AND '+condition4+' ORDER BY Name ASC';
         
         QuestionList = Utilityclass_withsharing.queryRecords(Str);
         for(Question__c Ques : QuestionList){
@@ -109,7 +109,7 @@ Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Name, Board__c, Question_
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+            return null;
         }
     }
     //For Renewal
@@ -121,26 +121,26 @@ Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Name, Board__c, Question_
         List<String> picklistValues = new List<String>();
         system.debug('applicationType: '+ applicationType);
         list<Question__c> QuestionList = new list<Question__c>();
-        String condition = DOL_AppConstants.NULL_EMPTY_STRING + 'Application_Type__c = \''+Board+'\'';
-        String condition1 = DOL_AppConstants.NULL_EMPTY_STRING + 'Credential_Type__c = \''+LicenseType+'\'';
+        String condition = 'Application_Type__c = \''+Board+'\'';
+        String condition1 = 'Credential_Type__c = \''+LicenseType+'\'';
         //Changes done for adding eligibility type
         String condition3 = /*ApplicationType != '' ? 'Record_Type_Name__c = \'Application questions\'' : */'Record_Type_Name__c = \'Eligibility Questions\'';
-        String condition4 = DOL_AppConstants.NULL_EMPTY_STRING + 'Status__c = \'Active\'';
-        String condition5 = DOL_AppConstants.NULL_EMPTY_STRING + 'Application_Method__c = \''+ApplicationType+'\'';
-        String condition6 = DOL_AppConstants.NULL_EMPTY_STRING + 'Parent_Object_API_Name__c = \''+parentObjectAPIName+'\'';
-        String condition7 = DOL_AppConstants.NULL_EMPTY_STRING + '';
+        String condition4 = 'Status__c = \'Active\'';
+        String condition5 = 'Application_Method__c = \''+ApplicationType+'\'';
+        String condition6 = 'Parent_Object_API_Name__c = \''+parentObjectAPIName+'\'';
+        String condition7 ='';
         if(renewalReinstate=='Renewal')
         {
-            condition7 = DOL_AppConstants.NULL_EMPTY_STRING + 'AND Show_For__c includes (\'Credential Renewal\')';
+            condition7 = 'AND Show_For__c includes (\'Credential Renewal\')';
         }
         else if(renewalReinstate=='Reinstatement')
         {
-            condition7 = DOL_AppConstants.NULL_EMPTY_STRING + 'AND Show_For__c includes (\'Credential Reinstatement\')';
+            condition7 = 'AND Show_For__c includes (\'Credential Reinstatement\')';
         }
         
-        String Str = DOL_AppConstants.NULL_EMPTY_STRING + '';
+        String Str ='';
         
-        Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Eli_Ques_determines_App_Type__c, Name, Question_Body__c, Data_Type__c, Qualifying_Response__c,Possible_Responses__c, Application_Method__c, Parent_Question__c,Order_Number__c from Question__c where '+condition+' AND '+condition1+' AND '+condition5+' AND '+condition3+' AND '+condition4+' AND '+condition6+'  '+condition7+'ORDER BY Order_Number__c ASC';
+        Str = 'Select Id, Eli_Ques_determines_App_Type__c, Name, Question_Body__c, Data_Type__c, Qualifying_Response__c,Possible_Responses__c, Application_Method__c, Parent_Question__c,Order_Number__c from Question__c where '+condition+' AND '+condition1+' AND '+condition5+' AND '+condition3+' AND '+condition4+' AND '+condition6+'  '+condition7+'ORDER BY Order_Number__c ASC';
         system.debug('str1'+str);
         
         
@@ -154,7 +154,7 @@ Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Name, Board__c, Question_
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+            return null;
         }
     }
     
@@ -164,7 +164,7 @@ Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Name, Board__c, Question_
         try{
         List<Account>  lstAccount = new  List<Account>();
         List<License_Type__mdt> lstLicenseAccount =[SELECT  IndividualBusinessType__c,Application_Type__c,Credential_Type__c FROM License_Type__mdt where Application_Type__c = :Board  and  Credential_Type__c =:LicenseType Limit 1];
-        string licenseAccountType = DOL_AppConstants.NULL_EMPTY_STRING + '';
+        string licenseAccountType ='';
         AccountWrapper acctwrapper = new AccountWrapper();
         if(!lstLicenseAccount.isEmpty()){
             acctwrapper.accountType =  lstLicenseAccount[0].IndividualBusinessType__c;
@@ -180,16 +180,15 @@ Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Name, Board__c, Question_
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+            return null;
         }
     }
     
     private static List<Account> getAccountList(){        
         
         List<User> userInfoData = new  List<User>();
-        String userDetails = UserInfo.getUserId();
-        String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+userDetails+'\'';
-        String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         Id getContactId;
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         Set<Id> setAcctId = new  Set<Id>();
@@ -217,7 +216,7 @@ Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Name, Board__c, Question_
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+            return null;
         }
     }
     @AuraEnabled
@@ -232,16 +231,16 @@ Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Name, Board__c, Question_
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+            return null;
         }
     }
     @AuraEnabled
     public static Id startAnApplication(String board, String licenseType, String applicationType,String account,String LicenseUpgradeRecordID){
         try{
         List<User> userInfoData = new  List<User>();
-        String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
-        String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         system.debug('queryStr '+queryStr);
         system.debug('applicationType : '+applicationType);
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
@@ -267,7 +266,7 @@ application.MUSW_Account__c = account;*/
         application.Credential_Type__c = licenseType; 
         application.Application_Method__c = applicationType; 
         application.Stage__c = 0;
-        application.MUSW__Status__c  = DOL_AppConstants.NULL_EMPTY_STRING + 'Draft';
+        application.MUSW__Status__c  = 'Draft';
         application.MUSW__Applicant__c = getContactId;
         if( account != '' && account != null && account !='undefined'){
             application.MUSW__Account__c = account;
@@ -283,10 +282,8 @@ application.MUSW_Account__c = account;*/
             insert application;
             system.debug('application---'+application.MUSW__Account__c);
         }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        catch(Exception e){
+            HandleException.LogException(e,'LnP_WizardApexController','startAnApplication');
         }
         system.debug('appId : '+application.Id);
         return application.Id;
@@ -294,7 +291,7 @@ application.MUSW_Account__c = account;*/
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+            return null;
         }
     }
     //For renewal
@@ -302,12 +299,12 @@ application.MUSW_Account__c = account;*/
     public static Id startRenewalApplication(String board, String licenseType, String applicationType,String account, String isRenewal,String licId){
         try{
         List<User> userInfoData = new  List<User>();
-        String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+UserInfo.getUserId()+'\'';
-        String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         system.debug('queryStr '+queryStr);
         system.debug('applicationType : '+applicationType);
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
-        Id getContactId = DOL_AppConstants.NULL_EMPTY_STRING + '003r000000EOhBB';
+        Id getContactId = '003r000000EOhBB';
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }   
@@ -317,7 +314,7 @@ application.MUSW_Account__c = account;*/
         application.Credential_Type__c = licenseType; 
         application.Application_Method__c = applicationType; 
         application.Stage__c = 0;
-        application.MUSW__Status__c  = DOL_AppConstants.NULL_EMPTY_STRING + 'Draft';
+        application.MUSW__Status__c  = 'Draft';
         application.MUSW__Applicant__c = getContactId;
         if(isRenewal != null && isRenewal != ''){
             application.isRenewal__c = Boolean.valueOf(isRenewal);   
@@ -328,10 +325,8 @@ application.MUSW_Account__c = account;*/
         try{
             insert application;
         }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        catch(Exception e){
+            HandleException.LogException(e,'LnP_WizardApexController','startAnApplication');
         }
         if(lic!=null)
         {
@@ -342,7 +337,7 @@ application.MUSW_Account__c = account;*/
         Set<Id> parcelIds = new Set<Id>();
         List<MUSW__Parcel__c>lstParcels = new List<MUSW__Parcel__c>();
         for(MUSW__License_Parcel__c licenseParcelInstance : [Select Id, MUSW__License2__c, MUSW__Parcel__c From MUSW__License_Parcel__c 
-                                                             where MUSW__License2__c=:licId and MUSW__License2__c!=null]){
+                                                             where MUSW__License2__c=:licId]){
             parcelIds.add(licenseParcelInstance.MUSW__Parcel__c);
         }
         if(!parcelIds.isEmpty()){
@@ -436,7 +431,7 @@ insert bgckList;
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+            return null;
         }
     }
     @AuraEnabled
@@ -455,7 +450,7 @@ insert bgckList;
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+            return null;
         }
     }
     
@@ -470,45 +465,43 @@ insert bgckList;
         try{
         System.debug('IDIDIDIDIDIDDID'+upgradeLicenseIdValue);
         List<String> result = new List<String>();
-        String condition1 = DOL_AppConstants.NULL_EMPTY_STRING + 'Application_Type__c = \''+Board+'\'';
-        String condition2 = DOL_AppConstants.NULL_EMPTY_STRING + 'Credential_Type__c = \''+LicenseType+'\'';
-        String condition3 = DOL_AppConstants.NULL_EMPTY_STRING + 'Application_Method__c = \''+ApplicationType+'\'';
-        String condition4 = DOL_AppConstants.NULL_EMPTY_STRING + 'Required__c = True'; 
-        String condition5 = DOL_AppConstants.NULL_EMPTY_STRING + 'Active__c = True';
-        String condition6 = DOL_AppConstants.NULL_EMPTY_STRING + 'Default__c = True';
-        String condition7 = DOL_AppConstants.NULL_EMPTY_STRING + 'Object__c = \''+Obj+'\'';
-        //String condition7 = DOL_AppConstants.NULL_EMPTY_STRING + 'Object__c = \'MUSW__License2__c\'';
+        String condition1 = 'Application_Type__c = \''+Board+'\'';
+        String condition2 = 'Credential_Type__c = \''+LicenseType+'\'';
+        String condition3 = 'Application_Method__c = \''+ApplicationType+'\'';
+        String condition4 = 'Required__c = True'; 
+        String condition5 = 'Active__c = True';
+        String condition6 = 'Default__c = True';
+        String condition7 = 'Object__c = \''+Obj+'\'';
+        //String condition7 = 'Object__c = \'MUSW__License2__c\'';
        system.debug('test123::'+renewalReinstate);
-        String condition8 = DOL_AppConstants.NULL_EMPTY_STRING + '';
-        String condition9 = DOL_AppConstants.NULL_EMPTY_STRING + 'Order_No__c';
+        String condition8 = '';
+        String condition9 = 'Order_No__c';
         MUSW__License2__c upgradeLicense = new MUSW__License2__c();
         if(upgradeLicenseIdValue!=null && upgradeLicenseIdValue!=''){
-         upgradeLicense = [select id, Application_Type__c,Credential_Type__c from MUSW__License2__c where id=:upgradeLicenseIdValue and id!=null limit 1];
+         upgradeLicense = [select id, Application_Type__c,Credential_Type__c from MUSW__License2__c where id=:upgradeLicenseIdValue limit 1];
         }
-        String condition10 = DOL_AppConstants.NULL_EMPTY_STRING + 'Show_For_License__c = \''+upgradeLicense.Credential_Type__c+'\'';
+        String condition10 = 'Show_For_License__c = \''+upgradeLicense.Credential_Type__c+'\'';
         if(renewalReinstate=='Renewal')
         {
-            //condition8 = DOL_AppConstants.NULL_EMPTY_STRING + ' AND Show_For__c includes (\'Credential Renewal\')';
-            condition8 = DOL_AppConstants.NULL_EMPTY_STRING + ' AND Show_For__c includes (\'Credential Renewal\')';
+            condition8 = ' AND Show_For__c includes (\'Credential Renewal\')';
         }
         else if(renewalReinstate=='Reinstatement')
         {
-            //condition8 = DOL_AppConstants.NULL_EMPTY_STRING + ' AND Show_For__c includes (\'Credential Reinstatement\')';
-            condition8 = DOL_AppConstants.NULL_EMPTY_STRING + ' AND Show_For__c includes (\'Credential Reinstatement\')';
+            condition8 = ' AND Show_For__c includes (\'Credential Reinstatement\')';
         }
         list<Newsfeed__c> appInstructionList = new list<Newsfeed__c>();
         list<MUSW__Master_Submission_List__c> masterSubListOnAppInstrList = new list<MUSW__Master_Submission_List__c>();
         
-        String Str1 = DOL_AppConstants.NULL_EMPTY_STRING + 'select id,Instructions__c from Newsfeed__c  where ' +condition1+' AND '+condition2+' AND '+condition3;       
+        String Str1 = 'select id,Instructions__c from Newsfeed__c  where ' +condition1+' AND '+condition2+' AND '+condition3;       
         appInstructionList = Utilityclass_withsharing.queryRecords(Str1);
         system.debug('News Query::'+appInstructionList);
-        String Str2 = DOL_AppConstants.NULL_EMPTY_STRING + '';
+        String Str2 ='';
         if(ApplicationType == 'Upgrade' && upgradeLicenseIdValue != null){
-          Str2 = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition10  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
+          Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition10  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
          
         }
         else{
-        Str2 = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
+        Str2 = 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
         }
         masterSubListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
         system.debug('MSL Query::'+masterSubListOnAppInstrList);
@@ -531,7 +524,7 @@ insert bgckList;
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+            return null;
         }
     }
     @AuraEnabled
@@ -541,10 +534,10 @@ insert bgckList;
          List<License_Type__mdt> lstlicenseTypess= new  List<License_Type__mdt>();
         if(typeOFLicense == 'Individual') {
                   lstlicenseTypess= [select Credential_Type__c, Application_Type__c from License_Type__mdt 
-                                                    where Object_Name__c =: DOL_AppConstants.NULL_EMPTY_STRING + 'MUSW__License2__c' and Object_Name__c!=null and Record_type_Name__c =:typeOFLicense and Record_type_Name__c!=null];  
+                                                    where Object_Name__c ='MUSW__License2__c'  and Record_type_Name__c =:typeOFLicense];  
         }  else {
               lstlicenseTypess= [select Credential_Type__c, Application_Type__c from License_Type__mdt 
-                                                    where Object_Name__c =: DOL_AppConstants.NULL_EMPTY_STRING + 'MUSW__License2__c' and Object_Name__c!=null and Record_type_Name__c !='Individual'];  
+                                                    where Object_Name__c ='MUSW__License2__c'  and Record_type_Name__c !='Individual'];  
         }
 
         for( License_Type__mdt license : lstlicenseTypess) 
@@ -560,7 +553,7 @@ insert bgckList;
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+            return null;
         }
        }
        

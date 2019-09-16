@@ -29,7 +29,6 @@
     <aura:attribute name="attValidation" type="Boolean" default="true"/>
     <aura:attribute name="attestValue" type="String" default=""/>
     <aura:attribute name="AttFlagForsubmit" type="Boolean" default="false"/>
-    <aura:attribute name="isbusinsessLicense" type="Boolean" default="false"/>
     <aura:attribute name="popupHeader" type="string" default="" description="On submit success popup header"/> 
     <aura:attribute name="popupBody" type="string" default="" description="On submit success popup body"/>
     <aura:attribute name="isOpen" type="boolean" default="false" description="Hide or Show popup boolean"/>
@@ -65,18 +64,13 @@
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
     <div class="content-wrapper">
-        <!-- <h1 class="subheader">{!'Submit Request: ' + v.flowType}</h1>-->
-        <aura:if isTrue="{!v.flowType=='Update Physical Address'}">
-            <h1 class="subheader">Physical Address</h1>
-            <aura:set attribute="else">                
-                <aura:if isTrue="{!not(empty(v.AMRlabel))}">
-                    <h1 class="subheader">{!v.AMRlabel}</h1>
-                    <aura:set attribute="else">
-                        <h1 class="subheader">{!v.flowType}</h1>
-                    </aura:set>
-                </aura:if> 
+       <!-- <h1 class="subheader">{!'Submit Request: ' + v.flowType}</h1>-->
+        <aura:if isTrue="{!not(empty(v.AMRlabel))}">
+            <h1 class="subheader">{!v.AMRlabel}</h1>
+            <aura:set attribute="else">
+                <h1 class="subheader">{!v.flowType}</h1>
             </aura:set>
-        </aura:if>
+        </aura:if> 
          
         
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" isAMRFlow="true" flowType="{!v.flowType}" />
@@ -155,8 +149,7 @@
                                             </div>                                            
                                         </aura:iteration>
                                     </div>
-                                    <aura:if isTrue="{!not(empty(v.attachmentResponse))}">
-                                     
+									<aura:if isTrue="{!not(empty(v.attachmentResponse))}">
                                     <div id="AttachmentValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                         <div class="headings">Mandatory Submission Review</div><br/>
                                         <aura:iteration items="{!v.attachmentResponse}" var="attResponses" indexVar="varRes"> 
@@ -178,8 +171,7 @@
                                             </div>
                                         </aura:iteration>
                                     </div>
-                                     
-                                    </aura:if>
+									</aura:if>
                                     <!--<div id="certificationsValidation" class='field-item'> 
                                         <div class="reviewHeading certifications">CERTIFICATIONS</div><br/>
                                         <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
