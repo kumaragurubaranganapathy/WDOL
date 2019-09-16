@@ -28,11 +28,7 @@
 			<layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Validation_Number__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Military_Spouse__c</field>
-            </layoutItems>
+            </layoutItems>            
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Qualified_By__c</field>
@@ -73,6 +69,18 @@
                 <behavior>Edit</behavior>
                 <field>Upgrade_Checkbox__c</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>Military__c</field>
+            </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>Military_Spouse__c</field>
+            </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>Deployed__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Print_First_Name__c</field>
@@ -91,18 +99,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Military__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Alerts__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Deployed__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Polaris_DHP__c</field>
             </layoutItems>
             <layoutItems>
@@ -113,8 +109,16 @@
                 <behavior>Readonly</behavior>
                 <field>Open_Complaint_Flag__c</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>Website__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
+		<layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Alerts__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>MUSW__Status__c</field>
