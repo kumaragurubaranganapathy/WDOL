@@ -266,7 +266,10 @@
                 <!---- FEES TAB ---->
                 <apex:tab label="Fees" name="fees" disabled="{!processSuccessful}" onTabEnter="setSelected();refreshFees();">
                     <apex:outputPanel rendered="{!isPortalUser}">
-                        <p>To add fees, view <a href="/apex/PermitTabPortal">your permits</a> and click "Add to Payments" on any permits with an outstanding fee.</p>
+                        <!-- Commenting as a part of bug 7361
+						<p>To add fees, view <a href="/apex/PermitTabPortal">your permits</a>                            and click "Add to Payments" on any permits with an outstanding
+                            fee.
+                        </p> -->
                         <p><strong>Note that you must use a valid VISA, MasterCard or Discover credit card to pay online.</strong></p>
                     </apex:outputPanel>
                     
