@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -51,6 +47,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -58,7 +55,7 @@
     <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Letter_Name__c</fullName>
-        <encrypted>false</encrypted>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Letter Name</label>
         <length>80</length>
@@ -71,30 +68,37 @@
         <fullName>Letter_Type__c</fullName>
         <externalId>false</externalId>
         <label>Letter Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Wall Certificate</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Self-print Certificate</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Wall Certificate</fullName>
+                    <default>false</default>
+                    <label>Wall Certificate</label>
+                </value>
+                <value>
+                    <fullName>Self-print Certificate</fullName>
+                    <default>false</default>
+                    <label>Self-print Certificate</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>License_Type__c</fullName>
         <externalId>false</externalId>
-        <globalPicklist>Credential_Type</globalPicklist>
         <label>License Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Credential_Type</valueSetName>
+        </valueSet>
         <visibleLines>5</visibleLines>
     </fields>
     <label>Master Letter List</label>
@@ -104,11 +108,12 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <encrypted>false</encrypted>
+        <encryptionScheme>None</encryptionScheme>
         <label>Master Letter List Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Master Letter Lists</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>
