@@ -44,7 +44,7 @@
             else if(link == 'Update License Webaddress')
             {
                 window.location.href = $A.get("$Label.c.Polaris_Portal_Self_Service")+'?par1='+licID+'&par2=License';
-            }else if(link == 'Print License'){
+            }else if(link == 'Generate License'){
                 window.location.href = $A.get("$Label.c.Polaris_Portal_Self_Service")+'?par1='+licID+'&par2=print';
             }
             
