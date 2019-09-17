@@ -234,9 +234,6 @@
 .THIS .mandatory-fields{
     color:rgb(194, 57, 52);;
 }
-.THIS .error{
-    color:t(LnGErrorMsg);
-}
 .THIS .btn-lnp[disabled], 
 .THIS .btn-lnp:disabled{
     background: t(LnGGrayText);
@@ -263,6 +260,7 @@
 .THIS .attestation-error{
     margin-bottom:1rem;
     font-size:0.875rem;
+	color:t(LnGErrorMsg);
 }
 
 @media t(mqSmall){
