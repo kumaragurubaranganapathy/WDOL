@@ -21,33 +21,25 @@ public class Polaris_AMRLinkCntrl {
         if(licId!=null){
             if(printType == 'download')
             {
-                Set<Id> setConId = new Set<Id>();
-               // List<ContentDocumentLink> lstcontDocLink = [SELECT id, linkedEntityId FROM ContentDocumentLink Using Scope Everything where linkedEntityId ='a1Lr0000003O3pu'];
-                 List<ContentDocumentLink> lstcontDocLink = [ SELECT ContentDocumentId,ContentDocument.Title, ContentDocument.CreatedDate,LinkedEntityId
-                         FROM ContentDocumentLink where LinkedEntityId ='005t00000029lMJ'];
-                system.debug('lstcontDocLink'+lstcontDocLink);
-                for(ContentDocumentLink contDocLink:lstcontDocLink) 
-                {
-                   
+                Set<Id> setConId = new Set<Id>();               
+                for(ContentDocumentLink contDocLink:[SELECT ContentDocumentId,Id FROM ContentDocumentLink WHERE LinkedEntityId =:licId and LinkedEntityId!=null]) 
+                {                   
                    setConId.add(contDocLink.ContentDocumentId);
                 }
                 if(!setConId.isEmpty()){
                     system.debug('--setConId'+setConId);
-                ContentVersion conVersion = [SELECT CreatedDate,Id,Title FROM ContentVersion WHERE ContentDocumentId IN:setConId ORDER BY CreatedDate DESC NULLS FIRST LIMIT 1];
-            	return conVersion.Id;
-                
-                }
-                
-                
+                ContentVersion conVersion = [SELECT CreatedDate,ContentDocumentId,Id,Title FROM ContentVersion WHERE ContentDocumentId IN:setConId and ContentDocumentId!=null AND Title LIKE '%License_Certificate%' and Title!=null  ORDER BY CreatedDate DESC NULLS FIRST LIMIT 1];
+            	return conVersion.ContentDocumentId;
+                }  
             }
             else{             
-            	MUSW__License2__c lic = [SELECT id,Print_License_Email__c,Print_License_DES__c,Application__c FROM MUSW__License2__c where id=:licId ];
+            	MUSW__License2__c lic = [SELECT id,Print_License_Email__c,Print_License_DES__c,Application__c FROM MUSW__License2__c where id=:licId and id!=null];
                if(printType == 'email')
                 {
-                    lic.Print_License_Email__c='Yes';
+                    lic.Print_License_Email__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Yes';
                 }else if(printType=='DES')
                 {
-                    lic.Print_License_DES__c='Yes';
+                    lic.Print_License_DES__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Yes';
                 }
                 try{
                     update lic;
