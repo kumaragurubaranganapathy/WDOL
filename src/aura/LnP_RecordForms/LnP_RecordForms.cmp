@@ -1,4 +1,5 @@
-<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="Add_BusinessController">
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global"
+    controller="Add_BusinessController">
     <aura:attribute name="fieldsList" type="List" />
     <aura:attribute name="recordId" type="Id" />
     <aura:attribute name="objectApiName" type="String" default="" />
@@ -30,7 +31,8 @@
                 </aura:iteration>
             </div>
             <div class="row">
-                <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress" isRenewal="{!v.isRenewal}" accountId="{!v.recordId}" objectName ="{!v.objectApiName}"/> 
+                <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress"
+                    isRenewal="{!v.isRenewal}" accountId="{!v.recordId}" objectName="{!v.objectApiName}" />
             </div>
         </lightning:recordEditForm>
         <aura:set attribute="else">
@@ -71,7 +73,8 @@
                                         <aura:if isTrue="{!field.apiname == 'NO_SSN_ITIN__c'}">
                                             <div
                                                 class="{!field.apiname == v.flagHideAndShow?'input-field-wrapper':'slds-hide'}">
-                                                <label>I certify that I don't have a Social Security Number or Individual Taxpayer Identification Number</label>
+                                                <label>I certify that I don't have a Social Security Number or
+                                                    Individual Taxpayer Identification Number</label>
                                                 <lightning:inputField disabled="{!field.readOnly}"
                                                     aura:id="validateField" fieldName="{!field.apiname}"
                                                     class="{!(field.apiname == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}"
@@ -113,52 +116,45 @@
                                                 onchange="{!c.getpattern}" />
                                         </div>
                                         <aura:set attribute="else">
-                                            <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField"
-                                                fieldName="{!field.apiname}"
-                                                class="{!(field.required?'required':'')+' slds-show field-size multi-field'}"
-                                                onchange="{!c.getpattern}" />
+                                            <aura:if
+                                                isTrue="{!field.apiname == 'FirstName' || field.apiname == 'Birthdate' || field.apiname == 'MobilePhone'}">
+                                                <aura:if isTrue="{!field.apiname == 'FirstName'}">
+                                                    <div class="header-style">
+                                                        <h2>Your Full Legal Name</h2>
+                                                    </div>
+                                                </aura:if>
+
+                                                <aura:if isTrue="{!field.apiname == 'Birthdate'}">
+                                                    <div class="header-style">
+                                                        <h2>Your Personal Identification Information</h2>
+                                                    </div>
+                                                </aura:if>
+
+                                                <aura:if isTrue="{!field.apiname == 'MobilePhone'}">
+                                                    <div class="header-style">
+                                                        <h2>Your Contact Information</h2>
+                                                    </div>
+                                                </aura:if>
+                                                <lightning:inputField disabled="{!field.readOnly}"
+                                                    aura:id="validateField" fieldName="{!field.apiname}"
+                                                    class="{!(field.required?'required':'')+' slds-show field-size multi-field'}"
+                                                    onchange="{!c.getpattern}" />
+
+                                                <aura:set attribute="else">
+                                                    <lightning:inputField disabled="{!field.readOnly}"
+                                                        fieldName="{!field.apiname}"
+                                                        class="{!(field.required?'required':'')+' slds-show field-size multi-field'}"
+                                                        onchange="{!c.getpattern}" />
+                                                </aura:set>
+                                            </aura:if>
                                         </aura:set>
 
                                     </aura:if>
                                     <aura:set attribute="else">
-                                        <aura:if isTrue="{!field.apiname == 'FirstName' || field.apiname == 'Birthdate' || field.apiname == 'MobilePhone'}">
-                                            <aura:if isTrue="{!field.apiname == 'FirstName'}">
-                                                <div class="header-style">
-                                                    <h2>Your Full Legal Name</h2>
-                                                </div>
-                                                <lightning:inputField disabled="{!field.readOnly}"
-                                                    aura:id="validateField" fieldName="{!field.apiname}"
-                                                    class="{!(field.required?'required':'')+' slds-show field-size multi-field'}"
-                                                    onchange="{!c.getpattern}" />
-                                            </aura:if>
-
-                                            <aura:if isTrue="{!field.apiname == 'Birthdate'}">
-                                                <div class="header-style">
-                                                    <h2>Your Personal Identification Information</h2>
-                                                </div>
-                                                <lightning:inputField disabled="{!field.readOnly}"
-                                                    aura:id="validateField" fieldName="{!field.apiname}"
-                                                    class="{!(field.required?'required':'')+' slds-show field-size multi-field'}"
-                                                    onchange="{!c.getpattern}" />
-                                            </aura:if>
-
-                                            <aura:if isTrue="{!field.apiname == 'MobilePhone'}">
-                                                <div class="header-style">
-                                                    <h2>Your Contact Information</h2>
-                                                </div>
-                                                <lightning:inputField disabled="{!field.readOnly}"
-                                                    aura:id="validateField" fieldName="{!field.apiname}"
-                                                    class="{!(field.required?'required':'')+' slds-show field-size multi-field'}"
-                                                    onchange="{!c.getpattern}" />
-                                            </aura:if>
-
-                                            <aura:set attribute="else">
-                                                <lightning:inputField disabled="{!field.readOnly}"
-                                                    fieldName="{!field.apiname}"
-                                                    class="{!(field.required?'required':'')+' slds-show field-size multi-field'}"
-                                                    onchange="{!c.getpattern}" />
-                                            </aura:set>
-                                        </aura:if>
+                                        <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField"
+                                            fieldName="{!field.apiname}"
+                                            class="{!(field.required?'required':'')+' slds-show field-size multi-field'}"
+                                            onchange="{!c.getpattern}" />
                                     </aura:set>
                                 </aura:if>
                                 <!--<lightning:input aura:id="validateField" fieldName="{!field.apiname}" label="{!field.label}" value="{!field.value}" class="in-edit field-size field-item slds-size_1-of-2"/>-->
@@ -169,7 +165,8 @@
                     </aura:iteration>
                 </div>
                 <div class="row">
-                    <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress" isRenewal="{!v.isRenewal}" accountId="{!v.recordId}" objectName ="{!v.objectApiName}"/> 
+                    <c:LnP_LicenseAddress applicationId="{!v.applicationId}" aura:id="lnpStoreAddress"
+                        isRenewal="{!v.isRenewal}" accountId="{!v.recordId}" objectName="{!v.objectApiName}" />
                 </div>
             </lightning:recordEditForm>
         </aura:set>
