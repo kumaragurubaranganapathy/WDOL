@@ -50,7 +50,7 @@
     handleSubmit : function(component, event, helper) {
         event.preventDefault();
         component.set("v.editForm", false);
-        this.validate(component, event, helper);
+        helper.validate(component, event, helper);
     },
     handleEditSubmit : function(component, event, helper) {
         event.preventDefault();
@@ -133,6 +133,7 @@
             var item = addRecord[i];  
             item.classList.remove('slds-hide');
         }
+        component.set("v.currentValue",false);
     },
     getRecord : function(component, event, helper) {
         helper.getRecordHelper(component, event);

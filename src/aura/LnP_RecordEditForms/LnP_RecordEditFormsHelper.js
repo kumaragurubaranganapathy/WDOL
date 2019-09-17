@@ -11,11 +11,23 @@
     editRecordHelper : function(component, event, helper, editNo) {
         var rows = [];
         var outFields = [];
+        var recordFields = component.find("validateEditField1");
+        var currentEditValue = component.get("v.currentEditValue");
+        var cardNo = parseInt(event.target.parentNode.id);
         outFields = document.getElementsByClassName(editNo+'showHide');
         for(var i = 0; i < outFields.length; ++i){
             var item = outFields[i];  
             item.classList.toggle('slds-hide');
-        }
+        }       
+        
+        recordFields.forEach(function(elem){
+            if(elem.get("v.fieldName")==="Current__c"){
+                var currentValue = elem.get("v.value"); 
+                //currentEditValue[cardNo] = currentValue;
+                component.set("v.currentEditValue",currentValue);                   
+            }
+        });
+        
     },
     deleteRecordHelper : function(component, event, helper, editClassNo) {
         var action = component.get('c.deleteTableRecord');
@@ -47,6 +59,7 @@
             var appId = component.get("v.applicationId");
             var action = component.get('c.returnIds');
             var dataRows=[];
+            var count=[];
             var recordList =[];
             console.log('flowType:' + component.get("v.flowType"));
             console.log('Record Id==' + recordTypeID + 'applicationId==' + appId + 'ObjectName== ' + obj);
@@ -109,9 +122,20 @@
         var currElem = event.getSource();
         if(currElem.get("v.fieldName")==="Current__c"){
             currentValue = currElem.get("v.value");
-            component.set("v.currentValue",currentValue);            
-        }
-		var currElement = event.getSource().get('v.value'); 
+            component.set("v.currentValue",currentValue);
+            if(currentValue == true){
+                var fieldValuesWrapper = component.find("validateField");
+                for(var i=0; i<fieldValuesWrapper.length; i++){
+                    if(fieldValuesWrapper[i].get("v.fieldName")=="End_date__c"){
+                        fieldValuesWrapper[i].set("v.value", null);   
+                    }
+                }
+            }
+            /*cardNum++;
+            component.set("v.cardNumber",cardNum); */            
+        } 
+        var currElement = event.getSource().get('v.value'); 
+        console.log('currElement--'+currElement);
         var currfield=event.getSource().get('v.fieldName');
         var masking = event.getSource().get('v.id');
         var patternArray=masking.split(",")
@@ -132,14 +156,22 @@
         var currElem = event.getSource();
         //var inputFields = component.find("inputEditField");
         var currentValue;
-        var cardIndex; 
-        var cardClass;
+        //var cardIndex; 
+        //var cardClass;
         if(currElem.get("v.fieldName")==="Current__c"){
             currentValue = currElem.get("v.value"); 
-            cardClass = currElem.get("v.class");
-            cardIndex = parseInt(cardClass.split("itemRow=")[1]);
-            component.set("v.currentEditValue",currentValue);
-            component.set("v.cardIndex",cardIndex);            
+            //cardClass = currElem.get("v.class");
+            //cardIndex = parseInt(cardClass.split("itemRow=")[1]);
+            component.set("v.currentEditValue",currentValue);           
+            //component.set("v.cardIndex",cardIndex);
+            if(currentValue == true){
+                var fieldValuesWrapper = component.find("validateEditField");
+                for(var i=0; i<fieldValuesWrapper.length; i++){
+                    if(fieldValuesWrapper[i].get("v.fieldName")=="End_date__c"){
+                        fieldValuesWrapper[i].set("v.value", null);   
+                    }
+                }
+            }            
         }
 		var currElement = event.getSource().get('v.value'); 
         var currfield=event.getSource().get('v.fieldName');
@@ -171,8 +203,15 @@
     test: function(component,event){ 
         /*   console.log("in test");
         var currElement = event.getSource().get('v.value'); 
-        var currfield=event.getSource().get('v.fieldName')
-        if(currfield=="Start_date__c"){
+        var currfield=event.getSource().get('v.fieldName');
+        if(currfield=="Supervisor_Phone_Number__c"){
+            if(currElement.length==10){
+                var trimmedNo = ('' + currElement).replace(/\D/g, '');
+                var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
+                event.getSource().set('v.value',phone); 
+            }
+        }
+        /*if(currfield=="Start_date__c"){
         var d = new Date(currElement);
         var month = d.getMonth()+1;
         var year =  d.getFullYear();
@@ -181,61 +220,83 @@
           console.log(formattedDate);
         }*/
     },
-	validate : function(component, event, helper) {
-		var classList = event.getSource().get("v.class");
-		var blockID = event.getSource().get("v.name");
-		var totalFieldsList = component.get("v.sectionList").labelFieldsMap;
-		var sectionFieldsList = [];
-		var errorMessage = "Please fill valid data";
-		if(classList.includes("Qualifying Postsecondary Education")){
-			sectionFieldsList = totalFieldsList.filter(function(item){
-				return item.questionSectionClass == "Qualifying Postsecondary Education" && (item.isMandatoryQues || item.regex != null);
-			});
-		}
-		if(classList.includes("Qualifying Experience")){
-			sectionFieldsList = totalFieldsList.filter(function(item){
-				return item.questionSectionClass == "Qualifying Experience" && (item.isMandatoryQues || item.regex != null);
-			});
-		}
-		if(classList.includes("Qualifying Courses")){
-			sectionFieldsList = totalFieldsList.filter(function(item){
-				return item.questionSectionClass == "Qualifying Courses" && (item.isMandatoryQues || item.regex != null);
-			});
-		}
-		if(classList.includes("Continuing Education")){
+    validate : function(component, event, helper) {
+        var classList = event.getSource().get("v.class");
+        var blockID = event.getSource().get("v.name");
+        var totalFieldsList = component.get("v.sectionList").labelFieldsMap;
+        var sectionFieldsList = [];
+        var errorMessage = "Please fill valid data";
+        var recordFields = component.find("validateEditField1");
+        var currentValue;
+        if(component.get("v.editForm")){
+            if(recordFields != undefined){
+               recordFields.forEach(function(elem){
+                    if(elem.get("v.fieldName")==="Current__c"){
+                        currentValue = elem.get("v.value"); 
+                        component.set("v.currentEditValue",currentValue);                   
+                    }
+                }); 
+            }
+        }else{
+            //var currentCardEdit = component.get("v.currentEditValue");
+            //currentCardEdit.push(component.get("v.currentValue"));
+            //component.set("v.currentEditValue",currentCardEdit);
+        }
+        
+        if(classList.includes("Qualifying Postsecondary Education")){
+            sectionFieldsList = totalFieldsList.filter(function(item){
+                return item.questionSectionClass == "Qualifying Postsecondary Education" && (item.isMandatoryQues || item.regex != null);
+            });
+        }
+       
+        if(classList.includes("Qualifying Experience")){
+            sectionFieldsList = totalFieldsList.filter(function(item){
+                return item.questionSectionClass == "Qualifying Experience" && (item.isMandatoryQues || item.regex != null);
+            });
+        }
+        
+        if(classList.includes("Qualifying Courses")){
+            sectionFieldsList = totalFieldsList.filter(function(item){
+                return item.questionSectionClass == "Qualifying Courses" && (item.isMandatoryQues || item.regex != null);
+            });
+        }
+       
+         if(classList.includes("Continuing Education")){
             sectionFieldsList = totalFieldsList.filter(function(item){
                 return item.questionSectionClass == "Continuing Education" && (item.isMandatoryQues || item.regex != null);
             });
         }
-		if(classList.includes("editFields")){
-			component.set("v.editForm", true);
-			var fieldValuesWrapper = component.find("validateEditField");
-			fieldValuesWrapper = fieldValuesWrapper.filter(function(item){
-				return item.get("v.class").includes('itemRow='+blockID); 
-			});
-		}else{
-			component.set("v.editForm", false);
-			var fieldValuesWrapper = component.find("validateField");
-		}
-		var validateFlagCheck = sectionFieldsList.every(function(item, index){
-			if(!fieldValuesWrapper[index].get("v.class").includes('slds-hide')){
-				if(item.isMandatoryQues){
-					if(item.regex != undefined && item.regex != null && item.regex != ""){
-						var valueVal = fieldValuesWrapper[index].get("v.value");
-						if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
-							if(item.regex == "Date-Validation"){
-								var valueVal = fieldValuesWrapper[index].get("v.value");
-								var today = new Date();
-								var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
-								compareDate = new Date(compareDate);
-								var enteredDate = new Date(valueVal);
-								if(enteredDate < compareDate){
-									return true;
-								}else{
-									errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
-									return false;
-								}
-							}  else if(item.regex == "minimum-value"){
+        
+        var fieldValuesWrapper
+        if(classList.includes("editFields")){
+            component.set("v.editForm", true);
+             fieldValuesWrapper = component.find("validateEditField");
+            fieldValuesWrapper = fieldValuesWrapper.filter(function(item){
+                return item.get("v.class").includes('itemRow='+blockID); 
+            });
+        }else{
+            component.set("v.editForm", false);
+             fieldValuesWrapper = component.find("validateField");
+        }
+        var validateFlagCheck = sectionFieldsList.every(function(item, index){
+            if(!fieldValuesWrapper[index].get("v.class").includes('slds-hide')){
+                if(item.isMandatoryQues){
+                    if(item.regex != undefined && item.regex != null && item.regex != ""){
+                        var valueVal = fieldValuesWrapper[index].get("v.value");
+                        if(valueVal != '' && valueVal != null && valueVal != "--None--" && valueVal != "--none--" && valueVal.toString().trim() != undefined && valueVal.toString().trim() != ""){
+                            if(item.regex == "Date-Validation"){
+                                var valueVal = fieldValuesWrapper[index].get("v.value");
+                                var today = new Date();
+                                var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                compareDate = new Date(compareDate);
+                                var enteredDate = new Date(valueVal);
+                                if(enteredDate < compareDate){
+                                    return true;
+                                }else{
+                                    errorMessage = item.errormsg != undefined? item.errormsg: "Date is required and it should be prior to today's date";
+                                    return false;
+                                }
+                            }  else if(item.regex == "minimum-value"){
                                 var valueVal = fieldValuesWrapper[index].get("v.value");
                                 var minValue = parseInt(item.minValue);
                                 if(valueVal >= minValue){
