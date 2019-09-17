@@ -91,13 +91,13 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                                 </div>
                             </lightning:layoutItem>                    
                             <lightning:layoutItem size="12" largeDeviceSize="{!(v.userType=='Guest'?'3':'2')}" class="login-wrapper">
-                                <aura:if isTrue="{!v.userType=='Guest'}">                            
+                                <aura:if isTrue="{!and(v.userType=='Guest', $Label.c.Dol_Login == 'Yes')}">                            
                                     <div class="login-div">                                        
                                         <a class="link-style" href="{!$Label.c.Polaris_Portal_Home+'login/'}" onclick="{!c.loginUser}">Login</a>
                                     </div>
                                     <aura:set attribute="else">
                                         <div class="user-wrapper">
-                                            <div class="images-wrapper">
+                                            <div class="{!(v.userType=='Guest'? 'slds-hide':'images-wrapper')}">
                                                 <!--<img src="{!$Resource.LnP_Icons+'/LnP_Icons/search.svg'}" class="logo-style" />-->
                                                 <!--<img src="{!$Resource.LnP_Icons+'/LnP_Icons/notification.png'}" alt="notification" class="logo-style" />
                                                 <img src="{!$Resource.LnP_Icons+'/LnP_Icons/cart.png'}" alt="cart" class="logo-style" /> -->
