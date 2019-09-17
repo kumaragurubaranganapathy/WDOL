@@ -29,6 +29,7 @@
     <aura:attribute name="attValidation" type="Boolean" default="true"/>
     <aura:attribute name="attestValue" type="String" default=""/>
     <aura:attribute name="AttFlagForsubmit" type="Boolean" default="false"/>
+	<aura:attribute name="isbusinsessLicense" type="Boolean" default="false"/>
     <aura:attribute name="popupHeader" type="string" default="" description="On submit success popup header"/> 
     <aura:attribute name="popupBody" type="string" default="" description="On submit success popup body"/>
     <aura:attribute name="isOpen" type="boolean" default="false" description="Hide or Show popup boolean"/>
