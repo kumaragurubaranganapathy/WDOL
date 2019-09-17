@@ -176,7 +176,13 @@
 	<validationRules>
         <fullName>CE_Amount_and_NCR_Amount</fullName>
         <active>true</active>
-        <errorConditionFormula>IF( Lockbox_Amount__c  &lt;&gt;   (Amount__c  +  Polaris_NCR_Amount__c)  &amp;&amp; Text(Status__c)=&apos;Complete&apos;, true, false)</errorConditionFormula>
+        <errorConditionFormula>IF(Text(Status__c)=&apos;Complete&apos; &amp;&amp;
+((ISBLANK(Amount__c) &amp;&amp; ISBLANK(Polaris_NCR_Amount__c) &amp;&amp; NOT(ISBLANK(Lockbox_Amount__c)))||
+((NOT(ISBLANK(Amount__c)) || NOT(ISBLANK(Polaris_NCR_Amount__c))) &amp;&amp; ISBLANK(Lockbox_Amount__c))||
+(ISBLANK(Amount__c) &amp;&amp; Lockbox_Amount__c  &lt;&gt;     Polaris_NCR_Amount__c )|| 
+(ISBLANK(Polaris_NCR_Amount__c) &amp;&amp; Lockbox_Amount__c  &lt;&gt;    Amount__c)||
+(Lockbox_Amount__c  &lt;&gt;   (Amount__c  +  Polaris_NCR_Amount__c) ))
+, true, false)</errorConditionFormula>
         <errorDisplayField>Lockbox_Amount__c</errorDisplayField>
         <errorMessage>Please check the Customer Envelope Amount and NCR Amount. Lockbox Amount doesnt equal to Customer Amount and NCR Amount</errorMessage>
     </validationRules>
