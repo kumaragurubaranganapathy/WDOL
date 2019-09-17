@@ -587,7 +587,20 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    <fields>
+	<fields>
+        <fullName>License_AddressId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>External Id for Data Conversion</description>
+        <externalId>true</externalId>
+        <label>Block</label>
+        <length>100</length>
+        <required>yes</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>yes</unique>
+    </fields>  
+	<fields>
         <fullName>MUSW__AlertCode__c</fullName>
         <deprecated>false</deprecated>
         <description>Alert Number code. Used by the indicator to determine which image to present.</description>
