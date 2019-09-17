@@ -106,6 +106,48 @@
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Complete</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Confirmed</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Hold</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>X240Q__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>240Q</label>
+        <referenceTo>Journal_Voucher__c</referenceTo>
+        <relationshipLabel>Lockbox Envelopes</relationshipLabel>
+        <relationshipName>Lockbox_Envelopes</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <label>Lockbox Envelope</label>
 	<listViews>
         <fullName>All_Lockbox_Envelopes</fullName>
@@ -131,4 +173,11 @@
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
+	<validationRules>
+        <fullName>CE_Amount_and_NCR_Amount</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF( Lockbox_Amount__c  &lt;&gt;   (Amount__c  +  Polaris_NCR_Amount__c)  &amp;&amp; Text(Status__c)=&apos;Complete&apos;, true, false)</errorConditionFormula>
+        <errorDisplayField>Lockbox_Amount__c</errorDisplayField>
+        <errorMessage>Please check the Customer Envelope Amount and NCR Amount. Lockbox Amount doesnt equal to Customer Amount and NCR Amount</errorMessage>
+    </validationRules>
 </CustomObject>
