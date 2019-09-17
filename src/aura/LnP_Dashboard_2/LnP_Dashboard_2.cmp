@@ -1182,7 +1182,7 @@
                             </div>
                         </aura:if>
                         <aura:set attribute="else">
-                            <div class="slds-align_absolute-center">There are no draft maintenance requests</div>
+                            <div class="slds-align_absolute-center">There are no unsubmitted applications.</div>
                         </aura:set>
                     </aura:if>
                 </lightning:tab>
@@ -1438,7 +1438,7 @@
                             </div>
                         </aura:if>
                         <aura:set attribute="else">
-                            <div class="slds-align_absolute-center">There are no pending maintenance requests</div>
+                            <div class="slds-align_absolute-center">There are no submitted applications.</div>
                         </aura:set>
                         
                     </aura:if>
