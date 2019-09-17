@@ -171,32 +171,6 @@
         </displayedFields>
         <label>Public Lookup Fields</label>
     </fieldSets>
-	<fields>
-        <fullName>DOR_Endorsement_Code__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>DOR Endorsement Code</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>DOR_License_Number__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>DOR License Number</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <fields>
         <fullName>AIDS_Affidavit__c</fullName>
         <defaultValue>false</defaultValue>
@@ -365,42 +339,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>RFI_Send_Date_2nd__c</fullName>
-        <description>Date 2nd RFI was sent</description>
-        <encryptionScheme>None</encryptionScheme>
-        <inlineHelpText>Date 2nd RFI was sent</inlineHelpText>
-        <externalId>false</externalId>
-        <label>RFI Send Date 2nd</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Using_my_legal_name_as_print_name__c</fullName>
-    <defaultValue>false</defaultValue>
-    <externalId>false</externalId>
-    <label>Using my legal name as print name</label>
-    <trackFeedHistory>false</trackFeedHistory>
-    <trackHistory>false</trackHistory>
-    <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>RFP_Send_Date_2nd__c</fullName>
-        <description>Date 2nd RFP was sent</description>
-        <encryptionScheme>None</encryptionScheme>
-        <inlineHelpText>Date 2nd RFP was sent</inlineHelpText>
-        <externalId>false</externalId>
-        <label>RFP Send Date 2nd</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Applicant_Status__c</fullName>
         <description>Applicant Status</description>
         <externalId>false</externalId>
@@ -427,51 +365,76 @@
             <restricted>true</restricted>
             <valueSetName>Application_Method</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <controllingFieldValue>Engineering/Land Surveying Company</controllingFieldValue>
-                <controllingFieldValue>Unlicensed</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
-                <controllingFieldValue>Academic Intern</controllingFieldValue>
                 <controllingFieldValue>Temporary Certified General</controllingFieldValue>
-                <controllingFieldValue>Engineer in Training</controllingFieldValue>
-                <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Geologist In Training</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
-                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
-                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
-                <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
                 <controllingFieldValue>Collection Agency</controllingFieldValue>
+                <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
+                <controllingFieldValue>Timeshare Company</controllingFieldValue>
+                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Unlicensed</controllingFieldValue>
                 <controllingFieldValue>Collection Agency Branch</controllingFieldValue>
                 <controllingFieldValue>Out Of State Collection Agency Branch</controllingFieldValue>
                 <controllingFieldValue>Out Of State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Architect Firm</controllingFieldValue>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
+                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
                 <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
+                <controllingFieldValue>Crematory</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
+                <controllingFieldValue>Engineering/Land Surveying Company</controllingFieldValue>
+                <controllingFieldValue>Academic Intern</controllingFieldValue>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Architect Firm</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Engineer in Training</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <controllingFieldValue>Crematory</controllingFieldValue>
-                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Geologist In Training</controllingFieldValue>
+                <controllingFieldValue>Landscape Architect</controllingFieldValue>
                 <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
+                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
+                <controllingFieldValue>Professional Engineer</controllingFieldValue>
                 <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
                 <valueName>General Application</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Professional Engineer</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <valueName>Comity</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Professional Engineer</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <valueName>Upgrade</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
@@ -480,31 +443,6 @@
             <valueSettings>
                 <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
                 <valueName>Non-Broker</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Architect</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>Landscape Architect</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <valueName>Comity</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <valueName>Upgrade</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -661,20 +599,6 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	    <fields>
-        <fullName>DaysFromJan31__c</fullName>
-        <externalId>false</externalId>
-        <formula>DATE(YEAR(TODAY())+1,1, 31)-MUSW__Issue_Date__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>DaysFromJan31</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -852,6 +776,156 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Certificate_Address_City_zip__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Credential_Type__c , 
+&quot;Notary Public&quot;, &quot;&quot; , 
+&quot;Embalmer&quot;, &quot;&quot;,
+&quot;Embalmer Intern&quot;, &quot;&quot;,
+&quot;Engineer in Training&quot;, &quot;&quot;,
+&quot;Funeral Director&quot;, &quot;&quot;,
+&quot;Funeral Director Intern&quot;, &quot;&quot;, 
+&quot;Embalmer Intern&quot;, &quot;&quot;, 
+&quot;Land Surveyor in Training&quot;, &quot;&quot;,
+
+&quot;Funeral Establishment&quot;, Public_Address__r.MUSW__City__c + &quot; &quot; + TEXT(Public_Address__r.MUSW__State__c) + &quot; &quot; + Public_Address__r.Zip_Postal_Code__c, 
+&quot;Prearrangement Funeral Services&quot;, Public_Address__r.MUSW__City__c  + &quot; &quot; +   TEXT(Public_Address__r.MUSW__State__c) + &quot; &quot; + Public_Address__r.Zip_Postal_Code__c, 
+
+MUSW__Parcel__r.MUSW__City__c + &quot; &quot; + TEXT(MUSW__Parcel__r.MUSW__State__c) + &quot; &quot; + MUSW__Parcel__r.Zip_Postal_Code__c 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Address City/zip</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certificate_Address_Street__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Credential_Type__c , 
+&quot;Notary Public&quot;, &quot;&quot; , 
+&quot;Embalmer&quot;, &quot;&quot;, 
+&quot;Embalmer Intern&quot;, &quot;&quot;, 
+&quot;Engineer in Training&quot;, &quot;&quot;, 
+&quot;Funeral Director&quot;, &quot;&quot;, 
+&quot;Funeral Director Intern&quot;, &quot;&quot;,
+&quot;Embalmer Intern&quot;, &quot;&quot;,
+&quot;Land Surveyor in Training&quot;, &quot;&quot;, 
+
+&quot;Funeral Establishment&quot;, Public_Address__r.MUSW__Street2__c,
+&quot;Prearrangement Funeral Services&quot;, Public_Address__r.MUSW__Street2__c,
+
+MUSW__Parcel__r.MUSW__Street2__c
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Address Street</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certificate_Issue_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Credential_Type__c , 
+&quot;Notary Public&quot;, MUSW__Issue_Date__c , 
+Original_Issue_Date__c
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Issue Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Certificate_Print_Day__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(DAY(Original_Issue_Date__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Print Day</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certificate_Print_Day_superscript__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(TEXT(DAY(Original_Issue_Date__c)),
+&quot;1&quot;, &quot;st&quot;,
+&quot;2&quot;, &quot;nd&quot;,
+&quot;3&quot;, &quot;rd&quot;,
+&quot;21&quot;,&quot;st&quot;,
+&quot;22&quot;,&quot;nd&quot;,
+&quot;23&quot;,&quot;rd&quot;,
+&quot;31&quot;,&quot;st&quot;,
+&quot;th&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Print Day superscript</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certificate_Print_Month__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(MONTH(Original_Issue_Date__c),
+1, &quot;January&quot;,
+2, &quot;February&quot;,
+3, &quot;March&quot;, 
+4, &quot;April&quot;, 
+5, &quot;May&quot;, 
+6, &quot;June&quot;,
+7, &quot;July&quot;,
+8, &quot;August&quot;,
+9, &quot;September&quot;,
+10, &quot;October&quot;,
+11, &quot;November&quot;,
+12, &quot;December&quot;,
+&quot;None&quot;) &amp; &quot;, &quot; &amp;  TEXT(YEAR(Original_Issue_Date__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Print Month</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certificate_Print_Program__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Application_Type__c , 
+&quot;Notary Public&quot;, &quot;NOTARY PROGRAM&quot;, 
+&quot;Real Estate&quot;, &quot;APPRAISER PROGRAM&quot;, 
+&quot;Appraisers - Real Estate&quot;, &quot;APPRAISER PROGRAM&quot;, 
+&quot;Appraisal Management Companies&quot;, &quot;APPRAISAL MANAGEMENT COMPANY PROGRAM&quot;, 
+&quot;Timeshares&quot;, &quot;TIMESHARE PROGRAM&quot;, 
+&quot;Camping Resorts&quot;, &quot;CAMPING RESORT PROGRAM&quot;, 
+&quot;Geologist&quot;, &quot;GEOLOGIST PROGRAM&quot;, 
+&quot;Architects&quot;, &quot;ARCHITECT PROGRAM&quot;, 
+&quot;Funerals&quot;, &quot;FUNERAL PROGRAM&quot;, 
+&quot;Engineers&quot;, &quot;ENGINEER PROGRAM&quot;, 
+&quot;Land Surveyors&quot;, &quot;ENGINEER PROGRAM&quot;, 
+&quot;On-site Wastewater&quot;, &quot;ENGINEER PROGRAM&quot;, 
+&quot;Landscape Architects&quot;, &quot;LANDSCAPE ARCHITECT PROGRAM&quot;, 
+&quot;Cemeteries&quot;, &quot;CEMETERY PROGRAM&quot;, 
+&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Print Program</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Client_Id__c</fullName>
@@ -1163,40 +1237,37 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>Landscape Architect</valueName>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineering/Land Surveying Company</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Delegated Municipality</controllingFieldValue>
+                <valueName>Land Surveyor in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Professional Land Surveyor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
                 <controllingFieldValue>Manufactured Homes</controllingFieldValue>
-                <controllingFieldValue>Program Unknown</controllingFieldValue>
                 <controllingFieldValue>Misc Payments</controllingFieldValue>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <controllingFieldValue>Program Unknown</controllingFieldValue>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <controllingFieldValue>Delegated Municipality</controllingFieldValue>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
                 <valueName>Unlicensed</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cemetery</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cremated Remains Disposition Permit</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Crematory</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Collection Agency</controllingFieldValue>
@@ -1215,29 +1286,16 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <valueName>Out Of State Collection Agency</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineering/Land Surveying Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Land Surveyor in Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Professional Land Surveyor</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
                 <valueName>Notary Public</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist In Training</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
@@ -1248,12 +1306,12 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <valueName>Timeshare Salesperson</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Controlling Person</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect Firm</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1288,12 +1346,40 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <valueName>Temporary State Licensed</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect Firm</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cemetery</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cremated Remains Disposition Permit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineer in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Professional Engineer</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -1332,24 +1418,16 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
                 <valueName>Prearrangement Funeral Services</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineer in Training</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Professional Engineer</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist In Training</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Designer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -1433,6 +1511,32 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>DOR_Endorsement_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>DOR Endorsement Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DOR_License_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>DOR License Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>DOT_Title_Number__c</fullName>
         <description>DOT Title Number</description>
         <encryptionScheme>None</encryptionScheme>
@@ -1471,9 +1575,8 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-	<fields>
+    <fields>
         <fullName>Date_Fiscal_Year_Ends__c</fullName>
-        <description></description>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Fiscal Year Ends</label>
@@ -1482,20 +1585,6 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-	<fields>
-        <fullName>NoOfDaysExpirePreFuneral__c</fullName>
-        <externalId>false</externalId>
-        <formula>if(MUSW__Issue_Date__c &lt; Date_Fiscal_Year_Ends__c, Date_Fiscal_Year_Ends__c-MUSW__Issue_Date__c,MUSW__Issue_Date__c-Date_Fiscal_Year_Ends__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>NoOfDaysExpireToPreFuneralFiscYear</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Date_of_Birth__c</fullName>
@@ -1518,6 +1607,20 @@ ISPICKVAL(Credential__c, &quot;Dwelling Contractor Qualifier&quot;)
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>DaysFromJan31__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATE(YEAR(TODAY())+1,1, 31)-MUSW__Issue_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DaysFromJan31</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Delivery_Method__c</fullName>
@@ -1836,18 +1939,6 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
-        <fullName>License_Business_Name__c</fullName>
-        <externalId>false</externalId>
-        <formula>Ultimate_Parent_Account__r.Name</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>License Business Name</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <fields>
         <fullName>HUD_3__c</fullName>
         <description>HUD 3- used for data load</description>
@@ -1939,6 +2030,17 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Intern_End_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Intern End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Interval_fees__c</fullName>
@@ -2037,6 +2139,18 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>License_Business_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Ultimate_Parent_Account__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Business Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>License_Email__c</fullName>
@@ -2730,6 +2844,17 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Manual_Fee_Generation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used to generate the manual fee generation for back office. Onset to true will be triggered to create fee records.</description>
+        <externalId>false</externalId>
+        <label>Manual Fee Generation</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Manufactured_Homes_Make__c</fullName>
         <description>Manufactured Homes Make</description>
         <encryptionScheme>None</encryptionScheme>
@@ -2814,6 +2939,18 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Name_on_Certificate__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(License_Printable_Name__c) ,  MUSW__Primary_Licensee__r.Name , License_Printable_Name__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Name on Certificate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Next_Notification_Attempt__c</fullName>
         <description>Next Notification Attempt</description>
         <externalId>false</externalId>
@@ -2847,6 +2984,20 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>NoOfDaysExpirePreFuneral__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(MUSW__Issue_Date__c &lt; Date_Fiscal_Year_Ends__c, Date_Fiscal_Year_Ends__c-MUSW__Issue_Date__c,MUSW__Issue_Date__c-Date_Fiscal_Year_Ends__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>NoOfDaysExpireToPreFuneralFiscYear</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>No_Fee_Required__c</fullName>
@@ -3714,9 +3865,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
                     <default>false</default>
                     <label>GrandParenting</label>
                 </value>
-				<value>
+                <value>
                     <fullName>None</fullName>
                     <default>false</default>
+                    <isActive>false</isActive>
                     <label>None</label>
                 </value>
             </valueSetDefinition>
@@ -3775,16 +3927,18 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <type>Html</type>
         <visibleLines>25</visibleLines>
     </fields>
-	<fields>
-        <fullName>Manual_Fee_Generation__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Used to generate the manual fee generation for back office. Onset to true will be triggered to create fee records.</description>
+    <fields>
+        <fullName>RFI_Send_Date_2nd__c</fullName>
+        <description>Date 2nd RFI was sent</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
-        <label>Manual Fee Generation</label>
+        <inlineHelpText>Date 2nd RFI was sent</inlineHelpText>
+        <label>RFI Send Date 2nd</label>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>RFI_Send_Date__c</fullName>
@@ -3810,6 +3964,19 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <trackTrending>false</trackTrending>
         <type>Html</type>
         <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>RFP_Send_Date_2nd__c</fullName>
+        <description>Date 2nd RFP was sent</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date 2nd RFP was sent</inlineHelpText>
+        <label>RFP Send Date 2nd</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>RFP_Send_Date__c</fullName>
@@ -3886,6 +4053,19 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Renew_Reinstatement_in_progress__c</fullName>
@@ -4124,6 +4304,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <valueSettings>
                 <controllingFieldValue>Pending Action</controllingFieldValue>
                 <valueName>Applicant action</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Pending Action</controllingFieldValue>
+                <valueName>Third party action</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Canceled</controllingFieldValue>
@@ -4370,6 +4554,16 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Using_my_legal_name_as_print_name__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Using my legal name as print name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Validation_Number__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -4555,201 +4749,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <valueSetName>license_specific_email_addresses</valueSetName>
         </valueSet>
     </fields>
-        <fields>
-        <fullName>Certificate_Address_City_zip__c</fullName>
-        <externalId>false</externalId>
-        <formula>CASE( Credential_Type__c , 
-&quot;Notary Public&quot;, &quot;&quot; , 
-&quot;Embalmer&quot;, &quot;&quot;,
-&quot;Embalmer Intern&quot;, &quot;&quot;,
-&quot;Engineer in Training&quot;, &quot;&quot;,
-&quot;Funeral Director&quot;, &quot;&quot;,
-&quot;Funeral Director Intern&quot;, &quot;&quot;, 
-&quot;Embalmer Intern&quot;, &quot;&quot;, 
-&quot;Land Surveyor in Training&quot;, &quot;&quot;,
-
-&quot;Funeral Establishment&quot;, Public_Address__r.MUSW__City__c + &quot; &quot; + TEXT(Public_Address__r.MUSW__State__c) + &quot; &quot; + Public_Address__r.Zip_Postal_Code__c, 
-&quot;Prearrangement Funeral Services&quot;, Public_Address__r.MUSW__City__c  + &quot; &quot; +   TEXT(Public_Address__r.MUSW__State__c) + &quot; &quot; + Public_Address__r.Zip_Postal_Code__c, 
-
-MUSW__Parcel__r.MUSW__City__c + &quot; &quot; + TEXT(MUSW__Parcel__r.MUSW__State__c) + &quot; &quot; + MUSW__Parcel__r.Zip_Postal_Code__c 
-)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Certificate Address City/zip</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Certificate_Address_Street__c</fullName>
-        <externalId>false</externalId>
-        <formula>CASE( Credential_Type__c , 
-&quot;Notary Public&quot;, &quot;&quot; , 
-&quot;Embalmer&quot;, &quot;&quot;, 
-&quot;Embalmer Intern&quot;, &quot;&quot;, 
-&quot;Engineer in Training&quot;, &quot;&quot;, 
-&quot;Funeral Director&quot;, &quot;&quot;, 
-&quot;Funeral Director Intern&quot;, &quot;&quot;,
-&quot;Embalmer Intern&quot;, &quot;&quot;,
-&quot;Land Surveyor in Training&quot;, &quot;&quot;, 
-
-&quot;Funeral Establishment&quot;, Public_Address__r.MUSW__Street2__c,
-&quot;Prearrangement Funeral Services&quot;, Public_Address__r.MUSW__Street2__c,
-
-MUSW__Parcel__r.MUSW__Street2__c
-)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Certificate Address Street</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Certificate_Issue_Date__c</fullName>
-        <externalId>false</externalId>
-        <formula>CASE( Credential_Type__c , 
-&quot;Notary Public&quot;, MUSW__Issue_Date__c , 
-Original_Issue_Date__c
-)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Certificate Issue Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Certificate_Print_Day__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT(DAY(Original_Issue_Date__c))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Certificate Print Day</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-        <fields>
-        <fullName>Certificate_Print_License_Type__c</fullName>
-        <externalId>false</externalId>
-        <formula>CASE( Credential_Type__c ,
-&quot;Appraiser Trainee&quot;, &quot;STATE REGISTERED REAL ESTATE APPRAISER TRAINEE&quot;,
-&quot;Camping Resort Company&quot;, &quot;CAMPING RESORT COMPANY REGISTRATION&quot;,
-&quot;Camping Resort Salesperson&quot;, &quot;CAMPING RESORT SALESPERSON REGISTRATION&quot;,
-&quot;Cemetery&quot;, &quot;CEMETERY CERTIFICATE OF AUTHORITY&quot;,
-&quot;Certified General Appraiser&quot;, &quot;CERTIFIED GENERAL REAL ESTATE APPRAISER&quot;,
-&quot;Certified Residential Appraiser&quot;, &quot;CERTIFIED RESIDENTIAL REAL ESTATE APPRAISER&quot;,
-&quot;Crematory&quot;, &quot;CREMATORY LICENSE&quot;,
-&quot;Engineering/Land Surveying Company&quot;, &quot;ENGINEERING/LAND SURVEYING CORPORATION&quot;,
-&quot;Engineering Corporations&quot;, &quot;ENGINEERING CORPORATION&quot;,
-&quot;Land Surveying Corporations&quot;, &quot;LAND SURVEYING CORPORATION&quot;,
-&quot;On-site Wastewater Designer&quot;, &quot;ON-SITE WASTEWATER TREATMENT SYSTEMS DESIGNER&quot;,
-&quot;On-site Wastewater Inspector&quot;,	&quot;ON-SITE WASTEWATER TREATMENT SYSTEMS INSPECTOR&quot;,
-&quot;Prearrangement Funeral Services&quot;, &quot;PREARRANGEMENT FUNERAL SERVICES CONTRACT&quot;,
-&quot;State Licensed Appraiser&quot;, &quot;STATE LICENSED REAL ESTATE APPRAISER&quot;,
-&quot;Temporary Certified General&quot;, &quot;TEMPORARY CERTIFIED GENERAL APPRAISER&quot;,
-&quot;Temporary Certified Residential&quot;, &quot;TEMPORARY CERTIFIED RESIDENTIAL APPRAISER&quot;,
-&quot;Temporary State Licensed&quot;, &quot;TEMPORARY STATE LICENSED APPRAISER&quot;,
-&quot;Timeshare Company&quot;, &quot;TIMESHARE COMPANY REGISTRATION&quot;,
-&quot;Timeshare Salesperson&quot;, &quot;TIMESHARE SALESPERSON REGISTRATION&quot;,
- UPPER(TEXT(Credential_Type__c))
-)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Certificate Print License Type</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Certificate_Print_Day_superscript__c</fullName>
-        <externalId>false</externalId>
-        <formula>CASE(TEXT(DAY(Original_Issue_Date__c)),
-&quot;1&quot;, &quot;st&quot;,
-&quot;2&quot;, &quot;nd&quot;,
-&quot;3&quot;, &quot;rd&quot;,
-&quot;21&quot;,&quot;st&quot;,
-&quot;22&quot;,&quot;nd&quot;,
-&quot;23&quot;,&quot;rd&quot;,
-&quot;31&quot;,&quot;st&quot;,
-&quot;th&quot;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Certificate Print Day superscript</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Certificate_Print_Month__c</fullName>
-        <externalId>false</externalId>
-        <formula>CASE(MONTH(Original_Issue_Date__c),
-1, &quot;January&quot;,
-2, &quot;February&quot;,
-3, &quot;March&quot;, 
-4, &quot;April&quot;, 
-5, &quot;May&quot;, 
-6, &quot;June&quot;,
-7, &quot;July&quot;,
-8, &quot;August&quot;,
-9, &quot;September&quot;,
-10, &quot;October&quot;,
-11, &quot;November&quot;,
-12, &quot;December&quot;,
-&quot;None&quot;) &amp; &quot;, &quot; &amp;  TEXT(YEAR(Original_Issue_Date__c))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Certificate Print Month</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Certificate_Print_Program__c</fullName>
-        <externalId>false</externalId>
-        <formula>CASE( Application_Type__c , 
-&quot;Notary Public&quot;, &quot;NOTARY PROGRAM&quot;, 
-&quot;Real Estate&quot;, &quot;APPRAISER PROGRAM&quot;, 
-&quot;Appraisers - Real Estate&quot;, &quot;APPRAISER PROGRAM&quot;, 
-&quot;Appraisal Management Companies&quot;, &quot;APPRAISAL MANAGEMENT COMPANY PROGRAM&quot;, 
-&quot;Timeshares&quot;, &quot;TIMESHARE PROGRAM&quot;, 
-&quot;Camping Resorts&quot;, &quot;CAMPING RESORT PROGRAM&quot;, 
-&quot;Geologist&quot;, &quot;GEOLOGIST PROGRAM&quot;, 
-&quot;Architects&quot;, &quot;ARCHITECT PROGRAM&quot;, 
-&quot;Funerals&quot;, &quot;FUNERAL PROGRAM&quot;, 
-&quot;Engineers&quot;, &quot;ENGINEER PROGRAM&quot;, 
-&quot;Land Surveyors&quot;, &quot;ENGINEER PROGRAM&quot;, 
-&quot;On-site Wastewater&quot;, &quot;ENGINEER PROGRAM&quot;, 
-&quot;Landscape Architects&quot;, &quot;LANDSCAPE ARCHITECT PROGRAM&quot;, 
-&quot;Cemeteries&quot;, &quot;CEMETERY PROGRAM&quot;, 
-&quot;&quot;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Certificate Print Program</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Name_on_Certificate__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(ISBLANK(License_Printable_Name__c) ,  MUSW__Primary_Licensee__r.Name , License_Printable_Name__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Name on Certificate</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <label>License</label>
     <listViews>
         <fullName>Active_Converted</fullName>
@@ -4806,12 +4805,36 @@ Original_Issue_Date__c
     </listViews>
     <listViews>
         <fullName>Appraisal_Courses_Queue_License2</fullName>
-        <filterScope>Queue</filterScope>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Course</value>
+        </filters>
         <label>Courses Queue</label>
-        <queue>Appraisal_Courses_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Appraisal_Management_Company</fullName>
+        <columns>NAME</columns>
+        <columns>MUSW__Status__c</columns>
+        <columns>Application_Type__c</columns>
+        <columns>Credential_Type__c</columns>
+        <columns>Application_Method__c</columns>
+        <columns>MUSW__Applicant__c</columns>
+        <columns>Owner_Full_Name__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>MUSW__Total_Balance__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraisal Management Companies</value>
+        </filters>
+        <label>Appraisal Management Company  - All</label>
     </listViews>
     <listViews>
         <fullName>Appraisal_Management_Company_Queue_License2</fullName>
@@ -4850,6 +4873,31 @@ Original_Issue_Date__c
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>Architects</fullName>
+        <columns>NAME</columns>
+        <columns>Applicant_Full_Name__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>MUSW__Expiration_Date__c</columns>
+        <columns>Original_Issue_Date__c</columns>
+        <columns>MUSW__Issue_Date__c</columns>
+        <columns>Credential_Type__c</columns>
+        <columns>Licensee_Name__c</columns>
+        <columns>Application_Type__c</columns>
+        <columns>MUSW__Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Architect</value>
+        </filters>
+        <filters>
+            <field>MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Expired,Canceled</value>
+        </filters>
+        <label>Architects</label>
+    </listViews>
+    <listViews>
         <fullName>Camping_Resort_Company_Queue_License2</fullName>
         <filterScope>Queue</filterScope>
         <label>Camping Resort Company Queue</label>
@@ -4885,17 +4933,40 @@ Original_Issue_Date__c
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
-  <!--  <listViews>
+    <listViews>
         <fullName>Courses_Queue</fullName>
         <columns>NAME</columns>
-        <filterScope>Queue</filterScope>
+        <columns>CREATED_DATE</columns>
+        <columns>Course_Title__c</columns>
+        <columns>MUSW__Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Course</value>
+        </filters>
         <label>Courses Queue</label>
-        <language>en_US</language>
-        <queue>Real_Estate_Appraiser_Courses_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
-    </listViews> -->
+    </listViews>
+    <listViews>
+        <fullName>Courses_by_Provider</fullName>
+        <columns>NAME</columns>
+        <columns>Course_Title__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Course</value>
+        </filters>
+        <filters>
+            <field>Ultimate_Parent_Account__c</field>
+            <operation>equals</operation>
+            <value>Harper Hall Courses</value>
+        </filters>
+        <label>Courses by Provider</label>
+    </listViews>
     <listViews>
         <fullName>Delegated_Municipality1</fullName>
         <columns>NAME</columns>
@@ -5062,6 +5133,31 @@ Original_Issue_Date__c
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>P2</fullName>
+        <columns>NAME</columns>
+        <columns>MUSW__Applicant__c</columns>
+        <columns>Applicant_Status__c</columns>
+        <columns>Application_Method__c</columns>
+        <columns>Application_Number__c</columns>
+        <columns>Date_of_Birth__c</columns>
+        <columns>Endorsements__c</columns>
+        <columns>MUSW__Expiration_Date__c</columns>
+        <columns>Original_Issue_Date__c</columns>
+        <columns>Is_Late_Renewal_Eligible__c</columns>
+        <columns>Is_Reinstatement_Eligible__c</columns>
+        <columns>Is_Renewal_Eligible__c</columns>
+        <columns>MUSW__Issue_Date__c</columns>
+        <columns>Credential_Type__c</columns>
+        <columns>MUSW__Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Embalmer</value>
+        </filters>
+        <label>P2</label>
+    </listViews>
+    <listViews>
         <fullName>RBS_AMR_Queue_License2</fullName>
         <filterScope>Queue</filterScope>
         <label>RBS AMR Queue</label>
@@ -5134,7 +5230,7 @@ Original_Issue_Date__c
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
-   <!-- <listViews>
+    <listViews>
         <fullName>Real_Estate_Appraiser_Courses_Queue_License2</fullName>
         <filterScope>Queue</filterScope>
         <label>Real Estate Appraiser Courses Queue</label>
@@ -5142,7 +5238,7 @@ Original_Issue_Date__c
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
-    </listViews> -->
+    </listViews>
     <listViews>
         <fullName>Real_Estate_Appraisers_All</fullName>
         <booleanFilter>(1 or 2) and 3</booleanFilter>
@@ -6509,7 +6605,7 @@ Original_Issue_Date__c
                 <fullName>Pending Additional Qualifications</fullName>
                 <default>false</default>
             </values>
-			<values>
+            <values>
                 <fullName>Pending License Fee</fullName>
                 <default>false</default>
             </values>
@@ -9657,15 +9753,15 @@ Original_Issue_Date__c
                 <default>false</default>
             </values>
             <values>
+                <fullName>Certified Residential Appraiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Collection Agency</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Collection Agency Branch</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Certified Residential Appraiser</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9753,7 +9849,7 @@ Original_Issue_Date__c
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out State Collection Agency</fullName>
+                <fullName>Out Of State Collection Agency</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9761,7 +9857,7 @@ Original_Issue_Date__c
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out Of State Collection Agency</fullName>
+                <fullName>Out State Collection Agency</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -18322,7 +18418,7 @@ Original_Issue_Date__c
                 <fullName>Pending Additional Qualifications</fullName>
                 <default>false</default>
             </values>
-			<values>
+            <values>
                 <fullName>Pending License Fee</fullName>
                 <default>false</default>
             </values>
@@ -19219,7 +19315,7 @@ Original_Issue_Date__c
             </values>
         </picklistValues>
     </recordTypes>
-	<recordTypes>
+    <recordTypes>
         <fullName>eSLA_Portal</fullName>
         <active>false</active>
         <compactLayoutAssignment>Professional_Compact_Layout</compactLayoutAssignment>

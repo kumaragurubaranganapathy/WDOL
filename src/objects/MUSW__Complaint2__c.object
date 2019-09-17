@@ -42,7 +42,11 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Complaint_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -83,6 +87,7 @@
     <fields>
         <fullName>Alleged_Violation__c</fullName>
         <description>Description of violation from the perspective of the Investigator.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Alleged Violation</label>
         <required>false</required>
@@ -113,6 +118,7 @@
     </fields>
     <fields>
         <fullName>Attorney_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Attorney Email</label>
         <required>false</required>
@@ -123,6 +129,7 @@
     </fields>
     <fields>
         <fullName>Attorney_Phone_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Attorney Phone Number</label>
         <required>false</required>
@@ -232,6 +239,7 @@
     <fields>
         <fullName>Citation_Date__c</fullName>
         <description>Date of civil citation</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Citation Date</label>
         <required>false</required>
@@ -241,6 +249,7 @@
     </fields>
     <fields>
         <fullName>Close_of_Escrow_New_Home__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Close of Escrow (New Home)</label>
         <required>false</required>
@@ -250,6 +259,7 @@
     </fields>
     <fields>
         <fullName>Closed_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Closed Date</label>
         <required>false</required>
@@ -259,6 +269,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Business_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Business City</label>
         <length>50</length>
@@ -501,6 +512,7 @@
     <fields>
         <fullName>Complainant_Business_Email__c</fullName>
         <description>Complainant Business Email</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Business Email</label>
         <required>false</required>
@@ -511,6 +523,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Business_License_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Business License Number</label>
         <length>50</length>
@@ -522,6 +535,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Business_Mailing_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Business Mailing Address</label>
         <length>100</length>
@@ -533,6 +547,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Business_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Business Name</label>
         <length>100</length>
@@ -545,6 +560,7 @@
     <fields>
         <fullName>Complainant_Business_Phone__c</fullName>
         <description>Complainant Business Phone</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Business Phone</label>
         <required>false</required>
@@ -566,7 +582,20 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Complainant_Business_Zipcode__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Complainant Business Zipcode</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Complainant_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant City</label>
         <length>50</length>
@@ -578,6 +607,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Doing_Business_As__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Doing Business As</label>
         <length>100</length>
@@ -589,6 +619,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Email</label>
         <required>false</required>
@@ -599,6 +630,7 @@
     </fields>
     <fields>
         <fullName>Complainant_First_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant First Name</label>
         <length>50</length>
@@ -622,6 +654,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Individual_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Individual City</label>
         <length>50</length>
@@ -863,6 +896,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Individual_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Individual Email</label>
         <required>false</required>
@@ -873,6 +907,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Individual_First_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Individual First Name</label>
         <length>100</length>
@@ -884,6 +919,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Individual_Last_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Individual Last Name</label>
         <length>100</length>
@@ -895,6 +931,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Individual_License_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Individual License Number</label>
         <length>50</length>
@@ -906,6 +943,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Individual_Mailing_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Individual Mailing Address</label>
         <length>100</length>
@@ -917,6 +955,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Individual_Phone__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Individual Phone</label>
         <required>false</required>
@@ -1251,6 +1290,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Information_Business_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Business Name</label>
         <length>100</length>
@@ -1262,6 +1302,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Last_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Last Name</label>
         <length>50</length>
@@ -1273,6 +1314,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Mailing_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Mailing Address</label>
         <length>100</length>
@@ -1284,6 +1326,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Middle_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Middle Name</label>
         <length>50</length>
@@ -1295,6 +1338,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Phone_Alternate__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Phone (Alternate)</label>
         <required>false</required>
@@ -1304,6 +1348,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Phone_Main__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Phone (Main)</label>
         <required>false</required>
@@ -1313,6 +1358,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Phone_Mobile__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Phone (Mobile)</label>
         <required>false</required>
@@ -1335,6 +1381,7 @@
     </fields>
     <fields>
         <fullName>Complainant_Zipcode__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Complainant Zipcode</label>
         <length>10</length>
@@ -1343,6 +1390,19 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Complaint_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Complaint Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Complaint_Source__c</fullName>
@@ -1416,6 +1476,7 @@
     </fields>
     <fields>
         <fullName>Contract_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contract Date</label>
         <required>false</required>
@@ -1437,6 +1498,7 @@
     </fields>
     <fields>
         <fullName>DOL_Attorney_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>DOL Attorney Email</label>
         <required>false</required>
@@ -1447,6 +1509,7 @@
     </fields>
     <fields>
         <fullName>DOL_Attorney_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>DOL Attorney Name</label>
         <length>100</length>
@@ -1485,6 +1548,7 @@
     </fields>
     <fields>
         <fullName>Date_Assigned__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Assigned</label>
         <required>false</required>
@@ -1494,6 +1558,7 @@
     </fields>
     <fields>
         <fullName>Date_Investigation_Closed__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Investigation Closed</label>
         <required>false</required>
@@ -1503,6 +1568,7 @@
     </fields>
     <fields>
         <fullName>Date_Investigation_Opened__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Investigation Opened</label>
         <required>false</required>
@@ -1513,6 +1579,7 @@
     <fields>
         <fullName>Date_Opened__c</fullName>
         <defaultValue>TODAY()</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Opened</label>
         <required>false</required>
@@ -1522,6 +1589,7 @@
     </fields>
     <fields>
         <fullName>Date_Reopened__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Reopened</label>
         <required>false</required>
@@ -1532,6 +1600,7 @@
     <fields>
         <fullName>Date_Submitted_To_Court__c</fullName>
         <description>Date the complaint is submitted for prosecution</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Submitted To Court</label>
         <required>false</required>
@@ -1541,6 +1610,7 @@
     </fields>
     <fields>
         <fullName>Date_Work_Started__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Work Started</label>
         <required>false</required>
@@ -1550,6 +1620,7 @@
     </fields>
     <fields>
         <fullName>Date_Work_Stopped__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Work Stopped</label>
         <required>false</required>
@@ -1559,6 +1630,7 @@
     </fields>
     <fields>
         <fullName>Date_Work_Was_Completed__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Work Was Completed</label>
         <required>false</required>
@@ -1583,6 +1655,7 @@
     <fields>
         <fullName>Delivery_Date__c</fullName>
         <description>Date the certified mail was delivered.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Delivery Date</label>
         <required>false</required>
@@ -1592,6 +1665,7 @@
     </fields>
     <fields>
         <fullName>Email_of_Construction_Site_Owner__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email of Construction Site Owner</label>
         <required>false</required>
@@ -1602,6 +1676,7 @@
     </fields>
     <fields>
         <fullName>External_Case_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>External Case Number</label>
         <length>30</length>
@@ -1613,6 +1688,7 @@
     </fields>
     <fields>
         <fullName>Incident_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Incident Address</label>
         <length>100</length>
@@ -1624,6 +1700,7 @@
     </fields>
     <fields>
         <fullName>Incident_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Incident City</label>
         <length>50</length>
@@ -1635,6 +1712,7 @@
     </fields>
     <fields>
         <fullName>Incident_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Incident Date</label>
         <required>false</required>
@@ -1644,6 +1722,7 @@
     </fields>
     <fields>
         <fullName>Incident_Description__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Incident Description</label>
         <length>3000</length>
@@ -1667,6 +1746,7 @@
     </fields>
     <fields>
         <fullName>Incident_Zipcode__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Incident Zipcode</label>
         <length>10</length>
@@ -1678,6 +1758,7 @@
     </fields>
     <fields>
         <fullName>Investigation_Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Investigation Comments</label>
         <required>false</required>
@@ -1688,6 +1769,7 @@
     <fields>
         <fullName>Investigation_Completed_Date__c</fullName>
         <description>Date the investigation was completed.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Investigation Completed Date</label>
         <required>false</required>
@@ -1697,6 +1779,7 @@
     </fields>
     <fields>
         <fullName>Investigation_Due_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Investigation Due Date</label>
         <required>false</required>
@@ -1727,6 +1810,7 @@
     </fields>
     <fields>
         <fullName>Legal_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Legal Notes</label>
         <length>3000</length>
@@ -1738,6 +1822,7 @@
     <fields>
         <fullName>License_Id__c</fullName>
         <description>Foreign Key for Data Migration of Legacy Data</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>License Id</label>
         <length>50</length>
@@ -1877,6 +1962,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__City__c</fullName>
         <deprecated>false</deprecated>
         <description>If Parcel is selected this value will be filled in via workflow from the Parcel City field</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>City</label>
         <length>50</length>
@@ -1890,6 +1976,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Closed_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>The date that the complaint was closed on.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Closed Date</label>
         <required>false</required>
@@ -1901,6 +1988,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
         <description>Description of the complaint.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32000</length>
@@ -1926,6 +2014,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Issued_Number__c</fullName>
         <deprecated>false</deprecated>
         <description>Filled in when a permanent sequence number is issued. This prevents subsequent triggering of the sequence number code.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issued No.</label>
         <length>15</length>
@@ -2528,6 +2617,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Street__c</fullName>
         <deprecated>false</deprecated>
         <description>If Parcel is selected this value will be filled in via workflow from the Parcel Address field</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Street</label>
         <length>50</length>
@@ -2541,6 +2631,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Subject__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Subject</label>
         <length>255</length>
@@ -2628,6 +2719,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Unit__c</fullName>
         <deprecated>false</deprecated>
         <description>Allows the user to specify an individual unit in a multiunit building or address.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Unit</label>
         <length>16</length>
@@ -2641,6 +2733,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Zip__c</fullName>
         <deprecated>false</deprecated>
         <description>If Parcel is selected this value will be filled in via workflow from the Parcel Post/Zip Code field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Zip/ Post Code</label>
         <length>12</length>
@@ -2677,6 +2770,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Outcome_Summary__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Case Closing Comments</label>
         <length>300</length>
@@ -2738,6 +2832,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>PPE_Allegations__c</fullName>
         <description>PPE Board Allegations textbox</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Allegations</label>
         <required>false</required>
@@ -2805,6 +2900,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Recommendations__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Recommendations</label>
         <required>false</required>
@@ -2826,6 +2922,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Release</label>
         <length>20</length>
@@ -2837,6 +2934,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Attorney_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Attorney Name</label>
         <length>100</length>
@@ -2848,6 +2946,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business City</label>
         <length>50</length>
@@ -3089,6 +3188,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business Email</label>
         <required>false</required>
@@ -3099,6 +3199,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_License_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business License Number</label>
         <length>20</length>
@@ -3110,6 +3211,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_Mailing_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business Mailing Address</label>
         <length>100</length>
@@ -3121,6 +3223,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business Name</label>
         <length>100</length>
@@ -3132,6 +3235,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_Phone__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business Phone</label>
         <required>false</required>
@@ -3154,6 +3258,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Business_Zipcode__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Business Zipcode</label>
         <length>10</length>
@@ -3165,6 +3270,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent City</label>
         <length>50</length>
@@ -3381,7 +3487,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <default>false</default>
                     <label>Yakima</label>
                 </value>
-				<value>
+                <value>
                     <fullName>Out Of Country</fullName>
                     <default>false</default>
                     <label>Out Of Country</label>
@@ -3391,11 +3497,24 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <default>false</default>
                     <label>Out Of State</label>
                 </value>
+                <value>
+                    <fullName>Null</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Null</label>
+                </value>
+                <value>
+                    <fullName>Unknown County</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Unknown County</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
     <fields>
         <fullName>Respondent_Doing_Business_As__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Doing Business As</label>
         <length>100</length>
@@ -3407,6 +3526,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Email</label>
         <required>false</required>
@@ -3417,6 +3537,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_First_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent First Name</label>
         <length>50</length>
@@ -3428,6 +3549,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Last_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Last Name</label>
         <length>50</length>
@@ -3439,6 +3561,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_License_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent License Number</label>
         <length>20</length>
@@ -3463,6 +3586,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Mailing_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Mailing Address</label>
         <length>100</length>
@@ -3474,6 +3598,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Middle_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Middle Name</label>
         <length>50</length>
@@ -3485,6 +3610,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Phone_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Phone Number</label>
         <required>false</required>
@@ -3519,6 +3645,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Respondent_Zipcode__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Respondent Zipcode</label>
         <length>10</length>
@@ -3815,6 +3942,16 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         </valueSet>
     </fields>
     <fields>
+        <fullName>Submitted_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Submitted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Subtype__c</fullName>
         <externalId>false</externalId>
         <label>Subtype</label>
@@ -4025,6 +4162,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         </sharedTo>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Number</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
@@ -11587,7 +11725,7 @@ ISCHANGED(Program_Type__c) )</errorConditionFormula>
         <errorDisplayField>MUSW__Primary_Contact__c</errorDisplayField>
         <errorMessage>Please populate a respondent in contact field to send out a notification</errorMessage>
     </validationRules>
-	<validationRules>
+    <validationRules>
         <fullName>Phone_Number_Length</fullName>
         <active>true</active>
         <errorConditionFormula>IF( NOT( ISBLANK(Complainant_Phone_Main__c) ) , 
@@ -11598,7 +11736,7 @@ false)</errorConditionFormula>
         <errorDisplayField>Complainant_Phone_Main__c</errorDisplayField>
         <errorMessage>Phone numbers length should not be greater than 10.</errorMessage>
     </validationRules>
-	<validationRules>
+    <validationRules>
         <fullName>Status_Needed_to_set_Master_Complaint</fullName>
         <active>true</active>
         <description>&quot;Merged With Complaint&quot; should only be populated when status is closed and sub status is merged.</description>
