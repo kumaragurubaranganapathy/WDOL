@@ -4628,6 +4628,39 @@ Original_Issue_Date__c
         <type>Text</type>
         <unique>false</unique>
     </fields>
+        <fields>
+        <fullName>Certificate_Print_License_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Credential_Type__c ,
+&quot;Appraiser Trainee&quot;, &quot;STATE REGISTERED REAL ESTATE APPRAISER TRAINEE&quot;,
+&quot;Camping Resort Company&quot;, &quot;CAMPING RESORT COMPANY REGISTRATION&quot;,
+&quot;Camping Resort Salesperson&quot;, &quot;CAMPING RESORT SALESPERSON REGISTRATION&quot;,
+&quot;Cemetery&quot;, &quot;CEMETERY CERTIFICATE OF AUTHORITY&quot;,
+&quot;Certified General Appraiser&quot;, &quot;CERTIFIED GENERAL REAL ESTATE APPRAISER&quot;,
+&quot;Certified Residential Appraiser&quot;, &quot;CERTIFIED RESIDENTIAL REAL ESTATE APPRAISER&quot;,
+&quot;Crematory&quot;, &quot;CREMATORY LICENSE&quot;,
+&quot;Engineering/Land Surveying Company&quot;, &quot;ENGINEERING/LAND SURVEYING CORPORATION&quot;,
+&quot;Engineering Corporations&quot;, &quot;ENGINEERING CORPORATION&quot;,
+&quot;Land Surveying Corporations&quot;, &quot;LAND SURVEYING CORPORATION&quot;,
+&quot;On-site Wastewater Designer&quot;, &quot;ON-SITE WASTEWATER TREATMENT SYSTEMS DESIGNER&quot;,
+&quot;On-site Wastewater Inspector&quot;,	&quot;ON-SITE WASTEWATER TREATMENT SYSTEMS INSPECTOR&quot;,
+&quot;Prearrangement Funeral Services&quot;, &quot;PREARRANGEMENT FUNERAL SERVICES CONTRACT&quot;,
+&quot;State Licensed Appraiser&quot;, &quot;STATE LICENSED REAL ESTATE APPRAISER&quot;,
+&quot;Temporary Certified General&quot;, &quot;TEMPORARY CERTIFIED GENERAL APPRAISER&quot;,
+&quot;Temporary Certified Residential&quot;, &quot;TEMPORARY CERTIFIED RESIDENTIAL APPRAISER&quot;,
+&quot;Temporary State Licensed&quot;, &quot;TEMPORARY STATE LICENSED APPRAISER&quot;,
+&quot;Timeshare Company&quot;, &quot;TIMESHARE COMPANY REGISTRATION&quot;,
+&quot;Timeshare Salesperson&quot;, &quot;TIMESHARE SALESPERSON REGISTRATION&quot;,
+ UPPER(TEXT(Credential_Type__c))
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Print License Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Certificate_Print_Day_superscript__c</fullName>
         <externalId>false</externalId>
