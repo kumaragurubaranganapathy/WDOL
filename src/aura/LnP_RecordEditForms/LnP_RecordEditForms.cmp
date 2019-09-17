@@ -101,7 +101,7 @@
                                     
                                     <aura:iteration items="{!item.fields}" var="rec">
                                         <lightning:layoutItem class="marginItem" size="{!v.isAMRFlow?'12':'6'}" smallDeviceSize="3">                                             
-                                            <div data-index="{!itemRow}" class="{!(rec.label=='End Date'?(and(v.currentEditValue,itemRow==v.cardIndex)?'slds-hide':'recItem'):'recItem')}">                                                
+                                            <div data-index="{!itemRow}" class="{!(rec.label=='End Date'?(item.current == true?'slds-hide':'recItem'):'recItem')}">                                                
                                                 <div class="{!(v.sectionName == 'Qualifying Postsecondary Education'?'QPE':'') + (v.sectionName == 'Qualifying Experience'?'QE':'') + (v.sectionName == 'Qualifying Course'?'QC':'')+itemRow + 'showHide slds-truncate field-item itemLayout '}">
                                                     <label>{!rec.label == 'Current?'?(v.sectionName == 'Qualifying Postsecondary Education'? 'Currently enrolled in school' : 'Currently Employed') : rec.label}</label>                                                    
                                                     <lightning:outputfield label="{!rec.label}" aura:id="outputEditfield" fieldName="{!rec.fieldName}" class="edit-field label-hidden inlineFields"  />
@@ -111,11 +111,11 @@
                                     </aura:iteration>
                                     <aura:iteration items="{!item.fields}" var="rec">
                                         <lightning:layoutItem class="marginItem" size="{!v.isAMRFlow?'12':'12'}">                                            
-                                            <div data-index="{!itemRow}" class="{!(rec.label=='End Date'?(and(v.currentEditValue,itemRow==v.cardIndex)?'slds-hide':'recItem'):'recItem')}">                                                
+                                            <div data-index="{!itemRow}" class="{!(rec.label=='End Date'?(v.currentEditValue?'slds-hide':'recItem'):'recItem')}">                                                
                                                 <div class="{!(v.sectionName == 'Qualifying Postsecondary Education'?'QPE':'') + (v.sectionName == 'Qualifying Experience'?'QE':'') + (v.sectionName == 'Qualifying Course'?'QC':'')+itemRow + 'showHide field-item slds-hide itemLayoutInp '}">                                                    
                                                     <label class="{!(rec.required?' required':'')}">{!rec.label}</label> 
                                                     <aura:if isTrue="{!rec.required || rec.regex != null}">
-                                                        <lightning:inputfield autocomplete="off" label="{!rec.label}" name="{!itemRow}" aura:id="validateEditField" fieldName="{!rec.fieldName}"  class="{!'edit-field'+(rec.fieldName=='Current__c'? ' checkbox-style ':' ')+ (rec.label=='End Date'?(and(v.currentEditValue,itemRow==v.cardIndex)?' slds-hide ':' '):' ') +(rec.required?' required':'')+' label-hidden '+ 'itemRow='+itemRow}" onchange="{!c.inputEditClick}" id="{!rec.masking}"/>
+                                                        <lightning:inputfield autocomplete="off" label="{!rec.label}" name="{!itemRow}" aura:id="validateEditField" fieldName="{!rec.fieldName}"  class="{!'edit-field'+(rec.fieldName=='Current__c'? ' checkbox-style ':' ')+ (rec.label=='End Date'?(v.currentEditValue?' slds-hide ':' '):' ') +(rec.required?' required':'')+' label-hidden '+ 'itemRow='+itemRow}" onchange="{!c.inputEditClick}" id="{!rec.masking}"/>
                                                         <aura:set attribute="else">
                                                             <lightning:inputfield autocomplete="off" label="{!rec.label}" name="{!itemRow}" aura:id="validateEditField1" fieldName="{!rec.fieldName}"  class="{!'edit-field'+(rec.fieldName=='Current__c'? ' checkbox-style ':' ') +' label-hidden '+ 'itemRow='+itemRow}" onchange="{!c.inputEditClick}" id="{!rec.masking}"/>
                                                         </aura:set>
