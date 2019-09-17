@@ -11,12 +11,13 @@
     <aura:attribute name="board" type="String" default="board"/>
     <aura:attribute name="isAMRFlow" type="Boolean" default="false" />
     <aura:attribute name="flowType" type="String" default="License"/>
+    <aura:attribute name="feesRequired" type="Boolean" default="false"/>
     <aura:handler name="init" value="{!v.items}" action="{!c.doInit}"/>
     <!--<aura:attribute name="var" type="Integer" default="1"/>-->
     <aura:registerEvent name="LnP_setCurrTabEvent" type="c:LnP_setCurrTabEvent"/>
     <aura:handler name="LnP_getAttJSON" event="c:LnP_getAttJSON" action="{!c.getAttJSON}"/>
 	<!--aura:handler name="change" value="{!v.attValidation}" action="{!c.attValidationChange}"/-->
-    
+   
 	<div class="{!((v.showPath==false)? 'slds-hide':'slds-show')+' slds-path'}">
         <aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
 			<span class="{!(((var+1)==v.currentTab)?'': 'slds-hide')+' '}">
@@ -39,7 +40,7 @@
                            
                             
                             <!--li data-id="{!(var+1)}" onclick="{!c.setCurrTab}" class="slds-path__item" role="presentation"-->
-							<li data-id="{!(var+1)}" class="slds-path__item" role="presentation" onclick="{!c.setCurrTab}">
+							<li data-id="{!(var+1)}" class="{!'slds-path__item'+ (v.feesRequired? (tabPath.header == 'Review and Submit'?' fee-path':''):'')}" role="presentation" onclick="{!c.setCurrTab}">
 								<a style="cursor: default;" title="{!tabPath.header}">
                                     <!-- {!(var+1) + ' '}{!v.currentTab} -->
                                     <aura:if isTrue="{!tabPath.errorImage}">
@@ -68,7 +69,7 @@
                                     </div>
                                     <!--<img id ="{!'MobIcon'+(var+1)}" src="{!$Resource.delawareSVGs + '/Icons/disabledmenu.svg'}" class="{!(greaterthan((var+1),v.currentTab)==true?'mobile-tab-view':'slds-hide')+' icon'}" alt="{!tabPath.header+' icon'}"/>-->
 								</a>
-								<span class="{!(((var+1)==v.currentTab)?'active-path-title':(lessthan((var+1),v.currentTab)==true?'is-complete-path':'inactive-path-title'))+' slds-path__title'}">{!tabPath.header}</span>
+								<span class="{!(((var+1)==v.currentTab)?'active-path-title':(lessthan((var+1),v.currentTab)==true?'is-complete-path':'inactive-path-title'))+' slds-path__title'}">{!tabPath.header == 'Review and Submit'?(v.feesRequired?'Review':tabPath.header):tabPath.header}</span>
 							</li>
 							<aura:if isTrue="{!lessthan((var+1),v.totalTabs)}">
                                

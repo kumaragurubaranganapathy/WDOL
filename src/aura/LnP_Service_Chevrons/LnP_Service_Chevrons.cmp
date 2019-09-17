@@ -55,6 +55,7 @@
     <aura:attribute name="isAMRFlow" type="Boolean" default="true" />
     <aura:attribute name="errorMsgsList" type="List"/>
     <aura:attribute name="showErrorMsgs" type="Boolean" default="false"/>
+    <aura:attribute name="feesRequired" type="Boolean" default="false"/>
     <force:recordData
                       fields="Name, Email, UserType"
                       recordId="{!$SObjectType.CurrentUser.Id}"
