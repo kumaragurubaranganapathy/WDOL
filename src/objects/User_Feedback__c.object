@@ -342,17 +342,6 @@ IF(ISPICKVAL(Grade__c,&apos;5&apos;), &quot;/resource/LnP_Icons/LnP_Icons/fivest
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Submitted_On__c</fullName>
-        <externalId>false</externalId>
-        <formula>CreatedDate</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Submitted On</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
-    </fields>
-    <fields>
         <fullName>Type__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
