@@ -44,12 +44,13 @@
         evt.fire();
         
      window.open(link, "_self");*/
-        var accId = component.get("v.selectedAccount");
-        var urlEvent = $A.get("e.force:navigateToURL");
-        urlEvent.setParams({
-            "url": "/licenseSelectionPage?biz-lic=true&accId="+accId
-        });
-        urlEvent.fire();
+     var courseProvider = component.get("v.isCourseProvider");
+     var accId = component.get("v.selectedAccount");
+     var urlEvent = $A.get("e.force:navigateToURL");
+     urlEvent.setParams({
+         "url": courseProvider?('/licenseSelectionPage?course-lic&accId='+accId):('/licenseSelectionPage?biz-lic&accId='+accId)
+     });
+     urlEvent.fire();
     },
     
     businessDetails : function(component, event, helper) {

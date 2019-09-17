@@ -13,11 +13,14 @@
         } 
         var selectedAccountId = component.get('v.selectedAccountId');
         var licenseType = 'Individual';
-        if(selectedAccountId != null  && selectedAccountId != '') {
+        /*if(selectedAccountId != null  && selectedAccountId != '') {
+            licenseType = 'Business';
+        } */
+        if(/biz-lic/.test(docURL)){
             licenseType = 'Business';
         }
-		else if(/biz-lic/.test(docURL)){
-            licenseType = 'Business';
+        else if(/course-lic/.test(docURL)){
+            licenseType = 'Course';
         }
         var action = component.get("c.fetchLicenseType");
         action.setParams({

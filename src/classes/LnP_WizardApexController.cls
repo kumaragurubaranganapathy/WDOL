@@ -532,13 +532,8 @@ insert bgckList;
         try{
         Map<String,List<String>> lstLicenseType = new  Map<String,List<String>> ();
          List<License_Type__mdt> lstlicenseTypess= new  List<License_Type__mdt>();
-        if(typeOFLicense == 'Individual') {
                   lstlicenseTypess= [select Credential_Type__c, Application_Type__c from License_Type__mdt 
-                                                    where Object_Name__c ='MUSW__License2__c'  and Record_type_Name__c =:typeOFLicense];  
-        }  else {
-              lstlicenseTypess= [select Credential_Type__c, Application_Type__c from License_Type__mdt 
-                                                    where Object_Name__c ='MUSW__License2__c'  and Record_type_Name__c !='Individual'];  
-        }
+                                                    where Object_Name__c =: DOL_AppConstants.NULL_EMPTY_STRING + 'MUSW__License2__c' and Object_Name__c!=null and Record_type_Name__c =:typeOFLicense and Record_type_Name__c!=null]; 
 
         for( License_Type__mdt license : lstlicenseTypess) 
         {
@@ -553,7 +548,7 @@ insert bgckList;
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
        }
        
