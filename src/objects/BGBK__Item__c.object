@@ -57,8 +57,8 @@
     <fields>
         <fullName>Agency__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(ISNULL(Fee_Payment__c),
-  IF(ISNULL(BGBK__Fee__c),
+        <formula>IF(ISBLANK(Fee_Payment__c),
+  IF(ISBLANK(BGBK__Fee__c),
     &quot;240&quot;,
     TEXT(BGBK__Fee__r.Agency_Number__c)
   ),
@@ -487,7 +487,7 @@ BGBK__Fund__r.GL__c</formula>
     <fields>
         <fullName>Program_Index__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(ISBLANK( BGBK__Fee__c ), IF(ISBLANK(  Fee_Payment__c  ),  IF( ISBLANK( Payable_Receipt__c ) , &quot;From Receipt - Receipt doesn&apos;t have PI&quot;,  Payable_Receipt__r.MUSW__Deposit__r.License__r.Profession_Code__c  ) ,  Fee_Payment__r.MUSW__Fee__r.Profession_Code__c ) ,  BGBK__Fee__r.Profession_Code__c )</formula>
+        <formula>IF(ISBLANK( BGBK__Fee__c ), IF(ISBLANK(  Fee_Payment__c  ),  IF( ISBLANK( Payable_Receipt__c ) , &quot;From Receipt - Receipt doesn&apos;t have PI&quot;,  Payable_Receipt__r.MUSW__Deposit__r.wadol_Professional_Code__c) ,  Fee_Payment__r.MUSW__Fee__r.Profession_Code__c ) ,  BGBK__Fee__r.Profession_Code__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Program Index</label>
         <required>false</required>
