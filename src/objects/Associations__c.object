@@ -80,8 +80,99 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+	<fields>
+        <fullName>Association_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Association Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Designated Architect</fullName>
+                    <default>false</default>
+                    <label>Designated Architect</label>
+                </value>
+                <value>
+                    <fullName>Designated Funeral Director</fullName>
+                    <default>false</default>
+                    <label>Designated Funeral Director</label>
+                </value>
+                <value>
+                    <fullName>Designated Engineer</fullName>
+                    <default>false</default>
+                    <label>Designated Engineer</label>
+                </value>
+                <value>
+                    <fullName>Designated Land Surveyor</fullName>
+                    <default>false</default>
+                    <label>Designated Land Surveyor</label>
+                </value>
+                <value>
+                    <fullName>Appraiser Trainee</fullName>
+                    <default>false</default>
+                    <label>Appraiser Trainee</label>
+                </value>
+                <value>
+                    <fullName>Funeral Director Intern</fullName>
+                    <default>false</default>
+                    <label>Funeral Director Intern</label>
+                </value>
+                <value>
+                    <fullName>Embalmer Intern</fullName>
+                    <default>false</default>
+                    <label>Embalmer Intern</label>
+                </value>
+                <value>
+                    <fullName>Timeshare Salesperson</fullName>
+                    <default>false</default>
+                    <label>Timeshare Salesperson</label>
+                </value>
+                <value>
+                    <fullName>Camping Resort Salesperson</fullName>
+                    <default>false</default>
+                    <label>Camping Resort Salesperson</label>
+                </value>
+                <value>
+                    <fullName>Authorized Location</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Authorized Location</label>
+                </value>
+                <value>
+                    <fullName>Designated Controlling Person</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Designated Controlling Person</label>
+                </value>
+                <value>
+                    <fullName>Designated Person</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Designated Person</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
     <fields>
-        <fullName>Affiliated_Location__c</fullName>
+        <fullName>Child_License__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Child License</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipLabel>License Relationships (Parent Licenses)</relationshipLabel>
+        <relationshipName>Associations1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+		<fullName>Affiliated_Location__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Affiliated Location</label>
@@ -557,6 +648,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+	<fullName>Refund_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Refund Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>invitation_send_date__c</fullName>
