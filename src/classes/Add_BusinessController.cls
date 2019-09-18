@@ -330,7 +330,7 @@ public with sharing class Add_BusinessController {
         system.debug('businessRecordTypeId---'+businessRecordTypeId);
         List<MUSW__Application2__c> applicationList = [SELECT Id, MUSW__Applicant__c,Application_Method__c,Application_Number__c,MUSW__Account__c,
                                                        MUSW__Decision_Date__c,MUSW__Description__c,Geolocation__c,
-                                                       Attestation__c,Attestation_Date__c,MUSW__Completion_Date__c,License__c,
+                                                       Attestation__c,Attestation_Date__c,MUSW__Completion_Date__c,License__c,License__r.Name,
                                                        License_ID__c,Credential_Type__c,Application_Type__c,Request_Type__c,MUSW__Account__r.RecordTypeId,
                                                        MUSW__Status__c,Stage__c,Submitted_Date__c,MUSW__Type__c,MUSW__Total_Payments__c,
                                                        MUSW__Total_Fees__c,MUSW__Total_Balance__c,Branch_License__c,isRenewal__c,LastModifiedDate,

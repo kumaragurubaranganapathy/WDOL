@@ -314,6 +314,7 @@ application.MUSW_Account__c = account;*/
         application.Credential_Type__c = licenseType; 
         application.Application_Method__c = applicationType; 
         application.Stage__c = 0;
+        application.License__c = licId;
         application.MUSW__Status__c  = 'Draft';
         application.MUSW__Applicant__c = getContactId;
         if(isRenewal != null && isRenewal != ''){
