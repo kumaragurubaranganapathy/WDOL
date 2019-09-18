@@ -10,8 +10,10 @@
                     console.log('set contactId' + component.get("v.contactId"));
                     if(!component.get("v.isAMR")){
                         this.getallAddress(component, event, helper);
+                    }else{
+                        this.getPhysicalAddress(component, event, helper);
                     }
-        
+                    
                 }
             }
             else{
@@ -837,4 +839,50 @@
             $A.enqueueAction(action);
         }
     },
+    
+    getPhysicalAddress: function(component, event, helper){
+        var requestId = component.get("v.requestId");
+        console.log('requestId---' + requestId);
+        var action = component.get("c.getPhysicalAddressForRequest");
+        action.setParams({'requestId': requestId });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                component.set("v.physicalAddressRecord", response.getReturnValue());
+                console.log('response.getReturnValue()----' + JSON.stringify(response.getReturnValue()));
+                var physicalAddressRecord = component.get("v.physicalAddressRecord");
+                component.set("v.physicalAddressParcel.MUSW__Street2__c", physicalAddressRecord.MUSW__Street2__c);
+                component.set("v.physicalAddressParcel.MUSW__City__c", physicalAddressRecord.MUSW__City__c);
+                component.set("v.isPhysicalAndMailingSame", false);
+                component.set("v.defaultPhysicalCountry",physicalAddressRecord.Country__c);
+                if(!($A.util.isEmpty(physicalAddressRecord.County__c) || $A.util.isUndefined(physicalAddressRecord.County__c))){
+                    component.set("v.defaultPhysicalCounty",physicalAddressRecord.County__c);
+                    component.set("v.isPhysicalOutOfCountry", true);
+                }else{
+                    component.set("v.isPhysicalOutOfCountry", false);
+                }
+                if(physicalAddressRecord.Country__c ==='Canada' ){
+                    component.set("v.isCanadianProvince", true);
+                    component.set("v.defaultPhysicalcanadianProvince",physicalAddressRecord.Canadian_provinces__c);
+                    component.set("v.isPhysicalState",false);
+                    component.set("v.isPhysicalNotApplicable",false);
+                }else if(physicalAddressRecord.Country__c ==='United States'){
+                    component.set("v.isPhysicalCanadianProvince", false);
+                    component.set("v.isPhysicalNotApplicable",false);
+                    component.set("v.isPhysicalState",true);
+                    component.set("v.defaultPhysicalState",physicalAddressRecord.MUSW__State__c);
+                }
+                    else{
+                        component.set("v.isPhysicalNotApplicable",true);
+                        component.set("v.isPhysicalCanadianProvince", false);
+                        component.set("v.isPhysicalState", false);
+                    }
+                component.set("v.physicalAddressParcel.MUSW__Post_Zip_Code__c", physicalAddressRecord.MUSW__Post_Zip_Code__c);
+            }
+            else{
+                alert('Error fetching physical address');
+            }
+        });
+        $A.enqueueAction(action);
+    }
 })
