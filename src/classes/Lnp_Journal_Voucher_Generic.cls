@@ -260,9 +260,8 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
                 objJVD.TMS_Transaction_Code__c=objJournalWrapper.objItemsData.Transaction_Code__c;
             }
             
-           
-            string	strFilterKey= objJournalWrapper.objItemsData.Intake_Method__c+objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c+objJournalWrapper.objItemsData.Transaction_Code__c+objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c+objJournalWrapper.objItemsData.Transaction_Type__c;
-            string   strFilterKeyWithoutPM= objJournalWrapper.objItemsData.Intake_Method__c+objJournalWrapper.objItemsData.Payment_Method__c+objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c+objJournalWrapper.objItemsData.Transaction_Code__c+objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c+objJournalWrapper.objItemsData.Transaction_Type__c;
+           	string  strFilterKey= objJournalWrapper.objItemsData.Intake_Method__c+objJournalWrapper.objItemsData.Payment_Method__c+objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c+objJournalWrapper.objItemsData.Transaction_Code__c+objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c+objJournalWrapper.objItemsData.Transaction_Type__c;
+            string	strFilterKeyWithoutPM= objJournalWrapper.objItemsData.Intake_Method__c+objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c+objJournalWrapper.objItemsData.Transaction_Code__c+objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c+objJournalWrapper.objItemsData.Transaction_Type__c;
             
             if(mapJVFilterAddToInterface.containsKey(strFilterKey)){
                 objJVD.Add_to_Interface__c=mapJVFilterAddToInterface.get(strFilterKey);
