@@ -3885,7 +3885,14 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <type>Picklist</type>
         <valueSet>
             <restricted>true</restricted>
-            <valueSetName>State_Codes</valueSetName>
+			<valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Others</fullName>
+                    <default>false</default>
+                    <label>Others</label>
+                </value>
+            </valueSetDefinition>
         </valueSet>
     </fields>
     <fields>
