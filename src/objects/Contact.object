@@ -118,31 +118,9 @@
         <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
-	<fields>
-        <fullName>Duplicate_Verified__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>This field is flagged if DOL decides when a particular record wasn&apos;t a duplicate</description>
-        <externalId>false</externalId>
-        <inlineHelpText>This field is flagged if DOL decides when a particular record wasn&apos;t a duplicate</inlineHelpText>
-        <label>Duplicate Verified</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>birthdate_text__c</fullName>
-        <description>birhdate couldn&apos;t be used in matching rule. Hence creating this field</description>
-        <externalId>false</externalId>
-        <label>birthdate_text</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <fields>
         <fullName>Aliases__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Aliases</label>
         <required>false</required>
@@ -153,6 +131,7 @@
     <fields>
         <fullName>Archived_Email_Address__c</fullName>
         <description>Archived Email Address</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Archived Email Address</label>
         <length>80</length>
@@ -164,11 +143,13 @@
     </fields>
     <fields>
         <fullName>AssistantName</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>AssistantPhone</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -184,6 +165,7 @@
     </fields>
     <fields>
         <fullName>Birth_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Birth City</label>
         <length>30</length>
@@ -238,6 +220,7 @@
     <fields>
         <fullName>Branch__c</fullName>
         <description>It specify about the branch applicant belongs to</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Branch</label>
         <length>50</length>
@@ -275,6 +258,7 @@
     <fields>
         <fullName>Canadian_SIN__c</fullName>
         <description>This field is to store Canadian SIN of applicant</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Canadian SIN</label>
         <length>20</length>
@@ -287,6 +271,7 @@
     <fields>
         <fullName>Certificate_Mailed_Date__c</fullName>
         <description>Certificate Mailed Date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Certificate Mailed Date</label>
         <required>false</required>
@@ -297,6 +282,7 @@
     <fields>
         <fullName>Certification_Number__c</fullName>
         <description>This field is to store Certification Number of the applicant</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Certification Number</label>
         <length>255</length>
@@ -309,6 +295,7 @@
     <fields>
         <fullName>Client_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Client_Id</label>
         <length>60</length>
@@ -320,6 +307,7 @@
     </fields>
     <fields>
         <fullName>Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Comments</label>
         <length>255</length>
@@ -331,6 +319,7 @@
     </fields>
     <fields>
         <fullName>Company_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Company Name</label>
         <length>255</length>
@@ -343,6 +332,7 @@
     <fields>
         <fullName>ContactName__c</fullName>
         <description>This field is to store Former name of the applicant</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Former Name</label>
         <length>255</length>
@@ -384,6 +374,7 @@
     </fields>
     <fields>
         <fullName>Contact_Suffix__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Suffix</label>
         <length>30</length>
@@ -395,6 +386,7 @@
     </fields>
     <fields>
         <fullName>Contact_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact Type</label>
         <length>20</length>
@@ -419,6 +411,7 @@
     </fields>
     <fields>
         <fullName>DOL_Notary_Commission_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Licensee Name</label>
         <length>255</length>
@@ -431,6 +424,7 @@
     <fields>
         <fullName>DOR_Response_Date__c</fullName>
         <description>TVS Response Date -- integration team</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>DOR Response Date</label>
         <required>false</required>
@@ -468,6 +462,7 @@
     <fields>
         <fullName>DOR_Response__c</fullName>
         <description>DOR Values for TVS Response -- integration team</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>DOR Response</label>
         <length>2</length>
@@ -480,6 +475,7 @@
     <fields>
         <fullName>Deceased_Date__c</fullName>
         <description>Contact value to enter deceased date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Deceased Date</label>
         <required>false</required>
@@ -490,6 +486,7 @@
     <fields>
         <fullName>Dedup_Id__c</fullName>
         <description>This is a key for deduping duplicates</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Dedup Id</label>
         <length>255</length>
@@ -506,6 +503,7 @@
     </fields>
     <fields>
         <fullName>Description</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -517,6 +515,7 @@
     <fields>
         <fullName>Driver_s_License_Number__c</fullName>
         <description>Driver&apos;s License Number of the contact</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Driver&apos;s License Number</label>
         <length>15</length>
@@ -537,12 +536,25 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Duplicate_Verified__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is flagged if DOL decides when a particular record wasn&apos;t a duplicate</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is flagged if DOL decides when a particular record wasn&apos;t a duplicate</inlineHelpText>
+        <label>Duplicate Verified</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Email</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>End_Date_Military_Service__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>End Date</label>
         <required>false</required>
@@ -552,6 +564,7 @@
     </fields>
     <fields>
         <fullName>Establishment_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Establishment Name</label>
         <required>false</required>
@@ -574,6 +587,7 @@
     </fields>
     <fields>
         <fullName>Fax</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
@@ -610,11 +624,18 @@
                     <default>false</default>
                     <label>Male</label>
                 </value>
+                <value>
+                    <fullName>NA</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>NA</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
     <fields>
         <fullName>Green_Card__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Green Card</label>
         <length>20</length>
@@ -636,6 +657,7 @@
     </fields>
     <fields>
         <fullName>Historic_Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Historic Comments</label>
         <required>false</required>
@@ -645,6 +667,7 @@
     </fields>
     <fields>
         <fullName>HomePhone</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -676,6 +699,7 @@
     <fields>
         <fullName>ITIN__c</fullName>
         <description>It is to store applicant ITIN number</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The Individual Taxpayer Identification Number is issued by the IRS only to individuals who are required to have a US taxpayer identification number but do not have and are ineligible to obtain a Social Security Number (SSN).</inlineHelpText>
         <label>ITIN</label>
@@ -724,6 +748,7 @@
     </fields>
     <fields>
         <fullName>Last_4_Digits_of_SSN__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Last 4 Digits of SSN</label>
         <length>4</length>
@@ -735,6 +760,7 @@
     </fields>
     <fields>
         <fullName>Last_4_Social__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last 4 Social</label>
         <length>255</length>
@@ -754,6 +780,7 @@
         <fullName>License_ID__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>External Id of the record - Foreign Key used for Data Conversion</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <inlineHelpText>External Id of the record - Foreign Key used for Data Conversion</inlineHelpText>
         <label>License ID</label>
@@ -881,6 +908,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__DBA_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Business Name</label>
         <length>100</length>
@@ -895,6 +923,7 @@ CASE( MUSW__AlertCode__c,
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
         <description>Used for contact upserts and ensuring less duplicates in Parcel Load Automation. SFId is the same as the contact ID minus the last 3 digits and can be used as an external id in upserts (the ID field cannot)</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>SFId</label>
         <length>18</length>
@@ -906,6 +935,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Maiden_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Maiden Name</label>
         <length>255</length>
@@ -917,11 +947,13 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>MailingAddress</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Manufacturer_or_Organization_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Manufacturer or Organization Name</label>
         <length>255</length>
@@ -934,6 +966,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>MergedSecuritycodes__c</fullName>
         <description>Merging contact details.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>MergedSecuritycodes</label>
         <required>false</required>
@@ -943,12 +976,14 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>MobilePhone</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Municipality__c</fullName>
         <description>Created for Delegated Agents and Act 198</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Municipality</label>
         <length>75</length>
@@ -959,22 +994,35 @@ CASE( MUSW__AlertCode__c,
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>NO_SSN_ITIN__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>No SSN and ITIN Certification</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Name</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>OtherAddress</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>OtherPhone</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
     <fields>
         <fullName>Other_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Other Email</label>
         <required>false</required>
@@ -991,6 +1039,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Parent_Establishment_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Parent Establishment Name</label>
         <required>false</required>
@@ -1000,6 +1049,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Phone</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
     </fields>
@@ -1043,6 +1093,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Provider_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Provider Name</label>
         <length>20</length>
@@ -1110,6 +1161,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Security_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Security Code</label>
         <length>50</length>
@@ -1183,6 +1235,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Start_Date_Military_Service__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -1244,6 +1297,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>Supervisor_Name__c</fullName>
         <description>This field is to store supervisor name of the applicant</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Supervisor Name</label>
         <length>255</length>
@@ -1255,6 +1309,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Title</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
@@ -1295,6 +1350,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>UBI_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>UBI #</label>
         <length>20</length>
@@ -1307,6 +1363,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>UID__c</fullName>
         <description>Captures the Universal Identifier Number</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>UID</label>
         <length>100</length>
@@ -1360,9 +1417,23 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Washington_corporation_number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Washington corporation number</label>
         <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>birthdate_text__c</fullName>
+        <description>birhdate couldn&apos;t be used in matching rule. Hence creating this field</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>birthdate_text</label>
+        <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1395,15 +1466,6 @@ CASE( MUSW__AlertCode__c,
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>NO_SSN_ITIN__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>No SSN and ITIN Certification</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
     </fields>
     <listViews>
         <fullName>AllContacts</fullName>
@@ -6025,15 +6087,13 @@ CASE( MUSW__AlertCode__c,
         <searchFilterFields>CONTACT.PHONE3</searchFilterFields>
         <searchFilterFields>CONTACT.EMAIL</searchFilterFields>
         <searchResultsAdditionalFields>FULL_NAME</searchResultsAdditionalFields>
-		<searchResultsAdditionalFields>CONTACT.BIRTHDATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CONTACT.BIRTHDATE</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Last_4_Digits_of_SSN__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.PHONE1</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.EMAIL</searchResultsAdditionalFields>
-        
         <searchResultsAdditionalFields>CONTACT.ADDRESS2_STREET</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CONTACT.PHONE3</searchResultsAdditionalFields>
-        
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
@@ -6050,7 +6110,6 @@ CASE( MUSW__AlertCode__c,
         <errorConditionFormula>Deceased_Date__c &gt;  TODAY() &amp;&amp;  $User.Bypass_Validation_Workflow_Rules__c = FALSE &amp;&amp;  $User.Is_Portal_User__c = FALSE</errorConditionFormula>
         <errorMessage>Deceased date cannot be in the future.</errorMessage>
     </validationRules>
-    
     <validationRules>
         <fullName>MUSW__Contact_Relationship_missing</fullName>
         <active>false</active>

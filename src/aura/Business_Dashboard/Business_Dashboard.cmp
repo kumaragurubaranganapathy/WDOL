@@ -551,11 +551,11 @@
                         <!--<c:Polaris_Relationship selectedAccount="{!v.selectedAccount}" mainAccountName="{!v.mainAccountName}" licenseId="{!v.licenseId}" licenseDetail="{!v.licenseDetail}" />-->
                         <!-- data is injected Dynamically-->
                     </lightning:tab>
-                    <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Draft Applications or Requests" id="Draft Applications" >
+                    <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Unsubmitted Applications" id="Draft Applications" >
                         <!--<c:BusinessDetails_DraftApplications accountId="{!v.selectedAccount}"/>-->
                         <!-- data is injected Dynamically-->
                     </lightning:tab>
-                    <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Pending Applications or Requests" id="Pending Applications" >
+                    <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}" label="Submitted Applications" id="Pending Applications" >
                         <!--<c:BusinessDetails_PendingApplications accountId="{!v.selectedAccount}" />-->
                         <!-- data is injected Dynamically-->
                     </lightning:tab>

@@ -38,7 +38,11 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Legal_Action_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -347,6 +351,19 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Attorney__c</fullName>
+        <description>Attorney</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Attorney</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Complaint__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Complaint</description>
@@ -361,6 +378,7 @@
     </fields>
     <fields>
         <fullName>Due_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>false</required>
@@ -378,7 +396,46 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Legal_Sanction_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Legal Sanction Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>License__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Look up to License</description>
+        <externalId>false</externalId>
+        <label>License</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipName>Actions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Sanction_Comment__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Sanction Comment</label>
         <length>255</length>
@@ -390,6 +447,7 @@
     </fields>
     <fields>
         <fullName>Sanction_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Sanction Date</label>
         <required>true</required>
@@ -455,6 +513,11 @@
                     <label>Other</label>
                 </value>
                 <value>
+                    <fullName>Probation/Stay</fullName>
+                    <default>false</default>
+                    <label>Probation/Stay</label>
+                </value>
+                <value>
                     <fullName>Reprimand</fullName>
                     <default>false</default>
                     <label>Reprimand</label>
@@ -463,6 +526,11 @@
                     <fullName>Required class or course</fullName>
                     <default>false</default>
                     <label>Required class or course</label>
+                </value>
+                <value>
+                    <fullName>Restitution</fullName>
+                    <default>false</default>
+                    <label>Restitution</label>
                 </value>
                 <value>
                     <fullName>Revocation</fullName>
@@ -499,10 +567,10 @@
     </fields>
     <label>Sanction</label>
     <nameField>
-        <displayFormat>{YY}-{000}-DOL</displayFormat>
+        <encryptionScheme>None</encryptionScheme>
         <label>Action Id</label>
         <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Sanctions</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
@@ -769,11 +837,19 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Probation%2FStay</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Reprimand</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Required class or course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restitution</fullName>
                 <default>false</default>
             </values>
             <values>
