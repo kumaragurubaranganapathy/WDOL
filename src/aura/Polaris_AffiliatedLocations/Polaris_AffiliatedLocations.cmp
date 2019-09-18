@@ -155,7 +155,7 @@
     <br></br>
     <div class="affiliated-loc-wrapper">
         
-        <lightning:button label="+ Add Location" onclick="{!c.addLocation}" class="{!v.isOneLocation?'add-loc':'slds-hide'}" />
+        <lightning:button label="Add Location" variant="brand" onclick="{!c.addLocation}" class="{!v.isOneLocation?'add-loc':'slds-hide'}" />
         <div class="{!v.isOneLocation?(v.isAddLocation?'fields-wrapper':'slds-hide'):'fields-wrapper'}">                    
             
             <lightning:input  name="DELicense" label="Designated Engineer License#" value="{!v.parcel.Designated_Engineer_License__c}"  required="false" class="field-size address-fields"/>
