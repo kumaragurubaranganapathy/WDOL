@@ -34,7 +34,7 @@ public class Polaris_ApplyForLicenseService {
     {
         system.debug('board : '+applicationType+'licenseType : '+credentialType);
         Map<string,String> mapMandatorySubsection = new Map<string,String>();        
-        for(LnP_Mandatory_Subsections__mdt mappingSection : [SELECT SubSection__c,Section__c FROM LnP_Mandatory_Subsections__mdt WHERE Board__c =: applicationType AND License_Type__c =: credentialType ] )
+        for(LnP_Mandatory_Subsections__mdt mappingSection : [SELECT SubSection__c,Section__c FROM LnP_Mandatory_Subsections__mdt WHERE Board__c =: applicationType AND License_Type__c =: credentialType AND RenewOrReinstate__c='' ] )
         {
             mapMandatorySubsection.put(mappingSection.Section__c, mappingSection.SubSection__c);
         }
