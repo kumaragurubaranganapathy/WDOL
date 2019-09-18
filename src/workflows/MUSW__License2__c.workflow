@@ -51,7 +51,7 @@
         <fullName>Inactivate_License_on_expiration</fullName>
         <description>Inactivate License on expiration date &lt; today</description>
         <field>MUSW__Status__c</field>
-        <literalValue>Inactive</literalValue>
+        <literalValue>Expired</literalValue>
         <name>Inactivate License on expiration</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
