@@ -204,7 +204,7 @@ public without Sharing class  Polaris_TodoList{
             update tskList;
             update accList;
             return 'Success';
-        }else if(lstAssociationsOnChild.size() <= 1){
+        }else if(lstAssociationsOnChild.size() < 1){
             for(Associations__c associ : lstAssociation)
             {
                 if(subStatus == 'Accepted'){
@@ -223,7 +223,7 @@ public without Sharing class  Polaris_TodoList{
                 return 'Fail';
             }
         }
-        else if(lstAssociationsOnChild.size() > 1)
+        else if(lstAssociationsOnChild.size() >= 1)
         {
             
             for(Associations__c associ : lstAssociation)
@@ -231,7 +231,7 @@ public without Sharing class  Polaris_TodoList{
                 
                 if(subStatus == 'Accepted'){
                     //associ.Status__c = 'Generate Fee';
-                    Integer days = system.today().daysBetween(associ.Child_License__r.MUSW__Expiration_Date__c);
+                    Integer days = (associ.Child_License__r.MUSW__Expiration_Date__c != null) ? system.today().daysBetween(associ.Child_License__r.MUSW__Expiration_Date__c):0;
                     system.debug('days : '+days);
                     if(days < 120)
                     {
