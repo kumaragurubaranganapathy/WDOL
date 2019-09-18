@@ -58,7 +58,7 @@
             <name>MUSW__Parcel_Primary_Contact_Name_Set</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>OR(AND(MUSW__Primary_Contact__c != null, MUSW__Primary_Contact_Name__c == null),ISCHANGED(MUSW__Primary_Contact__c))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
