@@ -602,11 +602,11 @@ return parser;
             }
             if(docId.size()>0){
                 List<ContentDocumentLink> contentLink = new List<ContentDocumentLink>();
-                String queryFiles = 'SELECT Id, ContentDocumentId, LinkedEntityId FROM ContentDocumentLink WHERE ContentDocumentId IN : XXX';
-                contentLink = Utilityclass_withsharing.queryRecordsInClause(queryFiles,docId);
+                //String queryFiles = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Id, ContentDocumentId, LinkedEntityId FROM ContentDocumentLink WHERE ContentDocumentId IN : XXX';
+               // queryFiles = queryFiles;
+               // contentLink = Utilityclass_withsharing.queryRecordsInClause(queryFiles,docId);
+                contentLink  = [SELECT Id, ContentDocumentId, LinkedEntityId FROM ContentDocumentLink WHERE ContentDocumentId = :docId];
                 for(ContentDocumentLink link : contentLink){
-                    System.debug('link.LinkedEntityId--->'+link.LinkedEntityId);
-                    System.debug('appId--->'+appId);
                     
                     if(link.LinkedEntityId == appId)
                         docLinkMap.put(link.ContentDocumentId,link.Id);

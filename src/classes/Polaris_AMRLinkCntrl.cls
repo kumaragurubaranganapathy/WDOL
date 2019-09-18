@@ -8,7 +8,7 @@ public class Polaris_AMRLinkCntrl {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
             
     }
@@ -46,6 +46,7 @@ public class Polaris_AMRLinkCntrl {
                     return 'true';
                 }catch(Exception e){
                     DOL_CreateErrorLog_Exception.logApplicationError(e);
+                    throw new AuraHandledException('An error occurred: '+e.getMessage());
                 }
                 
             }
@@ -55,7 +56,7 @@ public class Polaris_AMRLinkCntrl {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
         
     }
@@ -74,7 +75,7 @@ public class Polaris_AMRLinkCntrl {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -93,7 +94,7 @@ public class Polaris_AMRLinkCntrl {
       }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
       
     }
@@ -102,15 +103,15 @@ public class Polaris_AMRLinkCntrl {
     {
         try{
         List<User> userInfoData = new List<User>();
-        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
-        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+String.escapeSingleQuotes(UserInfo.getUserId())+'\'';
+        String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         
         return [Select id,Full_Name__c FROM Contact where id=:userInfoData[0].Contact.Id].Full_Name__c;
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     @AuraEnabled
@@ -128,7 +129,7 @@ public class Polaris_AMRLinkCntrl {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -146,7 +147,7 @@ public class Polaris_AMRLinkCntrl {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
 @AuraEnabled
@@ -191,7 +192,7 @@ public class Polaris_AMRLinkCntrl {
          }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -226,7 +227,7 @@ public class Polaris_AMRLinkCntrl {
        }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
 
@@ -243,7 +244,7 @@ public class Polaris_AMRLinkCntrl {
     }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
 }
     
@@ -252,7 +253,7 @@ public class Polaris_AMRLinkCntrl {
     {
         try{
         List<User> userInfoData = new  List<User>();
-        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+String.escapeSingleQuotes(UserInfo.getUserId())+'\'';
         System.debug('User Id ' + queryCondition);
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition+ 'Limit 1';
         system.debug('queryStr '+queryStr);
@@ -279,13 +280,14 @@ public class Polaris_AMRLinkCntrl {
         }
         catch(Exception e){
             DOL_CreateErrorLog_Exception.logApplicationError(e);
+            throw new AuraHandledException('An error occurred: '+e.getMessage());
         }
         string appId = '';
         return appId = application.Id;
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
         
     }
@@ -310,7 +312,7 @@ public class Polaris_AMRLinkCntrl {
     }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -324,7 +326,7 @@ public class Polaris_AMRLinkCntrl {
     }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     

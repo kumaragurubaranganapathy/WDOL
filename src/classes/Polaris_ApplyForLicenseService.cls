@@ -3,7 +3,7 @@ public class Polaris_ApplyForLicenseService {
     
     public static List<User> fetchUserDetails () {
         List<User> lstUserInfoData = new List<User>();
-        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryCondition = ' Id=\''+String.escapeSingleQuotes(UserInfo.getUserId())+'\'';
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         lstUserInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         return lstUserInfoData;
@@ -47,7 +47,7 @@ public class Polaris_ApplyForLicenseService {
     {
         system.debug('board : '+applicationType+'licenseType : '+credentialType+ 'applicationType: '+applicationMethod);
         List<Application_Field__c> lstApplicationFields = new List<Application_Field__c>();
-        String Str = 'SELECT ValidationCriteria__c,Application_Method__c,Application_Type__c,Id,Label__c,Credential_Type__c,Name,Object_Name__c,Order_Number__c,Read_Only__c,Required__c,Type__c,Validator__c,Regex_Validation__c,Error_Message__c FROM Application_Field__c where Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' ORDER BY Order_Number__c ASC';
+        String Str = 'SELECT ValidationCriteria__c,Application_Method__c,Application_Type__c,Id,Label__c,Credential_Type__c,Name,Object_Name__c,Order_Number__c,Read_Only__c,Required__c,Type__c,Validator__c,Regex_Validation__c,Error_Message__c FROM Application_Field__c where Application_Type__c = \'' +String.escapeSingleQuotes(applicationType)+ '\' AND Credential_Type__c =  \'' +String.escapeSingleQuotes(credentialType) + '\' ORDER BY Order_Number__c ASC';
         system.debug('Str '+Str);
         lstApplicationFields = Utilityclass_withsharing.queryRecords(Str);
         return lstApplicationFields;
@@ -76,7 +76,7 @@ public class Polaris_ApplyForLicenseService {
     public static List<LnP_License_Type_Sections_Setting__mdt> fetchSection(String applicationType, String credentialType, String applicationMethod)
     {
         List<LnP_License_Type_Sections_Setting__mdt> lstSections = new List<LnP_License_Type_Sections_Setting__mdt>();
-        String Str = 'SELECT Sections__c FROM LnP_License_Type_Sections_Setting__mdt WHERE Board__c = \'' +applicationType+ '\' AND License_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \''+applicationMethod+'\'';
+        String Str = 'SELECT Sections__c FROM LnP_License_Type_Sections_Setting__mdt WHERE Board__c = \'' +String.escapeSingleQuotes(applicationType)+ '\' AND License_Type__c = \'' +String.escapeSingleQuotes(credentialType)+ '\' AND Application_Method__c = \'' +String.escapeSingleQuotes(applicationMethod)+'\'';
         lstSections = Utilityclass_withsharing.queryRecords(Str);
         return lstSections;
     }
