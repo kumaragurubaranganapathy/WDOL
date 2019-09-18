@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Helptext for different Statuses and Sub-statuses of the pre-licensure, license, and renewal/reinstate phase.</description>
+    <fields>
+        <fullName>Help_Text__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Help Text</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Object__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Object</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Endorsement</fullName>
+                    <default>true</default>
+                    <label>Endorsement</label>
+                </value>
+                <value>
+                    <fullName>License</fullName>
+                    <default>false</default>
+                    <label>License</label>
+                </value>
+                <value>
+                    <fullName>Pre-Licensure Application</fullName>
+                    <default>false</default>
+                    <label>Pre-Licensure Application</label>
+                </value>
+                <value>
+                    <fullName>Renewal/Reinstatement</fullName>
+                    <default>false</default>
+                    <label>Renewal/Reinstatement</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Status</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Abandoned</fullName>
+                    <default>false</default>
+                    <label>Abandoned</label>
+                </value>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>false</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>Canceled</fullName>
+                    <default>false</default>
+                    <label>Canceled</label>
+                </value>
+                <value>
+                    <fullName>Denied</fullName>
+                    <default>false</default>
+                    <label>Denied</label>
+                </value>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Expired</fullName>
+                    <default>false</default>
+                    <label>Expired</label>
+                </value>
+                <value>
+                    <fullName>Generate Fee</fullName>
+                    <default>false</default>
+                    <label>Generate Fee</label>
+                </value>
+                <value>
+                    <fullName>Inactive</fullName>
+                    <default>false</default>
+                    <label>Inactive</label>
+                </value>
+                <value>
+                    <fullName>In Review</fullName>
+                    <default>false</default>
+                    <label>In Review</label>
+                </value>
+                <value>
+                    <fullName>In-Review</fullName>
+                    <default>false</default>
+                    <label>In-Review</label>
+                </value>
+                <value>
+                    <fullName>Pending</fullName>
+                    <default>false</default>
+                    <label>Pending</label>
+                </value>
+                <value>
+                    <fullName>Pending Action</fullName>
+                    <default>false</default>
+                    <label>Pending Action</label>
+                </value>
+                <value>
+                    <fullName>Pending Additional Qualifications</fullName>
+                    <default>false</default>
+                    <label>Pending Additional Qualifications</label>
+                </value>
+                <value>
+                    <fullName>Pending Payment</fullName>
+                    <default>false</default>
+                    <label>Pending Payment</label>
+                </value>
+                <value>
+                    <fullName>Revoked</fullName>
+                    <default>false</default>
+                    <label>Revoked</label>
+                </value>
+                <value>
+                    <fullName>Submission Failed</fullName>
+                    <default>false</default>
+                    <label>Submission Failed</label>
+                </value>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
+                <value>
+                    <fullName>Sunset</fullName>
+                    <default>false</default>
+                    <label>Sunset</label>
+                </value>
+                <value>
+                    <fullName>Suspended</fullName>
+                    <default>false</default>
+                    <label>Suspended</label>
+                </value>
+                <value>
+                    <fullName>Unlicensed Activity</fullName>
+                    <default>false</default>
+                    <label>Unlicensed Activity</label>
+                </value>
+                <value>
+                    <fullName>Waiting for Third Party Verification</fullName>
+                    <default>false</default>
+                    <label>Waiting for Third Party Verification</label>
+                </value>
+                <value>
+                    <fullName>Withdrawn</fullName>
+                    <default>false</default>
+                    <label>Withdrawn</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sub_Status__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <label>Sub Status</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Additional Fee Required</fullName>
+                    <default>true</default>
+                    <label>Additional Fee Required</label>
+                </value>
+                <value>
+                    <fullName>Additional Information Required</fullName>
+                    <default>false</default>
+                    <label>Additional Information Required</label>
+                </value>
+                <value>
+                    <fullName>Applicant action</fullName>
+                    <default>false</default>
+                    <label>Applicant action</label>
+                </value>
+                <value>
+                    <fullName>Child Support Suspension</fullName>
+                    <default>false</default>
+                    <label>Child Support Suspension</label>
+                </value>
+                <value>
+                    <fullName>Company Inactive</fullName>
+                    <default>false</default>
+                    <label>Company Inactive</label>
+                </value>
+                <value>
+                    <fullName>Deceased</fullName>
+                    <default>false</default>
+                    <label>Deceased</label>
+                </value>
+                <value>
+                    <fullName>Designated Person Inactive</fullName>
+                    <default>false</default>
+                    <label>Designated Person Inactive</label>
+                </value>
+                <value>
+                    <fullName>DHP</fullName>
+                    <default>false</default>
+                    <label>DHP</label>
+                </value>
+                <value>
+                    <fullName>Dishonored Payment</fullName>
+                    <default>false</default>
+                    <label>Dishonored Payment</label>
+                </value>
+                <value>
+                    <fullName>Insurance/Bond Not Active</fullName>
+                    <default>false</default>
+                    <label>Insurance/Bond Not Active</label>
+                </value>
+                <value>
+                    <fullName>Military</fullName>
+                    <default>false</default>
+                    <label>Military</label>
+                </value>
+                <value>
+                    <fullName>Out of business</fullName>
+                    <default>false</default>
+                    <label>Out of business</label>
+                </value>
+                <value>
+                    <fullName>Resigned</fullName>
+                    <default>false</default>
+                    <label>Resigned</label>
+                </value>
+                <value>
+                    <fullName>Retired</fullName>
+                    <default>false</default>
+                    <label>Retired</label>
+                </value>
+                <value>
+                    <fullName>Scheduled</fullName>
+                    <default>false</default>
+                    <label>Scheduled</label>
+                </value>
+                <value>
+                    <fullName>Surrendered</fullName>
+                    <default>false</default>
+                    <label>Surrendered</label>
+                </value>
+                <value>
+                    <fullName>Third party action</fullName>
+                    <default>false</default>
+                    <label>Third party action</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Dashboard Helptext</label>
+    <pluralLabel>Dashboard Helptexts</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>
