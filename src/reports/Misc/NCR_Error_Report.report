@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>NCR_Failed_Record__c$Profession_Code__c</field>
+    </columns>
+    <columns>
+        <field>NCR_Failed_Record__c$Profession_Name__c</field>
+    </columns>
+    <columns>
+        <field>NCR_Failed_Record__c$Validation_Date__c</field>
+    </columns>
+    <columns>
+        <field>NCR_Failed_Record__c$Validation_Item_Number__c</field>
+    </columns>
+    <columns>
+        <field>NCR_Failed_Record__c$Validation_Sequence_Number__c</field>
+    </columns>
+    <columns>
+        <field>NCR_Failed_Record__c$Validation_Amount__c</field>
+    </columns>
+    <columns>
+        <field>NCR_Failed_Record__c$Licensee_Name__c</field>
+    </columns>
+    <columns>
+        <field>NCR_Failed_Record__c$Licensee_Number__c</field>
+    </columns>
+    <description>This report will show all NCR error records data</description>
+    <format>Tabular</format>
+    <name>NCR Error Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>NCR_Failed_Records__c</reportType>
+    <scope>user</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>NCR_Failed_Record__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>
