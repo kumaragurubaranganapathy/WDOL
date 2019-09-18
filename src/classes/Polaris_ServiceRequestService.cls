@@ -7,6 +7,18 @@ public static List<User> fetchUserDetails () {
         lstUserInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         return lstUserInfoData;
     }
+    
+    public static Map<string,String> fetchMandatorySubsections(String applicationType, String credentialType,String flowtype)
+    {
+        system.debug('board : '+applicationType+'licenseType : '+credentialType);
+        Map<string,String> mapMandatorySubsection = new Map<string,String>();        
+        for(LnP_Mandatory_Subsections__mdt mappingSection : [SELECT SubSection__c,Section__c FROM LnP_Mandatory_Subsections__mdt WHERE Service_Request_Type__c =: flowtype] )
+        {
+            mapMandatorySubsection.put(mappingSection.Section__c, mappingSection.SubSection__c);
+        }
+        system.debug('mapMandatorySubsection : '+mapMandatorySubsection);
+        return mapMandatorySubsection;    
+    }
         
     public static Map<string,string> fetchSubsectionIcons(String pageName)
     {
