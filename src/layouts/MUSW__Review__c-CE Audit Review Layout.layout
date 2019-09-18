@@ -248,13 +248,13 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>BGCK__Page_Question__c</fields>
-        <fields>BGCK__Comments__c</fields>
-        <fields>CREATEDBY_USER</fields>
-        <fields>OWNER.FIRST_NAME</fields>
-        <fields>OWNER.LAST_NAME</fields>
-        <fields>UPDATEDBY_USER</fields>
+        <fields>QuestionDOL__c</fields>
+        <fields>Question_Section__c</fields>
+        <fields>Question2__c</fields>
+        <fields>Answer_Text__c</fields>
         <relatedList>BGCK__Answer__c.Review__c</relatedList>
+        <sortField>Question_Section__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
