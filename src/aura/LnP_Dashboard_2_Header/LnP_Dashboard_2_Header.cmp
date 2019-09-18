@@ -27,7 +27,7 @@
                                                         
                                                             <lightning:menuItem label="Payment cart" value="Payment cart"/>
                                                          <lightning:menuItem label="Apply for new license" value="licenseSelectionPage"/>
-                                                         <lightning:menuItem label="Change legal name" value="Change legal name"/>
+                                                         <lightning:menuItem label="Update legal name" value="Update legal name"/>
                                                         
                                                     </lightning:buttonMenu>
                                                     
@@ -102,7 +102,7 @@
                 <ul class="{!v.showMoreAMR?'exp-links-inner':''}">
                     <li class="{!v.activeCart?'cart-item':'slds-hide'}" aura:id="action-item"><a onclick="{!c.goToCart}" href="javascript:void(0);" target="_self" >Make a Payment</a></li>
                     <li aura:id="action-item"><a onclick="{!c.handleClick}" href="javascript:void(0);">Apply for new license</a></li>
-                    <li aura:id="action-item"><a onclick="{!c.updateLegalName}" href="javascript:void(0);">Change Legal Name</a></li>                
+                    <li aura:id="action-item"><a onclick="{!c.updateLegalName}" href="javascript:void(0);">Update Legal Name</a></li>                
                 
                 </ul>
             </lightning:layoutItem>

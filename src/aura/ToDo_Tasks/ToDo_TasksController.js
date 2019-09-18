@@ -75,7 +75,17 @@
         component.set("v.actionclicked",'Accepted');
         helper.actionRequest(component, event);
     },
-    
+    StartCEAuditAMR:function(component, event) {
+        var ctarget = event.currentTarget;
+        console.log('inside draftLicense::');
+        
+        sessionStorage.setItem("ServiceRequestType", ctarget.getAttribute("data-requestType"));                
+        sessionStorage.setItem("board", ctarget.getAttribute("data-board"));
+        sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));        
+        sessionStorage.setItem("requestId", ctarget.getAttribute("data-recordId"));
+        sessionStorage.setItem("recordId", ctarget.getAttribute("data-license"));
+        window.location.href = $A.get("$Label.c.Polaris_Portal_Home")+'manage-request';
+    },
     openModelReschedule : function(component, event) {
         var taskRecordForModel = event.getSource().get("v.value");
         console.log('Value==' + JSON.stringify(taskRecordForModel));
