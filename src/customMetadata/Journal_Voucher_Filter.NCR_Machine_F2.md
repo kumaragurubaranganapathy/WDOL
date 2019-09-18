@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>Item_Payment_Method__c</field>
-        <value xsi:type="xsd:string">Any</value>
+        <value xsi:type="xsd:string">NCR</value>
     </values>
     <values>
         <field>Item_Transaction_Code__c</field>
