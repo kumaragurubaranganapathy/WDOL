@@ -2,6 +2,7 @@ public class Polaris_ServiceRequestController {
     public static Map<String,String> mapSubsectionIcon {get;set;}
     public static String sections {get;set;}
     public static String AMRlabel {get;set;}
+    public static Map<String,String> mapMandatorySubsection {get;set;}
     public static List<Question__c> lstQuestions {get;set;} 
     public static List<MUSW__Master_Submission_List__c> lstMasterSubmission {get;set;}
     public static List<Request__c> lstApps {get;set;}   
@@ -47,6 +48,14 @@ public class Polaris_ServiceRequestController {
         if(!lstTempMasterSubmission.isEmpty()){
             lstMasterSubmission = lstTempMasterSubmission;
         }    
+        
+        //Fetching mandatory Subsection
+            mapMandatorySubsection = new Map<string,String>();
+            Map<string,String> mapTempMandatorySubsection = Polaris_ServiceRequestService.fetchMandatorySubsections(board,licenseType,flowType);
+            if(!mapTempMandatorySubsection.isEmpty())
+            {
+                mapMandatorySubsection = mapTempMandatorySubsection;
+            }
         
         lstApps = new List<Request__c>();
         List<Request__c> lstTempApplication =new List<Request__c>();
@@ -117,10 +126,10 @@ public class Polaris_ServiceRequestController {
              else{
                 labelToFields.isMandatoryQues = false;
              }
-			if(questionSection == Ques.Section__c || Ques.Section__c==null){
+             if(questionSection == Ques.Section__c || Ques.Section__c==null){
                 labelToFields.questionSection ='null';
-            }
-            else{
+             }
+             else{
                 labelToFields.questionSection = Ques.Section__c;
                 questionSection = Ques.Section__c;
                 labelToFields.questionSectionDetail = Ques.Sub_Header__c;
@@ -186,7 +195,11 @@ public class Polaris_ServiceRequestController {
             licenseWrapper.subheader = section;
             licenseWrapper.currentTab = currentTab;
             licenseWrapper.tabIndex = tabIndex;
-			licenseWrapper.AMRlabel = AMRlabel;
+            licenseWrapper.AMRlabel = AMRlabel;
+			if(!mapMandatorySubsection.isEmpty() && mapMandatorySubsection.containsKey(section))
+                {
+                    licenseWrapper.mandatorySubsection = mapMandatorySubsection.get(section); 
+                }            
             if(!mapSubsectionIcon.isEmpty() && mapSubsectionIcon.containsKey(section+' icon')){
                 licenseWrapper.icon = mapSubsectionIcon.get(section+' icon');              
             }
@@ -313,7 +326,7 @@ public class Polaris_ServiceRequestController {
     public static String insertApplication(String dataString, Integer tabNumber, Id appId, String Board, String LicenseType, String ApplicationType){
         Boolean questionsIncomplete = false;
         Boolean submissionsIncomplete = true;
-        Map<String,List<LnP_Parcel__c>> mapAddress = new  Map<String,List<LnP_Parcel__c>>();
+        Map<String,List<MUSW__Parcel__c>> mapAddress = new  Map<String,List<MUSW__Parcel__c>>();
         Map<String,List<LnP_BackgroundSection__c>> mapEducation = new  Map<String,List<LnP_BackgroundSection__c>>();
         Set<Id>  setAppId = new Set<Id> ();
         setAppId.add(appId);
@@ -328,6 +341,7 @@ public class Polaris_ServiceRequestController {
         }
         wrapperList = fetchSubmission(wrapperList, Board,  LicenseType,  ApplicationType);
         System.debug('Wrapper'+JSON.serialize(wrapperList));
+        
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> submissionFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         lstUserInfoData = new List<User>();
@@ -562,14 +576,12 @@ public class Polaris_ServiceRequestController {
                 if(lstMandatorySubsection != null){
                     for(String mandatorySubSection : lstMandatorySubsection){
                         system.debug('mandatorySubsection098'+ mandatorySubSection);
-                        if((mandatorySubSection == 'Physical Address' || mandatorySubSection == 'Mailing Address')){
+                        system.debug('mapAddress'+ mapAddress);
+                        if(mandatorySubSection == 'Physical Address' ){
                             if(mapAddress.isEmpty()){
                                 objWrapper.sectionError = true;
                             }
-							else if(mapAddress.get(mandatorySubSection) == null ||  mapAddress.get(mandatorySubSection).size() == 0 ){
-                                system.debug('inside the mandatory');
-                                objWrapper.sectionError = true;
-                            }
+							
                         }
                         else if((mandatorySubSection == 'Qualifying Education' || mandatorySubSection == 'Qualifying Training' || mandatorySubSection == 'Qualifying Experience')  ){
                             if(mapEducation.isEmpty()){
@@ -836,16 +848,19 @@ public class Polaris_ServiceRequestController {
     
     
     //Fetch all the addresses
-    public static Map<String, List<LnP_Parcel__c>> getAddresses (Set<Id> appId){
-        Map<String, List<LnP_Parcel__c>> mapAddress  =  new Map<String,List<LnP_Parcel__c>>();
-        List<LnP_Parcel__c> lstAddress  = [SELECT Id, Address_Type__c,Request__c, Application_BG__c,Application__c, City__c, County__c, Country__c, State_Province__c, Street__c, Zip_Postal_Code__c 
-                                           FROM LnP_Parcel__c WHERE Request__c IN :appId];
+    public static Map<String, List<MUSW__Parcel__c>> getAddresses (Set<Id> appId){
+        Map<String, List<MUSW__Parcel__c>> mapAddress  =  new Map<String,List<MUSW__Parcel__c>>();
+        List<MUSW__Parcel__c> lstAddress  = [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
+                                                     MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, RecordType.Name,
+                                                     County__c, Country__c,MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
+                                                     Primary_Account__c,LastModifiedDate from MUSW__Parcel__c 
+                                                     where Status__c ='Active' AND  Request_Parcel__c =:appId];
         if(!lstAddress.isEmpty()){
-            for(LnP_Parcel__c parcelAddress : lstAddress) {
+            for(MUSW__Parcel__c parcelAddress : lstAddress) {
                 if(mapAddress.containsKey(parcelAddress.Address_Type__c)) {
                     mapAddress.get(parcelAddress.Address_Type__c).add(parcelAddress);
                 } else {
-                    mapAddress.put(parcelAddress.Address_Type__c, new List<LnP_Parcel__c>{parcelAddress});
+                    mapAddress.put(parcelAddress.Address_Type__c, new List<MUSW__Parcel__c>{parcelAddress});
                 }
             }
         }
