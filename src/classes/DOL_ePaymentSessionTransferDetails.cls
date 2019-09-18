@@ -78,7 +78,7 @@ public class DOL_ePaymentSessionTransferDetails {
                 this.city = mailingParcel.MUSW__City__c;
                 this.stateRegion = mailingParcel.MUSW__State__c;
                 this.countryCode = mailingParcel.Country__c;
-                this.zipPostalcode = mailingParcel.Zip_Postal_Code__c;
+                this.zipPostalcode = mailingParcel.MUSW__Post_Zip_Code__c;
             }
         }
         if(this.isPortalUser){

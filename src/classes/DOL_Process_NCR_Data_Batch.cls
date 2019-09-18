@@ -1,3 +1,13 @@
+/************************************************************************************************************
+** Name             : DOL_Process_NCR_Data_Batch
+** Description   	: NCR Batch, create renewal and reinstatement application for the given license and 
+                        pay the fees for the same.
+** Version          : 1.0
+**-------------------------------------
+** Revision History:
+**---------------------------
+** [Laltu Banerjee]: Created
+*************************************************************************************************************/
 global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
 
     private DOL_NCR_Input tempNCRInput;
@@ -14,25 +24,42 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
                                         ]);
     }
 
+    /*
+    * In this transaction we need to process each record individually because
+    * in each transaction payment processing is required.
+    * And if any record failed we will do the rollback for that record only.
+    */
     global void execute(Database.BatchableContext BC, List<DOL_Integration_Batch_Input__c> records){
         Savepoint sp = null;
         if(records != null && records.size() > 0 ){
             String tempSfdcLicenceId = '';
             MUSW__License2__c tempLicenseRecord;
+            // to get all the failed records
+            List<NCRFailedRecord> ncrFailedRecords = new List<NCRFailedRecord>();
+            NCRFailedRecord tempFailedRecord;
             for(DOL_Integration_Batch_Input__c rec : records){
                 sp = null;
                 tempNCRFileData = rec;
+                tempLicenseRecord = null;
                 try{
                     tempNCRFileData.INFO__C = ' ';
+                    // parsing the json string
                     tempNCRInput = DOL_NCR_Input.parse(tempNCRFileData.Input__c);
                     tempSfdcLicenceId = tempNCRInput.PolarisRecordID;
                     if(tempSfdcLicenceId != null && tempSfdcLicenceId != '' ){
+                        // get the license information and renewal record info
                         tempLicenseRecord = dolDao.getLicenseAndRenewalRecordByLicenseId(tempSfdcLicenceId);
+                        // Check if we can create renewal record
                         isEligibleForRenewalRecordCreation(tempLicenseRecord);
+                        // setting the SavePoint
                         sp = Database.setSavePoint();
+                        // create renewalApplication Record
                         createRenewalApplication(tempLicenseRecord);
+                        // create submission record
                         createSubmissionRecord();
+                        // intiate payment for renewal application
                         doPaymentForRenewalApplication(tempLicenseRecord);
+                        // update the status of the record
                         tempNCRFileData.INFO__C += ' Data processed successfully ';
                         tempNCRFileData.Status__c = ' SUCCESSFUL';
                     }
@@ -40,30 +67,57 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
                          throw new CustomException('Polaris Id is null or Blank in the input');
                     }
                 }catch(Exception error){
+                    // get the error message into record
                      tempNCRFileData.INFO__c += ' error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString();
+                    // update the status
                      tempNCRFileData.Status__c = ' Failed';
                      if(sp != null){
+                         // do rollback if any exception occured
                          Database.rollback(sp);
                          tempNCRFileData.INFO__c += ' Rollback Done';
-                     }   
+                     }
+                     // store the failed record in list
+                     ncrFailedRecords.add(new NCRFailedRecord(tempNCRInput,
+                                                tempLicenseRecord,
+                                                tempNCRFileData.INFO__c)
+                                            );
                 }
             }
+            // save Dol_Integration_Batch_Input__c record
             DOL_Dao.save(records);
+            if(ncrFailedRecords.size() > 0 ){
+                try{
+                    List<NCR_Failed_Record__c> recordsToBeSaved = new List<NCR_Failed_Record__c>();
+                    // Iterate through the failed records and the required object NCR_Failed_Record__c
+                    // Save all records of NCR_Failed_Record__c to SFDC
+                    for(NCRFailedRecord r : ncrFailedRecords)
+                        recordsToBeSaved.add(r.getFailedRecordData());
+                    insert recordsToBeSaved;
+                }catch(Exception e){
+                    DOL_CreateErrorLog_Exception.logApplicationError(e);
+                }
+            }
         }
     }
 
+    /*
+    * To check if license record is eligible for renewal record creation
+    */
     private void isEligibleForRenewalRecordCreation(MUSW__License2__c licenseRecord){
         if( licenseRecord == null ){
             throw new CustomException('License record not found');
         }
+        // Is_Renewal_Eligible__c or Is_Reinstatement_Eligible__c need to be true
         if(! ( licenseRecord.Is_Renewal_Eligible__c || licenseRecord.Is_Reinstatement_Eligible__c ) ){
             throw new CustomException('MUSW__License2__c record with Id '+licenseRecord.Id+' is not eligible for Renewal');
         }
+        // license can have multiple renewal application
         List<Renewal_Application__c> renewalApps =  licenseRecord.Renewal_Applications__r;
         if(renewalApps.size() == 0){
             return ;
         }
-        List<String> statusList = new List<String>(); // If renewal App status belongs to this list then don't create renewal application.
+        // If renewal App status belongs to below list then don't create renewal application
+        List<String> statusList = new List<String>(); 
         statusList.add('Draft');
         statusList.add('Generate Fee');
         statusList.add('In-Review');
@@ -75,6 +129,9 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
         }
     }
 
+    /*
+    * Function to create renewal Application
+    */
     private void createRenewalApplication(MUSW__License2__c licenseRecord){
         tempRenewalApplication = new Renewal_Application__c();
         tempRenewalApplication.Applicant__c = licenseRecord.MUSW__Applicant__c;
@@ -105,6 +162,9 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
         tempNCRFileData.INFO__C += ' Renewal_Application__c created '+tempRenewalApplication.Id;
     }
 
+    /*
+    * Function to create submission record
+    */
     private void createSubmissionRecord(){
         MUSW__Submission__c submission = new MUSW__Submission__c();
         submission.Name = tempNCRInput.ImageName;
@@ -115,10 +175,16 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
         tempNCRFileData.INFO__C += ' Submission Record created '+submission.Id;
     }
 
+    /*
+    * Function to get renewal application record type
+    */
     private Id getRenewalAppRecordTypeId(String recordTypeName){
         return Schema.SObjectType.Renewal_Application__c.getRecordTypeInfosByName().get(recordTypeName).getRecordTypeId();
     }
 
+    /*
+    * Do payment for renewal application
+    */
     private void doPaymentForRenewalApplication(MUSW__License2__c licenseRecord){
         Renewal_Application__c renewalApp = dolDao.getRenewalApplicationAndFees(tempRenewalApplication.Id);
         List<MUSW__Fee__c> allCreatedFees = renewalApp.Fees__r;
@@ -149,7 +215,36 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
         
     }
 
-    global void finish(Database.BatchableContext BC){   
-    
+    class NCRFailedRecord{
+        DOL_NCR_Input ncrInput;
+        MUSW__License2__c license;
+        String errorMsg;
+        public NCRFailedRecord(DOL_NCR_Input ncrInput, 
+                                MUSW__License2__c license,
+                                String errorMsg){
+            this.ncrInput = ncrInput;
+            this.license = license;
+            this.errorMsg = errorMsg;
+        }
+
+        public NCR_Failed_Record__c getFailedRecordData(){
+            NCR_Failed_Record__c record = new NCR_Failed_Record__c();
+            if(ncrInput != null ){
+                record.Licensee_Number__c = ncrInput.LicenseNumber;
+                record.Profession_Code__c = ncrInput.ProfCode;
+                record.Validation_Amount__c = ncrInput.ValidationAmount;
+                record.Validation_Date__c = ncrInput.ValidationDate;
+                record.Validation_Item_Number__c = ncrInput.ValidationItemNum;
+                record.Validation_Sequence_Number__c = ncrInput.ValidationSeqNum;
+            }
+            if(license != null){
+                record.Licensee_Name__c = license.Name;
+                record.Profession_Name__c = license.Credential_Type__c;
+            }
+            record.Error_message__c = errorMsg;
+            return record;
+        }
     }
+
+    global void finish(Database.BatchableContext BC){ }
 }
