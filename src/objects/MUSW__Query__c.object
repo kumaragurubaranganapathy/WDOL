@@ -58,6 +58,7 @@
     <fields>
         <fullName>MUSW__Fields__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fields</label>
         <length>32000</length>
@@ -68,6 +69,7 @@
     <fields>
         <fullName>MUSW__LIMIT_Filter__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>LIMIT</label>
         <length>20</length>
@@ -103,6 +105,7 @@
     <fields>
         <fullName>MUSW__ORDER_BY_Filter__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ORDER BY Filter</label>
         <length>255</length>
@@ -114,6 +117,7 @@
     <fields>
         <fullName>MUSW__Object_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Object Name</label>
         <length>255</length>
@@ -125,6 +129,7 @@
     <fields>
         <fullName>MUSW__WHERE_Filter__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>eg. Region__c = &apos;East&apos; AND ModifiedDate = LAST_YEAR</inlineHelpText>
         <label>WHERE Filter</label>
@@ -140,6 +145,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <type>Text</type>
     </nameField>

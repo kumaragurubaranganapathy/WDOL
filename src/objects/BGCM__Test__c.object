@@ -115,6 +115,7 @@
     <fields>
         <fullName>BGCM__Issued_Number__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issued Number</label>
         <length>15</length>
@@ -166,6 +167,7 @@
         <fullName>BGCM__Tracking_Number__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>40</length>
@@ -245,6 +247,7 @@
         <label>test0</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Test Name</label>
         <type>Text</type>
     </nameField>

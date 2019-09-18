@@ -56,20 +56,13 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Answer_Text__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Answer Text</label>
         <length>32768</length>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
-    </fields>
-	<fields>
-        <fullName>Response_Name__c</fullName>
-        <displayFormat>ANS-{0000}</displayFormat>
-        <externalId>false</externalId>
-        <label>Response Name</label>
-        <trackTrending>false</trackTrending>
-        <type>AutoNumber</type>
     </fields>
     <fields>
         <fullName>Application_BG__c</fullName>
@@ -86,6 +79,7 @@
     <fields>
         <fullName>BGCK__Actual_Value2__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Actual Value</label>
         <length>131072</length>
@@ -97,6 +91,7 @@
         <fullName>BGCK__Actual_Value__c</fullName>
         <deprecated>false</deprecated>
         <description>DO NOT USE</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Actual Value</label>
         <length>255</length>
@@ -121,6 +116,7 @@
     <fields>
         <fullName>BGCK__Comments__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Comments</label>
         <length>15000</length>
@@ -171,6 +167,7 @@
         <fullName>BGCK__Track_No__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>20</length>
@@ -248,6 +245,7 @@
     <fields>
         <fullName>Question2__c</fullName>
         <description>Question</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Question</label>
         <length>131072</length>
@@ -316,6 +314,14 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Response_Name__c</fullName>
+        <displayFormat>ANS-{0000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Response Name</label>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
         <fullName>Review__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -329,6 +335,7 @@
     </fields>
     <fields>
         <fullName>Violation__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Violation</label>
         <required>false</required>
@@ -337,6 +344,7 @@
     </fields>
     <label>Answer</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Response</label>
         <type>Text</type>
     </nameField>

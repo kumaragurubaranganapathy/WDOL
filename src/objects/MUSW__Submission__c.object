@@ -155,31 +155,6 @@
         <label>Submission Review Overview</label>
     </fieldSets>
     <fields>
-	<fullName>SAN_Area_Code__c</fullName>
-        <description>Area code of image processed</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>SAN Area Code</label>
-        <length>3</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Release__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Release</label>
-        <length>20</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Activity_Log__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -205,6 +180,17 @@
             <restricted>true</restricted>
             <valueSetName>Application_Type</valueSetName>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Archive_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the last date  when the the document would be Archived</inlineHelpText>
+        <label>Archive Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Attest__c</fullName>
@@ -297,17 +283,6 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Archive_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <inlineHelpText>Specify the last date  when the the document would be Archived</inlineHelpText>
-        <label>Archive Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Document_API_Name__c</fullName>
         <description>API name of the document record. This file will be provided as a hyperlink to the user to download from the submission.</description>
         <encryptionScheme>None</encryptionScheme>
@@ -375,21 +350,21 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Is_Backend_Submission__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Checkbox to indicate whether it is backend submission or not</description>
-        <externalId>false</externalId>
-        <label>Is Backend Submission</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>IsSANFileUploadTrue__c</fullName>
         <defaultValue>false</defaultValue>
         <description>This filed would be TRUE if the submission record is crated newly and the file/attachment is not Uploaded to SAN location . Once the file/attachment is uploaded to SAN, the image URL is updated in Salesforce this flag would be set to False</description>
         <externalId>false</externalId>
         <label>IsSANFileUploadTrue</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Backend_Submission__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox to indicate whether it is backend submission or not</description>
+        <externalId>false</externalId>
+        <label>Is Backend Submission</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -898,6 +873,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Request__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -909,6 +896,19 @@
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SAN_Area_Code__c</fullName>
+        <description>Area code of image processed</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>SAN Area Code</label>
+        <length>3</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>SAN_Department_Code__c</fullName>
@@ -1185,8 +1185,7 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
-	
-	<listViews>
+    <listViews>
         <fullName>RBS_Queue</fullName>
         <columns>Validation_Number__c</columns>
         <columns>NAME</columns>
@@ -1241,7 +1240,7 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
             <operation>notEqual</operation>
             <value>Submitted</value>
         </filters>
-		<filters>
+        <filters>
             <field>MUSW__License2__c</field>
             <operation>equals</operation>
         </filters>
@@ -1309,7 +1308,7 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
             <operation>notEqual</operation>
             <value>Submitted</value>
         </filters>
-		<filters>
+        <filters>
             <field>MUSW__License2__c</field>
             <operation>equals</operation>
         </filters>
@@ -1323,7 +1322,6 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         </filters>
         <label>RE - Unresolved Submissions</label>
     </listViews>
-	
     <listViews>
         <fullName>Submissions_Queue_Submission</fullName>
         <filterScope>Queue</filterScope>

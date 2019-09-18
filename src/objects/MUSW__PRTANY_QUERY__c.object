@@ -60,6 +60,7 @@
         <fullName>MUSW__Filter__c</fullName>
         <deprecated>false</deprecated>
         <description>The where condition appended to the resulting SOQL query</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Filter</label>
         <length>32000</length>
@@ -70,6 +71,7 @@
     <fields>
         <fullName>MUSW__Object_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Object Name</label>
         <length>255</length>
@@ -106,6 +108,7 @@
     <fields>
         <fullName>MUSW__Single_Row_Selection_Fields__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Single Row Selection Fields</label>
         <required>false</required>
@@ -114,6 +117,7 @@
     </fields>
     <label>Printer Query</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Query Name</label>
         <type>Text</type>
     </nameField>

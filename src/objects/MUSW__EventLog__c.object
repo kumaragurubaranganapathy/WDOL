@@ -59,6 +59,7 @@
         <fullName>MUSW__Apex_Code_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>It should be either Appex Class or Appex Trigger Name</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Apex Code Name</label>
         <length>100</length>
@@ -71,6 +72,7 @@
         <fullName>MUSW__Apex_Method__c</fullName>
         <deprecated>false</deprecated>
         <description>The method name which is executed.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Apex Method</label>
         <length>255</length>
@@ -131,6 +133,7 @@
     <fields>
         <fullName>MUSW__MessageLong__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Message</label>
         <length>4000</length>
@@ -142,6 +145,7 @@
         <fullName>MUSW__Message__c</fullName>
         <deprecated>false</deprecated>
         <description>This is used to show the message of logging.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Message</label>
         <length>255</length>
@@ -153,6 +157,7 @@
     <fields>
         <fullName>MUSW__Record_ID__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Record ID</label>
         <length>18</length>
@@ -164,6 +169,7 @@
     <fields>
         <fullName>MUSW__SessionId__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Session ID</label>
         <length>255</length>
@@ -200,6 +206,7 @@
         <fullName>MUSW__Time_Stamp__c</fullName>
         <deprecated>false</deprecated>
         <description>This is used to record the time stamp</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Time Stamp</label>
         <required>false</required>
@@ -274,6 +281,11 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MUSW__All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
     </listViews>
     <listViews>
         <fullName>MUSW__Default</fullName>

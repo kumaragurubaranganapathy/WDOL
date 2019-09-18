@@ -83,6 +83,7 @@
     <fields>
         <fullName>Expected_Answer__c</fullName>
         <description>Expected Answer for the external question id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expected Answer</label>
         <length>255</length>
@@ -96,6 +97,7 @@
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>External Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>50</length>
@@ -108,6 +110,7 @@
     <fields>
         <fullName>External_id_of_Question__c</fullName>
         <description>Hold external ID to match question with answer</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>External id of Question</label>
         <length>255</length>
@@ -168,6 +171,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Review Completion Time Computation Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

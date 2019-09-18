@@ -56,6 +56,7 @@
     <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Browser__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Browser</label>
         <length>20</length>
@@ -66,6 +67,7 @@
     </fields>
     <fields>
         <fullName>Class_Method__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Class Method</label>
         <length>50</length>
@@ -76,6 +78,7 @@
     </fields>
     <fields>
         <fullName>Class_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Class Name</label>
         <length>40</length>
@@ -86,6 +89,7 @@
     </fields>
     <fields>
         <fullName>Component_Method__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Component Method</label>
         <length>50</length>
@@ -96,6 +100,7 @@
     </fields>
     <fields>
         <fullName>Component_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Component Name</label>
         <length>50</length>
@@ -107,6 +112,7 @@
     <fields>
         <fullName>Created_By__c</fullName>
         <defaultValue>$User.FirstName &amp; &apos; &apos; &amp; $User.LastName</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Created By</label>
         <length>50</length>
@@ -117,6 +123,7 @@
     </fields>
     <fields>
         <fullName>End_Point_URL__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>End Point URL</label>
         <length>255</length>
@@ -128,6 +135,7 @@
     <fields>
         <fullName>Error_Log_Time__c</fullName>
         <defaultValue>now()</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Error Log Time</label>
         <required>false</required>
@@ -136,6 +144,7 @@
     </fields>
     <fields>
         <fullName>Error_Message__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Error Message</label>
         <length>32768</length>
@@ -145,6 +154,7 @@
     </fields>
     <fields>
         <fullName>Exception_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Exception Type</label>
         <length>100</length>
@@ -155,6 +165,7 @@
     </fields>
     <fields>
         <fullName>HTTP_Status_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>HTTP Status Code</label>
         <length>10</length>
@@ -176,6 +187,7 @@
     </fields>
     <fields>
         <fullName>Language__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Language</label>
         <length>10</length>
@@ -197,6 +209,7 @@
     </fields>
     <fields>
         <fullName>Platform__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Platform</label>
         <length>30</length>
@@ -207,6 +220,7 @@
     </fields>
     <fields>
         <fullName>Record_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Record Id</label>
         <length>20</length>
@@ -217,6 +231,7 @@
     </fields>
     <fields>
         <fullName>Request_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Request Id</label>
         <length>30</length>
@@ -227,6 +242,7 @@
     </fields>
     <fields>
         <fullName>RequestedJSON__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>RequestedJSON</label>
         <length>131072</length>
@@ -236,6 +252,7 @@
     </fields>
     <fields>
         <fullName>Requested_On__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Requested On</label>
         <length>40</length>
@@ -246,6 +263,7 @@
     </fields>
     <fields>
         <fullName>Responded_On__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Responded On</label>
         <length>40</length>
@@ -256,6 +274,7 @@
     </fields>
     <fields>
         <fullName>ResponseJSON__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ResponseJSON</label>
         <length>32768</length>
@@ -265,6 +284,7 @@
     </fields>
     <fields>
         <fullName>Session_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Session Id</label>
         <length>255</length>
@@ -275,6 +295,7 @@
     </fields>
     <fields>
         <fullName>Source_IP_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Source IP Address</label>
         <length>30</length>
@@ -285,6 +306,7 @@
     </fields>
     <fields>
         <fullName>Stack_Trace__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Stack Trace</label>
         <length>32768</length>
@@ -295,6 +317,7 @@
     <fields>
         <fullName>User_Profile__c</fullName>
         <defaultValue>$Profile.Name</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>User Profile</label>
         <length>100</length>

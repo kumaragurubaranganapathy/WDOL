@@ -66,6 +66,7 @@
     <fields>
         <fullName>Component_Name__c</fullName>
         <description>Component Name</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Component Name</label>
         <length>255</length>
@@ -77,6 +78,7 @@
     <fields>
         <fullName>Description__c</fullName>
         <description>This is the description that would appear on the portal</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>131072</length>
@@ -88,6 +90,7 @@
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>External Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>255</length>
@@ -217,6 +220,7 @@
     <fields>
         <fullName>Video_URL__c</fullName>
         <description>This is the link to the video if a  video is needed</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This is the link to the video if a  video is needed</inlineHelpText>
         <label>Video URL</label>
@@ -231,6 +235,8 @@
         <columns>Type__c</columns>
         <columns>Component_Name__c</columns>
         <columns>Parent__c</columns>
+        <columns>External_Id__c</columns>
+        <columns>Order_Number__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -242,6 +248,7 @@
         <label>myView2</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Subsection Name</label>
         <type>Text</type>
     </nameField>

@@ -61,6 +61,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Amount__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Amount</label>
         <required>false</required>
@@ -69,6 +70,7 @@
     </fields>
     <fields>
         <fullName>Business_Event__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Business Event</label>
         <length>255</length>
@@ -77,18 +79,9 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
-        <fullName>ExternalID__c</fullName>
-        <externalId>true</externalId>
-        <label>External Id</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
     <fields>
         <fullName>Credit_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Credit Code</label>
         <required>false</required>
@@ -97,6 +90,7 @@
     </fields>
     <fields>
         <fullName>Debit_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Debit Code</label>
         <required>false</required>
@@ -105,6 +99,7 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
@@ -114,6 +109,7 @@
     <fields>
         <fullName>Effective_Date__c</fullName>
         <defaultValue>&quot;=Today()&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Effective Date</label>
         <required>false</required>
@@ -121,7 +117,20 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>ExternalID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>Object_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Object Name</label>
         <length>255</length>
@@ -132,6 +141,7 @@
     </fields>
     <fields>
         <fullName>Old_Amount__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Old Amount</label>
         <required>false</required>
@@ -140,6 +150,7 @@
     </fields>
     <fields>
         <fullName>Transaction_Account__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Transaction Account</label>
         <required>false</required>
@@ -148,6 +159,7 @@
     </fields>
     <fields>
         <fullName>Transaction_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Transaction Type</label>
         <required>false</required>
@@ -158,20 +170,68 @@
     <listViews>
         <fullName>MUSW__All</fullName>
         <columns>NAME</columns>
-        <columns>Business_Event__c</columns>
         <columns>Object_Name__c</columns>
-        <columns>Credit_Code__c</columns>
-        <columns>Debit_Code__c</columns>
-        <columns>Transaction_Account__c</columns>
-        <columns>Effective_Date__c</columns>
+        <columns>Business_Event__c</columns>
         <columns>Transaction_Type__c</columns>
+        <columns>Debit_Code__c</columns>
+        <columns>Credit_Code__c</columns>
         <columns>Amount__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Effective_Date__c</columns>
+        <columns>Transaction_Account__c</columns>
         <columns>Description__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Search</fullName>
+        <booleanFilter>(1 AND 3 AND 4) OR (2 AND 5 AND 6)</booleanFilter>
+        <columns>NAME</columns>
+        <columns>Object_Name__c</columns>
+        <columns>Business_Event__c</columns>
+        <columns>Transaction_Type__c</columns>
+        <columns>Debit_Code__c</columns>
+        <columns>Credit_Code__c</columns>
+        <columns>Amount__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Effective_Date__c</columns>
+        <columns>Transaction_Account__c</columns>
+        <columns>Description__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Transaction_Type__c</field>
+            <operation>contains</operation>
+            <value>780X</value>
+        </filters>
+        <filters>
+            <field>Transaction_Type__c</field>
+            <operation>contains</operation>
+            <value>006X</value>
+        </filters>
+        <filters>
+            <field>Credit_Code__c</field>
+            <operation>contains</operation>
+            <value>7140</value>
+        </filters>
+        <filters>
+            <field>Debit_Code__c</field>
+            <operation>contains</operation>
+            <value>4310</value>
+        </filters>
+        <filters>
+            <field>Credit_Code__c</field>
+            <operation>contains</operation>
+            <value>3210</value>
+        </filters>
+        <filters>
+            <field>Debit_Code__c</field>
+            <operation>contains</operation>
+            <value>7140</value>
+        </filters>
+        <label>Search</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Number</label>
         <type>Text</type>
     </nameField>

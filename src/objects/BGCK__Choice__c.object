@@ -90,6 +90,7 @@
     <fields>
         <fullName>BGCK__Display_Value__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Display Value</label>
         <length>10000</length>
@@ -128,6 +129,7 @@
         <fullName>BGCK__Track_No__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>20</length>
@@ -149,6 +151,7 @@
     </fields>
     <fields>
         <fullName>External_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>50</length>
@@ -159,6 +162,7 @@
     </fields>
     <fields>
         <fullName>WADOL_Mulesoft_Ext_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Mulesoft Ext Id</label>
         <length>255</length>
@@ -169,6 +173,7 @@
     </fields>
     <label>Choice</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <type>Text</type>
     </nameField>

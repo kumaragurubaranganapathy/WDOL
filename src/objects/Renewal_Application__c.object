@@ -68,6 +68,7 @@
     <externalSharingModel>Read</externalSharingModel>
     <fields>
         <fullName>AQB_Approval_Expiration_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>AQB Approval Expiration Date</label>
         <required>false</required>
@@ -80,18 +81,6 @@
         <externalId>false</externalId>
         <formula>TEXT(License__r.Ultimate_Parent_Account__r.Account_Status__c)</formula>
         <label>AccountStatus</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Validation_Number__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Validation Number</label>
-        <length>20</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -160,19 +149,6 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-	<fields>
-        <fullName>Customer_Envelope__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Customer Envelope</label>
-        <referenceTo>Customer_Envelope__c</referenceTo>
-        <relationshipLabel>Renewal Applications</relationshipLabel>
-        <relationshipName>Renewal_Applications</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
     <fields>
         <fullName>Application_Type__c</fullName>
         <description>Application Type</description>
@@ -203,6 +179,7 @@
     <fields>
         <fullName>AttestationFullName__c</fullName>
         <description>This is the full name of the attester.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>AttestationFullName</label>
         <length>255</length>
@@ -215,6 +192,7 @@
     <fields>
         <fullName>Attestation_Date__c</fullName>
         <description>Date of the attestation.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Attestation Date</label>
         <required>false</required>
@@ -282,6 +260,7 @@
     </fields>
     <fields>
         <fullName>Bond_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Bond Number</label>
         <length>10</length>
@@ -488,6 +467,19 @@ Permit__r.Business_License__c
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Customer_Envelope__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Customer Envelope</label>
+        <referenceTo>Customer_Envelope__c</referenceTo>
+        <relationshipLabel>Renewal Applications</relationshipLabel>
+        <relationshipName>Renewal_Applications</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Date_Facilities_will_be_ready__c</fullName>
         <description>Date Facilities will be ready from credential to be displayed on renewal application</description>
         <externalId>false</externalId>
@@ -501,6 +493,7 @@ Permit__r.Business_License__c
     </fields>
     <fields>
         <fullName>Description_of_Disposition__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description of Disposition</label>
         <length>32768</length>
@@ -511,6 +504,7 @@ Permit__r.Business_License__c
     </fields>
     <fields>
         <fullName>Effective_Date_of_Bond__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Effective Date of Bond</label>
         <required>false</required>
@@ -520,6 +514,7 @@ Permit__r.Business_License__c
     </fields>
     <fields>
         <fullName>Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email</label>
         <required>false</required>
@@ -530,6 +525,7 @@ Permit__r.Business_License__c
     </fields>
     <fields>
         <fullName>Expiration_Date_of_Bond__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expiration Date of Bond</label>
         <required>false</required>
@@ -541,6 +537,7 @@ Permit__r.Business_License__c
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>External Id of the record</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>255</length>
@@ -552,6 +549,7 @@ Permit__r.Business_License__c
     </fields>
     <fields>
         <fullName>External_source_c__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>External_source__c</label>
         <length>255</length>
@@ -573,6 +571,7 @@ Permit__r.Business_License__c
     </fields>
     <fields>
         <fullName>IDECC_Approval_Expiration_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>IDECC Approval Expiration Date</label>
         <required>false</required>
@@ -640,7 +639,7 @@ Permit__r.Business_License__c
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-	<fields>
+    <fields>
         <fullName>License_Business_Name__c</fullName>
         <externalId>false</externalId>
         <formula>License__r.Ultimate_Parent_Account__r.Name</formula>
@@ -741,6 +740,16 @@ Permit__r.Business_License__c
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Manual_Fee_Generation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used to generate the manual fee generation for back office. Onset to true will be triggered to create fee records.</description>
+        <externalId>false</externalId>
+        <label>Manual Fee Generation</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Methods_of_Disposition__c</fullName>
         <externalId>false</externalId>
         <label>Methods of Disposition</label>
@@ -779,31 +788,6 @@ Permit__r.Business_License__c
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-     <fields>
-        <fullName>Renewal_Id__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>true</externalId>
-        <label>Renewal Id</label>
-        <length>60</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
-        <fullName>Release__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Release</label>
-        <length>20</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Military__c</fullName>
@@ -869,16 +853,6 @@ FALSE)))))))</formula>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Manual_Fee_Generation__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Used to generate the manual fee generation for back office. Onset to true will be triggered to create fee records.</description>
-        <externalId>false</externalId>
-        <label>Manual Fee Generation</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Number_of_Cremations__c</fullName>
@@ -1048,6 +1022,7 @@ FALSE)))))))</formula>
     </fields>
     <fields>
         <fullName>Phone__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Phone</label>
         <required>false</required>
@@ -1138,13 +1113,39 @@ FALSE)))))))</formula>
         </valueSet>
     </fields>
     <fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Renewal_Expiration_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expiration Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Renewal_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Renewal Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Renewal_Reinstatement_Type__c</fullName>
@@ -1211,6 +1212,7 @@ FALSE)))))))</formula>
     <fields>
         <fullName>Renewed_Date__c</fullName>
         <description>Renewed date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Renewed Date</label>
         <required>false</required>
@@ -1303,6 +1305,7 @@ FALSE)))))))</formula>
     </fields>
     <fields>
         <fullName>Surety_Bond_Company_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Name of Bond Company</label>
         <length>255</length>
@@ -1312,7 +1315,7 @@ FALSE)))))))</formula>
         <type>Text</type>
         <unique>false</unique>
     </fields>
-     <fields>
+    <fields>
         <fullName>Time_to_Renewal_Reinstatement__c</fullName>
         <externalId>false</externalId>
         <formula>IF( ISBLANK(Renewed_Date__c) , TODAY() - DATEVALUE(CreatedDate), Renewed_Date__c - DATEVALUE(CreatedDate))</formula>
@@ -1390,7 +1393,20 @@ FALSE)))))))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Validation_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Validation Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Website__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Website</label>
         <required>false</required>
@@ -2112,6 +2128,37 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>Paper</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Permit_Type__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3150,6 +3197,37 @@ FALSE)))))))</formula>
             </values>
             <values>
                 <fullName>Paper</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Permit_Type__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

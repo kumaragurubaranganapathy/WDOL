@@ -110,6 +110,7 @@
         <fullName>BGBK__Effective_Date__c</fullName>
         <defaultValue>Today()</defaultValue>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Effective Date</label>
         <required>false</required>
@@ -135,6 +136,7 @@
     <fields>
         <fullName>BGBK__Reason__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Reason</label>
         <length>255</length>
@@ -144,7 +146,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	    
     <fields>
         <fullName>BGBK__Receipt__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>

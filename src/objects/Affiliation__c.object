@@ -77,6 +77,7 @@
     </fields>
     <fields>
         <fullName>Company__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Company</label>
         <length>80</length>
@@ -100,6 +101,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
     <fields>
         <fullName>Contact_s_City__c</fullName>
         <description>Contact&apos;s City</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact&apos;s City</label>
         <length>80</length>
@@ -111,6 +113,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
     <fields>
         <fullName>Contact_s_Credential_Number__c</fullName>
         <description>Contact&apos;s Credential Number</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact&apos;s Credential Number</label>
         <length>80</length>
@@ -122,6 +125,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
     <fields>
         <fullName>Contact_s_Email__c</fullName>
         <description>Contact&apos;s Email</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact&apos;s Email</label>
         <required>false</required>
@@ -132,6 +136,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
     <fields>
         <fullName>Contact_s_Last_Name__c</fullName>
         <description>Contact&apos;s Last Name</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact&apos;s Last Name</label>
         <length>80</length>
@@ -143,6 +148,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
     <fields>
         <fullName>Contact_s_Middle_Name__c</fullName>
         <description>Contact&apos;s Middle Name</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact&apos;s Middle Name</label>
         <length>80</length>
@@ -154,6 +160,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
     <fields>
         <fullName>Contact_s_Name__c</fullName>
         <description>Contact&apos;s Name</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact&apos;s First Name</label>
         <length>255</length>
@@ -165,6 +172,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
     <fields>
         <fullName>Contact_s_Phone__c</fullName>
         <description>Contact&apos;s Phone</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact&apos;s Phone</label>
         <required>false</required>
@@ -174,6 +182,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
     <fields>
         <fullName>Contact_s_Street_Address__c</fullName>
         <description>Contact&apos;s Street Address</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact&apos;s Street Address</label>
         <length>255</length>
@@ -185,6 +194,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
     <fields>
         <fullName>Contact_s_Zip_code__c</fullName>
         <description>Zip code</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Contact&apos;s Zip code</label>
         <length>10</length>
@@ -234,6 +244,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
     <fields>
         <fullName>End_date__c</fullName>
         <description>End date of the Affiliation</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>End date</label>
         <required>false</required>
@@ -244,6 +255,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
         <fullName>External_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>External Id of the record</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>255</length>
@@ -255,6 +267,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
     <fields>
         <fullName>External_Source__c</fullName>
         <description>External Source</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>External Source</label>
         <length>255</length>
@@ -304,6 +317,7 @@ IF(Permit_Plan_Review__c!= null,  Permit_Plan_Review__r.MUSW__Applicant__r.Id,nu
     <fields>
         <fullName>Start_Date__c</fullName>
         <description>Start Date of affiliation</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>

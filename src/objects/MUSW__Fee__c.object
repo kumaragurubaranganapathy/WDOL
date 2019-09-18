@@ -263,10 +263,12 @@
     <fields>
         <fullName>AFRS_AR_Code__c</fullName>
         <defaultValue>&quot;AFR-MG-MS-SubSrc-GLAR&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xAFRS AR Code</label>
         <length>200</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -275,10 +277,12 @@
     <fields>
         <fullName>AFRS_Cash_Code__c</fullName>
         <defaultValue>&quot;AFR-MG-MS-SubSrc-GLCH&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xAFRS Cash Code</label>
         <length>200</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -287,10 +291,12 @@
     <fields>
         <fullName>AFRS_Revenue_Code__c</fullName>
         <defaultValue>&quot;AFR-MG-MS-SubSrc-GLRV&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>AFRS Revenue Code</label>
         <length>200</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -310,9 +316,11 @@
     </fields>
     <fields>
         <fullName>AR_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>AR Date</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -322,6 +330,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>ARed</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -364,10 +373,12 @@
     </fields>
     <fields>
         <fullName>Account_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Account Number</label>
         <length>15</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -378,6 +389,7 @@
         <externalId>false</externalId>
         <label>Account</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -428,6 +440,7 @@
         <externalId>false</externalId>
         <label>Activity</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -458,6 +471,7 @@
         <externalId>false</externalId>
         <label>Agency Code</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -473,6 +487,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -480,10 +495,12 @@
     </fields>
     <fields>
         <fullName>Agency__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Agency</label>
         <length>200</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -494,6 +511,7 @@
         <externalId>false</externalId>
         <label>Application Method</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -508,6 +526,7 @@
         <externalId>false</externalId>
         <label>Program Type</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -521,6 +540,7 @@
         <externalId>false</externalId>
         <label>Appropriation</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -546,6 +566,7 @@
         <relationshipLabel>Fees (Cart Cashier)</relationshipLabel>
         <relationshipName>CashierFees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -556,6 +577,7 @@
         <deprecated>false</deprecated>
         <externalId>false</externalId>
         <label>Exclude from Cart</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -570,6 +592,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -577,9 +600,11 @@
     <fields>
         <fullName>BGBK__Due_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -594,6 +619,7 @@
         <relationshipLabel>Invoiced Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -608,6 +634,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -617,6 +644,7 @@
         <externalId>false</externalId>
         <label>Board</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -634,10 +662,12 @@
     </fields>
     <fields>
         <fullName>Budget_Period__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Budget Period</label>
         <length>80</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -652,6 +682,7 @@
         <relationshipLabel>Fees (Contact)</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -665,6 +696,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -701,6 +733,7 @@
         <externalId>false</externalId>
         <label>Department</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -725,6 +758,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -733,10 +767,27 @@
         <fullName>External_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>External Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Fee_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>External Id</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Fee Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -744,10 +795,12 @@
     </fields>
     <fields>
         <fullName>Fee_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fee Name</label>
         <length>100</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -789,6 +842,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -802,6 +856,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -813,6 +868,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -825,6 +881,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -840,6 +897,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -875,6 +933,7 @@
         <externalId>false</externalId>
         <label>License Type</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -904,6 +963,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -918,6 +978,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -931,6 +992,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -944,6 +1006,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -959,6 +1022,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -967,10 +1031,12 @@
         <fullName>MUSW__Check_Number__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Used for the simple implementation of historical data.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Check Number</label>
         <length>25</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -987,6 +1053,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1001,6 +1068,7 @@
         <referenceTo>MUSW__Complaint__c</referenceTo>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1008,9 +1076,11 @@
     <fields>
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
@@ -1019,9 +1089,11 @@
         <fullName>MUSW__Effective_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Effective Date</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -1037,6 +1109,7 @@
         <relationshipLabel>Fees Paid</relationshipLabel>
         <relationshipName>Fees_Paid</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1045,9 +1118,11 @@
         <fullName>MUSW__Fee_Paid_Date2__c</fullName>
         <deprecated>false</deprecated>
         <description>Date the fee payment was made. The System populates the value when a payment is allocated to the fee.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fee Paid Date</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -1056,9 +1131,11 @@
         <fullName>MUSW__Fee_Paid_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fee Paid Date/Time</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
@@ -1070,6 +1147,7 @@
         <description>The system sets this value to true when the outstanding amount is $0.</description>
         <externalId>false</externalId>
         <label>Paid in Full</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -1081,6 +1159,7 @@
         <externalId>false</externalId>
         <label>Group</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1111,6 +1190,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1126,6 +1206,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1141,6 +1222,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1171,6 +1253,7 @@
         <relationshipLabel>Fees Paid</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1179,9 +1262,11 @@
         <fullName>MUSW__Payment_Comment__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Used for the simple implementation of historical data.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Payment Comments</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
@@ -1193,6 +1278,7 @@
         <externalId>false</externalId>
         <label>Payment Method</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1233,6 +1319,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1247,6 +1334,7 @@
         <referenceTo>MUSW__Permit__c</referenceTo>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1261,6 +1349,7 @@
         <referenceTo>MUSW__Planning_Application__c</referenceTo>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1275,6 +1364,7 @@
         <precision>16</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1289,6 +1379,7 @@
         <precision>12</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1304,6 +1395,7 @@
         <precision>4</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1313,10 +1405,12 @@
         <fullName>MUSW__Receipt_Number__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Used for the simple implementation of historical data.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Receipt Number</label>
         <length>50</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1333,6 +1427,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1344,6 +1439,7 @@
         <externalId>false</externalId>
         <label>Type</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1415,6 +1511,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1429,6 +1526,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1442,6 +1540,7 @@
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1460,10 +1559,12 @@
     </fields>
     <fields>
         <fullName>Profession_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Profession Code</label>
         <length>5</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1486,6 +1587,7 @@
         <externalId>false</externalId>
         <label>Project</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1649,6 +1751,19 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Renewal_Application__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Is the fee related to a  renewal application?</description>
@@ -1658,6 +1773,7 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1671,16 +1787,19 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
         <relationshipLabel>Fees</relationshipLabel>
         <relationshipName>Fees</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Revenue_Account_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Revenue Account Code</label>
         <length>200</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1689,10 +1808,12 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
     <fields>
         <fullName>Revenue_Code__c</fullName>
         <defaultValue>&quot;AFR-MG-MS-SubSrc-GLRV&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Revenue Code</label>
         <length>200</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1701,10 +1822,12 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
     <fields>
         <fullName>TMS_AR_Code__c</fullName>
         <defaultValue>&quot;TMS-MG-MS-SubSrc-GLAR&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xTMS AR Code</label>
         <length>200</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1713,10 +1836,12 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
     <fields>
         <fullName>TMS_Cash_Code__c</fullName>
         <defaultValue>&quot;TMS-MG-MS-SubSrc-GLCH&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xTMS Cash Code</label>
         <length>200</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1725,10 +1850,12 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
     <fields>
         <fullName>TMS_Revenue_Code__c</fullName>
         <defaultValue>&quot;TMS-MG-MS-SubSrc-GLRV&quot;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>xTMS Revenue Code</label>
         <length>200</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1736,10 +1863,12 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
     </fields>
     <fields>
         <fullName>Upsert_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Upsert ID</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1753,6 +1882,7 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1765,6 +1895,7 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1772,10 +1903,12 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
     <fields>
         <fullName>Voided_Receipt_Check_Number__c</fullName>
         <description>2011</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Voided Receipt Check Number</label>
         <length>50</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1784,10 +1917,12 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
     <fields>
         <fullName>Voided_Receipt_Payment_Method__c</fullName>
         <description>2011 : Voided Receipt Payment Method</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Voided Receipt Payment Method</label>
         <length>50</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1796,10 +1931,12 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
     <fields>
         <fullName>Voucher_Number__c</fullName>
         <description>1966</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Voucher #</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1820,10 +1957,12 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
     </fields>
     <fields>
         <fullName>portal_name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fee Description</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1846,8 +1985,12 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
         <columns>TMS_Revenue_Code__c</columns>
         <columns>TMS_Cash_Code__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>contains</operation>
+            <value>angus</value>
+        </filters>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>License_Assignment_Queue_Fee</fullName>
@@ -1880,10 +2023,12 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
     <nameField>
         <displayFormat>{0000000}</displayFormat>
         <label>Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Fees</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>MUSW__All</fullName>
@@ -2476,7 +2621,7 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
         <errorConditionFormula>AND( MUSW__Fee_Paid__c = true,  ISCHANGED(MUSW__Amount__c ), PRIORVALUE(MUSW__Amount__c ) &gt; MUSW__Amount__c)</errorConditionFormula>
         <errorMessage>Cannot change the Amount below the Amount already paid on this Fee. Increase Amount or click Cancel</errorMessage>
     </validationRules>
-     <validationRules>
+    <validationRules>
         <fullName>License_Needed_on_Compliance_Fee</fullName>
         <active>true</active>
         <description>When the complaint or Inspection field is not blank the license needs to be populated.</description>

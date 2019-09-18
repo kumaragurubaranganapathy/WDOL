@@ -89,6 +89,7 @@
         <deprecated>false</deprecated>
         <description>1. In checklist admin page, set actual value in Answer Type is required. 
 2. In Question Checklist page,  when saving answer record, save this actual value to the answer record.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Displayed Value</label>
         <length>255</length>
@@ -124,6 +125,7 @@
     <fields>
         <fullName>BGCK__Tip__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Tip</label>
         <length>255</length>
@@ -136,6 +138,7 @@
         <fullName>BGCK__Track_No__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>20</length>
@@ -154,6 +157,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Internal Value</label>
         <type>Text</type>
     </nameField>

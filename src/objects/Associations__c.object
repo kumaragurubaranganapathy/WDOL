@@ -80,7 +80,20 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-	<fields>
+    <fields>
+        <fullName>Affiliated_Location__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Affiliated Location</label>
+        <referenceTo>MUSW__Parcel__c</referenceTo>
+        <relationshipLabel>License Relationships</relationshipLabel>
+        <relationshipName>License_Relationships</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Association_Type__c</fullName>
         <externalId>false</externalId>
         <label>Association Type</label>
@@ -138,10 +151,70 @@
                     <label>Camping Resort Salesperson</label>
                 </value>
                 <value>
+                    <fullName>Academic Intern</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Academic Intern</label>
+                </value>
+                <value>
+                    <fullName>Additional Salesperson</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Additional Salesperson</label>
+                </value>
+                <value>
+                    <fullName>Appraiser Trainee Transfer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Appraiser Trainee Transfer</label>
+                </value>
+                <value>
                     <fullName>Authorized Location</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
                     <label>Authorized Location</label>
+                </value>
+                <value>
+                    <fullName>Branch Establishment</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Branch Establishment</label>
+                </value>
+                <value>
+                    <fullName>Cemetery</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Cemetery</label>
+                </value>
+                <value>
+                    <fullName>Combined Lic-Director</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Combined Lic-Director</label>
+                </value>
+                <value>
+                    <fullName>Combined Lic-Director Intern</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Combined Lic-Director Intern</label>
+                </value>
+                <value>
+                    <fullName>Combined Lic-Embalmer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Combined Lic-Embalmer</label>
+                </value>
+                <value>
+                    <fullName>Combined Lic-Embalmer Intern</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Combined Lic-Embalmer Intern</label>
+                </value>
+                <value>
+                    <fullName>Crematory</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Crematory</label>
                 </value>
                 <value>
                     <fullName>Designated Controlling Person</fullName>
@@ -155,36 +228,129 @@
                     <isActive>false</isActive>
                     <label>Designated Person</label>
                 </value>
+                <value>
+                    <fullName>Disposition Permit</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Disposition Permit</label>
+                </value>
+                <value>
+                    <fullName>EIT Transfer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>EIT Transfer</label>
+                </value>
+                <value>
+                    <fullName>Embalmer Intern Transfer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Embalmer Intern Transfer</label>
+                </value>
+                <value>
+                    <fullName>Embalmer Sponsor</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Embalmer Sponsor</label>
+                </value>
+                <value>
+                    <fullName>Embalmer Transfer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Embalmer Transfer</label>
+                </value>
+                <value>
+                    <fullName>Establishment</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Establishment</label>
+                </value>
+                <value>
+                    <fullName>Funeral Director Intern Transfer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Funeral Director Intern Transfer</label>
+                </value>
+                <value>
+                    <fullName>Funeral Director Sponsor</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Funeral Director Sponsor</label>
+                </value>
+                <value>
+                    <fullName>Funeral Director Transfer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Funeral Director Transfer</label>
+                </value>
+                <value>
+                    <fullName>General Appraiser Supervisor</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>General Appraiser Supervisor</label>
+                </value>
+                <value>
+                    <fullName>General Appraiser Transfer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>General Appraiser Transfer</label>
+                </value>
+                <value>
+                    <fullName>LS Transfer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>LS Transfer</label>
+                </value>
+                <value>
+                    <fullName>LSIT Transfer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>LSIT Transfer</label>
+                </value>
+                <value>
+                    <fullName>Licensed Appraiser Transfer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Licensed Appraiser Transfer</label>
+                </value>
+                <value>
+                    <fullName>PE Transfer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>PE Transfer</label>
+                </value>
+                <value>
+                    <fullName>Prearrangement</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Prearrangement</label>
+                </value>
+                <value>
+                    <fullName>Professional Engineer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Professional Engineer</label>
+                </value>
+                <value>
+                    <fullName>Professional Land Surveyor</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Professional Land Surveyor</label>
+                </value>
+                <value>
+                    <fullName>Residential Appraiser Supervisor</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Residential Appraiser Supervisor</label>
+                </value>
+                <value>
+                    <fullName>Residential Appraiser Transfer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Residential Appraiser Transfer</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
-    <fields>
-        <fullName>Child_License__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Child License</label>
-        <referenceTo>MUSW__License2__c</referenceTo>
-        <relationshipLabel>License Relationships (Parent Licenses)</relationshipLabel>
-        <relationshipName>Associations1</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-		<fullName>Affiliated_Location__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Affiliated Location</label>
-        <referenceTo>MUSW__Parcel__c</referenceTo>
-        <relationshipLabel>License Relationships</relationshipLabel>
-        <relationshipName>License_Relationships</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-   
     <fields>
         <fullName>Branch_License_Admin__c</fullName>
         <defaultValue>false</defaultValue>
@@ -193,6 +359,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Child_Association_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Child Association Type</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Child_Contact_Name__c</fullName>
@@ -220,6 +398,7 @@
     </fields>
     <fields>
         <fullName>Child_License_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Child License Email</label>
         <required>false</required>
@@ -253,6 +432,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Child_License__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Child License</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipLabel>License Relationships (Parent Licenses)</relationshipLabel>
+        <relationshipName>Associations1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Child_Licensee_Name__c</fullName>
         <externalId>false</externalId>
         <formula>Child_License__r.MUSW__Applicant__r.Full_Name__c</formula>
@@ -266,6 +458,7 @@
     </fields>
     <fields>
         <fullName>Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Comments</label>
         <length>32768</length>
@@ -289,6 +482,7 @@
     </fields>
     <fields>
         <fullName>End_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>End Date</label>
         <required>false</required>
@@ -307,6 +501,7 @@
     </fields>
     <fields>
         <fullName>Location_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Location Address</label>
         <length>255</length>
@@ -318,6 +513,7 @@
     </fields>
     <fields>
         <fullName>Location_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Location City</label>
         <length>255</length>
@@ -342,6 +538,7 @@
     </fields>
     <fields>
         <fullName>Location_Zip_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Location Zip Code</label>
         <length>10</length>
@@ -362,11 +559,24 @@
     </fields>
     <fields>
         <fullName>Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Name</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Association_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Parent Association Type</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -385,6 +595,7 @@
     </fields>
     <fields>
         <fullName>Parent_License_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Parent License Email</label>
         <required>false</required>
@@ -444,8 +655,34 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Refund_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Refund Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Source_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Source Id</label>
         <length>18</length>
@@ -457,6 +694,7 @@
     </fields>
     <fields>
         <fullName>Source_Table__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Source Table</label>
         <length>255</length>
@@ -468,6 +706,7 @@
     </fields>
     <fields>
         <fullName>Start_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -552,6 +791,7 @@
     </fields>
     <fields>
         <fullName>Submitted_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Submitted Date</label>
         <required>false</required>
@@ -560,20 +800,8 @@
         <type>Date</type>
     </fields>
     <fields>
-	<fullName>Refund_Id__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>true</externalId>
-        <label>Refund Id</label>
-        <length>60</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
         <fullName>invitation_send_date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>invitation send date</label>
         <required>false</required>

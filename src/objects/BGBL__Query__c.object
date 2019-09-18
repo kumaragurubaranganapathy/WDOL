@@ -59,6 +59,7 @@
     <fields>
         <fullName>BGBL__LIMIT_Filter__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Limit the maximum number of results returned  eg. 100</inlineHelpText>
         <label>LIMIT</label>
@@ -113,6 +114,7 @@ TEXT( BGBL__ORDER_BY_Direction__c ) == &quot;Ascending&quot;,
     <fields>
         <fullName>BGBL__ORDER_BY_Filter__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Use to return query results in a particular order eg. CloseDate, CreatedDate</inlineHelpText>
         <label>ORDER BY Fields</label>
@@ -125,6 +127,7 @@ TEXT( BGBL__ORDER_BY_Direction__c ) == &quot;Ascending&quot;,
     <fields>
         <fullName>BGBL__Object_Fields__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Field names should be comma-separated and use full API name (e.g., &quot;__c&quot; for custom fields)
 
@@ -139,6 +142,7 @@ Example:
     <fields>
         <fullName>BGBL__Object_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Full API Object Name eg. MUSW__Permit__c</inlineHelpText>
         <label>Object Name</label>
@@ -152,6 +156,7 @@ Example:
         <fullName>BGBL__Track_No__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>20</length>
@@ -164,6 +169,7 @@ Example:
         <fullName>BGBL__Tracking_Number__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Query No.</label>
         <length>80</length>
@@ -175,6 +181,7 @@ Example:
     <fields>
         <fullName>BGBL__WHERE_Filter__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>eg. Region__c = &apos;East&apos; AND ModifiedDate = LAST_YEAR</inlineHelpText>
         <label>WHERE Filter</label>
@@ -195,6 +202,7 @@ Example:
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Description</label>
         <type>Text</type>
     </nameField>

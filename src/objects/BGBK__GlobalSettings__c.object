@@ -27,6 +27,7 @@
         <fullName>BGBK__Exclude_Children__c</fullName>
         <deprecated>false</deprecated>
         <description>Comma-delimited list of child relationship names to be excluded from DRE DataContext. For example, MUSW__Fees__r,CustomObjects__r (notice, use &apos;__r&apos;).</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Comma-delimited list of child relationship names to be excluded from DRE DataContext. For example, MUSW__Fees__r,CustomObjects__r (notice, use &apos;__r&apos;)</inlineHelpText>
         <label>Exclude Children</label>
@@ -40,6 +41,7 @@
         <fullName>BGBK__Parents__c</fullName>
         <deprecated>false</deprecated>
         <description>Used in DRE1 to define objects that need to trigger DRE events.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>List of comma-delimited custom objects that you can relate children records to. If no standard parent is found, objects as not-null lookup listed here first are selected as parents first.</inlineHelpText>
         <label>Additional Parents</label>

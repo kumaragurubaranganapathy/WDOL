@@ -58,6 +58,7 @@
     <fields>
         <fullName>MUSW__Label__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Label</label>
         <length>50</length>
@@ -69,6 +70,7 @@
     <fields>
         <fullName>MUSW__Record_Id__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Rec Id</label>
         <length>30</length>
@@ -80,6 +82,7 @@
     <fields>
         <fullName>MUSW__Style__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>eg Custom44 (Permit&apos;s Tab style)</inlineHelpText>
         <label>Style</label>
@@ -93,6 +96,7 @@
         <fullName>MUSW__Tracking_Number__c</fullName>
         <deprecated>false</deprecated>
         <description>external id not set, because we don&apos;t want to find it in searches</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Track No.</label>
         <length>15</length>
@@ -105,6 +109,7 @@
         <fullName>MUSW__Viewed_DateTime__c</fullName>
         <defaultValue>Now()</defaultValue>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Viewed DateTime</label>
         <required>false</required>
@@ -113,6 +118,7 @@
     </fields>
     <label>Recent Item</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <type>Text</type>
     </nameField>

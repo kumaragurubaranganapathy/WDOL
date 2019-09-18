@@ -7,6 +7,7 @@
         <fullName>MUSW__Field_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>Name of the destination field (eg. GIS.DBO.Owners.AssesseeName)</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Name of the destination field (eg. GIS.DBO.Owners.AssesseeName)</inlineHelpText>
         <label>REST Field Name</label>
@@ -20,6 +21,7 @@
         <fullName>MUSW__Mapped_Object_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>API name of the mapped object (e.g. MUSW__Parcel__c)</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>API name of the mapped object (e.g. MUSW__Parcel__c)</inlineHelpText>
         <label>Mapped Object Name</label>
@@ -33,6 +35,7 @@
         <fullName>MUSW__REST_Setting_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>Name of the associated REST Setting</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Name of the associated REST Setting</inlineHelpText>
         <label>REST Setting Name</label>
@@ -46,6 +49,7 @@
         <fullName>MUSW__Transform_Instructions__c</fullName>
         <deprecated>false</deprecated>
         <description>Uses MS Access formulas to specify the source-to-dest data transformation. To concatenate text/values use the CONCAT function. eg. CONCAT(field1, &quot; &quot;, REPLACE(field2, &quot;xx&quot;, &quot;&quot;)). All fields referenced here must be from the Mapped Object</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Uses MS Access formulas to specify the source-to-dest data transformation. To concatenate text/values use the CONCAT function. eg. CONCAT(field1, &quot; &quot;, REPLACE(field2, &quot;xx&quot;, &quot;&quot;)). All fields referenced here must be from the Mapped Object</inlineHelpText>
         <label>Transform Instructions</label>

@@ -50,6 +50,18 @@
         <visibleLines>3</visibleLines>
     </fields>
     <label>Journal Voucher meta</label>
+    <listViews>
+        <fullName>Batch_Time</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>Doc_Number_Prefix__c</columns>
+        <columns>JV_Document_Title__c</columns>
+        <columns>Batch_Time__c</columns>
+        <columns>Is_Active__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Batch Time</label>
+        <language>en_US</language>
+    </listViews>
     <pluralLabel>Journal Voucher meta</pluralLabel>
     <visibility>Public</visibility>
 </CustomObject>

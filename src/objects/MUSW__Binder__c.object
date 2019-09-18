@@ -60,6 +60,7 @@
         <fullName>MUSW__Closed_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Date the case was closed.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Closed Date</label>
         <required>false</required>
@@ -72,6 +73,7 @@
         <fullName>MUSW__Comments__c</fullName>
         <deprecated>false</deprecated>
         <description>User comments about the case.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Comments</label>
         <length>32000</length>
@@ -101,6 +103,7 @@
         <fullName>MUSW__Due_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Date a response or closure for an adjudication case is due before it gets escalated.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date to complete or respond by...</inlineHelpText>
         <label>Next Due Date</label>
@@ -115,6 +118,7 @@
         <defaultValue>TODAY()</defaultValue>
         <deprecated>false</deprecated>
         <description>Date the adjudication case was opened. This is usually after a series of unresolved violations on a complaint case.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Filing Date</label>
         <required>false</required>
@@ -155,6 +159,7 @@
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
         <description>Unique identifier for an adjudication case or docket.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Case Number</label>
         <length>40</length>
@@ -214,6 +219,7 @@
     </fields>
     <label>Binder</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Title</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>

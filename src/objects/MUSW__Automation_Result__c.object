@@ -283,6 +283,7 @@
         <fullName>MUSW__Expression__c</fullName>
         <deprecated>false</deprecated>
         <description>Javascript formula expression for Assess rules only. BasicGov formulas in the Value field is the equivalent for all other rule types.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expression</label>
         <length>32000</length>
@@ -294,6 +295,7 @@
         <fullName>MUSW__Field__c</fullName>
         <deprecated>false</deprecated>
         <description>Specifies where to store the result value of this operation.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Field</label>
         <length>80</length>
@@ -452,6 +454,7 @@
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
         <description>Unique number of the filter that is used to migrate rule filter data.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>20</length>
@@ -464,6 +467,7 @@
         <fullName>MUSW__Transform__c</fullName>
         <deprecated>false</deprecated>
         <description>Instructions for applied result records before being saved. This allows more than 1 record to be applied within a single group.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Transform</label>
         <length>255</length>
@@ -476,6 +480,7 @@
         <fullName>MUSW__Value__c</fullName>
         <deprecated>false</deprecated>
         <description>Specifies a static value, merge field, and/or formula outcome value to calculate.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Value</label>
         <length>32000</length>

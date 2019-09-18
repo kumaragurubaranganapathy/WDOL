@@ -60,6 +60,7 @@
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
         <description>Track unique comments created in Bluebeam tools</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <inlineHelpText>Unique id of a Bluebeam Comment</inlineHelpText>
         <label>Bluebeam CommentId</label>
@@ -73,6 +74,7 @@
     <fields>
         <fullName>MUSW__BG_Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32768</length>
@@ -85,6 +87,7 @@
         <fullName>MUSW__BG_File_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>Name of the file on Bluebeam</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>File Name</label>
         <length>255</length>
@@ -227,6 +230,7 @@
     <fields>
         <fullName>MUSW__Issued_Number__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issued Number</label>
         <length>25</length>
@@ -238,6 +242,7 @@
     </fields>
     <label>Comment</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Comment Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

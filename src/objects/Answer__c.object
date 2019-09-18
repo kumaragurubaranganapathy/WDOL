@@ -57,6 +57,7 @@
     <fields>
         <fullName>Answer_Group__c</fullName>
         <description>Auto number dynamically generated from apex class to determine the group the Answer belongs to</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Answer Group</label>
         <length>255</length>
@@ -68,6 +69,7 @@
     <fields>
         <fullName>Answer_Text__c</fullName>
         <description>The actual answer that the user responded with for the question</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Answer Text</label>
         <length>32000</length>
@@ -91,6 +93,7 @@ NULL
     <fields>
         <fullName>Comment__c</fullName>
         <description>Additional comment to particular answer record</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Comment</label>
         <length>2000</length>
@@ -101,6 +104,7 @@ NULL
     <fields>
         <fullName>External_id_of_Question__c</fullName>
         <description>External id of Question</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>External id of Question</label>
         <length>255</length>
@@ -125,6 +129,7 @@ NULL
     <fields>
         <fullName>NewQuestiongroup__c</fullName>
         <description>This is for decoupling questions from answers</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>NewQuestiongroup</label>
         <length>50</length>
@@ -148,6 +153,7 @@ NULL
     <fields>
         <fullName>Parent_Question_External_Id__c</fullName>
         <description>Parent Question External Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Parent Question External Id</label>
         <length>255</length>
@@ -171,6 +177,7 @@ NULL
     <fields>
         <fullName>Question_Body__c</fullName>
         <description>This is the question that was answered</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Question Body</label>
         <length>10000</length>

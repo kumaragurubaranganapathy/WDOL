@@ -63,6 +63,7 @@
         <fullName>MUSW__Category__c</fullName>
         <deprecated>false</deprecated>
         <description>Type of Work Item</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Category</label>
         <length>40</length>
@@ -87,6 +88,7 @@
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
         <description>User friendly name of Work Item</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>80</length>
@@ -137,6 +139,7 @@
     <fields>
         <fullName>MUSW__Price_Formula__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Price Formula</label>
         <length>3900</length>
@@ -162,6 +165,7 @@
         <fullName>MUSW__Record_Type__c</fullName>
         <deprecated>false</deprecated>
         <description>Name of Work Item Record Type</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Record Type</label>
         <length>80</length>
@@ -171,9 +175,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>MUSW__Required__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Required</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>MUSW__Sub_Category__c</fullName>
         <deprecated>false</deprecated>
         <description>Work Item field grouping</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Sub Category</label>
         <length>40</length>
@@ -322,6 +336,7 @@
     </fields>
     <fields>
         <fullName>Work_Item_Formula__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Work Item Formula</label>
         <required>false</required>
@@ -335,6 +350,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Master Work Item List Name</label>
         <type>Text</type>
     </nameField>

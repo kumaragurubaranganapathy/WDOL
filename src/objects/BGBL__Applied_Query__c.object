@@ -154,6 +154,7 @@
         <fullName>BGBL__Iterate_Parent_Lookup__c</fullName>
         <deprecated>false</deprecated>
         <description>Field API Name of the lookup to the primary parent (record being attached to).</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Field API Name of the lookup to the primary parent (record being attached to).</inlineHelpText>
         <label>Iterate Parent Lookup</label>
@@ -166,6 +167,7 @@
     <fields>
         <fullName>BGBL__Object_Name_Alias__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Use when querying against the same object more than once.  For example, all Accounts are queried for address, but a specific Account is also queried to provide your organization&apos;s information for all letters (e.g., return address):  this field = &quot;MyOrg&quot;</inlineHelpText>
         <label>Object Name (Alias)</label>
@@ -178,6 +180,7 @@
     <fields>
         <fullName>BGBL__Object_Name_Plural__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The parent&apos;s relationship name to this assigned query object. For custom fields, ensure to include pre &quot;MUSW__&quot; and postfix &quot;__r&quot;. eg. MUSW__listname__r. For standard objects use plural name, eg Tasks</inlineHelpText>
         <label>Object Name (Plural)</label>
@@ -203,6 +206,7 @@
         <fullName>BGBL__Parent_Record_Type_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>Parent RecordType name. Useful when recordtypes are distinct from one another, and configured letters do not make sense for other record types.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Name of the record type on the parent record that this letter applies to. Only applicable on the primary applied query. Only impacts list of letters on manual request page. If blank, letter is available for all record types.</inlineHelpText>
         <label>Parent Record Type Name</label>
@@ -227,6 +231,7 @@
     <fields>
         <fullName>BGBL__Select_Fields__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Field values to display when user chooses Iterate letter (letter with multiple copies). This field is case-sensitive and its values must be identical to the field API names. eg. MUSW__Contact__r.Name, MUSW__Contact__r.MailingStreet</inlineHelpText>
         <label>Child Select Fields</label>
@@ -238,6 +243,7 @@
         <fullName>BGBL__Track_No__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>20</length>

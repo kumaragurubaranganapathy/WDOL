@@ -230,6 +230,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>12000</length>
@@ -303,6 +304,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Expiration_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expiration Date</label>
         <required>false</required>
@@ -313,6 +315,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Issued_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issued Date</label>
         <required>false</required>
@@ -324,6 +327,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Issued_No__c</fullName>
         <deprecated>false</deprecated>
         <description>DO NOT USE</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issued No. DO NOT USE</label>
         <length>15</length>
@@ -336,6 +340,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Issued_Number__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issued No.</label>
         <length>15</length>
@@ -411,6 +416,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Renewal_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date License was renewed or extended</inlineHelpText>
         <label>Renewed Date</label>
@@ -517,6 +523,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Tracking_Number__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>License No.</label>
         <length>50</length>
@@ -579,6 +586,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <language>en_US</language>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Subject</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

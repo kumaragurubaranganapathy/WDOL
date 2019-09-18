@@ -93,20 +93,6 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-	<fields>
-        <fullName>Customer_Envelope__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Customer Envelope</label>
-        <referenceTo>Customer_Envelope__c</referenceTo>
-        <relationshipLabel>Account Maintenance Requests</relationshipLabel>
-        <relationshipName>Requests</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
     <fields>
         <fullName>Applicant_Full_name__c</fullName>
         <externalId>false</externalId>
@@ -118,20 +104,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Exam__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Exam</label>
-        <referenceTo>Education_History__c</referenceTo>
-        <relationshipLabel>Requests</relationshipLabel>
-        <relationshipName>Requests</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Application_Type__c</fullName>
@@ -160,7 +132,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	
     <fields>
         <fullName>Assigned_Resource__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -175,19 +146,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-	<fields>
-        <fullName>Validation_Number__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Validation Number</label>
-        <length>20</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Contact__c</fullName>
@@ -205,7 +163,22 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Customer_Envelope__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Customer Envelope</label>
+        <referenceTo>Customer_Envelope__c</referenceTo>
+        <relationshipLabel>Account Maintenance Requests</relationshipLabel>
+        <relationshipName>Requests</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Description__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>131072</length>
@@ -229,9 +202,10 @@
             <restricted>true</restricted>
             <valueSetName>Duration</valueSetName>
         </valueSet>
-    </fields>	
+    </fields>
     <fields>
         <fullName>End_Time__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>End Time</label>
         <required>false</required>
@@ -240,7 +214,7 @@
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
-	<fields>
+    <fields>
         <fullName>Exam_Type__c</fullName>
         <externalId>false</externalId>
         <formula>Text(Exam__r.Exam_Type__c)</formula>
@@ -252,7 +226,22 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Exam__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Exam</label>
+        <referenceTo>Education_History__c</referenceTo>
+        <relationshipLabel>Requests</relationshipLabel>
+        <relationshipName>Requests</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Form_JSON__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Form JSON</label>
         <length>131072</length>
@@ -276,22 +265,6 @@
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>Landscape Architect</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cemetery</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cremated Remains Disposition Permit</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Crematory</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
                 <controllingFieldValue>Engineers</controllingFieldValue>
                 <valueName>Engineering/Land Surveying Company</valueName>
@@ -305,16 +278,20 @@
                 <valueName>Professional Land Surveyor</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Update Company Information</controllingFieldValue>
+                <valueName>Update Company Information</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
                 <valueName>Notary Public</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist In Training</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
@@ -325,12 +302,16 @@
                 <valueName>Timeshare Salesperson</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect</valueName>
+                <controllingFieldValue>Update Legal Name</controllingFieldValue>
+                <valueName>Update Legal Name</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect Firm</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Controlling Person</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -365,12 +346,44 @@
                 <valueName>Temporary State Licensed</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect Firm</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cemetery</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cremated Remains Disposition Permit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineering Corporations</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineer in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Professional Engineer</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -409,44 +422,20 @@
                 <valueName>Prearrangement Funeral Services</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineering Corporations</valueName>
+                <controllingFieldValue>Update Business Name</controllingFieldValue>
+                <valueName>Update Business Name</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineer in Training</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Professional Engineer</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist In Training</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Controlling Person</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Update Company Information</controllingFieldValue>
-                <valueName>Update Company Information</valueName>
-            </valueSettings>
-			<valueSettings>
-            <controllingFieldValue>Update Business Name</controllingFieldValue>
-            <valueName>Update Business Name</valueName>
-        </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Update Legal Name</controllingFieldValue>
-                <valueName>Update Legal Name</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Designer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -463,18 +452,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-	<fields>
-        <fullName>Contact_Email__c</fullName>
-    <externalId>false</externalId>
-    <formula>Contact__r.Email</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Contact Email</label>
-    <required>false</required>
-    <trackHistory>false</trackHistory>
-    <trackTrending>false</trackTrending>
-    <type>Text</type>
-    <unique>false</unique>
     </fields>
     <fields>
         <fullName>Number_Of_Advertisements_To_Be_Reviewed__c</fullName>
@@ -533,6 +510,7 @@
     </fields>
     <fields>
         <fullName>Request_Applicant__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Request Applicant</label>
         <required>false</required>
@@ -553,6 +531,32 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Responsible_Party_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Responsible Party Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Account</fullName>
+                    <default>false</default>
+                    <label>Account</label>
+                </value>
+                <value>
+                    <fullName>Contact</fullName>
+                    <default>false</default>
+                    <label>Contact</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Service_Request_Type__c</fullName>
@@ -584,6 +588,7 @@
     <fields>
         <fullName>Start_Time__c</fullName>
         <description>Start Time</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Time</label>
         <required>false</required>
@@ -616,7 +621,7 @@
                     <default>false</default>
                     <label>Deny</label>
                 </value>
-				<value>
+                <value>
                     <fullName>Abandoned</fullName>
                     <default>false</default>
                     <label>Abandoned</label>
@@ -662,6 +667,19 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Validation_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Validation Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <label>Request</label>
     <listViews>
@@ -885,7 +903,7 @@
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
-		<webLinks>
+    <webLinks>
         <fullName>Letter</fullName>
         <availability>online</availability>
         <displayType>button</displayType>

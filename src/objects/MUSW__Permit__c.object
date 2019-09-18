@@ -95,6 +95,7 @@ TEXT(MONTH(TODAY()))&amp;&quot;&amp;day=&quot;&amp; TEXT(DAY(TODAY())), &quot;(I
     <fields>
         <fullName>MUSW__Additional_Details__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Additional Details</label>
         <length>32000</length>
@@ -175,6 +176,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Certificate_Issued__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Certificate Issued</label>
         <required>false</required>
@@ -299,6 +301,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__DateCompleted__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completion Date</label>
         <required>false</required>
@@ -324,6 +327,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Expiration_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expiration Date</label>
         <required>false</required>
@@ -349,6 +353,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Issued_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Latest Permit Issued Date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issue Date</label>
         <required>false</required>
@@ -359,6 +364,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Issued_Number__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Issued No.</label>
         <length>15</length>
@@ -371,6 +377,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Job_Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Job Description</label>
         <length>32000</length>
@@ -382,6 +389,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Job_Location_City__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>City</label>
         <length>50</length>
@@ -420,6 +428,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Job_Location_Post_Zip_Code__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Zip / Post Code</label>
         <length>10</length>
@@ -807,6 +816,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Job_Location_Street__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Street</label>
         <length>50</length>
@@ -819,6 +829,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Job_Location_Unit__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Unit</label>
         <length>16</length>
@@ -1000,6 +1011,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Renewal_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date Permit renewed or extended</inlineHelpText>
         <label>Renewed Date</label>
@@ -1134,6 +1146,7 @@ IF(ISPICKVAL(MUSW__Current_Status__c , &quot;Closed&quot;), &quot;Closed&quot;,
         <fullName>MUSW__Tracking_Number__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Permit No.</label>
         <length>15</length>

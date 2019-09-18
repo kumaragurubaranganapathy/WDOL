@@ -7,6 +7,7 @@
         <fullName>BGBK__Account_Field_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>The field API name for the account lookup (e.g. MUSW__Account__c) to define the responsible party (account).</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The field API for Account lookup (e.g. MUSW__Account__c)</inlineHelpText>
         <label>Account Field Name</label>
@@ -20,6 +21,7 @@
         <fullName>BGBK__Contact_Field_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>The field API name for the contact lookup (e.g. MUSW__Applicant__c) to define responsible party (contact).</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The field API for Contact lookup (e.g. MUSW__Applicant__c)</inlineHelpText>
         <label>Contact Field Name</label>
@@ -33,6 +35,7 @@
         <fullName>BGBK__Responsible_Party_Type_Field__c</fullName>
         <deprecated>false</deprecated>
         <description>The picklist field API name for the responsible party types: account or contact.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The picklist field API Name for Responsible Party types</inlineHelpText>
         <label>Responsible Party Type Field</label>
@@ -45,6 +48,7 @@
     <fields>
         <fullName>External_Id__c</fullName>
         <description>External Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>50</length>

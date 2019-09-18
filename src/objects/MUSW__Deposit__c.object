@@ -38,7 +38,11 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Deposit_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -110,6 +114,7 @@
         <externalId>false</externalId>
         <label>Agency Code</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -125,6 +130,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -139,6 +145,7 @@
         <relationshipLabel>Deposits (Cart Cashier)</relationshipLabel>
         <relationshipName>CashierDeposits</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -153,6 +160,7 @@
         <relationshipLabel>Deposits</relationshipLabel>
         <relationshipName>Deposits</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -166,6 +174,7 @@
         <relationshipLabel>Deposits</relationshipLabel>
         <relationshipName>Deposits</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -183,9 +192,11 @@
     </fields>
     <fields>
         <fullName>Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -201,18 +212,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Reapply_Amount__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>Reapply Amount</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Deposit_Cash__c</fullName>
@@ -231,6 +230,7 @@
         <externalId>false</externalId>
         <label>Document Type</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -281,80 +281,12 @@
     </fields>
     <fields>
         <fullName>Fine_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fine Number</label>
         <length>50</length>
         <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Over_Short_Revenue_Code__c</fullName>
-        <description>Captures the overshort revenue code from the Master Configuration list</description>
-        <externalId>false</externalId>
-        <label>Over Short Revenue Code</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Over_short_Old_Amount__c</fullName>
-        <description>Captures the Overshort old amount.</description>
-        <externalId>false</externalId>
-        <label>Over short Old Amount</label>
-        <precision>13</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Overshort_Amount__c</fullName>
-        <defaultValue></defaultValue>
-        <description>Captures Over short amount</description>
-        <externalId>false</externalId>
-        <label>Overshort Amount</label>
-        <precision>13</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Overshort_Modified__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Set to true if the overshort is modified.</description>
-        <externalId>false</externalId>
-        <label>Overshort Modified</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Previous_Overshort_Updated__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Set to true if the previous over short is modified</description>
-        <externalId>false</externalId>
-        <label>Previous Overshort Updated</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>RevenueCodeSubString__c</fullName>
-        <description>Captures the revenue code over short</description>
-        <externalId>false</externalId>
-        <formula>LEFT( Over_Short_Revenue_Code__c , 3)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>RevenueCodeSubString</label>
-        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -365,6 +297,7 @@
         <externalId>false</externalId>
         <label>Form Number</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -830,94 +763,42 @@
                 </value>
             </valueSetDefinition>
             <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Delegated Municipality</controllingFieldValue>
-                <controllingFieldValue>Program Unknown</controllingFieldValue>
                 <controllingFieldValue>Manufactured Homes</controllingFieldValue>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <controllingFieldValue>Program Unknown</controllingFieldValue>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <controllingFieldValue>Delegated Municipality</controllingFieldValue>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
                 <valueName>Form Unknown</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Delegated Municipality</controllingFieldValue>
-                <controllingFieldValue>Program Unknown</controllingFieldValue>
                 <controllingFieldValue>Manufactured Homes</controllingFieldValue>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
                 <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <controllingFieldValue>Program Unknown</controllingFieldValue>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <controllingFieldValue>Delegated Municipality</controllingFieldValue>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
                 <valueName>Other</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>LA-656-002A</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>LA-656-003</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>LA-656-004</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>LA-656-005</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>CEM-650-004</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>CEM-650-005</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>CEM-650-007</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>CEM-650-008</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>CEM-650-009</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>CEM-650-010</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>CEM-650-011</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>CEM-650-013</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>CEM-650-016</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
@@ -960,52 +841,48 @@
                 <valueName>NP-659-008</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>GEO-637-001</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>ENLS-651-024</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>GEO-637-003</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>ENLS-651-026</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>GEO-637-004</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>ENLS-651-027</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>GEO-637-006</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>ENLS-651-028</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>GEO-637-007</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>ENLS-651-030</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>GEO-637-008</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>GEO-637-009</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>ENLS-651-033</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
                 <valueName>TS-624-001</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>AR-636-002</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>APR-622-188</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>AR-636-003</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>APR-622-189</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>AR-636-004</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>APR-622-190</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>AR-636-021</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>APR-622-191</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1044,12 +921,108 @@
                 <valueName>APR-622-187</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>AR-636-002</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>AR-636-003</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>AR-636-004</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>AR-636-021</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>CC-612-001</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>CC-612-017</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>CEM-650-004</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>CEM-650-005</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>CEM-650-007</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>CEM-650-008</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>CEM-650-009</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>CEM-650-010</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>CEM-650-011</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>CEM-650-013</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>CEM-650-016</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>ENLS-651-014</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>ENLS-651-015</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>ENLS-651-016</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>ENLS-651-017</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>ENLS-651-018</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>ENLS-651-019</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>ENLS-651-020</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>ENLS-651-021</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>ENLS-651-022</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>ENLS-651-023</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>ENLS-651-031</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -1100,88 +1073,48 @@
                 <valueName>FE-653-017</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>ENLS-651-014</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>GEO-637-001</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>ENLS-651-015</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>GEO-637-003</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>ENLS-651-016</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>GEO-637-004</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>ENLS-651-017</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>GEO-637-006</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>ENLS-651-018</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>GEO-637-007</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>ENLS-651-019</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>GEO-637-008</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>ENLS-651-020</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>GEO-637-009</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>ENLS-651-021</valueName>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>LA-656-002A</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>ENLS-651-022</valueName>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>LA-656-003</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>ENLS-651-023</valueName>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>LA-656-004</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>ENLS-651-031</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>APR-622-188</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>APR-622-189</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>APR-622-190</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>APR-622-191</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>ENLS-651-024</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>ENLS-651-026</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>ENLS-651-027</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>ENLS-651-028</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>ENLS-651-030</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>ENLS-651-033</valueName>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>LA-656-005</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -1194,6 +1127,7 @@
         <relationshipLabel>Deposits</relationshipLabel>
         <relationshipName>Deposits</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1207,6 +1141,7 @@
         <relationshipLabel>Deposits</relationshipLabel>
         <relationshipName>Deposits</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1216,6 +1151,7 @@
         <externalId>false</externalId>
         <label>License Type</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1224,20 +1160,9 @@
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>Landscape Architect</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Crematory</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cremated Remains Disposition Permit</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cemetery</valueName>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineering/Land Surveying Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
@@ -1248,15 +1173,6 @@
                 <valueName>Professional Land Surveyor</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineering/Land Surveying Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Delegated Municipality</controllingFieldValue>
-                <valueName>Delegated Municipality Agent</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Manufactured Homes</controllingFieldValue>
                 <valueName>Manufactured Homes Dealer</valueName>
             </valueSettings>
@@ -1265,28 +1181,28 @@
                 <valueName>Notary Public</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist In Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
                 <valueName>Timeshare Company</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect</valueName>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Salesperson</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Appraiser Trainee</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Controlling Person</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1294,11 +1210,15 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Appraiser Trainee</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
                 <valueName>Certified General Appraiser</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Temporary Certified General</valueName>
+                <valueName>Certified Residential Appraiser</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1306,7 +1226,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Certified Residential Appraiser</valueName>
+                <valueName>Temporary Certified General</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -1317,12 +1237,44 @@
                 <valueName>Temporary State Licensed</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <valueName>Camping Resort Salesperson</valueName>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cemetery</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cremated Remains Disposition Permit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Delegated Municipality</controllingFieldValue>
+                <valueName>Delegated Municipality Agent</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineer in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Professional Engineer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Academic Intern</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -1330,7 +1282,15 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Academic Intern</valueName>
+                <valueName>Embalmer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Embalmer Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Funeral Director</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -1342,47 +1302,23 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Embalmer Intern</valueName>
+                <valueName>Funeral Establishment Branch</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
                 <valueName>Prearrangement Funeral Services</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Funeral Establishment Branch</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Funeral Director</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist In Training</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Embalmer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineer in Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Professional Engineer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Controlling Person</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Designer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -1397,6 +1333,7 @@
         <relationshipLabel>Deposits</relationshipLabel>
         <relationshipName>Deposits</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1410,6 +1347,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1421,6 +1359,7 @@
         <description>The Fee that shares the same parent record as the deposit will be paid automatically when the fee is created.</description>
         <externalId>false</externalId>
         <label>Auto Draw Down</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -1449,6 +1388,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1463,6 +1403,7 @@
         <relationshipLabel>Deposits</relationshipLabel>
         <relationshipName>Deposits</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1476,6 +1417,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1489,6 +1431,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1502,6 +1445,7 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1530,16 +1474,81 @@
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Over_Short_Revenue_Code__c</fullName>
+        <description>Captures the overshort revenue code from the Master Configuration list</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Over Short Revenue Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Over_short_Old_Amount__c</fullName>
+        <description>Captures the Overshort old amount.</description>
+        <externalId>false</externalId>
+        <label>Over short Old Amount</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Overshort_Amount__c</fullName>
+        <description>Captures Over short amount</description>
+        <externalId>false</externalId>
+        <label>Overshort Amount</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Overshort_Modified__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Set to true if the overshort is modified.</description>
+        <externalId>false</externalId>
+        <label>Overshort Modified</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Previous_Overshort_Updated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Set to true if the previous over short is modified</description>
+        <externalId>false</externalId>
+        <label>Previous Overshort Updated</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Professional_code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Professional Code</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1550,6 +1559,7 @@
         <externalId>false</externalId>
         <label>Program type</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1631,10 +1641,37 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Reapply_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Reapply Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>RevenueCodeSubString__c</fullName>
+        <description>Captures the revenue code over short</description>
+        <externalId>false</externalId>
+        <formula>LEFT( Over_Short_Revenue_Code__c , 3)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RevenueCodeSubString</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Route_to_Miscellaneous_queue__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Route to Miscellaneous queue</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -1646,6 +1683,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1656,6 +1694,7 @@
         <externalId>false</externalId>
         <label>Status</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1676,13 +1715,15 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
         <fullName>ValidationNumber__c</fullName>
         <description>for Capturing the Validation Number from the Customer Envelope record</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Validation Number</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1697,6 +1738,7 @@
         <relationshipLabel>Deposits</relationshipLabel>
         <relationshipName>Deposits</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1704,10 +1746,12 @@
     <fields>
         <fullName>Voucher_Number__c</fullName>
         <description>1966</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Voucher #</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1754,6 +1798,7 @@
         <externalId>false</externalId>
         <label>Program Type</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1762,22 +1807,52 @@
             <valueSetName>Application_Type</valueSetName>
         </valueSet>
     </fields>
-	 
     <label>Deposit</label>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-		<columns>ValidationNumber__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>ValidationNumber__c</columns>
         <columns>Amount__c</columns>
         <columns>MUSW__Available_Amount__c</columns>
         <columns>MUSW__Paid_Amount__c</columns>
         <columns>MUSW__Unpaid_Amount__c</columns>
+        <columns>License__c</columns>
+        <columns>License_type__c</columns>
+        <columns>Professional_code__c</columns>
+        <columns>wadol_Professional_Code__c</columns>
+        <columns>wadol_Program_Type__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <listViews>
+        <fullName>All_Detailed</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>ValidationNumber__c</columns>
+        <columns>Amount__c</columns>
+        <columns>MUSW__Available_Amount__c</columns>
+        <columns>MUSW__Paid_Amount__c</columns>
+        <columns>MUSW__Unpaid_Amount__c</columns>
+        <columns>License_type__c</columns>
+        <columns>wadol_Program_Type__c</columns>
+        <columns>Document_type__c</columns>
+        <columns>License__c</columns>
+        <columns>Contact__c</columns>
+        <columns>Professional_code__c</columns>
+        <columns>wadol_Professional_Code__c</columns>
+        <columns>Route_to_Miscellaneous_queue__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>MUSW__Available_Amount__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <label>All - Detailed</label>
+    </listViews>
+    <listViews>
         <fullName>Appraisal_Management_Company_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <filterScope>Queue</filterScope>
         <label>Appraisal Management Company Queue</label>
@@ -1788,7 +1863,7 @@
     </listViews>
     <listViews>
         <fullName>Camping_Resorts_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <filterScope>Queue</filterScope>
         <label>Camping Resorts Queue</label>
@@ -1799,7 +1874,7 @@
     </listViews>
     <listViews>
         <fullName>Deposit_Records_From_Customer_Envelope</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <columns>Form_number__c</columns>
         <columns>Program_type__c</columns>
@@ -1811,7 +1886,7 @@
     </listViews>
     <listViews>
         <fullName>Miscellaneous_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <filterScope>Queue</filterScope>
         <label>Miscellaneous</label>
@@ -1822,7 +1897,7 @@
     </listViews>
     <listViews>
         <fullName>Notaries_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <filterScope>Queue</filterScope>
         <label>Notaries Queue</label>
@@ -1833,8 +1908,9 @@
     </listViews>
     <listViews>
         <fullName>RBS_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
+        <columns>CREATED_DATE</columns>
         <filterScope>Queue</filterScope>
         <label>RBS Queue</label>
         <queue>RBS_Queue</queue>
@@ -1844,7 +1920,7 @@
     </listViews>
     <listViews>
         <fullName>Real_Estate_Appraiser_Courses_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <filterScope>Queue</filterScope>
         <label>Real Estate Appraiser Courses Queue</label>
@@ -1855,7 +1931,7 @@
     </listViews>
     <listViews>
         <fullName>Real_Estate_Appraisers_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <filterScope>Queue</filterScope>
         <label>Real Estate Appraisers Queue</label>
@@ -1866,7 +1942,7 @@
     </listViews>
     <listViews>
         <fullName>Timeshare_Queue_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <filterScope>Queue</filterScope>
         <label>Timeshare Queue</label>
@@ -1877,7 +1953,7 @@
     </listViews>
     <listViews>
         <fullName>Unknown_Contacts_Deposit</fullName>
-		<columns>NAME</columns>
+        <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
         <filterScope>Queue</filterScope>
         <label>Unknown Contacts</label>
@@ -1887,7 +1963,9 @@
         </sharedTo>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Deposit Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>

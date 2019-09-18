@@ -57,6 +57,7 @@
     <fields>
         <fullName>Account_Code__c</fullName>
         <description>Account Code</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Account Code</label>
         <length>50</length>
@@ -69,6 +70,7 @@
     <fields>
         <fullName>Account_Number__c</fullName>
         <description>Account Number</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Account Number</label>
         <length>15</length>
@@ -240,6 +242,7 @@
     <fields>
         <fullName>Expiry_Date__c</fullName>
         <description>Fee Expiry Date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expiry Date</label>
         <required>false</required>
@@ -250,6 +253,7 @@
     <fields>
         <fullName>Fee_Type__c</fullName>
         <description>Fee Name on the Cart</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fee Name on the Cart</label>
         <length>255</length>
@@ -262,6 +266,7 @@
     <fields>
         <fullName>Parent_Status_Field_API_Name__c</fullName>
         <description>Parent Status Field API Name</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Parent Status Field API Name</label>
         <length>80</length>
@@ -274,6 +279,7 @@
     <fields>
         <fullName>Rule_Name__c</fullName>
         <description>Rules Name referenced from Rules Engine to generate Fees</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Rule Name</label>
         <length>255</length>
@@ -286,6 +292,7 @@
     <fields>
         <fullName>Status_value_Before_Fee_Generation__c</fullName>
         <description>Status value Before Fee Generation</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Status value Before Fee Generation</label>
         <length>50</length>
@@ -341,6 +348,7 @@
         </sharedTo>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Fee Table ID</label>
         <trackHistory>true</trackHistory>
         <type>Text</type>

@@ -107,6 +107,7 @@
     <fields>
         <fullName>Error_Message__c</fullName>
         <description>To add the error message that needs to be displayed on client side.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Error Message</label>
         <length>255</length>
@@ -119,6 +120,7 @@
         <fullName>External_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>Unique External ID</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <inlineHelpText>Unique External ID</inlineHelpText>
         <label>External Id</label>
@@ -131,6 +133,7 @@
     <fields>
         <fullName>Label__c</fullName>
         <description>This is the label for the field which appears on the portal.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>This is the label for the field which appears on the portal.</inlineHelpText>
         <label>Label</label>
@@ -254,6 +257,7 @@
     <fields>
         <fullName>Regex_Validation__c</fullName>
         <description>To add the regex validation formula to do client validations.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Regex Validation</label>
         <length>255</length>
@@ -296,6 +300,7 @@
     </fields>
     <fields>
         <fullName>ValidationCriteria__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ValidationCriteria</label>
         <length>50</length>
@@ -332,6 +337,7 @@
         <language>en_US</language>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Field Name</label>
         <type>Text</type>
     </nameField>

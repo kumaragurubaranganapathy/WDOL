@@ -84,6 +84,7 @@
     </fields>
     <fields>
         <fullName>Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date</label>
         <required>false</required>
@@ -230,6 +231,7 @@
         <columns>Number_of_documents__c</columns>
         <columns>DHP__c</columns>
         <columns>Lockbox_Envelope__c</columns>
+        <columns>CREATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -255,9 +257,9 @@
     <pluralLabel>Customer Envelopes</pluralLabel>
     <searchLayouts>
         <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
-        <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
         <lookupDialogsAdditionalFields>Validation_number__c</lookupDialogsAdditionalFields>
         <searchResultsAdditionalFields>Validation_number__c</searchResultsAdditionalFields>
     </searchLayouts>

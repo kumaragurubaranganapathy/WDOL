@@ -57,6 +57,7 @@
     <fields>
         <fullName>Attachment_Names__c</fullName>
         <description>Attachment Names</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Attachment Names</label>
         <length>255</length>
@@ -68,6 +69,7 @@
     <fields>
         <fullName>Attachment_Parent_Id__c</fullName>
         <description>Attachment Parent Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Attachment Parent Id</label>
         <length>18</length>
@@ -79,6 +81,7 @@
     <fields>
         <fullName>Body__c</fullName>
         <description>Body of email</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Body</label>
         <length>131072</length>
@@ -102,6 +105,7 @@
     <fields>
         <fullName>Email_Address__c</fullName>
         <description>Email Address</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email Address</label>
         <required>false</required>
@@ -135,6 +139,7 @@ IF( NOT(ISBLANK(Renewal_Application__c)),Renewal_Application__c,null
     <fields>
         <fullName>Email_Template_Name__c</fullName>
         <description>Email Template Name</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email Template Name</label>
         <length>255</length>
@@ -146,6 +151,7 @@ IF( NOT(ISBLANK(Renewal_Application__c)),Renewal_Application__c,null
     <fields>
         <fullName>Email_Template_Parent_Id__c</fullName>
         <description>Email Template Parent Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email Template Parent Id</label>
         <length>18</length>
@@ -157,6 +163,7 @@ IF( NOT(ISBLANK(Renewal_Application__c)),Renewal_Application__c,null
     <fields>
         <fullName>Email__c</fullName>
         <description>Email field but no relation to any contact</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email</label>
         <required>false</required>
@@ -229,6 +236,7 @@ IF( NOT(ISBLANK(Renewal_Application__c)),Renewal_Application__c,null
     <fields>
         <fullName>Param1__c</fullName>
         <description>Parameter of the Email</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Param1</label>
         <length>255</length>
@@ -240,6 +248,7 @@ IF( NOT(ISBLANK(Renewal_Application__c)),Renewal_Application__c,null
     <fields>
         <fullName>Param2__c</fullName>
         <description>Parameter of the Email</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Param2</label>
         <length>255</length>
@@ -251,6 +260,7 @@ IF( NOT(ISBLANK(Renewal_Application__c)),Renewal_Application__c,null
     <fields>
         <fullName>Param3__c</fullName>
         <description>Parameter of the Email</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Param3</label>
         <length>255</length>
@@ -262,6 +272,7 @@ IF( NOT(ISBLANK(Renewal_Application__c)),Renewal_Application__c,null
     <fields>
         <fullName>Param4__c</fullName>
         <description>Parameter of the Email</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Param4</label>
         <length>255</length>
@@ -312,6 +323,7 @@ IF( NOT(ISBLANK(Renewal_Application__c)),Renewal_Application__c,null
     <fields>
         <fullName>Subject__c</fullName>
         <description>Subject of email</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Subject</label>
         <length>255</length>
@@ -323,6 +335,7 @@ IF( NOT(ISBLANK(Renewal_Application__c)),Renewal_Application__c,null
     <fields>
         <fullName>Task_Subject__c</fullName>
         <description>Task Subject</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Task Subject</label>
         <length>255</length>

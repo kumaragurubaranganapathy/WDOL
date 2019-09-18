@@ -80,6 +80,7 @@
     </fields>
     <fields>
         <fullName>Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Notes</label>
         <length>32768</length>
@@ -120,12 +121,13 @@
         <type>Currency</type>
     </fields>
     <label>Miscellaneous Fee</label>
-	<listViews>
+    <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <type>Text</type>
     </nameField>

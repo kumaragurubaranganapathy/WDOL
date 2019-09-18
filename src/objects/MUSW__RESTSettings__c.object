@@ -6,6 +6,7 @@
         <fullName>MUSW__Admin_Email__c</fullName>
         <deprecated>false</deprecated>
         <description>Recipient of notifications and errors</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Recipient of notifications and errors</inlineHelpText>
         <label>Admin Email Address</label>
@@ -45,6 +46,7 @@
         <fullName>MUSW__Database_Operation__c</fullName>
         <deprecated>false</deprecated>
         <description>Insert, Update, or Upsert</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Allowed values: Insert, Update, Upsert</inlineHelpText>
         <label>Database Operation</label>
@@ -72,6 +74,7 @@
         <fullName>MUSW__Field_Map__c</fullName>
         <deprecated>false</deprecated>
         <description>The expected BasicGov name to (:) the external REST Service parameter name. e.g. city:City, street:Address, ... The current supported fields are street, city, state, country, and zip.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The expected BasicGov field name to (:) the external REST Service parameter name. Multiple mappings are separated by a comma. e.g. city:City, street:Address, ... The current supported fields are street, city, state, country, and zip.</inlineHelpText>
         <label>Request Field Map</label>
@@ -86,6 +89,7 @@
         <defaultValue>&apos;MUSW.GISAuthentication&apos;</defaultValue>
         <deprecated>false</deprecated>
         <description>Class name for GIS Authentication Interface implementation</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>GIS Authentication Class</label>
         <length>100</length>
@@ -98,6 +102,7 @@
         <fullName>MUSW__ID_Field__c</fullName>
         <deprecated>false</deprecated>
         <description>REST Service unique ID field (e.g. OBJECTID)</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>REST Service unique ID field (e.g. OBJECTID)</inlineHelpText>
         <label>Request ID Field</label>
@@ -111,6 +116,7 @@
         <fullName>MUSW__ID_Map__c</fullName>
         <deprecated>false</deprecated>
         <description>The expected BasicGov name to (:) the external REST Service parameter name. e.g. MUSW__Parcel_Number2__c:APN.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The expected BasicGov name to (:) the external REST Service parameter name. e.g. MUSW__Parcel_Number2__c:APN. The parameter has to be already defined in Traverse Instructions.</inlineHelpText>
         <label>Request ID Map</label>
@@ -124,6 +130,7 @@
         <fullName>MUSW__Last_Run_DateTime__c</fullName>
         <deprecated>false</deprecated>
         <description>Date reference for queries</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Defines a date reference for queries. Unless manually changed by user this is the last run date</inlineHelpText>
         <label>Benchmark Date</label>
@@ -134,6 +141,7 @@
     <fields>
         <fullName>MUSW__Last_Run_Date_Field_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Request Last Run Date Field Name</label>
         <length>100</length>
@@ -147,6 +155,7 @@
         <defaultValue>&quot;GET&quot;</defaultValue>
         <deprecated>false</deprecated>
         <description>Type of method to get the token for GIS Server (local hosted)</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Type of method to get the token for GIS Server (local hosted)</inlineHelpText>
         <label>Method Type</label>
@@ -160,6 +169,7 @@
         <fullName>MUSW__Password__c</fullName>
         <deprecated>false</deprecated>
         <description>AES-128 encrypted password</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Password</label>
         <length>100</length>
@@ -172,6 +182,7 @@
         <fullName>MUSW__Pull_Condition__c</fullName>
         <deprecated>false</deprecated>
         <description>The condition for Pull requests. This would be the SQL where-clause for Pull operation</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Example: TYPE = &apos;Test&apos; and STATUS = &apos;Open&apos;</inlineHelpText>
         <label>Pull Condition</label>
@@ -185,6 +196,7 @@
         <fullName>MUSW__Push_Condition__c</fullName>
         <deprecated>false</deprecated>
         <description>The condition for Pull requests. This would be the SQL where-clause for Pull operation</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Example: MUSW__Status__c = &apos;Open&apos;</inlineHelpText>
         <label>Push Condition</label>
@@ -198,6 +210,7 @@
         <fullName>MUSW__Sync_Operation__c</fullName>
         <deprecated>false</deprecated>
         <description>This field is only used by Sync applications (e.g. GIS Sync)</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Allowed values: Push Only, Pull Only, Push then Pull, Pull then Push. This field is only used by Sync applications</inlineHelpText>
         <label>Sync Operation</label>
@@ -210,6 +223,7 @@
     <fields>
         <fullName>MUSW__Token__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Token</label>
         <length>100</length>
@@ -222,6 +236,7 @@
         <fullName>MUSW__Traverse_Instructions__c</fullName>
         <deprecated>false</deprecated>
         <description>A Traverse Instruction contains key names to JSON paths. e.g. x$candidates[*].location.x. Multiple Instructions are separated using a semi-colon. Refer to the Wiki for details.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>A Traverse Instruction contains key names to JSON paths. e.g. x$candidates[*].location.x. Multiple Instructions are separated using a semi-colon. Refer to the Wiki for details.</inlineHelpText>
         <label>Response Traverse Instructions</label>
@@ -235,6 +250,7 @@
         <fullName>MUSW__URL__c</fullName>
         <deprecated>false</deprecated>
         <description>The URL for the REST Server. Important: You need to use https whenever possible, especially if the service is protected (eg. token-based).</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The URL for the REST Server. Important: You need to use https whenever possible, especially if the service is protected (eg. token-based).</inlineHelpText>
         <label>URL</label>
@@ -255,6 +271,7 @@
         <fullName>MUSW__Username__c</fullName>
         <deprecated>false</deprecated>
         <description>AES-128 encrypted username</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Username</label>
         <length>100</length>

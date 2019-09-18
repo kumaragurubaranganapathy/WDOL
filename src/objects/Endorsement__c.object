@@ -76,16 +76,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-	<fullName>Date_Granted__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Date Granted</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Application_BG__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -108,7 +98,18 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Date_Granted__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Date Granted</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Date_Removed__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Removed</label>
         <required>false</required>
@@ -118,6 +119,7 @@
     </fields>
     <fields>
         <fullName>Date_Requested_for_Adding_Endorsement__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Submitted Date</label>
         <required>false</required>
@@ -127,6 +129,7 @@
     </fields>
     <fields>
         <fullName>Date_Requested_for_Removing_Endorsement__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Requested for Removing Endorsement</label>
         <required>false</required>
@@ -136,6 +139,7 @@
     </fields>
     <fields>
         <fullName>Effective_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Current Issue Date</label>
         <required>false</required>
@@ -145,6 +149,7 @@
     </fields>
     <fields>
         <fullName>Electronic_Software_Provider__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Electronic Software Provider</label>
         <length>131072</length>
@@ -153,9 +158,10 @@
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
-	<fields>
+    <fields>
         <fullName>Endorsement_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Endorsement Id</label>
         <length>60</length>
@@ -332,20 +338,9 @@
         <unique>false</unique>
     </fields>
     <fields>
-	<fullName>Release__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Release</label>
-        <length>20</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>License_ID__c</fullName>
         <description>Foreign Key for Data Migration of Legacy Data</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>License ID</label>
         <length>50</length>
@@ -423,6 +418,18 @@
         <formula>TEXT(License__r.Application_Type__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Program Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -540,10 +547,12 @@
                 <value>
                     <fullName>Applicant Action</fullName>
                     <default>false</default>
+                    <label>Applicant Action</label>
                 </value>
                 <value>
                     <fullName>Third Party Action</fullName>
                     <default>false</default>
+                    <label>Third Party Action</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -552,9 +561,11 @@
     <nameField>
         <displayFormat>END-{0000000}</displayFormat>
         <label>Endorsement icon Name</label>
+        <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Endorsements</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Endorsement</fullName>
         <active>true</active>
@@ -909,6 +920,17 @@
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Status__c</picklist>
+            <values>
+                <fullName>Applicant Action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Third Party Action</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <searchLayouts>
         <searchResultsAdditionalFields>Endorsement_Type__c</searchResultsAdditionalFields>
@@ -918,7 +940,7 @@
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
-	<webLinks>
+    <webLinks>
         <fullName>Letter</fullName>
         <availability>online</availability>
         <displayType>button</displayType>

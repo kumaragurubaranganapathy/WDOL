@@ -47,6 +47,7 @@
         <fullName>BGBK__BG_Verification_PIN_API_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>Field API Name on the cart object. The value of this field is used for validation when a fee needs to be transferred from one cart to another.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>API Name of the Cart field containing the PIN to be shared for pushing fees to this Cart. Fees are transferred.</inlineHelpText>
         <label>Verification PIN API Name</label>
@@ -72,6 +73,7 @@
     <fields>
         <fullName>BGBK__Cart_Page__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Cart Page</label>
         <length>100</length>
@@ -104,6 +106,7 @@
         <fullName>BGBK__Payable_Parents__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>List of object API names whose Fees can be paid (e.g. Lien__c, Obj1__c). Super parents and Invoices need not be included.</inlineHelpText>
         <label>Payable Parents</label>
@@ -112,9 +115,23 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>BGBK__Payment_Batch_Scope__c</fullName>
+        <defaultValue>10</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Payment Batch Scope</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>BGBK__Payment_Gateway_Credentials__c</fullName>
         <deprecated>false</deprecated>
         <description>Used for a 3rd party payment gateway integration.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Payment Gateway Credentials</label>
         <required>false</required>
@@ -125,6 +142,7 @@
         <fullName>BGBK__Payment_Gateway_Data_Encryption_Key__c</fullName>
         <deprecated>false</deprecated>
         <description>Used for a 3rd party payment gateway integration.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Needs to be 16 characters long. Otherwise will throw error. Example can be &apos;BasicGovPayments&apos;</inlineHelpText>
         <label>Payment Gateway Data Encryption Key</label>
@@ -138,6 +156,7 @@
         <fullName>BGBK__Payment_Gateway_Form_Post_URL__c</fullName>
         <deprecated>false</deprecated>
         <description>Used for a 3rd party payment gateway integration.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Payment Gateway Form Post URL</label>
         <required>false</required>
@@ -175,9 +194,25 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>BGBK__Payment_Gateway_Response_Handler_Class__c</fullName>
+        <defaultValue>&apos;BGBK.MockPaymentGatewayResponseHandler&apos;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Class name which implements the IPaymentGatewayResponseHandler interface</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Class name which implements the IPaymentGatewayResponseHandler interface</inlineHelpText>
+        <label>Payment Gateway Response Handler Class</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>BGBK__Payment_Gateway_Response_Protocol__c</fullName>
         <deprecated>false</deprecated>
         <description>Used for a 3rd party payment gateway integration.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Payment Gateway Response Protocol</label>
         <required>false</required>
@@ -188,6 +223,7 @@
         <fullName>BGBK__Receipt_Sender_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>Display name of the OrgWide email address (return address) that needs to be used for sending emails to the receipt.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Display Name of the OrgWide Email Address that needs to be used for sending the receipt</inlineHelpText>
         <label>Receipt Sender Name</label>
@@ -200,6 +236,7 @@
     <fields>
         <fullName>sfxIdsfxId__c</fullName>
         <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>sfxId</label>
         <length>18</length>

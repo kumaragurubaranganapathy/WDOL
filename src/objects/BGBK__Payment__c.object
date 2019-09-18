@@ -324,6 +324,7 @@
         <fullName>BGBK__Description__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
@@ -336,6 +337,7 @@
         <defaultValue>Today()</defaultValue>
         <deprecated>false</deprecated>
         <description>Date of the payment transaction.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Effective Date</label>
         <required>false</required>
@@ -643,6 +645,7 @@
     <fields>
         <fullName>External_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>255</length>
@@ -783,6 +786,26 @@ IF(
         <type>Lookup</type>
     </fields>
     <label>Payment</label>
+    <listViews>
+        <fullName>Search</fullName>
+        <columns>NAME</columns>
+        <columns>BGBK__Amount__c</columns>
+        <columns>BGBK__Amount_Available__c</columns>
+        <columns>BGBK__Payment_Source__c</columns>
+        <columns>BGBK__Receipt__c</columns>
+        <columns>BGBK__Deposit__c</columns>
+        <columns>BGBK__Invoice__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>BGBK__Deposit__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>Search</label>
+    </listViews>
     <nameField>
         <displayFormat>PY-{000000}</displayFormat>
         <label>Number</label>

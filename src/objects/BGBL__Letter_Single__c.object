@@ -23,6 +23,7 @@
         <defaultValue>&quot;https://lettersingle.mybasicgov.com/RunBatchMergeJob/SingleLetter.aspx&quot;</defaultValue>
         <deprecated>false</deprecated>
         <description>Setting will overwrite default production single letter request endpoint to any url or ip of Admin&apos;s choosing (for testing and migration purposes).</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Setting will overwrite default production single letter request endpoint to any url or ip of Admin&apos;s choosing (for testing and migration purposes).</inlineHelpText>
         <label>Single Manual Letter Request Endpoint</label>
@@ -34,6 +35,7 @@
         <fullName>BGBL__Request_Objects_Additional__c</fullName>
         <deprecated>false</deprecated>
         <description>only needed when Attach Letter button refers to the letterAttach scontrol (as opposed to the LetterRequest VF page)</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>when including Attach Letter button to an object, add object API name to this list. comma-delimited. no spaces. do not include Permit2, License2, Application2. The shorter this list, the quicker the page loads.</inlineHelpText>
         <label>Single Man. Reqst Objects - Additional</label>

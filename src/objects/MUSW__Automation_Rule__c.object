@@ -195,6 +195,7 @@
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
         <description>This provides further details about the rule beyond the name. It may include the business case, or technical rationalization.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32000</length>
@@ -208,6 +209,7 @@
         <defaultValue>Today()</defaultValue>
         <deprecated>false</deprecated>
         <description>Date the rule starts to be active. If blank, rule is active as soon as made active.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Effective Date</label>
         <required>false</required>
@@ -219,6 +221,7 @@
         <fullName>MUSW__End_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Date the rule ceases to be active. If blank, rule is active forever.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>End Date</label>
         <required>false</required>
@@ -258,6 +261,7 @@
         <fullName>MUSW__Filter_Index_Long__c</fullName>
         <deprecated>false</deprecated>
         <description>Legacy</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Filter Index Long</label>
         <length>32000</length>
@@ -270,6 +274,7 @@
         <fullName>MUSW__Filter_Index__c</fullName>
         <deprecated>false</deprecated>
         <description>Legacy</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Filter Index</label>
         <length>255</length>
@@ -297,6 +302,7 @@
         <fullName>MUSW__Filter_Table_Index__c</fullName>
         <deprecated>false</deprecated>
         <description>Legacy</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Filter Table Index</label>
         <length>255</length>
@@ -353,6 +359,7 @@
         <fullName>MUSW__Result_Index__c</fullName>
         <deprecated>false</deprecated>
         <description>Legacy</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Result Index</label>
         <length>32000</length>
@@ -379,6 +386,7 @@
         <fullName>MUSW__Result_Table_Index__c</fullName>
         <deprecated>false</deprecated>
         <description>Legacy</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Result Table Index</label>
         <length>255</length>
@@ -393,6 +401,7 @@
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
         <description>The unique number assigned to the rule that it used for data migration.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>20</length>
@@ -468,6 +477,7 @@
         <language>en_US</language>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

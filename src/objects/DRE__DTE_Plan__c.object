@@ -58,6 +58,7 @@
     <fields>
         <fullName>DRE__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>1000</length>
@@ -68,6 +69,7 @@
     <fields>
         <fullName>DRE__Effective_End_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Effective End Date</label>
         <required>false</required>
@@ -78,6 +80,7 @@
         <fullName>DRE__Effective_Start_Date__c</fullName>
         <defaultValue>TODAY()</defaultValue>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Effective Start Date</label>
         <required>false</required>
@@ -96,6 +99,7 @@
     <fields>
         <fullName>DRE__JobId__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Job Id</label>
         <length>18</length>
@@ -107,6 +111,7 @@
     <fields>
         <fullName>DRE__Last_Run_DateTime__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Run Date</label>
         <required>false</required>
@@ -157,6 +162,7 @@
         <fullName>DRE__Uid__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Unique Id</label>
         <length>80</length>
@@ -177,6 +183,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Test Case Name</label>
         <type>Text</type>
     </nameField>

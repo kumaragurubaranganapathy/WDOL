@@ -57,6 +57,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>License_Expiry__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>License Date of Expiration</inlineHelpText>
         <label>License Expiry</label>
@@ -67,6 +68,7 @@
     </fields>
     <fields>
         <fullName>License_No__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <inlineHelpText>Tag or Pet ID.</inlineHelpText>
         <label>License No.</label>
@@ -109,6 +111,7 @@
     <fields>
         <fullName>MUSW__Breed__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Breed</label>
         <length>40</length>
@@ -121,6 +124,7 @@
     <fields>
         <fullName>MUSW__Color__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Color</label>
         <length>20</length>
@@ -133,6 +137,7 @@
     <fields>
         <fullName>MUSW__Date_of_Birth__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>If not known exactly, enter 01/01/YYYY for year only age.</inlineHelpText>
         <label>Date of Birth</label>
@@ -144,6 +149,7 @@
     <fields>
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
@@ -179,6 +185,7 @@
     <fields>
         <fullName>MUSW__Microchip_Number__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <inlineHelpText>AVID - 9 digits XXX*XXX*XXX
 ISO - 10 digits
@@ -270,6 +277,7 @@ ISO-EU - 15 digits</inlineHelpText>
         <language>en_US</language>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

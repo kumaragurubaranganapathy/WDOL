@@ -58,6 +58,7 @@
         <fullName>MUSW__Parameters__c</fullName>
         <deprecated>false</deprecated>
         <description>pv0=xyz&amp;pv1=abc&amp;...</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>pv0=xyz&amp;pv1=abc&amp;...</inlineHelpText>
         <label>Report Parameters</label>
@@ -70,6 +71,7 @@
     <fields>
         <fullName>MUSW__Recipient__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email Recipient</label>
         <length>255</length>
@@ -81,6 +83,7 @@
     <fields>
         <fullName>MUSW__Template_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email Template Name</label>
         <length>80</length>
@@ -91,6 +94,7 @@
     </fields>
     <label>Report Trigger</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Report Name</label>
         <type>Text</type>
     </nameField>
