@@ -56,6 +56,18 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Case_Safe_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Id)</formula>
+        <label>Case Safe Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fieldSets>
         <fullName>BGBK__Existing_Receipt_Confirmation</fullName>
         <description>Existing receipt fields for Cart Confirmation page</description>
