@@ -324,22 +324,21 @@ padding: 4px 5px;
     .THIS .bottom-border .row-margin {
         margin-bottom: 0.5em;
     }
-    .THIS table.slds-table, .THIS table.slds-table {
-        width: 100% !important;
+    .THIS #data-table table.slds-table, .THIS #data-table table.slds-table {
         border: 0;
     }
-    .THIS .slds-scrollable_y {
-        width: 100% !important;
+    .THIS #data-table table.slds-table, .THIS #data-table table.slds-table, .THIS #data-table .slds-scrollable_y {
+        width: 100% !important;    
     }
     .THIS table.slds-table thead, .THIS table.slds-table thead {
-        position: absolute!important;
-        margin: -1px!important;
-        border: 0!important;
-        padding: 0!important;
-        width: 1px!important;
-        height: 1px!important;
-        overflow: hidden!important;
-        clip: rect(0 0 0 0)!important;
+        position: absolute;
+        margin: -1px;
+        border: 0;
+        padding: 0;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
     }
     .THIS table.slds-table tr, .THIS table.slds-table tr {
         display: block;
@@ -356,8 +355,8 @@ padding: 4px 5px;
         font-weight: 200;    
     }
     .THIS table.slds-table:not(.slds-no-row-hover) tbody tr:hover td, .THIS table.slds-table:not(.slds-no-row-hover) tbody tr:hover th, .THIS table.slds-table:not(.slds-no-row-hover) tbody tr:hover td, .THIS table.slds-table:not(.slds-no-row-hover) tbody tr:hover th {
-        background-color: inherit!important;
-        box-shadow: none!important;
+        background-color: inherit;
+        box-shadow: none;
     }
     .THIS table.slds-table th, .THIS table.slds-table td, .THIS table.slds-table th, .THIS table.slds-table td {
         display: block;

@@ -1,22 +1,14 @@
 ({
-    errorlog:function(component,event){
-        var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
-        var urlEvent = $A.get("e.force:navigateToURL");
-        urlEvent.setParams({
-            "url": url
-        });
-        urlEvent.fire();
-    },
 	doInit : function(component, event, objectApi, fieldsName, auraAttr) {
         var localDate = new Date();
-        var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-		var dayShortNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        var month = localDate.getMonth();
-        var date = localDate.getDate();
-        var year = localDate.getFullYear();
-        var day = localDate.getDay();
-        localDate = dayShortNames[day]+' '+monthShortNames[month]+' '+date+' '+year+' '+localDate.getHours()+':'+localDate.getMinutes()+':'+localDate.getSeconds();
-		component.set("v.date", localDate);
+        //var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		//var dayShortNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        //var month = localDate.getMonth();
+        //var date = localDate.getDate();
+        //var year = localDate.getFullYear();
+        //var day = localDate.getDay();
+        //localDate = dayShortNames[day]+' '+monthShortNames[month]+' '+date+' '+year+' '+localDate.getHours()+':'+localDate.getMinutes()+':'+localDate.getSeconds();
+        component.set("v.date", localDate);
         var picklistArray = [];
         var action = component.get("c.getPicklistFieldValues");
         action.setParams({
@@ -26,16 +18,16 @@
         action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS"){
-                var result = response.getReturnValue();  
-                if(result!=null){
+                var result = response.getReturnValue();
+                if(result!==null){
                 console.log('result---'+result);
                 if(auraAttr == 'v.deliveryMethodOptions' || auraAttr == 'v.courseTopicOptions' ){
-                    for(var i=0; i<result.length; i++){
+                    for(var i=0; i<result.length; i += 1){
                         picklistArray.push({Name: result[i] , isSelected: false});
                     }
                     component.set(auraAttr,picklistArray);
                 }
-                else{
+				else{
                      component.set(auraAttr, result);
                 }
                 component.set("v.loaded", true);
@@ -56,7 +48,15 @@
         });
         $A.enqueueAction(action);  
     },
-    fetchMultiSelectPicklistVal : function(component,event){
+    errorlog:function(component){
+        var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": url
+        });
+        urlEvent.fire();
+    },
+    fetchMultiSelectPicklistVal : function(component){
         console.log('in fetch multi select picklist values');
         var action = component.get("c.fetchMetaDataValues");
         var progOptVal = [];
@@ -69,8 +69,10 @@
                 console.log('result metadata'+ JSON.stringify(result));
                 component.set("v.prgmLicMap",result);
                 for(var key in result){
-                    progOptVal.push(key);
-                    console.log('progOptVal'+ progOptVal);
+                    if (result.hasOwnProperty(key)) {
+                    	progOptVal.push(key);
+                    	console.log('progOptVal'+ progOptVal);
+                    }
                 }
               component.set("v.programOptions",progOptVal); 
               component.set("v.optionsExist",true);  
@@ -80,7 +82,7 @@
         $A.enqueueAction(action); 
     
     },
-    searchCourse : function(component, event) {
+    searchCourse : function(component) {
        // alert('Search Called!!');
         component.set("v.loaded", false);
         var objectApi =  'MUSW__License2__c';
@@ -108,7 +110,7 @@
         var searchOneArray=[];
         
         var toastEvent = $A.get("e.force:showToast");
-        var initialRows = component.get("v.initialRows");
+        //var initialRows = component.get("v.initialRows");
         
         if(ProgramValue != ""){
             searchOneArray.push({label:"What program are you interested in?", value:LicenseType});
@@ -122,10 +124,10 @@
         if(schoolNameValue!= "" ){
             searchOneArray.push({label:"Provider/School Name", value:schoolNameValue});
         }
-        if(courseNameValue!= "" && courseNameValue!= null && courseNameValue.trim()!= "" && courseNameValue.trim().length!= ""){
+        if(courseNameValue!= "" && courseNameValue!== null && courseNameValue.trim()!= "" && courseNameValue.trim().length!= ""){
             searchOneArray.push({label:"Course Name", value:courseNameValue});
         }
-        if(courseNumberValue!= "" && courseNumberValue!= null && courseNumberValue.trim()!= "" && courseNumberValue.trim().length!= ""){
+        if(courseNumberValue!= "" && courseNumberValue!== null && courseNumberValue.trim()!= "" && courseNumberValue.trim().length!= ""){
             searchOneArray.push({label:"Course Number", value:courseNumberValue});
         }
         if(clockHoursValue!= "" ){
@@ -144,10 +146,10 @@
              }
         }
         console.log(searchOneArray);
-        
+        var criteria;
         if(searchOneArray.length!=0){
             if(CourseTypeValue == 'Pre-Qualifying Course'){
-                var criteria = {
+                 criteria = {
                 "Ultimate_Parent_Account__r.Name" : schoolNameValue,
                 "Credential_Type__c" : LicenseType,
                 "Course_Type__c" : CourseTypeValue,
@@ -161,7 +163,7 @@
                 "RecordTypeId" : courseRecordTypeVal 
             }; 
             }else if(CourseTypeValue == 'Qualifying Elective Course'){
-                 var criteria = {
+                  criteria = {
                 "Ultimate_Parent_Account__r.Name" : schoolNameValue,
                 "Credential_Type__c" : LicenseType,
                 "Course_Type__c" : CourseTypeValue,
@@ -175,7 +177,7 @@
                 "RecordTypeId" : courseRecordTypeVal 
             }; 
             }else if(CourseTypeValue == 'Continuing Education Course'){
-                 var criteria = {
+                  criteria = {
                 "Ultimate_Parent_Account__r.Name" : schoolNameValue,
                 "Credential_Type__c" : LicenseType,
                 "Course_Type__c" : CourseTypeValue,
@@ -208,7 +210,7 @@
                    // console.log('rowsData: '+response.getReturnValue());
                    // console.log('Status --',rowsData[0].MUSW__Status__c);
                     
-                    for(var i = 0; i< rowsData.length ; i++){
+                    for(var i = 0; i< rowsData.length ; i += 1){
                      //   console.log('in for loop',rowsData[i]);
                      //   console.log('in for loop status',rowsData[i].MUSW__Status__c);
                         
@@ -233,6 +235,7 @@
                          /*{label: 'Licensure Levels', fieldName: 'What_Licensure_Level__c', type: 'Picklist', sortable : true} */
                         ]);
                         console.log('rows--',JSON.stringify(rows));
+                        console.log('columns--',component.get('v.columns'));
                         component.set("v.data", rows);
                         component.set("v.applicationFilt",rows);
                         component.set("v.screenTwo", true);
@@ -279,7 +282,7 @@
             toastEvent.fire();       
 		}            
     },
-     navigateToCustomPlace1 : function(component, event){
+     navigateToCustomPlace1 : function(component){
         component.set("v.screenOne", true);
         component.set("v.screenTwo", false);
         component.set("v.screenThree", false);
@@ -287,11 +290,11 @@
         component.set("v.dispList", "");
         component.set("v.applicationFilt","");
         component.set("v.detailData", "");
-        // component.set("v.endorsementData", "");
-        // component.set("v.licenseRelationData", "");
-        component.set("v.selectedTabId", "tab1");
-        //omponent.set("v.licenseNameToDisplay", "License");
-        component.set("v.deliveryMethodOptions", "");
+       // component.set("v.endorsementData", "");
+       // component.set("v.licenseRelationData", "");
+       component.set("v.selectedTabId", "tab1");
+       //component.set("v.licenseNameToDisplay", "License");
+        
         component.set("v.searchOne", false);
         component.set("v.searchOneArray", []);
         component.set("v.searchTwo", false);
@@ -307,7 +310,7 @@
             component.set("v.detailData", "");   
         }
     },
-     fetchLicenseDetails : function(component, event, helper, licenseId, licenseType) {
+     fetchLicenseDetails : function(component, event, licenseId) {
         console.log('licenseId'+licenseId);
         component.set("v.loaded", false);
         if(licenseId != "" && licenseId != undefined){
@@ -360,6 +363,22 @@
             if (state === "SUCCESS"){
                 var result = response.getReturnValue(); 
                 console.log('state 2-----'+state);
+                if(result !== null && result != ''){
+                    for(var i=0; i<result.length; i += 1){
+                        if(result[i].Pre_Qualifying_Licensure_Levels__c){
+                            result[i].Pre_Qualifying_Licensure_Levels__c = result[i].Pre_Qualifying_Licensure_Levels__c.replace(/;/g, "; ");
+                        }
+                        if(result[i].Qualifying_Elective_Licensure_Levels__c){
+                            result[i].Qualifying_Elective_Licensure_Levels__c = result[i].Qualifying_Elective_Licensure_Levels__c.replace(/;/g, "; ");
+                        }
+                        if(result[i].Continuing_Education_Licensure_Levels__c){
+                            result[i].Continuing_Education_Licensure_Levels__c = result[i].Continuing_Education_Licensure_Levels__c.replace(/;/g, "; ");
+                        }
+                        if(result[i].Delivery_Method__c){
+                            result[i].Delivery_Method__c = result[i].Delivery_Method__c.replace(/;/g, "; ");
+                        }
+                    }
+                }
                 component.set("v.detailData", result);
                 component.set("v.screenOne", false);
                 component.set("v.screenTwo", false);
@@ -383,18 +402,19 @@
         var data = component.get("v.applicationFilt");
         var key = function(a) { return a[fieldName]; }
         var reverse = sortDirection == 'asc' ? 1: -1;
-        
+        var a;
+        var b;
         if(fieldName == 'NumberOfEmployees' || fieldName == 'Clock_Hours__c'){ 
             data.sort(function(a,b){
-                var a = key(a) ? key(a) : '';
-                var b = key(b) ? key(b) : '';
+                 a = key(a) ? key(a) : '';
+                 b = key(b) ? key(b) : '';
                 return reverse * ((a>b) - (b>a));
             }); 
         }
         else{
             data.sort(function(a,b){ 
-                var a = key(a) ? key(a).toLowerCase() : '';
-                var b = key(b) ? key(b).toLowerCase() : '';
+                 a = key(a) ? key(a).toLowerCase() : '';
+                 b = key(b) ? key(b).toLowerCase() : '';
                 return reverse * ((a>b) - (b>a));
             });    
         }
