@@ -63,6 +63,26 @@ public with sharing class LnP_LicenseAddressApexController {
             return null;
         }        
     }
+	
+	@AuraEnabled
+    public static MUSW__Parcel__c getPhysicalAddressForRequest(String requestId){
+        MUSW__Parcel__c physicalParcelRecord = new MUSW__Parcel__c();
+        try{
+            for(MUSW__Parcel__c physicalParcel: [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
+                                                 MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, Request_Parcel__c,
+                                                 County__c, Country__c, MUSW__Post_Zip_Code__c, Application_BG__c, MUSW__Primary_Contact__c,
+                                                 Primary_Account__c FROM MUSW__Parcel__c Where Request_Parcel__c = :requestId
+                                                 AND Address_Type__c = 'PHYSICAL ADDRESS' AND Status__c ='Active']){
+                                                    physicalParcelRecord =  physicalParcel;
+                                                 }
+            return physicalParcelRecord;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }        
+    }
     /*@AuraEnabled
 public static List<MUSW__Parcel__c> getAddress(Id applicationId){
 system.debug('applicationId==='+ applicationId);
