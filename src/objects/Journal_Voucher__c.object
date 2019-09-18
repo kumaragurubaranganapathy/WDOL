@@ -55,6 +55,40 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
+        <fullName>AFRS_012_TMS__c</fullName>
+        <externalId>false</externalId>
+        <formula>AFRS_Interface_Total_Amount__c - AFRS_Interface_012_Amount__c - TMS_Interface_Total_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AFRS - 012 - TMS</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>AFRS_Interface_012_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>AFRS Interface 012 Amount</label>
+        <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Add_to_Interface__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>equals</operation>
+            <value>AFRS-XXX</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>AFRS_Interface_Total_Amount__c</fullName>
         <externalId>false</externalId>
         <label>AFRS Interface Total Amount</label>
