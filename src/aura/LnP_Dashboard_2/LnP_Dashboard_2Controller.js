@@ -315,10 +315,6 @@
             helper.updateAssociationRelationHelper(component, event, helper,associateId,actionOnModal);
         }
         
-        component.set("v.displayRemovePeerRelationShipModal","false");
-        
-        component.set("v.displayRemoveBusinessRelationShipModal","false");
-        
     },
     
     dsiplayLicenseDetails : function(component, event, helper){
