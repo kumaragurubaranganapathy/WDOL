@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This bond cancellation email is sent when the bond is cancelled.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DOL_Letterhead</letterhead>
+    <name>Bond cancellation</name>
+    <style>formalLetter</style>
+    <subject>Department of Licensing - You must send us your surety bond by {!MUSW__License2__c.Expiration_Date_of_Bond__c} or we will cancel your {!MUSW__License2__c.Credential_Type__c} license.</subject>
+    <textOnly>LICENSED SUBMITTED
+Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+
+Your application is currently under review.  We will reach out directly with any questions.
+
+Thanks &amp; Regards,
+Washington Department of Licensing</textOnly>
+    <type>html</type>
+</EmailTemplate>
