@@ -499,6 +499,146 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	    <fields>
+        <fullName>Invitation_Accepted_Date__c</fullName>
+        <encrypted>false</encrypted>
+        <externalId>false</externalId>
+        <label>Invitation Accepted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Lic_Prog_Mailing_City_State_ZIP__c</fullName>
+        <externalId>false</externalId>
+        <formula>Child_License__r.Program_Mailing_City_State_ZIP__c</formula>
+        <label>Lic Prog Mailing City State ZIP</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lic_Prog_Mailing_PO_Box__c</fullName>
+        <externalId>false</externalId>
+        <formula>Child_License__r.Program_Mailing_PO_Box__c</formula>
+        <label>Lic Prog Mailing PO Box</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Applicant_Full_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Child_License__r.Applicant_Full_Name__c</formula>
+        <label>License Applicant Full Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Mailing_City__c</fullName>
+        <externalId>false</externalId>
+        <formula>Child_License__r.Mailing_Address__r.MUSW__City__c</formula>
+        <label>License Mailing City</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Mailing_State__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(Child_License__r.Mailing_Address__r.MUSW__State__c)</formula>
+        <label>License Mailing State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Mailing_Street__c</fullName>
+        <externalId>false</externalId>
+        <formula>Child_License__r.Mailing_Address__r.MUSW__Street2__c</formula>
+        <label>License Mailing Street</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Mailing_ZIP__c</fullName>
+        <externalId>false</externalId>
+        <formula>Child_License__r.Mailing_Address__r.Zip_Postal_Code__c</formula>
+        <label>License Mailing ZIP</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Number_of_Active_Relationships__c</fullName>
+        <externalId>false</externalId>
+        <formula>Child_License__r.No_of_Active_Relationship__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>License Number of Active Relationships</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Program_Email__c</fullName>
+        <description>Formula field for License Program Type to be used on email templates</description>
+        <externalId>false</externalId>
+        <formula>Child_License__r.Program_Email__c</formula>
+        <inlineHelpText>Formula field for License Program Type to be used on email templates</inlineHelpText>
+        <label>License Program Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Program_Phone__c</fullName>
+        <description>Formula field for License Program Phone to be used on email templates</description>
+        <externalId>false</externalId>
+        <formula>Child_License__r.Program_Phone__c</formula>
+        <inlineHelpText>Formula field for License Program Phone to be used on email templates</inlineHelpText>
+        <label>License Program Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Program_Type__c</fullName>
+        <description>Formula field for License Program Type to be used on email templates</description>
+        <externalId>false</externalId>
+        <formula>Text(Child_License__r.Application_Type__c )</formula>
+        <inlineHelpText>Formula field for License Program Type to be used on email templates</inlineHelpText>
+        <label>License Program Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Location_Address__c</fullName>
         <encryptionScheme>None</encryptionScheme>
