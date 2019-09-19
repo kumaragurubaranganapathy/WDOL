@@ -1,28 +1,160 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
-        <fullName>Application_Submitted_Alert</fullName>
-        <description>Application Submitted Alert</description>
+        <fullName>Application_closed_RFI</fullName>
+        <description>Application closed - RFI</description>
         <protected>false</protected>
         <recipients>
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Client_Approved_Built/Application_submission_final</template>
+        <template>DOL_Licensing/Application_closed_RFI_final</template>
     </alerts>
     <alerts>
-        <fullName>License_Email_Alert</fullName>
-        <description>License Email Alert</description>
+        <fullName>Application_closed_RFP</fullName>
+        <description>Application closed - RFP</description>
         <protected>false</protected>
         <recipients>
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
-        <template>unfiled$public/Payment_For_License</template>
+        <template>DOL_Licensing/Application_closed_RFP_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Application_submission</fullName>
+        <description>Application submission</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Application_submission_final</template>
+    </alerts>
+	    <alerts>
+        <fullName>First_license_issued_Active_Appraiser_email</fullName>
+        <description>First license issued - Active - Appraiser</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/First_license_issued_Active_Appraiser_final</template>
+    </alerts>
+    <alerts>
+        <fullName>First_license_issued_Active_Design_except_Engineer</fullName>
+        <description>First license issued - Active - Design except Engineer</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/First_license_issued_Active_Design_except_Engineer_final</template>
+    </alerts>
+    <alerts>
+        <fullName>First_license_issued_Active_EIT_LSIT_GIT</fullName>
+        <description>First license issued - Active - EIT LSIT GIT</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/First_license_issued_Active_EIT_LSIT_GIT_final</template>
+    </alerts>
+    <alerts>
+        <fullName>First_license_issued_Active_Engineer</fullName>
+        <description>First license issued - Active - Engineer</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/First_license_issued_Active_Engineer_final</template>
+    </alerts>
+    <alerts>
+        <fullName>First_license_issued_Active_Funeral_Director_Embalmer</fullName>
+        <description>First license issued - Active - Funeral Director Embalmer</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/First_license_issued_Active_FD_Embalmer_final</template>
+    </alerts>
+    <alerts>
+        <fullName>First_license_issued_Active_Funeral_Director_Embalmer_Intern</fullName>
+        <description>First license issued - Active - Funeral Director Embalmer Intern</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/First_license_issued_Active_FD_Embalmer_Intern_final</template>
+    </alerts>
+    <alerts>
+        <fullName>First_license_issued_Active_Notary</fullName>
+        <description>First license issued - Active - Notary</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/First_license_issued_Active_Notary_final</template>
+    </alerts>
+    <alerts>
+        <fullName>First_license_issued_Active_Other_R1</fullName>
+        <description>First license issued - Active - Other R1</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/First_license_issued_Active_Other_R1_final</template>
+    </alerts>
+    <alerts>
+        <fullName>First_license_issued_Inactive_business_association</fullName>
+        <description>First license issued - Inactive - business association</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/First_license_issued_Inactive_business_association_final</template>
+    </alerts>
+    <alerts>
+        <fullName>First_license_issued_Inactive_supervisor_sponsor_association</fullName>
+        <description>First license issued - Inactive - supervisor sponsor association</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/First_license_issued_Inactive_supervisor_sponsor_association_final</template>
     </alerts>
 	<alerts>
         <fullName>Payment_for_License_Fee_two_step</fullName>
@@ -35,17 +167,53 @@
         <senderType>CurrentUser</senderType>
         <template>DOL_Client_Approved_Finance/First_License_Fee</template>
     </alerts>
-    <alerts>
-        <fullName>Polaris_License_Expiration_Notice</fullName>
-        <description>Polaris - License Expiration Notice</description>
+	    <alerts>
+        <fullName>License_expiration_notice_New_application</fullName>
+        <description>License expiration notice - New application</description>
         <protected>false</protected>
         <recipients>
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
-        <template>unfiled$public/Polaris_120_days_Renewal_Notice</template>
+        <template>DOL_Licensing/License_expiration_notice_New_application_final</template>
+    </alerts>
+    <alerts>
+        <fullName>License_expiration_notice_Renewal_allowed_1</fullName>
+        <description>License expiration notice - Renewal allowed 1</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/License_expiration_notice_renewal_allowed_final</template>
+    </alerts>
+    <alerts>
+        <fullName>License_expiration_notice_Renewal_allowed_2</fullName>
+        <description>License expiration notice - Renewal allowed 2</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/License_expiration_notice_renewal_allowed_final</template>
+    </alerts>
+	<alerts>
+        <fullName>Retired_status</fullName>
+        <description>Retired status</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Retired_status_final</template>
     </alerts>
     <fieldUpdates>
         <fullName>Inactivate_License_on_expiration</fullName>
@@ -126,6 +294,850 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
+	<rules>
+        <fullName>Email - Application closed - RFI</fullName>
+        <actions>
+            <name>Application_closed_RFI</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Application_closed_RFI</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <description>Automation rule for email notification: Application closed - RFI</description>
+        <formula>Text(MUSW__Status__c) = &apos;Abandoned&apos; &amp;&amp; (TODAY() -  RFI_Send_Date__c &gt;= 120) &amp;&amp; NOT(ISBLANK(RFI_Send_Date__c)) &amp;&amp; NOT(ISBLANK(RFI_Send_Date_2nd__c)) &amp;&amp; CreatedBy.Username &lt;&gt; &apos;Data Administrator&apos;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Application closed - RFP</fullName>
+        <actions>
+            <name>Application_closed_RFP</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Application_closed_RFP</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <description>Automation rule for email notification: Application closed - RFP</description>
+        <formula>Text(MUSW__Status__c) = &apos;Abandoned&apos; &amp;&amp; (TODAY() -  RFP_Send_Date__c &gt;= 120) &amp;&amp; NOT(ISBLANK(RFP_Send_Date__c)) &amp;&amp; NOT(ISBLANK(RFP_Send_Date_2nd__c)) &amp;&amp; CreatedBy.Username &lt;&gt; &apos;Data Administrator&apos;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Application submission</fullName>
+        <actions>
+            <name>Application_submission</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Application_submission</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>In-Review</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <description>Automation rule for email notification: Application submission</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+	    <rules>
+        <fullName>Email - First license issued - Active - Appraiser</fullName>
+        <actions>
+            <name>First_license_issued_Active_Appraiser_email</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_First_license_issued_Active_Appraiser</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND (3 OR 4 OR 5 OR 6 OR 7 OR 8) AND 9 AND 10 AND 11</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Application_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraisers - Real Estate</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Certified General Appraiser</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Certified Residential Appraiser</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>State Licensed Appraiser</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Temporary Certified General</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Temporary Certified Residential</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Temporary State Licensed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Application_Method__c</field>
+            <operation>equals</operation>
+            <value>General Application</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Original_Issue_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <description>Automation rule for email notification: First license issued - Active - Appraiser</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - First license issued - Active - Design except Engineer</fullName>
+        <actions>
+            <name>First_license_issued_Active_Design_except_Engineer</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_First_license_issued_Active_Design_except_Engineer</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND (2 OR 3 OR 4 OR 5 OR 6) AND 7 AND 8 AND 9</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Architect</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Landscape Architect</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Professional Land Surveyor</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Geologist</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>On-site Wastewater Designer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Application_Method__c</field>
+            <operation>equals</operation>
+            <value>General Application</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Original_Issue_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <description>Email - First license issued - Active - Design except Engineer</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - First license issued - Active - EIT LSIT GIT</fullName>
+        <actions>
+            <name>First_license_issued_Active_EIT_LSIT_GIT</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_First_license_issued_Active_EIT_LSIT_GIT</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND (2 OR 3 OR 4) AND 5 AND 6 AND 7</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Engineer in Training</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Geologist In Training</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Land Surveyor in Training</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Application_Method__c</field>
+            <operation>equals</operation>
+            <value>General Application</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Original_Issue_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <description>Automation rule for email notification: First license issued - Active - EIT LSIT GIT</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - First license issued - Active - Engineer</fullName>
+        <actions>
+            <name>First_license_issued_Active_Engineer</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_First_license_issued_Active_Engineer</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Professional Engineer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Application_Method__c</field>
+            <operation>equals</operation>
+            <value>General Application</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Original_Issue_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <description>Automation rule for email notification: First license issued - Active - Engineer</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - First license issued - Active - Funeral Director Embalmer</fullName>
+        <actions>
+            <name>First_license_issued_Active_Funeral_Director_Embalmer</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_First_license_issued_Active_Funeral_Director_Embalmer</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND (2 OR 3) AND 4 AND 5 AND 6</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Embalmer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Funeral Director</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Application_Method__c</field>
+            <operation>equals</operation>
+            <value>General Application</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Original_Issue_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notEqual</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <description>Automation rule for email notification: First license issued - Active - Funeral Director Embalmer</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - First license issued - Active - Funeral Director Embalmer Intern</fullName>
+        <actions>
+            <name>First_license_issued_Active_Funeral_Director_Embalmer_Intern</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_First_license_issued_Active_Funeral_Director_Embalmer_Intern</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND( 2 OR 3 OR 4 ) AND 5 AND 6 AND 7</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Academic Intern</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Funeral Director Intern</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Embalmer Intern</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Application_Method__c</field>
+            <operation>equals</operation>
+            <value>General Application</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Original_Issue_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <description>Email - First license issued - Active - Funeral Director Embalmer Intern</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - First license issued - Active - Notary</fullName>
+        <actions>
+            <name>First_license_issued_Active_Notary</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_First_license_issued_Active_Notary</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Notary Public</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Application_Method__c</field>
+            <operation>equals</operation>
+            <value>General Application</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Original_Issue_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <description>Email - First license issued - Active - Notary</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - First license issued - Active - Other R1</fullName>
+        <actions>
+            <name>First_license_issued_Active_Other_R1</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_First_license_issued_Active_Other_R1</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND (3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 OR 14 OR 15 OR 16 OR 17) AND 18 AND 19</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Application_Method__c</field>
+            <operation>equals</operation>
+            <value>General Application</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraisal Management Company</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Trainee</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Company</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Camping Resort Company</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Engineering/Land Surveying Company</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Engineering Corporations</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Land Surveying Corporations</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Land Surveying LLC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>On-site Wastewater Inspector</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Funeral Establishment</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Funeral Establishment Branch</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Cemetery</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Crematory</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Cremated Remains Disposition Permit</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Certificate of Removal Registration</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Original_Issue_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <description>Automation rule for email notification: First license issued - Active - Other R1</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - First license issued - Inactive - business association</fullName>
+        <actions>
+            <name>First_license_issued_Inactive_business_association</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_First_license_issued_Inactive_business_association</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND (3 OR 4) AND 5 AND 6</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Inactive</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Application_Method__c</field>
+            <operation>equals</operation>
+            <value>General Application</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Camping Resort Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Original_Issue_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <description>Automation rule for email notification: First license issued - Inactive - business association</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - First license issued - Inactive - supervisor sponsor association</fullName>
+        <actions>
+            <name>First_license_issued_Inactive_supervisor_sponsor_association</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_First_license_issued_Inactive_supervisor_sponsor_association</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND (3 OR 4 OR 5) AND 6 AND 7</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Inactive</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Application_Method__c</field>
+            <operation>equals</operation>
+            <value>General Application</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Trainee</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Embalmer Intern</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Funeral Director Intern</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Original_Issue_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <description>Automation rule for email notification: First license issued - Inactive - supervisor sponsor association</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+	<rules>
+        <fullName>Email - License expiration notice - New application</fullName>
+        <actions>
+            <name>License_expiration_notice_New_application</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_License_expiration_notice_New_application</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Notary Public</value>
+        </criteriaItems>
+        <description>Automation rule for email notification: License expiration notice - New application</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - License expiration notice - Renewal allowed 1</fullName>
+        <actions>
+            <name>License_expiration_notice_Renewal_allowed_1</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_License_expiration_notice_Renewal_allowed_1</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND (2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 OR 14 OR 15 OR 16 OR 17 OR 18 OR 19 OR 20 OR 21 OR 22 OR 23 OR 24)</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Expired</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraisal Management Company</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Course</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Architect</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Camping Resort Company</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Camping Resort Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Cemetery</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Certificate of Removal Registration</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Certified General Appraiser</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Certified Residential Appraiser</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Company</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Landscape Architect</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Professional Engineer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Professional Land Surveyor</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Engineering/Land Surveying Company</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Engineering Corporations</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Land Surveying Corporations</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Land Surveying LLC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Engineer in Training</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Land Surveyor in Training</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Geologist</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>On-site Wastewater Designer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>On-site Wastewater Inspector</value>
+        </criteriaItems>
+        <description>Automation rule 1 for email notification: License expiration notice - Renewal allowed</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - License expiration notice - Renewal allowed 2</fullName>
+        <actions>
+            <name>License_expiration_notice_Renewal_allowed_2</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_License_expiration_notice_Renewal_allowed_2</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND (2 OR 3 OR 4 OR 5 OR 6)</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Expired</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Funeral Director</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Embalmer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Funeral Director Intern</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Embalmer Intern</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Funeral Establishment Branch</value>
+        </criteriaItems>
+        <description>Automation rule 2 for email notification: License expiration notice - Renewal allowed</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+	<rules>
+        <fullName>Email - Retired status</fullName>
+        <actions>
+            <name>Retired_status</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Retired_status</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>MUSW__License2__c.Sub_Status__c</field>
+            <operation>equals</operation>
+            <value>Retired</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <description>Automation rule for email notification: Retired status</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>Inactivate License on expiration</fullName>
         <actions>
@@ -202,7 +1214,7 @@
             <name>Update_the_Owner_to_Appraisal_Management</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>MUSW__License2__c.Credential_Type__c</field>
             <operation>equals</operation>
@@ -217,7 +1229,7 @@
             <name>Update_the_Owner_to_RBS_Queue</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>MUSW__License2__c.Credential_Type__c</field>
             <operation>equals</operation>
@@ -237,7 +1249,7 @@
             <name>Update_the_Owner_to_Real_Estate_Appraise</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>MUSW__License2__c.Credential_Type__c</field>
             <operation>equals</operation>
@@ -261,4 +1273,191 @@
         <description>set Expiration Date to current date when license is sunset</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
+	<tasks>
+        <fullName>Email_Outbound_Application_closed_RFI</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Application closed - RFI</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_Application_closed_RFP</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Application closed - RFP</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_Application_submission</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Application submission</subject>
+    </tasks>
+	    <tasks>
+        <fullName>Email_Outbound_First_license_issued_Active_Appraiser</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: First license issued - Active - Appraiser</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_First_license_issued_Active_Design_except_Engineer</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: First license issued - Active - Design except Engineer</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_First_license_issued_Active_EIT_LSIT_GIT</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: First license issued - Active - EIT LSIT GIT</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_First_license_issued_Active_Engineer</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: First license issued - Active - Engineer</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_First_license_issued_Active_Funeral_Director_Embalmer</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: First license issued - Active - Funeral Director Embalmer</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_First_license_issued_Active_Funeral_Director_Embalmer_Intern</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: First license issued - Active - Funeral Director Embalmer Intern</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_First_license_issued_Active_Notary</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: First license issued - Active - Notary</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_First_license_issued_Active_Other_R1</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: First license issued - Active - Other R1</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_First_license_issued_Inactive_business_association</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: First license issued - Inactive - business association</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_First_license_issued_Inactive_supervisor_sponsor_association</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: First license issued - Inactive - supervisor sponsor association</subject>
+    </tasks>
+	    <tasks>
+        <fullName>Email_Outbound_License_expiration_notice_New_application</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: License expiration notice - New application</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_License_expiration_notice_Renewal_allowed_1</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: License expiration notice - Renewal allowed 1</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_License_expiration_notice_Renewal_allowed_2</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: License expiration notice - Renewal allowed 2</subject>
+    </tasks>
+	<tasks>
+        <fullName>Email_Outbound_Retired_status</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Retired status</subject>
+    </tasks>
 </Workflow>
