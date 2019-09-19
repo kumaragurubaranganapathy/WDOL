@@ -11,6 +11,7 @@
     <aura:attribute name="ubiValidationResponse" type="String" default="NA" />
     <aura:attribute name="ubiDetails" type="Object"/>
     <aura:attribute name="ubiRequired" type="Boolean" default="true" />
+	<aura:attribute name="ubiButtonRequired" type="Boolean" default="false" />
     <aura:attribute name="isOpen" type="Boolean" default="false" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute name="validateFields" type="List" default='[{"lName":"Name", "Required__c":true, "Error_Message__c":"Account Name is required.", "ValidationCriteria__c":"", "Regex_Validation__c":""},
@@ -73,7 +74,9 @@
                             <aura:if isTrue="{!fieldlist.lName == 'UBI_Number__c' || fieldlist.lName == 'UBI_Status__c'}">
                                 <aura:if isTrue="{!fieldlist.lName == 'UBI_Number__c'}">
                                     <lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field' + (fieldlist.Required__c?' required':'')}"  onchange="{!c.fieldchange}" value="{!v.ubiValueEntered}"/>
-                                    <lightning:button variant="brand" type="button" label="Validate UBI" name="Validate" class="btnHeight back-button"  onclick="{!c.validateUBINumber}"/>
+                                    <aura:if isTrue="{!v.ubiButtonRequired}">
+                                    	<lightning:button variant="brand" type="button" label="Validate UBI" name="Validate" class="btnHeight back-button"  onclick="{!c.validateUBINumber}"/>
+                                    </aura:if>
                                 </aura:if>
                                 <aura:if isTrue="{!fieldlist.lName == 'UBI_Status__c'}">
                                     <lightning:inputField aura:id="validateField" fieldName="{!fieldlist.lName}" class="{!'field-size multi-field slds-hide' + (fieldlist.Required__c?' required':'')}" value="{!v.ubiValidationResponse}"/>
