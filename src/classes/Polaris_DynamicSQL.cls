@@ -54,7 +54,7 @@ public without sharing class Polaris_DynamicSQL {
         }
         String sFinal;
         if(!or_conditions.isEmpty())
-            sFinal = '('+String.join(or_conditions, ' OR ')+')';
+            sFinal = DOL_AppConstants.NULL_EMPTY_STRING + '('+String.join(or_conditions, ' OR ')+')';
         return sFinal;
         }catch(Exception ex)
         {
@@ -67,9 +67,9 @@ public without sharing class Polaris_DynamicSQL {
     {
         try{
         MUSW__Complaint2__c complaint = new MUSW__Complaint2__c();
-        complaint.MUSW__Type__c = 'Other';
-        complaint.MUSW__Status__c = 'Draft';
-        complaint.Name = 'System Number';
+        complaint.MUSW__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Other';
+        complaint.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Draft';
+        complaint.Name = DOL_AppConstants.NULL_EMPTY_STRING + 'System Number';
         insert complaint;
         return complaint.id;
         }catch(Exception ex)
@@ -125,7 +125,7 @@ String pemail = (String)pdata.get('email');*/
         complaint.Complaint_Submission_Agree__c  = (Boolean)message.get('agreeCheck');
         complaint.Anonymous__c  = (Boolean)message.get('anonymous');
         complaint.MUSW__Description__c = (String)message.get('complaintSummary');
-        complaint.MUSW__Status__c = 'Intake';
+        complaint.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Intake';
         if(pdata != null)
         {
             complaint.Respondent_First_Name__c = (String)pdata.get('firstName');
@@ -194,9 +194,9 @@ String pemail = (String)pdata.get('email');*/
             sqlObj.FieldValue = mapValues.get(attributeName);
             system.debug('FieldValue1234 '+strFieldName);
             if(strFieldName =='MULTIPICKLIST') {
-                sqlObj.Operator = 'includes';
+                sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + 'includes';
             } else {
-                 sqlObj.Operator = '=';
+                 sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
             }
            
             creterias.add(sqlObj);
@@ -204,7 +204,7 @@ String pemail = (String)pdata.get('email');*/
         system.debug('criterias1234 '+creterias);
         String whereClause = generateWhereQuery(creterias);
         String fieldNames  = String.join(lstFieldsName, ' ,');        
-        String query = 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+''+' limit '+limitvalue;
+        String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+''+' limit '+limitvalue;
         SYSTEM.debug('QUERY1234'+query);
         List<SObject>  lstRecords  = new List<SObject> () ;
         //List<SObject>  lstRecords  = new List<SObject> () ;
@@ -241,18 +241,18 @@ String pemail = (String)pdata.get('email');*/
                                                                    Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
                                                                    sqlObj.FieldName = lstAllAttributesPieces[0];
                                                                    sqlObj.FieldValue = lstAllAttributesPieces[1];//mapORValues.get(attributeName);
-                                                                   sqlObj.Operator = '=';
+                                                                   sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
                                                                    orcreterias.add(sqlObj);
                                                                }
                                                                Map<String, SObject> mapAllRec = new Map<String, SObject>();
                                                                //system.debug('criterias'+criterias);
-                                                               String whereClause = '';
+                                                               String whereClause = DOL_AppConstants.NULL_EMPTY_STRING + '';
                                                                if(orcreterias <> null && !orcreterias.isEmpty())
                                                                    whereClause = generateORQuery(orcreterias);
                                                                if(creterias <> null && !creterias.isEmpty())
                                                                    whereClause += 'and '+ generateWhereQuery(creterias);
                                                                String fieldNames  = String.join(lstFieldsName, ' ,');
-                                                               String query = 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
+                                                               String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
                                                                SYSTEM.debug('QUERY'+query);
                                                                List<SObject>  lstRecords  = new List<SObject> () ;
                                                                //List<SObject>  lstRecords  = new List<SObject> () ;
@@ -375,14 +375,14 @@ String pemail = (String)pdata.get('email');*/
                                                             Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
                                                             sqlObj.FieldName = attributeName;
                                                             sqlObj.FieldValue = mapValues.get(attributeName);
-                                                            sqlObj.Operator = '=';
+                                                            sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
                                                             creterias.add(sqlObj);
                                                         }
                                                        // system.debug('criterias'+criterias);
                                                         String whereClause = generateWhereQuery(creterias);
                                                         Map<String, SObject> mapAllRec = new Map<String, SObject>();
                                                         String fieldNames  = String.join(lstFieldsName, ' ,');
-                                                        String query = 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
+                                                        String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
                                                         SYSTEM.debug('QUERYGenerate'+query);
                                                         List<SObject>  lstRecords  = new List<SObject> () ;
                                                         //List<SObject>  lstRecords  = new List<SObject> () ;
@@ -512,14 +512,14 @@ String pemail = (String)pdata.get('email');*/
                                                             Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
                                                             sqlObj.FieldName = attributeName;
                                                             sqlObj.FieldValue = mapValues.get(attributeName);
-                                                            sqlObj.Operator = '=';
+                                                            sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
                                                             creterias.add(sqlObj);
                                                         }
                                                        // system.debug('criterias'+criterias);
                                                         String whereClause = generateWhereQuery(creterias);
                                                         Map<String, SObject> mapAllRec = new Map<String, SObject>();
                                                         String fieldNames  = String.join(lstFieldsName, ' ,');
-                                                        String query = 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
+                                                        String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
                                                         SYSTEM.debug('QUERYGenerate'+query);
                                                         List<SObject>  lstRecords  = new List<SObject> () ;
                                                         //List<SObject>  lstRecords  = new List<SObject> () ;
@@ -644,7 +644,7 @@ String pemail = (String)pdata.get('email');*/
         for (String attributeName : mapValues.keyset()) {
             system.debug('attributeName1234 '+attributeName);
             Schema.DisplayType targetType = fields.get(attributeName) !=  null ? fields.get(attributeName).getDescribe().getType() : null;
-            string strFieldName ='';    
+            string strFieldName = DOL_AppConstants.NULL_EMPTY_STRING + '';    
                 if(targetType !=null) {
                     strFieldName = String.valueOf(targetType);
                 }
@@ -655,16 +655,16 @@ String pemail = (String)pdata.get('email');*/
             // system.debug('FieldValue1234 '+strFieldName);
             sqlObj.FieldType   = strFieldName != null ? strFieldName :'';
             if(strFieldName != null && strFieldName =='MULTIPICKLIST') {
-                sqlObj.Operator = 'includes';
+                sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + 'includes';
             } else {
-                sqlObj.Operator = '=';
+                sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
             }
             creterias.add(sqlObj);
         }
         system.debug('criterias'+creterias);
         String whereClause = generateWhereQuery(creterias);
         String fieldNames  = String.join(lstFieldsName, ' ,');
-        String query = 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
+        String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
         SYSTEM.debug('QUERY'+query);
         List<SObject>  lstRecords  = new List<SObject> () ;
         //List<SObject>  lstRecords  = new List<SObject> () ;
@@ -746,14 +746,14 @@ String pemail = (String)pdata.get('email');*/
                                                                   Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
                                                                   sqlObj.FieldName = attributeName;
                                                                   sqlObj.FieldValue = mapValues.get(attributeName);
-                                                                  sqlObj.Operator = '=';
+                                                                  sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
                                                                   creterias.add(sqlObj);
                                                               }
                                                               //system.debug('criterias'+criterias);
                                                               String whereClause = generateWhereQuery(creterias);
                                                               Map<String, SObject> mapAllRec = new Map<String, SObject>();
                                                               String fieldNames  = String.join(lstFieldsName, ' ,');
-                                                              String query = 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
+                                                              String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
                                                               SYSTEM.debug('QUERY'+query);
                                                               List<SObject>  lstRecords  = new List<SObject> () ;
                                                               //List<SObject>  lstRecords  = new List<SObject> () ;

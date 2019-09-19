@@ -107,7 +107,7 @@ public without sharing class SharingUtilityController {
 
         if (ContactIds.size() > 0) {
             try {
-                users = [Select Id, ContactId from User where ContactId in: ContactIds AND UserType = 'PowerCustomerSuccess'];
+                users = [Select Id, ContactId from User where ContactId in: ContactIds AND UserType =: DOL_AppConstants.NULL_EMPTY_STRING +'PowerCustomerSuccess'];
             } catch (Exception e) {
                 ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'SharingUtilityController','Error Occured while querying the delegated users', 'shareRecords', 'LicVerification UsersharingModel', label.str_HIGH);
             }
@@ -287,7 +287,7 @@ public without sharing class SharingUtilityController {
     Public List<MUSW__Account_Contact__c> QueryAccountContacts(Map<Id,Id> AccountsObjectMap,List<MUSW__Account_Contact__c> AccountContacts,String ControllerName)
     {
         try {
-            AccountContacts = [select MUSW__Account__c, MUSW__Contact__c from MUSW__Account_Contact__c where MUSW__Account__c In: AccountsObjectMap.keySet() AND Associate_Status__c = 'Active'];
+            AccountContacts = [select MUSW__Account__c, MUSW__Contact__c from MUSW__Account_Contact__c where MUSW__Account__c In: AccountsObjectMap.keySet() AND Associate_Status__c =: DOL_AppConstants.NULL_EMPTY_STRING + 'Active'];
         }
         Catch(Exception e) {
              ErrorLogger.logGeneralException(e, UserInfo.getUserId(), ControllerName, 'Error Occured while querying Account Contact Records', 'shareRecords', ControllerName, label.Str_HIGH);
@@ -311,7 +311,7 @@ public without sharing class SharingUtilityController {
            Set<User_Sharing_Model__mdt> newcustomMdtShareRecords= new Set<User_Sharing_Model__mdt>();
            String feeQuery;
            if(ObjectName == 'MUSW__Fee__c'){
-               feeQuery = 'Select Id, Name, MUSW__License2__c, MUSW__Permit2__c from '+ObjectName+' where ID IN :RecordIds';
+               feeQuery = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Name, MUSW__License2__c, MUSW__Permit2__c from '+ObjectName+' where ID IN :RecordIds';
            }
            system.debug('feeQuery>>>'+feeQuery);
            if (feeQuery != null && feeQuery != '') {
@@ -343,7 +343,7 @@ public without sharing class SharingUtilityController {
                for (User_Sharing_Model__mdt customMdtShareRecord: newcustomMdtShareRecords) {
                    if (customMdtShareRecord.Shared_Object__c != null) {
                            if ('Id' != customMdtShareRecord.Object_Relationship__c) {
-                               String QueryString = 'Select Id, Name, ' + customMdtShareRecord.Object_Relationship__c + ' from '+ObjectName+' where ID IN :RecordIds';
+                               String QueryString = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Name, ' + customMdtShareRecord.Object_Relationship__c + ' from '+ObjectName+' where ID IN :RecordIds';
                                
                                if (QueryString != null && QueryString != '') {
                                    sObjectRecordList = Database.Query(QueryString);
@@ -430,9 +430,9 @@ public without sharing class SharingUtilityController {
                         Map < String, Schema.SObjectField > fieldMap = Sharing_Utility_getfieldMap(customMdtShareRecord.Shared_Object__c); 
                         List < Id > RecordIds = new List < Id > ();
                         RecordIds.addAll(recIds);
-                        String QueryString = '';
+                        String QueryString = DOL_AppConstants.NULL_EMPTY_STRING + '';
                         if (customMdtShareRecord.Shared_Object__c != label.Str_Contact) {
-                            QueryString = 'select Id,Name,' + customMdtShareRecord.Object_Relationship__c + ' from ';
+                            QueryString = DOL_AppConstants.NULL_EMPTY_STRING + 'select Id,Name,' + customMdtShareRecord.Object_Relationship__c + ' from ';
                             QueryString = QueryString + customMdtShareRecord.Shared_Object__c + ' where ';
                             QueryString = QueryString + customMdtShareRecord.Object_Relationship__c + ' IN :ContactIds'+' and Id IN:RecordIds';
                             

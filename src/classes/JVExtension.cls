@@ -23,7 +23,7 @@ public class JVExtension {
                 if(jvdrec.Amount__c != null)
               	Amt= Amt+jvdrec.Amount__c.abs();
                 if(jvdrec.Send_GL__c == false){
-                   jvdrec.General_Ledger_Account__c ='' ;
+                   jvdrec.General_Ledger_Account__c =DOL_AppConstants.NULL_EMPTY_STRING;
                 }
             }
             

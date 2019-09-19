@@ -29,7 +29,7 @@ global with sharing class LicenseUpdateBatch implements Database.Batchable<sObje
     global void execute(Database.BatchableContext BC, List<MUSW__License2__c> licenseList){
        // List<MUSW__License2__c> licenseMasterList = new List<MUSW__License2__c>();
        for(MUSW__License2__c license: licenseList){
-           license.MUSW__Status__c='Inactive';
+           license.MUSW__Status__c=DOL_AppConstants.NULL_EMPTY_STRING +'Inactive';
            licenseMasterList.add(license);
         }
     }

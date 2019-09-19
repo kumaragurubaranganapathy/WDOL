@@ -2,10 +2,10 @@ public class Dol_UBISearchTransform {
 
     @auraEnabled
     public static String transformAndSave (id accountId, String ubi){  
-        String newUBI='';
-        String status = '';
-        String businessName ='';
-        String businessStatus ='';
+        String newUBI= DOL_AppConstants.NULL_EMPTY_STRING + '';
+        String status = DOL_AppConstants.NULL_EMPTY_STRING + '';
+        String businessName = DOL_AppConstants.NULL_EMPTY_STRING + '';
+        String businessStatus = DOL_AppConstants.NULL_EMPTY_STRING + '';
         
         List<String> ubiafterHash = ubi.split('-');
         if(Dol_IntegrationUtil.isNotEmpty(ubiafterHash)){
@@ -28,7 +28,7 @@ public class Dol_UBISearchTransform {
                     system.debug('governingdetails'+governingdetails[0].title);
                     system.debug('businessName'+responseDeatil.entity.businessName);
                     if(Dol_IntegrationUtil.isNotBlank(accountId)){
-                        selectedAccount = [select Id, Name from Account where id=:accountId limit 1];
+                        selectedAccount = [select Id, Name from Account where id=:accountId AND id != null limit 1];
                     }
                     System.debug('selectedAccount'+selectedAccount);
                     //follwoing two conditions have been removed as per User Story 1436
@@ -37,11 +37,11 @@ public class Dol_UBISearchTransform {
                     }*/
                     
                     if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && selectedAccount.name != businessName ){
-                        status = 'Mismatch'+'***'+businessName+'***'+selectedAccount.name;
+                        status = DOL_AppConstants.NULL_EMPTY_STRING + 'Mismatch'+'***'+businessName+'***'+selectedAccount.name;
                     }
                     
                    else if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && !businessStatus.equalsIgnoreCase('active')){
-                        status = 'Inactive';
+                        status = DOL_AppConstants.NULL_EMPTY_STRING + 'Inactive';
                     }
         
                     else if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && businessStatus.equalsIgnoreCase('active') && selectedAccount.name == businessName){
@@ -60,10 +60,10 @@ public class Dol_UBISearchTransform {
                         acc.UBI_Status__c = businessStatus ;
                         acc.Account_Status__c = businessStatus;
                         
-                        accountConList = [Select id,Title__c,Last_Name__c,Middle_Name__c,First_Name__c from MUSW__Account_Contact__c where MUSW__Account__c =:accountId];
+                        accountConList = [Select id,Title__c,Last_Name__c,Middle_Name__c,First_Name__c from MUSW__Account_Contact__c where MUSW__Account__c =:accountId AND MUSW__Account__c != null];
                         if(Dol_IntegrationUtil.isNotEmpty(governingdetails) && Dol_IntegrationUtil.isNotEmpty(accountConList)){
                                 for(Dol_SOSResponse.GoverningPersons govdetail : governingdetails){ 
-                                    governingName= '';
+                                    governingName= DOL_AppConstants.NULL_EMPTY_STRING + '';
                                     if(govdetail.title != null){ governingName+= govdetail.title;}
                                     if(govdetail.firstName != null){ governingName+= govdetail.firstName;}
                                     if(govdetail.middleName != null){ governingName+= govdetail.middleName;}
@@ -73,7 +73,7 @@ public class Dol_UBISearchTransform {
                                     
                                 }
                                 for(MUSW__Account_Contact__c accountCon : accountConList){ 
-                                    accountName ='';
+                                    accountName = DOL_AppConstants.NULL_EMPTY_STRING + '';
                                     if(accountCon.Title__c != null){ accountName+= accountCon.Title__c;}
                                     if(accountCon.First_Name__c != null){ accountName+= accountCon.First_Name__c;}
                                     if(accountCon.Middle_Name__c != null){ accountName+= accountCon.Middle_Name__c;}
@@ -85,21 +85,21 @@ public class Dol_UBISearchTransform {
                                 for(String govName : governingMap.keySet()){
                                     if(!accountConMap.containsKey(govName)){
                                         system.debug('accountConMapmismatch');
-                                        uniqueGovList.add(governingMap.get(govName));
+                                    	uniqueGovList.add(governingMap.get(govName));
                                     }
                                 }
-                                system.debug('uniqueGovList'+uniqueGovList);
+                            	system.debug('uniqueGovList'+uniqueGovList);
                                 for(Dol_SOSResponse.GoverningPersons govdetail : uniqueGovList){
-                                    MUSW__Account_Contact__c newAccountCon = new MUSW__Account_Contact__c();
+                                	MUSW__Account_Contact__c newAccountCon = new MUSW__Account_Contact__c();
                                     newAccountCon.Title__c = govdetail.title != null ? govdetail.title.trim() : '' ;
                                     newAccountCon.Last_Name__c = govdetail.lastName != null ? govdetail.lastName.trim() : '' ;
                                     newAccountCon.Middle_Name__c = govdetail.middleName != null ? govdetail.middleName.trim() : '' ;
                                     newAccountCon.First_Name__c = govdetail.firstName != null ? govdetail.firstName.trim() : '' ;
                                     newAccountCon.MUSW__Account__c = accountId;
                                     //Hardcording role to "Owner" as per user  BUG 6237.
-                                    newAccountCon.Role__c = Label.SOS_Role ;
+                                	newAccountCon.Role__c = Label.SOS_Role ;
                                     //Hardcording Status field as per user Story 1436.
-                                    newAccountCon.Status__c = 'Active';
+                                	newAccountCon.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Active';
                                     newAccountConList.add(newAccountCon);
                                 }
                         }else if(Dol_IntegrationUtil.isNotEmpty(governingdetails) && Dol_IntegrationUtil.isEmpty(accountConList)){
@@ -113,24 +113,24 @@ public class Dol_UBISearchTransform {
                                //Hardcording role to "Owner" as per user  BUG 6237.
                                 newAccountCon.Role__c = Label.SOS_Role ;
                                 //Hardcording Status field as per user Story 1436.
-                                newAccountCon.Status__c = 'Active';
+                                newAccountCon.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Active';
                                 newAccountConList.add(newAccountCon);
                             } 
                          }
                         try{
                             if(acc!= null){
                                 upsert acc;
-                                status = 'success';
+                                status = DOL_AppConstants.NULL_EMPTY_STRING + 'success';
                             }
                             System.debug('newAccountConList'+newAccountConList);
                             if(newAccountConList != null){
                                 System.debug('newAccountConList'+newAccountConList);
                                 upsert newAccountConList ;
-                                status = 'success'; 
+                                status = DOL_AppConstants.NULL_EMPTY_STRING + 'success'; 
                             } 
                             
                         }catch(exception e){
-                            status = 'DML Exception'; 
+                            status = DOL_AppConstants.NULL_EMPTY_STRING + 'DML Exception'; 
                             DebugErrorLoggger.LogError(e, '', '','Dol_SOSservice','searchbyUBI','searchbyUBI Method failed');
                         }
                         
@@ -139,13 +139,14 @@ public class Dol_UBISearchTransform {
                 } 
             } 
             else if(apiRespone.getStatusCode() == 404){
-                    status = 'UBI not found';}
-            else {status = 'error from SOS';}
+                    status = DOL_AppConstants.NULL_EMPTY_STRING + 'UBI not found';}
+            else {status = DOL_AppConstants.NULL_EMPTY_STRING + 'error from SOS';}
             
                 
         }catch (Exception e){
             System.debug('exception occoured'+e.getMessage()+e.getStackTraceString());
-            DebugErrorLoggger.LogError(e, '', '','Dol_SOSservice','searchbyUBI','searchbyUBI Method failed');
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
+            throw new AuraHandledException('An error occurred: '+e.getMessage());
         }
             System.debug('status==' + status);
             return status;
@@ -153,11 +154,18 @@ public class Dol_UBISearchTransform {
     
      @auraEnabled
     public static String getAccountUBI (id accountId){
-        Account accObj = [select id, UBI_Number__c from Account where id=:accountId limit 1];
-        String accUBI = '';
-        if(accObj.UBI_Number__c!=null ||accObj.UBI_Number__c!='' ){
-            accUBI = accObj.UBI_Number__c;
+        try{
+            Account accObj = [select id, UBI_Number__c from Account where id=:accountId limit 1];
+            String accUBI = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            if(accObj.UBI_Number__c!=null ||accObj.UBI_Number__c!='' ){
+                accUBI = accObj.UBI_Number__c;
+            }
+            return accUBI;
         }
-        return accUBI;
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
 }

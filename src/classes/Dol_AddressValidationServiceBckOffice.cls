@@ -4,11 +4,11 @@ public class Dol_AddressValidationServiceBckOffice {
         String licenseKey;
         Dol_AddressValidationService.AddrWrapper validatedAddress = new Dol_AddressValidationService.AddrWrapper();
         
-        Dol_Integration_Settings__mdt customSettings = [SELECT MasterLabel, DeveloperName, Value__c  FROM Dol_Integration_Settings__mdt where DeveloperName ='Address_LicenseKey' Limit 1];
+        Dol_Integration_Settings__mdt customSettings = [SELECT MasterLabel, DeveloperName, Value__c  FROM Dol_Integration_Settings__mdt where DeveloperName =: DOL_AppConstants.NULL_EMPTY_STRING + 'Address_LicenseKey' Limit 1];
         if(customSettings != null){
             licenseKey = customSettings.Value__c.trim();
         }
-        String requestbody = '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:MelissaDataAddressCheckService\" xmlns:urn1=\"urn:mdWebServiceAddress\">'
+        String requestbody = DOL_AppConstants.NULL_EMPTY_STRING + '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:MelissaDataAddressCheckService\" xmlns:urn1=\"urn:mdWebServiceAddress\">'
         +'<soapenv:Header/>'
         +'<soapenv:Body>'
         +'<urn:doAddressCheck>'
@@ -103,9 +103,9 @@ public class Dol_AddressValidationServiceBckOffice {
     }
     @auraEnabled
     public static String saveAddress(string selectedAddress,Boolean isAptInfo,Boolean isAddrValidated, String countyValue,String parentId){
-        String parceLId = '';
+        String parceLId = DOL_AppConstants.NULL_EMPTY_STRING;
         String addres1;
-        String aptInfo = '';
+        String aptInfo = DOL_AppConstants.NULL_EMPTY_STRING;
         String city;
         String state;
         String zip;
@@ -222,8 +222,8 @@ public class Dol_AddressValidationServiceBckOffice {
         MUSW__Parcel__c par = new MUSW__Parcel__c();
         if(stateValue != 'Washington' && stateValue != 'WA'){
             selectOption sel = new selectOption();
-            sel.label = 'Out Of State';
-            sel.value = 'Out Of State';
+            sel.label = DOL_AppConstants.OUT_OF_THE_STATE;
+            sel.value = DOL_AppConstants.OUT_OF_THE_STATE;
             selectCounty.add(sel);
         }
         else {

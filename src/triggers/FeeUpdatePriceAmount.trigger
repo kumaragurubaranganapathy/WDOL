@@ -5,7 +5,7 @@ trigger FeeUpdatePriceAmount on MUSW__Fee__c (before insert, before update) {
     
     //Check if there is an active Default Price book
     Fee_Schedule_Settings__c setting = Fee_Schedule_Settings__c.getValues('Default');
-    String pricebookName = '';
+    String pricebookName = DOL_AppConstants.NULL_EMPTY_STRING + '';
     Pricebook2[] pbs = new Pricebook2[]{}; 
 
     if(setting != null && setting.isActive__c)

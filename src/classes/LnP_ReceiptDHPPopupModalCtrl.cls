@@ -54,9 +54,9 @@ public with sharing class LnP_ReceiptDHPPopupModalCtrl {
             if(receiptRec.Override_25_Handling_Fee__c == false){
                 List<MUSW__Fee__c> feeTobeInserted = new List<MUSW__Fee__c>();
                 for(MUSW__License2__c licRec : licenseToBeUpdated){
-                    MUSW__Fee__c feeRec = new MUSW__Fee__c(MUSW__Type__c = 'DHP', 
+                    MUSW__Fee__c feeRec = new MUSW__Fee__c(MUSW__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'DHP', 
                                                            MUSW__Amount__c = 25.00,
-                                                           MUSW__Description__c = 'DHP Fees', 
+                                                           MUSW__Description__c = DOL_AppConstants.NULL_EMPTY_STRING + 'DHP Fees', 
                                                            Voided_Receipt_Amount__c = receiptRec.MUSW__Amount_Tendered__c ,
                                                            Voided_Receipt_Check_Number__c =  receiptRec.MUSW__Check_Number__c,
                                                            Voided_Receipt_Payment_Method__c = receiptRec.MUSW__Payment_Method__c,
@@ -78,7 +78,7 @@ public with sharing class LnP_ReceiptDHPPopupModalCtrl {
                 List<MUSW__License2__c> licenseToBeUpdatedwithDHP = new List<MUSW__License2__c> ();
                 for(MUSW__License2__c licRec : licenseToBeUpdated){
                     licRec.Polaris_DHP__c = true;
-                    licRec.MUSW__Status__c = 'Inactive';
+                    licRec.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Inactive';
                     licRec.DHP_Stamp_Date__c = System.today();
                     licRec.Polaris_Dishonored_Receipt_ID__c = receiptRec.Name;
                     system.debug('licRec.Polaris_Dishonored_Receipt_ID__c : '+licRec.Polaris_Dishonored_Receipt_ID__c);
@@ -96,7 +96,7 @@ public with sharing class LnP_ReceiptDHPPopupModalCtrl {
             if(receiptRec.Inactivate_License_Date__c == System.today()){
                 List<MUSW__License2__c> licenseToBeUpdatedInactive = new List<MUSW__License2__c> ();
                 for(MUSW__License2__c licRec : licenseToBeUpdated){
-                    licRec.MUSW__Status__c = 'Inactive';
+                    licRec.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Inactive';
                     licenseToBeUpdatedInactive.add(licRec);
                 }
                 system.debug('Before Update ' + licenseToBeUpdatedInactive);

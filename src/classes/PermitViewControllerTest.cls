@@ -4,20 +4,20 @@ public class PermitViewControllerTest {
 static void testLicenseView()
 {
     Test.starttest();
-    MUSW__Parcel__c p = new MUSW__Parcel__c(Name = '123 Ork Street');
+    MUSW__Parcel__c p = new MUSW__Parcel__c(Name = DOL_AppConstants.NULL_EMPTY_STRING + '123 Ork Street');
     insert p;
-    Contact c = new Contact(Firstname = 'User', Lastname='Test', Email='abc@basicgov.com');
+    Contact c = new Contact(Firstname = DOL_AppConstants.NULL_EMPTY_STRING + 'User', Lastname= DOL_AppConstants.NULL_EMPTY_STRING + 'Test', Email= DOL_AppConstants.NULL_EMPTY_STRING + 'abc@basicgov.com');
     insert c;
     
     BGBK.RulesEngineState.setLock();
     
-    MUSW__Permit2__c per = new MUSW__Permit2__c(Name= '0001', MUSW__Applicant__c = c.id, MUSW__Type__c = 'Building', Application_Type__c = 'Plan Review', Permit_Type__c = 'POWTS Petition for Variance', Program_Area__c = 'POWTS', MUSW__Parcel__c = p.id, MUSW__Status__c = 'Pending', MUSW__Work_Type__c = 'New Service', MUSW__Valuation__c = 1000);
+    MUSW__Permit2__c per = new MUSW__Permit2__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + '0001', MUSW__Applicant__c = c.id, MUSW__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Building', Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Plan Review', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance', Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS', MUSW__Parcel__c = p.id, MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending', MUSW__Work_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'New Service', MUSW__Valuation__c = 1000);
     insert per;
     
-    MUSW__Fee__c fee1 = new MUSW__Fee__c(Application_Type__c = 'Plan Review', MUSW__Type__c = 'POWTS-Holding Tank Individual Site Design', MUSW__Permit2__c = per.Id, MUSW__Amount__c = 80);
+    MUSW__Fee__c fee1 = new MUSW__Fee__c(Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Plan Review', MUSW__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS-Holding Tank Individual Site Design', MUSW__Permit2__c = per.Id, MUSW__Amount__c = 80);
     //insert fee1;
     
-    MUSW__Fee__c fee2 = new MUSW__Fee__c(MUSW__Type__c = 'POWTS-Holding Tank Individual Site Design', MUSW__Permit2__c = per.Id, MUSW__Amount__c = 1040);
+    MUSW__Fee__c fee2 = new MUSW__Fee__c(MUSW__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS-Holding Tank Individual Site Design', MUSW__Permit2__c = per.Id, MUSW__Amount__c = 1040);
     //insert fee2;
     
     BGBK.RulesEngineState.releaseLock();

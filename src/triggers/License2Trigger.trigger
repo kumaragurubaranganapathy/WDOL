@@ -39,9 +39,9 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
             if(lic.Credential_Type__c == 'Appraiser Course' && String.isNotEmpty(licName) && String.isNotBlank(licName) && !licName.containsAny('A') ){
                
                 if(lic.Provider_Type__c == 'Secondary Provider'){
-                    licName = 'A'+licName+'S';
+                    licName = DOL_AppConstants.NULL_EMPTY_STRING + 'A'+licName+'S';
                 }else{
-                    licName = 'A'+licName;
+                    licName = DOL_AppConstants.NULL_EMPTY_STRING + 'A'+licName;
                 }
                 lic.Name = licName;
             }

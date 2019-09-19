@@ -38,7 +38,7 @@ trigger updateEndorsementStatusOnProviderDelete  on Electronic_Notary_Provider_I
         system.debug('lstupdateEndo  :'+lstupdateEndo );
         for(Endorsement__c endo : lstupdateEndo)
         {
-            endo.Status__c  = 'Remove';
+            endo.Status__c  = DOL_AppConstants.NULL_EMPTY_STRING + 'Remove';
         }
         update lstupdateEndo;
     }

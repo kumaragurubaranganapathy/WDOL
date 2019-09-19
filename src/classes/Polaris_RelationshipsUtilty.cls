@@ -13,7 +13,7 @@ public class Polaris_RelationshipsUtilty {
         
         if(association != null ){
             
-            association.Status__c = 'Canceled';
+            association.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Canceled';
             
             association.End_Date__c = system.today();
             
@@ -27,14 +27,14 @@ public class Polaris_RelationshipsUtilty {
                 
                 if(!task.isEmpty()){
                     
-                  task[0].Status = 'Completed';
+                  task[0].Status = DOL_AppConstants.NULL_EMPTY_STRING + 'Completed';
               }
               
               update task;
                 
             }else{
             
-             String Errormessage = 'Please contact system administrator\n';
+             String Errormessage = DOL_AppConstants.NULL_EMPTY_STRING + 'Please contact system administrator\n';
              
              for(Database.Error err: sr.getErrors()){
                  
@@ -66,15 +66,15 @@ public class Polaris_RelationshipsUtilty {
             
             if(statusOfAssociation == 'Cancel'){
                 
-                association.Status__c = 'Declined';
+                association.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Declined';
             }
             if(statusOfAssociation == 'resend'){
                 
-                association.Status__c = 'Invited';
+                association.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Invited';
             }
             if(statusOfAssociation == 'remove'){
                 
-                association.Status__c = 'Deleted';
+                association.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Deleted';
             }
             
             sr = Database.update(association,false);
@@ -87,13 +87,13 @@ public class Polaris_RelationshipsUtilty {
                 
                 if(!task.isEmpty() && statusOfAssociation != 'resend'){
                     
-                  task[0].Status = 'Completed';
+                  task[0].Status = DOL_AppConstants.NULL_EMPTY_STRING + 'Completed';
                   
                   
               }
               if(!task.isEmpty() && statusOfAssociation == 'resend'){
                     
-                  task[0].Status = 'Pending';
+                  task[0].Status = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending';
                   
                   
               }
@@ -102,7 +102,7 @@ public class Polaris_RelationshipsUtilty {
                 
             }else{
             
-             String Errormessage = 'Please contact system administrator\n';
+             String Errormessage = DOL_AppConstants.NULL_EMPTY_STRING + 'Please contact system administrator\n';
              
              for(Database.Error err: sr.getErrors()){
                  
@@ -130,7 +130,7 @@ public class Polaris_RelationshipsUtilty {
         
         if(accountContact != null ){
             
-           accountContact.Status__c = 'Deleted';
+           accountContact.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Deleted';
            
            sr = Database.update(accountContact,false);
            
@@ -142,14 +142,14 @@ public class Polaris_RelationshipsUtilty {
                 
                     if(!task.isEmpty()){
                         
-                      task[0].Status = 'Completed';
+                      task[0].Status = DOL_AppConstants.NULL_EMPTY_STRING + 'Completed';
                   }
               
                   update task;
                 
             }else{
             
-             String Errormessage = 'Please contact system administrator'+'\n';
+             String Errormessage = DOL_AppConstants.NULL_EMPTY_STRING + 'Please contact system administrator'+'\n';
              
              for(Database.Error err: sr.getErrors()){
                  
