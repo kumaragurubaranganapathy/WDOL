@@ -148,6 +148,43 @@
 	box-shadow:none;
 	outline:none;
 }
+.THIS a.skip-content {
+    left:-999px;
+    position:absolute;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    z-index:-999;
+}
+.THIS a.skip-content:focus, .THIS a.skip-content:active {
+    color: #fff;
+    background-color:#000;
+    left: auto;
+    top: auto;
+    width: 30%;
+    height: auto;
+    overflow:auto;
+    margin: 10px 35%;
+    padding:5px;
+    border-radius: 15px;
+    border:4px solid yellow;
+    text-align:center;
+    font-size:1.2em;
+    z-index:999;
+}
+.THIS a{
+    color:t(linksColor);
+}
+.THIS a:focus{
+    text-decoration:underline;
+    color:t(actionPanelBG);
+    font-weight:600;
+}
+.THIS .slds-input:focus, .THIS .slds-select:focus{
+    outline: dotted 2px #aeb0b5;
+    outline-offset: 2px;
+}
 @media t(mqSmall){
     .THIS .slds-table tbody td{
         padding:0.75rem;
