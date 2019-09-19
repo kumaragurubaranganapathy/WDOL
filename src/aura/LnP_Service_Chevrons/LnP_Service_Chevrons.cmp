@@ -67,12 +67,17 @@
     </aura:if>
     <div class="content-wrapper">
        <!-- <h1 class="subheader">{!'Submit Request: ' + v.flowType}</h1>-->
-        <aura:if isTrue="{!not(empty(v.AMRlabel))}">
-            <h1 class="subheader">{!v.AMRlabel}</h1>
-            <aura:set attribute="else">
-                <h1 class="subheader">{!v.flowType}</h1>
+        <aura:if isTrue="{!v.flowType=='Update Physical Address'}">
+            <h1 class="subheader">Physical Address</h1>
+            <aura:set attribute="else">                
+                <aura:if isTrue="{!not(empty(v.AMRlabel))}">
+                    <h1 class="subheader">{!v.AMRlabel}</h1>
+                    <aura:set attribute="else">
+                        <h1 class="subheader">{!v.flowType}</h1>
+                    </aura:set>
+                </aura:if> 
             </aura:set>
-        </aura:if> 
+        </aura:if>
          
         
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" isAMRFlow="true" flowType="{!v.flowType}" />
