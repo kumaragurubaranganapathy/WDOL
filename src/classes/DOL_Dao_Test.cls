@@ -9,13 +9,13 @@ public class DOL_Dao_Test {
         
         
         MUSW__Receipt__c receipt = new MUSW__Receipt__c();
-        receipt.Bank_Name__c = DOL_AppConstants.NULL_EMPTY_STRING + 'DOL Bank';
-        receipt.MUSW__Payment_Gateway_Transaction_Number__c = DOL_AppConstants.NULL_EMPTY_STRING + '000000ABCD';
+        receipt.Bank_Name__c = 'DOL Bank';
+        receipt.MUSW__Payment_Gateway_Transaction_Number__c = '000000ABCD';
         insert receipt;
         
         MUSW__Fee__c fees = new MUSW__Fee__c();
-        fees.Account_Number__c = DOL_AppConstants.NULL_EMPTY_STRING + '123456UYTR';
-        fees.AFRS_AR_Code__c = DOL_AppConstants.NULL_EMPTY_STRING + '8989898';
+        fees.Account_Number__c = '123456UYTR';
+        fees.AFRS_AR_Code__c = '8989898';
         insert fees;
         
         List<String> ids = new List<String>();

@@ -100,7 +100,7 @@ global with sharing class TriggerService
                     
         ins.Name = null;
         ins.MUSW__Type__c = (v.MUSW__Status__c == 'Contractor Completed') ? 'Re-inspection Contractor Completion' : 'Re-inspection';
-        ins.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending';
+        ins.MUSW__Status__c = 'Pending';
         ins.Close_Inspection__c = false;
         ins.MUSW__On_Itinerary__c = false;
         ins.Letter_Generated__c = false;

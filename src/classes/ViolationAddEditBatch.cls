@@ -40,7 +40,7 @@ public class ViolationAddEditBatch implements Database.Batchable<MUSW__Inspectio
             for (MUSW__Inspection__c foins : fieldObservations)
             {
                 foins.Close_Inspection__c = true;
-                foins.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Completed with open violations';
+                foins.MUSW__Status__c = 'Completed with open violations';
             }
             System.debug('fieldObservations=' +fieldObservations );
             update fieldObservations;

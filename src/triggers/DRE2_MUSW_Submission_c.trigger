@@ -32,7 +32,7 @@ trigger DRE2_MUSW_Submission_c on MUSW__Submission__c (after insert, before upda
             for(contentversion abc : contd) {
                 ContentDistribution cdl = new ContentDistribution();
                 cdl.ContentVersionId = abc.Id;
-                cdl.Name = DOL_AppConstants.NULL_EMPTY_STRING + 'PublicShare';
+                cdl.Name = 'PublicShare';
                 lstContentDistribution.add(cdl);
             }
         }

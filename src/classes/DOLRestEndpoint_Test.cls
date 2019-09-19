@@ -12,9 +12,9 @@ public class DOLRestEndpoint_Test {
         RestRequest req = new RestRequest();
         RestResponse resp = new RestResponse();
 
-        req.httpMethod = DOL_AppConstants.NULL_EMPTY_STRING + 'POST';
+        req.httpMethod = 'POST';
         req.addHeader('content-type', 'application/json');
-        req.requestURI = DOL_AppConstants.NULL_EMPTY_STRING + '/services/apexrest/DOLRestEndpoint';
+        req.requestURI = '/services/apexrest/DOLRestEndpoint';
         req.requestBody = Blob.valueOf(JSON.serialize(pojo)); 
         
         RestContext.response = resp;

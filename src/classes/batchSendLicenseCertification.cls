@@ -1,6 +1,6 @@
 global class batchSendLicenseCertification implements Database.Batchable<sObject> {
  global Database.QueryLocator start(Database.BatchableContext BC) {
-        String query = DOL_AppConstants.NULL_EMPTY_STRING + 'Select id, MUSW__Applicant__r.Email,Print_License_Email__c,MUSW__Total_Balance__c from MUSW__License2__c where Print_License_Email__c=\'Yes\' AND MUSW__Status__c=\'Active\' AND MUSW__Applicant__r.Email!=\'\'';       
+        String query = 'Select id, MUSW__Applicant__r.Email,Print_License_Email__c,MUSW__Total_Balance__c from MUSW__License2__c where Print_License_Email__c=\'Yes\' AND MUSW__Status__c=\'Active\' AND MUSW__Applicant__r.Email!=\'\'';       
         system.debug('query :'+query );
         return Database.getQueryLocator(query);
     }
@@ -31,12 +31,12 @@ global class batchSendLicenseCertification implements Database.Batchable<sObject
             if(licenseToContentVersionMap.containsKey(lic.Id)){
                 Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
                 message.setToAddresses(new String[]{lic.MUSW__Applicant__r.Email});
-                message.setSubject(DOL_AppConstants.sSubjectLine);
+                message.setSubject('Dept of Licensing – License Certificate');
                 message.setEntityAttachments(new List<Id>{licenseToContentVersionMap.get(lic.Id)});
-                message.setPlainTextBody(DOL_AppConstants.sMailBody);
-                emailList.add(message);                
+                message.setPlainTextBody('Please find attached a copy of your License Certificate');
+                emailList.add(message);
             }
-            lic.Print_License_Email__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Completed';
+			lic.Print_License_Email__c='Completed';
         }
         if(!scope.isEmpty())
         {

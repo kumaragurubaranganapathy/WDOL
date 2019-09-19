@@ -22,7 +22,7 @@ Database.Batchable<sObject>, Database.Stateful , Database.AllowsCallouts {
 
     global Database.QueryLocator start(Database.BatchableContext BC){
         System.debug('Dol_Batch_ErrorDetailsAfterElpasedTime::start...');
-          return Database.getQueryLocator([Select id,Start_Time__c,End_Time__c,Error_Details__c,Parent_Batch__c,Status__c FROM Dol_Batch_Monitor_Detail__c WHERE Parent_Batch__c !=null AND Status__c =: DOL_AppConstants.NULL_EMPTY_STRING + 'Running' AND Start_Time__c !=null AND End_Time__c = null]);
+          return Database.getQueryLocator([Select id,Start_Time__c,End_Time__c,Error_Details__c,Parent_Batch__c,Status__c FROM Dol_Batch_Monitor_Detail__c WHERE Parent_Batch__c !=null AND Status__c = 'Running' AND Start_Time__c !=null AND End_Time__c = null]);
     }
     
     
@@ -43,7 +43,7 @@ Database.Batchable<sObject>, Database.Stateful , Database.AllowsCallouts {
 
         if(Dol_IntegrationUtil.isNotEmpty(filteredChildList)){
             for(Dol_Batch_Monitor_Detail__c childRecord : filteredChildList){
-                childRecord.Status__c = DOL_AppConstants.ERROR_STRING;
+                childRecord.Status__c = 'Error';
                 childRecord.Error_Details__c = errorMsg;
                 childRecord.End_Time__c = System.now();
                 finalChildList.add(childRecord);

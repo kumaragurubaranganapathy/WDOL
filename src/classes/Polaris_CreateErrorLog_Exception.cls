@@ -31,10 +31,10 @@ public class Polaris_CreateErrorLog_Exception extends Exception {
 
     public static List<Polaris_Custom_Exception__c> createErrorLogs(Exception e,String cname,String cmethod) {
         List<Polaris_Custom_Exception__c> lstError = new List<Polaris_Custom_Exception__c>();
-            String QueryLimit = DOL_AppConstants.NULL_EMPTY_STRING + '1. SOQL Queries used / SOQL Queries allowed: ' + Limits.getQueries() + '/' + Limits.getLimitQueries();
-            String DMLimit = DOL_AppConstants.NULL_EMPTY_STRING + '2. Number of records queried so far /  Number allowed: ' + Limits.getDmlRows() + '/' + Limits.getLimitDmlRows();
-            String DMLStat = DOL_AppConstants.NULL_EMPTY_STRING + '3. Number of DML statements used so far / Number allowed: ' +  Limits.getDmlStatements() + '/' + Limits.getLimitDmlStatements();   
-            String CPUT = DOL_AppConstants.NULL_EMPTY_STRING + '4. Amount of CPU time (in ms) used so far / CPU usage time (in ms) allowed: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime();
+            String QueryLimit = '1. SOQL Queries used / SOQL Queries allowed: ' + Limits.getQueries() + '/' + Limits.getLimitQueries();
+            String DMLimit = '2. Number of records queried so far /  Number allowed: ' + Limits.getDmlRows() + '/' + Limits.getLimitDmlRows();
+            String DMLStat = '3. Number of DML statements used so far / Number allowed: ' +  Limits.getDmlStatements() + '/' + Limits.getLimitDmlStatements();   
+            String CPUT = '4. Amount of CPU time (in ms) used so far / CPU usage time (in ms) allowed: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime();
             String lan=UserInfo.getLanguage();
             String uid=UserInfo.getUserId();
             String sessid=UserInfo.getSessionId().substring(15);
@@ -71,8 +71,8 @@ public class Polaris_CreateErrorLog_Exception extends Exception {
             log.Stack_Trace__c = error.getStackTraceString();
             log.Class_Name__c = className;
             log.Class_Method__c = methodName;
-            log.Log_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'ERROR';
-            log.Source__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Salesforce';
+            log.Log_Type__c = 'ERROR';
+            log.Source__c = 'Salesforce';
             logToDB(log);
             return log.Id;
             }
@@ -83,10 +83,10 @@ public class Polaris_CreateErrorLog_Exception extends Exception {
     }
 
     private static void logToDB(Polaris_Custom_Exception__c log){
-        log.QueryLimit__c = DOL_AppConstants.NULL_EMPTY_STRING + 'SOQL Queries used / SOQL Queries allowed: ' + Limits.getQueries() + '/' + Limits.getLimitQueries();
-        log.DMLimit__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Number of records queried so far /  Number allowed: ' + Limits.getDmlRows() + '/' + Limits.getLimitDmlRows();
-        log.DMLStat__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Number of DML statements used so far / Number allowed: ' +  Limits.getDmlStatements() + '/' + Limits.getLimitDmlStatements();   
-        log.CPUT_Limit__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Amount of CPU time (in ms) used so far / CPU usage time (in ms) allowed: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime();
+        log.QueryLimit__c = 'SOQL Queries used / SOQL Queries allowed: ' + Limits.getQueries() + '/' + Limits.getLimitQueries();
+        log.DMLimit__c = 'Number of records queried so far /  Number allowed: ' + Limits.getDmlRows() + '/' + Limits.getLimitDmlRows();
+        log.DMLStat__c = 'Number of DML statements used so far / Number allowed: ' +  Limits.getDmlStatements() + '/' + Limits.getLimitDmlStatements();   
+        log.CPUT_Limit__c = 'Amount of CPU time (in ms) used so far / CPU usage time (in ms) allowed: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime();
         log.Session_Id__c=UserInfo.getSessionId().substring(15);
         insert log;
     }

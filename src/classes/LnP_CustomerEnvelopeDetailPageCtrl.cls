@@ -21,7 +21,7 @@ public class LnP_CustomerEnvelopeDetailPageCtrl {
             depositRecordsMap = new Map<Id,MUSW__Deposit__c>([Select Id,name,Status__c,Date__c,Amount__c,Document_type__c,wadol_Program_Type__c,Professional_code__c,License_type__c,Contact__c,MUSW__Account__c,License__c,License_Application__c,Fine_Number__c,Route_to_Miscellaneous_queue__c,ValidationNumber__c from MUSW__Deposit__c where Validation_number__c =: recordId]);
             for(MUSW__Deposit__c dep: depositRecordsMap.values()){
                 if(dep.wadol_Program_Type__c != null && (dep.Contact__c != null || dep.MUSW__Account__c != null)){
-                    dep.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'completed';
+                    dep.Status__c = 'completed';
                     depositListToUpdate.add(dep);
                 }
             }
@@ -32,7 +32,7 @@ public class LnP_CustomerEnvelopeDetailPageCtrl {
             
             if(depositListToUpdate.size() == depositRecordsMap.values().size()){
                 Customer_Envelope__c custEnv = new Customer_Envelope__c(Id=recordId);
-            	custEnv.status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'processed';
+            	custEnv.status__c = 'processed';
             	update custEnv;
             }
         }
@@ -41,7 +41,7 @@ public class LnP_CustomerEnvelopeDetailPageCtrl {
     @AuraEnabled
     public static List<ListView> getObjViews() {
         List<ListView> listviews = 
-            [SELECT Id, Name FROM ListView WHERE SobjectType =: DOL_AppConstants.NULL_EMPTY_STRING + 'Customer_Envelope__c'];
+            [SELECT Id, Name FROM ListView WHERE SobjectType = 'Customer_Envelope__c'];
         
         return listviews;
     }

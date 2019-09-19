@@ -131,7 +131,7 @@ public class Utilities {
         //In order to avoid multiple queries in the same transaction, query the first time and cache the value.
         if(isSandboxCheck == null || isSandboxCheck != 'complete'){
             isSandbox = [SELECT IsSandbox FROM Organization LIMIT 1].IsSandbox;
-            isSandboxCheck = DOL_AppConstants.NULL_EMPTY_STRING + 'complete';
+            isSandboxCheck = 'complete';
         }
         
         return isSandbox;

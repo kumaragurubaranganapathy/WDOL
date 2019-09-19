@@ -38,7 +38,7 @@ public with sharing class LightningSelfRegisterControllerTest {
  /* Verifies SelfRegistration flow with an accounId that is created within the test */
  @IsTest
  static void testSelfRegisterWithCreatedAccount() {
-  Account acc = new Account(name = DOL_AppConstants.NULL_EMPTY_STRING + 'test acc');
+  Account acc = new Account(name = 'test acc');
   insert acc;
   List < Account > accounts = [SELECT Id FROM Account LIMIT 1];
   System.assert(!accounts.isEmpty(), 'There must be at least one account in this environment!');
@@ -79,15 +79,15 @@ public with sharing class LightningSelfRegisterControllerTest {
  /* Helper method to initialize the parameters required for SelfRegistration. */
  private static Map < String, String > initializeParams() {
   Map < String, String > paramsMap = new Map < String, String > ();
-  String firstName = DOL_AppConstants.NULL_EMPTY_STRING + 'test';
-  String lastName = DOL_AppConstants.NULL_EMPTY_STRING + 'User';
-  String email = DOL_AppConstants.NULL_EMPTY_STRING + 'testUser@salesforce.com';
-  String password = DOL_AppConstants.NULL_EMPTY_STRING + 'testuser123';
-  String confirmPasswordCorrect = DOL_AppConstants.NULL_EMPTY_STRING + 'testuser123';
-  String confirmPasswordWrong = DOL_AppConstants.NULL_EMPTY_STRING + 'wrongpassword';
-  String accountId = DOL_AppConstants.NULL_EMPTY_STRING + 'testuser123';
-  String regConfirmUrl = DOL_AppConstants.NULL_EMPTY_STRING + 'http://registration-confirm.com';
-  String startUrl = DOL_AppConstants.NULL_EMPTY_STRING + 'http://my.company.salesforce.com';
+  String firstName = 'test';
+  String lastName = 'User';
+  String email = 'testUser@salesforce.com';
+  String password = 'testuser123';
+  String confirmPasswordCorrect = 'testuser123';
+  String confirmPasswordWrong = 'wrongpassword';
+  String accountId = 'testuser123';
+  String regConfirmUrl = 'http://registration-confirm.com';
+  String startUrl = 'http://my.company.salesforce.com';
   paramsMap.put('firstName', firstName);
   paramsMap.put('lastName', lastName);
   paramsMap.put('email', email);

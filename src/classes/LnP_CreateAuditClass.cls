@@ -81,8 +81,8 @@ public class LnP_CreateAuditClass {
                 newAuditReviewRec.recordTypeId = recordTypeId;
                 newAuditReviewRec.Application_Type__c = renApp.Application_Type__c;
                 newAuditReviewRec.License__c = renApp.License__c;
-                newAuditReviewRec.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Audit Pending';
-                newAuditReviewRec.Review_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'CE Audit';
+                newAuditReviewRec.MUSW__Status__c =  'Audit Pending';
+                newAuditReviewRec.Review_Type__c = 'CE Audit';
                 newAuditReviewRec.License_Type__c = renApp.Credential_Type__c;
             
             renApp.Selected_for_Audit__c = true;
@@ -111,11 +111,11 @@ public class LnP_CreateAuditClass {
             Request__c newCEAuditRequest = new Request__c();
                 newCEAuditRequest.Profession__c = licenseApp.Application_Type__c;
                 newCEAuditRequest.License_Type__c = licenseApp.Credential_Type__c;
-                newCEAuditRequest.Service_Request_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'CE Audit';
+                newCEAuditRequest.Service_Request_Type__c = 'CE Audit';
                 newCEAuditRequest.Stage__c = 0;
                 newCEAuditRequest.License__c = licenseApp.id;
                 newCEAuditRequest.Contact__c = licenseApp.MUSW__Applicant__c;
-                newCEAuditRequest.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Draft';
+                newCEAuditRequest.Status__c = 'Draft';
            
            requestList.add(newCEAuditRequest); 
            
@@ -124,8 +124,8 @@ public class LnP_CreateAuditClass {
                 recordTypeId = recordTypeId,
                 Application_Type__c = licenseApp.Application_Type__c,
                 License__c = licenseApp.Id,
-                MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Audit Pending',
-                Review_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'CE Audit',
+                MUSW__Status__c = 'Audit Pending',
+                Review_Type__c = 'CE Audit',
                 License_Type__c = licenseApp.Credential_Type__c
             ); 
           

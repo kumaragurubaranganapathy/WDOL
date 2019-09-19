@@ -6,16 +6,16 @@ global class Dol_BatchMonitoring{
         if(inputRequest!=null && inputRequest.method.equalsIgnoreCase('start')){
             String childID = createBatchRequest(inputRequest.batchId);
             if(Dol_IntegrationUtil.isNotBlank(childID)){
-                outputResponse.status = DOL_AppConstants.SUCCESS_STRING_LOWERCASE;
+                outputResponse.status = 'success';
                 outputResponse.childRecoRdId = childID;
             }else {
-                outputResponse.status = DOL_AppConstants.FAILED_STRING_LOWERCASE;
+                outputResponse.status = 'failed';
             }
         }else if(inputRequest!=null && inputRequest.method.equalsIgnoreCase('update')){
              if(updateBatchRequest(inputRequest.childRecoRdId,inputRequest.recordCount,inputRequest.error,inputRequest.status,inputRequest.targetDropLocation)){
-                 outputResponse.status = DOL_AppConstants.SUCCESS_STRING_LOWERCASE;
+                 outputResponse.status = 'success';
              }else{
-                 outputResponse.status = DOL_AppConstants.FAILED_STRING_LOWERCASE;
+                 outputResponse.status = 'failed';
              }
         }
         return outputResponse;
@@ -30,12 +30,12 @@ global class Dol_BatchMonitoring{
 
         try{
             if(batchId != null && batchId != ''){
-            batchList = [Select id,Name,Batch_Name__c from Dol_Batch_Monitor__c where Name =: batchId  AND Name != null Limit 1];
+            batchList = [Select id,Name,Batch_Name__c from Dol_Batch_Monitor__c where Name =: batchId Limit 1];
                 if(Dol_IntegrationUtil.isNotEmpty(batchList)){
                     Dol_Batch_Monitor_Detail__c childrecord = new Dol_Batch_Monitor_Detail__c();
                     childrecord.Start_Time__c = system.now();
                     childrecord.Parent_Batch__c = batchList[0].id;
-                    childrecord.Status__c = DOL_AppConstants.RUNNING_STRING_SENTANCECASE;
+                    childrecord.Status__c = 'Running';
                     upsert childrecord; 
                     childRecId = childrecord.id; 
                 }

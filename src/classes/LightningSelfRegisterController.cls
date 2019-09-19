@@ -78,7 +78,7 @@ global class LightningSelfRegisterController {
             String userId = Site.createPortalUser(u, accountId, password);
             // create a fake userId for test.
             if (Test.isRunningTest()) {
-                userId = DOL_AppConstants.NULL_EMPTY_STRING +'fakeUserId';           
+                userId = 'fakeUserId';           
             }
             if (userId != null) { 
                 if (password != null && password.length() > 1) {
@@ -99,7 +99,7 @@ global class LightningSelfRegisterController {
         }
         catch (Exception ex) {
             Database.rollback(sp);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());            
+            return ex.getMessage();            
         }
     }
     
@@ -130,10 +130,8 @@ global class LightningSelfRegisterController {
                 Site.setExperienceId(expId);   
             }
             return null; 
-        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        } catch (Exception ex) {
+            return ex.getMessage();            
         }        
     }  
 }

@@ -2,7 +2,7 @@
 public class DOL_ePaymentRTPCPOJO_Test {
 	
 	static testMethod void testParse() {
-		String json = DOL_AppConstants.NULL_EMPTY_STRING + '{'+
+		String json = '{'+
 		'   \"ConfirmationId\": \"ABCABC000001566\",'+
 		'   \"UserID\": \"1234567\",'+
 		'   \"BillerProductCode\": \"Payment\",'+

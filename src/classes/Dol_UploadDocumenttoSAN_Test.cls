@@ -7,17 +7,17 @@ public class Dol_UploadDocumenttoSAN_Test {
          test.stopTest();
     }
     private static testmethod void test_ProfCode() {
-        MUSW__License2__c  lic = new MUSW__License2__c(Name = DOL_AppConstants.NULL_EMPTY_STRING + 'System Number', Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Notary Public', Credential__c  = DOL_AppConstants.NULL_EMPTY_STRING + 'Geologist', Profession_Code__c= DOL_AppConstants.NULL_EMPTY_STRING + '123',Credential_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Notary Public');
+        MUSW__License2__c  lic = new MUSW__License2__c(Name = 'System Number', Application_Type__c = 'Notary Public', Credential__c  ='Geologist', Profession_Code__c= '123',Credential_Type__c ='Notary Public');
         insert lic;
-        MUSW__Submission__c  sub = new MUSW__Submission__c (Name   = DOL_AppConstants.NULL_EMPTY_STRING + 'Title', MUSW__License2__c =lic.id, SAN_Image_Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Renewal' );
+        MUSW__Submission__c  sub = new MUSW__Submission__c (Name   ='Title', MUSW__License2__c =lic.id, SAN_Image_Type__c='Renewal' );
         insert sub;
         
         Blob bodyBlob = Blob.valueOf('This is version data');
         ContentVersion contentVersion_1 = new ContentVersion(
-        Title= DOL_AppConstants.NULL_EMPTY_STRING + 'Header_Picture1', 
-        PathOnClient = DOL_AppConstants.NULL_EMPTY_STRING + '/Header_Picture1.jpg',
+        Title='Header_Picture1', 
+        PathOnClient ='/Header_Picture1.jpg',
         VersionData = bodyBlob, 
-        origin = DOL_AppConstants.NULL_EMPTY_STRING + 'H'
+        origin = 'H'
         );
         insert contentVersion_1;
         
@@ -26,7 +26,7 @@ public class Dol_UploadDocumenttoSAN_Test {
         ContentDocumentLink contentlink = new ContentDocumentLink();
         contentlink.LinkedEntityId = sub.id;
         contentlink.contentdocumentid = contentVersion_2.contentdocumentid;
-        contentlink.ShareType = DOL_AppConstants.NULL_EMPTY_STRING + 'V';
+        contentlink.ShareType = 'V';
         insert contentlink; 
         
         Map<String,String> mapSubimissionToFile = new Map<String,String>();

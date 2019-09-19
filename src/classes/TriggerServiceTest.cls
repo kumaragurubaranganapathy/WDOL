@@ -3,9 +3,9 @@ public class TriggerServiceTest {
 	@isTest(SeeAllData=true)
     private static void testSubTotals()
     {
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'zsdfsf');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='zsdfsf');
         insert par;
-        MUSW__Permit2__c p = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Plan Review', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance', Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS');
+        MUSW__Permit2__c p = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.Id, Application_Type__c = 'Plan Review', Permit_Type__c = 'POWTS Petition for Variance', Program_Area__c = 'POWTS');
         insert p;
         MUSW__Submission__c s = new MUSW__Submission__c(MUSW__Permit2__c=p.Id);
         insert s;
@@ -18,13 +18,13 @@ public class TriggerServiceTest {
     {
         
         
-           MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'zsdfsf');
+           MUSW__Parcel__c par = new MUSW__Parcel__c(Name='zsdfsf');
            insert par;
-           MUSW__Permit2__c p = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Plan Review', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance', Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS');
+           MUSW__Permit2__c p = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.Id, Application_Type__c = 'Plan Review', Permit_Type__c = 'POWTS Petition for Variance', Program_Area__c = 'POWTS');
            insert p;
            MUSW__Submission__c s = new MUSW__Submission__c(MUSW__Permit2__c=p.Id, MUSW__Total_Approved_Reviews__c = 3, MUSW__Total_Failed_Reviews__c = 2);
            insert s;
-           MUSW__Review__c r = new MUSW__Review__c(MUSW__Submission__c=s.Id, MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + ' ',  MUSW__Due_Date__c=system.today());
+           MUSW__Review__c r = new MUSW__Review__c(MUSW__Submission__c=s.Id, MUSW__Status__c = ' ',  MUSW__Due_Date__c=system.today());
            insert r;
         
     }
@@ -32,9 +32,9 @@ public class TriggerServiceTest {
     @isTest(SeeAllData=true)  
     private static void testFinalPerm()
     {
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'zsdfsf');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='zsdfsf');
         insert par;
-        MUSW__Permit2__c p = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Plan Review', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance', Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS');
+        MUSW__Permit2__c p = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.Id, Application_Type__c = 'Plan Review', Permit_Type__c = 'POWTS Petition for Variance', Program_Area__c = 'POWTS');
         insert p;
         
         MUSW__Permit2__c[] subs = [select id from MUSW__Permit2__c where Permit2__c = :p.Id];
@@ -42,12 +42,12 @@ public class TriggerServiceTest {
         {
             for (MUSW__Permit2__c pp : subs)
             {
-                pp.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Finaled';
+                pp.MUSW__Status__c = 'Finaled';
             }
             update subs;
         }
         
-        p.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Finaled';
+        p.MUSW__Status__c = 'Finaled';
         update p;
     }
     @isTest(SeeAllData=true)
@@ -57,10 +57,10 @@ public class TriggerServiceTest {
             System.assert(TriggerService.isRulesEngineActive()==true);
         else
         {
-            BGBK__GlobalSettings__c[] bkglobalsettings = [select BGBK__rulesEngineActive__c from BGBK__GlobalSettings__c where name =: DOL_AppConstants.NULL_EMPTY_STRING + 'Default'];
+            BGBK__GlobalSettings__c[] bkglobalsettings = [select BGBK__rulesEngineActive__c from BGBK__GlobalSettings__c where name = 'Default'];
             if (bkglobalsettings.size() != 1)
             {
-                BGBK__GlobalSettings__c bkglob = new BGBK__GlobalSettings__c(BGBK__rulesEngineActive__c = true, name = DOL_AppConstants.NULL_EMPTY_STRING + 'Default');
+                BGBK__GlobalSettings__c bkglob = new BGBK__GlobalSettings__c(BGBK__rulesEngineActive__c = true, name = 'Default');
                 insert bkglob;
                 System.assert(TriggerService.isRulesEngineActive()==true);
             }
@@ -74,9 +74,9 @@ public class TriggerServiceTest {
     @isTest(SeeAllData = true)
     private static void testUpdateSubmissionTotals(){
 
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + '81238123');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='81238123');
         insert par;
-        MUSW__Permit2__c p = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Plan Review', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance', Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS');
+        MUSW__Permit2__c p = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.Id, Application_Type__c = 'Plan Review', Permit_Type__c = 'POWTS Petition for Variance', Program_Area__c = 'POWTS');
         insert p;  
         MUSW__Submission__c s = new MUSW__Submission__c( MUSW__Total_Approved_Reviews__c = 3, MUSW__Total_Failed_Reviews__c = 2, MUSW__Total_Reviews__c = 5, MUSW__Permit2__c =p.id );
         insert s;
@@ -96,26 +96,26 @@ public class TriggerServiceTest {
     private static void testCreateReinspectionFromIV(){
         
         
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'zsdfsf');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='zsdfsf');
         insert par;
         TriggerService.setLock();    
         MUSW__Complaint2__c c = new MUSW__Complaint2__c();
-        c.MUSW__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Other';
-        c.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'New';
+        c.MUSW__Type__c = 'Other';
+        c.MUSW__Status__c = 'New';
         c.MUSW__Parcel__c = par.id;
         insert c;
 
         MUSW__Violation__c v = new MUSW__Violation__c();
-        v.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Open';
+        v.MUSW__Status__c = 'Open';
         v.MUSW__Complaint2__c = c.id;
         insert v;
         
         MUSW__Inspection__c ins = new MUSW__Inspection__c();
                 
         ins.Name = null;
-        ins.MUSW__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Mechanical';
-        ins.MUSW__Priority__c= DOL_AppConstants.NULL_EMPTY_STRING + '2 Normal';
-        ins.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending';
+        ins.MUSW__Type__c = 'Mechanical';
+        ins.MUSW__Priority__c= '2 Normal';
+        ins.MUSW__Status__c = 'Pending';
         ins.Close_Inspection__c = false;
         ins.MUSW__On_Itinerary__c = false;
         ins.Letter_Generated__c = false;

@@ -1,6 +1,6 @@
 global class Scheduler_batchRenewalCouponUpdate implements Schedulable{
 
-    public static String sched = DOL_AppConstants.NULL_EMPTY_STRING + '0 00 00 * * ?';  //Every Day at Midnight 
+    public static String sched = '0 00 00 * * ?';  //Every Day at Midnight 
 
     global static String scheduleMe() {
         Scheduler_batchRenewalCouponUpdate SC = new Scheduler_batchRenewalCouponUpdate(); 

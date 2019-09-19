@@ -8,7 +8,7 @@ public class mapDemo {
                                                  MUSW__Parcel__r.MUSW__City__c, MUSW__Parcel__r.Zip_Postal_Code__c,
                                                  MUSW__Parcel__r.MUSW__State__c, MUSW__Parcel__r.Country__c
                                                  from MUSW__Inspection__c where MUSW__Parcel__c <> null   ];
-        String route = DOL_AppConstants.sRoute;
+        String route = 'https://www.google.com/maps/dir';
         for(MUSW__Inspection__c inspection: inspections){
             route+='/';
             mapDemo.MapMarker marker = new mapDemo.MapMarker();
@@ -31,9 +31,9 @@ public class mapDemo {
                 route+=location.PostalCode.replace(' ','+');
             }
             marker.location = location;
-            marker.icon = DOL_AppConstants.sIcon;
+            marker.icon = 'utility:salesforce1';
             marker.title = inspection.name;
-            marker.description = DOL_AppConstants.NULL_EMPTY_STRING + '<a href="'+URL.getSalesforceBaseUrl().toExternalForm()+'/'+inspection.id+'">'+inspection.name+'</a>';
+            marker.description = '<a href="'+URL.getSalesforceBaseUrl().toExternalForm()+'/'+inspection.id+'">'+inspection.name+'</a>';
             markers.add(marker);
         }
         return markers;
@@ -45,7 +45,7 @@ public class mapDemo {
                                                  MUSW__Parcel__r.MUSW__City__c, MUSW__Parcel__r.Zip_Postal_Code__c,
                                                  MUSW__Parcel__r.MUSW__State__c, MUSW__Parcel__r.Country__c
                                                  from MUSW__Inspection__c where MUSW__Parcel__c <> null ];
-        String route = DOL_AppConstants.sRoute;
+        String route = 'https://www.google.com/maps/dir';
         for(MUSW__Inspection__c inspection: inspections){
             route+='/';
             if(inspection.MUSW__Parcel__r.MUSW__Street__c!=null){

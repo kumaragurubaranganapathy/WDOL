@@ -25,7 +25,7 @@ public class LnP_UpdateOvershortAmountClass_Test {
         
         /*
         MUSW__License2__c testLicense = CreateTestDataUtility.createLicense(testAccount.id, testContact.id); //License
-        testLicense.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Active';
+        testLicense.MUSW__Status__c = 'Active';
         insert testLicense; 
         */
         
@@ -50,13 +50,13 @@ public class LnP_UpdateOvershortAmountClass_Test {
         // create Receipt
         MUSW__Receipt__c receipt = new MUSW__Receipt__c();
         receipt.BGBK__Cart__c = testCart.Id;
-        receipt.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Draft';
+        receipt.Status__c = 'Draft';
         receipt.MUSW__Amount_Available__c = 10;
         receipt.Selected_Fees__c = String.join(feeIds,',');
         insert receipt;
         
         MUSW__Deposit__c dep = new MUSW__Deposit__c();
-        dep.wadol_Program_Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Geologist';
+        dep.wadol_Program_Type__c='Geologist';
         dep.MUSW__Transfered_In_Amount__c = 10;
         insert dep;
         

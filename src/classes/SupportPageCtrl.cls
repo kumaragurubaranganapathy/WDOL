@@ -44,7 +44,7 @@ public class SupportPageCtrl {
     private void generateSectionSelectList() {
         sectionSelectOptions = new List<SelectOption>();
         sectionSelectOptions.add(new SelectOption('', label.Str_All_Topics));
-        selectedSection = DOL_AppConstants.NULL_EMPTY_STRING + '';
+        selectedSection = '';
         Set<String> sections = new Set<String>();
         
         for(Newsfeed__c faq : allFAQs) {

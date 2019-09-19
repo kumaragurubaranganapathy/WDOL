@@ -28,14 +28,13 @@ public class ExamReschedule {
     {
         try{
         List<User> userInfoData = new  List<User>();
-        //String queryCondition = ' Id=\''+String.escapeSingleQuotes(UserInfo.getUserId())+'\'';
-        String queryCondition = DOL_AppConstants.EMPTY_SPACE+DOL_AppConstants.ID_STRING+'=\''+String.escapeSingleQuotes(UserInfo.getUserId())+'\'';
+        String queryCondition = ' Id=\''+String.escapeSingleQuotes(UserInfo.getUserId())+'\'';
         System.debug('User Id ' + queryCondition);
-        String queryStr = DOL_AppConstants.SELECT_STRING+DOL_AppConstants.EMPTY_SPACE+'Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
-        Id getContactId = DOL_AppConstants.CONTACT_ID_EXPLICIT_STRING;
+        Id getContactId = '003r000000EOhBB';
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
@@ -58,7 +57,7 @@ public class ExamReschedule {
         catch(Exception e){
             HandleException.LogException(e,'ExamReschedule','insertRequest');            
         }
-        string appId = DOL_AppConstants.NULL_EMPTY_STRING;
+        string appId = '';
         return appId = application.Id;
         }catch(Exception ex)
         {
@@ -81,7 +80,7 @@ public class ExamReschedule {
             reviewRecord.License__c = licenseRecord.Id;
             reviewRecord.License_Type__c = licenseRecord.Credential_Type__c;
             reviewRecord.Application_Type__c = licenseRecord.Application_Type__c;
-            reviewRecord.MUSW__Status__c = DOL_AppConstants.IN_REVIEW;
+            reviewRecord.MUSW__Status__c = 'In-Review';
             reviewRecord.RecordTypeId = reviewRecordId;
             reviewList.add(reviewRecord);
         }
@@ -93,7 +92,7 @@ public class ExamReschedule {
             if (sr.isSuccess()) {
                 // Operation was successful, so get the ID of the record that was processed
                 System.debug('Successfully inserted review record. review ID: ' + sr.getId());
-                outputResponse = DOL_AppConstants.sSuccessResponse;
+                outputResponse ='Successfull';
             }
             else {
                 // Operation failed, so get all errors                
@@ -102,7 +101,7 @@ public class ExamReschedule {
                     System.debug(err.getStatusCode() + ': ' + err.getMessage());
                     System.debug('Review fields that affected this error: ' + err.getFields());
                 }
-                outputResponse = DOL_AppConstants.sFailedResponse;
+                outputResponse ='Fail';
             }
         }
         return outputResponse;

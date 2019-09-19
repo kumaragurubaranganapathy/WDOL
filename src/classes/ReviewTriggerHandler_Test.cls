@@ -26,10 +26,10 @@ public class ReviewTriggerHandler_Test {
         
         //Creating test License
         Musw__Permit2__c permit1 = CreateTestDataUtility.createPermit(acc.Id, con.Id);
-        permit1.Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Plan Review';
-        permit1.Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance'; 
-        permit1.Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS'; 
-        permit1.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending';
+        permit1.Application_Type__c = 'Plan Review';
+        permit1.Permit_Type__c = 'POWTS Petition for Variance'; 
+        permit1.Program_Area__c = 'POWTS'; 
+        permit1.MUSW__Status__c = 'Pending';
         insert permit1;
         
         globalSetting.Disable_Triggers__c = false;
@@ -61,19 +61,19 @@ public class ReviewTriggerHandler_Test {
                                                                            startDate1, 
                                                                            completedDate1);
         insert review1;
-        review1.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Approved';
+        review1.MUSW__Status__c = 'Approved';
         update review1;
         MUSW__Review__c review2 = CreateTestDataUtility.createPermitReview(permit1, 
                                                                            startDate2, 
                                                                            completedDate2);
         insert review2;
-        review2.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Approved';
+        review2.MUSW__Status__c = 'Approved';
         update review2;
         MUSW__Review__c review3 = CreateTestDataUtility.createPermitReview(permit1, 
                                                                            startDate3, 
                                                                            completedDate3);
         insert review3;
-        review3.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Approved';
+        review3.MUSW__Status__c = 'Approved';
         update review3;
         
         //
@@ -81,42 +81,42 @@ public class ReviewTriggerHandler_Test {
                                                                            startDate4, 
                                                                            completedDate4);
         insert review4;
-        review4.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Approved';
+        review4.MUSW__Status__c = 'Approved';
         update review4;
         
         MUSW__Review__c review5 = CreateTestDataUtility.createPermitReview(permit1, 
                                                                            startDate5, 
                                                                            completedDate5);
         insert review5;
-        review5.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Approved';
+        review5.MUSW__Status__c = 'Approved';
         update review5;
         
         MUSW__Review__c review6 = CreateTestDataUtility.createPermitReview(permit1, 
                                                                            startDate6, 
                                                                            completedDate6);
         insert review6;
-        review6.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Approved';
+        review6.MUSW__Status__c = 'Approved';
         update review6;
         
         MUSW__Review__c review7 = CreateTestDataUtility.createPermitReview(permit1, 
                                                                            startDate7, 
                                                                            completedDate7);
         insert review7;
-        review7.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Approved';
+        review7.MUSW__Status__c = 'Approved';
         update review7;
         
         MUSW__Review__c review8 = CreateTestDataUtility.createPermitReview(permit1, 
                                                                            startDate8, 
                                                                            completedDate8);
         insert review8;
-        review8.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Approved';
+        review8.MUSW__Status__c = 'Approved';
         update review8;
         
         MUSW__Review__c review9 = CreateTestDataUtility.createPermitReview(permit1, 
                                                                            startDate9, 
                                                                            completedDate9);
         insert review9;
-        review9.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Approved';
+        review9.MUSW__Status__c = 'Approved';
         update review9;
         
         Test.stopTest();

@@ -15,7 +15,7 @@ trigger RenewalApplicationTrigger on Renewal_Application__c (before update,after
        for(Renewal_Application__c rene : Trigger.new){
            if(autoReneMap.keyset().contains(rene.id)){
                rene.Auto_Renew__c = autoReneMap.get(rene.id);
-               //rene.Renewal_Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Complete';
+               //rene.Renewal_Status__c = 'Complete';
                
            }
        
@@ -30,8 +30,8 @@ trigger RenewalApplicationTrigger on Renewal_Application__c (before update,after
                 setId.add(renewreinstate.id);
              }
          }
-         for(MUSW__Review__c rev : [select id,MUSW__Status__c from MUSW__Review__c where Renewal_Application__c IN:setId and MUSW__Status__c=: DOL_AppConstants.NULL_EMPTY_STRING + 'Pending' and MUSW__Status__c != null and Renewal_Application__c != null]){
-            rev.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Approved';
+         for(MUSW__Review__c rev : [select id,MUSW__Status__c from MUSW__Review__c where Renewal_Application__c IN:setId and MUSW__Status__c='Pending']){
+            rev.MUSW__Status__c = 'Approved';
             reviewList.add(rev);
          }
          if(!reviewList.isEmpty()){

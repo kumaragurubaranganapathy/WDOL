@@ -3,7 +3,7 @@ global class Lnp_GenarateReviewRecords_RenewalBatch implements Schedulable, Data
     global Database.QueryLocator start (Database.BatchableContext BC) {
     
         String Review_Generation_Status = Label.Review_Generation_Renewal_Status;
-        String query= DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id,Renewal_Status__c,license_number__c,Total_Balance__c,Manual_Fee_Generation__c,applicant_full_name__c,Renewal_Reinstatement_Type__c,Credential_Type__c,Application_Type__c,Applicant__c,License_Account__c,License__c,License__r.Is_Late_Renewal_Eligible__c, License__r.Deployed__c from Renewal_Application__c where Renewal_Status__c=:Review_Generation_Status AND Total_Balance__c = 0 AND Manual_Fee_Generation__c = TRUE';
+        String query='Select Id,Renewal_Status__c,license_number__c,Total_Balance__c,Manual_Fee_Generation__c,applicant_full_name__c,Renewal_Reinstatement_Type__c,Credential_Type__c,Application_Type__c,Applicant__c,License_Account__c,License__c,License__r.Is_Late_Renewal_Eligible__c, License__r.Deployed__c from Renewal_Application__c where Renewal_Status__c=:Review_Generation_Status AND Total_Balance__c = 0 AND Manual_Fee_Generation__c = TRUE';
         return Database.getQueryLocator(query);
     }
     
@@ -20,7 +20,7 @@ global class Lnp_GenarateReviewRecords_RenewalBatch implements Schedulable, Data
             MUSW__Review__c reviewRec = new MUSW__Review__c();
             renewal_Rec.Renewal_Status__c = Review_Creation_Status;
             reviewRec.Name = renewal_Rec.renewal_reinstatement_type__c+' Review - '+renewal_Rec.applicant_full_name__c+' / '+renewal_Rec.license_number__c;
-            reviewRec.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending';
+            reviewRec.MUSW__Status__c ='Pending';
             reviewRec.Application_Type__c = renewal_Rec.Application_Type__c;
             reviewRec.License_Type__c = renewal_Rec.Credential_Type__c;
             reviewRec.Review_Type__c = renewal_Rec.renewal_reinstatement_type__c;

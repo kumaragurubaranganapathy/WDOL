@@ -20,7 +20,7 @@ public class Polaris_ApplyForLicenseController {
             Integer tabIndex = 1;
             Integer currentTab = 0;
             LnP_JSONParser ansWrapper; //to create Wrapper 
-            String jsonApplicationFields = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            String jsonApplicationFields = '';
             List<LnP_ApplyForLicenseWrapper> lstLicenseWrapper = new List<LnP_ApplyForLicenseWrapper>();
             //Fetching data for subsection icon
             Map<String,String> mapTempSubsectionIcon = Polaris_ApplyForLicenseService.fetchSubsectionIcons(System.Label.Page_Name_For_License);
@@ -108,7 +108,7 @@ public class Polaris_ApplyForLicenseController {
                 LnP_ApplyForLicenseWrapper.MapLabelToFields mapLabel = new LnP_ApplyForLicenseWrapper.MapLabelToFields();
                 mapLabel.label = masterSubmissionRecord.Name;
                 mapLabel.conditionalAnswer = masterSubmissionRecord.Title__c;
-                mapLabel.fieldType = DOL_AppConstants.ATTACHMENT;
+                mapLabel.fieldType = 'Attachment';
                 mapLabel.isGenericSub = true;
                 mapLabel.orderBy = masterSubmissionRecord.Order_No__c;
                 if(masterSubmissionRecord.Submission_Type__c != null && masterSubmissionRecord.Submission_Type__c.contains('Softcopy: To be Uploaded')){
@@ -140,7 +140,7 @@ public class Polaris_ApplyForLicenseController {
             //Map for Question Section
             Map<String,List<LnP_ApplyForLicenseWrapper.MapLabelToFields>> mapOnQuestions = new Map<String,List<LnP_ApplyForLicenseWrapper.MapLabelToFields>>();
             
-            String questionSection = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            String questionSection = '';
             for(Question__c Ques : lstQuestions )
             {
                 LnP_ApplyForLicenseWrapper.MapLabelToFields labelToFields = new LnP_ApplyForLicenseWrapper.MapLabelToFields();
@@ -172,7 +172,7 @@ public class Polaris_ApplyForLicenseController {
                 }
                 if(questionSection == Ques.Section__c || Ques.Section__c==null)
                 {
-                    labelToFields.questionSection = DOL_AppConstants.NULL_EMPTY_STRING + 'null';
+                    labelToFields.questionSection ='null';
                     
                 }
                 else
@@ -194,13 +194,11 @@ public class Polaris_ApplyForLicenseController {
                 labelToFields.fieldAPIName = Ques.QuestionFieldAPI__c;
                 labelToFields.fieldObjName = Ques.QuestionObjectName__c;
                 labelToFields.conditionalAnswer = Ques.Triggering_Parent_Answer__c;
-                if(Ques.Possible_Responses__c != null && Ques.Data_Type__c == DOL_AppConstants.PICKLIST)
+                if(Ques.Possible_Responses__c != null && Ques.Data_Type__c == 'Picklist')
                 {
                     labelToFields.fieldValueOptions = Ques.Possible_Responses__c.split(';');
                 }
-                else if(Ques.Possible_Responses__c != null 
-                && (Ques.Data_Type__c == DOL_AppConstants.RADIO ||Ques.Data_Type__c == DOL_AppConstants.CHECKBOX 
-                ||Ques.Data_Type__c == DOL_AppConstants.YES_NO))
+                else if(Ques.Possible_Responses__c != null && (Ques.Data_Type__c == 'Radio'||Ques.Data_Type__c == 'Checkbox'||Ques.Data_Type__c == 'Yes_No'))
                 { 
                     for(String radio : Ques.Possible_Responses__c.split(';')){
                         LnP_ApplyForLicenseWrapper.MapRadioButtons radioMap = new LnP_ApplyForLicenseWrapper.MapRadioButtons();
@@ -256,9 +254,9 @@ public class Polaris_ApplyForLicenseController {
                     licenseWrapper.icon = mapSubsectionIcon.get(section+' icon');              
                 }
                 //Creating JSON for Personal Information section
-                if(section == DOL_AppConstants.PERSONAL_INFORMATION )
+                if(section =='Personal Information' )
                 {
-                    licenseWrapper.personalInfoObjectName = DOL_AppConstants.NULL_EMPTY_STRING + 'Contact';
+                    licenseWrapper.personalInfoObjectName = 'Contact';
                     licenseWrapper.fieldJson = jsonApplicationFields;
                     /* if(!lstLicenseApplication.isEmpty() && lstLicenseApplication[0].Contact__c != null )
                     {
@@ -275,20 +273,20 @@ public class Polaris_ApplyForLicenseController {
                     
                 }
                 //Created for Course Information Section
-                else if(section == DOL_AppConstants.COURSE_INFORMATION ){
-                    licenseWrapper.personalInfoObjectName = DOL_AppConstants.NULL_EMPTY_STRING + 'Account';
+                else if(section == 'Course Information' ){
+                    licenseWrapper.personalInfoObjectName = 'Account';
                     licenseWrapper.accountId = lstApps[0].MUSW__Account__c;
                     licenseWrapper.fieldJson = jsonApplicationFields;
                 } //end
-                else if((section == DOL_AppConstants.BUSINESS_INFORMATION) &&  !lstApps.isEmpty())
+                else if((section =='Business Information') &&  !lstApps.isEmpty())
                 {
-                    licenseWrapper.personalInfoObjectName = DOL_AppConstants.NULL_EMPTY_STRING + 'Account'; 
+                    licenseWrapper.personalInfoObjectName = 'Account'; 
                     licenseWrapper.accountId = lstApps[0].MUSW__Account__c;
                     licenseWrapper.fieldJson = jsonApplicationFields;
                 }
-                else if(section == DOL_AppConstants.ATTACHMENTS)
+                else if(section =='Attachments')
                 {
-                    licenseWrapper.sobjectType = DOL_AppConstants.NULL_EMPTY_STRING + 'Submission';
+                    licenseWrapper.sobjectType = 'Submission';
                     if(!lstMapLabelFieldsForSubmission.isEmpty())
                     {
                         licenseWrapper.labelFieldsMap.addAll(lstMapLabelFieldsForSubmission);
@@ -316,7 +314,7 @@ public class Polaris_ApplyForLicenseController {
     public static LnP_JSONParser getJSONWrapper(String formJson){
         try{
             //system.debug('lstLicenseApplication'+lstLicenseApplication);
-            String strJsonForm = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            String strJsonForm = '';
             //  for(LnP_Licence_Application__c app : lstLicenseApplication){
             strJsonForm = strJsonForm + formJson;
             // }        
@@ -343,14 +341,13 @@ public class Polaris_ApplyForLicenseController {
             //List<string> lstMandatorySubSections= new  List<string>();
             for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
                 system.debug('wrapperlist123444'+wrapperList);
-                if(objWrapper.sectionName.contains(DOL_AppConstants.LICENSE_INFORMATION)||objWrapper.sectionName.contains(DOL_AppConstants.QUESTIONS) 
-                || objWrapper.sectionName.contains(DOL_AppConstants.ENDORSEMENT)){
+                if(objWrapper.sectionName.contains('License Information')||objWrapper.sectionName.contains('Questions') || objWrapper.sectionName.contains('Endorsement')){
                     system.debug('Inside section=Question');             
                     for(LnP_ApplyForLicenseWrapper.MapLabelToFields abc: objWrapper.labelFieldsMap) {
                         listFields.add(abc);
                     }                
                 }
-                if(objWrapper.sectionName.contains(DOL_AppConstants.ATTACHMENTS)){
+                if(objWrapper.sectionName.contains('Attachments')){
                     listFieldSub = objWrapper.labelFieldsMap;
                 }
             }
@@ -384,23 +381,23 @@ public class Polaris_ApplyForLicenseController {
             //Just for upgrade
             //
             //Map of licensese for which  there is upgrade
-            String mastSubCond1 = DOL_AppConstants.NULL_EMPTY_STRING + 'Application_Type__c = \''+Board+'\'';
-            String mastSubCond2 = DOL_AppConstants.NULL_EMPTY_STRING + 'Application_Method__c =\''+ApplicationType+'\'';
-            String mastSubCond3 = DOL_AppConstants.NULL_EMPTY_STRING + 'Credential_Type__c =\''+LicenseType+'\'';
-            String mastSubCond4 = DOL_AppConstants.NULL_EMPTY_STRING + 'Title__c IN: XXX ';
+            String mastSubCond1 = 'Application_Type__c = \''+Board+'\'';
+            String mastSubCond2 = 'Application_Method__c =\''+ApplicationType+'\'';
+            String mastSubCond3 = 'Credential_Type__c =\''+LicenseType+'\'';
+            String mastSubCond4 = 'Title__c IN: XXX ';
             MUSW__License2__c upgradeLic = new MUSW__License2__c();
-            String strSubmission = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            String strSubmission = '';
             System.debug('upgradeLicenseId:'+upgradeLicenseId);
             if(upgradeLicenseId!=null)
             {
                 upgradeLic = [SELECT id,Credential_Type__c FROM MUSW__License2__c where id=:upgradeLicenseId limit 1];
             } 
             if(upgradeLic != null){
-                String mastSubCond5 = DOL_AppConstants.NULL_EMPTY_STRING + 'Show_For_License__c =\''+upgradeLic.Credential_Type__c+'\'';        
-                strSubmission = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Show_For_License__c,Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ( ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+' AND '+mastSubCond5+' ) OR (Title__c IN: XXX) ORDER BY  Order_No__c ASC' ;
+                String mastSubCond5 = 'Show_For_License__c =\''+upgradeLic.Credential_Type__c+'\'';        
+                strSubmission = 'Select Id, Show_For_License__c,Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ( ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+' AND '+mastSubCond5+' ) OR (Title__c IN: XXX) ORDER BY  Order_No__c ASC' ;
             }
             else{
-                strSubmission = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+ ' AND ' +mastSubCond4 ;
+                strSubmission = 'Select Id, Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+ ' AND ' +mastSubCond4 ;
             }
             system.debug('submissionList'+submissionList);
             masterSubmissionList = Utilityclass_withsharing.queryRecordsInClause(strSubmission,submissionList);
@@ -435,7 +432,7 @@ public class Polaris_ApplyForLicenseController {
                         submissionMap.label = master.Name;
                         submissionMap.conditionalAnswer = master.Title__c;
                         submissionMap.orderBy = master.Order_No__c;
-                        submissionMap.fieldType = DOL_AppConstants.ATTACHMENT;
+                        submissionMap.fieldType = 'Attachment';
                         if(master.Submission_Type__c != null && master.Submission_Type__c.contains('Softcopy: To be Uploaded')){
                             submissionMap.uploadFile = true;
                         }
@@ -495,7 +492,7 @@ public class Polaris_ApplyForLicenseController {
             Integer questionsAnswered=0;
             Integer FGquestionsAnswered=0;
             Integer CIquestionAnswered=0;
-            String accountId= DOL_AppConstants.NULL_EMPTY_STRING + '';
+            String accountId='';
             if(!wrapperList.isEmpty()){
                 accountId =  wrapperList[0].accountId != null ? wrapperList[0].accountId : '';
                 system.debug('accountId---'+accountId);
@@ -516,7 +513,7 @@ public class Polaris_ApplyForLicenseController {
             List<LnP_ApplyForLicenseWrapper.MapLabelToFields> submissionFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
             lstUserInfoData = new List<User>();
             List<User> lstuserData  = Polaris_ApplyForLicenseService.fetchUserDetails();
-            String getContactId = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            String getContactId ='';
             if(!lstuserData.isEmpty())
             {
                 lstUserInfoData = lstuserData;
@@ -530,12 +527,12 @@ public class Polaris_ApplyForLicenseController {
             List<LnP_JSONParser.CompositeRequest> requestDetailsList = new List<LnP_JSONParser.CompositeRequest>();
             for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
                 system.debug('objWrapper.labelFieldsMap'+objWrapper.labelFieldsMap);
-                if(objWrapper.sectionName.contains(DOL_AppConstants.LICENSE_INFORMATION) || objWrapper.sectionName.contains(DOL_AppConstants.FINANCIAL_GUARANTEE) 
-                   || objWrapper.sectionName.contains(DOL_AppConstants.ENDORSEMENT) || objWrapper.sectionName.contains(DOL_AppConstants.QUESTIONS) || objWrapper.sectionName.contains('Review and Submit')){
+                if(objWrapper.sectionName.contains('License Information') || objWrapper.sectionName.contains('Financial Guarantee') 
+                   || objWrapper.sectionName.contains('Endorsement') || objWrapper.sectionName.contains('Questions') || objWrapper.sectionName.contains('Review and Submit')){
                        listFields.addAll(objWrapper.labelFieldsMap);
                    }
                 
-                if(objWrapper.sectionName.contains(DOL_AppConstants.ATTACHMENTS)){
+                if(objWrapper.sectionName.contains('Attachments')){
                     submissionFields = objWrapper.labelFieldsMap;
                 }
             }
@@ -548,19 +545,19 @@ public class Polaris_ApplyForLicenseController {
                 Integer refcount = 0;
                 for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
                     refcount++;
-                    if(fieldMap.questionSectionClass ==DOL_AppConstants.CERTIFICATIONS || (fieldMap.value != null  && fieldMap.value != '' && fieldMap.value != '--None--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
+                    if(fieldMap.questionSectionClass =='Certifications' || (fieldMap.value != null  && fieldMap.value != '' && fieldMap.value != '--None--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
                         //system.debug('inside a methods');
                         LnP_JSONParser.CompositeRequest requestDetails = new LnP_JSONParser.CompositeRequest();
-                        requestDetails.method = DOL_AppConstants.NULL_EMPTY_STRING + 'POST';
-                        requestDetails.url = DOL_AppConstants.NULL_EMPTY_STRING + '/services/data/v38.0/sobjects/BGCK__Answer__c';
-                        requestDetails.referenceId = DOL_AppConstants.NULL_EMPTY_STRING + 'refId'+refcount;
+                        requestDetails.method = 'POST';
+                        requestDetails.url = '/services/data/v38.0/sobjects/BGCK__Answer__c';
+                        requestDetails.referenceId = 'refId'+refcount;
                         LnP_JSONParser.Body body = new LnP_JSONParser.Body();
                         // system.debug('fieldMap '+fieldMap.value);
                         if(fieldMap.value != null && fieldMap.value != ''){
                             body.Answer = fieldMap.value; 
                         }
                         else{
-                            body.Answer = DOL_AppConstants.NULL_EMPTY_STRING + '';
+                            body.Answer = '';
                             for(String str : fieldMap.multiValues){
                                 if(body.Answer == ''){
                                     body.Answer = str;
@@ -579,23 +576,23 @@ public class Polaris_ApplyForLicenseController {
                         
                     }
                     system.debug('requestDetailsList : '+requestDetailsList);
-                    if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true && fieldMap.questionSectionClass.contains(DOL_AppConstants.QUESTIONS) || fieldMap.questionSectionClass.contains(DOL_AppConstants.FINANCIAL_GUARANTEE) || fieldMap.questionSectionClass.contains(DOL_AppConstants.ENDORSEMENT) || fieldMap.questionSectionClass.contains('Course') || fieldMap.questionSectionClass.contains('Application Fees')){
+                    if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true && fieldMap.questionSectionClass.contains('Questions') || fieldMap.questionSectionClass.contains('Financial Guarantee') || fieldMap.questionSectionClass.contains('Endorsement') || fieldMap.questionSectionClass.contains('Course') || fieldMap.questionSectionClass.contains('Application Fees')){
                         count++;  
                     }
-                    if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true && fieldMap.questionSectionClass.contains(DOL_AppConstants.QUESTIONS) && fieldMap.isMandatoryQues ==true ){
+                    if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true && fieldMap.questionSectionClass.contains('Questions') && fieldMap.isMandatoryQues ==true ){
                         questioncount++;
                     }
-                    if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true &&  fieldMap.questionSectionClass.contains(DOL_AppConstants.FINANCIAL_GUARANTEE) ){
+                    if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true &&  fieldMap.questionSectionClass.contains('Financial Guarantee') ){
                         FGquestioncount++;
                     }
                     if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true &&  fieldMap.questionSectionClass.contains('Course') ){
                         CIquestioncount++;
                     }
                     //system.debug('fieldMap.renderedOnUi '+fieldMap.renderedOnUi);
-                    if(fieldMap.questionSectionClass.contains(DOL_AppConstants.QUESTIONS)  && fieldMap.isMandatoryQues ==true && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && fieldMap.value != null && fieldMap.value !='' ){
+                    if(fieldMap.questionSectionClass.contains('Questions')  && fieldMap.isMandatoryQues ==true && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && fieldMap.value != null && fieldMap.value !='' ){
                         questionsAnswered++;
                     }
-                    if(fieldMap.questionSectionClass.contains(DOL_AppConstants.FINANCIAL_GUARANTEE) && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && fieldMap.value != null && fieldMap.value !='' ){
+                    if(fieldMap.questionSectionClass.contains('Financial Guarantee') && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && fieldMap.value != null && fieldMap.value !='' ){
                         FGquestionsAnswered++;
                     }
                     if(fieldMap.questionSectionClass.contains('Course') && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && fieldMap.value != null && fieldMap.value !='' ){
@@ -630,9 +627,7 @@ public class Polaris_ApplyForLicenseController {
                     //Since there is no input parameters in this string and this has been completely generated 
                     //here itself without any User interaction
                     //Leaving it as it is now
-                    
-                    String queryFiles = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Id, ContentDocumentId, LinkedEntityId FROM ContentDocumentLink WHERE ContentDocumentId IN : XXX';
-                    queryFiles = queryFiles;
+                    String queryFiles = 'SELECT Id, ContentDocumentId, LinkedEntityId FROM ContentDocumentLink WHERE ContentDocumentId IN : XXX';
                     contentLink = Utilityclass_withsharing.queryRecordsInClause(queryFiles,docId);
                     for(ContentDocumentLink link : contentLink){
                         System.debug('link.LinkedEntityId--->'+link.LinkedEntityId);
@@ -646,8 +641,6 @@ public class Polaris_ApplyForLicenseController {
                 Integer subcount = 0;
                 system.debug('submissionFields'+submissionFields);
                 for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : submissionFields){
-                   // LnP_JSONParser.CompositeRequest requestDetailSub = new LnP_JSONParser.CompositeRequest();
-                   // LnP_JSONParser.Body bodySub = new LnP_JSONParser.Body();
                     subcount++;
                     if(fieldMap.isMandatorySub == true){
                         count++;
@@ -657,39 +650,39 @@ public class Polaris_ApplyForLicenseController {
                     }
                     system.debug('counttotal'+count);
                     system.debug('filesSubmitted'+filesSubmitted);
-if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.uploadFile) ){
+                    if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.uploadFile) ){
                         Integer innerCount = 0;
                         for(String contentdocId : fieldMap.multiValues){
                             innerCount++;
                             LnP_JSONParser.CompositeRequest requestDetails = new LnP_JSONParser.CompositeRequest();
-                            requestDetails.method = DOL_AppConstants.NULL_EMPTY_STRING + 'DELETE';
-                            requestDetails.url = DOL_AppConstants.NULL_EMPTY_STRING + '/services/data/v38.0/sobjects/ContentDocumentLink/'+docLinkMap.get(contentdocId);
-                            requestDetails.referenceId = DOL_AppConstants.NULL_EMPTY_STRING + 'refDocId'+subcount+innerCount;
+                            requestDetails.method = 'DELETE';
+                            requestDetails.url = '/services/data/v38.0/sobjects/ContentDocumentLink/'+docLinkMap.get(contentdocId);
+                            requestDetails.referenceId = 'refDocId'+subcount+innerCount;
                             requestDetailsList.add(requestDetails);
                         }
                     }
                     LnP_JSONParser.CompositeRequest requestDetailSub = new LnP_JSONParser.CompositeRequest();
-                    requestDetailSub.method = DOL_AppConstants.NULL_EMPTY_STRING + 'POST';
-                    requestDetailSub.url = DOL_AppConstants.NULL_EMPTY_STRING + '/services/data/v38.0/sobjects/MUSW__Submission__c';
-                    requestDetailSub.referenceId = DOL_AppConstants.NULL_EMPTY_STRING + 'refSubId'+subcount;
+                    requestDetailSub.method = 'POST';
+                    requestDetailSub.url = '/services/data/v38.0/sobjects/MUSW__Submission__c';
+                    requestDetailSub.referenceId = 'refSubId'+subcount;
                     LnP_JSONParser.Body bodySub = new LnP_JSONParser.Body();
                     bodySub.Name = fieldMap.conditionalAnswer;
                     bodySub.MUSW_Description = fieldMap.label;
                     bodySub.MUSW_Application2 = appId;
                     bodySub.Hardcopy = fieldMap.acknowledgeResponse;
-                    bodySub.ContentDocumentId = DOL_AppConstants.NULL_EMPTY_STRING + '';
+                    bodySub.ContentDocumentId ='';
                     Integer innerCount = 0;
                     if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.uploadFile) ){
                         for(String contentdocId : fieldMap.multiValues){
                             innerCount++;
                             LnP_JSONParser.CompositeRequest requestDetailsContent = new LnP_JSONParser.CompositeRequest();
-                            requestDetailsContent.method = DOL_AppConstants.NULL_EMPTY_STRING + 'POST';
-                            requestDetailsContent.url = DOL_AppConstants.NULL_EMPTY_STRING + '/services/data/v38.0/sobjects/ContentDocumentLink';
-                            requestDetailsContent.referenceId = DOL_AppConstants.NULL_EMPTY_STRING + 'refContId'+innerCount;
+                            requestDetailsContent.method = 'POST';
+                            requestDetailsContent.url = '/services/data/v38.0/sobjects/ContentDocumentLink';
+                            requestDetailsContent.referenceId = 'refContId'+innerCount;
                             LnP_JSONParser.Body bodyLink = new LnP_JSONParser.Body();
-                            bodyLink.LinkedEntityId = DOL_AppConstants.NULL_EMPTY_STRING + '@{refSubId'+innerCount+'.id}';
+                            bodyLink.LinkedEntityId = '@{refSubId'+innerCount+'.id}';
                             bodyLink.ContentDocumentId = contentdocId;
-                            bodyLink.ShareType = DOL_AppConstants.NULL_EMPTY_STRING + 'I';
+                            bodyLink.ShareType = 'I';
                             requestDetailsContent.body = bodyLink;
                             requestDetailsList.add(requestDetailsContent); 
                             
@@ -733,9 +726,9 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
             System.debug('tabNumber-->'+tabNumber);
             String jsonString = JSON.serialize(field);
             List<MUSW__Application2__c> appList =new List<MUSW__Application2__c>();
-            String appCondition = DOL_AppConstants.NULL_EMPTY_STRING + 'Id=\''+appId+'\'';
-            //String strApp = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Stage__c, Application_Type__c,  Board__c, License_Type__c, (Select Id, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC),(Select Id, Name from Education_History__r ) from MUSW_Application2__c where '+appCondition;
-            String strApp = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c from MUSW__Application2__c where '+appCondition;
+            String appCondition = 'Id=\''+appId+'\'';
+            //String strApp = 'Select Id, Stage__c, Application_Type__c,  Board__c, License_Type__c, (Select Id, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC),(Select Id, Name from Education_History__r ) from MUSW_Application2__c where '+appCondition;
+            String strApp = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c from MUSW__Application2__c where '+appCondition;
             appList = Utilityclass_withsharing.queryRecords(strApp);
             List<Education_History__c> lstEducations = new List<Education_History__c>();
             
@@ -770,16 +763,16 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
             for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
                 objWrapper.sectionError = false;
                 lstMandatorySubsection= new List<String> ();
-                if(objWrapper.sectionName.contains(DOL_AppConstants.LICENSE_INFORMATION) && questionsIncomplete==true){
+                if(objWrapper.sectionName.contains('License Information') && questionsIncomplete==true){
                     objWrapper.sectionError = true;
                 } 
-                if(objWrapper.sectionName.contains(DOL_AppConstants.FINANCIAL_GUARANTEE) && FGquestionsIncomplete==true){
+                if(objWrapper.sectionName.contains('Financial Guarantee') && FGquestionsIncomplete==true){
                     objWrapper.sectionError = true;
                 } 
-                if(objWrapper.sectionName.contains(DOL_AppConstants.QUESTIONS) && CIquestionsIncomplete==true){
+                if(objWrapper.sectionName.contains('Questions') && CIquestionsIncomplete==true){
                     // objWrapper.sectionError = true;
                 } 
-                if(objWrapper.sectionName.contains(DOL_AppConstants.ATTACHMENTS) && submissionsIncomplete == true){
+                if(objWrapper.sectionName.contains('Attachments') && submissionsIncomplete == true){
                     objWrapper.sectionError = true;
                 }
                 if(objWrapper.mandatorySubsection != null){
@@ -788,17 +781,17 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                         system.debug('mapAddress'+ mapAddress);
                         for(String mandatorySubSection : lstMandatorySubsection){
                             system.debug('mandatorySubsection098'+ mandatorySubSection);
-                            if((mandatorySubSection == DOL_AppConstants.PHYSICAL_ADDRESS || mandatorySubSection == DOL_AppConstants.MAILING_ADDRESS)){
+                            if((mandatorySubSection == 'Physical Address' || mandatorySubSection == 'Mailing Address')){
                                 if(mapAddress.isEmpty()){
                                     objWrapper.sectionError = true;
                                 }else{
-                                    if(!mapAddress.containsKey(DOL_AppConstants.CAP_MAILING_ADDRESS) || (!mapAddress.containsKey(DOL_AppConstants.CAP_PHYSICAL_ADDRESS) && !mapAddress.get(DOL_AppConstants.CAP_MAILING_ADDRESS)[0].is_Physical_and_Mailing_Address_Same__c)){
-                                        system.debug('inside the mandatory'+mapAddress.get(DOL_AppConstants.CAP_PHYSICAL_ADDRESS));
+                                    if(!mapAddress.containsKey('MAILING ADDRESS') || (!mapAddress.containsKey('PHYSICAL ADDRESS') && !mapAddress.get('MAILING ADDRESS')[0].is_Physical_and_Mailing_Address_Same__c)){
+                                        system.debug('inside the mandatory'+mapAddress.get('PHYSICAL ADDRESS'));
                                         objWrapper.sectionError = true;
                                     }
                                 }   
                             }
-                            else if((mandatorySubSection == DOL_AppConstants.QUALIFYING_EDUCATION || mandatorySubSection == DOL_AppConstants.QUALYFYING_TRAINING || mandatorySubSection == DOL_AppConstants.QUALYFYING_EXPERIENCE)  ){
+                            else if((mandatorySubSection == 'Qualifying Education' || mandatorySubSection == 'Qualifying Training' || mandatorySubSection == 'Qualifying Experience')  ){
                                 if(mapEducation.isEmpty()){
                                     objWrapper.sectionError = true;
                                 } else if(mapEducation.get(mandatorySubSection) == null ||  mapEducation.get(mandatorySubSection).size() == 0 ){
@@ -831,13 +824,13 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
             List<MUSW__License2__c> licenseID;
             // string applicationId2 = string.valueOf(applicationId).substring(0, 15);
             setapplicationId.add(applicationId);
-            String appCondition = DOL_AppConstants.NULL_EMPTY_STRING + 'Id=\''+applicationId+'\'';
-            // String strApp = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, MUSW__Account__r.Parent, Stage__c, Application_Type__c,  Credential_Type__c, Application_Method__c, (Select Id, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC) from MUSW__Application2__c where '+appCondition;
-            String strApp = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, MUSW__Account__c, Stage__c, Form_JSON__c, Upgrading_License__c,Application_Type__c,  Credential_Type__c, Application_Method__c from MUSW__Application2__c where '+appCondition;
+            String appCondition = 'Id=\''+applicationId+'\'';
+            // String strApp = 'Select Id, MUSW__Account__r.Parent, Stage__c, Application_Type__c,  Credential_Type__c, Application_Method__c, (Select Id, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC) from MUSW__Application2__c where '+appCondition;
+            String strApp = 'Select Id, MUSW__Account__c, Stage__c, Form_JSON__c, Upgrading_License__c,Application_Type__c,  Credential_Type__c, Application_Method__c from MUSW__Application2__c where '+appCondition;
             system.debug('StrApp Query--->'+strApp);
             appList = Utilityclass_withsharing.queryRecords(strApp);
             system.debug('Applist In AController--->'+appList);
-            String stringJSON = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            String stringJSON = '';
             stringJSON = appList[0].Form_JSON__c;
             Boolean checkSuccess = false;
             //Modified code for handling 25 subrequest governor limit
@@ -905,7 +898,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                 
                 if(checkSuccess) {
                     appList[0].Stage__c = -1;
-                    appList[0].MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Submitted';
+                    appList[0].MUSW__Status__c = 'Submitted';
                     licenseID =insertLisence(setapplicationId);
                     //Fetch Parcel Record data based on Logged in User
                     Id contactRecordIdData = getCommunityUserContactId();
@@ -920,8 +913,8 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                     getAllAddressesForComposite(contactAccountId, appList[0].Id,licenseID[0].Id );
                     //Setup  for the populating the details
                     List<MUSW__Application2__c> appListOtherDetils =new List<MUSW__Application2__c>();
-                    // String strAppOther = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Stage__c, Application_Type__c,  Board__c, License_Type__c,(select id,License__c from MUSW_Submissions__r) ,(select Id,License__c from Answers__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM Education_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW_Application2__c where '+appCondition;
-                    String strAppOther = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (select id,MUSW__License2__c,ContentDocumentId__c from MUSW__Submissions__r) ,(select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c from Answers1__r),(Select Id,License__c FROM LnP_BackgroundSections__r),(Select Id,License__c,RecordType.Name FROM Parcels__r) from MUSW__Application2__c where '+appCondition;
+                    // String strAppOther = 'Select Id, Stage__c, Application_Type__c,  Board__c, License_Type__c,(select id,License__c from MUSW_Submissions__r) ,(select Id,License__c from Answers__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM Education_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW_Application2__c where '+appCondition;
+                     String strAppOther = 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (select id,MUSW__License2__c,ContentDocumentId__c from MUSW__Submissions__r) ,(select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c from Answers1__r),(Select Id,License__c FROM LnP_BackgroundSections__r),(Select Id,License__c,RecordType.Name FROM Parcels__r) from MUSW__Application2__c where '+appCondition;
                     system.debug('StrApp Query--->'+strAppOther);
                     system.debug('licenseID[0].Id --->'+licenseID[0].Id);
                     appListOtherDetils = Utilityclass_withsharing.queryRecords(strAppOther);
@@ -948,11 +941,11 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                     }    
                     List<BGCK__Answer__c> lstAnswers = new List<BGCK__Answer__c>();
                     List<Endorsement__c> lstEndorsements = new List<Endorsement__c>();
-                    String providerName = DOL_AppConstants.NULL_EMPTY_STRING + '';
+                    String providerName = '';
                     //For Courses 
                     // MUSW__License2__c LicenseObj = [SELECT Id,Bond_Number__c,Surety_Bond_Company_Name__c,Policy_Amount__c,Effective_Date_of_Bond__c,Expiration_Date_of_Bond__c FROM MUSW__License2__c WHERE Id=: licenseID[0].id ];
                     MUSW__License2__c LicenseObj = new MUSW__License2__c(id= licenseID[0].id );
-                    String courseProvider = DOL_AppConstants.NULL_EMPTY_STRING + '';
+                    String courseProvider = '';
                     Boolean isAppraiserCourse = false;
                     //Course Type Question ANswers
                     if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0 && appListOtherDetils[0].Credential_Type__c =='Appraiser Course'){
@@ -977,12 +970,12 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                                     system.debug('QuestionObjFieldAPIName course type'+ QuestionObjFieldAPIName);
                                     
                                     
-                                    if(ans.Answer_Text__c == DOL_AppConstants.YES){
+                                    if(ans.Answer_Text__c == 'Yes'){
                                         courseTypeVal.add(ans.QuestionDOL__r.Question_Body__c);
                                         system.debug('courseTypeVal==='+courseTypeVal);
                                     }
                                     
-                                    String commaSepratedList= DOL_AppConstants.NULL_EMPTY_STRING + '';
+                                    String commaSepratedList='';
                                     for(String str : courseTypeVal)
                                     {
                                         commaSepratedList += str + ';' ;
@@ -998,7 +991,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                                 if(QuestionObjFieldAPIName == 'Delivery_Method__c'){
                                     system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     deliveryMethod.add(ans.Answer_Text__c);
-                                    String delMethodStr = DOL_AppConstants.NULL_EMPTY_STRING + '';
+                                    String delMethodStr = '';
                                     for(String str : deliveryMethod){
                                         delMethodStr += str + ';';
                                     }
@@ -1026,18 +1019,18 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                                 if(QuestionObjFieldAPIName == 'Pre_Approval__c'){
                                     
                                     system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
-                                    if(ans.QuestionDOL__r.Question_Body__c == 'Is the Provider an accredited college?' && ans.Answer_Text__c == DOL_AppConstants.YES)
+                                    if(ans.QuestionDOL__r.Question_Body__c == 'Is the Provider an accredited college?' && ans.Answer_Text__c == 'Yes')
                                     {
                                         preApproval.add('College'); 
                                     }
                                     
-                                    if(ans.QuestionDOL__r.Question_Body__c == 'Do you have an Appraisal Qualification Board approval certificate?' &&  ans.Answer_Text__c == DOL_AppConstants.YES)
+                                    if(ans.QuestionDOL__r.Question_Body__c == 'Do you have an Appraisal Qualification Board approval certificate?' &&  ans.Answer_Text__c == 'Yes')
                                     {
                                         preApproval.add('AQB'); 
                                         
                                     }  
                                     
-                                    if(ans.QuestionDOL__r.Question_Body__c == 'Is this is a USPAP 15-hour or 7-hour update course?' &&  ans.Answer_Text__c == DOL_AppConstants.YES)
+                                    if(ans.QuestionDOL__r.Question_Body__c == 'Is this is a USPAP 15-hour or 7-hour update course?' &&  ans.Answer_Text__c == 'Yes')
                                     {
                                         preApproval.add('USPAP Instructor');
                                         
@@ -1050,7 +1043,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                                         preApproval.add('IDECC');
                                         
                                     }
-                                    String preApprovalString = DOL_AppConstants.NULL_EMPTY_STRING + '';
+                                    String preApprovalString ='';
                                     if(!preApproval.isEmpty()){
                                         for(String str : preApproval)
                                         {
@@ -1141,10 +1134,10 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                         update LicenseObj;
                     }
                     //For Endorsement
-                    if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0 && appListOtherDetils[0].Credential_Type__c == DOL_AppConstants.NOTARY_PUBLIC){
+                    if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0 && appListOtherDetils[0].Credential_Type__c == 'Notary Public'){
                         for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r)
                         {                    
-                            if((!ans.Create_Endorsement_Record__c) && ans.QuestionDOL__r.Data_Type__c == DOL_AppConstants.PICKLIST && ans.Question_Section__c==DOL_AppConstants.ENDORSEMENT )
+                            if((!ans.Create_Endorsement_Record__c) && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Question_Section__c=='Endorsement' )
                             {
                                 providerName = ans.Answer_Text__c;
                             }
@@ -1156,30 +1149,30 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                             ans.License__c = licenseID[0].Id; 
                             ans.Question2__c = ans.QuestionDOL__r.Question_Body__c.replaceAll('<span[^>]*>','');
                             System.debug('ans.Question2__c==' + ans.Question2__c);
-                            if(ans.Question_Section__c == DOL_AppConstants.CERTIFICATIONS) {
-                                ans.Answer_Text__c = DOL_AppConstants.YES; 
+                            if(ans.Question_Section__c == 'Certifications') {
+                                ans.Answer_Text__c = 'Yes'; 
                             }
-                            if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == DOL_AppConstants.YES_NO && ans.Answer_Text__c==DOL_AppConstants.YES)
+                            if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Yes_No' && ans.Answer_Text__c=='Yes')
                             {
                                 Endorsement__c endorsment = new Endorsement__c();
                                 endorsment.Endorsement_Type__c = ans.Endorsement_Type__c;
                                 endorsment.License_Type__c = appListOtherDetils[0].Credential_Type__c;
-                                //endorsment.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending Add';
-                                if(appListOtherDetils[0].Credential_Type__c == DOL_AppConstants.NOTARY_PUBLIC)
+                                //endorsment.Status__c = 'Pending Add';
+                                if(appListOtherDetils[0].Credential_Type__c == 'Notary Public')
                                 {
-                                    endorsment.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Active';
+                                    endorsment.Status__c = 'Active';
                                 }
                                 endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
                                 endorsment.License__c = licenseID[0].Id;
                                 endorsment.Created_for_New_Application__c = True;
                                 lstEndorsements.add(endorsment);
                             }
-                            else if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == DOL_AppConstants.PICKLIST && ans.Answer_Text__c != '' && ans.Answer_Text__c !='--None--' && ans.QuestionDOL__r.Endorsement_Type__c!='Notary' )
+                            else if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == 'Picklist' && ans.Answer_Text__c != '' && ans.Answer_Text__c !='--None--' && ans.QuestionDOL__r.Endorsement_Type__c!='Notary' )
                             {
                                 Endorsement__c endorsment = new Endorsement__c();
                                 endorsment.Endorsement_Type__c = ans.Answer_Text__c;
                                 endorsment.License_Type__c = appListOtherDetils[0].Credential_Type__c;
-                                //endorsment.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending Add';
+                                //endorsment.Status__c = 'Pending Add';
                                 endorsment.Date_Requested_for_Adding_Endorsement__c = system.today();
                                 endorsment.License__c = licenseID[0].Id;
                                 endorsment.Created_for_New_Application__c = True;
@@ -1191,7 +1184,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                         update lstAnswers;
                         system.debug('lstEndorsements'+lstEndorsements);
                         insert lstEndorsements;
-                        if(appListOtherDetils[0].Credential_Type__c == DOL_AppConstants.NOTARY_PUBLIC && lstEndorsements.size()>0)
+                        if(appListOtherDetils[0].Credential_Type__c == 'Notary Public' && lstEndorsements.size()>0)
                         {
                             List<Electronic_Notary_Provider_Information__c> lstproviders = [SELECT id,Description__c,Effective_Date__c,Endorsement__c FROM Electronic_Notary_Provider_Information__c where Application_BG__c =:appListOtherDetils[0].Id];
                             
@@ -1209,7 +1202,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                             submissions.MUSW__License2__c = licenseID[0].Id; 
                             if(submissions!=null && submissions.ContentDocumentId__c != null ) {
                                 submissions.IsSANFileUploadTrue__c = true;
-                                submissions.SAN_Image_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Applications';
+                                submissions.SAN_Image_Type__c ='Applications';
                                 mapSubmissionToFile.put(submissions.ID, submissions.ContentDocumentId__c.replace(';',''));
                                 lstSubmissions.add(submissions);
                             }
@@ -1254,7 +1247,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
             List<MUSW__Application2__c> applicationList =new List<MUSW__Application2__c>();
             List<Account>  lstacc = new List<Account>();
             for(Id applicationID : appId){
-                String appliID = DOL_AppConstants.NULL_EMPTY_STRING + '\''+applicationID+'\'';
+                String appliID = '\''+applicationID+'\'';
                 applicationList = Database.query('Select Id,MUSW__Account__r.Id,Parent_License__c,Parent_License__r.Ultimate_Parent_Account__c,Parent_License__r.Ultimate_Parent_Account__r.Name,MUSW__Account__r.UBI_Number__c,Branch_License__c,MUSW__Account__c,MUSW__Account__r.Extension__c,MUSW__Account__r.Business_Website__c,MUSW__Account__r.Business_Phone__c,MUSW__Account__r.Email__c,MUSW__Account__r.Name,MUSW__Account__r.Doing_Business_As_1__c,MUSW__Account__r.First_Name_Primary_Contact__c,MUSW__Account__r.Last_Name_Primary_Contact__c,MUSW__Account__r.Phone_Primary_Contact__c,MUSW__Account__r.Course_Provider__c,Stage__c, MUSW__Applicant__c,MUSW__Applicant__r.FirstName,MUSW__Applicant__r.MiddleName,MUSW__Applicant__r.LastName, Application_Type__c,MUSW__Account__r.Business_Structure__c,Application_Method__c, Credential_Type__c, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c ,QuestionDOL__r.Section__c from Answers1__r) from MUSW__Application2__c where Id = '+appliID);
                 System.debug('***Application List***'+applicationList);
                 for(MUSW__Application2__c application : applicationList){
@@ -1317,8 +1310,8 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                     mstLicense.Application__c = application.id;
                     // mstLicense.MUSW__Applicant__c = application.MUSW__Applicant__c;
                     
-                    mstLicense.MUSW__Status__c = DOL_AppConstants.GENERATE_FEE;
-                    mstLicense.Name = DOL_AppConstants.NULL_EMPTY_STRING + 'System Number';
+                    mstLicense.MUSW__Status__c = 'Generate Fee';
+                    mstLicense.Name = 'System Number';
                     
                    /* if(!professionCodeMaps.isEmpty()){
                         for(LnP_ProfessionalCode__mdt professionCodeMap : professionCodeMaps){
@@ -1328,11 +1321,11 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                         } 
                     }*/
                     
-                    String printableName = DOL_AppConstants.NULL_EMPTY_STRING + '';
-                    String firstName = DOL_AppConstants.NULL_EMPTY_STRING + '' ;
-                    String MiddleName = DOL_AppConstants.NULL_EMPTY_STRING + '';
-                    String LastName = DOL_AppConstants.NULL_EMPTY_STRING + '';
-                    String doingBusinessAs = DOL_AppConstants.NULL_EMPTY_STRING + '';
+                    String printableName = '';
+                    String firstName = '' ;
+                    String MiddleName = '';
+                    String LastName = '';
+                    String doingBusinessAs = '';
                     boolean differentNameVersion = false;
                     //License_Type__mdt licenseTypemtd = new License_Type__mdt();
                     System.debug('***application.Answers1__r**'+application.Answers1__r);
@@ -1363,7 +1356,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                                 system.debug('QuestionObjFieldAPIName--'+QuestionObjFieldAPIName);
                                 if(QuestionObjFieldAPIName == 'Military__c'){
                                     system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
-                                    if(ans.Answer_Text__c == DOL_AppConstants.YES)
+                                    if(ans.Answer_Text__c == 'Yes')
                                     {
                                         mstLicense.Military__c = true; 
                                     }
@@ -1371,7 +1364,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                                 }
                                 if(QuestionObjFieldAPIName == 'Military_Spouse__c'){
                                     system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
-                                    if(ans.Answer_Text__c == DOL_AppConstants.YES)
+                                    if(ans.Answer_Text__c == 'Yes')
                                     {
                                         mstLicense.Military_Spouse__c = true; 
                                     }
@@ -1453,7 +1446,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                                 system.debug('Financial Guarantee entered');
                                 String quesBody = ans.QuestionDOL__r.Question_Body__c;
                                 String answerText = ans.Answer_Text__c;
-                                String stringToDate = DOL_AppConstants.NULL_EMPTY_STRING + '';
+                                String stringToDate = '';
                                 if(quesBody == 'Bond or Policy Number'){
                                     mstLicense.Bond_Number__c = String.valueOf(answerText);
                                 }
@@ -1491,8 +1484,8 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                     }
                     
                     
-                    if(application.Credential_Type__c == DOL_AppConstants.NOTARY_PUBLIC){
-                       // mstLicense.MUSW__Expiration_Date__c = mstLicense.Expiration_Date_of_Bond__c;
+                    if(application.Credential_Type__c == 'Notary Public'){
+                       // mstLicense.MUSW__Expiration_Date__c = mstLicense.Expiration_Date_of_Bond__c; 
                         
                         if(!(mstLicense.Effective_Date_of_Bond__c < system.today())){
                             mstLicense.MUSW__Issue_Date__c = mstLicense.Effective_Date_of_Bond__c;       
@@ -1564,16 +1557,16 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                     MUSW__Account_Contact__c ac = new MUSW__Account_Contact__c();
                     ac.MUSW__Account__c = acc.Id;
                     ac.MUSW__Contact__c = currentUser.ContactId;
-                    ac.Status__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Active' ;
+                    ac.Status__c= 'Active' ;
                     ac.isAdminContact__c = True;
-                    ac.Role__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Administrator';
+                    ac.Role__c = 'Administrator';
                     ac.Account_Admin__c = true;
                     ac.Email__c = currentUser.Email;
                     ac.First_Name__c = currentUser.firstname;
                     ac.Middle_Name__c = currentUser.firstname;
                     ac.Last_Name__c = currentUser.lastName;
                     ac.Email__c = currentUser.email;
-                    ac.Title__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Administrator';
+                    ac.Title__c = 'Administrator';
                     muswAccConList.add(ac);
                 }
             }
@@ -1613,7 +1606,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
             id userId = UserInfo.getUserId();
             User u = [select id, contactId from User where id = : userId];
             system.debug('u----' + u);
-            Id getContactId = DOL_AppConstants.NULL_EMPTY_STRING + '003r000000BnY6T';
+            Id getContactId = '003r000000BnY6T';
             system.debug('getContactId----' + getContactId);
             list<Contact> conlist = new list<Contact>();
             for(Contact con : [Select Id, LastName, Birthdate, Email from contact where Id=:getContactId]){
@@ -1685,10 +1678,9 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                     MUSW__License_Parcel__c licenseParcelRecord = new MUSW__License_Parcel__c();
                     licenseParcelRecord.MUSW__Parcel__c = parcelInstance.Id;
                     licenseParcelRecord.MUSW__License2__c    = licenseId;
-                    licenseParcelRecord.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Active';
-                    if(parcelInstance.Address_Type__c == DOL_AppConstants.MAILING_ADDRESS && !parcelInstance.is_Physical_and_Mailing_Address_Same__c){
+                    if(parcelInstance.Address_Type__c == 'MAILING ADDRESS' && !parcelInstance.is_Physical_and_Mailing_Address_Same__c){
                         licenseParcelRecord.Mailing__c = true;
-                    }else if(parcelInstance.Address_Type__c == DOL_AppConstants.MAILING_ADDRESS && parcelInstance.is_Physical_and_Mailing_Address_Same__c){
+                    }else if(parcelInstance.Address_Type__c == 'MAILING ADDRESS' && parcelInstance.is_Physical_and_Mailing_Address_Same__c){
                         licenseParcelRecord.Mailing__c = true;
                         licenseParcelRecord.Physical__c = true;
                     }else{
@@ -1756,7 +1748,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
             
             if(noFees){
                 licList[0].No_Fee_Required__c = noFees;
-                licList[0].MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending Payment';
+                licList[0].MUSW__Status__c = 'Pending Payment';
                 update licList[0];
             }
             return noFees;    
@@ -1787,7 +1779,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                         if (mapSubmissionToFile.get(submissionId) == contentID.ContentDocumentId) {
                             ContentDocumentLink newclnk = contentID.clone();
                             newclnk.linkedentityid = submissionId;
-                            newclnk.ShareType = DOL_AppConstants.NULL_EMPTY_STRING + 'I';
+                            newclnk.ShareType = 'I';
                             lstFiles.add(newclnk);
                         }
                     }

@@ -42,7 +42,7 @@ public class DOL_ePaymentRTPC {
     private MUSW__Receipt__c receipt {get; set; }
 
     //RTPC Input
-    private String cartId = DOL_AppConstants.NULL_EMPTY_STRING,SFDCfeeIds=DOL_AppConstants.NULL_EMPTY_STRING,SFDCappId=DOL_AppConstants.NULL_EMPTY_STRING,receiptId = DOL_AppConstants.NULL_EMPTY_STRING;
+    private String cartId = '',SFDCfeeIds='',SFDCappId='',receiptId = '';
     
 
     private DOL_Dao dao = new DOL_Dao();
@@ -99,9 +99,9 @@ public class DOL_ePaymentRTPC {
         if(isNotNullOrBlank(rtpcData.PaymentMethod)){
             receipt.MUSW__Payment_Method__c = rtpcData.PaymentMethod;
             if(receipt.MUSW__Payment_Method__c == 'CC')
-                receipt.MUSW__Payment_Method__c = DOL_AppConstants.CREDIT_CARD_STRING;
+                receipt.MUSW__Payment_Method__c = 'Credit Card';
         }
-        //receipt.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Complete';
+        //receipt.Status__c = 'Complete';
         //receipt.MUSW__Amount_Tendered__c = null; // Just to make sure MUSW__Amount_Tendered__c always updated to PaymentAmount inside ReceiptVo
         /* if(isNotNullOrBlank(rtpcData.PaymentAmount))
             receipt.MUSW__Amount_Tendered__c = Decimal.valueOf(rtpcData.PaymentAmount); */
@@ -180,7 +180,7 @@ public class DOL_ePaymentRTPC {
         }
         
         receipt.MUSW__Amount_Tendered__c = null;
-        receipt.Status__c = DOL_AppConstants.COMPLETE;
+        receipt.Status__c = 'Complete';
         receipt.MUSW__Paid_By__c=(acc != null)?acc.Id:null;
         receipt.MUSW__Receipt_Paid_by__c=(con != null)?con.Id:null;
         rs = new MUSW__Receipt__c[]{};

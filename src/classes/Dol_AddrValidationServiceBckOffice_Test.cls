@@ -1,6 +1,6 @@
 @isTest
 public class Dol_AddrValidationServiceBckOffice_Test{
-    public static String responsebody = DOL_AppConstants.NULL_EMPTY_STRING + '<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\">'+
+    public static String responsebody = '<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\">'+
    '<s:Body xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"' + 'xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">'+
      '<doAddressCheckResponse xmlns=\"urn:MelissaDataAddressCheckService\">'+
         ' <doAddressCheckResult>'+
@@ -87,13 +87,13 @@ public class Dol_AddrValidationServiceBckOffice_Test{
   
     @isTest 
      public static void testmethod2(){
-         Account acc = new Account(name = DOL_AppConstants.NULL_EMPTY_STRING + 'testaccount');
+         Account acc = new Account(name = 'testaccount');
          insert acc;
-         contact con = new contact(LastName = DOL_AppConstants.NULL_EMPTY_STRING + 'test Last' , Accountid = acc.id);
+         contact con = new contact(LastName = 'test Last' , Accountid = acc.id);
          insert con;
         
-         MUSW__Parcel__c par = new MUSW__Parcel__c (MUSW__Street2__c= DOL_AppConstants.NULL_EMPTY_STRING + '501 MURPHY RANCH RD',MUSW__City__c= DOL_AppConstants.NULL_EMPTY_STRING + 'MILPITAS',MUSW__State__c= DOL_AppConstants.NULL_EMPTY_STRING + 'CA',MUSW__Post_Zip_Code__c= DOL_AppConstants.NULL_EMPTY_STRING + '95035',
-                                    Country__c= DOL_AppConstants.NULL_EMPTY_STRING + 'United States');
+         MUSW__Parcel__c par = new MUSW__Parcel__c (MUSW__Street2__c='501 MURPHY RANCH RD',MUSW__City__c='MILPITAS',MUSW__State__c='CA',MUSW__Post_Zip_Code__c='95035',
+                                    Country__c= 'United States');
          insert par;
          
          test.startTest();

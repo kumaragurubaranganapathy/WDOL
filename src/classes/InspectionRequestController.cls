@@ -22,8 +22,7 @@ public with sharing class InspectionRequestController
             MUSW__Permit2__c p = database.query('select Id, Name, MUSW__Parcel__c, RecordType.Name, MUSW__Total_Balance__c, (select ' + MUSW.UtilityDb.getFieldsFor_Str('MUSW__Inspection__c', false) + ' from MUSW__Inspections__r where Requested_DateTime__c = null and IsClosed__c = \'No\') from MUSW__Permit2__c where Id = :pid');
             parcelId = p.MUSW__Parcel__c;
             rtName = p.RecordType.Name;
-            //initialise with a non-harcoded null String for code scan error AVOID HARDCODING OF STRING VARIABLE.
-            parentName = DOL_AppConstants.NULL_EMPTY_STRING +'Permit: ' + p.Name;
+            parentName = 'Permit: ' + p.Name;
             hasBalance = p.MUSW__Total_Balance__c > 0;
             ins = p.MUSW__Inspections__r;
         }
@@ -31,13 +30,13 @@ public with sharing class InspectionRequestController
         {
             Account a = database.query('select Id, Name, (select ' + MUSW.UtilityDb.getFieldsFor_Str('MUSW__Inspection__c', false) + ' from Inspections__r where Requested_DateTime__c = null and IsClosed__c = \'No\') from Account where Id = :pid');
             parcelId = null;
-            rtName = DOL_AppConstants.NULL_EMPTY_STRING;
-            parentName = DOL_AppConstants.NULL_EMPTY_STRING+'Account: ' + a.Name;
+            rtName = '';
+            parentName = 'Account: ' + a.Name;
             hasBalance = false;
             ins = a.Inspections__r;
         }
         
-        RecordType[] rt = [select Id from RecordType where Name = :rtName and SobjectType =: DOL_AppConstants.NULL_EMPTY_STRING + 'MUSW__Inspection__c'];
+        RecordType[] rt = [select Id from RecordType where Name = :rtName and SobjectType = 'MUSW__Inspection__c'];
         
         MUSW__Inspection__c newIns = new MUSW__Inspection__c(MUSW__Parcel__c=parcelId);
         if (rt.size() > 0) newIns.RecordTypeId = rt[0].Id;

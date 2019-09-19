@@ -21,7 +21,7 @@ public class LnP_LicenseQuestionsApexController {
     
     @AuraEnabled
     public static Id startAnApplication(String board, String licenseType, String applicationType){
-        Id abc  = DOL_AppConstants.NULL_EMPTY_STRING + 'a3Er0000000Thl4';
+        Id abc  ='a3Er0000000Thl4';
         return abc;
     }
     

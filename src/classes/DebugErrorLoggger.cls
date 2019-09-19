@@ -25,8 +25,8 @@ public class DebugErrorLoggger implements BGCM.ErrorLogger {
 
     // Method to log errors for Salesforce custom errors
     public static void LogError(Exception e, String sObjectId, String sObjectName,String className,String functionalityImpacted, String additionalDetails, String additionalDetails2){
-        String errorType = DOL_AppConstants.NULL_EMPTY_STRING + 'Critical';
-        if (e == null){errorType = DOL_AppConstants.NULL_EMPTY_STRING + 'Debug';}
+        String errorType = 'Critical';
+        if (e == null){errorType = 'Debug';}
         log_into_object(e,errorType,'Unmanaged',sObjectId,sObjectName,className,functionalityImpacted,additionalDetails,additionalDetails2);
     } //End Method
 
@@ -37,8 +37,8 @@ public class DebugErrorLoggger implements BGCM.ErrorLogger {
 
    // Method to log errors for Salesforce custom errors
     public static void LogWarning(Exception e, String sObjectId, String sObjectName,String className,String functionalityImpacted,String additionalDetails, String additionalDetails2){
-        String errorType = DOL_AppConstants.NULL_EMPTY_STRING + 'Warning';
-        if (e == null){errorType = DOL_AppConstants.NULL_EMPTY_STRING + 'Debug';}
+        String errorType = 'Warning';
+        if (e == null){errorType = 'Debug';}
         log_into_object(e,errorType,'Unmanaged',sObjectId,sObjectName,className,functionalityImpacted,additionalDetails,additionalDetails2);
     } //End Method
 
@@ -49,8 +49,8 @@ public class DebugErrorLoggger implements BGCM.ErrorLogger {
     
       // Method to log errors for Salesforce custom errors
     public static void LogFatal(Exception e, String sObjectId, String sObjectName,String className,String functionalityImpacted, String additionalDetails, String additionalDetails2){
-        String errorType = DOL_AppConstants.NULL_EMPTY_STRING + 'Fatal';
-        if (e == null){errorType = DOL_AppConstants.NULL_EMPTY_STRING + 'Debug';}
+        String errorType = 'Fatal';
+        if (e == null){errorType = 'Debug';}
         log_into_object(e,errorType,'Unmanaged',sObjectId,sObjectName,className,functionalityImpacted,additionalDetails,additionalDetails2);
     } //End Method
     
@@ -77,7 +77,7 @@ public class DebugErrorLoggger implements BGCM.ErrorLogger {
         if (e != null){
             if (e.getCause()!=null){logRecord.Error_Cause__c = e.getCause()+'';}
             if (e.getMessage()!=null){logRecord.Error_Description__c = e.getMessage();}
-            if (e.getLineNumber()!=null) {logRecord.Error_Line_Number__c = DOL_AppConstants.NULL_EMPTY_STRING + '' + e.getLineNumber();}
+            if (e.getLineNumber()!=null) {logRecord.Error_Line_Number__c = '' + e.getLineNumber();}
             if (e.getStackTraceString()!=null){logRecord.Error_Stack__c = e.getStackTraceString();}
             if (e.getTypeName()!=null){logRecord.Error_Type__c = e.getTypeName();}
         }//end if - check for exception object
@@ -96,10 +96,10 @@ public class DebugErrorLoggger implements BGCM.ErrorLogger {
         if (e != null){
             if (e.getTypeName()!=null){
                 if ('System.DmlException'.equalsIgnoreCase(e.getTypeName())){
-                    String DMLfieldNames = DOL_AppConstants.NULL_EMPTY_STRING + '';
-                    String DMLMessage = DOL_AppConstants.NULL_EMPTY_STRING + '';
-                    String DMLId = DOL_AppConstants.NULL_EMPTY_STRING + '';
-                    String DMLType = DOL_AppConstants.NULL_EMPTY_STRING + '';
+                    String DMLfieldNames = '';
+                    String DMLMessage = '';
+                    String DMLId = '';
+                    String DMLType = '';
                     
                     for(Integer i=0;i<e.getNumDml();i++) {
                     if( DMLfieldNames !='') {DMLfieldNames = DMLfieldNames + ', ' + e.getDmlFieldNames(i);}else{DMLfieldNames = e.getDmlFieldNames(i)+'';}
@@ -136,7 +136,7 @@ public class DebugErrorLoggger implements BGCM.ErrorLogger {
     }   //end method 
 
       public static String getURIDetailsForLog(){
-       String uriData = DOL_AppConstants.NULL_EMPTY_STRING + '';
+       String uriData = '';
 
         try{
             uriData += '\n\n' + 'Page Base URL: ' + String.valueOf(URL.getSalesforceBaseUrl().toExternalForm());

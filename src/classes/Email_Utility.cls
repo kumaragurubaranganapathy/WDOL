@@ -130,7 +130,7 @@ public with sharing class Email_Utility {
     public static Integer getBatchSize(){
         Integer BatchSize = 10;         
         try{
-            Email_Batch_Setting__mdt setting = [Select Id, Batch_Size__c From Email_Batch_Setting__mdt where DeveloperName =: DOL_AppConstants.NULL_EMPTY_STRING + 'Default' limit 1];
+            Email_Batch_Setting__mdt setting = [Select Id, Batch_Size__c From Email_Batch_Setting__mdt where DeveloperName = 'Default' limit 1];
             BatchSize = (Integer) setting.Batch_Size__c;
         }catch(Exception ex){
         }
@@ -300,7 +300,7 @@ public with sharing class Email_Utility {
                 activityHistory.HtmlBody = renderedMsg.getHtmlBody();
                 activityHistory.RelatedToId = renderedMsg.getWhatId();
                 activityHistory.MessageDate = DateTime.now();
-                activityHistory.Status = DOL_AppConstants.THREE_STRING;
+                activityHistory.Status = '3';
                 activityHistory.FromAddress = orgWideAddress.Address;
                 activityHistory.FromName = orgWideAddress.DisplayName;
                 activityHistory.ToAddress = notification.To_Address__c;
@@ -364,7 +364,7 @@ public with sharing class Email_Utility {
                     activityHistory.HtmlBody = renderedMsg.getHtmlBody();
                     activityHistory.RelatedToId = renderedMsg.getWhatId();
                     activityHistory.MessageDate = DateTime.now();
-                    activityHistory.Status = DOL_AppConstants.THREE_STRING;
+                    activityHistory.Status = '3';
                     activityHistory.FromAddress = orgWideAddress.Address;
                     activityHistory.FromName = orgWideAddress.DisplayName;
                     activityHistory.ToAddress = notification.To_Address__c;

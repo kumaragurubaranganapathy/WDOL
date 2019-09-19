@@ -5,9 +5,9 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
     }
     
     private class JITErrorObject {
-        String errorMessage = DOL_AppConstants.NULL_EMPTY_STRING;
-        String debugType = DOL_AppConstants.NULL_EMPTY_STRING;
-        String debugMessage = DOL_AppConstants.NULL_EMPTY_STRING;
+        String errorMessage = '';
+        String debugType = '';
+        String debugMessage = '';
         
         public JITErrorObject(String errorMessage, String debugType, String debugMessage){
             this.errorMessage = errorMessage;
@@ -96,8 +96,8 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
     
     private Contact getContactByEmailAndName(String name, String email){
         String userFullname = name; 
-        String firstName  = DOL_AppConstants.NULL_EMPTY_STRING + '';
-        String lastName  = DOL_AppConstants.NULL_EMPTY_STRING + '';
+        String firstName  = '';
+        String lastName  = '';
 
         if(userFullname.contains(' ')){
             String[] splitName = userFullname.split(' ');
@@ -127,8 +127,8 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
     @TestVisible private  Contact createContact(String name,  String emailVal, String accountId){
         Id contRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Contact').getRecordTypeId();
         String userFullname = name; 
-        String firstName  = DOL_AppConstants.NULL_EMPTY_STRING + '';
-        String lastName  = DOL_AppConstants.NULL_EMPTY_STRING + '';
+        String firstName  = '';
+        String lastName  = '';
 
         if(userFullname.contains(' ')){
             String[] splitName = userFullname.split(' ');
@@ -163,7 +163,7 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
             //Email = emailVal
             OwnerId = DEFAULT_ACCOUNT_OWNERID,
             RecordTypeId = acctRecordTypeId,
-            Account_Status__c  = DOL_AppConstants.NULL_EMPTY_STRING + 'Active'
+            Account_Status__c  = 'Active'
         );
         try{
             insert account;
@@ -182,7 +182,7 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
             user.Username = contact.Email+'.WADOL';
             }
         if(Dol_IntegrationUtil.isNotBlank(username)){
-            String alias = DOL_AppConstants.NULL_EMPTY_STRING + ''; 
+            String alias = ''; 
             if(username != null && username.length() > 5) {
                 alias = username.substring(0, 5);
             }
@@ -202,14 +202,14 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
             user.FederationIdentifier = fedId;
         }
                 
-        Profile p = [SELECT Id FROM Profile WHERE name =: DOL_AppConstants.NULL_EMPTY_STRING + 'eSLA Customer Community Plus Login User'];
+        Profile p = [SELECT Id FROM Profile WHERE name ='eSLA Customer Community Plus Login User'];
         user.ProfileId = p.Id;
         user.ContactId = contact.Id;
         user.IsActive = true; 
-        user.Languagelocalekey = DOL_AppConstants.NULL_EMPTY_STRING + 'en_US';
-        user.Localesidkey = DOL_AppConstants.NULL_EMPTY_STRING + 'en_US';
-        user.Timezonesidkey = DOL_AppConstants.NULL_EMPTY_STRING + 'America/Los_Angeles';
-        user.Emailencodingkey = DOL_AppConstants.NULL_EMPTY_STRING + 'UTF-8';
+        user.Languagelocalekey = 'en_US';
+        user.Localesidkey = 'en_US';
+        user.Timezonesidkey = 'America/Los_Angeles';
+        user.Emailencodingkey = 'UTF-8';
         System.debug('user==**'+user);
         try{
             insert user;
@@ -221,8 +221,8 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
     }
     private static String encrypt(String data){
         //String keystr = WCB_App_SettingUtil.defaultSettings.Encryptionkey;
-        String keystr = DOL_AppConstants.NULL_EMPTY_STRING + 'IX6Wjpic/pToPXTvi6J0slh9nJuR0sH82+BFsCW13XA=';
-        String algorithm = DOL_AppConstants.NULL_EMPTY_STRING + 'AES256';
+        String keystr = 'IX6Wjpic/pToPXTvi6J0slh9nJuR0sH82+BFsCW13XA=';
+        String algorithm = 'AES256';
         if(String.isEmpty(data)){
             return null;
         }

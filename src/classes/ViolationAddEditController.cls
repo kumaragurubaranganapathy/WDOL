@@ -49,7 +49,7 @@ public with sharing class ViolationAddEditController
             
             if (ins.MUSW__Complaint2__c != null)
             {
-                parentObject = DOL_AppConstants.NULL_EMPTY_STRING + 'Complaint';
+                parentObject = 'Complaint';
                 parentName = ins.MUSW__Complaint2__r.Name;
                 parentType = ins.MUSW__Complaint2__r.MUSW__Type__c;
                 parentDesc = ins.MUSW__Complaint2__r.MUSW__Description__c;
@@ -57,7 +57,7 @@ public with sharing class ViolationAddEditController
             }
             else if (ins.MUSW__Permit__c != null)
             {
-                parentObject = DOL_AppConstants.NULL_EMPTY_STRING + 'Permit';
+                parentObject = 'Permit';
                 parentName = ins.MUSW__Permit__r.Name;
                 parentType = ins.MUSW__Permit__r.MUSW__Type__c;
                 parentDesc = ins.MUSW__Permit__r.MUSW__Description__c;
@@ -65,7 +65,7 @@ public with sharing class ViolationAddEditController
             }
             else if (ins.MUSW__License2__c != null)
             {
-                parentObject = DOL_AppConstants.NULL_EMPTY_STRING + 'License';
+                parentObject = 'License';
                 parentName = ins.MUSW__License2__r.Name;
                 parentType = ins.MUSW__License2__r.MUSW__Type__c;
                 parentDesc = ins.MUSW__License2__r.MUSW__Description__c;
@@ -104,7 +104,7 @@ public with sharing class ViolationAddEditController
             parcelName = p.MUSW__Parcel__r.MUSW__Parcel_Number2__c != null ? p.MUSW__Parcel__r.MUSW__Parcel_Number2__c : p.MUSW__Parcel__r.MUSW__Parcel_Number__c;
             parcelId = p.MUSW__Parcel__c;
             
-            parentObject = DOL_AppConstants.NULL_EMPTY_STRING + 'Permit';
+            parentObject = 'Permit';
             parentName = p.Name;
             permitId = p.Id;
             
@@ -136,7 +136,7 @@ public with sharing class ViolationAddEditController
             }
             
             ivParcel = new MUSW__Inspection_Violation__c[]{};
-            othersFilterSelected = DOL_AppConstants.NULL_EMPTY_STRING + 'open';
+            othersFilterSelected = 'open';
         }
     }
     
@@ -206,7 +206,7 @@ public with sharing class ViolationAddEditController
                 ins2insert = new MUSW__Inspection__c[]{};
                 for (String key : ivGrouped.keySet())
                 {
-                    MUSW__Inspection__c insp = new MUSW__Inspection__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Field Observation', MUSW__Parcel__c=parcelId, MUSW__Permit__c=permitId, MUSW__Due_Date__c=system.today());
+                    MUSW__Inspection__c insp = new MUSW__Inspection__c(MUSW__Type__c='Field Observation', MUSW__Parcel__c=parcelId, MUSW__Permit__c=permitId, MUSW__Due_Date__c=system.today());
                     for (MUSW__Inspection_Violation__c iv : ivGrouped.get(key)) iv.MUSW__Inspection__r  = insp;
                     ins2insert.add(insp);
                 }
@@ -285,7 +285,7 @@ public with sharing class ViolationAddEditController
                                 for (MUSW__Inspection__c foins : ins2insert)
                                 {
                                     foins.Close_Inspection__c = true;
-                                    foins.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Completed with open violations';
+                                    foins.MUSW__Status__c = 'Completed with open violations';
                                 }
                                 
                                 update ins2insert;
@@ -344,7 +344,7 @@ public with sharing class ViolationAddEditController
     {
         for (Integer i=0; i<numRelRows; i++)
         {
-            MUSW__Inspection_Violation__c ivnew = new MUSW__Inspection_Violation__c(MUSW__Inspection__c=ins.Id, MUSW__Parcel__c=parcelId, MUSW__Complaint2__c=ins.MUSW__Complaint2__c, License2__c=ins.MUSW__License2__c, Due_Date__c=ins.MUSW__Due_Date__c, /*Reinspection_Created__c=true,*/ MUSW__Violation__r=new MUSW__Violation__c(MUSW__Parcel__c=parcelId, MUSW__Complaint2__c=ins.MUSW__Complaint2__c, License2__c=ins.MUSW__License2__c, Permit2__c=ins.MUSW__Permit__c, MUSW__Status__c= DOL_AppConstants.NULL_EMPTY_STRING + 'New'));
+            MUSW__Inspection_Violation__c ivnew = new MUSW__Inspection_Violation__c(MUSW__Inspection__c=ins.Id, MUSW__Parcel__c=parcelId, MUSW__Complaint2__c=ins.MUSW__Complaint2__c, License2__c=ins.MUSW__License2__c, Due_Date__c=ins.MUSW__Due_Date__c, /*Reinspection_Created__c=true,*/ MUSW__Violation__r=new MUSW__Violation__c(MUSW__Parcel__c=parcelId, MUSW__Complaint2__c=ins.MUSW__Complaint2__c, License2__c=ins.MUSW__License2__c, Permit2__c=ins.MUSW__Permit__c, MUSW__Status__c='New'));
             ivRel.add(ivnew);
         }
     }
@@ -356,12 +356,12 @@ public with sharing class ViolationAddEditController
             MUSW__Inspection_Violation__c ivnew;
             if (insId != null)
             {
-                ivnew = new MUSW__Inspection_Violation__c(MUSW__Inspection__c=ins.Id, MUSW__Parcel__c=parcelId, Due_Date__c=ins.MUSW__Due_Date__c, /*Reinspection_Created__c=true,*/ MUSW__Violation__r=new MUSW__Violation__c(MUSW__Parcel__c=parcelId, MUSW__Status__c= DOL_AppConstants.NULL_EMPTY_STRING + 'New'));
+                ivnew = new MUSW__Inspection_Violation__c(MUSW__Inspection__c=ins.Id, MUSW__Parcel__c=parcelId, Due_Date__c=ins.MUSW__Due_Date__c, /*Reinspection_Created__c=true,*/ MUSW__Violation__r=new MUSW__Violation__c(MUSW__Parcel__c=parcelId, MUSW__Status__c='New'));
             }
             else // came from Parcel or Permit
             {
-                //MUSW__Inspection__c insp = new MUSW__Inspection__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Field Observation', MUSW__Status__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Completed with open violations', MUSW__Parcel__c=parcelId, MUSW__Permit__c=permitId, MUSW__Due_Date__c=system.today(), MUSW__Due_Date__c=system.today(), MUSW__Completed_Date__c=system.today(), MUSW__Completed_Date__c=system.now(), Close_Inspection__c=true);
-                ivnew = new MUSW__Inspection_Violation__c(/*MUSW__Inspection__r =insp,*/ MUSW__Parcel__c=parcelId, Permit2__c=permitId, Due_Date__c=system.today(), /*Reinspection_Created__c=true,*/ MUSW__Violation__r=new MUSW__Violation__c(MUSW__Parcel__c=parcelId, Permit2__c=permitId, MUSW__Status__c= DOL_AppConstants.NULL_EMPTY_STRING + 'New'));
+                //MUSW__Inspection__c insp = new MUSW__Inspection__c(MUSW__Type__c='Field Observation', MUSW__Status__c='Completed with open violations', MUSW__Parcel__c=parcelId, MUSW__Permit__c=permitId, MUSW__Due_Date__c=system.today(), MUSW__Due_Date__c=system.today(), MUSW__Completed_Date__c=system.today(), MUSW__Completed_Date__c=system.now(), Close_Inspection__c=true);
+                ivnew = new MUSW__Inspection_Violation__c(/*MUSW__Inspection__r =insp,*/ MUSW__Parcel__c=parcelId, Permit2__c=permitId, Due_Date__c=system.today(), /*Reinspection_Created__c=true,*/ MUSW__Violation__r=new MUSW__Violation__c(MUSW__Parcel__c=parcelId, Permit2__c=permitId, MUSW__Status__c='New'));
             }
             
             ivUnrel.add(ivnew);
@@ -425,7 +425,7 @@ public with sharing class ViolationAddEditController
             othersFilterSelected = value;
             
             ivParcel.clear();
-            String uniques = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            String uniques = '';
             for (MUSW__Inspection_Violation__c iv : ivParcelAll)
             {
                 if ((value == 'open' && iv.MUSW__Violation__r.isClosed__c == 'No') ||
@@ -467,11 +467,11 @@ public with sharing class ViolationAddEditController
     {
         MUSW__Violation_Type__c[] ord = [select MUSW__Description__c, MUSW__Abatement_Requirement__c from MUSW__Violation_Type__c where Name = :ordName];
         if(ord[0].MUSW__Description__c == null){
-            ord[0].MUSW__Description__c = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            ord[0].MUSW__Description__c = '';
         }
         
         if(ord[0].MUSW__Abatement_Requirement__c == null){
-            ord[0].MUSW__Abatement_Requirement__c = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            ord[0].MUSW__Abatement_Requirement__c = '';
         }
         return ord.size() > 0 ? ord[0].MUSW__Description__c + '####' + ord[0].MUSW__Abatement_Requirement__c : '';
     }
@@ -512,7 +512,7 @@ public with sharing class ViolationAddEditController
             for (MUSW__Inspection_Violation__c iv : allIvs)
                 if (iv.MUSW__Violation__c != null) vids.add(iv.MUSW__Violation__c);
             
-            String flds = DOL_AppConstants.NULL_EMPTY_STRING + 'Id';        
+            String flds = 'Id';        
             for (Schema.FieldSetMember fs : violationFields)
             {
                 flds += ', ' + fs.getFieldPath();

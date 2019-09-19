@@ -122,14 +122,14 @@ public class ReceiptTriggerHandler implements BGCM.ITriggerHandler{
         for(sObject sObj : trigger.New){
             MUSW__Receipt__c receipt = (MUSW__Receipt__c) sObj;
             if(receipt.MUSW__Payment_Method__c == 'CC'){
-                receipt.MUSW__Payment_Method__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Credit Card';
+                receipt.MUSW__Payment_Method__c = 'Credit Card';
             }
             if(receipt.MUSW__Card_Type__c == 'MC'){
-                receipt.MUSW__Card_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'MasterCard';
+                receipt.MUSW__Card_Type__c = 'MasterCard';
             }else if(receipt.MUSW__Card_Type__c == 'VISA'){
-                receipt.MUSW__Card_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Visa';
+                receipt.MUSW__Card_Type__c = 'Visa';
             }else if(receipt.MUSW__Card_Type__c == 'AMEX'){
-                receipt.MUSW__Card_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Amex';
+                receipt.MUSW__Card_Type__c = 'Amex';
             }
         }
     }

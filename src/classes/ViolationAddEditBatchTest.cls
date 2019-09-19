@@ -7,21 +7,21 @@ public class ViolationAddEditBatchTest{
     
         TriggerService.setLock();
         BGCM.TestMock tm = new BGCM.TestMock();
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'zsdfsf');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='zsdfsf');
         insert par;
             
         MUSW__Complaint2__c c = new MUSW__Complaint2__c();
-        c.MUSW__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Other';
-        c.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'New';
+        c.MUSW__Type__c = 'Other';
+        c.MUSW__Status__c = 'New';
         c.MUSW__Parcel__c = par.id;
         insert c; system.debug('c======' + c);
 
         MUSW__Inspection__c ins = new MUSW__Inspection__c();
                 
-        ins.Name = DOL_AppConstants.NULL_EMPTY_STRING + 'abcefg123456';
-        ins.MUSW__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'fieldObservations';
-        ins.MUSW__Priority__c= DOL_AppConstants.NULL_EMPTY_STRING + '2 Normal';
-        ins.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'New';
+        ins.Name = 'abcefg123456';
+        ins.MUSW__Type__c = 'fieldObservations';
+        ins.MUSW__Priority__c= '2 Normal';
+        ins.MUSW__Status__c = 'New';
         ins.Close_Inspection__c = false;
         ins.MUSW__On_Itinerary__c = false;
         ins.Letter_Generated__c = false;
@@ -34,7 +34,7 @@ public class ViolationAddEditBatchTest{
         insert ins;
         
         MUSW__Violation__c v = new MUSW__Violation__c();
-        v.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Open';
+        v.MUSW__Status__c = 'Open';
         v.MUSW__Complaint2__c = c.id;
         v.Days_to_correct_User_defined__c = 20.0;
         insert v;
@@ -48,10 +48,10 @@ public class ViolationAddEditBatchTest{
 
         MUSW__Inspection__c ins2 = new MUSW__Inspection__c();
                 
-        ins2.Name = DOL_AppConstants.NULL_EMPTY_STRING + 'ethjnwhfb';
-        ins2.MUSW__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Mechanical';
-        ins2.MUSW__Priority__c= DOL_AppConstants.NULL_EMPTY_STRING + '2 Normal';
-        ins2.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'New';
+        ins2.Name = 'ethjnwhfb';
+        ins2.MUSW__Type__c = 'Mechanical';
+        ins2.MUSW__Priority__c= '2 Normal';
+        ins2.MUSW__Status__c = 'New';
         ins2.Close_inspection__c = false;
         ins2.MUSW__On_Itinerary__c = false;
         ins2.Letter_Generated__c = false;
@@ -66,10 +66,10 @@ public class ViolationAddEditBatchTest{
 /*               
         MUSW__Inspection__c ins3 = new MUSW__Inspection__c();
                 
-        ins3.Name = DOL_AppConstants.NULL_EMPTY_STRING + 'fg';
-        ins3.MUSW__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Mechanical';
-        ins3.MUSW__Priority__c= DOL_AppConstants.NULL_EMPTY_STRING + '2 Normal';
-        ins3.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending';
+        ins3.Name = 'fg';
+        ins3.MUSW__Type__c = 'Mechanical';
+        ins3.MUSW__Priority__c= '2 Normal';
+        ins3.MUSW__Status__c = 'Pending';
         ins3.Close_inspection__c = true;
         ins3.MUSW__On_Itinerary__c = false;
         ins3.Letter_Generated__c = false;

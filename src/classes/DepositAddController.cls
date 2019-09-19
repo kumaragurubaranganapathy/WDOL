@@ -9,7 +9,7 @@ public with sharing class DepositAddController {
         PageReference cartPage = Page.Cart;
         cartPage.setRedirect(true);
 
-        String depositIds = DOL_AppConstants.NULL_EMPTY_STRING;
+        String depositIds = '';
 
         for(Id depId : m_selectedDeposits.keySet()){
             depositIds += depId +',';

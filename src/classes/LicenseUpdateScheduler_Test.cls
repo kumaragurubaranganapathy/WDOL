@@ -12,7 +12,7 @@ public class LicenseUpdateScheduler_Test {
     static void schedule(){
         Test.startTest();
         LicenseUpdateScheduler rds = new LicenseUpdateScheduler();
-        string schedule = DOL_AppConstants.NULL_EMPTY_STRING + '0 0 23 * * ?';
+        string schedule = '0 0 23 * * ?';
         system.schedule('Test License Record Deactivation', schedule, rds);
         Test.stopTest();
     } 

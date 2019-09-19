@@ -4,24 +4,24 @@ public class DOL_ePaymentRTPC_Test {
     private static void setupTestData()
     {
         new BGBK.TestMock();
-        insert new BGBK__CartSettings__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'Default');
+        insert new BGBK__CartSettings__c(Name='Default');
     }
     
     @isTest
     public static void processRtpcRequestTest(){
-        Account account = new Account(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'Test Account');
+        Account account = new Account(Name='Test Account');
         insert account;
         
-        Contact c = new Contact(LastName= DOL_AppConstants.NULL_EMPTY_STRING + 'Test Contact',FirstName= DOL_AppConstants.NULL_EMPTY_STRING + 'BasicGov', Email= DOL_AppConstants.NULL_EMPTY_STRING + 'test@basicgov.com',Account=account,MUSW__Account_Relationship__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Owner');
+        Contact c = new Contact(LastName='Test Contact',FirstName='BasicGov', Email='test@basicgov.com',Account=account,MUSW__Account_Relationship__c='Owner');
         insert c;
         
         Contact cq = [select AccountId from Contact where Id=:c.Id];
         
-        /* MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'xyz123abc');
+        /* MUSW__Parcel__c par = new MUSW__Parcel__c(Name='xyz123abc');
         insert par;
         
-        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Engineers', 
-                                                       	  Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance');
+        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = 'Engineers', 
+                                                       	  Program_Area__c = 'POWTS', Permit_Type__c = 'POWTS Petition for Variance');
         insert perm; */
         
         BGBK__Cart__c testCart = new BGBK__Cart__c(BGBK__Account__c= cq.AccountId, BGBK__Contact__c= cq.Id, BGBK__Expiration_DateTime__c=system.now().addDays(1));
@@ -42,7 +42,7 @@ public class DOL_ePaymentRTPC_Test {
         // create Receipt
         MUSW__Receipt__c receipt = new MUSW__Receipt__c();
         receipt.BGBK__Cart__c = testCart.Id;
-        receipt.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Draft';
+        receipt.Status__c = 'Draft';
         receipt.Selected_Fees__c = String.join(feeIds,',');
         insert receipt;
         
