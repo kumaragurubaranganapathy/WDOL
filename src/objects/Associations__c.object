@@ -545,7 +545,7 @@
     <fields>
         <fullName>License_Mailing_City__c</fullName>
         <externalId>false</externalId>
-        <formula>Child_License__r.Mailing_Address__r.MUSW__City__c</formula>
+        <formula>Child_License__r.MUSW__Parcel__r.MUSW__City__c</formula>
         <label>License Mailing City</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -556,7 +556,7 @@
     <fields>
         <fullName>License_Mailing_State__c</fullName>
         <externalId>false</externalId>
-        <formula>Text(Child_License__r.Mailing_Address__r.MUSW__State__c)</formula>
+        <formula>Text(Child_License__r.MUSW__Parcel__r.MUSW__State__c)</formula>
         <label>License Mailing State</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -567,7 +567,7 @@
     <fields>
         <fullName>License_Mailing_Street__c</fullName>
         <externalId>false</externalId>
-        <formula>Child_License__r.Mailing_Address__r.MUSW__Street2__c</formula>
+        <formula>Child_License__r.MUSW__Parcel__r.MUSW__Street2__c</formula>
         <label>License Mailing Street</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -578,7 +578,7 @@
     <fields>
         <fullName>License_Mailing_ZIP__c</fullName>
         <externalId>false</externalId>
-        <formula>Child_License__r.Mailing_Address__r.Zip_Postal_Code__c</formula>
+        <formula>Child_License__r.MUSW__Parcel__r.Zip_Postal_Code__c</formula>
         <label>License Mailing ZIP</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
