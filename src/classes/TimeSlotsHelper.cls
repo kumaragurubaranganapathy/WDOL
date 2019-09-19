@@ -11,7 +11,7 @@ public class TimeSlotsHelper {
         try{            
             os=OrgSettings__c.getValues('FBSlots');
             if(os==null){
-                os =new OrgSettings__c(name='FBSlots',Time_Slot_Created__c=false,
+                os =new OrgSettings__c(name= DOL_AppConstants.NULL_EMPTY_STRING + 'FBSlots',Time_Slot_Created__c=false,
                                                Minimum_Slot_duration__c=0.5,
                                                Year__c=System.today().year(),
                                               Date_Slot_Created_Till__c=System.today().addYears(-1));
@@ -28,7 +28,7 @@ public class TimeSlotsHelper {
                  WednesdayStartTime, ThursdayStartTime, FridayStartTime,
                  SaturdayStartTime, SundayEndTime, MondayEndTime,TuesdayEndTime,
                  WednesdayEndTime, ThursdayEndTime, FridayEndTime,SaturdayEndTime
-                 From BusinessHours where name='Wisconsin Business Hours'];
+                 From BusinessHours where name=: DOL_AppConstants.NULL_EMPTY_STRING + 'Wisconsin Business Hours'];
     
     }
     //Get slot time in Minutes

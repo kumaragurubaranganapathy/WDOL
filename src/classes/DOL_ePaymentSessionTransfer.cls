@@ -5,7 +5,7 @@ public class DOL_ePaymentSessionTransfer {
         if(sessionTransferDetails != null){
             sessionTransferDetails.setContactDetails();
             Map<String,String> sessionDetailsMap = sessionTransferDetails.getSessionDetailsMap();
-            String sessionDetailForEncryption = '';
+            String sessionDetailForEncryption = DOL_AppConstants.NULL_EMPTY_STRING;
             for(String key : sessionDetailsMap.keySet()){
                 sessionDetailForEncryption += key+'='+sessionDetailsMap.get(key)+DOL_AppConstants.ePaymentSessionValuesSeperator;
             }

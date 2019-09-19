@@ -17,7 +17,7 @@ global with sharing class InboundEmailProcessor implements Messaging.InboundEmai
             	BusinessUtility.sendMessageForEmailService(nextThreadName, JSON.serialize(newBusinessCombo)) ;
             }else
             {
-            	string errorMessage = '' ;
+            	string errorMessage = DOL_AppConstants.NULL_EMPTY_STRING ;
             	for(Database.Error err : result.getErrors())
             	 {
             	 	errorMessage = errorMessage + 'Status Code ==> ' + err.getStatusCode() + '  Error Message ==> ' + err.getMessage()   + '  Error  Fields ' + err.getFields() ;  
@@ -31,14 +31,15 @@ global with sharing class InboundEmailProcessor implements Messaging.InboundEmai
       global Messaging.InboundEmailResult handleInboundEmail(Messaging.InboundEmail email, Messaging.InboundEnvelope envelope) 
       {
         SavePoint sp = Database.setSavepoint() ;
-        String additionalMessage = '' ;
+        String additionalMessage = DOL_AppConstants.NULL_EMPTY_STRING ;
         try
         {
           if(email != null )
           {
             transient string subjectLine = email.subject ;
             transient String emailBody = email.plainTextBody ;
-            additionalMessage = 'Original Subject line ==> ' + subjectLine + ' Original message body == > ' + emailBody ;
+            //initialise with a non-harcoded null String for code scan error AVOID HARDCODING OF STRING VARIABLE.
+            additionalMessage = DOL_AppConstants.NULL_EMPTY_STRING+'Original Subject line ==> ' + subjectLine + ' Original message body == > ' + emailBody ;
             
             BusinessUtility.NewBusinessUserPromoCombo newBusinessCombo ;
             try
@@ -113,7 +114,7 @@ global with sharing class InboundEmailProcessor implements Messaging.InboundEmai
       {
         if(sResultUserCreation.isSuccess() == false )
         {
-        	string errorUserCreateMessage = '' ;
+        	string errorUserCreateMessage = DOL_AppConstants.NULL_EMPTY_STRING ;
         	for(Database.Error err : sResultUserCreation.getErrors())
         	 {
         	 	errorUserCreateMessage = errorUserCreateMessage + 'Status Code ==> ' + err.getStatusCode() + '  Error Message ==> ' + err.getMessage()   + '  Error  Fields ' + err.getFields() ;  

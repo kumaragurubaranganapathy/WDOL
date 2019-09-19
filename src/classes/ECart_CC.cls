@@ -10,11 +10,11 @@ public with sharing class ECart_CC{
     public String selectedPayForOption {get; set;}
     
     public ECart_CC(){
-    	activeTab = 'fees';
+    	activeTab = DOL_AppConstants.FEE_STRING;
     	renderPaymentForm = false;
     	m_cs = new BGBK.CartService();
         
-        paymentGatewaySettings = [Select Id, DeveloperName, Endpoint__c, Biller_ID__c, Biller_Group_ID__c, Product_Code__c From Payment_Gateway_Settings__mdt where DeveloperName = 'US_Bank_Settings' limit 1];
+        paymentGatewaySettings = [Select Id, DeveloperName, Endpoint__c, Biller_ID__c, Biller_Group_ID__c, Product_Code__c From Payment_Gateway_Settings__mdt where DeveloperName =: DOL_AppConstants.NULL_EMPTY_STRING + 'US_Bank_Settings' limit 1];
     }
     
     public void onPageLoad(){
@@ -108,17 +108,17 @@ public with sharing class ECart_CC{
     }
     
     public void continueToCheckout(){
-    	activeTab = 'checkout';
+    	activeTab = DOL_AppConstants.CHECKOUT_STRING;
     }
     
     public void backToItems(){
-    	activeTab = 'fees';
+    	activeTab = DOL_AppConstants.FEE_STRING;
     }
     
     public void redirectToPaymentGateway(){
     	MUSW__Receipt__c receipt = new MUSW__Receipt__c();
     	receipt.BGBK__Cart__c = m_cs.getCart().Id;
-    	receipt.Status__c = 'Draft';
+    	receipt.Status__c = DOL_AppConstants.DRAFT_STRING;
     	
     	List<String> feeIds = new List<String>();
     	for (FeeWrapper feeWrapper: fees) {

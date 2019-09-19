@@ -1,6 +1,6 @@
 @isTest(seeAllData=true)
 public class Dol_AddressValidationService_Test{
-    public static String responsebody = '<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\">'+
+    public static String responsebody = DOL_AppConstants.NULL_EMPTY_STRING + '<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\">'+
    '<s:Body xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"' + 'xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">'+
      '<doAddressCheckResponse xmlns=\"urn:MelissaDataAddressCheckService\">'+
         ' <doAddressCheckResult>'+
@@ -87,9 +87,9 @@ public class Dol_AddressValidationService_Test{
   
     @isTest 
      public static void testmethod2(){
-         Account acc = new Account(name = 'testaccount');
+         Account acc = new Account(name = DOL_AppConstants.NULL_EMPTY_STRING + 'testaccount');
          insert acc;
-         contact con = new contact(LastName = 'test Last' , Accountid = acc.id);
+         contact con = new contact(LastName = DOL_AppConstants.NULL_EMPTY_STRING + 'test Last' , Accountid = acc.id);
          insert con;
          test.startTest();
             Dol_AddressValidationService.getObjAPI(con.id);

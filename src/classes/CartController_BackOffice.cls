@@ -34,7 +34,7 @@ public class CartController_BackOffice {
     Set <String> picklistSelections {get; set;}
     public String selectedPaymentOption {get; set;} 
     public Selectoption[] pmtMethods {get; set;}
-    private String correspondingLicenseId = '';
+    private String correspondingLicenseId = DOL_AppConstants.NULL_EMPTY_STRING;
     
     public String selectedBoard 
     {
@@ -90,7 +90,7 @@ public class CartController_BackOffice {
         get
         {
             if(selectedTab == null)
-                selectedTab = 'Fees';
+                selectedTab = DOL_AppConstants.NULL_EMPTY_STRING + 'Fees';
             
             return selectedTab;
         }
@@ -265,7 +265,7 @@ public class CartController_BackOffice {
             for(FeeWrapper feeWrapper : fees){
                 feesToUpdate.add(new MUSW__Fee__c(Id = feeWrapper.fee.id, MUSW__Amount_Waived__c = feeWrapper.fee.MUSW__Amount_Waived__c));
                 if(feeWrapper.checked){
-                    String ruleName = '';
+                    String ruleName = DOL_AppConstants.NULL_EMPTY_STRING;
                     if(String.isNotBlank(feeWrapper.fee.Upsert_Id__c) && (feeWrapper.fee.Upsert_Id__c).contains('_')){
                         //Splits the Upsert Id on Fee to get the Parent Id and the Rule Name
                         for(String s: (feeWrapper.fee.Upsert_Id__c).split('_')){
@@ -330,7 +330,7 @@ public class CartController_BackOffice {
                 if(selectedFees.contains(feeWrapper.fee.Id))
                 feeWrapper.checked = true;
             
-            selectedTab = 'checkout';
+            selectedTab = DOL_AppConstants.NULL_EMPTY_STRING + 'checkout';
         }catch(DMLException e){
             ApexPages.addMessages(e);
         }
@@ -338,7 +338,7 @@ public class CartController_BackOffice {
     }
     public void backToItems()
     {
-        selectedTab = 'Fees';
+        selectedTab = DOL_AppConstants.NULL_EMPTY_STRING + 'Fees';
     }
     
     public Date getDate(Datetime dt){
@@ -395,7 +395,7 @@ public class CartController_BackOffice {
                 receipt = m_rs.getReceipt((Id)selectedPaymentOption);
             }    
             receipt.BGBK__Cart__c = cart.Id;
-            //receipt.Board__c = 'Notary';
+            //receipt.Board__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Notary';
             receipt.MUSW__Amount_Tendered__c = amountTendered;
             receipt.Batch_Number__c = batchNum;
             //receipt.Payment_Comments__c = paymentComment;
@@ -438,19 +438,19 @@ public class CartController_BackOffice {
             // Decimal pmtAmt = totalSelected; // - totalBalance;
             bgCartService.closeCart(amountTendered, acc.Id, cart.BGBK__Contact__c, cart.BGBK__Process_DateTime__c);
             
-            selectedTab = 'Confirm';
+            selectedTab = DOL_AppConstants.NULL_EMPTY_STRING + 'Confirm';
             
             BGBK__Payment__c paymentinfo = new BGBK__Payment__c();
             if(!receipts.isEmpty())
-            paymentinfo = [select id from BGBK__Payment__c where BGBK__Receipt__c = :receipts[0].id order by createddate desc LIMIT 1];
+            paymentinfo = [select id from BGBK__Payment__c where BGBK__Receipt__c = :receipts[0].id and BGBK__Receipt__c != null order by createddate desc LIMIT 1];
             
             Decimal value1 = (amountTendered*Integer.valueOf('10'))/100;
 			Decimal value2 = amountTendered - value1;
             BGBK__Item__c itemData = new BGBK__Item__c();
             itemData.BGBK__Transaction__c = transactionReference.id;
-            itemData.BGBK__Type__c = 'Fee';
+            itemData.BGBK__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Fee';
             itemData.BGBK__Price_Per_Unit__c = value1;
-            itemData.BGBK__Fund__c='a1S5B0000007b3z';
+            itemData.BGBK__Fund__c= DOL_AppConstants.NULL_EMPTY_STRING + 'a1S5B0000007b3z';
 			itemData.BGBK__Quantity__c = 1;
 			if(paymentinfo <> null)
 			itemData.BGBK__Payment__c = paymentinfo.id;
@@ -460,10 +460,10 @@ public class CartController_BackOffice {
 			
 			BGBK__Item__c itemData1 = new BGBK__Item__c();
             itemData1.BGBK__Transaction__c = transactionReference.id;
-            itemData1.BGBK__Type__c = 'Fee';
+            itemData1.BGBK__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Fee';
             if(!receipts.isEmpty())
             itemData1.BGBK__Receipt__c = receipts[0].id;
-            itemData1.BGBK__Fund__c='a1S5B0000007b3p';
+            itemData1.BGBK__Fund__c= DOL_AppConstants.NULL_EMPTY_STRING + 'a1S5B0000007b3p';
             itemData1.BGBK__Price_Per_Unit__c = -value1;
             if(paymentinfo <> null)
 			itemData1.BGBK__Payment__c = paymentinfo.id;
@@ -472,10 +472,10 @@ public class CartController_BackOffice {
 			
 			BGBK__Item__c itemData2 = new BGBK__Item__c();
             itemData2.BGBK__Transaction__c = transactionReference.id;
-            itemData2.BGBK__Type__c = 'Fee';
+            itemData2.BGBK__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Fee';
             if(!receipts.isEmpty())
             itemData2.BGBK__Receipt__c = receipts[0].id;
-            itemData2.BGBK__Fund__c='a1S5B0000007b3z';
+            itemData2.BGBK__Fund__c= DOL_AppConstants.NULL_EMPTY_STRING + 'a1S5B0000007b3z';
             itemData2.BGBK__Price_Per_Unit__c = value2;
             if(paymentinfo <> null)
 			itemData2.BGBK__Payment__c = paymentinfo.id;
@@ -484,10 +484,10 @@ public class CartController_BackOffice {
 			
 			BGBK__Item__c itemData3 = new BGBK__Item__c();
             itemData3.BGBK__Transaction__c = transactionReference.id;
-            itemData3.BGBK__Type__c = 'Fee';
+            itemData3.BGBK__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Fee';
             if(!receipts.isEmpty())
             itemData3.BGBK__Receipt__c = receipts[0].id;
-            itemData3.BGBK__Fund__c='a1S5B0000007b3u';
+            itemData3.BGBK__Fund__c= DOL_AppConstants.NULL_EMPTY_STRING + 'a1S5B0000007b3u';
             itemData3.BGBK__Price_Per_Unit__c = -value2;
             if(paymentinfo <> null)
 			itemData3.BGBK__Payment__c = paymentinfo.id;
@@ -495,13 +495,13 @@ public class CartController_BackOffice {
 			lstItems.add(itemData3);
 			
             System.debug('Behave');
-            for(MUSW__Fee_Payment__c feepayment:[Select id,MUSW__Fee__r.MUSW__Type__c,MUSW__Fee__r.MUSW__Amount__c from MUSW__Fee_Payment__c  where MUSW__Receipt__c=:receipts[0].id and MUSW__Fee__r.MUSW__Type__c='Bad Check Fee']){
+            for(MUSW__Fee_Payment__c feepayment:[Select id,MUSW__Fee__r.MUSW__Type__c,MUSW__Fee__r.MUSW__Amount__c from MUSW__Fee_Payment__c  where MUSW__Receipt__c=:receipts[0].id and MUSW__Fee__r.MUSW__Type__c=: DOL_AppConstants.NULL_EMPTY_STRING + 'Bad Check Fee']){
                 
             BGBK__Item__c itemData4 = new BGBK__Item__c();
             itemData4.BGBK__Transaction__c = transactionReference.id;
-            itemData4.BGBK__Type__c = 'Fee';
+            itemData4.BGBK__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Fee';
             itemData4.BGBK__Receipt__c = receipts[0].id;
-            itemData4.BGBK__Fund__c='a1S5B0000007b3u';
+            itemData4.BGBK__Fund__c= DOL_AppConstants.NULL_EMPTY_STRING + 'a1S5B0000007b3u';
             itemData4.BGBK__Price_Per_Unit__c = -feepayment.MUSW__Fee__r.MUSW__Amount__c ;
             if(paymentinfo <> null)
 			itemData4.BGBK__Payment__c = paymentinfo.id;
@@ -511,9 +511,9 @@ public class CartController_BackOffice {
                 System.debug('itemData4 '+itemData4);
             BGBK__Item__c itemData5 = new BGBK__Item__c();
             itemData5.BGBK__Transaction__c = transactionReference.id;
-            itemData5.BGBK__Type__c = 'Fee';
+            itemData5.BGBK__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Fee';
             itemData5.BGBK__Receipt__c = receipts[0].id;
-            itemData5.BGBK__Fund__c='a1S5B0000007b3z';
+            itemData5.BGBK__Fund__c= DOL_AppConstants.NULL_EMPTY_STRING + 'a1S5B0000007b3z';
             itemData5.BGBK__Price_Per_Unit__c = feepayment.MUSW__Fee__r.MUSW__Amount__c ;
             if(paymentinfo <> null)
 			itemData5.BGBK__Payment__c = paymentinfo.id;

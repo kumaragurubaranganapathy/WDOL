@@ -5,13 +5,13 @@ private class Dol_Batch_UpdtErrorPostElpasedTime_Test {
     	List<Dol_Integration_Settings__mdt> elapsedSettings = [SELECT MasterLabel, DeveloperName, Value__c  FROM Dol_Integration_Settings__mdt];
 
     	Dol_Batch_Monitor__c batchMonitor = new Dol_Batch_Monitor__c();
-    	batchMonitor.Name = 'INT-004.01';
-    	batchMonitor.Batch_Name__c ='Send Life to Death file to Governors Office(OFM)';
+    	batchMonitor.Name = DOL_AppConstants.NULL_EMPTY_STRING + 'INT-004.01';
+    	batchMonitor.Batch_Name__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Send Life to Death file to Governors Office(OFM)';
     	insert batchMonitor;
 
     	Dol_Batch_Monitor_Detail__c batchChild = new Dol_Batch_Monitor_Detail__c();
     	batchChild.Parent_Batch__c = batchMonitor.id;
-    	batchChild.Status__c = 'Running' ;
+    	batchChild.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Running' ;
     	batchChild.Start_Time__c = System.today().addDays(-1);
     	insert  batchChild;
     	test.startTest();

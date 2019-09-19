@@ -4,15 +4,17 @@ public class DOL_Epayment_ProcessRemittanceData_Test {
     private static void setupTestData()
     {
         new BGBK.TestMock();
-        insert new BGBK__CartSettings__c(Name='Default');
+        insert new BGBK__CartSettings__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'Default');
     }
     
     @isTest
     public static void test_method_one(){
-        Account account = new Account(Name='Test Account');
+        Account account = new Account(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'Test Account');
         insert account;
         
-        Contact c = new Contact(LastName='Test Contact',FirstName='BasicGov', Email='test@basicgov.com',Account=account,MUSW__Account_Relationship__c='Owner');
+        Contact c = new Contact(LastName= DOL_AppConstants.NULL_EMPTY_STRING + 'Test Contact',FirstName= DOL_AppConstants.NULL_EMPTY_STRING + 'BasicGov', 
+                                Email= DOL_AppConstants.NULL_EMPTY_STRING + 'test@basicgov.com',Account=account,
+                                MUSW__Account_Relationship__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Owner');
         insert c;
         
         Contact cq = [select AccountId from Contact where Id=:c.Id];
@@ -35,7 +37,7 @@ public class DOL_Epayment_ProcessRemittanceData_Test {
         // create Receipt
         MUSW__Receipt__c receipt = new MUSW__Receipt__c();
         receipt.BGBK__Cart__c = testCart.Id;
-        receipt.Status__c = 'Draft';
+        receipt.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Draft';
         receipt.Selected_Fees__c = String.join(feeIds,',');
         insert receipt;
         

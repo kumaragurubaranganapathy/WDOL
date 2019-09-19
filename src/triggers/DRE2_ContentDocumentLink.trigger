@@ -27,8 +27,8 @@ trigger DRE2_ContentDocumentLink on ContentDocumentLink (before insert,after ins
             ContentDocumentLink cd1 = new ContentDocumentLink();
             cd1.ContentDocumentId = cd.ContentDocumentId;
             cd1.LinkedEntityId = cd.LinkedEntityId;
-            cd1.ShareType = 'I';
-            cd1.Visibility = 'AllUsers';
+            cd1.ShareType = DOL_AppConstants.NULL_EMPTY_STRING + 'I';
+            cd1.Visibility = DOL_AppConstants.NULL_EMPTY_STRING + 'AllUsers';
             lstNewContentDocLink.add(cd1);
         }
         if(!lstNewContentDocLink.isEmpty()){

@@ -4,13 +4,13 @@ public class Polaris_MangeEndorsementCntrl {
     public static String fetchData(String licId)
     {
         LnP_JSONParser ansWrapper; //to create Wrapper 
-        String jsonApplicationFields = '';
+        String jsonApplicationFields = DOL_AppConstants.NULL_EMPTY_STRING + '';
         List<LnP_ApplyForLicenseWrapper> lstLicenseWrapper = new List<LnP_ApplyForLicenseWrapper>();
         //Map for Question Section
         Map<String,List<LnP_ApplyForLicenseWrapper.MapLabelToFields>> mapOnQuestions = new Map<String,List<LnP_ApplyForLicenseWrapper.MapLabelToFields>>();
         
-        String questionSection = '';
-        List<BGCK__Answer__c> lstAnswers = [SELECT id,Answer_Text__c,Question_Section__c,QuestionDOL__c,QuestionDOL__r.Sub_Sub_Header__c,QuestionDOL__r.Possible_Responses__c,QuestionDOL__r.Triggering_Parent_Answer__c,QuestionDOL__r.Sub_Header__c,QuestionDOL__r.Section__c,QuestionDOL__r.Submission_Title__c,QuestionDOL__r.Parent_Question__c,QuestionDOL__r.Has_dependent_questions__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Id,QuestionDOL__r.Question_Body__c FROM BGCK__Answer__c Where License__c =:licId and Question_Section__c='Endorsement' order by Question_Order__c ];
+        String questionSection = DOL_AppConstants.NULL_EMPTY_STRING + '';
+        List<BGCK__Answer__c> lstAnswers = [SELECT id,Answer_Text__c,Question_Section__c,QuestionDOL__c,QuestionDOL__r.Sub_Sub_Header__c,QuestionDOL__r.Possible_Responses__c,QuestionDOL__r.Triggering_Parent_Answer__c,QuestionDOL__r.Sub_Header__c,QuestionDOL__r.Section__c,QuestionDOL__r.Submission_Title__c,QuestionDOL__r.Parent_Question__c,QuestionDOL__r.Has_dependent_questions__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Id,QuestionDOL__r.Question_Body__c FROM BGCK__Answer__c Where License__c =:licId and Question_Section__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Endorsement' order by Question_Order__c ];
         for(BGCK__Answer__c answ : lstAnswers )
         {
             LnP_ApplyForLicenseWrapper.MapLabelToFields labelToFields = new LnP_ApplyForLicenseWrapper.MapLabelToFields();
@@ -24,7 +24,7 @@ public class Polaris_MangeEndorsementCntrl {
             labelToFields.questionSectionClass = answ.QuestionDOL__r.Section__c;
             if(questionSection == answ.QuestionDOL__r.Section__c || answ.QuestionDOL__r.Section__c==null)
             {
-                labelToFields.questionSection ='null';
+                labelToFields.questionSection = DOL_AppConstants.NULL_EMPTY_STRING + 'null';
             }
             else
             {
@@ -123,7 +123,7 @@ public class Polaris_MangeEndorsementCntrl {
     @AuraEnabled
     public static Integer fetchAssociations(String licId)
     {
-        List<Associations__c> lstassociation = [SELECT id,Parent_License__c FROM Associations__c WHERE Parent_License__c=:licId AND Status__c='Active' AND (Parent_License_Type__c='Certified General Appraiser' OR Parent_License_Type__c='Certified Residential Appraiser')];
+        List<Associations__c> lstassociation = [SELECT id,Parent_License__c FROM Associations__c WHERE Parent_License__c=:licId AND Status__c=: DOL_AppConstants.NULL_EMPTY_STRING + 'Active' AND (Parent_License_Type__c=: DOL_AppConstants.NULL_EMPTY_STRING + 'Certified General Appraiser' OR Parent_License_Type__c=: DOL_AppConstants.NULL_EMPTY_STRING + 'Certified Residential Appraiser')];
         
         return lstassociation.size();
     }
@@ -152,11 +152,11 @@ public class Polaris_MangeEndorsementCntrl {
         Endorsement__c endo = [SELECT id,Status__c,License_Type__c FROM Endorsement__c where id =:endoId  ];
         if(endo.License_Type__c == 'Notary Public')
         {
-            endo.Status__c = 'Remove';
+            endo.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Remove';
         }
         else
         {
-            endo.Status__c = 'Pending Remove';
+            endo.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending Remove';
         }        
         update endo;
     }
@@ -165,13 +165,13 @@ public class Polaris_MangeEndorsementCntrl {
     public static String insertRequest(String licId,String licenseType, String board)
     {
         List<User> userInfoData = new  List<User>();
-        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
-        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
-        Id getContactId = '003r000000EOhBB';
+        Id getContactId = DOL_AppConstants.NULL_EMPTY_STRING + '003r000000EOhBB';
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
@@ -180,7 +180,7 @@ public class Polaris_MangeEndorsementCntrl {
         application.Profession__c = board; 
         application.License_Type__c = licenseType;        
         application.Stage__c = 0;
-        application.Service_Request_Type__c = 'Endorsement';
+        application.Service_Request_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Endorsement';
         application.Contact__c = getContactId;
         application.License__c = licId;    
         try{
@@ -190,7 +190,7 @@ public class Polaris_MangeEndorsementCntrl {
         catch(Exception e){
             HandleException.LogException(e,'Polaris_MangeEndorsementCntrl','insertRequest');            
         }
-        string appId = '';
+        string appId = DOL_AppConstants.NULL_EMPTY_STRING + '';
         return appId = application.Id;
         
     }
@@ -237,7 +237,7 @@ public class Polaris_MangeEndorsementCntrl {
                
                 if(!mapEndorsement.isEmpty() && mapEndorsement.containsKey(insideKey))
                 {
-                    mapEndorsement.get(insideKey).Status__c = 'Pending Remove';
+                    mapEndorsement.get(insideKey).Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending Remove';
                 }
                 else
                 {                    

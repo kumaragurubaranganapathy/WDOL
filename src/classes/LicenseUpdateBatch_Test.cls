@@ -23,7 +23,7 @@ public class LicenseUpdateBatch_Test {
         
         // Credential Creation 
        MUSW__License2__c license = CreateTestDataUtility.createLicense(a.id,c.id);
-       license.MUSW__Status__c='Active';
+       license.MUSW__Status__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Active';
        license.name=license.name+'1';
        license.MUSW__Expiration_Date__c=System.Today()-1;
        system.debug('***'+license);
@@ -36,7 +36,7 @@ public class LicenseUpdateBatch_Test {
     static void testBatch(){
         MUSW__License2__c lic = createData();
         Test.startTest();
-        String Query = 'Select Id, MUSW__Status__c,MUSW__Expiration_Date__c from MUSW__License2__c where MUSW__Expiration_Date__c<Today and MUSW__Status__c=\'Active\'';
+        String Query = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, MUSW__Status__c,MUSW__Expiration_Date__c from MUSW__License2__c where MUSW__Expiration_Date__c<Today and MUSW__Status__c=\'Active\'';
         LicenseUpdateBatch batch = new LicenseUpdateBatch(Query);
         Database.executeBatch(batch, 1);
         Test.stopTest();

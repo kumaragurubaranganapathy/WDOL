@@ -5,7 +5,7 @@ public without sharing class Lnp_GenericDataTable_ApexController {
        if(BusinessFunction == 'Draft Maintance Request'){
          sObjList   = [Select  id,License_Type__c, Service_Request_Type__c
                                      from Request__c
-                                     where Status__c = 'Under Review' AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())];
+                                     where Status__c = : DOL_AppConstants.NULL_EMPTY_STRING + 'Under Review' AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())];
             
          }else if(BusinessFunction == 'Account Contact'){
            
@@ -73,14 +73,14 @@ public without sharing class Lnp_GenericDataTable_ApexController {
          if(action == 'Remove'){
               accConId.Status__c = 'Deleted';
               if(!tsk.isEmpty()){
-                  tsk[0].Status = 'Completed';
+                  tsk[0].Status = DOL_AppConstants.NULL_EMPTY_STRING + 'Completed';
               }
               
           }else if(action == 'Resend'){
-              accConId.Status__c ='Invited';
+              accConId.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Invited';
               accConId.invitation_send_date__c = system.today();
               if(!tsk.isEmpty()){
-              tsk[0].Status = 'Pending';
+              tsk[0].Status = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending';
               }
           }
           update accConId;
@@ -107,16 +107,16 @@ public without sharing class Lnp_GenericDataTable_ApexController {
       
       System.debug('accConId::'+accConId);
          if(action == 'Remove'){
-              accConId.Status__c = 'Canceled';
+              accConId.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Canceled';
               if(!tsk.isEmpty()){
-                  tsk[0].Status = 'Completed';
+                  tsk[0].Status = DOL_AppConstants.NULL_EMPTY_STRING + 'Completed';
               }
               
           }else if(action == 'Resend'){
-              accConId.Status__c ='Invited';
+              accConId.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Invited';
               accConId.invitation_send_date__c = system.today();
               if(!tsk.isEmpty()){
-              tsk[0].Status = 'Pending';
+              tsk[0].Status = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending';
               }
           }
           update accConId;
@@ -136,10 +136,10 @@ public without sharing class Lnp_GenericDataTable_ApexController {
         try{
         task t = new task();
         t.Whatid = accountContact;
-        t.Status = 'Pending';
+        t.Status = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending';
         t.Email__c = Email;
-        t.Subject = 'Invitation to be a Business Admin';
-        t.Type = 'Contact Relationship';
+        t.Subject = DOL_AppConstants.NULL_EMPTY_STRING + 'Invitation to be a Business Admin';
+        t.Type = DOL_AppConstants.NULL_EMPTY_STRING + 'Contact Relationship';
            t.Business_Name__c = accList.MUSW__Account__r.Name;
         insert t;
         return true;
@@ -160,10 +160,10 @@ public without sharing class Lnp_GenericDataTable_ApexController {
         try{
         task t = new task();
         t.Whatid = associationID;
-        t.Status = 'Pending';
+        t.Status = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending';
         t.Email__c = currentUser.Email;
-        t.Subject = 'Invitation to get asociated to a Business License';
-        t.Type = 'License Relationship';
+        t.Subject = DOL_AppConstants.NULL_EMPTY_STRING + 'Invitation to get asociated to a Business License';
+        t.Type = DOL_AppConstants.NULL_EMPTY_STRING + 'License Relationship';
           t.Designation__c =  association.Association_Type__c;
             t.Child_Licensee_Name__c =  childcon.Full_Name__c;
             t.Child_License_Name__c =  association.Child_License__r.Name;

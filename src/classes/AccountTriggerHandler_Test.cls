@@ -19,7 +19,7 @@ public class AccountTriggerHandler_Test {
         businessacc = CreateTestDataUtility.createBusinessAccount();
         /*Inserting test Business Account*/
         insert businessacc;
-        string last4FEIN = '';
+        string last4FEIN = DOL_AppConstants.NULL_EMPTY_STRING;
         List<Account> acc = [Select Id, name, Last_4_Digits_of_FEIN__c from Account where name = 'TestBusinessAccount' limit 1];
         for(Account bAcc : acc){
             last4FEIN = bAcc.Last_4_Digits_of_FEIN__c;

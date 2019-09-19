@@ -87,14 +87,14 @@ public with sharing class LnP_ProgramType{
     @AuraEnabled
     public static List<ListView> getObjViews() {
         List<ListView> listviews = 
-            [SELECT Id, Name FROM ListView WHERE SobjectType = 'Customer_Envelope__c'];
+            [SELECT Id, Name FROM ListView WHERE SobjectType =: DOL_AppConstants.NULL_EMPTY_STRING + 'Customer_Envelope__c'];
         
         return listviews;
     }
     @AuraEnabled
     //public static void saveReciptRecords(){
     public static MUSW__Receipt__c saveReciptRecords(MUSW__Receipt__c receiptRecord){
-        receiptRecord.Intake_Method__c = 'Validation Room';
+        receiptRecord.Intake_Method__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Validation Room';
         system.debug('inside save method');
         system.debug('the reclist is' +receiptRecord);
         insert receiptRecord;

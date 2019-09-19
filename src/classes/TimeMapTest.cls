@@ -20,7 +20,7 @@ public class TimeMapTest {
         DateTime endTime=Datetime.newInstance(currentYear, currentMonth+1, currentDay);
         OrgSettings__c os  = new OrgSettings__c();
         os.Minimum_Slot_duration__c=1.0;
-        os.Name='Fbslots';
+        os.Name= DOL_AppConstants.NULL_EMPTY_STRING + 'Fbslots';
         insert os;
         BusinessHours bh=[select id from BusinessHours where IsDefault=true limit 1];
         List<Time_Slot__c> newSlots = CommonUtil.generateNewTimeSlots(startTime, endTime, os, bh);
@@ -37,12 +37,12 @@ public class TimeMapTest {
             rsc.Application_Type__c=label.Str_Plan_Review;
             rsc.Active__c=true;
             rsc.User__c=testuser.id;
-            rsc.Plan_Review_Types__c='POWTS Petition for Variance';
+            rsc.Plan_Review_Types__c= DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance';
             insert rsc;
             Group__c grp = new Group__c();
-            grp.Name	='POWTS';
+            grp.Name	= DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS';
             grp.Application_Type__c= label.Str_Plan_Review;
-            grp.type__C='Location';
+            grp.type__C= DOL_AppConstants.NULL_EMPTY_STRING + 'Location';
             insert grp;           
      Group_Resource__c seven = new Group_Resource__c();
             seven.Resource__c= rsc.id;
@@ -56,7 +56,7 @@ public class TimeMapTest {
         nwResLocAvai.Autorenewal__c=true;
         insert nwResLocAvai;
         Resource_Availability__c a =[SELECT Backend_User__c, Valid_till_Date__c, Resource_Week_Availability__c, Day_Number__c, New_Time_Availability__c, Time_Availability__c, Day__c, Autorenewal__c, Resource__c, New_Availability_Start_Date__c, Valid_From_Date__c, Id FROM Resource_Availability__c limit 1];
-        a.Time_Availability__c='8.00 to 8.30';
+        a.Time_Availability__c= DOL_AppConstants.NULL_EMPTY_STRING + '8.00 to 8.30';
         List<Resource_Availability__c> rscavails = new  List<Resource_Availability__c>();
         rscavails.add(a);
         update a;
@@ -71,7 +71,7 @@ public class TimeMapTest {
         t.getAllTime(21);
         t.getTimeBetweenStartAndEndTime(datetime.now(), datetime.now() + 1);
         
-        a.New_Time_Availability__c='8.00 to 8.30; 8.30 to 9.00';
+        a.New_Time_Availability__c= DOL_AppConstants.NULL_EMPTY_STRING + '8.00 to 8.30; 8.30 to 9.00';
         List<Resource_Availability__c> rscavails2 = new  List<Resource_Availability__c>();
         rscavails.add(a);
         TimeMap t2 = new TimeMap(rscavails2);        

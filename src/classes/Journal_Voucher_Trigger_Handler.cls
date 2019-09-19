@@ -25,28 +25,28 @@ public void onInsert(List<Journal_Voucher__c> journalVoucherList)
                 system.debug('the increased currentSeq' +currentSeq);
             string sTemp =String.Valueof(currentSeq);
             if(sTemp.length() == 1){
-                sTemp = '000'+ sTemp;
+                sTemp = DOL_AppConstants.NULL_EMPTY_STRING + '000'+ sTemp;
             }
             else if(sTemp.length() == 2){
-                sTemp = '00'+ sTemp;
+                sTemp = DOL_AppConstants.NULL_EMPTY_STRING + '00'+ sTemp;
             }
             else if(sTemp.length() == 3){
-                sTemp = '0'+ sTemp;
+                sTemp = DOL_AppConstants.NULL_EMPTY_STRING + '0'+ sTemp;
             }
                 
       if(journalVoucherRec.Document_Type__c == 'Manual CreditJournal - User Created' || journalVoucherRec.Document_Type__c == 'Manual JV -User Created - Correction JV or one system to another JV' ||
          journalVoucherRec.Document_Type__c == 'Manual JV -Remittance JV from a validation number' || journalVoucherRec.Document_Type__c == 'RemittanceTransfer in POLARIS - User Created' ||
          journalVoucherRec.Document_Type__c == 'ManualTransfer - User Created' || journalVoucherRec.Document_Type__c == 'ManualTransfer - System Generated to other agencies'
           ){
-              journalVoucherRec.Current_Document_Number__c='240V'+sTemp;
+              journalVoucherRec.Current_Document_Number__c= DOL_AppConstants.NULL_EMPTY_STRING + '240V'+sTemp;
                 }
                 
-                if(journalVoucherRec.Document_Type__c == 'Manual CRJSfor Daily -Lockbox  240Q'){
-                     journalVoucherRec.Current_Document_Number__c='240Q'+sTemp;
+                if(journalVoucherRec.Document_Type__c == DOL_AppConstants.sJVTriggerSeven){
+                     journalVoucherRec.Current_Document_Number__c= DOL_AppConstants.NULL_EMPTY_STRING + '240Q'+sTemp;
                    }
                 
-                if(journalVoucherRec.Document_Type__c == 'Manual IAP -user created to ensure document # matches OFM/AFRS'){
-                     journalVoucherRec.Current_Document_Number__c='';
+                if(journalVoucherRec.Document_Type__c == DOL_AppConstants.sJVTriggerEight){
+                     journalVoucherRec.Current_Document_Number__c= DOL_AppConstants.NULL_EMPTY_STRING + '';
                 }
             }
         }
@@ -103,12 +103,12 @@ update objJVseq;
             if(voucher.RecordTypeID == manualrecTypeId){
                 string sTemp =String.Valueof(FiscalMonth);
                 if(sTemp.length() == 1){
-                    sTemp = '0'+ sTemp;
+                    sTemp = DOL_AppConstants.NULL_EMPTY_STRING + '0'+ sTemp;
                 }
                 voucher.Fiscal_Month__c =sTemp;
                 sTemp =String.Valueof(FiscalYear);
                 if(sTemp.length() == 1){
-                    sTemp = '0'+ sTemp;
+                    sTemp = DOL_AppConstants.NULL_EMPTY_STRING + '0'+ sTemp;
                 }
                 voucher.Fiscal_Year__c =sTemp;
                 voucher.Biennium_Year__c= String.valueOf(BienniumYear);

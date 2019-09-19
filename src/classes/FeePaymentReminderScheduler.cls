@@ -17,13 +17,13 @@ global class FeePaymentReminderScheduler implements Schedulable {
             }
         }
         if(finePaymentNoticeList.size()>0){
-            List<ContentDocumentLink> clinkListForPaymentReminder = [SELECT ContentDocument.title,ContentDocumentId,LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId In: finePaymentIdSet and ContentDocument.title like '%Fine_Payment_Reminder%' ];
-            String sub= 'Fine Payment Past Due';
+            List<ContentDocumentLink> clinkListForPaymentReminder = [SELECT ContentDocument.title,ContentDocumentId,LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId  In: finePaymentIdSet AND LinkedEntityId != null and ContentDocument.title  like '%Fine_Payment_Reminder%' and ContentDocument.title != null];
+            String sub= DOL_AppConstants.FINE_PAYMENT_PAST_DUE_STRING;
             sendPaymentReminder(finePaymentNoticeList,clinkListForPaymentReminder,sub);
         }
         if(fineCollectionNoticeList.size()>0){
-            List<ContentDocumentLink> clinkListForCollectionReminder = [SELECT ContentDocument.title,ContentDocumentId,LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId In: fineCollectionIdSet and ContentDocument.title like '%Fine_Collection_Reminder%' ];
-            String sub= 'Notice of Collections';
+            List<ContentDocumentLink> clinkListForCollectionReminder = [SELECT ContentDocument.title,ContentDocumentId,LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId In: fineCollectionIdSet AND LinkedEntityId != null and ContentDocument.title like '%Fine_Collection_Reminder%' and ContentDocument.title != null];
+            String sub= DOL_AppConstants.NOTICE_OF_COLLECTIONS_STRING;
             sendPaymentReminder(fineCollectionNoticeList,clinkListForCollectionReminder,sub);
         }
     }
@@ -47,10 +47,10 @@ global class FeePaymentReminderScheduler implements Schedulable {
                 if(fine.Licensee_Email__c != null && feeToContentVersionMap.containsKey(fine.Id)){
                     Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
                     message.setToAddresses(new String[]{fine.Licensee_Email__c});
-                    String sub = 'Final Order for Case # ['+fine.MUSW__License2__r.name+'] – '+ subLine;
+                    String sub = DOL_AppConstants.NULL_EMPTY_STRING+'Final Order for Case # ['+fine.MUSW__License2__r.name+'] – '+ subLine;
                     message.setSubject(sub);
                     message.setEntityAttachments(new List<Id>{feeToContentVersionMap.get(fine.Id)});
-                    String bdy = 'Please find attached a copy of '+subLine+' letter';
+                    String bdy = DOL_AppConstants.NULL_EMPTY_STRING+'Please find attached a copy of '+subLine+' letter';
                     message.setPlainTextBody(bdy);
                     emailList.add(message);
                 }

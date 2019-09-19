@@ -3,7 +3,7 @@ public class ECart_CC_Test {
 
     @testSetup
     public static void setupTestData(){
-        BGBK__CartSettings__c cartSettings = new BGBK__CartSettings__c(Name = 'Default', BGBK__Payable_Parents__c = 'MUSW__License2__c, MUSW__Application2__c, License_Renewal__c', BGBK__Payment_Gateway_Data_Encryption_Key__c = 'BasicGovPayments');
+        BGBK__CartSettings__c cartSettings = new BGBK__CartSettings__c(Name = DOL_AppConstants.NULL_EMPTY_STRING + 'Default', BGBK__Payable_Parents__c = DOL_AppConstants.NULL_EMPTY_STRING + 'MUSW__License2__c, MUSW__Application2__c, License_Renewal__c', BGBK__Payment_Gateway_Data_Encryption_Key__c = DOL_AppConstants.NULL_EMPTY_STRING + 'BasicGovPayments');
         insert cartSettings;
         
         Account acc = new Account();

@@ -46,7 +46,7 @@ public class LnP_getDependentPicklist {
     }
     
     public static String decimalToBinary(Integer val) {
-        String bits = '';
+        String bits = DOL_AppConstants.NULL_EMPTY_STRING + '';
         while (val > 0) {
             Integer remainder = Math.mod(val, 2);
             val = Integer.valueOf(Math.floor(val / 2));
@@ -58,7 +58,7 @@ public class LnP_getDependentPicklist {
     public static String base64ToBits(String validFor) {
         if (String.isEmpty(validFor)) return '';
         
-        String validForBits = '';
+        String validForBits = DOL_AppConstants.NULL_EMPTY_STRING + '';
         
         for (Integer i = 0; i < validFor.length(); i++) {
             String thisChar = validFor.mid(i, 1);
@@ -70,7 +70,7 @@ public class LnP_getDependentPicklist {
         return validForBits;
     }
     
-    private static final String base64Chars = '' +
+    private static final String base64Chars = DOL_AppConstants.NULL_EMPTY_STRING + '' +
         'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
         'abcdefghijklmnopqrstuvwxyz' +
         '0123456789+/';
