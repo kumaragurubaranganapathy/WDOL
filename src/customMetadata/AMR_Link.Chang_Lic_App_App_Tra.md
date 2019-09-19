@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>Board__c</field>
-        <value xsi:type="xsd:string">Appraisers - Real Estate</value>
+        <value xsi:type="xsd:string">Funerals</value>
     </values>
     <values>
         <field>Display_In_Related_Tab__c</field>
@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>License_Type__c</field>
-        <value xsi:type="xsd:string">Appraiser Trainee</value>
+        <value xsi:type="xsd:string">Academic Intern</value>
     </values>
     <values>
         <field>Order_Number__c</field>

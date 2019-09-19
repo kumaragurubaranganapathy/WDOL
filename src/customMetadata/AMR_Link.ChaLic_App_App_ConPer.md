@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>Board__c</field>
-        <value xsi:type="xsd:string">Appraisal Management Companies</value>
+        <value xsi:type="xsd:string">Land Surveyors</value>
     </values>
     <values>
         <field>Display_In_Related_Tab__c</field>
@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>License_Type__c</field>
-        <value xsi:type="xsd:string">Appraisal Controlling Person</value>
+        <value xsi:type="xsd:string">Engineering/Land Surveying Company</value>
     </values>
     <values>
         <field>Order_Number__c</field>
