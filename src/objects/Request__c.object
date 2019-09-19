@@ -264,6 +264,120 @@
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
+	<fields>
+        <fullName>Lic_Prog_Mailing_City_State_ZIP__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Program_Mailing_City_State_ZIP__c</formula>
+        <label>Lic Prog Mailing City State ZIP</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lic_Prog_Mailing_PO_Box__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Program_Mailing_PO_Box__c</formula>
+        <label>Lic Prog Mailing PO Box</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Applicant_Full_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Applicant_Full_Name__c</formula>
+        <label>License Applicant Full Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Mailing_City__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.MUSW__Parcel__r.MUSW__City__c</formula>
+        <label>License Mailing City</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Mailing_State__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(License__r.MUSW__Parcel__r.MUSW__State__c)</formula>
+        <label>License Mailing State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Mailing_Street__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.MUSW__Parcel__r.MUSW__Street2__c</formula>
+        <label>License Mailing Street</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Mailing_ZIP__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.MUSW__Parcel__r.Zip_Postal_Code__c</formula>
+        <label>License Mailing ZIP</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Program_Email__c</fullName>
+        <description>Formula field for License Program Email</description>
+        <externalId>false</externalId>
+        <formula>License__r.Program_Email__c</formula>
+        <inlineHelpText>Formula field for License Program Email</inlineHelpText>
+        <label>License Program Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Program_Phone__c</fullName>
+        <description>Formula field for License Program Phone in the  Email Templates</description>
+        <externalId>false</externalId>
+        <formula>License__r.Program_Phone__c</formula>
+        <inlineHelpText>Formula field for License Program Phone in the  Email Templates</inlineHelpText>
+        <label>License Program Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Program_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(License__r.Application_Type__c)</formula>
+        <label>License Program Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>License_Type__c</fullName>
         <externalId>false</externalId>
@@ -451,6 +565,17 @@
                 <valueName>Landscape Architect</valueName>
             </valueSettings>
         </valueSet>
+    </fields>
+	<fields>
+        <fullName>License_Ultimate_Parent_Account__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Ultimate_Parent_Account__r.Name</formula>
+        <label>License Ultimate Parent Account</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>License__c</fullName>
