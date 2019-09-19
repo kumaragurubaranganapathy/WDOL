@@ -199,7 +199,7 @@
                                         <div class="error checkbox-error slds-m-top_large">{!v.certificateError}</div>
                                     </div>-->
                                     
-                                    <div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
+                                    <!--<div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                         <div class="headings declaration">Declaration</div><br/>
                                         <div class="slds-form-element">
                                             <div class="slds-form-element__control DeclrtnWidth">
@@ -212,7 +212,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     
                                     <div id="AttestationValidation" class='field-item attest-fields'>                
                                         <div class="headings attestation">Signature</div>
@@ -222,6 +222,7 @@
                                             <span>{!v.currentUser.Name}</span>                                            
                                         </div>
                                         <div class="error attestation-error">{!v.attestationError}</div>
+                                        <div class="slds-m-bottom_small attestBody sentences">I declare, under penalty of perjury under the law of Washington, that all of the information I’ve provided in this application and any associated documents is true, complete, and correct.</div>
                                         <aura:if isTrue="{!v.showMessage}">
                                             <ui:message title="{!v.title}" severity="Error" closable="true">
                                                 

@@ -426,7 +426,7 @@
     },
     onCheckboxChange: function(component, event){
         this.toEnableSubmitButtonCheck(component, event);
-        if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true" && document.getElementById('declaration').checked == true){
+        if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true"){
             component.set("v.submitButtonDisable", "false");
         }
         else {
