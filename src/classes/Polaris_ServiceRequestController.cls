@@ -158,6 +158,10 @@ public class Polaris_ServiceRequestController {
             labelToFields.conditionalAnswer = Ques.Triggering_Parent_Answer__c;
             if(Ques.Possible_Responses__c != null && Ques.Data_Type__c == 'Picklist'){
                 labelToFields.fieldValueOptions = Ques.Possible_Responses__c.split(';');
+				if(labelToFields.fieldValueOptions.size()==1)
+                {
+                    labelToFields.value = labelToFields.fieldValueOptions[0];
+                }
             }
             else if(Ques.Possible_Responses__c != null && (Ques.Data_Type__c == 'Radio'||Ques.Data_Type__c == 'Checkbox'||Ques.Data_Type__c == 'Yes_No')){ 
                 for(String radio : Ques.Possible_Responses__c.split(';')){
