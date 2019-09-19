@@ -337,6 +337,14 @@
         <fields>NAME</fields>
         <relatedList>Miscellaneous_Fee__c.Account__c</relatedList>
     </relatedLists>
+	<relatedLists>
+        <fields>NAME</fields>
+        <fields>Service_Request_Type__c</fields>
+        <fields>Status__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>Contact__c</fields>
+        <relatedList>Request__c.Account__c</relatedList>
+    </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>MUSW__Parcel_Number2__c</fields>

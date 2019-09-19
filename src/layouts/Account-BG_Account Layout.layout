@@ -197,6 +197,14 @@
         <fields>UPDATEDBY_USER</fields>
         <relatedList>MUSW__Permit_Contractor__c.MUSW__Account__c</relatedList>
     </relatedLists>
+	<relatedLists>
+        <fields>NAME</fields>
+        <fields>Service_Request_Type__c</fields>
+        <fields>Status__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>Contact__c</fields>
+        <relatedList>Request__c.Account__c</relatedList>
+    </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>MUSW__Type__c</fields>
