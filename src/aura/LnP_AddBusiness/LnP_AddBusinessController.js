@@ -83,6 +83,11 @@
                 }
             }
         });
+		if(component.get("v.ubiButtonRequired")){
+        	   
+        }else{
+        	 ubiValidation = true;  
+        }
         if(ubiValidation){
             
         }else{
@@ -114,6 +119,14 @@
                 var trimmedNo = ('' + numbers).replace(/\D/g, '');
                 var phone = trimmedNo.slice(0, 3)+'.'+trimmedNo.slice(3,6) + '.' + trimmedNo.slice(6);
                 event.getSource().set('v.value',phone); 
+            }
+        }
+		if(fieldname=="Business_Structure__c"){
+            var pickedValue = event.getSource().get('v.value');
+            if(pickedValue == "Corporation" || pickedValue == "Foreign Corporation" || pickedValue == "Limited Liability Company"){
+                component.set("v.ubiButtonRequired", true);
+            }else{
+                component.set("v.ubiButtonRequired", false);
             }
         }
         if(fieldname=="UBI_Number__c"){
