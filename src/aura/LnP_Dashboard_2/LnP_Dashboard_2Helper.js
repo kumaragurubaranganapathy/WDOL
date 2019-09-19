@@ -248,7 +248,7 @@
         
         component.set("v.LicenseNumberBreadCrumb",licenseNumber);
         
-        component.set("v.dsiplaySpinner",false);
+        component.set("v.displaySpinner",false);
         
         component.set("v.pendingLicenseId",licenseId);
         
@@ -268,7 +268,7 @@
                 
                 component.set("v.submission_id",returnValue);
                 console.log(component.get("v.submission_id"));
-                component.set("v.dsiplaySpinner",false);
+                component.set("v.displaySpinner",false);
                 component.set("v.DisplayDashboardHeader","false");
                 component.set("v.DisplayDashboardTabs","false");
                 component.set("v.DisplaylicenseNumberBreadCrumb","true");
@@ -626,6 +626,12 @@
     },
     
     removeremoveAssociationRelationHelper : function(component,event, helper,associateId){
+                
+        component.set("v.displayRemovePeerRelationShipModal","false");
+        
+        component.set("v.displayRemoveBusinessRelationShipModal","false");
+                
+        component.set('v.displaySpinner',true);
         
         console.log('In LnP_Dashboard_2.aura-helper::removeAccountContactRelationHelper ');
         
@@ -634,6 +640,8 @@
         action.setParams({"associateId":associateId});
         
         action.setCallback(this, function(response) {
+            
+            component.set('v.displaySpinner',false);
             
             var state = response.getState();
             
@@ -653,7 +661,7 @@
                     
                     this.fetchBusinessRelationShipRecords(component, event, helper,licenseDat[0].id);
                     
-                    this.fetchPeerRelationShipDataRecords(component, event, helper,licenseData);
+                    this.fetchPeerRelationShipDataRecords(component, event, helper,licenseDat);
                 }
                 
             } else if (state === "ERROR") {
@@ -668,6 +676,12 @@
     
     updateAssociationRelationHelper : function(component,event, helper,associateId,status){
         
+        component.set("v.displayRemovePeerRelationShipModal","false");
+                
+        component.set("v.displayRemoveBusinessRelationShipModal","false");
+                
+        component.set('v.displaySpinner',true);
+        
         console.log('In LnP_Dashboard_2.aura-helper::updateAssociationRelationHelper');
         
         var action = component.get("c.updateAssociateRelationship");
@@ -675,6 +689,8 @@
         action.setParams({"associateId":associateId, "status": status});
         
         action.setCallback(this, function(response) {
+            
+            component.set('v.displaySpinner',false);
             
             var state = response.getState();
             
@@ -694,7 +710,7 @@
                     
                     this.fetchBusinessRelationShipRecords(component, event, helper,licenseDat[0].id);
                     
-                    this.fetchPeerRelationShipDataRecords(component, event, helper,licenseData);
+                    this.fetchPeerRelationShipDataRecords(component, event, helper,licenseDat);
                 }
                 
             } else if (state === "ERROR") {

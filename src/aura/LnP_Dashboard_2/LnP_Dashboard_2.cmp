@@ -92,7 +92,7 @@
     <aura:attribute name="DisplayLicense_Additional_Qualification" type="Boolean" default="false"
                     />
     <aura:attribute name="isAuthenticatedUser" type="Boolean" default="true" />
-    <aura:attribute name="dsiplaySpinner" type="Boolean" default="false" />
+    <aura:attribute name="displaySpinner" type="Boolean" default="false" />
     <aura:attribute name="displayPendingLicense_Details" type="Boolean" default="false"
                     />
     
@@ -1513,9 +1513,7 @@
         </aura:if>
         
     </div>
-    <aura:if isTrue="{!v.dsiplaySpinner}">
-            <div>
-                <lightning:spinner alternativeText="Loading" size="large" />
-            </div>
-        </aura:if>
+    <aura:if isTrue="{!v.displaySpinner}">
+        <lightning:spinner alternativeText="Loading" size="large" />
+    </aura:if>
 </aura:component>
