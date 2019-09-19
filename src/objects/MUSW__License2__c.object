@@ -3477,8 +3477,124 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <type>Text</type>
         <unique>false</unique>
     </fields>
+</fields>
+	    <fields>
+        <fullName>Program_Email__c</fullName>
+        <description>Program Email used for Notification Templates</description>
+        <externalId>false</externalId>
+        <formula>CASE( Application_Type__c , 
+&quot;Notary Public&quot;, &quot;notaries@dol.wa.gov&quot;,
+&quot;Geologist&quot;, &quot;geologist@dol.wa.gov&quot;,
+&quot;Timeshares&quot;, &quot;realestate@dol.wa.gov&quot;,
+&quot;Architects&quot;, &quot;architects@dol.wa.gov&quot;,
+&quot;Appraisers - Real Estate&quot;, &quot;reappraisers@dol.wa.gov&quot;,
+&quot;Camping Resorts&quot;, &quot;realestate@dol.wa.gov&quot;,
+&quot;Funerals&quot;, &quot;funerals@dol.wa.gov&quot;,
+&quot;Engineers&quot;, &quot;engineers@dol.wa.gov&quot;,
+&quot;Appraisal Management Companies&quot;, &quot;dolbpdamc@dol.wa.gov&quot;,
+&quot;On-site Wastewater&quot;, &quot;engineers@dol.wa.gov&quot;, 
+&quot;Landscape Architects&quot;, &quot;landscape@dol.wa.gov&quot;,
+&quot;Cemeteries&quot;, &quot;funerals@dol.wa.gov&quot;,
+&quot;Land Surveyors&quot;, &quot;engineers@dol.wa.gov&quot;,
+&quot;Appraiser Course&quot;, &quot;reappraisers@dol.wa.gov&quot;,
+&quot;Real Estate&quot;, &quot;realestate@dol.wa.gov&quot;,
+&quot;Collection Agencies&quot;, &quot;collection@dol.wa.gov&quot;,
+&quot;No Program Email Available&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Program Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program_Fax__c</fullName>
+        <description>Program Fax used for Notification Templates</description>
+        <externalId>false</externalId>
+        <formula>CASE( Application_Type__c , 
+&quot;Notary Public&quot;, &quot;(360) 570-7053&quot;,
+&quot;Real Estate&quot;, &quot;(360) 586-0998&quot;,
+&quot;Appraisers - Real Estate&quot;, &quot;(360) 586-0998&quot;,
+&quot;Appraisal Management Companies&quot;, &quot;(360) 586-0998&quot;,
+&quot;Appraiser Course&quot;, &quot;(360) 586-0998&quot;,
+&quot;Timeshares&quot;, &quot;(360) 586-0998&quot;,
+&quot;Camping Resorts&quot;, &quot;(360) 586-0998&quot;,
+&quot;Geologist&quot;, &quot;(360) 570-7098&quot;,
+&quot;Architects&quot;, &quot;(360) 570-7098&quot;,
+&quot;Funerals&quot;, &quot;(360) 570-7098&quot;,
+&quot;Engineers&quot;, &quot;(360) 570-7098&quot;,
+&quot;Land Surveyors&quot;, &quot;(360) 570-7098&quot;,
+&quot;On-site Wastewater&quot;, &quot;(360) 570-7098&quot;,
+&quot;Landscape Architects&quot;, &quot;(360) 570-7098&quot;,
+&quot;Cemeteries&quot;, &quot;(360) 570-7098&quot;,
+&quot;No Program Fax Available&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Program Fax</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program_Lockbox_City_State_ZIP__c</fullName>
+        <description>Program Lockbox City, State, and ZIP</description>
+        <externalId>false</externalId>
+        <formula>&apos;Seattle, WA  98124-3777&apos;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Program Lockbox City State ZIP</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program_Lockbox_PO_Box__c</fullName>
+        <description>Program Lockbox PO Box used for Notification Templates</description>
+        <externalId>false</externalId>
+        <formula>&apos;PO Box 3777&apos;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Program Lockbox PO Box</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program_Mailing_City_State_ZIP__c</fullName>
+        <description>Program Mailing City, State, and ZIP</description>
+        <externalId>false</externalId>
+        <formula>CASE( Application_Type__c , 
+&quot;Notary Public&quot;, &quot;Olympia, WA 98507-9027&quot;,
+&quot;Real Estate&quot;, &quot;Olympia, WA 98507-9021&quot;,
+&quot;Appraisers - Real Estate&quot;, &quot;Olympia, WA 98507-9021&quot;,
+&quot;Appraisal Management Companies&quot;, &quot;Olympia, WA 98507-9021&quot;,
+&quot;Appraiser Course&quot;, &quot;Olympia, WA 98507-9021&quot;,
+&quot;Timeshares&quot;, &quot;Olympia, WA 98507-9021&quot;,
+&quot;Camping Resorts&quot;, &quot;Olympia, WA 98507-9021&quot;,
+&quot;Geologist&quot;, &quot;Olympia, WA 98507-9012&quot;,
+&quot;Architects&quot;, &quot;Olympia, WA 98507-9012&quot;,
+&quot;Funerals&quot;, &quot;Olympia, WA 98507-9012&quot;,
+&quot;Engineers&quot;, &quot;Olympia, WA 98507-9025&quot;,
+&quot;Land Surveyors&quot;, &quot;Olympia, WA 98507-9025&quot;,
+&quot;On-site Wastewater&quot;, &quot;Olympia, WA 98507-9025&quot;, 
+&quot;Landscape Architects&quot;, &quot;Olympia, WA 98507-9012&quot;,
+&quot;Cemeteries&quot;, &quot;Olympia, WA 98507-9012&quot;,
+&quot;No Program ZIP Code Available&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Program Mailing City State ZIP</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Program_Mailing_PO_Box__c</fullName>
+        <description>Program Mailing PO Box used for Notification Templates</description>
         <externalId>false</externalId>
         <formula>CASE( Application_Type__c , 
 &quot;Notary Public&quot;, &quot;PO Box 9027&quot;,
@@ -3499,6 +3615,35 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
 &quot;No Program PO Box Available&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Program Mailing PO Box</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program_Phone__c</fullName>
+        <description>Program Phone used for Notification Templates</description>
+        <externalId>false</externalId>
+        <formula>CASE( Application_Type__c , 
+&quot;Notary Public&quot;, &quot;360.664.1550&quot;,
+&quot;Geologist&quot;, &quot;360.664.1497&quot;,
+&quot;Real Estate&quot;, &quot;360.664.6488&quot;,
+&quot;Appraisers - Real Estate&quot;, &quot;360.664.6504&quot;,
+&quot;Appraisal Management Companies&quot;, &quot;360.664.6504&quot;,
+&quot;Appraiser Course&quot;, &quot;360.664.6504&quot;,
+&quot;Timeshares&quot;, &quot;360.664.6486&quot;,
+&quot;Camping Resorts&quot;, &quot;360.664.6486&quot;,
+&quot;Architects&quot;, &quot;360.664.1388&quot;,
+&quot;Funerals&quot;, &quot;360.664.1555&quot;,
+&quot;Engineers&quot;, &quot;360.664.1575&quot;,
+&quot;Land Surveyors&quot;, &quot;360.664.1575&quot;,
+&quot;On-site Wastewater&quot;, &quot;360.664.1575&quot;, 
+&quot;Landscape Architects&quot;, &quot;360.664.1497&quot;,
+&quot;Cemeteries&quot;, &quot;360.664.1497&quot;,
+&quot;No Program Phone Available&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Program Phone</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
