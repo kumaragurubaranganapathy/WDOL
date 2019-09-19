@@ -625,14 +625,14 @@ public class Polaris_ServiceRequestController {
         stringJSON = appList[0].Form_JSON__c;
         // System.debug('appList '+appList);
         Boolean checkSuccess = false;
-        if(appList[0].Service_Request_Type__c == 'License History Request'){
+        /*if(appList[0].Service_Request_Type__c == 'License History Request'){
             appList[0].Status__c = 'Under Review';
             try{
                 update appList[0];
             }catch(Exception e){
                 Polaris_CreateErrorLog_Exception.addError(e,'Polaris_ServiceRequestController','callCompositeAPI');            
             }
-        }
+        }*/
         //Modified code for handling 25 subrequest governor limit
         if(stringJSON!=null){
             LnP_JSONParser ansWrapper= Polaris_ServiceRequestController.getJSONWrapper(stringJSON);
