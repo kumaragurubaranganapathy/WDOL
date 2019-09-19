@@ -41,6 +41,8 @@
     <aura:attribute name="applicationId" type="Id" />
     <aura:attribute name="complaintId" type="String" />
     <aura:attribute name="loadingSpinner" type="boolean" default="false"/>
+	<aura:attribute name="showProfCounty" type="boolean" default="true"/>
+    <aura:attribute name="showBusinessCounty" type="boolean" default="true"/>
     <!-- <aura:attribute name="professionDisable" type="Boolean" default="false"/> -->
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -137,18 +139,20 @@
                                     <lightning:input aura:id="businessForm" label="City" placeholder="Enter City"
                                                      class="field-item  slds-p-around_medium"
                                                      name="city"/>
-                                    <lightning:select class="field-item  slds-p-around_medium" name="state" label="State" aura:id="businessForm" value="Washington">
+                                    <lightning:select class="field-item  slds-p-around_medium" name="state" label="State" aura:id="businessForm" value="Washington" onchange="{!c.hideBusinessCounty}">
                                         <option text="Select a state" value=""/>
                                         <aura:iteration items="{!v.stateOptions}" var="option">
                                             <option text="{!option}" value="{!option}"/>
                                         </aura:iteration>
                                     </lightning:select>
+									<aura:if isTrue="{!v.showBusinessCounty}">
                                     <lightning:select class="field-item  slds-p-around_medium" name="county" label="County" aura:id="businessForm" value="">
                                         <option text="Select a county" value=""/>
                                         <aura:iteration items="{!v.countyOptions}" var="option">
                                             <option text="{!option}" value="{!option}"/>
                                         </aura:iteration>
                                     </lightning:select>
+									</aura:if>
                                 </div>
                             </div>
                             <!-- End of form -->
@@ -186,18 +190,20 @@
                                     <lightning:input aura:id="professionalForm" label="City" placeholder="Enter City"
                                                      class="field-item slds-p-around_medium"
                                                      name="city"/>
-                                    <lightning:select class="field-item  slds-p-around_medium" name="state" label="State" aura:id="professionalForm" value="Washington">
+                                    <lightning:select class="field-item  slds-p-around_medium" name="state" label="State" aura:id="professionalForm" value="Washington" onchange="{!c.hideProfCounty}">
                                         <option text="Select a state" value=""/>
                                         <aura:iteration items="{!v.stateOptions}" var="option">
                                             <option text="{!option}" value="{!option}"/>
                                         </aura:iteration>
                                     </lightning:select>
+									<aura:if isTrue="{!v.showProfCounty}">
                                     <lightning:select class="field-item slds-p-around_medium" name="county" label="County" aura:id="professionalForm" value="">
                                         <option text="Select a county" value=""/>
                                         <aura:iteration items="{!v.countyOptions}" var="option">
                                             <option text="{!option}" value="{!option}"/>
                                         </aura:iteration>
                                     </lightning:select>
+									</aura:if>
                                 </div>
                             </div>
                             <!-- End of form -->

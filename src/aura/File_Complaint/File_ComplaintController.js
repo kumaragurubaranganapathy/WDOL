@@ -35,4 +35,20 @@
     printAcknowledgement: function(component, event, helper) {
 		helper.printAcknowledgement(component, event);
 	},
+	hideProfCounty: function(component, event, helper){
+        var selectedValue = event.getSource().get('v.value');
+        if(selectedValue == "Washington" || selectedValue =="WA"){
+            component.set("v.showProfCounty", true);
+        }else{
+            component.set("v.showProfCounty", false);
+        }
+    },
+    hideBusinessCounty: function(component, event, helper){
+        var selectedValue = event.getSource().get('v.value');
+        if(selectedValue == "Washington" || selectedValue =="WA"){
+            component.set("v.showBusinessCounty", true);
+        }else{
+            component.set("v.showBusinessCounty", false);
+        }
+    }
 })
