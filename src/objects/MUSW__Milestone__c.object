@@ -152,6 +152,7 @@
         <fullName>MUSW__BG_Bluebeam_Session_Id__c</fullName>
         <deprecated>false</deprecated>
         <description>Bluebeam Studion Session Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>BG Bluebeam Session Id</label>
         <length>11</length>
@@ -164,6 +165,7 @@
     <fields>
         <fullName>MUSW__Due_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>false</required>
@@ -174,6 +176,7 @@
     <fields>
         <fullName>MUSW__End_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>End Date</label>
         <required>false</required>
@@ -184,6 +187,7 @@
     <fields>
         <fullName>MUSW__Last_Task_Due_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Task Due Date</label>
         <required>false</required>
@@ -194,6 +198,7 @@
     <fields>
         <fullName>MUSW__Original_Due_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Original Due Date</label>
         <required>false</required>
@@ -204,6 +209,7 @@
     <fields>
         <fullName>MUSW__Original_Start_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Original Start Date</label>
         <required>false</required>
@@ -271,6 +277,7 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit2__c,MUSW__Permit2__r.Name,&quot;_p
     <fields>
         <fullName>MUSW__Start_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -348,6 +355,7 @@ IF(AND(ISNULL(MUSW__End_Date__c), MUSW__Due_Date__c &lt; TODAY()), &quot;/img/en
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

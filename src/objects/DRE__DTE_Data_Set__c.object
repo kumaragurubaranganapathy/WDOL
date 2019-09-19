@@ -58,6 +58,7 @@
     <fields>
         <fullName>DRE__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>1000</length>
@@ -69,6 +70,7 @@
         <fullName>DRE__Uid__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Unique Id</label>
         <length>80</length>
@@ -80,6 +82,7 @@
     <fields>
         <fullName>DRE__Validation_Result__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Validation Result</label>
         <length>1000</length>
@@ -96,6 +99,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Operation Bundle Name</label>
         <type>Text</type>
     </nameField>

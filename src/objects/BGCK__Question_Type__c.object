@@ -280,6 +280,7 @@
     <fields>
         <fullName>BGCK__Default_Value__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Default Value</label>
         <length>30</length>
@@ -292,6 +293,7 @@
         <fullName>BGCK__Fieldset_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>For Record List questions, the name of the fieldset to be used when the user is creating or editing records within the checklist.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fieldset Name</label>
         <length>255</length>
@@ -356,6 +358,7 @@
         <fullName>BGCK__Object_Name__c</fullName>
         <deprecated>false</deprecated>
         <description>For Record List questions, the API name of the object to be listed</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Object Name</label>
         <length>255</length>
@@ -381,6 +384,7 @@
         <fullName>BGCK__Track_No__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>20</length>
@@ -497,6 +501,7 @@
     <fields>
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>50</length>
@@ -507,6 +512,7 @@
     </fields>
     <fields>
         <fullName>WADOL_Mulesoft_Ext_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Mulesoft Ext Id</label>
         <length>255</length>
@@ -517,6 +523,7 @@
     </fields>
     <label>Question Type</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Type Name</label>
         <type>Text</type>
     </nameField>

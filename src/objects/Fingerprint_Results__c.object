@@ -77,6 +77,18 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Account_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account Contact</label>
+        <referenceTo>MUSW__Account_Contact__c</referenceTo>
+        <relationshipLabel>Fingerprinting/Background  Results</relationshipLabel>
+        <relationshipName>Fingerprinting_Background_Results</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Agency__c</fullName>
         <externalId>false</externalId>
         <label>Agency</label>
@@ -113,6 +125,7 @@
     </fields>
     <fields>
         <fullName>Close_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Close Date</label>
         <required>false</required>
@@ -121,6 +134,7 @@
     </fields>
     <fields>
         <fullName>Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Comments</label>
         <length>32768</length>
@@ -141,7 +155,7 @@
         <type>Lookup</type>
     </fields>
     <fields>
-	<fullName>Fingerprint_Id__c</fullName>
+        <fullName>Fingerprint_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
@@ -152,7 +166,7 @@
         <type>Text</type>
         <unique>true</unique>
     </fields>
-	<fields>
+    <fields>
         <fullName>Fingerprint_Reject_Reason__c</fullName>
         <description>Fingerprint Reject Reason</description>
         <externalId>false</externalId>
@@ -247,28 +261,7 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-	<fields>
-        <fullName>License__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>License</label>
-        <referenceTo>MUSW__License2__c</referenceTo>
-        <relationshipLabel>Fingerprinting/Background  Results</relationshipLabel>
-        <relationshipName>Fingerprinting_Background_Results</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-	<fields>
-        <fullName>WASIC_Date__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>WASIC Date</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-	<fields>
+    <fields>
         <fullName>License_ID__c</fullName>
         <description>Foreign Key for Data Migration of Legacy Data</description>
         <encryptionScheme>None</encryptionScheme>
@@ -280,17 +273,19 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
-        <fullName>Status_Date__c</fullName>
-        <description>Fingerprint Status Date</description>
-        <encryptionScheme>None</encryptionScheme>
+    <fields>
+        <fullName>License__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Status Date</label>
+        <label>License</label>
+        <referenceTo>MUSW__License2__c</referenceTo>
+        <relationshipLabel>Fingerprinting/Background  Results</relationshipLabel>
+        <relationshipName>Fingerprinting_Background_Results</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Date</type>
+        <type>Lookup</type>
     </fields>
-	<fields>
+    <fields>
         <fullName>Release__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -300,6 +295,16 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status_Date__c</fullName>
+        <description>Fingerprint Status Date</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Status Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Status__c</fullName>
@@ -332,28 +337,44 @@
                     <default>false</default>
                     <label>Background Hit</label>
                 </value>
+                <value>
+                    <fullName>No Prints</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No Prints</label>
+                </value>
+                <value>
+                    <fullName>Second Reject</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Second Reject</label>
+                </value>
+                <value>
+                    <fullName>Third Reject</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Third Reject</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
     <fields>
         <fullName>Submitted_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Submitted Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-	<fields>
-        <fullName>Account_Contact__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
+    <fields>
+        <fullName>WASIC_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
-        <label>Account Contact</label>
-        <referenceTo>MUSW__Account_Contact__c</referenceTo>
-        <relationshipLabel>Fingerprinting/Background  Results</relationshipLabel>
-        <relationshipName>Fingerprinting_Background_Results</relationshipName>
+        <label>WASIC Date</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>Date</type>
     </fields>
     <label>Fingerprinting/Background Results</label>
     <nameField>

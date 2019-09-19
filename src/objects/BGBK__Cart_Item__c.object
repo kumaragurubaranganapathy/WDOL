@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Cart item is used to record history of payments/partial payments of Fees/Invoices/Deposits through Cart</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>BGBK__Cart__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Lookup to Cart which was used to pay the cart item</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Cart which was used to pay the cart item</inlineHelpText>
+        <label>Cart</label>
+        <referenceTo>BGBK__Cart__c</referenceTo>
+        <relationshipLabel>Cart Items</relationshipLabel>
+        <relationshipName>Cart_Items</relationshipName>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Deposit__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Lookup to the associated deposit record</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Lookup to the associated deposit record</inlineHelpText>
+        <label>Deposit</label>
+        <referenceTo>MUSW__Deposit__c</referenceTo>
+        <relationshipLabel>Cart Items</relationshipLabel>
+        <relationshipName>Cart_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Fee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Lookup to the associated fee record</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Lookup to the associated fee record</inlineHelpText>
+        <label>Fee</label>
+        <referenceTo>MUSW__Fee__c</referenceTo>
+        <relationshipLabel>Cart Items</relationshipLabel>
+        <relationshipName>Cart_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Invoice__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Lookup to the associated invoice record</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Lookup to the associated invoice record</inlineHelpText>
+        <label>Invoice</label>
+        <referenceTo>BGBK__Bill__c</referenceTo>
+        <relationshipLabel>Cart Items</relationshipLabel>
+        <relationshipName>Cart_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BGBK__Payment_Amount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Payment / Partial Payment amount of the fee/invoice/deposit</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Payment / Partial Payment amount of the fee/invoice/deposit</inlineHelpText>
+        <label>Payment Amount</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Cart Item</label>
+    <nameField>
+        <displayFormat>CI-{0000000}</displayFormat>
+        <label>Cart Item Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Cart Items</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

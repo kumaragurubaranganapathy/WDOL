@@ -36,6 +36,10 @@
         <actionName>Tab</actionName>
         <type>Default</type>
     </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
     <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -288,6 +292,18 @@
         <label>Receipt Confirmation</label>
     </fieldSets>
     <fields>
+        <fullName>Case_Safe_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Id)</formula>
+        <label>Case Safe Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>ACH_BillerBusinessDate__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -488,6 +504,17 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Created_Date_Time_UAT__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATETIMEVALUE(CreatedDate)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Created Date Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>DHP__c</fullName>
         <defaultValue>false</defaultValue>
         <description>US-1656</description>
@@ -499,10 +526,34 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Date_Today_s__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY()</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Date_Today&apos;s</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Date__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Effective_Date__c</fullName>
+        <description>Effective date from US Bank</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Estimated effective date from US Bank</inlineHelpText>
+        <label>Effective Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1840,6 +1891,28 @@
         <columns>Polaris_CreatedDate__c</columns>
         <filterScope>Everything</filterScope>
         <label>Search (Demo Purposes)</label>
+    </listViews>
+    <listViews>
+        <fullName>Search_Public</fullName>
+        <columns>NAME</columns>
+        <columns>Validation_number__c</columns>
+        <columns>MUSW__Amount_Tendered__c</columns>
+        <columns>Intake_Method__c</columns>
+        <columns>MUSW__Payment_Method__c</columns>
+        <columns>MUSW__Receipt_Paid_By__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>MidDay_Date__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>License_Number__c</columns>
+        <columns>Applicant_Name__c</columns>
+        <columns>US_Bank_Payment_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Intake_Method__c</field>
+            <operation>equals</operation>
+            <value>Portal</value>
+        </filters>
+        <label>Search Public</label>
     </listViews>
     <listViews>
         <fullName>US_Bank_Settlement</fullName>

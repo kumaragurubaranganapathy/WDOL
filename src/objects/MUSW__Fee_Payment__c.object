@@ -56,33 +56,48 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-     <fieldSets>
-	<fullName>BGBK__Fee_Payment_Basic</fullName>
-		<availableFields>
-			<field>BGBK__Payment__c</field>
-			<isFieldManaged>false</isFieldManaged>
-			<isRequired>false</isRequired>
-		</availableFields>
-		<description>Fee Payment Add Edit page (used for making fee and payment corrections)</description>
-		<displayedFields>
-			<field>MUSW__Payment_Amount__c</field>
-			<isFieldManaged>false</isFieldManaged>
-			<isRequired>false</isRequired>
-		</displayedFields>
-		<displayedFields>
-			<field>MUSW__Paid_Date__c</field>
-			<isFieldManaged>false</isFieldManaged>
-			<isRequired>false</isRequired>
-		</displayedFields>
-		<displayedFields>
-			<field>Reapply_Amount__c</field>
-			<isFieldManaged>false</isFieldManaged>
-			<isRequired>false</isRequired>
-		</displayedFields>
-		<label>Fee Payment Basic</label>
-	</fieldSets>
+    <fieldSets>
+        <fullName>BGBK__Fee_Payment_Basic</fullName>
+        <availableFields>
+            <field>MUSW__Fee__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>BGBK__Payment__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>Fee Payment Add Edit page (used for making fee and payment corrections)</description>
+        <displayedFields>
+            <field>MUSW__Payment_Amount__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>MUSW__Paid_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Reapply_Amount__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Fee Payment Basic</label>
+    </fieldSets>
     <fieldSets>
         <fullName>BGBK__Feebasic</fullName>
+        <availableFields>
+            <field>MUSW__Fee__r.MUSW__Price_Per_Unit__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>MUSW__Fee__r.MUSW__Quantity__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
         <availableFields>
             <field>MUSW__Fee__r.RecordTypeId</field>
             <isFieldManaged>false</isFieldManaged>
@@ -95,7 +110,7 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>MUSW__Fee__r.Portal_Name__c</field>
+            <field>MUSW__Fee__r.portal_name__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -171,67 +186,6 @@
         </displayedFields>
         <label>Invoice Basic</label>
     </fieldSets>
-	 <fields>
-        <fullName>Reapply_Amount__c</fullName>
-        <externalId>false</externalId>
-        <label>Reapply Amount</label>
-        <precision>13</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-	<fields>
-        <fullName>Deposit_Reapply_Amount__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(ISBLANK(BGBK__Payment__r.BGBK__Deposit__c), 
-    0,  
-    BGBK__Payment__r.BGBK__Deposit__r.Reapply_Amount__c +  Reapply_Amount__c -  Target_Reapply_Amount__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Deposit Reapply Amount</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Target_Initial_Apply_Amount__c</fullName>
-        <externalId>false</externalId>
-        <formula>MUSW__Payment_Amount__c -  Target_Reapply_Amount__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Target Initial Apply Amount</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Target_Reapply_Amount__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(ISBLANK(BGBK__Payment__r.BGBK__Deposit__c), 
-  IF(MUSW__Receipt__r.Adjusted__c = TRUE,
-    MUSW__Payment_Amount__c,
-    0
-  ),
-  IF(MUSW__Payment_Amount__c &gt; BGBK__Payment__r.BGBK__Deposit__r.Reapply_Amount__c, 
-    BGBK__Payment__r.BGBK__Deposit__r.Reapply_Amount__c, 
-    MUSW__Payment_Amount__c
-  )
-)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Target Reapply Amount</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
     <fields>
         <fullName>AFRS_Cash_Code__c</fullName>
         <externalId>false</externalId>
@@ -435,6 +389,28 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>DHP_Amount__c</fullName>
+        <description>Captures the DHP amount</description>
+        <externalId>false</externalId>
+        <label>DHP Amount</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>DHPed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Captures if the fee payment is  DHPed or not</description>
+        <externalId>false</externalId>
+        <label>DHPed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Department__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT(MUSW__Fee__r.Department__c)</formula>
@@ -447,9 +423,25 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Deposit_Reapply_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(BGBK__Payment__r.BGBK__Deposit__c), 
+    0,  
+    BGBK__Payment__r.BGBK__Deposit__r.Reapply_Amount__c +  Reapply_Amount__c -  Target_Reapply_Amount__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Deposit Reapply Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>External_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>External Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>255</length>
@@ -569,6 +561,7 @@
         <defaultValue>Today()</defaultValue>
         <deprecated>false</deprecated>
         <description>The date when the payment was processed. The System populates this during payment processing.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Paid Date</label>
         <required>false</required>
@@ -667,6 +660,26 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Reapply_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Reapply Amount</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Reapply_Payment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Reapply Payment</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Receipt_Amount_Remaining__c</fullName>
         <externalId>false</externalId>
         <formula>MUSW__Receipt__r.MUSW__Amount_Available__c</formula>
@@ -678,6 +691,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Receipt_Payment_Method__c</fullName>
+        <description>Captures related receipt payment method</description>
+        <externalId>false</externalId>
+        <formula>TEXT(MUSW__Receipt__r.MUSW__Payment_Method__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Receipt Payment Method</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Record_Number__c</fullName>
@@ -722,116 +748,24 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Revenue_Code__c</fullName>
-        <externalId>false</externalId>
-        <formula>MUSW__Fee__r.Revenue_Code__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Revenue Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>TMS_Cash_Code__c</fullName>
-        <externalId>false</externalId>
-        <formula>MUSW__Fee__r.TMS_Cash_Code__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>TMS Cash Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>TMS_Revenue_Code__c</fullName>
-        <externalId>false</externalId>
-        <formula>MUSW__Fee__r.TMS_Revenue_Code__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>TMS Revenue Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>US_Bank_Payment_Status__c</fullName>
-        <externalId>false</externalId>
-        <formula>Text(BGBK__Payment__r.BGBK__Receipt__r.US_Bank_Payment_Status__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>US Bank Payment Status</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Voucher_Number__c</fullName>
-        <externalId>false</externalId>
-        <formula>MUSW__Receipt__r.Voucher_Number__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Voucher Number</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>DHP_Amount__c</fullName>
-        <description>Captures the DHP amount</description>
-        <externalId>false</externalId>
-        <label>DHP Amount</label>
-        <precision>13</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>DHPed__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Captures if the fee payment is  DHPed or not</description>
-        <externalId>false</externalId>
-        <label>DHPed</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Reapply_Payment__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Reapply Payment</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Receipt_Payment_Method__c</fullName>
-        <description>Captures related receipt payment method</description>
-        <externalId>false</externalId>
-        <formula>TEXT(MUSW__Receipt__r.MUSW__Payment_Method__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Receipt Payment Method</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>RevenueCodeSubString__c</fullName>
         <description>Captures first 3 characters of Revenue Account Code</description>
         <externalId>false</externalId>
         <formula>LEFT(MUSW__Fee__r.Revenue_Code__c , 3)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>RevenueCodeSubString</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Revenue_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Fee__r.Revenue_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Revenue Code</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -874,7 +808,109 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+    <fields>
+        <fullName>TMS_Cash_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Fee__r.TMS_Cash_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TMS Cash Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TMS_Revenue_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Fee__r.TMS_Revenue_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TMS Revenue Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Target_Initial_Apply_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Payment_Amount__c -  Target_Reapply_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Initial Apply Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Target_Reapply_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(BGBK__Payment__r.BGBK__Deposit__c), 
+  IF(MUSW__Receipt__r.Adjusted__c = TRUE,
+    MUSW__Payment_Amount__c,
+    0
+  ),
+  IF(MUSW__Payment_Amount__c &gt; BGBK__Payment__r.BGBK__Deposit__r.Reapply_Amount__c, 
+    BGBK__Payment__r.BGBK__Deposit__r.Reapply_Amount__c, 
+    MUSW__Payment_Amount__c
+  )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Reapply Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>US_Bank_Payment_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(BGBK__Payment__r.BGBK__Receipt__r.US_Bank_Payment_Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>US Bank Payment Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Voucher_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__Receipt__r.Voucher_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Voucher Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>Fee Payment</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>MUSW__Fee_Amount__c</columns>
+        <columns>MUSW__Fee__c</columns>
+        <columns>IntakeMethod__c</columns>
+        <columns>BGBK__Payment__c</columns>
+        <columns>MUSW__Payment_Amount__c</columns>
+        <columns>MUSW__Receipt__c</columns>
+        <columns>Receipt_Amount_Remaining__c</columns>
+        <columns>Receipt_Payment_Method__c</columns>
+        <columns>DHP_Amount__c</columns>
+        <columns>DHPed__c</columns>
+        <columns>BGBK__Invoice__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>MUSW__Fee_Current_Amount_Outstanding__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <listViews>
         <fullName>License_Assignment_Queue_Fee_Payment</fullName>
         <filterScope>Queue</filterScope>

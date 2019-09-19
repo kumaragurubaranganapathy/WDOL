@@ -26,7 +26,7 @@ public without sharing class StandardTextSearch_CC
     }
     
     public string getQuery(string name, string code, string codeNumber, string sectionNumber, string shortDescription){
-        string query = 'select Id, Name, MUSW__Code__c, MUSW__Code_Number__c, MUSW__Section__c, MUSW__Description__c'
+        string query = DOL_AppConstants.NULL_EMPTY_STRING + 'select Id, Name, MUSW__Code__c, MUSW__Code_Number__c, MUSW__Section__c, MUSW__Description__c'
                      	+ ' from MUSW__Violation_Type__c' 
             			+ ' where RecordTypeId = \'' +recordTypeId + '\'';
         query = (String.isNotBlank(name)) ? query +=' AND name LIKE \'' +name + '%\'' : query; 
@@ -47,14 +47,14 @@ public without sharing class StandardTextSearch_CC
         	standardText = Database.query(query);
             system.debug('standardText>>>>'+standardText);
             if(standardText.size() == 0){
-                errorText = 'Could not find any data';
+                errorText = DOL_AppConstants.NULL_EMPTY_STRING + 'Could not find any data';
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.FATAL,'Could not find any data'));
                 norec = true;
             }
         	system.debug('standardText>>>>'+standardText);
             norec = false;
         } else{
-            errorText = 'Please enter the data and search';
+            errorText = DOL_AppConstants.NULL_EMPTY_STRING + 'Please enter the data and search';
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.FATAL,'Please enter the data and search'));
             norec = true;
         }

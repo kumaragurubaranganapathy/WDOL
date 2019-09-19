@@ -56,6 +56,7 @@
     <fields>
         <fullName>Building_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Building Id</label>
         <length>20</length>
@@ -67,6 +68,7 @@
     </fields>
     <fields>
         <fullName>Building_Phone_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Building Phone Number</label>
         <required>false</required>
@@ -76,6 +78,7 @@
     </fields>
     <fields>
         <fullName>Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Comments</label>
         <required>false</required>
@@ -85,6 +88,7 @@
     </fields>
     <fields>
         <fullName>Division_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Division Name</label>
         <length>60</length>
@@ -96,6 +100,7 @@
     </fields>
     <fields>
         <fullName>Inspector_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspector Name</label>
         <length>100</length>
@@ -107,6 +112,7 @@
     </fields>
     <fields>
         <fullName>Inspector_Phone_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspector Phone Number</label>
         <required>false</required>
@@ -130,6 +136,7 @@
     <fields>
         <fullName>Release__c</fullName>
         <description>Release</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Release</label>
         <length>20</length>
@@ -142,6 +149,7 @@
     <fields>
         <fullName>Site_Id__c</fullName>
         <description>Site Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Site Id</label>
         <length>20</length>
@@ -153,6 +161,7 @@
     </fields>
     <label>Building</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Building Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

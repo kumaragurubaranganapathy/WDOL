@@ -11,7 +11,7 @@ H ADARSH                        12-August-2018             Initial Creation
 
 
 public class Utilityclass_withsharing {   
-    public static final String sSize = 'Size';
+    public static final String sSize = DOL_AppConstants.NULL_EMPTY_STRING + 'Size';
     public static Boolean bIsTestClass = false;
     public static final list<String> lstEmptyError= new list<String>{'List is empty'}; 
     static final List<String> lstObjExcl = new List<String>{'User'};
@@ -410,7 +410,7 @@ public class Utilityclass_withsharing {
     }
 	
 	public static void throwException(String sAction, String sObjName, String sFldName)	{
-        String sError = 'User does not have ' + (String.isNotBlank(sAction) ? sAction + ' ' :  '');
+        String sError = DOL_AppConstants.NULL_EMPTY_STRING + 'User does not have ' + (String.isNotBlank(sAction) ? sAction + ' ' :  '');
         sError += 'access to the ';
         if(String.isNotBlank(sFldName))	{
             sError += 'Field: ' + sFldName + ' in the Object: ' + sObjName;

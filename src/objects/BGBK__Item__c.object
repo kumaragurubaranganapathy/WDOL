@@ -86,6 +86,7 @@
     <fields>
         <fullName>BGBK__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
@@ -205,6 +206,7 @@
         <fullName>BGBK__Related_To__c</fullName>
         <deprecated>false</deprecated>
         <description>Item ID:Item API Name (e.g. 00abc123blabla:MUSW__Fee__c)</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Related To</label>
         <length>60</length>
@@ -216,6 +218,7 @@
     <fields>
         <fullName>BGBK__Revenue_Source__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Revenue Source</label>
         <length>30</length>
@@ -420,18 +423,6 @@ BGBK__Fund__r.GL__c</formula>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Journal_Voucher__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Journal Voucher</label>
-        <referenceTo>Journal_Voucher__c</referenceTo>
-        <relationshipLabel>Items</relationshipLabel>
-        <relationshipName>Items</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Journal_Voucher_Reference__c</fullName>
         <externalId>false</externalId>
         <formula>Journal_Voucher_Detail__r.JournalVoucher__c</formula>
@@ -450,6 +441,18 @@ BGBK__Fund__r.GL__c</formula>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Journal_Voucher__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Journal Voucher</label>
+        <referenceTo>Journal_Voucher__c</referenceTo>
+        <relationshipLabel>Items</relationshipLabel>
+        <relationshipName>Items</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Payable_Receipt__c</fullName>
@@ -508,17 +511,6 @@ BGBK__Fund__r.GL__c</formula>
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Transaction_Code_Type__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(RIGHT(text(BGBK__Type__c),1)="R","R","")</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Transaction Code Type</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Target_Accounting_System__c</fullName>
         <externalId>false</externalId>
         <formula>Case( 
@@ -559,22 +551,22 @@ BGBK__Fund__r.GL__c</formula>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Transaction_Code__c</fullName>
+        <fullName>Transaction_Code_Type__c</fullName>
         <externalId>false</externalId>
-        <formula>LEFT( Text(BGBK__Type__c)  , 3)</formula>
+        <formula>IF(RIGHT(text(BGBK__Type__c),1)=&quot;R&quot;,&quot;R&quot;,&quot;&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Transaction Code</label>
+        <label>Transaction Code Type</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
-<fields>
-        <fullName>Transaction_Type__c</fullName>
+    <fields>
+        <fullName>Transaction_Code__c</fullName>
         <externalId>false</externalId>
-        <formula>RIGHT(TEXT(BGBK__Type__c),LEN(TEXT(BGBK__Type__c))-5)</formula>
+        <formula>LEFT( Text(BGBK__Type__c)  , 3)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Transaction Type</label>
+        <label>Transaction Code</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -589,6 +581,17 @@ BGBK__Fund__r.GL__c</formula>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Transaction_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>RIGHT(TEXT(BGBK__Type__c),LEN(TEXT(BGBK__Type__c))-5)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Transaction Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Transaction_code_type_merge__c</fullName>
@@ -623,6 +626,31 @@ BGBK__Fund__r.GL__c</formula>
             <value>7/17/2019 12:00 AM</value>
         </filters>
         <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Details</fullName>
+        <columns>Journal_Voucher__c</columns>
+        <columns>Journal_Voucher_Detail__c</columns>
+        <columns>Journal_Voucher_Detail_Grouping__c</columns>
+        <columns>Journal_Voucher_Type__c</columns>
+        <columns>NAME</columns>
+        <columns>Fee_Payment__c</columns>
+        <columns>BGBK__Amount__c</columns>
+        <columns>Transaction_Code__c</columns>
+        <columns>BGBK__Fund__c</columns>
+        <columns>BGBK__Fee__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Payment_Method__c</columns>
+        <columns>BGBK__Transaction__c</columns>
+        <columns>Date_Sent_to_AFRS__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>9/8/2019 12:00 AM</value>
+        </filters>
+        <label>All-Details</label>
     </listViews>
     <listViews>
         <fullName>Search</fullName>

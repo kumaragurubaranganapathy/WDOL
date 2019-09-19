@@ -87,6 +87,7 @@
     <fields>
         <fullName>MUSW__BG_BlueBeam_Email_Address__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>BlueBeam Email Address</label>
         <required>false</required>
@@ -106,6 +107,7 @@
     <fields>
         <fullName>MUSW__Mapping_Service_API__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Mapping Service API</label>
         <required>false</required>
@@ -115,6 +117,7 @@
     <fields>
         <fullName>MUSW__Mapping_Service_Key__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Mapping Service Key</label>
         <length>150</length>
@@ -126,6 +129,7 @@
     <fields>
         <fullName>MUSW__Mapping_Service_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Mapping Service Name</label>
         <length>100</length>
@@ -158,6 +162,7 @@
     <fields>
         <fullName>MUSW__TempEmail__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>TempEmail</label>
         <required>false</required>
@@ -168,6 +173,7 @@
     <fields>
         <fullName>MUSW__TempPassword__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>TempPassword</label>
         <length>20</length>
@@ -215,6 +221,7 @@
         <columns>CORE.USERS.LAST_LOGIN</columns>
         <columns>CORE.USER_ROLE.NAME</columns>
         <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.USERS.EMAIL</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CORE.PROFILE.NAME</field>
@@ -222,6 +229,7 @@
             <value>System Administrator</value>
         </filters>
         <label>Admin Users</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>AllUsers</fullName>
@@ -234,6 +242,38 @@
         <columns>CORE.PROFILE.NAME</columns>
         <filterScope>Everything</filterScope>
         <label>All Users</label>
+    </listViews>
+    <listViews>
+        <fullName>Back_Office_Staff</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.PROFILE.NAME</field>
+            <operation>notEqual</operation>
+            <value>eSLA Customer Community Plus Login User</value>
+        </filters>
+        <filters>
+            <field>CORE.PROFILE.NAME</field>
+            <operation>notEqual</operation>
+            <value>System Administrator</value>
+        </filters>
+        <filters>
+            <field>CORE.PROFILE.NAME</field>
+            <operation>notEqual</operation>
+            <value>Sytem Admin- Read Only</value>
+        </filters>
+        <label>Back Office Staff</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>System_Admin_Group</group>
+        </sharedTo>
     </listViews>
     <searchLayouts>
         <lookupDialogsAdditionalFields>FULL_NAME</lookupDialogsAdditionalFields>

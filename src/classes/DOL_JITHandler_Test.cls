@@ -7,15 +7,15 @@ public class DOL_JITHandler_Test {
         Id acctRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('User Account').getRecordTypeId();
         Id contRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Contact').getRecordTypeId();
         Account Acc = new Account();
-        acc.name= 'testAccount';
+        acc.name= DOL_AppConstants.NULL_EMPTY_STRING + 'testAccount';
         acc.RecordTypeId = acctRecordTypeId;
-        acc.Account_Status__c  = 'Active';
+        acc.Account_Status__c  = DOL_AppConstants.NULL_EMPTY_STRING + 'Active';
         insert acc;
         
         Contact con1 = new Contact();
-        con1.firstName = 'SSOfirstName';
-        con1.lastName = 'SSOLastName';
-        con1.Email = 'test@gmail.com';
+        con1.firstName = DOL_AppConstants.NULL_EMPTY_STRING + 'SSOfirstName';
+        con1.lastName = DOL_AppConstants.NULL_EMPTY_STRING + 'SSOLastName';
+        con1.Email = DOL_AppConstants.NULL_EMPTY_STRING + 'test@gmail.com';
         con1.Recordtypeid = contRecordTypeId;
         con1.AccountId = acc.id;
         insert con1;
@@ -32,11 +32,11 @@ public class DOL_JITHandler_Test {
         User thisUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
         System.runAs (thisUser) {
             DOL_JITHandler handObj = new DOL_JITHandler();
-            String fedId = 'aaaJMvPrGO1b';
-            String username = 'testUser';
+            String fedId = DOL_AppConstants.NULL_EMPTY_STRING + 'aaaJMvPrGO1b';
+            String username = DOL_AppConstants.NULL_EMPTY_STRING + 'testUser';
             User us = handObj.createUser(con1, fedId, username);
-            us.FederationIdentifier = 'aaaJMvPrGO1b';
-            //us.Alias = 'fname';
+            us.FederationIdentifier = DOL_AppConstants.NULL_EMPTY_STRING + 'aaaJMvPrGO1b';
+            //us.Alias = DOL_AppConstants.NULL_EMPTY_STRING + 'fname';
             update us;
             System.assertEquals('test@gmail.com', us.Email);
             
@@ -64,9 +64,9 @@ public class DOL_JITHandler_Test {
         User thisUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId()];
         System.runAs (thisUser) {
             DOL_JITHandler handObj = new DOL_JITHandler();
-            String fedId = 'aaaJMvPrGO1b';
-            //String username = 'testUser';
-            //us.Alias = 'fname';
+            String fedId = DOL_AppConstants.NULL_EMPTY_STRING + 'aaaJMvPrGO1b';
+            //String username = DOL_AppConstants.NULL_EMPTY_STRING + 'testUser';
+            //us.Alias = DOL_AppConstants.NULL_EMPTY_STRING + 'fname';
             //update us;
            // System.assertEquals('test@gmail.com', us.Email);
             

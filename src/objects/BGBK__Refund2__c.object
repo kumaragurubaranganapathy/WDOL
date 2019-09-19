@@ -112,19 +112,6 @@
         </valueSet>
     </fields>
     <fields>
-	 <fullName>Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Name</label>
-        <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
         <fullName>BGBK__Amount__c</fullName>
         <deprecated>false</deprecated>
         <description>Refunded amount.</description>
@@ -137,17 +124,6 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
-    </fields>
-	<fields>
-        <fullName>Profession_Code__c</fullName>
-        <externalId>false</externalId>
-        <formula>Fee__r.MUSW__License2__r.Profession_Code__c</formula>
-        <label>Profession Code</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>BGBK__Contact__c</fullName>
@@ -208,26 +184,12 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-	<fields>
-        <fullName>Refund_Id__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>true</externalId>
-        <label>Refund Id</label>
-        <length>60</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-	<fields>
-        <fullName>Release__c</fullName>
+    <fields>
+        <fullName>Name__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
-        <label>Release</label>
-        <length>20</length>
+        <label>Name</label>
+        <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -245,6 +207,20 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Refund_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Refund Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Refund_Reason__c</fullName>
@@ -278,6 +254,300 @@
                     <fullName>Other</fullName>
                     <default>false</default>
                     <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Addr Change Incomplete</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Addr Change Incomplete</label>
+                </value>
+                <value>
+                    <fullName>App Requirements Not Met</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>App Requirements Not Met</label>
+                </value>
+                <value>
+                    <fullName>Appl Filed In Error</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Appl Filed In Error</label>
+                </value>
+                <value>
+                    <fullName>Appl Not For St Of Wash</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Appl Not For St Of Wash</label>
+                </value>
+                <value>
+                    <fullName>Appl Requests Refund</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Appl Requests Refund</label>
+                </value>
+                <value>
+                    <fullName>Aud/Invest/Insp Incompl</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Aud/Invest/Insp Incompl</label>
+                </value>
+                <value>
+                    <fullName>Check Cashed In Error</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Check Cashed In Error</label>
+                </value>
+                <value>
+                    <fullName>Comp/Corr Appl Not Ret</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Comp/Corr Appl Not Ret</label>
+                </value>
+                <value>
+                    <fullName>Company/Broker Invalid</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Company/Broker Invalid</label>
+                </value>
+                <value>
+                    <fullName>Decided Not To Take Exam</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Decided Not To Take Exam</label>
+                </value>
+                <value>
+                    <fullName>Does Not Meet Qualif</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Does Not Meet Qualif</label>
+                </value>
+                <value>
+                    <fullName>Duplicate Exam Fee</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Duplicate Exam Fee</label>
+                </value>
+                <value>
+                    <fullName>Duplicate License Fee</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Duplicate License Fee</label>
+                </value>
+                <value>
+                    <fullName>Duplicate Penalty Fee</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Duplicate Penalty Fee</label>
+                </value>
+                <value>
+                    <fullName>Duplicate Reexam Fee</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Duplicate Reexam Fee</label>
+                </value>
+                <value>
+                    <fullName>Duplicate Renewal Fee</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Duplicate Renewal Fee</label>
+                </value>
+                <value>
+                    <fullName>Duplicate Transfer Fee</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Duplicate Transfer Fee</label>
+                </value>
+                <value>
+                    <fullName>Exam Appl Withdrawn</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Exam Appl Withdrawn</label>
+                </value>
+                <value>
+                    <fullName>Exam Fee Too Early</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Exam Fee Too Early</label>
+                </value>
+                <value>
+                    <fullName>Exam Organization</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Exam Organization</label>
+                </value>
+                <value>
+                    <fullName>Incomplete/Incorrect App</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Incomplete/Incorrect App</label>
+                </value>
+                <value>
+                    <fullName>License Cancelled</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>License Cancelled</label>
+                </value>
+                <value>
+                    <fullName>Licensee Deceased</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Licensee Deceased</label>
+                </value>
+                <value>
+                    <fullName>Miscellaneous</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Miscellaneous</label>
+                </value>
+                <value>
+                    <fullName>No 30 Hrs By 2nd Renewal</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No 30 Hrs By 2nd Renewal</label>
+                </value>
+                <value>
+                    <fullName>No Action Within 45 Days</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No Action Within 45 Days</label>
+                </value>
+                <value>
+                    <fullName>No Address Fee Required</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No Address Fee Required</label>
+                </value>
+                <value>
+                    <fullName>No Annual Report Fee</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No Annual Report Fee</label>
+                </value>
+                <value>
+                    <fullName>No Application With Fee</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No Application With Fee</label>
+                </value>
+                <value>
+                    <fullName>No Broker Release Fee</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No Broker Release Fee</label>
+                </value>
+                <value>
+                    <fullName>No Fee For Desig Broker</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No Fee For Desig Broker</label>
+                </value>
+                <value>
+                    <fullName>No Fee For Inactive</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No Fee For Inactive</label>
+                </value>
+                <value>
+                    <fullName>No Finan/Amend Fee</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No Finan/Amend Fee</label>
+                </value>
+                <value>
+                    <fullName>No Name Change Fee</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No Name Change Fee</label>
+                </value>
+                <value>
+                    <fullName>No Out Of State Verif</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No Out Of State Verif</label>
+                </value>
+                <value>
+                    <fullName>No Penalty Fee Required</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No Penalty Fee Required</label>
+                </value>
+                <value>
+                    <fullName>No Transfer Fee Required</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>No Transfer Fee Required</label>
+                </value>
+                <value>
+                    <fullName>Not Eligible For Re-Exam</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Not Eligible For Re-Exam</label>
+                </value>
+                <value>
+                    <fullName>Original Appl Withdrawn</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Original Appl Withdrawn</label>
+                </value>
+                <value>
+                    <fullName>Re-Exam Fee Too Early</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Re-Exam Fee Too Early</label>
+                </value>
+                <value>
+                    <fullName>Renewal Fee Too Early</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Renewal Fee Too Early</label>
+                </value>
+                <value>
+                    <fullName>Renewal Withdrawn</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Renewal Withdrawn</label>
+                </value>
+                <value>
+                    <fullName>Review Pending</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Review Pending</label>
+                </value>
+                <value>
+                    <fullName>Test1</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Test1</label>
+                </value>
+                <value>
+                    <fullName>Test2</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Test2</label>
+                </value>
+                <value>
+                    <fullName>Transfer Incomplete</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Transfer Incomplete</label>
+                </value>
+                <value>
+                    <fullName>Unable Appear For Exam</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Unable Appear For Exam</label>
+                </value>
+                <value>
+                    <fullName>Will Not Lic Reg Loc</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Will Not Lic Reg Loc</label>
+                </value>
+                <value>
+                    <fullName>Will Not Retake Exam</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Will Not Retake Exam</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -338,6 +608,19 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Revenue_Code__c</fullName>
@@ -482,10 +765,58 @@
                     <label>Reissued</label>
                 </value>
                 <value>
+                    <fullName>Cancelled</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Cancelled</label>
+                </value>
+                <value>
+                    <fullName>NULL</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>NULL</label>
+                </value>
+                <value>
+                    <fullName>Pending Approval</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Pending Approval</label>
+                </value>
+                <value>
+                    <fullName>Ready For Transmittal</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Ready For Transmittal</label>
+                </value>
+                <value>
                     <fullName>Released to AFRS</fullName>
                     <default>false</default>
                     <isActive>false</isActive>
                     <label>Released to AFRS</label>
+                </value>
+                <value>
+                    <fullName>Returned For Correction</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Returned For Correction</label>
+                </value>
+                <value>
+                    <fullName>Sent For Printing</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Sent For Printing</label>
+                </value>
+                <value>
+                    <fullName>Warrant Cancelled</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Warrant Cancelled</label>
+                </value>
+                <value>
+                    <fullName>Warrant Mailed</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Warrant Mailed</label>
                 </value>
             </valueSetDefinition>
             <valueSettings>
@@ -744,6 +1075,30 @@
             <value>Send Refund</value>
         </filters>
         <label>Search</label>
+    </listViews>
+    <listViews>
+        <fullName>State_of_Send_Sent_and</fullName>
+        <columns>NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>BGBK__Amount__c</columns>
+        <columns>Program_Type__c</columns>
+        <columns>Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>Fee__c</columns>
+        <columns>BGBK__Reason__c</columns>
+        <columns>Refund_Reason__c</columns>
+        <columns>BGBK__Contact__c</columns>
+        <columns>Release__c</columns>
+        <columns>Reissue_Reason__c</columns>
+        <columns>Rejection_Reason__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Stage__c</field>
+            <operation>contains</operation>
+            <value>Send Refund,Sent to AFRS,Received from AFRS</value>
+        </filters>
+        <label>State of Send, Sent and</label>
     </listViews>
     <listViews>
         <fullName>Timeshare_Approval_Queue_Refund2</fullName>

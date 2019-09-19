@@ -4,7 +4,14 @@
     <aura:attribute name = "userName" type="String"/>
     <aura:attribute name = "recordId" type="id"/>
     <aura:attribute name = "profCodeValue" type="String"/>
+    <aura:attribute name = "ImageUrlValue" type="String"/>
     <aura:attribute name="Spinner" type="Boolean" default="false"/>
+    <aura:attribute name="submission" type="MUSW__Submission__c" 
+                    default="{ 'sobjectType': 'MUSW__Submission__c'}" />
+    <aura:attribute name = "sanImageType" type="String"/>
+    <aura:attribute name = "userEmail" type="String"/>
+    <aura:attribute name = "archieveDate" type="String"/>
+    <aura:attribute name = "displayArchieveDate" type="Boolean" default="false"/>
     
     <aura:handler name ="init" action ="c.doInit" value="{!this}"/>
     
@@ -20,25 +27,38 @@
             </aura:if>
             
             <div class="slds-page-header" role="banner">
-                <h1 class="slds-page-header__title slds-m-right--small
-                           slds-truncate slds-align-center">Upload Document to SAN Drive</h1>
+                <h1 class="slds-page-header__title 
+                           slds-align_absolute-center">Upload Document to SAN Drive</h1>
             </div>
-            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                <label class="slds-form-element__label" for="input-01">Title
+            <div class="slds-modal__content slds-p-bottom_x-small slds-p-top_small" id="modal-content-id-1">
+                <label class="slds-form-element__label" for="input-01">Title<span class="required">*</span>
                 </label>
                 <ui:inputText aura:id="Title" required="true" disabled="false" value="{!v.title}" placeholder=""/>
             </div>
-            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
-                <label class="slds-form-element__label" for="input-01">Document Name
+            <div class="slds-modal__content slds-p-bottom_x-small" id="modal-content-id-2">
+                <label class="slds-form-element__label" for="input-01">Document Name<span class="required">*</span>
                 </label>
                 <ui:inputText aura:id="documentName" required="true" disabled="false" value="{!v.docName}" placeholder=""/>
             </div>
-            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3">
+            <div class="slds-modal__content slds-p-bottom_x-small" id="modal-content-id-3">
+                <label class="slds-form-element__label" for="input-01">SAN Image Type<span class="required">*</span>
+                </label>
+                 <!--<ui:inputSelect value="{!v.submission.SAN_Image_Type__c }" required="true" aura:id="imageType" class="dynamic" />-->
+                <ui:inputSelect value="{!v.submission.SAN_Image_Type__c }" required="true" aura:id="imageType" class="dynamic"  change="{!c.onImageTypeChange}" />
+            </div>
+           <aura:if isTrue = "{!v.displayArchieveDate}">
+                <div class="slds-modal__content slds-p-bottom_x-small" id="modal-content-id-2">
+                	<label class="slds-form-element__label" for="input-01">Archieve Date<span class="required">*</span>
+                	</label>
+                	<ui:inputDate aura:id="archdate" required="true" disabled="false" value="{!v.archieveDate}" displayDatePicker="true"/>      
+            	</div>
+            </aura:if>
+            <div class="slds-modal__content slds-p-bottom_x-small" id="modal-content-id-3">
                 <label class="slds-form-element__label" for="input-01">User
                 </label>
-                <ui:inputText aura:id="userName" required="true" disabled="true" value="{!v.userName}"/>
+                <ui:inputText aura:id="userName" disabled="true" value="{!v.userName}"/>
             </div>
-            <div class="slds-form-element">
+            <div class="slds-align_absolute-center  slds-p-top_large">
                 <button class="slds-button slds-button_brand" onclick="{!c.uplaod}">upload</button>
                 <button class="slds-button slds-button_neutral" onclick="{!c.handleCancel }">Cancel</button>&nbsp;
             </div>	

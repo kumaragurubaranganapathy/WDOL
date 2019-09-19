@@ -83,6 +83,7 @@
     <fields>
         <fullName>BGCM__Date_Field__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>blank (today), or name of a date field on record object. Value of date field will be used when formatting date masks eg. yymmdd. Date field value must never be null</inlineHelpText>
         <label>Date Field</label>
@@ -95,6 +96,7 @@
     <fields>
         <fullName>BGCM__Format__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>eg. P-{0000} or P-{YYYYMMDD}-{00000} or P-{manual}</inlineHelpText>
         <label>Number Format</label>
@@ -108,6 +110,7 @@
         <fullName>BGCM__Last_Manual_Entry__c</fullName>
         <deprecated>false</deprecated>
         <description>The last entered manual text. Use as reference when prompting for a new manual text/number. Used only when the track number format includes a {manual} prompt</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The last manually-entered text when issuing this tracking number</inlineHelpText>
         <label>Last Manual Entry</label>
@@ -121,6 +124,7 @@
         <fullName>BGCM__Last_Year_Issued__c</fullName>
         <deprecated>false</deprecated>
         <description>4 digit year when the last number was issued. Used by yearly reset to determine when to reset the number.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Used for yearly reset numbers. Can be left blank for newly created sequence numbers.</inlineHelpText>
         <label>Last Year Issued</label>
@@ -178,6 +182,7 @@
         <fullName>BGCM__Object__c</fullName>
         <deprecated>false</deprecated>
         <description>Name of object having sequence number field that gets set</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The object that will get the next sequence number. eg MUSW__Permit2__c</inlineHelpText>
         <label>Track Object</label>
@@ -192,6 +197,7 @@
         <defaultValue>&quot;Name&quot;</defaultValue>
         <deprecated>false</deprecated>
         <description>Name of Sequence field that contains the sequence number to be updated</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The field that will be populated with the generated number eg. Name or MUSW__Tracking_Number__c</inlineHelpText>
         <label>Sequence Field</label>
@@ -255,6 +261,7 @@
     <fields>
         <fullName>BGCM__Track_No__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Tracking Number</label>
         <length>20</length>
@@ -266,6 +273,7 @@
     <fields>
         <fullName>BGCM__Type__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>the source type field value that the sequence number counts against. eg. Building or B or left blank (for all records in this track object)</inlineHelpText>
         <label>Type</label>
@@ -287,6 +295,7 @@
     </fields>
     <label>Sequence Number</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Source Type</label>
         <type>Text</type>
     </nameField>

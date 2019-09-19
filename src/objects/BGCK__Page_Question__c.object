@@ -164,6 +164,31 @@
         </displayedFields>
         <label>Question Field set</label>
     </fieldSets>
+    <fieldSets>
+        <fullName>Test</fullName>
+        <description>This is used on the Test Checklist</description>
+        <displayedFields>
+            <field>BGCK__BG_Checklist_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BGCK__Checklist_Version_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>BGCK__Question__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Test</label>
+    </fieldSets>
     <fields>
         <fullName>Application_Type__c</fullName>
         <externalId>false</externalId>
@@ -204,6 +229,7 @@
     <fields>
         <fullName>BGCK__Criteria__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Criteria</label>
         <required>false</required>
@@ -302,6 +328,7 @@
         <fullName>BGCK__Track_No__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>20</length>
@@ -325,6 +352,7 @@
     </fields>
     <fields>
         <fullName>Checklist_type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Checklist type</label>
         <length>255</length>
@@ -348,6 +376,7 @@
     </fields>
     <fields>
         <fullName>External_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>50</length>
@@ -358,6 +387,7 @@
     </fields>
     <fields>
         <fullName>Permit_Type_or_Credential_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Program Area</label>
         <length>255</length>
@@ -419,6 +449,7 @@
     </fields>
     <fields>
         <fullName>Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Type</label>
         <required>false</required>
@@ -427,6 +458,7 @@
     </fields>
     <fields>
         <fullName>Violation__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Violation</label>
         <required>false</required>
@@ -435,6 +467,7 @@
     </fields>
     <fields>
         <fullName>WADOL_Mulesoft_Ext_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Mulesoft Ext Id</label>
         <length>255</length>
@@ -498,6 +531,7 @@
         <language>en_US</language>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <type>Text</type>
     </nameField>

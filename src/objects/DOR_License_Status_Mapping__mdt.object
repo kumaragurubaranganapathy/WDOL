@@ -2,27 +2,27 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>This metadata used by DOL Integration for DOR Interface.
 DOL license status mapping with Salesforce License Status.</description>
+    <fields>
+        <fullName>DOR_License_Status__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>DOR License Status</label>
+        <length>25</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Salesforce_License_Status__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Salesforce License Status</label>
+        <length>25</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>DOR License Status Mapping</label>
     <pluralLabel>DOR License Status Mappings</pluralLabel>
     <visibility>Public</visibility>
-	<fields>
-		<fullName>DOR_License_Status__c</fullName>
-		<externalId>false</externalId>
-		<fieldManageability>DeveloperControlled</fieldManageability>
-		<label>DOR License Status</label>
-		<length>25</length>
-		<required>false</required>
-		<type>Text</type>
-		<unique>false</unique>
-	</fields>
-	<fields>
-		<fullName>Salesforce_License_Status__c</fullName>
-		<externalId>false</externalId>
-		<fieldManageability>DeveloperControlled</fieldManageability>
-		<label>Salesforce License Status</label>
-		<length>25</length>
-		<required>false</required>
-		<type>Text</type>
-		<unique>false</unique>
-	</fields>
 </CustomObject>

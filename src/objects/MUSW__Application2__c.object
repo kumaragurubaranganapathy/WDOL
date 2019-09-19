@@ -70,15 +70,6 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-	<fields>
-        <fullName>Is_Abandoned__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Is Abandoned ?</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
     <fields>
         <fullName>Application_Method__c</fullName>
         <externalId>false</externalId>
@@ -92,76 +83,76 @@
             <restricted>true</restricted>
             <valueSetName>Application_Method</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
-                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
-                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
-                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
+                <controllingFieldValue>Temporary Certified General</controllingFieldValue>
                 <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
                 <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
-                <controllingFieldValue>Registered Appraiser Trainee</controllingFieldValue>
-                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
-                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
-                <controllingFieldValue>Architect</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
                 <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Geologist In Training</controllingFieldValue>
-                <controllingFieldValue>Academic Intern</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified General</controllingFieldValue>
-                <controllingFieldValue>Engineer in Training</controllingFieldValue>
-                <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
                 <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
+                <controllingFieldValue>Crematory</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
                 <controllingFieldValue>Engineering/Land Surveying Company</controllingFieldValue>
+                <controllingFieldValue>Academic Intern</controllingFieldValue>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Architect Firm</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Company</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
+                <controllingFieldValue>Engineering Corporations</controllingFieldValue>
+                <controllingFieldValue>Engineer in Training</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <controllingFieldValue>Crematory</controllingFieldValue>
-                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Geologist In Training</controllingFieldValue>
+                <controllingFieldValue>In State Collection Agency</controllingFieldValue>
+                <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>Land Surveying Corporations</controllingFieldValue>
+                <controllingFieldValue>Land Surveying LLC</controllingFieldValue>
                 <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
+                <controllingFieldValue>Out State Collection Agency</controllingFieldValue>
+                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
+                <controllingFieldValue>Professional Engineer</controllingFieldValue>
                 <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
-                <controllingFieldValue>Architect Firm</controllingFieldValue>
+                <controllingFieldValue>Registered Appraiser Trainee</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
                 <valueName>General Application</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architect</controllingFieldValue>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
                 <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>Landscape Architect</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Professional Engineer</controllingFieldValue>
                 <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
                 <valueName>Comity</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
                 <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
                 <valueName>Upgrade</valueName>
             </valueSettings>
         </valueSet>
@@ -191,6 +182,7 @@
     </fields>
     <fields>
         <fullName>AttestationFullName__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Attestation Full Name</label>
         <length>255</length>
@@ -203,6 +195,7 @@
     <fields>
         <fullName>Attestation_Date__c</fullName>
         <description>Attestation Date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Attestation Date</label>
         <required>false</required>
@@ -242,28 +235,9 @@
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>Landscape Architect</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Crematory</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cremated Remains Disposition Permit</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cemetery</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Land Surveyor in Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Professional Land Surveyor</valueName>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineering/Land Surveying Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
@@ -275,44 +249,39 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineering/Land Surveying Company</valueName>
+                <valueName>Land Surveyor in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Professional Land Surveyor</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
                 <valueName>Notary Public</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist In Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
                 <valueName>Timeshare Company</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect</valueName>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Salesperson</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect Firm</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Controlling Person</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Registered Appraiser Trainee</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Appraiser Trainee</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -320,11 +289,19 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Appraiser Trainee</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
                 <valueName>Certified General Appraiser</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Temporary Certified General</valueName>
+                <valueName>Certified Residential Appraiser</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <valueName>Registered Appraiser Trainee</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -332,7 +309,7 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Certified Residential Appraiser</valueName>
+                <valueName>Temporary Certified General</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -343,12 +320,48 @@
                 <valueName>Temporary State Licensed</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <valueName>Camping Resort Salesperson</valueName>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect Firm</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cemetery</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cremated Remains Disposition Permit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineering Corporations</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineer in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Professional Engineer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Academic Intern</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -356,7 +369,15 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Academic Intern</valueName>
+                <valueName>Embalmer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Embalmer Intern</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Funeral Director</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -368,51 +389,23 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Embalmer Intern</valueName>
+                <valueName>Funeral Establishment Branch</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
                 <valueName>Prearrangement Funeral Services</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Funeral Establishment Branch</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Funeral Director</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist In Training</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Embalmer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineer in Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Professional Engineer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineering Corporations</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Controlling Person</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Designer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -431,6 +424,7 @@
     </fields>
     <fields>
         <fullName>Form_JSON__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Form JSON</label>
         <length>131072</length>
@@ -451,7 +445,17 @@
         <type>Location</type>
     </fields>
     <fields>
+        <fullName>Is_Abandoned__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Abandoned ?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>License_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>License ID</label>
         <length>50</length>
@@ -521,6 +525,7 @@
         <fullName>MUSW__BG_Bluebeam_Project_Id__c</fullName>
         <deprecated>false</deprecated>
         <description>This is self-populated by the Bluebeam project Id that is associated with this application record. This is a required field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>BG Bluebeam Project Id</label>
         <length>11</length>
@@ -534,6 +539,7 @@
         <fullName>MUSW__Completion_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Date the application was fully completed/submitted.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completion Date</label>
         <required>false</required>
@@ -545,6 +551,7 @@
         <fullName>MUSW__Decision_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>In applications that require approval or hearings, this shows the date that decision was made.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Decision Date</label>
         <required>false</required>
@@ -556,6 +563,7 @@
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
         <description>Description of what the application is for.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32000</length>
@@ -568,6 +576,7 @@
         <fullName>MUSW__Issued_Number__c</fullName>
         <deprecated>false</deprecated>
         <description>The permanent application number.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issued No.</label>
         <length>15</length>
@@ -773,6 +782,7 @@
     </fields>
     <fields>
         <fullName>New_First_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>New First Name</label>
         <length>255</length>
@@ -784,6 +794,7 @@
     </fields>
     <fields>
         <fullName>New_Last_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>New Last Name</label>
         <length>255</length>
@@ -795,6 +806,7 @@
     </fields>
     <fields>
         <fullName>New_Maiden_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>New Maiden Name</label>
         <length>255</length>
@@ -806,6 +818,7 @@
     </fields>
     <fields>
         <fullName>New_Middle_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>New Middle Name</label>
         <length>255</length>
@@ -856,6 +869,15 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Physical_Address_Modified_On_Renewal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Physical Address Modified On Renewal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Program_Area__c</fullName>
         <externalId>false</externalId>
         <label>Program Area</label>
@@ -884,6 +906,7 @@
     </fields>
     <fields>
         <fullName>Reason_for_Submitting_Service_Request__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Reason for Submitting Service Request</label>
         <length>50000</length>
@@ -934,6 +957,7 @@
     </fields>
     <fields>
         <fullName>Requested_Effective_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Requested Effective Date</label>
         <required>false</required>
@@ -978,6 +1002,7 @@
     <fields>
         <fullName>Submitted_Date__c</fullName>
         <description>This is the date for submission of the service request.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Submitted Date</label>
         <required>false</required>
@@ -1055,15 +1080,6 @@
             <valueSetName>license_specific_email_addresses</valueSetName>
         </valueSet>
     </fields>
-	 <fields>
-        <fullName>Physical_Address_Modified_On_Renewal__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Physical Address Modified On Renewal</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
     <label>Application</label>
     <listViews>
         <fullName>Abandoned_Applications</fullName>
@@ -1097,6 +1113,7 @@
         <language>en_US</language>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Number</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
@@ -1678,6 +1695,37 @@
             </values>
             <values>
                 <fullName>Withdraw Application</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Permit_Type__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2368,6 +2416,37 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Permit_Type__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Program_Area__c</picklist>
             <values>
                 <fullName>Delegated Municipality Agent</fullName>
@@ -3034,6 +3113,37 @@
             </values>
             <values>
                 <fullName>Withdraw Application</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Permit_Type__c</picklist>
+            <values>
+                <fullName>Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elevator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

@@ -38,7 +38,11 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Inspection_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -146,6 +150,7 @@
     </fields>
     <fields>
         <fullName>Assigned_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Assigned Date</label>
         <required>false</required>
@@ -239,6 +244,7 @@
     </fields>
     <fields>
         <fullName>Community_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Community Address</label>
         <length>255</length>
@@ -251,6 +257,7 @@
     </fields>
     <fields>
         <fullName>Community_ID_No__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Community ID No</label>
         <length>255</length>
@@ -263,6 +270,7 @@
     </fields>
     <fields>
         <fullName>Community_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Community Name</label>
         <length>255</length>
@@ -275,6 +283,7 @@
     </fields>
     <fields>
         <fullName>Community_Owner__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Community Owner</label>
         <length>255</length>
@@ -287,6 +296,7 @@
     </fields>
     <fields>
         <fullName>Completed_DateTime__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Date</label>
         <required>false</required>
@@ -297,6 +307,7 @@
     </fields>
     <fields>
         <fullName>Corrective_Action_Summary__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Corrective Action Summary</label>
         <length>2000</length>
@@ -335,6 +346,7 @@
     </fields>
     <fields>
         <fullName>Current_Violations__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Current Violations</label>
         <required>false</required>
@@ -358,6 +370,7 @@
     </fields>
     <fields>
         <fullName>Designated_Broker_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Designated Licensee</label>
         <length>20</length>
@@ -370,6 +383,7 @@
     </fields>
     <fields>
         <fullName>Due_DateTime__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>false</required>
@@ -444,6 +458,7 @@
     <fields>
         <fullName>Inspection_Followup_Date__c</fullName>
         <description>Inspection Followup Date</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Followup Date</label>
         <required>false</required>
@@ -453,7 +468,22 @@
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>Inspection_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Inspection Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>Inspection_Start_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -478,6 +508,7 @@
     <fields>
         <fullName>Inspector_Name__c</fullName>
         <description>Primary Inspector or Auditor assigned to the Inspection.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Inspector/Auditor Name</label>
         <length>255</length>
@@ -516,6 +547,20 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>License_ID__c</fullName>
+        <description>Foreign Key for Data Migration of Legacy Data</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>License ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>MUSW__AlertCode__c</fullName>
@@ -561,6 +606,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Closed_DateTime__c</fullName>
         <deprecated>false</deprecated>
         <description>Optional. This can be used if inspection metrics are measured in hours rather than days.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Closed Date</label>
         <required>false</required>
@@ -589,6 +635,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Completed_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Date the inspection was completed.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Date</label>
         <required>false</required>
@@ -601,6 +648,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
         <description>Notes, comments, or description of what took place during the inspection.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Comments</label>
         <required>false</required>
@@ -613,6 +661,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Due_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>The date the inspection is requested for or is due. Used for views that sort inspections on the Itinerary page and for reporting on Past Due inspections. Itinerary views include &quot;past due&quot;.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Due Date</label>
         <required>false</required>
@@ -792,6 +841,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Scheduled_Start_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Date the inspection is scheduled for (usually before or by due date if not late). Used for views on the itinerary page.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Scheduled Start Date</label>
         <required>false</required>
@@ -804,6 +854,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Start_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Date the inspection was started. It is only filled in when inspector actually starts the inspection.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -1119,7 +1170,21 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Requested_DateTime__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Requested Date</label>
         <required>false</required>
@@ -1144,6 +1209,7 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
     <fields>
         <fullName>Secondary_Inpsector_Auditor__c</fullName>
         <description>Secondary Inspector or Auditor assigned to Inspection.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Secondary Inpsector/Auditor</label>
         <length>255</length>
@@ -1365,6 +1431,7 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         </sharedTo>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Number</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -3543,6 +3610,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Number_of_Sites__c</picklist>
             <values>
                 <fullName>1-20</fullName>
@@ -3900,6 +4026,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6153,6 +6338,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Number_of_Sites__c</picklist>
             <values>
                 <fullName>1-20</fullName>
@@ -8401,6 +8645,65 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             </values>
             <values>
                 <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MUSW__Type__c</picklist>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Check Rides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complaint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exam Observation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Examiner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow-up Inspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reinspection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skills Observation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

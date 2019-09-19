@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
+        <fullName>BGBK__Gateway_Host_Page_Url__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Gateway form page url</description>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>(Optional) Set this to the gateway form page url if the form needs to be on BG and not a redirect</inlineHelpText>
+        <label>Gateway Host Page Url</label>
+        <required>false</required>
+        <type>Url</type>
+    </fields>
+    <fields>
         <fullName>BGBK__Lightning_Component__c</fullName>
         <deprecated>false</deprecated>
         <externalId>false</externalId>

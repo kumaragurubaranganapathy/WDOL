@@ -13,7 +13,7 @@ public with sharing class DOL_Dao {
         Contact outputContact = [ select lastName, firstName, mailingstreet, mailingcity, mailingstate, 
                                     mailingcountry , email, MobilePhone, MailingPostalCode,
                                     (Select MUSW__Street2__c, MUSW__City__c, MUSW__State__c, 
-                                        Country__c, Zip_Postal_Code__c 
+                                        Country__c, Zip_Postal_Code__c, MUSW__Post_Zip_Code__c
                                         from MUSW__Parcels2__r 
                                         where Address_Type__c = 'MAILING ADDRESS')
                                     from contact where id =: contactId ];
@@ -39,7 +39,14 @@ public with sharing class DOL_Dao {
     }
 
     public MUSW__License2__c getLicenseAndRenewalRecordByLicenseId(String licenseId){
-        MUSW__License2__c license = [SELECT id, RecordType.Name, Is_Renewal_Eligible__c, MUSW__Applicant__c, Application_Type__c, Phone__c, Credential_Type__c, MUSW__Primary_Licensee__c, ( select id, Renewal_Reinstatement_Type__c, Renewal_Status__c from Renewal_Applications__r ) FROM MUSW__License2__c WHERE Id =: licenseId];
+        MUSW__License2__c license = [SELECT id, Name, RecordType.Name, Is_Renewal_Eligible__c, MUSW__Applicant__c, 
+                                        Is_Reinstatement_Eligible__c, Application_Type__c, Phone__c, Credential_Type__c, 
+                                        MUSW__Primary_Licensee__c,
+                                            ( select id, Renewal_Reinstatement_Type__c, Renewal_Status__c 
+                                                from Renewal_Applications__r ) 
+                                        FROM MUSW__License2__c 
+                                        WHERE Id =: licenseId
+                                    ];
         return license;
     }
 

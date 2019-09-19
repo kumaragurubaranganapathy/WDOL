@@ -209,6 +209,7 @@
     <fields>
         <fullName>MUSW__Category__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Category</label>
         <length>255</length>
@@ -221,6 +222,7 @@
     <fields>
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>255</length>
@@ -332,6 +334,7 @@
     <fields>
         <fullName>MUSW__Sub_Category__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Sub Category</label>
         <length>255</length>
@@ -346,6 +349,7 @@
         <defaultValue>$RecordType.DeveloperName</defaultValue>
         <deprecated>false</deprecated>
         <description>a field carries work item summaries which concat important fields altogether</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Summary</label>
         <length>32768</length>

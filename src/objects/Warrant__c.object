@@ -59,6 +59,7 @@
     <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Issue_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issue Date</label>
         <required>false</required>
@@ -79,6 +80,7 @@
     </fields>
     <fields>
         <fullName>Redeem_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Redeem Date</label>
         <required>false</required>
@@ -99,6 +101,7 @@
     </fields>
     <fields>
         <fullName>Return_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The date the warrant is returned to Department of Licensing.</inlineHelpText>
         <label>Return Date</label>
@@ -141,6 +144,16 @@
         </valueSet>
     </fields>
     <label>Warrant</label>
+    <listViews>
+        <fullName>All_Warrants</fullName>
+        <columns>NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Refund__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>All Warrants</label>
+    </listViews>
     <nameField>
         <displayFormat>WAR{YY}-{000000}</displayFormat>
         <label>Warrant Number</label>

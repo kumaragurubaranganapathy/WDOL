@@ -48,7 +48,7 @@
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableEnhancedLookup>true</enableEnhancedLookup>
-    <enableFeeds>false</enableFeeds>
+    <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
@@ -111,6 +111,7 @@
         <precision>2</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -164,10 +165,12 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__City__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>City</label>
         <length>50</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -177,9 +180,11 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__ClosedDate__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Closed Date/Time</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
@@ -188,9 +193,11 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Closed_Date__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Closed Date</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -199,9 +206,11 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Comments__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Internal Comments</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
@@ -216,6 +225,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <referenceTo>Contact</referenceTo>
         <relationshipName>Complaints_Reported</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -240,9 +250,11 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Description__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
@@ -255,6 +267,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
         <externalId>false</externalId>
         <label>Is Closed</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -266,6 +279,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
         <externalId>false</externalId>
         <label>Is Escalated</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -274,10 +288,12 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Issued_Number__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issued No.</label>
         <length>15</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -292,6 +308,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <precision>14</precision>
         <required>false</required>
         <scale>5</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -301,9 +318,11 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Location__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Location Description</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
@@ -317,6 +336,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <precision>14</precision>
         <required>false</required>
         <scale>5</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -329,6 +349,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Origin</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -388,6 +409,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <referenceTo>MUSW__Parcel__c</referenceTo>
         <relationshipName>Complaints</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -402,6 +424,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <referenceTo>MUSW__Complaint__c</referenceTo>
         <relationshipName>Complaint</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -410,10 +433,12 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Post_Zip_Code__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Zip / Post Code</label>
         <length>12</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -430,6 +455,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <referenceTo>Contact</referenceTo>
         <relationshipName>Complaints</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -441,6 +467,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Priority</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -475,6 +502,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <referenceTo>MUSW__Master_Project__c</referenceTo>
         <relationshipName>Complaints</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -486,6 +514,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Reason</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -587,6 +616,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>State/ Prov.</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -963,6 +993,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Status</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1001,10 +1032,12 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Street__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Street</label>
         <length>50</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1014,10 +1047,12 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Subject__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Subject</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1048,6 +1083,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1061,6 +1097,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <precision>14</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1075,6 +1112,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <precision>13</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1084,10 +1122,12 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Case No.</label>
         <length>25</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1100,6 +1140,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Type</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1123,10 +1164,12 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <fullName>MUSW__Unit__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated. Refer to the MUSW__Complaint2 object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Unit</label>
         <length>16</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1151,6 +1194,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <nameField>
         <displayFormat>C-{0000000}</displayFormat>
         <label>Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>

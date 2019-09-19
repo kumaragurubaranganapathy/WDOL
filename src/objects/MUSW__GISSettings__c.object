@@ -17,6 +17,7 @@
     <fields>
         <fullName>MUSW__GeoCodeService__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>URL for the GeoCode REST Service (include any default parameters)
 eg. http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Locators/ESRI_Geocode_USA/GeocodeServer/findAddressCandidates?Address=</inlineHelpText>
@@ -31,6 +32,7 @@ eg. http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Locators/ESRI_Geo
         <fullName>MUSW__ParcelQueryFields__c</fullName>
         <defaultValue>&quot;PARCELID&quot;</defaultValue>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Parcel field containing the parcel number eg. Name
 or PARCELID
@@ -45,6 +47,7 @@ or Name,PARCELID</inlineHelpText>
     <fields>
         <fullName>MUSW__ParcelQueryService__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The Map Server Parcel Layer Query REST Service (incl. default params) Layer must contain Parcel Number
 eg. http://host/ArcGIS/rest/services/Louisville/LOJIC_LandRecords_Louisville/MapServer/0/query?returnGeometry=true&amp;geometryType=esriGeometryPoint&amp;text=</inlineHelpText>
@@ -59,6 +62,7 @@ eg. http://host/ArcGIS/rest/services/Louisville/LOJIC_LandRecords_Louisville/Map
         <fullName>MUSW__Parent_Objects__c</fullName>
         <deprecated>false</deprecated>
         <description>Comma-separated list of object API names that can be manually created via action links in the GIS Map Viewer information popup. Current map user still needs to have correct object and lookup field permissions to be able to see Create links. Specifically creatable in their profile or equivalent permission set and lookup field is visible, and not readonly.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Comma-separated list of object API names that can be manually created via action links in the GIS Map Viewer information popup</inlineHelpText>
         <label>Parent Objects</label>

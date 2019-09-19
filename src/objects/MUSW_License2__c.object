@@ -55,7 +55,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-	<fields>
+    <fields>
         <fullName>Application_Method__c</fullName>
         <description>This refers to the application method being applied for- General Application, Examination, etc.</description>
         <externalId>false</externalId>
@@ -70,46 +70,71 @@
             <restricted>true</restricted>
             <valueSetName>Application_Method</valueSetName>
             <valueSettings>
+                <controllingFieldValue>Temporary Certified General</controllingFieldValue>
                 <controllingFieldValue>Temporary Certified Residential</controllingFieldValue>
                 <controllingFieldValue>Temporary State Licensed</controllingFieldValue>
-                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
-                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
-                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
                 <controllingFieldValue>Timeshare Company</controllingFieldValue>
+                <controllingFieldValue>Timeshare Salesperson</controllingFieldValue>
+                <controllingFieldValue>Unlicensed</controllingFieldValue>
+                <controllingFieldValue>Cemetery</controllingFieldValue>
+                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
+                <controllingFieldValue>Crematory</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
+                <controllingFieldValue>Engineering/Land Surveying Company</controllingFieldValue>
+                <controllingFieldValue>Academic Intern</controllingFieldValue>
+                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
+                <controllingFieldValue>Appraiser Course</controllingFieldValue>
+                <controllingFieldValue>Appraiser Trainee</controllingFieldValue>
                 <controllingFieldValue>Architect</controllingFieldValue>
                 <controllingFieldValue>Camping Resort Company</controllingFieldValue>
-                <controllingFieldValue>Appraiser Course</controllingFieldValue>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Certificate of Removal Registration</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Geologist In Training</controllingFieldValue>
-                <controllingFieldValue>Academic Intern</controllingFieldValue>
-                <controllingFieldValue>Temporary Certified General</controllingFieldValue>
+                <controllingFieldValue>Camping Resort Salesperson</controllingFieldValue>
                 <controllingFieldValue>Engineer in Training</controllingFieldValue>
-                <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Company</controllingFieldValue>
-                <controllingFieldValue>Appraisal Controlling Person</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>Landscape Architect</controllingFieldValue>
-                <controllingFieldValue>Engineering/Land Surveying Company</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
                 <controllingFieldValue>Funeral Director Intern</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment</controllingFieldValue>
-                <controllingFieldValue>Embalmer Intern</controllingFieldValue>
-                <controllingFieldValue>Crematory</controllingFieldValue>
-                <controllingFieldValue>Cremated Remains Disposition Permit</controllingFieldValue>
-                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
                 <controllingFieldValue>Funeral Establishment Branch</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Unlicensed</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Geologist In Training</controllingFieldValue>
+                <controllingFieldValue>Landscape Architect</controllingFieldValue>
                 <controllingFieldValue>Land Surveyor in Training</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Inspector</controllingFieldValue>
+                <controllingFieldValue>Prearrangement Funeral Services</controllingFieldValue>
+                <controllingFieldValue>Professional Engineer</controllingFieldValue>
                 <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <controllingFieldValue>Cemetery</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
                 <valueName>General Application</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Architect</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Landscape Architect</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
+                <controllingFieldValue>Professional Engineer</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <valueName>Comity</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
+                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
+                <controllingFieldValue>Embalmer</controllingFieldValue>
+                <controllingFieldValue>Funeral Director</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Professional Engineer</controllingFieldValue>
+                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
+                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
+                <valueName>Upgrade</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
@@ -119,34 +144,9 @@
                 <controllingFieldValue>Manufactured Homes Dealer</controllingFieldValue>
                 <valueName>Non-Broker</valueName>
             </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Architect</controllingFieldValue>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater Designer</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>Landscape Architect</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <valueName>Comity</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Certified General Appraiser</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Professional Engineer</controllingFieldValue>
-                <controllingFieldValue>State Licensed Appraiser</controllingFieldValue>
-                <controllingFieldValue>Certified Residential Appraiser</controllingFieldValue>
-                <controllingFieldValue>Funeral Director</controllingFieldValue>
-                <controllingFieldValue>Embalmer</controllingFieldValue>
-                <controllingFieldValue>Professional Land Surveyor</controllingFieldValue>
-                <valueName>Upgrade</valueName>
-            </valueSettings>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
         <fullName>Application_Type__c</fullName>
         <description>This refers to the application type being applied for: Application Types- Trades Credential, Plan Review, Permit To Operate, etc.</description>
         <externalId>false</externalId>
@@ -176,42 +176,6 @@
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>Landscape Architect</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Delegated Municipality</controllingFieldValue>
-                <controllingFieldValue>Program Unknown</controllingFieldValue>
-                <controllingFieldValue>Manufactured Homes</controllingFieldValue>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <controllingFieldValue>Funerals</controllingFieldValue>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <controllingFieldValue>Misc Payments</controllingFieldValue>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>Unlicensed</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cemetery</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Cremated Remains Disposition Permit</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Cemeteries</controllingFieldValue>
-                <valueName>Crematory</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
                 <controllingFieldValue>Engineers</controllingFieldValue>
                 <valueName>Engineering/Land Surveying Company</valueName>
@@ -225,16 +189,36 @@
                 <valueName>Professional Land Surveyor</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <controllingFieldValue>Manufactured Homes</controllingFieldValue>
+                <controllingFieldValue>Misc Payments</controllingFieldValue>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <controllingFieldValue>Program Unknown</controllingFieldValue>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <controllingFieldValue>Delegated Municipality</controllingFieldValue>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <controllingFieldValue>Funerals</controllingFieldValue>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>Unlicensed</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
                 <valueName>Notary Public</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist In Training</valueName>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
@@ -245,8 +229,12 @@
                 <valueName>Timeshare Salesperson</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Architects</controllingFieldValue>
-                <valueName>Architect</valueName>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Controlling Person</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
+                <valueName>Appraisal Management Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
@@ -281,12 +269,36 @@
                 <valueName>Temporary State Licensed</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Architects</controllingFieldValue>
+                <valueName>Architect</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Company</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Camping Resorts</controllingFieldValue>
                 <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cemetery</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Cremated Remains Disposition Permit</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cemeteries</controllingFieldValue>
+                <valueName>Crematory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineer in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Professional Engineer</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -325,34 +337,23 @@
                 <valueName>Prearrangement Funeral Services</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineer in Training</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Professional Engineer</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist In Training</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Controlling Person</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
-                <valueName>Appraisal Management Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Designer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
             </valueSettings>
         </valueSet>
     </fields>
     <fields>
         <fullName>Expiration_Date__c</fullName>
         <description>Date when the license is effective to</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expiration Date</label>
         <required>false</required>
@@ -364,6 +365,7 @@
     <fields>
         <fullName>Issue_Date__c</fullName>
         <description>Date when license was issued</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issue Date</label>
         <required>false</required>
@@ -375,6 +377,7 @@
     <fields>
         <fullName>Renewal_Date__c</fullName>
         <description>Date when the license was renewed</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Date License was renewed or extended</inlineHelpText>
         <label>Renewed Date</label>
@@ -483,6 +486,7 @@
     </fields>
     <label>LightningLicense</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Number</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>

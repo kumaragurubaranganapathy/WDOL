@@ -43,7 +43,7 @@ public class FeePaymentCreatedByDelegate {
             {
                 try {
                     system.debug('here to check fee');
-                    for(MUSW__Fee__c fee: [select Id, MUSW__License2__c, MUSW__License2__r.Business_License__c, MUSW__License2__r.MUSW__Primary_Licensee__c from MUSW__Fee__c where Id IN: Feeids.keyset()]){
+                    for(MUSW__Fee__c fee: [select Id, MUSW__License2__c, MUSW__License2__r.Business_License__c, MUSW__License2__r.MUSW__Primary_Licensee__c from MUSW__Fee__c where Id IN: Feeids.keyset() AND ID != null]){
                         
                         system.debug('fee shravan:'+fee.id+fee.MUSW__License2__c +'test'+fee.MUSW__License2__r.MUSW__Primary_Licensee__c);
                         if(fee.MUSW__License2__r.MUSW__Primary_Licensee__c  != null && fee.MUSW__License2__r.Business_License__c){
@@ -62,7 +62,7 @@ public class FeePaymentCreatedByDelegate {
             if(ReceiptIds.size() > 0)
             {
                 try {
-                ReceiptList = [select Id, MUSW__Receipt_Paid_By__c from MUSW__Receipt__c where Id IN: ReceiptIds];
+                ReceiptList = [select Id, MUSW__Receipt_Paid_By__c from MUSW__Receipt__c where Id IN: ReceiptIds AND id != null];
                 }
                 catch(Exception e)
                 {
@@ -77,7 +77,7 @@ public class FeePaymentCreatedByDelegate {
                 }
             }
             if(Accountids.size() > 0){
-                for(Musw__Account_Contact__c acccon: [select id, MUSW__Account__c, MUSW__Contact__r.User__c, MUSW__Contact__c from Musw__Account_Contact__c where  MUSW__Account__c IN: Accountids]){
+                for(Musw__Account_Contact__c acccon: [select id, MUSW__Account__c, MUSW__Contact__r.User__c, MUSW__Contact__c from Musw__Account_Contact__c where  MUSW__Account__c IN: Accountids AND MUSW__Account__c != null]){
                     If(!ContactIdsSet.contains(acccon.MUSW__Contact__c) && acccon.MUSW__Contact__r.User__c != null){
                        ContactIdsSet1.add(acccon.MUSW__Contact__c);
                        feecon.put(acccon.MUSW__Contact__r.User__c,acccon.MUSW__Account__c);
@@ -93,9 +93,9 @@ public class FeePaymentCreatedByDelegate {
             list<MUSW__Fee_Payment__share> fshare = new list<MUSW__Fee_Payment__share>();
             for(id i:feecon.keyset()){
                 MUSW__Fee_Payment__share share  =  new MUSW__Fee_Payment__share();
-                share.AccessLevel =  'Edit';
+                share.AccessLevel =  DOL_AppConstants.EDIT_STRING;
                 share.ParentId = feeids.get(feeacc.get(feecon.get(i)));
-                share.RowCause = 'create_Fee_Payment_By_Delegate__c';
+                share.RowCause = DOL_AppConstants.ROW_CAUSE_STRING_CREATE_FEE_PAYMENT_BY_DELEGATE;
                 share.UserOrGroupId = i;
                 fshare.add(share);
             }

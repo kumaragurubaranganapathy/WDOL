@@ -386,6 +386,7 @@
     </fields>
     <fields>
         <fullName>Description</fullName>
+        <encryptionScheme>None</encryptionScheme>
     </fields>
     <fields>
         <fullName>Email</fullName>
@@ -422,6 +423,7 @@
     </fields>
     <fields>
         <fullName>Subject</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -541,25 +543,6 @@
         <label>OverdueTasks</label>
     </listViews>
     <listViews>
-        <fullName>RecurringTasks</fullName>
-        <columns>SUBJECT</columns>
-        <columns>WHO_NAME</columns>
-        <columns>WHAT_NAME</columns>
-        <columns>DUE_DATE</columns>
-        <columns>STATUS</columns>
-        <columns>PRIORITY</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>LAST_UPDATE</columns>
-        <columns>UPDATEDBY_USER.ALIAS</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>IS_RECURRENCE</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <label>RecurringTasks</label>
-    </listViews>
-    <listViews>
         <fullName>TodaysTasks</fullName>
         <columns>SUBJECT</columns>
         <columns>WHO_NAME</columns>
@@ -588,38 +571,109 @@
         </filters>
         <label>TodaysTasks</label>
     </listViews>
-    <listViews>
-        <fullName>UnscheduledTasks</fullName>
-        <columns>SUBJECT</columns>
-        <columns>WHO_NAME</columns>
-        <columns>WHAT_NAME</columns>
-        <columns>DUE_DATE</columns>
-        <columns>STATUS</columns>
-        <columns>PRIORITY</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>LAST_UPDATE</columns>
-        <columns>UPDATEDBY_USER.ALIAS</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>IS_CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>IS_RECURRENCE</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>DUE_DATE</field>
-            <operation>equals</operation>
-        </filters>
-        <label>UnscheduledTasks</label>
-    </listViews>
     <recordTypes>
         <fullName>Inspection_Task</fullName>
         <active>true</active>
         <label>Inspection Task</label>
+        <picklistValues>
+            <picklist>MUSW__Outcome__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stayed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tabled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Invitation</fullName>
+        <active>true</active>
+        <label>Invitation</label>
         <picklistValues>
             <picklist>MUSW__Outcome__c</picklist>
             <values>
@@ -755,10 +809,10 @@
                 <fullName>Completed</fullName>
                 <default>false</default>
             </values>
-			 <values>
-			    <fullName>Open</fullName>
+            <values>
+                <fullName>Open</fullName>
                 <default>true</default>
-			</values>	
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Sub_status__c</picklist>
@@ -794,6 +848,204 @@
             <picklist>Type</picklist>
             <values>
                 <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Reminder</fullName>
+        <active>true</active>
+        <label>Reminder</label>
+        <picklistValues>
+            <picklist>MUSW__Outcome__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stayed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tabled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Verification</fullName>
+        <active>true</active>
+        <label>Verification</label>
+        <picklistValues>
+            <picklist>MUSW__Outcome__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stayed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tabled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
                 <default>false</default>
             </values>
             <values>

@@ -202,6 +202,7 @@
         <fullName>External_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>External Id of the record</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>255</length>
@@ -213,6 +214,7 @@
     <fields>
         <fullName>External_Source__c</fullName>
         <description>External Source System from which this data is converted</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>External Source</label>
         <length>255</length>
@@ -234,6 +236,7 @@
     </fields>
     <fields>
         <fullName>Historical_Exam_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Historical Exam Date</label>
         <required>false</required>
@@ -310,6 +313,7 @@
     </fields>
     <fields>
         <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Release</label>
         <length>20</length>
@@ -333,6 +337,7 @@
     <fields>
         <fullName>Result__c</fullName>
         <description>Exam result</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Result</label>
         <length>255</length>

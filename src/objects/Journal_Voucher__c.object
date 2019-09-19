@@ -55,6 +55,40 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
+        <fullName>AFRS_012_TMS__c</fullName>
+        <externalId>false</externalId>
+        <formula>AFRS_Interface_Total_Amount__c - AFRS_Interface_012_Amount__c - TMS_Interface_Total_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AFRS - 012 - TMS</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>AFRS_Interface_012_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>AFRS Interface 012 Amount</label>
+        <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Add_to_Interface__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>equals</operation>
+            <value>AFRS-XXX</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>AFRS_Interface_Total_Amount__c</fullName>
         <externalId>false</externalId>
         <label>AFRS Interface Total Amount</label>
@@ -97,11 +131,24 @@
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>AFRS_Process_Date__c</fullName>
+        <description>adding as a part of bug 7068</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>AFRS Process Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>AFRS_Status__c</fullName>
         <defaultValue>&quot;Not Processed&quot;</defaultValue>
         <externalId>false</externalId>
         <label>AFRS Status</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -130,10 +177,12 @@
     <fields>
         <fullName>Agency_Name__c</fullName>
         <defaultValue>&apos;Department of Licensing&apos;</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Agency Name</label>
         <length>23</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -142,10 +191,12 @@
     <fields>
         <fullName>Agency_No__c</fullName>
         <defaultValue>TEXT(2400)</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Agency No.</label>
         <length>4</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -164,10 +215,12 @@
     </fields>
     <fields>
         <fullName>Approved_By__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Approved By</label>
         <length>50</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -180,25 +233,30 @@
         <externalId>false</externalId>
         <inlineHelpText>Mark as approved or not approved to send to AFRS or TMS.</inlineHelpText>
         <label>Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Approved_by_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Approved by Date</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Biennium_Year__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Biennium Year</label>
         <length>4</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -206,10 +264,12 @@
     </fields>
     <fields>
         <fullName>Current_Document_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Current Document Number</label>
         <length>8</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -217,19 +277,23 @@
     </fields>
     <fields>
         <fullName>Date_of_Deposit__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date of Deposit</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Distribution__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Distribution</label>
         <length>14</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -238,9 +302,11 @@
     <fields>
         <fullName>Document_Date__c</fullName>
         <defaultValue>TODAY()</defaultValue>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Document Date</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -250,6 +316,7 @@
         <externalId>false</externalId>
         <label>Document Title</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -269,40 +336,16 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-	<fields>
-        <fullName>AFRS_Process_Date__c</fullName>
-        <description>adding as a part of bug 7068</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>AFRS Process Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
-    </fields>
-    <fields>
-        <fullName>TMS_Process_Date__c</fullName>
-        <description>Adding as a part of bug 7068</description>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>TMS Process Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
-    </fields>
     <fields>
         <fullName>Document_Type__c</fullName>
         <externalId>false</externalId>
         <label>Document Type</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
-            <restricted>false</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
@@ -343,21 +386,24 @@
                 <value>
                     <fullName>Manual IAP -user created to ensure document # matches OFM/AFRS</fullName>
                     <default>false</default>
+                    <label>Manual IAP -user created to ensure document # matches OFM/AFRS</label>
                 </value>
                 <value>
                     <fullName>Automated JV</fullName>
                     <default>false</default>
-		    <label>Automated JV</label>
+                    <label>Automated JV</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
     <fields>
         <fullName>Explanation_of_Entry__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Explanation of Entry</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -365,11 +411,12 @@
     </fields>
     <fields>
         <fullName>Fiscal_Month__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fiscal Month</label>
         <length>2</length>
         <required>false</required>
-        
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -377,11 +424,12 @@
     </fields>
     <fields>
         <fullName>Fiscal_Year__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Fiscal Year</label>
         <length>2</length>
         <required>false</required>
-        
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -396,6 +444,7 @@
         <relationshipLabel>Journal Vouchers</relationshipLabel>
         <relationshipName>Journal_Vouchers</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -405,6 +454,7 @@
         <externalId>false</externalId>
         <label>Journal Voucher Type</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -441,6 +491,7 @@
         <precision>12</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -448,10 +499,12 @@
     </fields>
     <fields>
         <fullName>Prepared_By__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Prepared By</label>
         <length>50</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -459,19 +512,23 @@
     </fields>
     <fields>
         <fullName>Prepared_by_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Prepared by Date</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>Ref_Document_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Ref. Document Number</label>
         <length>8</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -486,6 +543,21 @@
         <relationshipLabel>Journal Vouchers</relationshipLabel>
         <relationshipName>Journal_Vouchers</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Refund__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Refund</label>
+        <referenceTo>BGBK__Refund__c</referenceTo>
+        <relationshipLabel>Journal Vouchers</relationshipLabel>
+        <relationshipName>Journal_Vouchers</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -511,7 +583,7 @@
         <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
-     <fields>
+    <fields>
         <fullName>TMS_PDF_Total_Amount__c</fullName>
         <externalId>false</externalId>
         <label>TMS PDF Total Amount</label>
@@ -533,12 +605,24 @@
         <type>Summary</type>
     </fields>
     <fields>
-
+        <fullName>TMS_Process_Date__c</fullName>
+        <description>Adding as a part of bug 7068</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>TMS Process Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>TMS_Status__c</fullName>
         <defaultValue>&quot;Not Processed&quot;</defaultValue>
         <externalId>false</externalId>
         <label>TMS Status</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -566,10 +650,12 @@
     </fields>
     <fields>
         <fullName>Telephone_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Telephone Number</label>
         <length>10</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -587,13 +673,30 @@
         <type>Summary</type>
     </fields>
     <label>Journal Voucher</label>
+    <listViews>
+        <fullName>JV_Approval_queue_Journal_Voucher</fullName>
+        <filterScope>Queue</filterScope>
+        <label>JV Approval queue</label>
+        <queue>JV_Approval_queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Search</fullName>
+        <columns>NAME</columns>
+        <filterScope>Mine</filterScope>
+        <label>Search</label>
+    </listViews>
     <nameField>
         <displayFormat>JV-{0000}</displayFormat>
         <label>Journal Voucher  Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Journal Vouchers</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Journal_Voucher_Automated</fullName>
@@ -714,7 +817,6 @@
                 <default>false</default>
             </values>
             <values>
-
                 <fullName>Manual JV -Remittance JV from a validation number</fullName>
                 <default>false</default>
             </values>

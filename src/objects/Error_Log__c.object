@@ -57,6 +57,7 @@
     <fields>
         <fullName>Class__c</fullName>
         <description>This field contains the class name in which the error occurred.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Class</label>
         <length>255</length>
@@ -69,6 +70,7 @@
     <fields>
         <fullName>Component__c</fullName>
         <description>This field contains the component on which the error occurred.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Component</label>
         <length>255</length>
@@ -81,6 +83,7 @@
     <fields>
         <fullName>Error_Description__c</fullName>
         <description>This field contains the kind of error that occurred and the description</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Error Description</label>
         <length>32768</length>
@@ -92,6 +95,7 @@
     <fields>
         <fullName>Error_Detail__c</fullName>
         <description>This field contains the stack trace.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Error Detail</label>
         <length>32768</length>
@@ -103,6 +107,7 @@
     <fields>
         <fullName>Error_Record_Id__c</fullName>
         <description>This field contains the id of the record for which the error occurred.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Error Record Id</label>
         <length>255</length>
@@ -115,6 +120,7 @@
     <fields>
         <fullName>Error_Severity__c</fullName>
         <description>This field contains the level of severity for the error</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Error Severity</label>
         <length>255</length>
@@ -127,6 +133,7 @@
     <fields>
         <fullName>Event__c</fullName>
         <description>This field contains the event on which the error occurred.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Event</label>
         <length>255</length>
@@ -139,6 +146,7 @@
     <fields>
         <fullName>SObject__c</fullName>
         <description>This field contains the name of the sObject for which the error occurred.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>SObject</label>
         <length>255</length>
@@ -151,6 +159,7 @@
     <fields>
         <fullName>User__c</fullName>
         <description>This field contains the user id for which the error occurred.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>User</label>
         <length>255</length>

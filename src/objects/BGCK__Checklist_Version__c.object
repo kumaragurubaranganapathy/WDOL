@@ -92,6 +92,7 @@
     <fields>
         <fullName>BGCK__BG_Checklist_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Checklist Name</label>
         <length>80</length>
@@ -104,6 +105,7 @@
         <fullName>BGCK__BG_Checklist_Title__c</fullName>
         <deprecated>false</deprecated>
         <description>The title that users will see when filling out checklists with this version. Will be a link back to the parent record. Supports merge fields on the parent object.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The title that users will see when filling out checklists with this version. Will be a link back to the parent record. Supports merge fields on the parent object.</inlineHelpText>
         <label>Checklist Title</label>
@@ -116,6 +118,7 @@
     <fields>
         <fullName>BGCK__BG_Field_Set_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>The API name of a field set on Page Question object, used to control the fields shown when editing page question eligibility.</inlineHelpText>
         <label>Field Set Name</label>
@@ -197,6 +200,7 @@
         <fullName>BGCK__Track_No__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>20</length>
@@ -220,6 +224,7 @@
     <fields>
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>50</length>
@@ -230,6 +235,7 @@
     </fields>
     <fields>
         <fullName>WADOL_Mulesoft_Ext_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Mulesoft Ext Id</label>
         <length>255</length>

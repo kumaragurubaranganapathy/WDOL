@@ -76,16 +76,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-	<fullName>Date_Granted__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Date Granted</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Application_BG__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -107,8 +97,31 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>Current_Datetime__c</fullName>
+        <description>Current datetime</description>
+        <externalId>false</externalId>
+        <formula>NOW()</formula>
+        <inlineHelpText>Current datetime</inlineHelpText>
+        <label>Current Datetime</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Date_Granted__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Date Granted</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
     <fields>
         <fullName>Date_Removed__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Removed</label>
         <required>false</required>
@@ -118,6 +131,7 @@
     </fields>
     <fields>
         <fullName>Date_Requested_for_Adding_Endorsement__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Submitted Date</label>
         <required>false</required>
@@ -127,6 +141,7 @@
     </fields>
     <fields>
         <fullName>Date_Requested_for_Removing_Endorsement__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Date Requested for Removing Endorsement</label>
         <required>false</required>
@@ -136,6 +151,7 @@
     </fields>
     <fields>
         <fullName>Effective_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Current Issue Date</label>
         <required>false</required>
@@ -145,6 +161,7 @@
     </fields>
     <fields>
         <fullName>Electronic_Software_Provider__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Electronic Software Provider</label>
         <length>131072</length>
@@ -153,9 +170,10 @@
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
-	<fields>
+    <fields>
         <fullName>Endorsement_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Endorsement Id</label>
         <length>60</length>
@@ -319,6 +337,39 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+	<fields>
+        <fullName>Lic_Prog_Mailing_City_State_ZIP__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Program_Mailing_City_State_ZIP__c</formula>
+        <label>Lic Prog Mailing City State ZIP</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lic_Prog_Mailing_PO_Box__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Program_Mailing_PO_Box__c</formula>
+        <label>Lic Prog Mailing PO Box</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Applicant_Full_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Applicant_Full_Name__c</formula>
+        <label>License Applicant Full Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>License_Applicant__c</fullName>
         <externalId>false</externalId>
@@ -332,11 +383,23 @@
         <unique>false</unique>
     </fields>
     <fields>
-	<fullName>Release__c</fullName>
+        <fullName>License_ID__c</fullName>
+        <description>Foreign Key for Data Migration of Legacy Data</description>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
-        <label>Release</label>
-        <length>20</length>
+        <label>License ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>License_Mailing_City__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.MUSW__Parcel__r.MUSW__City__c</formula>
+        <label>License Mailing City</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -344,11 +407,32 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>License_ID__c</fullName>
-        <description>Foreign Key for Data Migration of Legacy Data</description>
+        <fullName>License_Mailing_State__c</fullName>
         <externalId>false</externalId>
-        <label>License ID</label>
-        <length>50</length>
+        <formula>Text(License__r.MUSW__Parcel__r.MUSW__State__c)</formula>
+        <label>License Mailing State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Mailing_Street__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.MUSW__Parcel__r.MUSW__Street2__c</formula>
+        <label>License Mailing Street</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Mailing_ZIP__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.MUSW__Parcel__r.Zip_Postal_Code__c</formula>
+        <label>License Mailing ZIP</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -361,6 +445,39 @@
         <formula>License__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>License Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>License_Program_Email__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Program_Email__c</formula>
+        <label>License Program Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Program_Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Program_Phone__c</formula>
+        <label>License Program Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Program_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(License__r.Application_Type__c)</formula>
+        <label>License Program Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -391,6 +508,17 @@
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
         </valueSet>
+    </fields>
+	<fields>
+        <fullName>License_Ultimate_Parent_Account__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Ultimate_Parent_Account__r.Name</formula>
+        <label>License Ultimate Parent Account</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>License__c</fullName>
@@ -423,6 +551,18 @@
         <formula>TEXT(License__r.Application_Type__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Program Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -540,10 +680,12 @@
                 <value>
                     <fullName>Applicant Action</fullName>
                     <default>false</default>
+                    <label>Applicant Action</label>
                 </value>
                 <value>
                     <fullName>Third Party Action</fullName>
                     <default>false</default>
+                    <label>Third Party Action</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -552,9 +694,11 @@
     <nameField>
         <displayFormat>END-{0000000}</displayFormat>
         <label>Endorsement icon Name</label>
+        <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Endorsements</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Endorsement</fullName>
         <active>true</active>
@@ -909,6 +1053,17 @@
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Status__c</picklist>
+            <values>
+                <fullName>Applicant Action</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Third Party Action</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <searchLayouts>
         <searchResultsAdditionalFields>Endorsement_Type__c</searchResultsAdditionalFields>
@@ -918,7 +1073,7 @@
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
-	<webLinks>
+    <webLinks>
         <fullName>Letter</fullName>
         <availability>online</availability>
         <displayType>button</displayType>

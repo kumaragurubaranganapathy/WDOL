@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DOL_Letterhead</letterhead>
+    <name>First license issued - Active - Other R1</name>
+    <style>formalLetter</style>
+    <subject>Department of Licensing - We have issued your {!MUSW__License2__c.Credential_Type__c} license!</subject>
+    <textOnly>LICENSED SUBMITTED
+Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+
+Your application is currently under review.  We will reach out directly with any questions.
+
+Thanks &amp; Regards,
+Washington Department of Licensing</textOnly>
+    <type>html</type>
+</EmailTemplate>

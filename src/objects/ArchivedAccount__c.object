@@ -55,6 +55,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Account_Source__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Account Source</label>
         <length>255</length>
@@ -89,6 +90,7 @@
     </fields>
     <fields>
         <fullName>Account_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Account Type</label>
         <length>255</length>
@@ -111,6 +113,7 @@
     </fields>
     <fields>
         <fullName>Billing_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Billing City</label>
         <length>50</length>
@@ -133,6 +136,7 @@
     </fields>
     <fields>
         <fullName>Billing_Postal_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Billing Postal Code</label>
         <length>10</length>
@@ -155,6 +159,7 @@
     </fields>
     <fields>
         <fullName>Billing_Street__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Billing Street</label>
         <length>100</length>
@@ -174,6 +179,7 @@
     <fields>
         <fullName>Cust_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Cust Id</label>
         <length>60</length>
@@ -184,6 +190,7 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32000</length>
@@ -193,6 +200,7 @@
     </fields>
     <fields>
         <fullName>Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email</label>
         <required>false</required>
@@ -213,6 +221,7 @@
     </fields>
     <fields>
         <fullName>Last_4_Digits_of_FEIN__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last 4 Digits of FEIN</label>
         <length>4</length>
@@ -223,6 +232,7 @@
     </fields>
     <fields>
         <fullName>Parent_Cust_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Parent Cust Id</label>
         <length>60</length>
@@ -233,6 +243,7 @@
     </fields>
     <fields>
         <fullName>Phone__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Phone</label>
         <required>false</required>
@@ -241,6 +252,7 @@
     </fields>
     <fields>
         <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Release</label>
         <length>20</length>
@@ -251,6 +263,7 @@
     </fields>
     <fields>
         <fullName>SB_Lock_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>SB Lock Date</label>
         <required>false</required>
@@ -259,6 +272,7 @@
     </fields>
     <fields>
         <fullName>SB_Lock__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>SB Lock</label>
         <length>20</length>
@@ -269,6 +283,7 @@
     </fields>
     <label>Archived Account</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Archived Contact Name</label>
         <type>Text</type>
     </nameField>

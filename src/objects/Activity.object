@@ -35,6 +35,7 @@
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>AccountId__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>AccountId</label>
         <length>255</length>
@@ -44,6 +45,7 @@
     </fields>
     <fields>
         <fullName>Business_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Business Name</label>
         <length>255</length>
@@ -53,6 +55,7 @@
     </fields>
     <fields>
         <fullName>Child_License_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Child License Id</label>
         <length>255</length>
@@ -62,6 +65,7 @@
     </fields>
     <fields>
         <fullName>Child_License_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Child License Name</label>
         <length>255</length>
@@ -71,6 +75,7 @@
     </fields>
     <fields>
         <fullName>Child_License_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Child License Type</label>
         <length>255</length>
@@ -80,6 +85,7 @@
     </fields>
     <fields>
         <fullName>Child_Licensee_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Child Licensee Name</label>
         <length>255</length>
@@ -89,6 +95,7 @@
     </fields>
     <fields>
         <fullName>Child_Profession__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Child Profession</label>
         <length>255</length>
@@ -98,6 +105,7 @@
     </fields>
     <fields>
         <fullName>Designation__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Designation</label>
         <length>255</length>
@@ -107,6 +115,7 @@
     </fields>
     <fields>
         <fullName>Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email</label>
         <required>false</required>
@@ -153,6 +162,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Completed_Date2__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Date</label>
         <required>false</required>
@@ -161,6 +171,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Completed_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Date/Time</label>
         <required>false</required>
@@ -196,6 +207,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Due_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>System Calculated when Task is not Closed</inlineHelpText>
         <label>Due Date Only</label>
@@ -258,6 +270,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Original_Due_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Original Due Date</label>
         <required>false</required>
@@ -266,6 +279,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Original_Start_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Original Start Date</label>
         <required>false</required>
@@ -307,6 +321,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Predecessor_TaskId__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Predecessor Task</label>
         <length>18</length>
@@ -318,6 +333,7 @@ CASE( MUSW__AlertCode__c,
         <fullName>MUSW__Shared_Link__c</fullName>
         <deprecated>false</deprecated>
         <description>used for Alert Tasks on parents being shared to a Parcel</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Parcel Link</label>
         <length>255</length>
@@ -328,6 +344,7 @@ CASE( MUSW__AlertCode__c,
     <fields>
         <fullName>MUSW__Start_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Start Date</label>
         <required>false</required>
@@ -354,6 +371,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Main_License_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Main License Type</label>
         <length>255</length>
@@ -373,6 +391,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Parent_License_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Parent License Name</label>
         <length>255</length>
@@ -382,6 +401,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Parent_License_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Parent License Type</label>
         <length>255</length>
@@ -391,6 +411,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Parent_Licensee_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Parent Licensee Name</label>
         <length>255</length>
@@ -400,6 +421,7 @@ CASE( MUSW__AlertCode__c,
     </fields>
     <fields>
         <fullName>Parent_Profession__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Parent Profession</label>
         <length>255</length>

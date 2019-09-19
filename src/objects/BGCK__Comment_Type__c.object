@@ -57,6 +57,7 @@
     <fields>
         <fullName>BGCK__Comments__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Comments</label>
         <length>2000</length>
@@ -81,6 +82,7 @@
         <fullName>BGCK__Track_No__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>20</length>
@@ -91,6 +93,7 @@
     </fields>
     <label>Comment Type</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <type>Text</type>
     </nameField>

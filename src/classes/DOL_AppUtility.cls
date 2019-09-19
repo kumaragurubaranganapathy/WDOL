@@ -76,7 +76,7 @@ public class DOL_AppUtility {
         try{
             String[] inputStrDateArr = inputStrDate.split('');
             String[] inputDateFormatArr = inputDateFormat.split('');
-            String Y='',M='',D='';
+            String Y= DOL_AppConstants.NULL_EMPTY_STRING + '',M= DOL_AppConstants.NULL_EMPTY_STRING + '',D= DOL_AppConstants.NULL_EMPTY_STRING + '';
             Integer i;
             for(i=0;i<inputDateFormatArr.size();i++){
                 if(inputDateFormatArr[i] == 'Y'){
@@ -101,7 +101,7 @@ public class DOL_AppUtility {
         try{
             String[] inputStrDateArr = inputStrDate.split('');
             String[] inputDateFormatArr = inputDateFormat.split('');
-            String Y='',M='',D='';
+            String Y= DOL_AppConstants.NULL_EMPTY_STRING + '',M= DOL_AppConstants.NULL_EMPTY_STRING + '',D= DOL_AppConstants.NULL_EMPTY_STRING + '';
             Integer i;
             for(i=0;i<inputDateFormatArr.size();i++){
                 if(inputDateFormatArr[i] == 'Y' ){
@@ -125,7 +125,7 @@ public class DOL_AppUtility {
         try{
             String[] inputStrDateTimeArr = inputStrDateTime.split('');
             String[] inputDateTimeFormatArr = inputDateTimeFormat.split('');
-            String Y='',M='',D='',h='',mi='',s='';
+            String Y= DOL_AppConstants.NULL_EMPTY_STRING + '',M= DOL_AppConstants.NULL_EMPTY_STRING + '',D= DOL_AppConstants.NULL_EMPTY_STRING + '',h= DOL_AppConstants.NULL_EMPTY_STRING + '',mi= DOL_AppConstants.NULL_EMPTY_STRING + '',s= DOL_AppConstants.NULL_EMPTY_STRING + '';
             Integer i;
             for(i=0;i<inputDateTimeFormatArr.size();i++){
                 if(inputDateTimeFormatArr[i] == 'Y' ){
@@ -159,7 +159,7 @@ public class DOL_AppUtility {
         try{
             String[] inputStrDateTimeArr = inputStrDateTime.split('');
             String[] inputDateTimeFormatArr = inputDateTimeFormat.split('');
-            String Y='',M='',D='',h='',mi='',s='';
+            String Y= DOL_AppConstants.NULL_EMPTY_STRING + '',M= DOL_AppConstants.NULL_EMPTY_STRING + '',D= DOL_AppConstants.NULL_EMPTY_STRING + '',h= DOL_AppConstants.NULL_EMPTY_STRING + '',mi= DOL_AppConstants.NULL_EMPTY_STRING + '',s= DOL_AppConstants.NULL_EMPTY_STRING + '';
             Integer i;
             for(i=0;i<inputDateTimeFormatArr.size();i++){
                 if(inputDateTimeFormatArr[i] == 'Y' ){
@@ -218,7 +218,7 @@ public class DOL_AppUtility {
     //@author Laltu Banerjee
     public static String getQueryString(String sObjectApiName){
         Set<String> fieldApiNameSet = getSobjectFields(sObjectApiName);
-        String queryString = 'Select ';
+        String queryString = DOL_AppConstants.NULL_EMPTY_STRING + 'Select ';
         queryString += String.join(new List<String>(fieldApiNameSet),' ,');
         queryString += ' from '+sObjectApiName+' ';
         return queryString;

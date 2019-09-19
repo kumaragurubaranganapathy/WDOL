@@ -121,6 +121,7 @@
     <fields>
         <fullName>BGCK__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32768</length>
@@ -142,6 +143,7 @@
     <fields>
         <fullName>BGCK__Object_Field__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Object Field</label>
         <length>30</length>
@@ -154,6 +156,7 @@
     <fields>
         <fullName>BGCK__Object_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Object Name</label>
         <length>30</length>
@@ -166,6 +169,7 @@
     <fields>
         <fullName>BGCK__Object_Value__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Object Value</label>
         <length>30</length>
@@ -192,6 +196,7 @@
         <fullName>BGCK__Track_No__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>20</length>
@@ -245,6 +250,7 @@
     <fields>
         <fullName>External_ID_of_Checklist_version__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External ID of Checklist version</label>
         <length>50</length>
@@ -256,6 +262,7 @@
     </fields>
     <fields>
         <fullName>External_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>50</length>
@@ -267,6 +274,7 @@
     </fields>
     <fields>
         <fullName>WADOL_Mulesoft_Ext_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Mulesoft Ext Id</label>
         <length>255</length>
@@ -286,6 +294,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

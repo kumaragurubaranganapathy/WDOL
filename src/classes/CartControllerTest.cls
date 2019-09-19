@@ -14,7 +14,7 @@ private static Integer randomNum;
     private static void setupTestData()
     {
         new BGBK.TestMock();
-        insert new BGBK__CartSettings__c(Name='Default');
+        insert new BGBK__CartSettings__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'Default');
     }
 
     @isTest
@@ -22,14 +22,14 @@ private static Integer randomNum;
     {
         BGBK.RulesEngineState.setLock();
                 
-        Contact c = new Contact(Lastname='TestUser123', Email='test@test.com');
+        Contact c = new Contact(Lastname= DOL_AppConstants.NULL_EMPTY_STRING + 'TestUser123', Email= DOL_AppConstants.NULL_EMPTY_STRING + 'test@test.com');
         insert c;
         Contact cq = [select AccountId from Contact where Id=:c.Id];
         
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='xyz123abc');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'xyz123abc');
         insert par;
-        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = 'Plan Review', 
-                                                       	  Program_Area__c = 'POWTS', Permit_Type__c = 'POWTS Petition for Variance');
+        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Program Area', 
+                                                       	  Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance');
         insert perm;
         MUSW__Fee__c f1 = new MUSW__Fee__c(MUSW__Amount__C=20, MUSW__Permit2__c=perm.Id);
         MUSW__Fee__c f2 = new MUSW__Fee__c(MUSW__Amount__C=120, MUSW__Permit2__c=perm.Id);
@@ -49,7 +49,7 @@ private static Integer randomNum;
         List<SelectOption> accs = fc.accounts;
         system.assert(fc.rs[0].MUSW__Receipt_Paid_by__c == c.Id);
         fc.cart.BGBK__Contact__c = c.Id;
-        fc.rs[0].MUSW__Payment_Method__c = 'Check';
+        fc.rs[0].MUSW__Payment_Method__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Check';
         fc.accountSelected = cq.AccountId;
         fc.checkout();
         fc.review();
@@ -69,18 +69,18 @@ private static Integer randomNum;
     private static void testFromInvoice()
     {
         // BGBK.RulesEngineState.setLock();                
-        Account account = new Account(Name='Test Account');
+        Account account = new Account(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'Test Account');
         insert account;
                      
-        Contact c = new Contact(LastName='Test Contact',FirstName='BasicGov', Email='test@basicgov.com',Account=account,MUSW__Account_Relationship__c='Owner');
+        Contact c = new Contact(LastName= DOL_AppConstants.NULL_EMPTY_STRING + 'Test Contact',FirstName= DOL_AppConstants.NULL_EMPTY_STRING + 'BasicGov', Email= DOL_AppConstants.NULL_EMPTY_STRING + 'test@basicgov.com',Account=account,MUSW__Account_Relationship__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Owner');
         insert c;
        
         Contact cq = [select AccountId from Contact where Id=:c.Id];
         
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='xyz123abc');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'xyz123abc');
         insert par;
-        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = 'Plan Review', 
-                                                       	  Program_Area__c = 'POWTS', Permit_Type__c = 'POWTS Petition for Variance');
+        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Program Area', 
+                                                       	  Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance');
         insert perm;
         BGBK__Cart__c testCart = new BGBK__Cart__c(BGBK__Account__c= cq.AccountId, BGBK__Contact__c= cq.Id, BGBK__Expiration_DateTime__c=system.now().addDays(1));
         insert testCart;
@@ -88,7 +88,7 @@ private static Integer randomNum;
         // add fees to cart
         
         randomNum = Math.round(Math.random()*100000);
-        String InvoiceNum1 = 'BGT-'+randomNum.format();
+        String InvoiceNum1 = DOL_AppConstants.NULL_EMPTY_STRING + 'BGT-'+randomNum.format();
                 
         BGBK__Bill__c inv1 = new BGBK__Bill__c(BGBK__Tracking_Number__c=InvoiceNum1,BGBK__Total_Fees__c=25,BGBK__Total_Payments__c=0);
         insert inv1;
@@ -105,7 +105,7 @@ private static Integer randomNum;
         fc.initOrder();
         //system.assert(fc.cart.BGBK__Total_Amount__c== 140);
         List<SelectOption> accs = fc.accounts;
-        fc.rs[0].MUSW__Payment_Method__c = 'Credit Card';
+        fc.rs[0].MUSW__Payment_Method__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Credit Card';
         fc.accountSelected = cq.AccountId ;
         fc.Checkout();
         fc.review();
@@ -126,14 +126,14 @@ private static Integer randomNum;
     {
         BGBK.RulesEngineState.setLock();                
         
-        Contact c = new Contact(Lastname='TestUser123', Email='test@test.com');
+        Contact c = new Contact(Lastname= DOL_AppConstants.NULL_EMPTY_STRING + 'TestUser123', Email= DOL_AppConstants.NULL_EMPTY_STRING + 'test@test.com');
         insert c;
         Contact cq = [select AccountId from Contact where Id=:c.Id];
         
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='xyz123abc');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'xyz123abc');
         insert par;
-        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = 'Plan Review', 
-                                                       	  Program_Area__c = 'POWTS', Permit_Type__c = 'POWTS Petition for Variance');
+        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Program Area', 
+                                                       	  Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance');
         insert perm;
         BGBK__Cart__c testCart = new BGBK__Cart__c(BGBK__Account__c= cq.AccountId, BGBK__Contact__c= cq.Id, BGBK__Expiration_DateTime__c=system.now().addDays(1));
         insert testCart;
@@ -153,7 +153,7 @@ private static Integer randomNum;
         fc.initOrder();
         //system.assert(fc.cart.BGBK__Total_Amount__c== 140);
         List<SelectOption> accs = fc.accounts;
-        fc.rs[0].MUSW__Payment_Method__c = 'Credit Card';
+        fc.rs[0].MUSW__Payment_Method__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Credit Card';
         fc.accountSelected = cq.AccountId ;
         fc.Checkout();
         fc.review();
@@ -174,11 +174,11 @@ private static Integer randomNum;
     {
         BGBK.RulesEngineState.setLock();                
         
-        Contact c = new Contact(Lastname='TestUser123', Email='test@test.com');
+        Contact c = new Contact(Lastname= DOL_AppConstants.NULL_EMPTY_STRING + 'TestUser123', Email= DOL_AppConstants.NULL_EMPTY_STRING + 'test@test.com');
         insert c;
         Contact cq = [select AccountId from Contact where Id=:c.Id];
         
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='xyz123abc');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'xyz123abc');
         insert par;
         BGBK__Cart__c testCart = new BGBK__Cart__c(BGBK__Account__c= cq.AccountId, BGBK__Contact__c= cq.Id, BGBK__Expiration_DateTime__c=system.now().addDays(1));
         insert testCart;
@@ -186,8 +186,8 @@ private static Integer randomNum;
         MUSW__Permit2__c[] perms = new MUSW__Permit2__c[]{};
         for (Integer i=0; i<9; i++)
         {
-            MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = 'Plan Review', 
-                                                       	  Program_Area__c = 'POWTS', Permit_Type__c = 'POWTS Petition for Variance');
+            MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Program Area', 
+                                                       	  Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance');
             perms.add(perm);
         }
         insert perms;
@@ -212,16 +212,16 @@ private static Integer randomNum;
         List<SelectOption> accs = fc.accounts;
         //add another receipt for multiple payments
         fc.addReceipt();
-        fc.rs[0].MUSW__Payment_Method__c = 'Cash';
-        fc.rs[1].MUSW__Payment_Method__c = 'Credit Card';
+        fc.rs[0].MUSW__Payment_Method__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Cash';
+        fc.rs[1].MUSW__Payment_Method__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Credit Card';
         fc.rs[0].MUSW__Amount_Tendered__c = 300;
         fc.rs[1].MUSW__Amount_Tendered__c = 100;
         fc.accountSelected = cq.AccountId;
         fc.Checkout();
         fc.review();
-        fc.processResult = 'process_transaction_action_successful';
-        fc.processResultCode = 'process_transaction_action_successful';
-        fc.transactionId = 'process_transaction_action_successful';
+        fc.processResult = DOL_AppConstants.NULL_EMPTY_STRING + 'process_transaction_action_successful';
+        fc.processResultCode = DOL_AppConstants.NULL_EMPTY_STRING + 'process_transaction_action_successful';
+        fc.transactionId = DOL_AppConstants.NULL_EMPTY_STRING + 'process_transaction_action_successful';
         
         BGBK.RulesEngineState.releaseLock();
         
@@ -237,14 +237,14 @@ private static Integer randomNum;
     {
         BGBK.RulesEngineState.setLock();                
     
-        Contact c = new Contact(Lastname='TestUser123', Email='test@test.com');
+        Contact c = new Contact(Lastname= DOL_AppConstants.NULL_EMPTY_STRING + 'TestUser123', Email= DOL_AppConstants.NULL_EMPTY_STRING + 'test@test.com');
         insert c;
         Contact cq = [select AccountId from Contact where Id=:c.Id];
         
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='xyz123abc');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'xyz123abc');
         insert par;
-        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = 'Plan Review', 
-                                                       	  Program_Area__c = 'POWTS', Permit_Type__c = 'POWTS Petition for Variance');
+        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Program Area', 
+                                                       	  Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance');
         insert perm;
         BGBK__Cart__c testCart = new BGBK__Cart__c(BGBK__Account__c= cq.AccountId, BGBK__Contact__c= cq.Id, BGBK__Expiration_DateTime__c=system.now().addDays(1));
         insert testCart;
@@ -285,14 +285,14 @@ private static Integer randomNum;
       
 
         
-        Contact c1 = new Contact(Lastname='newTestUser123', Email='test1@test1.com');
+        Contact c1 = new Contact(Lastname= DOL_AppConstants.NULL_EMPTY_STRING + 'newTestUser123', Email= DOL_AppConstants.NULL_EMPTY_STRING + 'test1@test1.com');
         insert c1;
         fc.cart.BGBK__Contact__c = c1.id;
         fc.contactChanged();
         fc.cancelReconcile();
        
         
-        fc.itemsUnselected = '';
+        fc.itemsUnselected = DOL_AppConstants.NULL_EMPTY_STRING;
         fc.refreshTotalAndCheckout();
         Test.stopTest();
     }
@@ -326,14 +326,14 @@ private static Integer randomNum;
         
         BGBK.RulesEngineState.setLock();                
     
-        Contact c = new Contact(Lastname='reconcileUser', Email='test1@test1.com');
+        Contact c = new Contact(Lastname= DOL_AppConstants.NULL_EMPTY_STRING + 'reconcileUser', Email= DOL_AppConstants.NULL_EMPTY_STRING + 'test1@test1.com');
         insert c;
         Contact cq = [select AccountId from Contact where Id=:c.Id];
         
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='reconcileParcel');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'reconcileParcel');
         insert par;
-        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = 'Plan Review', 
-                                                       	  Program_Area__c = 'POWTS', Permit_Type__c = 'POWTS Petition for Variance');
+        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Program Area', 
+                                                       	  Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance');
         insert perm;
         BGBK__Cart__c testCart = new BGBK__Cart__c(BGBK__Account__c= cq.AccountId, BGBK__Contact__c= cq.Id, BGBK__Expiration_DateTime__c=system.now().addDays(1));
         insert testCart;
@@ -382,14 +382,14 @@ private static Integer randomNum;
     private static void testPmtMethods() {
         BGBK.RulesEngineState.setLock();
                 
-        Contact c = new Contact(Lastname='TestUser123', Email='test@test.com');
+        Contact c = new Contact(Lastname= DOL_AppConstants.NULL_EMPTY_STRING + 'TestUser123', Email= DOL_AppConstants.NULL_EMPTY_STRING + 'test@test.com');
         insert c;
         Contact cq = [select AccountId from Contact where Id=:c.Id];
         
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='xyz123abc');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'xyz123abc');
         insert par;
-        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = 'Plan Review', 
-                                                       	  Program_Area__c = 'POWTS', Permit_Type__c = 'POWTS Petition for Variance');
+        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Program Area', 
+                                                       	  Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance');
         insert perm;
         MUSW__Fee__c f1 = new MUSW__Fee__c(MUSW__Amount__C=20, MUSW__Permit2__c=perm.Id);
         MUSW__Fee__c f2 = new MUSW__Fee__c(MUSW__Amount__C=120, MUSW__Permit2__c=perm.Id);
@@ -421,7 +421,7 @@ private static Integer randomNum;
         CartController.ReceiptVO newReceipt = new CartController.ReceiptVO(rec, 1.0, null);
         cc.receiptVOs.add(newReceipt);
         depositExists = false;
-        cc.receiptVOs[0].pmtMethodSelected = 'Cheque';
+        cc.receiptVOs[0].pmtMethodSelected = DOL_AppConstants.NULL_EMPTY_STRING + 'Cheque';
         Selectoption[] pmtMethods2 = cc.pmtMethods;
         for(SelectOption method : pmtMethods2) {
             if(method.getValue() == 'Deposit')
@@ -432,14 +432,14 @@ private static Integer randomNum;
 
     @isTest
     private static void testUseDeposit() {
-        Contact c = new Contact(Lastname='TestUser123', Email='test@test.com');
+        Contact c = new Contact(Lastname= DOL_AppConstants.NULL_EMPTY_STRING + 'TestUser123', Email= DOL_AppConstants.NULL_EMPTY_STRING + 'test@test.com');
         insert c;
         Contact cq = [select AccountId from Contact where Id=:c.Id];
         
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='xyz123abc');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'xyz123abc');
         insert par;
-        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = 'Plan Review', 
-                                                       	  Program_Area__c = 'POWTS', Permit_Type__c = 'POWTS Petition for Variance');
+        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Program Area', 
+                                                       	  Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance');
         insert perm;
         MUSW__Fee__c f1 = new MUSW__Fee__c(MUSW__Amount__C=10,MUSW__Amount_Waived__c =0,MUSW__Amount_Paid__c =0,MUSW__Amended_Amount__c =0, MUSW__Permit2__c=perm.Id);
         insert f1;
@@ -465,10 +465,10 @@ private static Integer randomNum;
         CartController cc = new CartController(null);
         cc.con = c;
         cc.initOrder();
-        cc.rs[0].MUSW__Payment_Method__c = 'Deposit';
+        cc.rs[0].MUSW__Payment_Method__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Deposit';
         cc.currentRowIndex = 0;
         cc.checkout();
-        cc.receiptVOs[0].pmtMethodSelected = 'Deposit';
+        cc.receiptVOs[0].pmtMethodSelected = DOL_AppConstants.NULL_EMPTY_STRING + 'Deposit';
         cc.receiptVOs[0].payableReceipt.MUSW__Deposit__c = deposit.Id;
         cc.useDeposit();
         cc.currentRowIndex = 1;
@@ -483,14 +483,14 @@ private static Integer randomNum;
 
     @isTest
     private static void testInitFromDepositAccount() {
-        Contact c = new Contact(Lastname='TestUser123', Email='test@test.com');
+        Contact c = new Contact(Lastname= DOL_AppConstants.NULL_EMPTY_STRING + 'TestUser123', Email= DOL_AppConstants.NULL_EMPTY_STRING + 'test@test.com');
         insert c;
         Contact cq = [select AccountId from Contact where Id=:c.Id];
         
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='xyz123abc');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'xyz123abc');
         insert par;
-        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = 'Plan Review', 
-                                                       	  Program_Area__c = 'POWTS', Permit_Type__c = 'POWTS Petition for Variance');
+        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Program Area', 
+                                                       	  Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance');
         insert perm;
         MUSW__Fee__c f1 = new MUSW__Fee__c(MUSW__Amount__C=10,MUSW__Amount_Waived__c =0,MUSW__Amount_Paid__c =0,MUSW__Amended_Amount__c =0, MUSW__Permit2__c=perm.Id);
         insert f1;
@@ -542,14 +542,14 @@ private static Integer randomNum;
         BGBK.RulesEngineState.setLock();                
         MUSW.TriggerBlocker.blockAllTriggers = true;
 
-        Contact c = new Contact(Lastname='TestUser6788', Email='test2121212121@test.com');
+        Contact c = new Contact(Lastname= DOL_AppConstants.NULL_EMPTY_STRING + 'TestUser6788', Email= DOL_AppConstants.NULL_EMPTY_STRING + 'test2121212121@test.com');
         insert c;
         Contact cq = [select AccountId from Contact where Id=:c.Id];
         
-        MUSW__Parcel__c par = new MUSW__Parcel__c(Name='xyz123abc');
+        MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'xyz123abc');
         insert par;
-        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c='Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = 'Plan Review', 
-                                                       	  Program_Area__c = 'POWTS', Permit_Type__c = 'POWTS Petition for Variance');
+        MUSW__Permit2__c perm = new MUSW__Permit2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Building', MUSW__Parcel__c=par.id, MUSW__Applicant__c=c.Id, Application_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Program Area', 
+                                                       	  Program_Area__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS', Permit_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'POWTS Petition for Variance');
         insert perm;
         BGBK__Cart__c testCart = new BGBK__Cart__c(BGBK__Account__c= cq.AccountId, BGBK__Contact__c= cq.Id, BGBK__Expiration_DateTime__c=system.now().addDays(1));
         insert testCart;

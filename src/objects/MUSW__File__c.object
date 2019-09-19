@@ -71,6 +71,7 @@
     <fields>
         <fullName>MUSW__LastPrintedDate__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Last Printed Date</label>
         <length>40</length>
@@ -84,6 +85,7 @@
         <fullName>MUSW__ObjectId__c</fullName>
         <deprecated>false</deprecated>
         <description>currently only attachment id&apos;s</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Object Id</label>
         <length>20</length>
@@ -108,6 +110,7 @@
     <fields>
         <fullName>MUSW__ParentName__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Parent Name</label>
         <length>80</length>
@@ -154,6 +157,7 @@
     </fields>
     <label>File</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

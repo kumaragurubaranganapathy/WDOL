@@ -66,6 +66,7 @@
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>For migrating data from lower environment to higher environment</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>30</length>
@@ -123,7 +124,7 @@
                     <default>false</default>
                     <label>Miscellaneous Queue</label>
                 </value>
-				 <value>
+                <value>
                     <fullName>Overshort Queue</fullName>
                     <default>false</default>
                     <label>Overshort Queue</label>
@@ -133,6 +134,7 @@
     </fields>
     <fields>
         <fullName>Profession_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Profession Code</label>
         <length>5</length>
@@ -156,6 +158,7 @@
     </fields>
     <fields>
         <fullName>Queue_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Queue Id</label>
         <length>20</length>
@@ -166,6 +169,7 @@
     </fields>
     <fields>
         <fullName>Queue_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Queue Name</label>
         <length>80</length>
@@ -176,6 +180,7 @@
     </fields>
     <fields>
         <fullName>Revenue_Account_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Revenue Account Code</label>
         <length>200</length>
@@ -286,6 +291,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Master ConfigData Listing  Name</label>
         <type>Text</type>
     </nameField>

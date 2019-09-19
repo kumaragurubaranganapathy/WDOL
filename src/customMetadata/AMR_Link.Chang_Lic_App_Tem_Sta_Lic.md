@@ -12,11 +12,11 @@
     </values>
     <values>
         <field>Board__c</field>
-        <value xsi:type="xsd:string">Appraisers - Real Estate</value>
+        <value xsi:type="xsd:string">Funerals</value>
     </values>
     <values>
         <field>Display_In_Related_Tab__c</field>
-        <value xsi:type="xsd:boolean">false</value>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>Generate_Fee__c</field>
@@ -24,7 +24,7 @@
     </values>
     <values>
         <field>License_Type__c</field>
-        <value xsi:type="xsd:string">Temporary State Licensed</value>
+        <value xsi:type="xsd:string">Certificate of Removal Registration</value>
     </values>
     <values>
         <field>Order_Number__c</field>

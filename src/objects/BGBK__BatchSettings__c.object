@@ -6,6 +6,7 @@
         <fullName>BGBK__Batch_Object__c</fullName>
         <deprecated>false</deprecated>
         <description>Object from which the batch needs to be run.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Batch Object</label>
         <length>40</length>
@@ -31,6 +32,7 @@
         <fullName>BGBK__Default_Filters__c</fullName>
         <deprecated>false</deprecated>
         <description>Filter requirements to narrow down the records that need to be processed.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Default Filters</label>
         <length>255</length>
@@ -71,6 +73,7 @@
         <fullName>BGBK__Profile_Access__c</fullName>
         <deprecated>false</deprecated>
         <description>For DRE1, this setting controls which profile has access to the batch option on the batch screen. An empty value means that all profiles can access the option. This is not applicable for DRE 2.0.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Profile Access</label>
         <length>255</length>
@@ -97,6 +100,7 @@
         <defaultValue>&quot;CEILING&quot;</defaultValue>
         <deprecated>false</deprecated>
         <description>If the number of returned records has a decimal place, this determines whether the number will be rounded up (ceiling) or down (floor).</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>FLOOR/CEILING</inlineHelpText>
         <label>Randomize Rounding Method</label>
@@ -110,6 +114,7 @@
         <fullName>BGBK__ScheduledJobIds__c</fullName>
         <deprecated>false</deprecated>
         <description>List of comma-delimited Apex Scheduled Job ID&apos;s for this batch</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>ScheduledJobIds</label>
         <length>255</length>

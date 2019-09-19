@@ -67,6 +67,7 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
@@ -75,6 +76,7 @@
     </fields>
     <fields>
         <fullName>Effective_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Effective Date</label>
         <required>true</required>
@@ -260,7 +262,10 @@
             </values>
         </picklistValues>
     </recordTypes>
-	<validationRules>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
         <fullName>Electronic_software_provider_not_blank</fullName>
         <active>true</active>
         <description>if Provider_Name__c is other then only electronic software provider should be filled.</description>
@@ -270,8 +275,5 @@ ISBLANK( Description__c)
 )</errorConditionFormula>
         <errorMessage>Please enter Provide Information in description</errorMessage>
     </validationRules>
-    <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
-    <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>
 </CustomObject>

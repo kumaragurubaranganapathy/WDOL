@@ -58,6 +58,7 @@
     <fields>
         <fullName>DRE__Batch_Job_Id__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Batch Job Id</label>
         <length>20</length>
@@ -147,6 +148,7 @@
     <fields>
         <fullName>DRE__Description__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>1000</length>
@@ -157,6 +159,7 @@
     <fields>
         <fullName>DRE__Effective_End_Date__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Effective End Date</label>
         <required>false</required>
@@ -167,6 +170,7 @@
         <fullName>DRE__Effective_Start_Date__c</fullName>
         <defaultValue>TODAY()</defaultValue>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Effective Start Date</label>
         <required>false</required>
@@ -267,6 +271,7 @@
     <fields>
         <fullName>DRE__Field_Index__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Field Index</label>
         <length>20000</length>
@@ -277,6 +282,7 @@
     <fields>
         <fullName>DRE__Filter_Logic__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Filter Logic</label>
         <length>255</length>
@@ -306,6 +312,7 @@
     <fields>
         <fullName>DRE__Object_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Object Name</label>
         <length>80</length>
@@ -402,6 +409,7 @@
         <fullName>DRE__Uid__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Unique Id</label>
         <length>80</length>
@@ -411,6 +419,27 @@
         <unique>true</unique>
     </fields>
     <label>DRE Rule</label>
+    <listViews>
+        <fullName>Batched</fullName>
+        <columns>NAME</columns>
+        <columns>DRE__IsActive__c</columns>
+        <columns>DRE__Effective_Start_Date__c</columns>
+        <columns>DRE__Object_Name__c</columns>
+        <columns>DRE__Type__c</columns>
+        <columns>DRE__Event__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>DRE__Event__c</field>
+            <operation>equals</operation>
+            <value>Batched</value>
+        </filters>
+        <label>Batched</label>
+        <language>en_US</language>
+    </listViews>
     <listViews>
         <fullName>DRE__All</fullName>
         <columns>NAME</columns>
@@ -494,7 +523,32 @@
         </filters>
         <label>Validation Rules</label>
     </listViews>
+    <listViews>
+        <fullName>Fee_Payment_Created</fullName>
+        <columns>NAME</columns>
+        <columns>DRE__IsActive__c</columns>
+        <columns>DRE__Event__c</columns>
+        <columns>DRE__Object_Name__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>DRE__Object_Name__c</field>
+            <operation>contains</operation>
+            <value>Fee_Payment</value>
+        </filters>
+        <filters>
+            <field>DRE__Event__c</field>
+            <operation>contains</operation>
+            <value>Created</value>
+        </filters>
+        <label>Fee Payment - Created</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Rule Name</label>
         <type>Text</type>
     </nameField>

@@ -130,6 +130,7 @@
     </fields>
     <fields>
         <fullName>CashierCC__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Cashier</label>
         <length>255</length>
@@ -141,6 +142,7 @@
     </fields>
     <fields>
         <fullName>Cashier_Opening_Count__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Cashier</label>
         <length>250</length>
@@ -245,28 +247,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>Total_Check_Credit_Cards__c</fullName>
-        <externalId>false</externalId>
-        <label>Total Check + Credit Cards</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Total_Credit_Card_Receipts__c</fullName>
-        <externalId>false</externalId>
-        <label>Total Credit Card Receipts</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
     </fields>
     <fields>
         <fullName>ClosingCount50__c</fullName>
@@ -463,6 +443,7 @@
     </fields>
     <fields>
         <fullName>Head_Cashier__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Head Cashier</label>
         <length>255</length>
@@ -813,6 +794,7 @@
     </fields>
     <fields>
         <fullName>Supervisor_Reconciler__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Supervisor/Reconciler</label>
         <length>250</length>
@@ -894,6 +876,28 @@
         <formula>Multiplication100CC__c + Multiplication50CC__c + Multiplication20CC__c + Multiplication10CC__c + Multiplication5CC__c + Multiplication1CC__c + Multiplication050CC__c + Multiplication025CC__c + Multiplication010CC__c + Multiplication005CC__c+ Multiplication001CC__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Cash in Register</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Check_Credit_Cards__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Check + Credit Cards</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Credit_Card_Receipts__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Credit Card Receipts</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>

@@ -84,6 +84,7 @@
         <fullName>External_Id__c</fullName>
         <caseSensitive>true</caseSensitive>
         <description>External Id of the record</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>255</length>
@@ -96,6 +97,7 @@
     <fields>
         <fullName>External_source_c__c</fullName>
         <description>External source</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>External source</label>
         <length>255</length>
@@ -104,6 +106,38 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Historical__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Historical</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsLicenseParcelUpdatedForASC__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To check if the address is Mailing address</description>
+        <externalId>false</externalId>
+        <label>IsLicenseParcelUpdatedForASC</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>License_Address_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>License Address Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>MUSW__License2__c</fullName>
@@ -156,16 +190,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>	
-    <fields>
-        <fullName>IsLicenseParcelUpdatedForASC__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>To check if the address is Mailing address</description>
-        <externalId>false</externalId>
-        <label>IsLicenseParcelUpdatedForASC</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Parcel_Address__c</fullName>
@@ -209,7 +233,19 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-	<fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Renewal_Reinstatement_Application__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -223,20 +259,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>Type__c</fullName>
-        <description>Type of address picklist</description>
-        <externalId>false</externalId>
-        <label>Type</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetName>Address_Type</valueSetName>
-        </valueSet>
-    </fields>
-	<fields>
         <fullName>Status__c</fullName>
         <description>Status for License Parcel Record</description>
         <externalId>false</externalId>
@@ -260,6 +282,20 @@
                     <label>Inactive</label>
                 </value>
             </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <description>Type of address picklist</description>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Address_Type</valueSetName>
         </valueSet>
     </fields>
     <label>License Parcel</label>

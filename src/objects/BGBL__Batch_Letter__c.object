@@ -70,6 +70,7 @@
     <fields>
         <fullName>BGBL__File_Name_Prefix__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Files attached to parent records (e.g., Contacts) will utilize this &quot;friendly&quot; name plus a timestamp</inlineHelpText>
         <label>File Name Prefix</label>
@@ -147,6 +148,7 @@ IF(ispickval( BGBL__Output_Type__c ,&quot;Word 2007 (.docx)&quot;), &quot;docx&q
         <fullName>BGBL__Track_No__c</fullName>
         <caseSensitive>false</caseSensitive>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>Tracking Number</label>
         <length>20</length>
@@ -177,6 +179,7 @@ IF(ispickval( BGBL__Output_Type__c ,&quot;Word 2007 (.docx)&quot;), &quot;docx&q
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Name</label>
         <type>Text</type>
     </nameField>

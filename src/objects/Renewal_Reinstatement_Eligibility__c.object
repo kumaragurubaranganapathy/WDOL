@@ -65,6 +65,7 @@
     <fields>
         <fullName>Credential_Or_Permit__c</fullName>
         <description>To store credential or permit name</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Credential Or Permit</label>
         <length>255</length>
@@ -75,6 +76,7 @@
     </fields>
     <fields>
         <fullName>Description__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <required>false</required>
@@ -85,6 +87,7 @@
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>External Id</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>50</length>
@@ -135,6 +138,39 @@
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
             <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineering/Land Surveying Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Land Surveyor in Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Professional Land Surveyor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
                 <valueName>Appraisal Controlling Person</valueName>
             </valueSettings>
@@ -175,20 +211,16 @@
                 <valueName>Temporary State Licensed</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Designer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Architects</controllingFieldValue>
                 <valueName>Architect</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>Landscape Architect</valueName>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <valueName>Camping Resort Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <valueName>Camping Resort Salesperson</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
@@ -203,45 +235,12 @@
                 <valueName>Crematory</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
                 <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineering/Land Surveying Company</valueName>
+                <valueName>Engineer in Training</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Land Surveyor in Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Professional Land Surveyor</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <valueName>Camping Resort Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <valueName>Camping Resort Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <valueName>Notary Public</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist In Training</valueName>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Professional Engineer</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -273,15 +272,23 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
+                <valueName>Funeral Establishment Branch</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Funerals</controllingFieldValue>
                 <valueName>Prearrangement Funeral Services</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineer in Training</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Professional Engineer</valueName>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist In Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
             </valueSettings>
         </valueSet>
         <visibleLines>5</visibleLines>
@@ -357,6 +364,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Renewal Reinstatement Eligibility Name</label>
         <type>Text</type>
     </nameField>

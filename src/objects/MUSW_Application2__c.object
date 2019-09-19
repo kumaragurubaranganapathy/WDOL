@@ -57,6 +57,7 @@
     <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Application_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Application Type</label>
         <length>80</length>
@@ -69,6 +70,7 @@
     <fields>
         <fullName>BG_Bluebeam_Project_Id__c</fullName>
         <description>This is self-populated by the Bluebeam project Id that is associated with this application record. This is a required field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>BG Bluebeam Project Id</label>
         <length>11</length>
@@ -80,6 +82,7 @@
     </fields>
     <fields>
         <fullName>Board__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Board</label>
         <length>80</length>
@@ -92,6 +95,7 @@
     <fields>
         <fullName>Completion_Date__c</fullName>
         <description>Date the application was fully completed/submitted.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completion Date</label>
         <required>false</required>
@@ -102,6 +106,7 @@
     <fields>
         <fullName>Decision_Date__c</fullName>
         <description>In applications that require approval or hearings, this shows the date that decision was made.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Decision Date</label>
         <required>false</required>
@@ -112,6 +117,7 @@
     <fields>
         <fullName>Description__c</fullName>
         <description>Description of what the application is for.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32000</length>
@@ -123,6 +129,7 @@
     <fields>
         <fullName>Issued_Number__c</fullName>
         <description>The permanent application number.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issued No.</label>
         <length>15</length>
@@ -134,6 +141,7 @@
     </fields>
     <fields>
         <fullName>License_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>License Type</label>
         <length>80</length>
@@ -172,6 +180,7 @@
     <fields>
         <fullName>MUSW_BG_Bluebeam_Project_Id__c</fullName>
         <description>This is self-populated by the Bluebeam project Id that is associated with this application record. This is a required field.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>BG Bluebeam Project Id</label>
         <length>11</length>
@@ -184,6 +193,7 @@
     <fields>
         <fullName>MUSW_Completion_Date__c</fullName>
         <description>Date the application was fully completed/submitted.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completion Date</label>
         <required>false</required>
@@ -194,6 +204,7 @@
     <fields>
         <fullName>MUSW_Decision_Date__c</fullName>
         <description>In applications that require approval or hearings, this shows the date that decision was made.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Decision Date</label>
         <required>false</required>
@@ -204,6 +215,7 @@
     <fields>
         <fullName>MUSW_Description__c</fullName>
         <description>Description of what the application is for.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Description</label>
         <length>32000</length>
@@ -215,6 +227,7 @@
     <fields>
         <fullName>MUSW_Issued_Number__c</fullName>
         <description>The permanent application number.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Issued No.</label>
         <length>15</length>
@@ -494,6 +507,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Number</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

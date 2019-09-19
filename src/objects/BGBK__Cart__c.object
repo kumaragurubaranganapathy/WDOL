@@ -153,6 +153,7 @@
         <fullName>BGBK__Expiration_DateTime__c</fullName>
         <deprecated>false</deprecated>
         <description>Deprecated.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Expiration Date</label>
         <required>false</required>
@@ -173,6 +174,7 @@
     <fields>
         <fullName>BGBK__Gateway_Response__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Gateway Response</label>
         <length>2000</length>
@@ -198,6 +200,7 @@
         <fullName>BGBK__Process_DateTime__c</fullName>
         <deprecated>false</deprecated>
         <description>Transaction date and time.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Process Date</label>
         <required>false</required>
@@ -304,6 +307,7 @@
         <label>All</label>
     </listViews>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>Number</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>

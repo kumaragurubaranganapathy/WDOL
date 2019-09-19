@@ -604,14 +604,14 @@
             if(document.getElementById('declaration').checked === true){
                 declarationCounter = declarationCounter + 1;
             }
-        }
-        if(totalDeclarationCheckbox.length == declarationCounter) {
+        }//Declaration is not required
+        //if(totalDeclarationCheckbox.length == declarationCounter) {
             component.set("v.declarationFlag", true);
             
-        } else {
-            component.set("v.declarationFlag", false);
+        //} else {
+        //    component.set("v.declarationFlag", false);
             //component.set("v.certificateError", "All checkbox's must be checked.");
-        }
+        //}
         
         
         /*var attestedName = component.get("v.currentUser").Name.trim().toLowerCase();

@@ -58,6 +58,7 @@
     <fields>
         <fullName>MUSW__Email__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Email</label>
         <required>false</required>
@@ -68,6 +69,7 @@
     <fields>
         <fullName>MUSW__TempPassword__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>TempPassword</label>
         <length>20</length>
@@ -90,6 +92,7 @@
     </fields>
     <label>Login User Info</label>
     <nameField>
+        <encryptionScheme>None</encryptionScheme>
         <label>userName</label>
         <type>Text</type>
     </nameField>

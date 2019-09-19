@@ -109,6 +109,7 @@
     <fields>
         <fullName>BGBL__Child_Iterate_Ids__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Record id&apos;s to filter children record results further</inlineHelpText>
         <label>Child Iterate Ids</label>
@@ -121,6 +122,7 @@
     <fields>
         <fullName>BGBL__End_Time__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Completed Time</label>
         <required>false</required>
@@ -183,6 +185,7 @@
     <fields>
         <fullName>BGBL__Output_Type__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Output Type</label>
         <length>4</length>
@@ -195,6 +198,7 @@
     <fields>
         <fullName>BGBL__Override_Parameters__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Override Parameters</label>
         <length>1000</length>
@@ -222,6 +226,7 @@
         <fullName>BGBL__Parent_Query_Ids__c</fullName>
         <deprecated>false</deprecated>
         <description>string and comma delimited list of id&apos;s to restrict first letter query (the parent query) used by an additional IN clause</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>Limit data scope of letter requests by including comma-delimited, single-quoted parent record id&apos;s to determine which parent records to work within the first/parent applied letter query.</inlineHelpText>
         <label>Parent Query Ids</label>
@@ -234,6 +239,7 @@
     <fields>
         <fullName>BGBL__Print_File_Location__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Print File Location</label>
         <required>false</required>
@@ -244,6 +250,7 @@
     <fields>
         <fullName>BGBL__Print_File_Name__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Print File Name</label>
         <length>255</length>
@@ -284,6 +291,7 @@
     <fields>
         <fullName>BGBL__Recipients__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>comma delimited list of contact ids up to a max of 2000 to have letter copies. Minimum 1 contact id.</inlineHelpText>
         <label>Recipients</label>
@@ -330,6 +338,7 @@
         <fullName>BGBL__Start_Time__c</fullName>
         <defaultValue>NOW()</defaultValue>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Started Time</label>
         <required>false</required>
@@ -376,6 +385,7 @@
         <fullName>BGBL__Submit_DateTime__c</fullName>
         <deprecated>false</deprecated>
         <description>Date and time that the Letter Job is scheduled to be submitted. Use cases: to refresh API session id for long queues eg. &gt; 4 hours or re-sending failed jobs.</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <inlineHelpText>If still in &apos;In Queue&apos;, date and time in which job gets submitted. Sent immediately if this is blank.</inlineHelpText>
         <label>Submit Time</label>
@@ -400,6 +410,7 @@
     <fields>
         <fullName>BGBL__debug__c</fullName>
         <deprecated>false</deprecated>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>System Messages</label>
         <length>32000</length>

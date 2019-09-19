@@ -7,7 +7,7 @@ public without sharing class CommunityRegistrationController {
         List<User> existinguser = [Select ID,Username from User Where Username = :email Limit 1 ];
         String successmsg;
         if(!existinguser.isEmpty()){
-            successmsg = 'User with this emailID  already exists!!';
+            successmsg = DOL_AppConstants.NULL_EMPTY_STRING + 'User with this emailID  already exists!!';
         } else {
             Savepoint sp = Database.setSavepoint();
             Contact contactRecord ;
@@ -71,8 +71,8 @@ public without sharing class CommunityRegistrationController {
     public static String handleCommunityUserOperations(Contact con,  Id accId , string passwordIn  ) {
         try{
         system.debug('inside handle');
-        profile profileId = [SELECT ID FROM profile WHERE name='eSLA Customer Community Plus Login User'];
-        String successmsg = '';
+        profile profileId = [SELECT ID FROM profile WHERE name=: DOL_AppConstants.NULL_EMPTY_STRING + 'eSLA Customer Community Plus Login User'];
+        String successmsg = DOL_AppConstants.NULL_EMPTY_STRING;
         try {
             string userNameInput = null;
             User u = new User();
@@ -96,17 +96,17 @@ public without sharing class CommunityRegistrationController {
             
             u.CommunityNickname = tempNickName ;
             u.Alias = fullname.substring(0, aliasLength);
-            u.languagelocalekey = 'en_US';
-            u.localesidkey = 'en_US';
-            u.timezonesidkey = 'America/Tijuana';
-            u.emailencodingkey = 'UTF-8';
+            u.languagelocalekey = DOL_AppConstants.NULL_EMPTY_STRING + 'en_US';
+            u.localesidkey = DOL_AppConstants.NULL_EMPTY_STRING + 'en_US';
+            u.timezonesidkey = DOL_AppConstants.NULL_EMPTY_STRING + 'America/Tijuana';
+            u.emailencodingkey = DOL_AppConstants.NULL_EMPTY_STRING + 'UTF-8';
             Id userId;
            /* List<User> existinguser = [Select ID,Username from User Where Username = :con.Email Limit 1 ] ;*/
              userId = Site.createExternalUser(u, con.AccountId, passwordIn);
             if(userId != null){
-                successmsg = 'User created successfully';
+                successmsg = DOL_AppConstants.NULL_EMPTY_STRING + 'User created successfully';
             } else {
-                successmsg = 'Please contact system admin';
+                successmsg = DOL_AppConstants.NULL_EMPTY_STRING + 'Please contact system admin';
             }
              
             
