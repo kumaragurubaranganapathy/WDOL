@@ -69,13 +69,9 @@
                                 <aura:set attribute="else">
                                     <aura:if isTrue="{!field.required || field.regex != undefined}">
                                         <aura:if isTrue="{!field.apiname == 'NO_SSN_ITIN__c'}">
-                                            <div
-                                                class="{!field.apiname == v.flagHideAndShow?'input-field-wrapper':'slds-hide'}">
+                                            <div class="{!field.apiname == v.flagHideAndShow?'input-field-wrapper':'slds-hide'}">                                           
+                                                <lightning:inputField disabled="{!field.readOnly}" aura:id="validateField" fieldName="{!field.apiname}" class="{!(field.apiname == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}" variant="label-hidden"/>   
                                                 <label>I certify that I don't have a Social Security Number or Individual Taxpayer Identification Number</label>
-                                                <lightning:inputField disabled="{!field.readOnly}"
-                                                    aura:id="validateField" fieldName="{!field.apiname}"
-                                                    class="{!(field.apiname == v.flagHideAndShow?'slds-show':'slds-hide')+(field.required?' required':'')+' field-size multi-field'}"
-                                                    variant="label-hidden" />
                                             </div>
                                             <aura:set attribute="else">
                                                 <lightning:inputField disabled="{!field.readOnly}"
