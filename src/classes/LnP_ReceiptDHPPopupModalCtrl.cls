@@ -78,7 +78,8 @@ public with sharing class LnP_ReceiptDHPPopupModalCtrl {
                 List<MUSW__License2__c> licenseToBeUpdatedwithDHP = new List<MUSW__License2__c> ();
                 for(MUSW__License2__c licRec : licenseToBeUpdated){
                     licRec.Polaris_DHP__c = true;
-                    licRec.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Inactive';
+                    //commenting as a part of bug 7559 **by Abhilasha**
+                    //licRec.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Inactive';
                     licRec.DHP_Stamp_Date__c = System.today();
                     licRec.Polaris_Dishonored_Receipt_ID__c = receiptRec.Name;
                     system.debug('licRec.Polaris_Dishonored_Receipt_ID__c : '+licRec.Polaris_Dishonored_Receipt_ID__c);
