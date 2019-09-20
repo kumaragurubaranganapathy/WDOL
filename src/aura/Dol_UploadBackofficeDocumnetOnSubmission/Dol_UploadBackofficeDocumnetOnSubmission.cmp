@@ -12,6 +12,7 @@
     <aura:attribute name = "userEmail" type="String"/>
     <aura:attribute name = "archieveDate" type="String"/>
     <aura:attribute name = "displayArchieveDate" type="Boolean" default="false"/>
+    <aura:attribute name = "parentLookup" type="String"/>
     
     <aura:handler name ="init" action ="c.doInit" value="{!this}"/>
     
@@ -48,10 +49,10 @@
             </div>
            <aura:if isTrue = "{!v.displayArchieveDate}">
                 <div class="slds-modal__content slds-p-bottom_x-small" id="modal-content-id-2">
-                	<label class="slds-form-element__label" for="input-01">Archieve Date<span class="required">*</span>
-                	</label>
-                	<ui:inputDate aura:id="archdate" required="true" disabled="false" value="{!v.archieveDate}" displayDatePicker="true"/>      
-            	</div>
+                    <label class="slds-form-element__label" for="input-01">Archieve Date<span class="required">*</span>
+                    </label>
+                    <ui:inputDate aura:id="archdate" required="true" disabled="false" value="{!v.archieveDate}" displayDatePicker="true"/>      
+                </div>
             </aura:if>
             <div class="slds-modal__content slds-p-bottom_x-small" id="modal-content-id-3">
                 <label class="slds-form-element__label" for="input-01">User
@@ -61,7 +62,7 @@
             <div class="slds-align_absolute-center  slds-p-top_large">
                 <button class="slds-button slds-button_brand" onclick="{!c.uplaod}">upload</button>
                 <button class="slds-button slds-button_neutral" onclick="{!c.handleCancel }">Cancel</button>&nbsp;
-            </div>	
+            </div>  
         </div>
     </div>
 
