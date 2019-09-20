@@ -477,7 +477,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
-    </fieldUpdates>
+    </fieldUpdates> -->
     <fieldUpdates>
         <fullName>Update_Invited_Date</fullName>
         <field>invitation_send_date__c</field>
@@ -487,7 +487,7 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
+    <!--<fieldUpdates>
         <fullName>Update_License_Status_to_Invited</fullName>
         <field>Status__c</field>
         <literalValue>Invited</literalValue>
