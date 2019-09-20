@@ -645,6 +645,10 @@
     
     removeAccountContactRelationHelper : function(component,event, helper,Account_ContactId){
         
+        component.set("v.displayRemoveAccountContactModal","false");
+        
+        component.set('v.displaySpinner',true);
+        
         console.log('In LnP_Dashboard_2.aura-helper::removeAccountContactRelationHelper ');
         
         var action = component.get("c.seperateAccountContactRelationship");
@@ -656,6 +660,8 @@
             var state = response.getState();
             
             if (state === "SUCCESS") {
+                
+                component.set('v.displaySpinner',false);
                 
                 var resp = JSON.parse(response.getReturnValue());
                 

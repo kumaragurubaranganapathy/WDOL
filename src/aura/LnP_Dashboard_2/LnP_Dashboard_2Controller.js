@@ -219,9 +219,7 @@
     removeAccountContactRelation : function(component, event, helper){
         
         var account_ContactId = event.currentTarget.getAttribute("data-id");
-        helper.removeAccountContactRelationHelper(component, event, helper,account_ContactId); 
-        component.set("v.displayRemoveAccountContactModal","false");
-        
+        helper.removeAccountContactRelationHelper(component, event, helper,account_ContactId);
     },
     closeRemoveAccountContactRelationModal : function(component, event, helper){
         
@@ -246,10 +244,20 @@
     opendisplayRemoveBusinessRelationShipModal  : function(component, event, helper){
         
         var associateId = event.currentTarget.getAttribute("data-id");
+        var associationMessage;
+        
+        var actionOnModal = event.currentTarget.getAttribute("data-action");
+        
+        if(actionOnModal === "Separate"){
+            
+            associationMessage = "Are you sure you want to dissociate the licensee?";
+        }  
         
         component.set("v.removeAssociationtRelationId",associateId);
         
-        component.set("v.associationModalMessage","Are you sure you want to dissociate the licensee?");
+        component.set("v.associationModalMessage",associationMessage);
+        
+        component.set("v.PeerRelationShipModalAction",actionOnModal);
         
         component.set("v.displayRemoveBusinessRelationShipModal","true");
     },

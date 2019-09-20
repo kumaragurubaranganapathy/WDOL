@@ -647,7 +647,7 @@
                                                             <td data-label="Actions" class="cell-style action-cell">
                                                                 <div class="button-wrapper">
                                                                     <aura:if isTrue="{!tableData.Status__c == 'Active'}">
-                                                                        <a data-index="{!ind}" data-id="{!tableData.Id}" href="javascript:void(0)" class="slds-button slds-button_brand"
+                                                                        <a data-index="{!ind}" data-id="{!tableData.Id}" data-action = "Separate" href="javascript:void(0)" class="slds-button slds-button_brand"
                                                                            onclick="{!c.opendisplayRemoveBusinessRelationShipModal}">Separate</a>
                                                                     </aura:if>
                                                                     <aura:if isTrue="{!tableData.Status__c == 'Invited'}">
