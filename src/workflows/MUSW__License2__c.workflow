@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <alerts>
+   <!-- <alerts>
         <fullName>Application_closed_RFI</fullName>
         <description>Application closed - RFI</description>
         <protected>false</protected>
@@ -214,7 +214,7 @@
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Retired_status_final</template>
-    </alerts>
+    </alerts> -->
     <fieldUpdates>
         <fullName>Inactivate_License_on_expiration</fullName>
         <description>Inactivate License on expiration date &lt; today</description>
@@ -294,7 +294,7 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
-	<rules>
+	<!-- <rules>
         <fullName>Email - Application closed - RFI</fullName>
         <actions>
             <name>Application_closed_RFI</name>
@@ -1137,7 +1137,7 @@
         </criteriaItems>
         <description>Automation rule for email notification: Retired status</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
+    </rules> -->
     <rules>
         <fullName>Inactivate License on expiration</fullName>
         <actions>
@@ -1273,7 +1273,7 @@
         <description>set Expiration Date to current date when license is sunset</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-	<tasks>
+	<!--<tasks>
         <fullName>Email_Outbound_Application_closed_RFI</fullName>
         <assignedToType>owner</assignedToType>
         <dueDateOffset>0</dueDateOffset>
@@ -1459,5 +1459,5 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Retired status</subject>
-    </tasks>
+    </tasks> -->
 </Workflow>

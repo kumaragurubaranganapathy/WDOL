@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <alerts>
+    <!--<alerts>
         <fullName>Maintenance_request_complete</fullName>
         <ccEmails>smahankali@deloitte.com</ccEmails>
         <description>Maintenance request complete</description>
@@ -24,7 +24,7 @@
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Maintenance_submission_review_required_final</template>
-    </alerts>
+    </alerts> -->
 	<fieldUpdates>
         <fullName>Applicant_Email_Address_From_License_Obj</fullName>
         <field>Request_Applicant__c</field>
@@ -54,7 +54,7 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <rules>
+   <!-- <rules>
         <fullName>Email - Maintenance request complete</fullName>
         <actions>
             <name>Maintenance_request_complete</name>
@@ -96,7 +96,7 @@
         </criteriaItems>
         <description>Automation rule for email notification: Maintenance submission - review required</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
+    </rules> -->
     <rules>
         <fullName>Email to RBS Queue for request</fullName>
         <actions>
@@ -136,7 +136,7 @@ ISPICKVAL(License__r.Application_Type__c, &apos;Appraisal Management Companies&a
         <formula>(ISBLANK(Request_Applicant__c))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <tasks>
+    <!--<tasks>
         <fullName>Email_Outbound_Maintenance_request_complete</fullName>
         <assignedToType>owner</assignedToType>
         <dueDateOffset>0</dueDateOffset>
@@ -157,5 +157,5 @@ ISPICKVAL(License__r.Application_Type__c, &apos;Appraisal Management Companies&a
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Maintenance submission - review required</subject>
-    </tasks>
+    </tasks> -->
 </Workflow>

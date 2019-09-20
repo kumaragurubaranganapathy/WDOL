@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <alerts>
+   <!-- <alerts>
         <fullName>Approval_notification_internship</fullName>
         <description>Approval notification - internship</description>
         <protected>false</protected>
@@ -1972,5 +1972,5 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Trainee separation notification - trainee - with supervisor</subject>
-    </tasks>
+    </tasks>-->
 </Workflow>
