@@ -146,7 +146,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         list<string> lstValueIntakeMethod=new list<String>{'Counter','Portal','Validation Room','N/A'};
             list<string> lstValuePaymentMethod=new list<String>{'Cash','Check','Money Order','Vital Check','ACH','Credit Card','Lockbox'};
                 list<string> lstTargetAccountingSystem= new list<String>{'TMS','AFRS'};
-                    list<string> lstTraansactionCode= new list<String>{'770','001','780','012','062','298','965','006','781'};
+                    list<string> lstTraansactionCode= new list<String>{'770','001','780','012','062','298','965','006','781','008','966'};
                         list<string> lstGL= new list<String>{'7110','3210','4310','1312','3205','5199','7140'};
                             String strQuery = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT id, name,Transaction_Type__c,BGBK__Fund__r.GL__c,Agency__c,Transaction_Code_Type__c,Debit_Credit__c,Transaction_Code__c,Program_Index__c,BGBK__Amount__c,GL_To_AFRS__c,BGBK__Fund__r.Accounting_System__c,BGBK__Fee__r.Agency__c, ';
         strQuery+='BGBK__Fund__r.Fund__c,Intake_Method__c,Payment_Method__c,BGBK__Fund__r.Major_Group__c,BGBK__Fund__r.Major_Source__c,BGBK__Fund__r.Sub_Source__c ';
