@@ -468,7 +468,7 @@
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_separation_notification_trainee_with_supervisor_final</template>
-    </alerts>
+    </alerts> -->
     <fieldUpdates>
         <fullName>Update_Child_License_email</fullName>
         <field>Child_License_Email__c</field>
@@ -477,7 +477,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
-    </fieldUpdates> -->
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>Update_Invited_Date</fullName>
         <field>invitation_send_date__c</field>
@@ -487,7 +487,7 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <!--<fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_License_Status_to_Invited</fullName>
         <field>Status__c</field>
         <literalValue>Invited</literalValue>
@@ -513,8 +513,8 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
-    </fieldUpdates> -->
-    <rules>
+    </fieldUpdates>
+    <!--<rules>
         <fullName>Email - Designated person accept</fullName>
         <actions>
             <name>Designated_person_accept_business</name>
