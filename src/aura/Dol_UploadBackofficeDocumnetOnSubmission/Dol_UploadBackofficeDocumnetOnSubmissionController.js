@@ -1,10 +1,11 @@
 ({
-	doInit : function(component, event, helper) {
-		helper.loadUser(component, event, helper);
+    doInit : function(component, event, helper) {
+        helper.loadUser(component, event, helper);
+        helper.getParentLookup(component, event, helper);
         helper.checkProfessionCode(component, event, helper);
         helper.checkImageUrlExists(component, event, helper);
         helper.getimagetypeOptions(component, event, helper);
-	},
+    },
     
     uplaod: function(component, event, helper){
         var recordId = component.get("v.recordId");
@@ -36,25 +37,27 @@
              helper.showToast(component, event, "Error!", "error", "Please fill in all required fields.");
         }
         else{
-            var imageUrl = component.get("v.ImageUrlValue");
-         	console.log('imageUrl=='+imageUrl);
-
-            if(imageUrl === 'SANImageURLExists'){
-                helper.showToast(component, event, "Error!", "error", "Please delete the existing SAN Image URL before uploading a new one");
-                helper.setDefaultFields(component);
+            var valid2 = true;
+            if(imagetype === 'Compliance' && (archDate === undefined || archDate === null)){
+                valid2 = false;
+                helper.showToast(component, event, "Error!", "error", "Archieve Date can not be empty for Compliance");
+                //helper.setDefaultFields(component);
             }
             var profCode = component.get("v.profCodeValue");
-            if(profCode === 'NoProfessionCode'){
+            if(profCode === 'NoProfessionCode' && valid2 === true){
                 helper.showToast(component, event, "Error!", "error", "Professional code associated to the Submission License is NULL");
-                helper.setDefaultFields(component);
+                //helper.setDefaultFields(component);
             }
-            if(imagetype === 'Compliance' && (archDate === undefined || archDate === null)){
-                helper.showToast(component, event, "Error!", "error", "Archieve Date can not be empty for Compliance");
-                helper.setDefaultFields(component);
+            var imageUrl = component.get("v.ImageUrlValue");
+            console.log('imageUrl=='+imageUrl);
+
+             if(imageUrl === 'SANImageURLExists' && profCode != 'NoProfessionCode' && valid2 === true){
+                helper.showToast(component, event, "Error!", "error", "Please delete the existing SAN Image URL before uploading a new one");
+                //helper.setDefaultFields(component);
             }
             else if(profCode === 'ProfessionCodeExists' && imageUrl != 'SANImageURLExists'){
             var action = component.get("c.backofficeUplaod");
-       		 action.setParams({
+             action.setParams({
             "recordId" : recordId,
             "docName": docName,
             "user": userName,
@@ -62,7 +65,7 @@
             "archDate" : archDate,   
             }) ; 
             component.set("v.Spinner", true);
-        	action.setCallback(this, function(response){
+            action.setCallback(this, function(response){
                 component.set("v.Spinner", false);
                 var status = response.getState();
                 if(status === 'SUCCESS'){
@@ -70,15 +73,15 @@
                     if (result == 'uploadsuccess'){
                         helper.showToast(component, event, "Success!", "success", "Your document is uploaded to SAN drive.");
                         helper.setDefaultFields(component);
-                       	helper.refreshRecords();
-                    	helper.closeQuickAction(component, event, helper);
+                        helper.refreshRecords();
+                        helper.closeQuickAction(component, event, helper);
                         
                     }
                     if (result == 'uploadfailed'){
                         helper.showToast(component, event, "Error!", "error", "There is some error.");
                         helper.setDefaultFields(component);
-                       	helper.refreshRecords();
-                    	helper.closeQuickAction(component, event, helper);
+                        helper.refreshRecords();
+                        helper.closeQuickAction(component, event, helper);
                     }
                 }
                 if(status === "ERROR"){
@@ -89,9 +92,9 @@
                 helper.refreshRecords();
                 helper.closeQuickAction(component, event, helper);
                 }
-        	});
+            });
                 $A.enqueueAction(action);
-        	}  
+            }  
         }       
     },
     onImageTypeChange : function(component, event, helper){
