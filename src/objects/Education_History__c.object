@@ -1426,29 +1426,34 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                     <label>Canceled</label>
                 </value>
                 <value>
+                    <fullName>Complete</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Complete</label>
+                </value>
+                <value>
                     <fullName>Draft</fullName>
                     <default>false</default>
+                    <isActive>false</isActive>
                     <label>Draft</label>
                 </value>
                 <value>
                     <fullName>Requested</fullName>
                     <default>false</default>
+                    <isActive>false</isActive>
                     <label>Requested</label>
-                </value>
-                <value>
-                    <fullName>Scheduled</fullName>
-                    <default>false</default>
-                    <label>Scheduled</label>
                 </value>
                 <value>
                     <fullName>Results Pending</fullName>
                     <default>false</default>
+                    <isActive>false</isActive>
                     <label>Results Pending</label>
                 </value>
                 <value>
-                    <fullName>Complete</fullName>
+                    <fullName>Scheduled</fullName>
                     <default>false</default>
-                    <label>Complete</label>
+                    <isActive>false</isActive>
+                    <label>Scheduled</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -3252,14 +3257,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <picklistValues>
             <picklist>Status__c</picklist>
             <values>
-                <fullName>Complete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Draft</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Expired</fullName>
                 <default>false</default>
             </values>
@@ -3273,18 +3270,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Requested</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Results Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scheduled</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6770,14 +6755,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
                 <default>false</default>
             </values>
             <values>
-                <fullName>Complete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Draft</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Expired</fullName>
                 <default>false</default>
             </values>
@@ -6795,18 +6772,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Requested</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Results Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scheduled</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8541,14 +8506,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <picklistValues>
             <picklist>Status__c</picklist>
             <values>
-                <fullName>Complete</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Draft</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Expired</fullName>
                 <default>false</default>
             </values>
@@ -8562,18 +8519,6 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
             </values>
             <values>
                 <fullName>Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Requested</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Results Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scheduled</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
