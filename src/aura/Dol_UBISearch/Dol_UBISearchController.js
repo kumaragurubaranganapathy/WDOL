@@ -35,7 +35,7 @@
         }
         else if(ubi != '' && ubi != null && ubi.length < 11){
             valid = false;
-            helper.showToast(component, event, "Error!", "error", "UBI# lenght can not be leass than 9 characters");
+            helper.showToast(component, event, "Error!", "error", "UBI# length can not be less than 9 characters");
             
         }
         
@@ -49,6 +49,7 @@
             action.setCallback(this, function(actionResult){
             if(actionResult.getState() === "SUCCESS"){
                 var result = actionResult.getReturnValue();
+                if(result != 'success'){console.log('failure==');}
                 if(result == 'success'){
                     console.log('success==');
                     helper.showToast(component, event, "Success!", "success", "Your Search result has has been updated successfully.");
