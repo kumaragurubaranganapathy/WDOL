@@ -100,7 +100,7 @@
     <aura:if isTrue= "{!v.changeAddress}">        
         <div id="usAddr" class ="usAddress">
             <div class="address-type">
-                <h1>Your Mailing Address</h1>
+                <h2>Your Mailing Address</h2>
             </div>
             <lightning:select aura:id="countryPicklist" name="country" label="Country" value="{!v.defaultCountry}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onCountryChange}"> 
                 <aura:iteration items="{!v.countryList}" var="countryInstance">
@@ -139,8 +139,8 @@
                 </aura:set>
             </aura:if>
             <div class="slds-grid slds-p-top_medium">
-                <lightning:button variant="brand" type="submit" name="save" label="Validate" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="MAILING ADDRESS"/>
-              <lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.tolocation}" class="slds-m-left_medium cancelbtn addressBtn"/>
+                <lightning:button variant="brand" type="submit" name="save" label="Validate Address" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="MAILING ADDRESS"/>
+              <lightning:button type="cancel" name="cancel" label="Back" onclick="{!c.tolocation}" class="slds-m-left_medium addressBtn"/>
             </div>
         </div>
         
@@ -246,7 +246,7 @@
                 </aura:set>
             </aura:if>
             <div class="slds-grid slds-p-top_medium">
-                <lightning:button variant="brand" type="submit" name="save" label="Validate" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="MAILING ADDRESS"/>
+                <lightning:button variant="brand" type="submit" name="save" label="Validate Address" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="MAILING ADDRESS"/>
                 <!--<lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium cancelbtn addressBtn"/> -->
             </div>
         </div>
@@ -254,7 +254,7 @@
         <aura:if isTrue="{!v.changeOnlyMailingAdd}">
         <div id="usAddr" class = "usAddress">
             <div class="address-type">
-                <h1>Your Physical Address</h1>
+                <h2>Your Physical Address</h2>
             </div>
             <lightning:input type="checkbox" aura:id="isPhysicalAndMailingSame" name="addrType" class="checkbox-style" value="{!v.physicalAddressParcel.is_Physical_and_Mailing_Address_Same__c}" checked="{!v.isPhysicalAndMailingSame}" label="Physical Address same as Mailing Address" onchange="{!c.autoPopulatePhysicalAddress}"/>
             <lightning:select aura:id="physicalCountryPicklist" name="country" label="Country" value="{!v.defaultPhysicalCountry}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onPhysicalCountryChange}"> 
@@ -296,7 +296,7 @@
                 </aura:set>
             </aura:if>
             <div class="slds-grid slds-p-top_medium borderBtn">
-                <lightning:button variant="brand" type="submit" name="save" label="Validate" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="PHYSICAL ADDRESS"/>
+                <lightning:button variant="brand" type="submit" name="save" label="Validate Address" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="PHYSICAL ADDRESS"/>
               <!--<lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium cancelbtn addressBtn"/> -->
             </div> 
         </div>
@@ -361,7 +361,7 @@
     <aura:if isTrue= "{!v.isAMR}">
         <div id="usAddr" class = "usAddress">
             <div class="address-type">
-                <h1>Current Physical Address</h1>
+                <h2>Current Physical Address</h2>
                
             </div> 
              <p class="slds-p-vertical_small">This is your current physical address registered with the state of Washington</p>
@@ -384,7 +384,7 @@
        <!-- <aura:if isTrue= "{!v.openPhysicalAddressAMR}">-->
         <div id="usAddr" class = "usAddress">
             <div class="address-type">
-                <h1 class="addressTy">New Physical Address</h1>
+                <h2 class="addressTy">New Physical Address</h2>
                 
             </div>  
              <p class="slds-p-vertical_small">Fill details of new physical address below</p>
@@ -477,7 +477,7 @@
             </aura:if>
                 </div>
             <div class="slds-grid slds-p-top_medium borderBtn">
-                <lightning:button variant="brand" type="submit" name="save" label="Validate" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="PHYSICAL ADDRESS"/>
+                <lightning:button variant="brand" type="submit" name="save" label="Validate Address" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="PHYSICAL ADDRESS"/>
               <!--<lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium cancelbtn addressBtn"/> -->
             </div> 
         </div>
