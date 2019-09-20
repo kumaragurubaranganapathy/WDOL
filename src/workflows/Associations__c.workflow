@@ -514,7 +514,7 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <!--<rules>
+    <rules>
         <fullName>Email - Designated person accept</fullName>
         <actions>
             <name>Designated_person_accept_business</name>
@@ -693,7 +693,7 @@
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <!-- <rules>
+    <!--<rules>
         <fullName>Email - Intern separation notification - intern</fullName>
         <actions>
             <name>Intern_separation_notification_intern</name>
