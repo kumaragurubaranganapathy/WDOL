@@ -167,7 +167,7 @@
                                                         </div>
                                                         <aura:set attribute="else">
                                                             <div class = "revAndSubCompletionFont">
-                                                                <ui:outputRichText value="Complete"/>
+                                                                <ui:outputRichText value="{!attResponses.fileNos == 0?'This is not a required submission':'Complete'}"/>
                                                             </div>
                                                         </aura:set>  
                                                     </aura:if>  
