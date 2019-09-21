@@ -1,31 +1,31 @@
 ({
-    loadUser : function(component, event, helper) {
-        var action = component.get("c.getUser");
+	loadUser : function(component, event, helper) {
+		var action = component.get("c.getUser");
        action.setCallback(this, function(response){
-            if(response.getState() === "SUCCESS") {
+        	if(response.getState() === "SUCCESS") {
                 var result = response.getReturnValue();
                 if(result!= null && result.Name!= null){
                     component.set("v.userName" ,result.Name ); 
                     var email = result.Email;
                     if(email.includes('@')){
                         var emaiaddress = email.split('@');
-                        var emailWithoutDomain = emaiaddress[0];
+        				var emailWithoutDomain = emaiaddress[0];
                         console.log('emailWithoutDomain'+emailWithoutDomain);
                         component.set("v.userEmail" ,emailWithoutDomain ); 
                     }
                 }            
-            }           
+        	}           
       });
     $A.enqueueAction(action);
-    },
-    checkProfessionCode : function(component, event, helper) {  
+	},
+    checkProfessionCode : function(component, event, helper) {	
         var recordId = component.get("v.recordId");
-        var action = component.get("c.getProfCode");
+		var action = component.get("c.getProfCode");
         action.setParams({
             "recordId" : recordId
             }) ; 
-        action.setCallback(this, function(response){
-            if(response.getState() === "SUCCESS") {
+       	action.setCallback(this, function(response){
+        	if(response.getState() === "SUCCESS") {
                 var result = response.getReturnValue();
                 var noProfCode = false;
                 
@@ -42,15 +42,15 @@
     
       });
     $A.enqueueAction(action);
-    },
-    checkImageUrlExists : function(component, event, helper) {  
+	},
+    checkImageUrlExists : function(component, event, helper) {	
         var recordId = component.get("v.recordId");
-        var action = component.get("c.getImageUrl");
+		var action = component.get("c.getImageUrl");
         action.setParams({
             "recordId" : recordId
             }) ; 
-        action.setCallback(this, function(response){
-            if(response.getState() === "SUCCESS") {
+       	action.setCallback(this, function(response){
+        	if(response.getState() === "SUCCESS") {
                 var result = response.getReturnValue();
                 console.log('checkImageUrlExists result=='+result);
                 if(result!= null && result === 'SANImageURLExists'){
@@ -63,15 +63,15 @@
     
       });
     $A.enqueueAction(action);
-    },
-    getParentLookup : function(component, event, helper) {  
+	},
+    getParentLookup : function(component, event, helper) {	
         var recordId = component.get("v.recordId");
-        var action = component.get("c.getParent");
+		var action = component.get("c.getParent");
         action.setParams({
             "recordId" : recordId
             }) ; 
-        action.setCallback(this, function(response){
-            if(response.getState() === "SUCCESS") {
+       	action.setCallback(this, function(response){
+        	if(response.getState() === "SUCCESS") {
                 var result = response.getReturnValue();
                 console.log('checkparentLookup result=='+result);
                 if(result!= null && result === 'License'){
@@ -86,7 +86,7 @@
     
       });
     $A.enqueueAction(action);
-    },
+	},
     
     showToast : function(component, event, title, type, message) {
         var toastEvent = $A.get("e.force:showToast");
@@ -109,7 +109,7 @@
     },
     closeQuickAction : function(component, event, helper) {
         var dismissActionPanel = $A.get("e.force:closeQuickAction"); 
-        dismissActionPanel.fire(); 
+		dismissActionPanel.fire(); 
     },
      getimagetypeOptions: function(component, helper){
         var action = component.get("c.getSelectOptionValues");
