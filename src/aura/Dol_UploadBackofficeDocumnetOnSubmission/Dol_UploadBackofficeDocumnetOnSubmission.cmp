@@ -12,6 +12,9 @@
     <aura:attribute name = "userEmail" type="String"/>
     <aura:attribute name = "archieveDate" type="String"/>
     <aura:attribute name = "displayArchieveDate" type="Boolean" default="false"/>
+    <aura:attribute name = "parentLookup" type="String"/>
+    <aura:attribute name = "dateValidationError" type="Boolean" default="false"/>
+    
     
     <aura:handler name ="init" action ="c.doInit" value="{!this}"/>
     
@@ -48,10 +51,15 @@
             </div>
            <aura:if isTrue = "{!v.displayArchieveDate}">
                 <div class="slds-modal__content slds-p-bottom_x-small" id="modal-content-id-2">
-                	<label class="slds-form-element__label" for="input-01">Archieve Date<span class="required">*</span>
+                	<label class="slds-form-element__label" for="input-01">Archive Date<span class="required">*</span>
                 	</label>
-                	<ui:inputDate aura:id="archdate" required="true" disabled="false" value="{!v.archieveDate}" displayDatePicker="true"/>      
+                	<ui:inputDate aura:id="archdate" required="true" disabled="false" value="{!v.archieveDate}" displayDatePicker="true" change="{!c.dateUpdate}" />      
             	</div>
+               <aura:if isTrue="{!v.dateValidationError}">
+                   <div class="slds-text-color_error slds-p-left_x-small">
+                       Archive Date must greater than or equal to today's date.
+                   </div>
+               </aura:if>    
             </aura:if>
             <div class="slds-modal__content slds-p-bottom_x-small" id="modal-content-id-3">
                 <label class="slds-form-element__label" for="input-01">User

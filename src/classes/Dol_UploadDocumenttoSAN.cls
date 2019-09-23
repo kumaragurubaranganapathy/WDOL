@@ -46,13 +46,17 @@ public class Dol_UploadDocumenttoSAN {
         System.debug('recordId'+recordId);
         String result = DOL_AppConstants.NULL_EMPTY_STRING + '';
         if(Dol_IntegrationUtil.isNotBlank(recordId)){
-            List<MUSW__Submission__c>  submissionList  = [SELECT id, SAN_Prof_Code__c, MUSW__License2__c, MUSW__License2__r.Profession_Code__c from MUSW__Submission__c where id=: recordId AND id != null Limit 1];
+            List<MUSW__Submission__c>  submissionList  = [SELECT id, SAN_Prof_Code__c, MUSW__License2__c,Complaint__c,Complaint__r.License__r.Profession_Code__c, MUSW__License2__r.Profession_Code__c from MUSW__Submission__c where id=: recordId AND id != null Limit 1];
             System.debug('submissionList'+submissionList);
             if(Dol_IntegrationUtil.isNotEmpty(submissionList) && 
                Dol_IntegrationUtil.isNotBlank(submissionList[0].MUSW__License2__c) && (Dol_IntegrationUtil.isNotBlank(submissionList[0].MUSW__License2__r.Profession_Code__c) ||
                (Dol_IntegrationUtil.isNotBlank(submissionList[0].SAN_Prof_Code__c)))){
                 result = DOL_AppConstants.NULL_EMPTY_STRING + 'ProfessionCodeExists';
-            }else result = DOL_AppConstants.NULL_EMPTY_STRING + 'NoProfessionCode';
+               }else if(Dol_IntegrationUtil.isNotEmpty(submissionList) && Dol_IntegrationUtil.isNotBlank(submissionList[0].Complaint__c) && (Dol_IntegrationUtil.isNotBlank(submissionList[0].Complaint__r.License__r.Profession_Code__c) ||
+               (Dol_IntegrationUtil.isNotBlank(submissionList[0].SAN_Prof_Code__c)))){
+                result = DOL_AppConstants.NULL_EMPTY_STRING + 'ProfessionCodeExists';
+                   
+               }else result = DOL_AppConstants.NULL_EMPTY_STRING + 'NoProfessionCode';
         }  
         System.debug('result'+result);
         return result;
@@ -84,6 +88,30 @@ public class Dol_UploadDocumenttoSAN {
             throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
+    @AuraEnabled
+    public static String getParent(String recordId) {
+        try{
+        System.debug('recordId'+recordId);
+        String result = DOL_AppConstants.NULL_EMPTY_STRING + '';
+        if(Dol_IntegrationUtil.isNotBlank(recordId)){
+            List<MUSW__Submission__c>  submissionList  = [SELECT id, Complaint__c, MUSW__License2__c   from MUSW__Submission__c where id=: recordId AND id != null Limit 1];
+            System.debug('submissionList'+submissionList);
+            if(Dol_IntegrationUtil.isNotEmpty(submissionList) && Dol_IntegrationUtil.isNotBlank(submissionList[0].MUSW__License2__c)){
+                result = DOL_AppConstants.NULL_EMPTY_STRING + 'License';
+            }
+            else if(Dol_IntegrationUtil.isNotEmpty(submissionList) && Dol_IntegrationUtil.isNotBlank(submissionList[0].Complaint__c)){
+                result = DOL_AppConstants.NULL_EMPTY_STRING + 'Case';
+            }
+        }  
+        System.debug('getImageUrl'+result);
+        return result;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
+    }
     
     @AuraEnabled
     public static String backofficeUplaod(String recordId, String docName, String user, String imagetype, String archDate) {
@@ -101,9 +129,9 @@ public class Dol_UploadDocumenttoSAN {
         if(Dol_IntegrationUtil.isNotBlank(recordId) && Dol_IntegrationUtil.isNotBlank(docName) && Dol_IntegrationUtil.isNotBlank(user)){
             List<MUSW__Submission__c>  submissionList  = [SELECT id, SAN_Prof_Code__c, MUSW__License2__c, MUSW__License2__r.Profession_Code__c from MUSW__Submission__c where id=: recordId AND id != null Limit 1];
             if(Dol_IntegrationUtil.isNotEmpty(submissionList) && submissionList[0].MUSW__License2__c == null && submissionList[0].SAN_Prof_Code__c != null){
-            	professionCode = submissionList[0].SAN_Prof_Code__c;
+                professionCode = submissionList[0].SAN_Prof_Code__c;
             }else if(submissionList[0].MUSW__License2__c != null && submissionList[0].MUSW__License2__r.Profession_Code__c != null){
-            	professionCode = submissionList[0].MUSW__License2__r.Profession_Code__c;
+                professionCode = submissionList[0].MUSW__License2__r.Profession_Code__c;
             }
             else professionCode = DOL_AppConstants.NULL_EMPTY_STRING + 'No code';
             UploadData uploadobj = new UploadData();
@@ -115,7 +143,7 @@ public class Dol_UploadDocumenttoSAN {
             if(archDate!= null){
                 uploadobj.archiveDate = archDate;
             }
-           	if(imagecode != null){
+            if(imagecode != null){
                 uploadobj.imageTransaction = imagecode.Transaction_Code__c;
             }
             System.debug('uploadobj=='+uploadobj);
@@ -193,10 +221,10 @@ public class Dol_UploadDocumenttoSAN {
                         uploadobj.imageData = contversion.VersionData;
                         uploadobj.createDate = string.valueOf(contversion.CreatedDate);
                         uploadobj.attachmentId = contversion.ContentDocumentId;
-                     	uploadobj.imageURL = DOL_AppConstants.NULL_EMPTY_STRING + 'docName';
-           				//uploadobj.imageType = DOL_AppConstants.NULL_EMPTY_STRING + 'docName';
-            			uploadobj.areaCode = DOL_AppConstants.NULL_EMPTY_STRING + 'BUS';
-           	 			uploadobj.departmentCode = DOL_AppConstants.NULL_EMPTY_STRING + 'AUC';
+                        uploadobj.imageURL = DOL_AppConstants.NULL_EMPTY_STRING + 'docName';
+                        //uploadobj.imageType = DOL_AppConstants.NULL_EMPTY_STRING + 'docName';
+                        uploadobj.areaCode = DOL_AppConstants.NULL_EMPTY_STRING + 'BUS';
+                        uploadobj.departmentCode = DOL_AppConstants.NULL_EMPTY_STRING + 'AUC';
                         uploadobjList.add(uploadobj);
                         System.debug('uploadobj=='+uploadobj);
                  }
@@ -214,22 +242,22 @@ public class Dol_UploadDocumenttoSAN {
     }*/
             
     public class UploadData{
-        public String userName;	//jhann
-        public String professionCode;	//20205
-        public String polarisId;	//787356
-        public String imageName;	//YYYYMMDDmillisecondIncirmenting#
+        public String userName; //jhann
+        public String professionCode;   //20205
+        public String polarisId;    //787356
+        public String imageName;    //YYYYMMDDmillisecondIncirmenting#
         public String imageType ;
         public String imageURL ;
         public String imageStatus ;
         public String imageComment ;
-        public String areaCode;	//BUS
-        public String departmentCode;	//AUC
+        public String areaCode; //BUS
+        public String departmentCode;   //AUC
         public Blob imageData ;
         public String imageId ;
         public string createDate ;
         public String attachmentId ;
         public String archiveDate;
         public String imageTransaction;
-	
-	}
+    
+    }
 }

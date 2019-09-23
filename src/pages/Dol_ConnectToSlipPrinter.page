@@ -1,35 +1,85 @@
 <apex:page controller="Dol_ConnectToSlipPrinter" sidebar="false" showHeader="false" standardStylesheets="false" lightningStylesheets="true">
+    
+    <script>
+    var printerTitleName = "{!printerName}";
+    //console.log('printerTitleName=='+printerTitleName);
+    document.title = 'Slip Printer: '+printerTitleName;
+    </script>
     <apex:form >
+         <div id ="div_please_wait" style="margin-left:20px;margin-top:20px">Please wait.. <br></br>Sending print to {!printerName}</div>
         <apex:pagemessages />
+        <p class="center" id= "error" style="color:red;font-size:13px; padding: 20px; margin: auto;width: 90%;"/>
     </apex:form> 
     
-   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     
-    
-	<script >
+        
+    <script> 
         function myFunction(){
-            var param = "{!printParameter}";
-            var xmlHttp = new XMLHttpRequest();
+            var printInput = "{!printParameter}";
+            var printerName = "{!printerName}"; 
+            var isdebugOn = "{!isdebugOn}"; 
+            var isPrinterConfigured = "{!isPrinterConfigured}";
+            //console.log('isPrinterConfigured=='+isPrinterConfigured);
+            var xhr = new XMLHttpRequest();
             window.$Label = window.$Label || {};
-            $Label.customLabel= '{!($Label.Dol_SlipPrinterLocalHost )}';
-            var endPoint =  $Label.customLabel+param;
-            xmlHttp.open("GET", endPoint, true);
-            xmlHttp.send();
-            xmlHttp.responseType = 'text';
-            xmlHttp.onreadystatechange = function() {
-                closewindow();
-            if (this.readyState == 4 && this.status == 200) {
-              console.log('onreadystatechange');
-            }
-        };
-        console.log("Request sent");
-        }
-            var $ = jQuery;
+            $Label.customLabel= '{!($Label.Dol_SlipPrinterLocalHost)}';
+            var url =  $Label.customLabel;
+            //var url = "http://localhost:8045/DOLSlipPrinter/api";
+            console.log('API POST Url: '+url);
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+          
+            xhr.onreadystatechange = function () {
+   
+                $('#div_please_wait').hide();
+
+                if (xhr.readyState == 4 && xhr.status == 0) {
+                     document.getElementById("error").innerHTML = "Unknown Error Occured: Server response not received.</br>Please check DOL Slip printer rest API is running on user machine</br></br></br>API URL: "+ url;
+                     return;
+                }else if (xhr.status === 200 && xhr.readyState == 4 ) {
+                    console.log('@xhr.responseText'+xhr.responseText);
+                    var response = JSON.parse(xhr.responseText);
+                    console.log('@response'+response);
+                    console.log(response.isSuccess + ", " + response.error, +"," + response.debug);
+                    if(response.isSuccess === true){
+                        closewindow();
+                    }else{
+                        document.getElementById("error").innerHTML = "Error occoured:"+ " " +response.error+"</br>"+"<hr/>"+"</br>"+"Debug Log:"+"</br>"+response.debug;
+                    }//End if 
+                    
+                    return; 
+                }else if (xhr.status != 200) {
+                    alert(xhr.status);
+                    console.log('@xhr.responseText'+xhr.responseText);
+                    var response = JSON.parse(xhr.responseText);
+                    console.log('@response'+response);
+                    //console.log(response.isSuccess + ", " + response.error, +"," + response.debug);
+                    document.getElementById("error").innerHTML = "Error occoured"+ " " +response.error ;
+                    return;
+                }//End if 
+            };
+            var requestbody = JSON.stringify({"printerName": printerName, "enableDebug": true,"data": printInput});
+            console.log('@requestbody'+requestbody);
+            xhr.send(requestbody);
+          
+        }//End my function
+     
+        var $ = jQuery;
             $( window ).ready(function() {
-                myFunction();
+                var isPrinterConfigured = "{!isPrinterConfigured}";
+                console.log('@isPrinterConfigured'+isPrinterConfigured);
+                if(isPrinterConfigured === 'true'){ 
+                    console.log('@inside isPrinterConfigured');
+                    myFunction();
+                }else if(isPrinterConfigured === 'false'){
+                    document.getElementById("error").innerHTML = "Error occoured"+ " " + "Printer is not Configured for the logged in User" ;
+                }
             });
+            
         function closewindow(){
                 window.close();
             }
+    
     </script> 
 </apex:page>

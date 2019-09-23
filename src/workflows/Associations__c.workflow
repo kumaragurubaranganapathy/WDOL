@@ -11,7 +11,7 @@
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Approval_notification_internship_final</template>
-    </alerts>
+    </alerts>-->
     <alerts>
         <fullName>Designated_person_accept_business</fullName>
         <ccEmails>satapathy.swapna@gmail.com</ccEmails>
@@ -122,7 +122,7 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Intern_removal_notification_intern_final</template>
     </alerts>
-    <alerts>
+    <!--<alerts>
         <fullName>Intern_separation_notification_intern</fullName>
         <description>Intern separation notification - intern</description>
         <protected>false</protected>
@@ -133,7 +133,7 @@
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Intern_separation_notification_intern_final</template>
-    </alerts>
+    </alerts> -->
     <alerts>
         <fullName>Licensee_accept_business</fullName>
         <description>Licensee accept - business</description>
@@ -146,7 +146,7 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_accept_business_final</template>
     </alerts>
-    <alerts>
+    <!--<alerts>
         <fullName>Licensee_accept_licensee_additional_employer</fullName>
         <description>Licensee accept - licensee - additional employer</description>
         <protected>false</protected>
@@ -157,7 +157,7 @@
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_accept_licensee_additional_employer_final</template>
-    </alerts>
+    </alerts>-->
     <alerts>
         <fullName>Licensee_accept_licensee_one_employer</fullName>
         <description>Licensee accept - licensee - one employer</description>
@@ -170,7 +170,7 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_accept_licensee_one_employer_final</template>
     </alerts>
-    <alerts>
+    <!--<alerts>
         <fullName>Licensee_decline_business</fullName>
         <description>Licensee decline - business</description>
         <protected>false</protected>
@@ -217,7 +217,7 @@
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_invitation_notification_TS_licensee_additional_business_final</template>
-    </alerts>
+    </alerts>-->
     <alerts>
         <fullName>Licensee_invitation_notification_business</fullName>
         <description>Licensee invitation notification - business</description>
@@ -242,7 +242,7 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_invitation_notification_licensee</template>
     </alerts>
-    <alerts>
+    <!--<alerts>
         <fullName>Licensee_removal_notification_business</fullName>
         <description>Licensee removal notification - business</description>
         <protected>false</protected>
@@ -336,7 +336,7 @@
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_accept_trainee_additional_supervisor_final</template>
-    </alerts>
+    </alerts>-->
     <alerts>
         <fullName>Trainee_decline_trainee_no_supervisor</fullName>
         <description>Trainee decline - trainee - no supervisor</description>
@@ -409,7 +409,7 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_intern_removal_notification_supervisor_sponsor_final</template>
     </alerts>
-    <alerts>
+    <!--<alerts>
         <fullName>Trainee_intern_separation_notification_supervisor_sponsor</fullName>
         <description>Trainee intern separation notification - supervisor sponsor</description>
         <protected>false</protected>
@@ -468,7 +468,7 @@
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_separation_notification_trainee_with_supervisor_final</template>
-    </alerts>
+    </alerts> -->
     <fieldUpdates>
         <fullName>Update_Child_License_email</fullName>
         <field>Child_License_Email__c</field>
@@ -693,7 +693,7 @@
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <rules>
+    <!--<rules>
         <fullName>Email - Intern separation notification - intern</fullName>
         <actions>
             <name>Intern_separation_notification_intern</name>
@@ -721,7 +721,7 @@
             <value>Data Administrator</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
+    </rules> -->
     <rules>
         <fullName>Email - Licensee accept - business</fullName>
         <actions>
@@ -751,7 +751,7 @@
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <rules>
+    <!--<rules>
         <fullName>Email - Licensee accept - licensee - additional employer</fullName>
         <actions>
             <name>Licensee_accept_licensee_additional_employer</name>
@@ -784,7 +784,7 @@
             <value>Data Administrator</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
+    </rules> -->
     <rules>
         <fullName>Email - Licensee accept - licensee - one employer</fullName>
         <actions>
@@ -819,7 +819,7 @@
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <rules>
+    <!--<rules>
         <fullName>Email - Licensee decline - business</fullName>
         <actions>
             <name>Licensee_decline_business</name>
@@ -949,7 +949,7 @@
             <value>Data Administrator</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
+    </rules> -->
     <rules>
         <fullName>Email - Licensee invitation notification - business</fullName>
         <actions>
@@ -1026,7 +1026,7 @@
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <rules>
+    <!--<rules>
         <fullName>Email - Licensee removal notification - business</fullName>
         <actions>
             <name>Licensee_removal_notification_business</name>
@@ -1286,7 +1286,7 @@
             <value>2</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
+    </rules> -->
     <rules>
         <fullName>Email - Trainee decline - trainee - no supervisor</fullName>
         <actions>
@@ -1453,7 +1453,7 @@
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <rules>
+    <!--<rules>
         <fullName>Email - Trainee intern separation notification - supervisor sponsor</fullName>
         <actions>
             <name>Trainee_intern_separation_notification_supervisor_sponsor</name>
@@ -1631,7 +1631,7 @@
         <active>true</active>
         <formula>OR( NOT (ISNULL(Parent_License__c))  ,NOT (ISNULL(Child_License__c)) )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
+    </rules> -->
     <tasks>
         <fullName>Email_Outbound_Designated_person_invitation_notification</fullName>
         <assignedToType>owner</assignedToType>
@@ -1972,5 +1972,5 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Trainee separation notification - trainee - with supervisor</subject>
-    </tasks>-->
+    </tasks>
 </Workflow>

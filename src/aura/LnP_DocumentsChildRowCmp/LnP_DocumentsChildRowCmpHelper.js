@@ -84,9 +84,9 @@
         component.set("v.listDependingValues", dependentFields);
         
     },
-    onPrint : function(component,event,helper){
-        var printInput = component.get("v.slipPrinterInput");
-        //console.log('printInput&&&'+printInput);
-        window.open('/apex/Dol_ConnectToSlipPrinter?validationNo='+printInput,'_blank');
+    onPrint : function(component,event,helper){      
+       var printInput = component.get("v.slipPrinterInput"); 
+       window.open('/apex/Dol_ConnectToSlipPrinter?validationNo='+printInput,'popUpWindow','height=400,width=400,left=650,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');
+       
     },
 })

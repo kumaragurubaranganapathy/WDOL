@@ -82,6 +82,11 @@
             <operation>equals</operation>
             <value>AFRS-XXX</value>
         </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.AFRS_Transaction_Code__c</field>
+            <operation>equals</operation>
+            <value>012</value>
+        </summaryFilterItems>
         <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>

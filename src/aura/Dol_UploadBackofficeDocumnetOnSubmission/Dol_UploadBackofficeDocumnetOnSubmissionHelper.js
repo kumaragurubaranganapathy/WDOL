@@ -64,6 +64,29 @@
       });
     $A.enqueueAction(action);
 	},
+    getParentLookup : function(component, event, helper) {	
+        var recordId = component.get("v.recordId");
+		var action = component.get("c.getParent");
+        action.setParams({
+            "recordId" : recordId
+            }) ; 
+       	action.setCallback(this, function(response){
+        	if(response.getState() === "SUCCESS") {
+                var result = response.getReturnValue();
+                console.log('checkparentLookup result=='+result);
+                if(result!= null && result === 'License'){
+                    component.set("v.parentLookup", 'License');
+                }else if(result!= null && result === 'Case'){
+                    component.set("v.parentLookup", 'Case');
+                }
+            } 
+            if(response.getState() === "ERROR"){
+                var error = response.getError();
+                console.log('some problem'+error[0].message);}
+    
+      });
+    $A.enqueueAction(action);
+	},
     
     showToast : function(component, event, title, type, message) {
         var toastEvent = $A.get("e.force:showToast");
@@ -100,6 +123,18 @@
             var state = response.getState();
             if (state === "SUCCESS") {              
                 var imageTypeValue = response.getReturnValue();
+                console.log('imageTypeValue=='+imageTypeValue);
+                var parentLookup = component.get("v.parentLookup");
+                console.log('parentLookup=='+parentLookup);
+                if(parentLookup == 'License'){
+                    imageTypeValue.splice(imageTypeValue.indexOf('Compliance'), 1 );
+                }
+                if(parentLookup == 'Case'){
+                    imageTypeValue = []
+                    imageTypeValue.splice(imageTypeValue.indexOf('Compliance'), 1 );
+                    imageTypeValue = ['Compliance'];
+                }
+                
                 if (imageTypeValue != undefined && imageTypeValue.length > 0) {
                     optsimageType.push({
                         class: "optionClass",
