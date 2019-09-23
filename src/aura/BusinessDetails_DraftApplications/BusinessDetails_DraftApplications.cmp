@@ -81,9 +81,9 @@
                                                 <div class="slds-truncate" title="{!tableData.Status}">{!tableData.Status}</div>
                                                 <aura:set attribute="else">None</aura:set>
                                             </aura:if>
-                                            <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj = "License" data-status ="{!tableData.MUSW__Status__c}" data-substatus = "">
+                                           <!-- <div id="helptextdivid" onmouseover="{!c.getHelpText}" data-obj = "License" data-status ="{!tableData.MUSW__Status__c}" data-substatus = "">
                                                 <lightning:helptext content="{!v.helptextcontent}" />
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </td>
                                     <td data-label="actions" class="cell-style">
