@@ -312,6 +312,19 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Credential__c</fields>
+        <fields>Application_Method__c</fields>
+        <fields>MUSW__Status__c</fields>
+        <fields>MUSW__Applicant__c</fields>
+        <fields>MUSW__Primary_Licensee__c</fields>
+        <fields>MUSW__Issue_Date__c</fields>
+        <fields>MUSW__Renewal_Date__c</fields>
+        <fields>MUSW__Expiration_Date__c</fields>
+        <fields>MUSW__Alert_Indicator__c</fields>
+        <relatedList>MUSW__License2__c.Ultimate_Parent_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <relatedList>Warrant__c.Recipient__c</relatedList>
     </relatedLists>
     <relatedLists>
