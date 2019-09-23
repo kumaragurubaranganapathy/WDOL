@@ -536,7 +536,7 @@
     <fields>
         <fullName>Licensee_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>HYPERLINK( &apos;https://wadolbuspro--dev.lightning.force.com/lightning/r/Contact/&apos;&amp;  License__r.MUSW__Applicant__r.Id  &amp;&apos;/view&apos;,  License__r.MUSW__Applicant__r.FirstName &amp; &quot; &quot;&amp;License__r.MUSW__Applicant__r.LastName  )</formula>
+        <formula>HYPERLINK( &apos;/lightning/r/Contact/&apos;&amp;  License__r.MUSW__Applicant__r.Id  &amp;&apos;/view&apos;,  License__r.MUSW__Applicant__r.FirstName &amp; &quot; &quot;&amp;License__r.MUSW__Applicant__r.LastName  )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Licensee Name</label>
         <required>false</required>
