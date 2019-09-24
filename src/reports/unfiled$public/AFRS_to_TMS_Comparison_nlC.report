@@ -2,15 +2,11 @@
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
+        <field>Journal_Voucher__c.AFRS_012_TMS__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
         <field>Journal_Voucher__c.AFRS_Interface_Net_Amount__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Journal_Voucher__c.AFRS_Interface_012_Net_Amount__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Journal_Voucher__c.AFRS_012_Net_Amount__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
@@ -26,6 +22,18 @@
         <field>Journal_Voucher__c.Document_Type__c</field>
     </columns>
     <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Journal_Voucher__c.AFRS_Interface_Total_Amount__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Journal_Voucher__c.AFRS_Interface_012_Amount__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Journal_Voucher__c.TMS_Interface_Total_Amount__c</field>
+    </columns>
+    <columns>
         <field>Journal_Voucher__c.AFRS_Status__c</field>
     </columns>
     <columns>
@@ -33,33 +41,6 @@
     </columns>
     <columns>
         <field>Journal_Voucher__c.TMS_Status__c</field>
-    </columns>
-    <columns>
-        <field>Journal_Voucher__c.TMS_Process_Date__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Journal_Voucher__c.AFRS_Interface_DR_Amount__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Journal_Voucher__c.AFRS_Interface_CR_Amount__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Journal_Voucher__c.AFRS_Interface_012_DR_Amount__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Journal_Voucher__c.AFRS_Interface_012_CR_Amount__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Journal_Voucher__c.TMS_Interface_DR_Amount__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Journal_Voucher__c.TMS_Interface_CR_Amount__c</field>
     </columns>
     <columns>
         <field>CUST_CREATED_DATE</field>
@@ -76,6 +57,9 @@
     </columns>
     <columns>
         <field>Journal_Voucher_Detail__c.TMS_Transaction_Code__c</field>
+    </columns>
+    <columns>
+        <field>Journal_Voucher__c.TMS_Process_Date__c</field>
     </columns>
     <columns>
         <field>Journal_Voucher_Detail__c.Reversal__c</field>
@@ -98,12 +82,12 @@
         <field>Journal_Voucher_Detail__c.Amount__c</field>
     </columns>
     <filter>
-        <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <criteriaItems>
             <column>CUST_CREATED_DATE</column>
             <isUnlocked>true</isUnlocked>
             <operator>greaterOrEqual</operator>
-            <value>9/1/2019 12:00 AM</value>
+            <value>1/1/2019 12:00 AM</value>
         </criteriaItems>
         <criteriaItems>
             <column>Journal_Voucher__c.Document_Title__c</column>
@@ -112,13 +96,7 @@
             <value>Journal Voucher</value>
         </criteriaItems>
         <criteriaItems>
-            <column>Journal_Voucher__c.AFRS_012_Net_Amount__c</column>
-            <isUnlocked>false</isUnlocked>
-            <operator>notEqual</operator>
-            <value>0</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Journal_Voucher__c.TMS_Interface_Net_Amount__c</column>
+            <column>Journal_Voucher__c.AFRS_012_TMS__c</column>
             <isUnlocked>false</isUnlocked>
             <operator>notEqual</operator>
             <value>0</value>
@@ -131,7 +109,7 @@
         <field>CUST_NAME</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>One Sided Journal Vouchers</name>
+    <name>AFRS to TMS Comparison</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -141,6 +119,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
+    <sortColumn>Journal_Voucher__c.AFRS_Interface_Total_Amount__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Journal_Voucher__c.AFRS_Process_Date__c</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
