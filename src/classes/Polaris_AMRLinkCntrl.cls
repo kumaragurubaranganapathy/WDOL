@@ -204,7 +204,7 @@ public class Polaris_AMRLinkCntrl {
        system.debug('createcode===');
         String value = 'success';
         List<User> userInfoData = new  List<User>();
-        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
+        String queryCondition = ' Id=\''+sTRING.escapeSingleQuotes(UserInfo.getUserId())+'\'';
         System.debug('User Id ' + queryCondition);
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         system.debug('queryStr '+queryStr);
