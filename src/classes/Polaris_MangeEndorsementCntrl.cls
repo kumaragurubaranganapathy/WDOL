@@ -165,7 +165,7 @@ public class Polaris_MangeEndorsementCntrl {
     public static String insertRequest(String licId,String licenseType, String board)
     {
         List<User> userInfoData = new  List<User>();
-        String queryCondition = ' Id=\''+sTRING.escapeSingleQuotes(UserInfo.getUserId())+'\'';
+        String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
         System.debug('User Id ' + queryCondition);
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         system.debug('queryStr '+queryStr);
