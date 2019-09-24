@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <alerts>
+   <!-- <alerts>
         <fullName>Application_closed_RFI</fullName>
         <description>Application closed - RFI</description>
         <protected>false</protected>
@@ -36,19 +36,7 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Application_submission_final</template>
     </alerts>
-    <alerts>
-        <fullName>Bond_expiration</fullName>
-        <description>Bond expiration</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Bond_expiration_final</template>
-    </alerts>
-    <alerts>
+	    <alerts>
         <fullName>First_license_issued_Active_Appraiser_email</fullName>
         <description>First license issued - Active - Appraiser</description>
         <protected>false</protected>
@@ -168,7 +156,18 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Inactive_supervisor_sponsor_association_final</template>
     </alerts>
-    <alerts>
+	<alerts>
+        <fullName>Payment_for_License_Fee_two_step</fullName>
+        <description>Payment for License Fee - two step</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>DOL_Client_Approved_Finance/First_License_Fee</template>
+    </alerts>
+	    <alerts>
         <fullName>License_expiration_notice_New_application</fullName>
         <description>License expiration notice - New application</description>
         <protected>false</protected>
@@ -204,114 +203,7 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/License_expiration_notice_renewal_allowed_final</template>
     </alerts>
-    <alerts>
-        <fullName>Payment_for_License_Fee_two_step</fullName>
-        <description>Payment for License Fee - two step</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>DOL_Finance/First_License_Fee</template>
-    </alerts>
-    <alerts>
-        <fullName>Renewal_CE_audit_notification</fullName>
-        <description>Renewal - CE audit notification</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_CE_Audit_notification_final</template>
-    </alerts>
-    <alerts>
-        <fullName>Renewal_PDH_audit_approval</fullName>
-        <description>Renewal - PDH audit approval</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_PDH_audit_approval_final</template>
-    </alerts>
-    <alerts>
-        <fullName>Renewal_PDH_audit_notification</fullName>
-        <description>Renewal - PDH audit notification</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_PDH_Audit_notification_final</template>
-    </alerts>
-    <alerts>
-        <fullName>Renewal_issued_Active_Other</fullName>
-        <description>Renewal issued - Active - Other</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_issued_Active_final</template>
-    </alerts>
-    <alerts>
-        <fullName>Renewal_issued_Active_TS_and_CR</fullName>
-        <description>Renewal issued - Active - TS and CR</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_issued_Active_final</template>
-    </alerts>
-    <alerts>
-        <fullName>Renewal_issued_Inactive_TS_and_CR</fullName>
-        <description>Renewal issued - Inactive - TS and CR</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_issued_Inactive_final</template>
-    </alerts>
-    <alerts>
-        <fullName>Renewal_reminder_business</fullName>
-        <description>Renewal reminder - business</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_reminder_business_final</template>
-    </alerts>
-    <alerts>
-        <fullName>Renewal_reminder_individual</fullName>
-        <description>Renewal reminder - individual</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_reminder_individual_final</template>
-    </alerts>
-    <alerts>
+	<alerts>
         <fullName>Retired_status</fullName>
         <description>Retired status</description>
         <protected>false</protected>
@@ -322,7 +214,7 @@
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Retired_status_final</template>
-    </alerts>
+    </alerts> -->
     <fieldUpdates>
         <fullName>Inactivate_License_on_expiration</fullName>
         <description>Inactivate License on expiration date &lt; today</description>
@@ -370,54 +262,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Update_Record_Type_Business</fullName>
-        <field>RecordTypeId</field>
-        <lookupValue>Business</lookupValue>
-        <lookupValueType>RecordType</lookupValueType>
-        <name>Update Record Type - Business</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Record_Type_Course</fullName>
-        <field>RecordTypeId</field>
-        <lookupValue>Manual_Course</lookupValue>
-        <lookupValueType>RecordType</lookupValueType>
-        <name>Update Record Type - Course</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Record_Type_Individual</fullName>
-        <field>RecordTypeId</field>
-        <lookupValue>Universal_Default_License_Record_Type</lookupValue>
-        <lookupValueType>RecordType</lookupValueType>
-        <name>Update Record Type - Individual</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Status</fullName>
-        <field>MUSW__Status__c</field>
-        <literalValue>Submitted</literalValue>
-        <name>Update_Status</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_expiration_date_of_child</fullName>
-        <field>MUSW__Expiration_Date__c</field>
-        <formula>TODAY()</formula>
-        <name>Update expiration date of child</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Update_the_Owner_to_Appraisal_Management</fullName>
         <description>Queue Assignment for Appraisal Management Company</description>
         <field>OwnerId</field>
@@ -450,16 +294,7 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_the_child_status</fullName>
-        <field>MUSW__Status__c</field>
-        <literalValue>Expired</literalValue>
-        <name>Update the child status</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <rules>
+	<!-- <rules>
         <fullName>Email - Application closed - RFI</fullName>
         <actions>
             <name>Application_closed_RFI</name>
@@ -514,75 +349,7 @@
         <description>Automation rule for email notification: Application submission</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <rules>
-        <fullName>Email - Bond expiration</fullName>
-        <active>true</active>
-        <booleanFilter>1 AND 2</booleanFilter>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Status__c</field>
-            <operation>equals</operation>
-            <value>Active</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Expiration_Date_of_Bond__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <description>Automation rule for email notification: Bond expiration</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-        <workflowTimeTriggers>
-            <actions>
-                <name>Bond_expiration</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>Email_Outbound_Bond_expiration</name>
-                <type>Task</type>
-            </actions>
-            <offsetFromField>MUSW__License2__c.Expiration_Date_of_Bond__c</offsetFromField>
-            <timeLength>-14</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-        <workflowTimeTriggers>
-            <actions>
-                <name>Bond_expiration</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>Email_Outbound_Bond_expiration</name>
-                <type>Task</type>
-            </actions>
-            <offsetFromField>MUSW__License2__c.Expiration_Date_of_Bond__c</offsetFromField>
-            <timeLength>-7</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-        <workflowTimeTriggers>
-            <actions>
-                <name>Bond_expiration</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>Email_Outbound_Bond_expiration</name>
-                <type>Task</type>
-            </actions>
-            <offsetFromField>MUSW__License2__c.Expiration_Date_of_Bond__c</offsetFromField>
-            <timeLength>-1</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-        <workflowTimeTriggers>
-            <actions>
-                <name>Bond_expiration</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>Email_Outbound_Bond_expiration</name>
-                <type>Task</type>
-            </actions>
-            <offsetFromField>MUSW__License2__c.Expiration_Date_of_Bond__c</offsetFromField>
-            <timeLength>-30</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-    </rules>
-    <rules>
+	    <rules>
         <fullName>Email - First license issued - Active - Appraiser</fullName>
         <actions>
             <name>First_license_issued_Active_Appraiser_email</name>
@@ -1142,7 +909,7 @@
         <description>Automation rule for email notification: First license issued - Inactive - supervisor sponsor association</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <rules>
+	<rules>
         <fullName>Email - License expiration notice - New application</fullName>
         <actions>
             <name>License_expiration_notice_New_application</name>
@@ -1347,303 +1114,7 @@
         <description>Automation rule 2 for email notification: License expiration notice - Renewal allowed</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <rules>
-        <fullName>Email - Renewal - CE audit notification</fullName>
-        <actions>
-            <name>Renewal_CE_audit_notification</name>
-            <type>Alert</type>
-        </actions>
-        <active>false</active>
-        <formula>(MUSW__Expiration_Date__c - TODAY() = 120 || MUSW__Expiration_Date__c - TODAY() = 60 || MUSW__Expiration_Date__c - TODAY() = 30) &amp;&amp;  Selected_for_Audit__c = TRUE</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Email - Renewal - PDH audit approval</fullName>
-        <actions>
-            <name>Renewal_PDH_audit_approval</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Email_Outbound_Renewal_PDH_audit_approval</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>1 AND 2</booleanFilter>
-        <criteriaItems>
-            <field>MUSW__License2__c.Audit_Completed_Flag__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Is_Renewal_Eligible__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Email - Renewal - PDH audit notification</fullName>
-        <actions>
-            <name>Renewal_PDH_audit_notification</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Email_Outbound_Renewal_PDH_audit_notification</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <formula>Pending_Audit__c = TRUE &amp;&amp;  Text(MUSW__Status__c) = &apos;Active&apos;</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Email - Renewal issued - Active - Other</fullName>
-        <actions>
-            <name>Renewal_issued_Active_Other</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Email_Outbound_Renewal_issued_Active_Other</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Renewal_Date__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Credential_Type__c</field>
-            <operation>notEqual</operation>
-            <value>Camping Resort Salesperson,Timeshare Salesperson</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Audit_Completed_Flag__c</field>
-            <operation>notEqual</operation>
-            <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Selected_for_Audit__c</field>
-            <operation>notEqual</operation>
-            <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Pending_Audit__c</field>
-            <operation>notEqual</operation>
-            <value>True</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Email - Renewal issued - Active - TS and CR</fullName>
-        <actions>
-            <name>Renewal_issued_Active_TS_and_CR</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Email_Outbound_Renewal_issued_Active_TS_and_CR</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Renewal_Date__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Credential_Type__c</field>
-            <operation>equals</operation>
-            <value>Camping Resort Salesperson,Timeshare Salesperson</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Status__c</field>
-            <operation>equals</operation>
-            <value>Active</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Email - Renewal issued - Inactive - TS and CR</fullName>
-        <actions>
-            <name>Renewal_issued_Inactive_TS_and_CR</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Email_Outbound_Renewal_issued_Inactive_TS_and_CR</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Renewal_Date__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Credential_Type__c</field>
-            <operation>equals</operation>
-            <value>Camping Resort Salesperson,Timeshare Salesperson</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Status__c</field>
-            <operation>equals</operation>
-            <value>Inactive</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Email - Renewal reminder - business</fullName>
-        <active>true</active>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Status__c</field>
-            <operation>equals</operation>
-            <value>Active</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Business</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Is_Renewal_Eligible__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-        <workflowTimeTriggers>
-            <actions>
-                <name>Renewal_reminder_business</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>Email_Outbound_Renewal_reminder_business</name>
-                <type>Task</type>
-            </actions>
-            <offsetFromField>MUSW__License2__c.MUSW__Expiration_Date__c</offsetFromField>
-            <timeLength>-60</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-        <workflowTimeTriggers>
-            <actions>
-                <name>Renewal_reminder_business</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>Email_Outbound_Renewal_reminder_business</name>
-                <type>Task</type>
-            </actions>
-            <offsetFromField>MUSW__License2__c.MUSW__Expiration_Date__c</offsetFromField>
-            <timeLength>-30</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-        <workflowTimeTriggers>
-            <actions>
-                <name>Renewal_reminder_business</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>Email_Outbound_Renewal_reminder_business</name>
-                <type>Task</type>
-            </actions>
-            <offsetFromField>MUSW__License2__c.MUSW__Expiration_Date__c</offsetFromField>
-            <timeLength>-7</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-        <workflowTimeTriggers>
-            <actions>
-                <name>Renewal_reminder_business</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>Email_Outbound_Renewal_reminder_business</name>
-                <type>Task</type>
-            </actions>
-            <offsetFromField>MUSW__License2__c.MUSW__Expiration_Date__c</offsetFromField>
-            <timeLength>-120</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-    </rules>
-    <rules>
-        <fullName>Email - Renewal reminder - individual</fullName>
-        <active>true</active>
-        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Status__c</field>
-            <operation>equals</operation>
-            <value>Active</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Individual</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Is_Renewal_Eligible__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Pending_Audit__c</field>
-            <operation>notEqual</operation>
-            <value>True</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-        <workflowTimeTriggers>
-            <actions>
-                <name>Renewal_reminder_individual</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>Email_Outbound_Renewal_reminder_individual</name>
-                <type>Task</type>
-            </actions>
-            <offsetFromField>MUSW__License2__c.MUSW__Expiration_Date__c</offsetFromField>
-            <timeLength>-7</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-        <workflowTimeTriggers>
-            <actions>
-                <name>Renewal_reminder_individual</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>Email_Outbound_Renewal_reminder_individual</name>
-                <type>Task</type>
-            </actions>
-            <offsetFromField>MUSW__License2__c.MUSW__Expiration_Date__c</offsetFromField>
-            <timeLength>-60</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-        <workflowTimeTriggers>
-            <actions>
-                <name>Renewal_reminder_individual</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>Email_Outbound_Renewal_reminder_individual</name>
-                <type>Task</type>
-            </actions>
-            <offsetFromField>MUSW__License2__c.MUSW__Expiration_Date__c</offsetFromField>
-            <timeLength>-120</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-        <workflowTimeTriggers>
-            <actions>
-                <name>Renewal_reminder_individual</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>Email_Outbound_Renewal_reminder_individual</name>
-                <type>Task</type>
-            </actions>
-            <offsetFromField>MUSW__License2__c.MUSW__Expiration_Date__c</offsetFromField>
-            <timeLength>-30</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-    </rules>
-    <rules>
+	<rules>
         <fullName>Email - Retired status</fullName>
         <actions>
             <name>Retired_status</name>
@@ -1666,7 +1137,7 @@
         </criteriaItems>
         <description>Automation rule for email notification: Retired status</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
+    </rules> -->
     <rules>
         <fullName>Inactivate License on expiration</fullName>
         <actions>
@@ -1693,7 +1164,7 @@
         <formula>NOT(ISBLANK(MUSW__Parcel__c))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <rules>
+	<rules>
         <fullName>Payment Notification for License Fee</fullName>
         <actions>
             <name>Payment_for_License_Fee_two_step</name>
@@ -1788,60 +1259,6 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Record Type Change</fullName>
-        <actions>
-            <name>Update_Record_Type_Individual</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Status</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>MUSW__License2__c.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Manual Individual</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Record Type Change %28Business%29</fullName>
-        <actions>
-            <name>Update_Record_Type_Business</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Status</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>MUSW__License2__c.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Manual Business</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Record Type Change %28Course%29</fullName>
-        <actions>
-            <name>Update_Record_Type_Course</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Status</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>MUSW__License2__c.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Manual Course</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
         <fullName>Set Expiration Date to current date when license is sunset</fullName>
         <actions>
             <name>Set_MUSW_Expiration_Date_to_current_date</name>
@@ -1856,42 +1273,7 @@
         <description>set Expiration Date to current date when license is sunset</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <rules>
-        <fullName>Update FE Branch Expiration</fullName>
-        <actions>
-            <name>Update_expiration_date_of_child</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_the_child_status</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <formula>AND(  ISPICKVAL(Credential_Type__c, &quot;Funeral Establishment Branch&quot;) , Parent_License__c  &lt;&gt; null, ISPICKVAL(Parent_License__r.Credential_Type__c,&quot;Funeral Establishment&quot;), ISPICKVAL(Parent_License__r.MUSW__Status__c,&quot;Expired&quot;),  NOT(ISPICKVAL(MUSW__Status__c,&quot;Expired&quot;))
-)</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Update Pre-License Number</fullName>
-        <active>false</active>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Status__c</field>
-            <operation>notEqual</operation>
-            <value>Active</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>activity tracker</fullName>
-        <active>true</active>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Status__c</field>
-            <operation>notEqual</operation>
-            <value>Active</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <tasks>
+	<!--<tasks>
         <fullName>Email_Outbound_Application_closed_RFI</fullName>
         <assignedToType>owner</assignedToType>
         <dueDateOffset>0</dueDateOffset>
@@ -1924,18 +1306,7 @@
         <status>Completed</status>
         <subject>Email Outbound: Application submission</subject>
     </tasks>
-    <tasks>
-        <fullName>Email_Outbound_Bond_expiration</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Email Outbound: Bond expiration</subject>
-    </tasks>
-    <tasks>
+	    <tasks>
         <fullName>Email_Outbound_First_license_issued_Active_Appraiser</fullName>
         <assignedToType>owner</assignedToType>
         <dueDateOffset>0</dueDateOffset>
@@ -2045,7 +1416,7 @@
         <status>Completed</status>
         <subject>Email Outbound: First license issued - Inactive - supervisor sponsor association</subject>
     </tasks>
-    <tasks>
+	    <tasks>
         <fullName>Email_Outbound_License_expiration_notice_New_application</fullName>
         <assignedToType>owner</assignedToType>
         <dueDateOffset>0</dueDateOffset>
@@ -2078,84 +1449,7 @@
         <status>Completed</status>
         <subject>Email Outbound: License expiration notice - Renewal allowed 2</subject>
     </tasks>
-    <tasks>
-        <fullName>Email_Outbound_Renewal_PDH_audit_approval</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Email Outbound: Renewal - PDH audit approval</subject>
-    </tasks>
-    <tasks>
-        <fullName>Email_Outbound_Renewal_PDH_audit_notification</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Email Outbound: Renewal - PDH audit notification</subject>
-    </tasks>
-    <tasks>
-        <fullName>Email_Outbound_Renewal_issued_Active_Other</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Email Outbound: Renewal issued - Active - Other</subject>
-    </tasks>
-    <tasks>
-        <fullName>Email_Outbound_Renewal_issued_Active_TS_and_CR</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Email Outbound: Renewal issued - Active - TS and CR</subject>
-    </tasks>
-    <tasks>
-        <fullName>Email_Outbound_Renewal_issued_Inactive_TS_and_CR</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Email Outbound: Renewal issued - Inactive - TS and CR</subject>
-    </tasks>
-    <tasks>
-        <fullName>Email_Outbound_Renewal_reminder_business</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Email Outbound: Renewal reminder - business</subject>
-    </tasks>
-    <tasks>
-        <fullName>Email_Outbound_Renewal_reminder_individual</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Email Outbound: Renewal reminder - individual</subject>
-    </tasks>
-    <tasks>
+	<tasks>
         <fullName>Email_Outbound_Retired_status</fullName>
         <assignedToType>owner</assignedToType>
         <dueDateOffset>0</dueDateOffset>
@@ -2165,5 +1459,5 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Retired status</subject>
-    </tasks>
+    </tasks> -->
 </Workflow>
