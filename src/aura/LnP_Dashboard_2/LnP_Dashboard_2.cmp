@@ -1244,7 +1244,7 @@
                                                             </td>
                                                             <td data-label="Actions">
                                                                 <div class="table-btn">
-                                                                    <aura:if isTrue="{!(tableData.MUSW__Status__c == 'Generate Fee')||(tableData.MUSW__Status__c == 'Pending Payment') ||(tableData.MUSW__Status__c == 'Payment Pending')}">
+                                                                    <aura:if isTrue="{!(tableData.MUSW__Status__c == 'Pending License Fee')||(tableData.MUSW__Status__c == 'Generate Fee')||(tableData.MUSW__Status__c == 'Pending Payment') ||(tableData.MUSW__Status__c == 'Payment Pending')}">
                                                                         <lightning:button variant="brand" label="Pay Fee" value="{!tableData.Id}" title="Pay Fee"
                                                                                           onclick="{!c.redirectToCart}"
                                                                                           />

@@ -20,6 +20,6 @@
     </values>
     <values>
         <field>Pending_Applications_statuses__c</field>
-        <value xsi:type="xsd:string">Submitted,Submission Failed,Pending Payment,Pending Action,Pending Additional Qualifications,In Review,In-Review,Payment Pending,Generate Fee</value>
+        <value xsi:type="xsd:string">Pending License Fee,Submitted,Submission Failed,Pending Payment,Pending Action,Pending Additional Qualifications,In Review,In-Review,Payment Pending,Generate Fee</value>
     </values>
 </CustomMetadata>
