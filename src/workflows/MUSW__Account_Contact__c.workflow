@@ -59,6 +59,16 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Account_Admin_invitation_notification_contact_final</template>
     </alerts>
+    <fieldUpdates>
+        <fullName>update_status_on_No_Response</fullName>
+        <description>update status when  no response is received  from contact</description>
+        <field>Status__c</field>
+        <literalValue>No Response</literalValue>
+        <name>update status on No Response</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>Email - Account Admin accept</fullName>
         <actions>
