@@ -31,10 +31,10 @@ public class LnP_CalculateSystemGeneratedAmountClass {
                     }
                     cashRegister.System_generated_cash_total__c = totalAmount;
                     cashRegisterList.add(cashRegister);
-                    if(!cashRegisterList.isEmpty()){
-                        update cashRegisterList;
-                   }
                 }
+				if(!cashRegisterList.isEmpty()){
+						update cashRegisterList;
+				   }
             
         }
         return null;
