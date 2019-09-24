@@ -16,13 +16,7 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
     }
     public static boolean runOnce = false;
     TriggerDispatcher.Run(new License2TriggerHandler());
-    System.debug('inside before Insert trigger');
-    if(trigger.isBefore && trigger.isInsert && runOnce == false){
-        runonce = true;
-        System.debug('inside before Insert trigger');
-        WA_License_utility.updateProfessionCode(trigger.New);
-    }
-      
+    System.debug('inside before Insert trigger');      
     if(trigger.isBefore && trigger.isupdate && runOnce == false){
         runonce = true;
         List<MUSW__License2__c> licList = new List<MUSW__License2__c>();
