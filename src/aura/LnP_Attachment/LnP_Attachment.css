@@ -13,14 +13,14 @@
     z-index:0;
 }
 .THIS .slds-file-selector_files .slds-file-selector__button{
-    /*color: #ffffff;
-    background: t(primary);*/
+    color: t(LnGWhite);
+    background: t(primary);
     width: 200px;
-    height: 42px;
-    background: #ffffff;
+    height: 42px;    
     border-radius: 5px;
-    border: solid 2px #0872b9;
-    color: t(primary);
+    border: solid 1px t(primary);
+    /*background: #ffffff;
+    color: t(primary); */
     text-align: center;
     max-height: 42px;
 }
@@ -28,7 +28,6 @@
     font-weight:600;
     color:t(LnGFormTitleColor);
     font-size:16px;
-    margin-left:1rem;
  }
 .THIS .fileupload .slds-form-element__label{
     margin-left:1rem;
@@ -68,6 +67,17 @@
 }
 .THIS button{
 	width: 0px;
+}
+.THIS.attach-wrapper .slds-form-element__label{
+    display:none;
+}
+.THIS .upload-wrapper{
+    padding:1rem;
+    border: solid 1px t(grayBorder);
+    margin-top:1rem;
+}
+.THIS .upload-wrapper:last-of-type{
+    margin-bottom:1rem;
 }
 @media t(mqSmall){
     .THIS .slds-file-selector_files .slds-file-selector__button{
