@@ -85,6 +85,30 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
+	<fields>
+        <fullName>Days_After_Endorsement_Issue_Date_30__c</fullName>
+        <externalId>false</externalId>
+        <formula>Effective_Date__c + 30</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Days After Endorsement Issue Date 30</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+	<fields>
+        <fullName>Days_From_Today_30__c</fullName>
+        <description>30 days from current date</description>
+        <externalId>false</externalId>
+        <formula>today() + 30</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>30 days from current date</inlineHelpText>
+        <label>Days From Today 30</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
     <fields>
         <fullName>Application_BG__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -447,6 +471,17 @@
         <formula>License__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>License Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>License_Printable_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.License_Printable_Name__c</formula>
+        <label>License Printable Name</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
