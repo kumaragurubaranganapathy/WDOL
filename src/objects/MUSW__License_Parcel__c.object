@@ -194,9 +194,9 @@
     <fields>
         <fullName>Parcel_Address__c</fullName>
         <externalId>false</externalId>
-        <formula>MUSW__Parcel__r.Name + &apos;, &apos; + TEXT(MUSW__Parcel__r.MUSW__State__c) + &apos;, &apos; + MUSW__Parcel__r.Zip_Postal_Code__c + &apos;, &apos; + TEXT(MUSW__Parcel__r.Country__c)</formula>
+        <formula>HYPERLINK(&quot;/&quot; &amp; MUSW__Parcel__r.Id, (MUSW__Parcel__r.Name + &apos;, &apos; + TEXT(MUSW__Parcel__r.MUSW__State__c) + &apos;, &apos; + MUSW__Parcel__r.MUSW__Post_Zip_Code__c + &apos;, &apos; + TEXT(MUSW__Parcel__r.Country__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Parcel Address</label>
+        <label>Address</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -273,7 +273,7 @@
                 <sorted>false</sorted>
                 <value>
                     <fullName>Active</fullName>
-                    <default>false</default>
+                    <default>true</default>
                     <label>Active</label>
                 </value>
                 <value>

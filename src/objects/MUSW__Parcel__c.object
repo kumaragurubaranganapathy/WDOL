@@ -1731,7 +1731,7 @@ CASE( MUSW__AlertCode__c,
         <externalId>false</externalId>
         <label>Primary Account</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Addresses</relationshipLabel>
+        <relationshipLabel>Address</relationshipLabel>
         <relationshipName>Addresses</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -4543,7 +4543,7 @@ CASE( MUSW__AlertCode__c,
         <fullName>DOR_Parcels</fullName>
         <active>true</active>
         <description>This record type to map data coming from DOR Interface</description>
-        <label>DOR Parcels</label>
+        <label>DOR Address</label>
         <picklistValues>
             <picklist>Address_Type__c</picklist>
             <values>
