@@ -1,11 +1,11 @@
 ({
-	doInit : function(component,event) {
-		var tDate = new Date();
+    doInit : function(component,event) {
+        var tDate = new Date();
         component.set("v.todayDate",tDate);        
-	},
+    },
     
     fetchPeerRelationShipDataRecords : function(component, event, helper){        
-       // console.log("In fetchPeerRelationShipDataRecords...."+licenseDat);        
+        // console.log("In fetchPeerRelationShipDataRecords...."+licenseDat);        
         var action = component.get("c.setPeerRelationShipTable");        
         action.setParams({"licenseId" : component.get("v.parentLicense")});        
         action.setCallback(this,function(response){            
@@ -26,7 +26,7 @@
                 
                 var errors = response.getError();
                 
-                console.error("fetchPeerRelationShipDataRecords   :::::  "+JSON.stringify(errors));
+                //console.error("fetchPeerRelationShipDataRecords   :::::  "+JSON.stringify(errors));
             }    
         });
         $A.enqueueAction(action);    
@@ -57,11 +57,11 @@
                 component.set("v.CurrentLicenseTableDataList",currentLicenseTableHeaderData);
                 component.set("v.loadingSpinner",false);
                 if(component.get("v.sObjectName") == 'MUSW__Account_Contact__c'){
-                   var Objectlist = component.get("v.CurrentLicenseTableDataList");
-                   var countAdmin = 0;
+                    var Objectlist = component.get("v.CurrentLicenseTableDataList");
+                    var countAdmin = 0;
                     for(var j=0;j<Objectlist.length;j++){
                         if(Objectlist[j].Role__c == 'Administrator' && Objectlist[j].Status__c=='Active'){
-                         countAdmin ++;
+                            countAdmin ++;
                         }
                     }
                     component.set("v.adminCount",countAdmin);
@@ -73,8 +73,8 @@
         });
         $A.enqueueAction(action);
     },
-    saveOwnerRecordHelper:function(cmp,event,helper){       
-        
+    saveOwnerRecordHelper:function(cmp,event,helper){   
+       
         var acctCont = event.getSource().get("v.value");
         var count = 0;
         var successInfo = '';
@@ -92,7 +92,8 @@
                 "type":"Error",
                 "title": "Error!",
                 "message": "You can not add more than one DCP"
-            });            
+            });
+           
             toastEvent.fire(); 
         }
         else
