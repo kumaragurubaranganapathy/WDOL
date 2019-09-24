@@ -601,7 +601,7 @@
     <fields>
         <fullName>License_Number_of_Active_Relationships__c</fullName>
         <externalId>false</externalId>
-        <formula>Child_License__r.No_of_Active_Relationship__c</formula>
+        <formula>Parent_License__r.No_of_Associations__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>License Number of Active Relationships</label>
         <precision>18</precision>
