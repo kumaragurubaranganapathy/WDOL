@@ -419,6 +419,15 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    <fields>
+        <fullName>Current_Datetime__c</fullName>
+        <externalId>false</externalId>
+        <formula>NOW()</formula>
+        <label>Current Datetime</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
     </fields>
     <fields>
         <fullName>Degree__c</fullName>

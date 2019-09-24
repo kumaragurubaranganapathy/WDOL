@@ -55,6 +55,19 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
+        <fullName>AFRS_012_Net_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>AFRS_Interface_Net_Amount__c -  AFRS_Interface_012_Net_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AFRS - 012 Net Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>AFRS_012_TMS__c</fullName>
         <externalId>false</externalId>
         <formula>AFRS_Interface_Total_Amount__c - AFRS_Interface_012_Amount__c - TMS_Interface_Total_Amount__c</formula>
@@ -92,6 +105,146 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>AFRS_Interface_012_CR_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>AFRS Interface 012 CR Amount</label>
+        <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
+            <value>AFRS</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Add_to_Interface__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Debit_Credit__c</field>
+            <operation>equals</operation>
+            <value>CR</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.AFRS_Transaction_Code__c</field>
+            <operation>equals</operation>
+            <value>012</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>AFRS_Interface_012_DR_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>AFRS Interface 012 DR Amount</label>
+        <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
+            <value>AFRS</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Add_to_Interface__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Debit_Credit__c</field>
+            <operation>equals</operation>
+            <value>DR</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.AFRS_Transaction_Code__c</field>
+            <operation>equals</operation>
+            <value>012</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>AFRS_Interface_012_Net_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>AFRS_Interface_012_DR_Amount__c -  AFRS_Interface_012_CR_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AFRS Interface 012 Net Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>AFRS_Interface_CR_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>AFRS Interface CR Amount</label>
+        <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
+            <value>AFRS</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Add_to_Interface__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Debit_Credit__c</field>
+            <operation>equals</operation>
+            <value>CR</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>AFRS_Interface_DR_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>AFRS Interface DR Amount</label>
+        <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
+            <value>AFRS</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Add_to_Interface__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Debit_Credit__c</field>
+            <operation>equals</operation>
+            <value>DR</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>AFRS_Interface_Net_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>AFRS_Interface_DR_Amount__c - AFRS_Interface_CR_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AFRS Interface Net Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>AFRS_Interface_Total_Amount__c</fullName>
@@ -566,6 +719,71 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+	<fields>
+        <fullName>TMS_Interface_CR_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>TMS Interface CR Amount</label>
+        <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
+            <value>TMS</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Add_to_Interface__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Debit_Credit__c</field>
+            <operation>equals</operation>
+            <value>CR</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>TMS_Interface_DR_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>TMS Interface DR Amount</label>
+        <summarizedField>Journal_Voucher_Detail__c.Amount__c</summarizedField>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Target_Accounting_Systems__c</field>
+            <operation>contains</operation>
+            <value>TMS</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Add_to_Interface__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>Journal_Voucher_Detail__c.Debit_Credit__c</field>
+            <operation>equals</operation>
+            <value>DR</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Journal_Voucher_Detail__c.JournalVoucher__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>TMS_Interface_Net_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>TMS_Interface_DR_Amount__c - TMS_Interface_CR_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TMS Interface Net Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>TMS_Interface_Total_Amount__c</fullName>
