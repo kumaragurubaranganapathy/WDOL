@@ -75,7 +75,8 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
        // }
         }
 		//Added by Abhilasha for bug 6999
-		updateProfCodeForLicenseWOFees();
+	    List<MUSW__License2__c> triggerNew = Trigger.New;
+		WA_License_utility.updateProfessionCode(triggerNew);
         
         beforeMethod();
         //Dol_IsLicenseRecordUpdatedForASC start
@@ -89,7 +90,8 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     public void onBeforeUpdate() {
 	
 	//Added by Abhilasha for bug 6999
-		updateProfCodeForLicenseWOFees();
+	    List<MUSW__License2__c> triggerNew = Trigger.New;
+		WA_License_utility.updateProfessionCode(triggerNew);
 		
         if (u.Is_Portal_User__c == true) {
             //This method is for base validation on license details provided by the Applicant
@@ -308,7 +310,7 @@ Description    : This method is updating the Next notification date on license
 Return Type    : void
 Parameter      : Nil
 *********************************************************************************/
-    public void Notificationdate() {
+   // public void Notificationdate() {
         
      /*   List<MUSW__License2__c> triggerOld = Trigger.Old;
         List<MUSW__License2__c> triggerNew = Trigger.New;
@@ -347,7 +349,7 @@ Parameter      : Nil
             }
         } */
         
-    }
+  //  }
     
     /*********************************************************************************
     Method Name    : DRESequence
@@ -421,23 +423,7 @@ Parameter      : Nil
                 lic.Send_information_to_ASC__c = true;
             }            
         }
-    }
-    
-    //Added by Abhilasha for bug 6999
-    public void updateProfCodeForLicenseWOFees(){
-       system.debug('Entered updateProfCodeForLicenseWOFees');
-        List<License_without_Fees__mdt> mdList = [Select Program_Type__c, License_Type__c, Prof_Code__c from License_without_Fees__mdt];
-        system.debug('mdList::'+mdList);
-        for(Object sObj : trigger.new){
-            MUSW__License2__c lic = (MUSW__License2__c) sObj;
-            for(License_without_Fees__mdt md: mdList){
-                if(lic.Application_Type__c == md.Program_Type__c && lic.Credential_Type__c == md.License_Type__c){
-                    lic.Profession_Code__c = md.Prof_Code__c;
-                }
-            }
-        }
-    }
-
+    }    
     //create Review Record after Payment is completed.
     @future
     public static void createReviewOnLicense(List<Id> licenseIdList){
