@@ -14,6 +14,7 @@
     <aura:attribute name="adminCount" type="Integer" />
     <aura:attribute name="parentLicense" type="String" />    
     <aura:attribute name="accountName" type="String" />
+    <aura:attribute name="isAMR" type="Boolean" default="false" />
     <aura:attribute name="associateFlag" type="Boolean" default="false" />
     <aura:attribute name="loadingSpinner" type="Boolean" default="true" />
     <aura:attribute name="AssociationMessage" type="String" default="Are you sure you want to remove this relationship ? " />
@@ -64,10 +65,16 @@
                                                 </aura:if>
                                             </td>
                                             <aura:if isTrue="{!(v.Type == 'Owners') ? true : false}" >
-                                            <td data-label="DCP" class="cell-style">
+                                                <td data-label="DCP" class="cell-style">
                                                     <div class="slds-truncate" title="{!tableData.DCP__c}">
-                                                        <lightning:input type="checkbox" checked="{!tableData.DCP__c}" value="{!tableData.DCP__c}" disabled="true" /></div>
-                                            </td>
+                                                        <aura:if isTrue="{!v.isAMR}">
+                                                            <lightning:input type="checkbox" checked="{!tableData.DCP__c}" value="{!tableData.DCP__c}" />
+                                                            <aura:set attribute="else">
+                                                                <lightning:input type="checkbox" checked="{!tableData.DCP__c}" value="{!tableData.DCP__c}" disabled="true" />
+                                                            </aura:set>
+                                                        </aura:if>
+                                                    </div>                                            			
+                                                </td>
                                             </aura:if>
                                             <td data-label="Email" class="cell-style">
                                                 <div class="slds-truncate" title="{!tableData.Email__c}">{!tableData.Email__c}</div>
@@ -77,26 +84,28 @@
                                                     <div class="slds-truncate" title="{!tableData.Status__c}">{!tableData.Status__c}</div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
-                                            </td>                                             
-                                            <td data-label="Actions" class="cell-style action-cell">
-                                                <div class="rel-btn-wrapper">
-                                                    <aura:if isTrue="{!and((tableData.Status__c == 'Invited'),v.Type == 'Administrators')? true : false}">
-                                                        <a data-index="{!ind}" data-button="cancel" data-id="{!tableData.Id}" class="slds-button_brand slds-button"  onclick="{!c.onCancelAccnConClick}" target="_blank">Cancel</a>
-                                                    </aura:if>
-                                                    <aura:if isTrue="{!and(tableData.Status__c == 'No Response',v.Type == 'Administrators')}">                                                        
-                                                            <lightning:button class="rel-btn"   variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.removeClick}"/>                                                        
-                                                        <lightning:button class="rel-btn"  variant="neutral" label="Resend" title="Resend" value="{!tableData.Id}" onclick = "{!c.resendClick}"/>
-                                                    </aura:if>
-                                                    <aura:if isTrue="{! and(tableData.Status__c != 'Invited',tableData.Status__c != 'No Response') ? true :false }">
-                                                        <aura:if isTrue="{!(tableData.DCP__c==false)}">
-                                                            <lightning:button class="rel-btn"   variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.removeClickOwner}"/>
+                                            </td>    
+                                            <aura:if isTrue="{!not(v.isAMR)}">
+                                                <td data-label="Actions" class="cell-style action-cell">
+                                                    <div class="rel-btn-wrapper">
+                                                        <aura:if isTrue="{!and((tableData.Status__c == 'Invited'),v.Type == 'Administrators')? true : false}">
+                                                            <a data-index="{!ind}" data-button="cancel" data-id="{!tableData.Id}" class="slds-button_brand slds-button"  onclick="{!c.onCancelAccnConClick}" target="_blank">Cancel</a>
                                                         </aura:if>
-                                                    </aura:if>
-                                                </div>    
-                                            </td>
+                                                        <aura:if isTrue="{!and(tableData.Status__c == 'No Response',v.Type == 'Administrators')}">                                                        
+                                                            <lightning:button class="rel-btn"   variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.removeClick}"/>                                                        
+                                                            <lightning:button class="rel-btn"  variant="neutral" label="Resend" title="Resend" value="{!tableData.Id}" onclick = "{!c.resendClick}"/>
+                                                        </aura:if>
+                                                        <aura:if isTrue="{! and(tableData.Status__c != 'Invited',tableData.Status__c != 'No Response') ? true :false }">
+                                                            <aura:if isTrue="{!tableData.DCP__c==false}">
+                                                                <lightning:button class="rel-btn"   variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.removeClickOwner}"/>
+                                                            </aura:if>                                                        
+                                                        </aura:if>
+                                                    </div>    
+                                                </td>
+                                            </aura:if>
                                         </tr>  
-                                    </aura:iteration>
-                                </tbody>
+                                    </aura:iteration>                                       
+                                </tbody>                                
                             </table>                               
                         </div>
                     </div>
@@ -104,6 +113,11 @@
                 <div class="pagination-wrapper">
                     <c:LnP_Pagination fullList="{!v.CurrentLicenseTableDataList}" dispList="{!v.dispList}" pgSize="4" />
                 </div>
+                <aura:if isTrue="{!v.isAMR}">
+                    <div class="save-btn-wrapper">
+                        <lightning:button class="rel-btn save-btn btn btn-lnp add-button" variant="brand" label="Save" title="Save" value="{!v.dispList}" onclick = "{!c.saveClickOwner}"/>
+                    </div>
+                </aura:if>
                 <!--<aura:set attribute="else">
                     <div class="empty-state">
                         There are no {!v.Type}  to display
@@ -112,9 +126,9 @@
             </aura:if>
         </aura:if>
         <aura:if isTrue="{!v.sObjectName == 'Associations__c'}">
-           
+            
             <aura:if isTrue="{!v.CurrentLicenseTableDataList.length != 0}">
-                 <h2 class="table-title">Licensee Relationships</h2>
+                <h2 class="table-title">Licensee Relationships</h2>
                 <div class="table-height">
                     <div>
                         <div class="table-scroll">

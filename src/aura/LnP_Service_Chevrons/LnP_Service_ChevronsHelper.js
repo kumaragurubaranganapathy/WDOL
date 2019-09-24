@@ -97,7 +97,7 @@
             if (state === "SUCCESS"){
                 var result = actionResult.getReturnValue();
                 console.log("AMR::"+JSON.stringify(result));
-                component.set("v.amrData",result);
+                component.set("v.amrData",result);                
                 component.set("v.feesRequired",result.Generate_Fee__c);
             }else{
                 console.log("Error");
@@ -295,6 +295,7 @@
     showDependentQuestionsHelper : function(component, event, helper){        
         component.set("v.showEndoMessage",false);
         component.set("v.showNotaryEndo",false);
+        component.set("v.showOwnerInfo",false);
         var response = event.getSource().get("v.value").trim();
         //alert(response);
         var questionNumber = '';
@@ -311,7 +312,10 @@
                 questionNumber = event.getSource().get("v.name").split('Endorsement')[1];
             }
         
-        
+        if(component.get("v.flowType")=='Update Owners' && response=='Replace DCP')
+        {
+            component.set("v.showOwnerInfo",true);
+        }
         var tabsList = component.get("v.licenseWrapper");
         var currentTab = component.get("v.currentTab");
         //alert('trigger : '+tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse);

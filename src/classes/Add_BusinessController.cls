@@ -575,6 +575,20 @@ public with sharing class Add_BusinessController {
     }
     
     @AuraEnabled 
+    public static Boolean saveOwnerRecord(String accCon ){        
+        try{
+		List<MUSW__Account_Contact__c> accConRec = (List<MUSW__Account_Contact__c>)JSON.deserialize(accCon, List<MUSW__Account_Contact__c>.class);         
+            update accConRec;
+            return true;
+        }
+        catch(Exception e){
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
+            return false;
+        } 
+        
+    }
+    
+    @AuraEnabled 
     public static Boolean removeAcconContactRecord(MUSW__Account_Contact__c accConId ,string action){
         try{
             
@@ -688,7 +702,7 @@ public with sharing class Add_BusinessController {
     
     
     @AuraEnabled
-    public static String getRelationShip(String sObjectName,String queryId,String Type){
+    public static String getRelationShip(String sObjectName,String queryId,String Type,boolean isAMR){
         try{
         List<sObject> sObjList; 
         List<String> columnHeaderList;
@@ -703,7 +717,12 @@ public with sharing class Add_BusinessController {
                 columnHeaderList = new List<String>{'Name','Role','Email','Status','Actions'};
             }else{
                 System.debug('inside owner');
-                columnHeaderList = new List<String>{'Name','Role','DCP','Email','Status','Actions'};
+                if(isAMR){
+                    columnHeaderList = new List<String>{'Name','Role','DCP','Email','Status'};
+                }else{
+                    columnHeaderList = new List<String>{'Name','Role','DCP','Email','Status','Actions'};
+                }
+                
             }
             
             statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};

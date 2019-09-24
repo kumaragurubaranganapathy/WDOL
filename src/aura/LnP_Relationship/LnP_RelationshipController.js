@@ -72,6 +72,14 @@
         }
         helper.removeOwnerRecordHelper(component,event,helper);
     },
+    saveClickOwner:function(component,event,helper){
+        console.log("inside saveClickOwner");
+        var Objectlist = component.get("v.CurrentLicenseTableDataList");
+        for(var j=0;j<Objectlist.length;j++){
+            component.set("v.accountContact",Objectlist[j]);
+        }
+        helper.saveOwnerRecordHelper(component,event,helper);
+    },
     removeClick: function(component,event,helper){
         console.log("inside removeClick");
         var recData = event.getSource().get("v.value");
