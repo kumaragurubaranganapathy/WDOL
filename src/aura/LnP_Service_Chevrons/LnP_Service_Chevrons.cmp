@@ -29,7 +29,7 @@
     <aura:attribute name="attValidation" type="Boolean" default="true"/>
     <aura:attribute name="attestValue" type="String" default=""/>
     <aura:attribute name="AttFlagForsubmit" type="Boolean" default="false"/>
-	<aura:attribute name="isbusinsessLicense" type="Boolean" default="false"/>
+    <aura:attribute name="isbusinsessLicense" type="Boolean" default="false"/>
     <aura:attribute name="popupHeader" type="string" default="" description="On submit success popup header"/> 
     <aura:attribute name="popupBody" type="string" default="" description="On submit success popup body"/>
     <aura:attribute name="isOpen" type="boolean" default="false" description="Hide or Show popup boolean"/>
@@ -53,8 +53,9 @@
     <aura:attribute name="contactRecordId" type="String" />  
     <aura:attribute name="taskDescription" type="String" />    
     <aura:attribute name="isAMRFlow" type="Boolean" default="true" />
+    <aura:attribute name="showOwnerInfo" type="Boolean" default="false" />    
     <aura:attribute name="errorMsgsList" type="List"/>
-    <aura:attribute name="showErrorMsgs" type="Boolean" default="false"/>
+    <aura:attribute name="showErrorMsgs" type="Boolean" default="false"/>    
     <aura:attribute name="feesRequired" type="Boolean" default="false"/>
     <force:recordData
                       fields="Name, Email, UserType"
@@ -66,7 +67,7 @@
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
     <div class="content-wrapper">
-       <!-- <h1 class="subheader">{!'Submit Request: ' + v.flowType}</h1>-->
+        <!-- <h1 class="subheader">{!'Submit Request: ' + v.flowType}</h1>-->
         <aura:if isTrue="{!v.flowType=='Update Physical Address'}">
             <h1 class="subheader">Physical Address</h1>
             <aura:set attribute="else">                
@@ -362,6 +363,13 @@
                             <div class="aff-loc address-sec">
                                 <c:LnP_LicenseAddress amrLicId="{!v.recordId}" isApplicationFlow="false" requestId="{!v.applicationId}" accountId="{!v.accountRecordId}" objectName="{!v.objectName}" isAMR ="true" aura:id="lnpStoreAddress"/>
                             </div>
+                        </aura:if>
+                        <aura:if isTrue="{!v.showOwnerInfo}">
+                            <aura:if isTrue="{!and(section.sectionName=='Request Information',v.currentTab==section.tabIndex, v.flowType=='Update Owners')}">
+                                <div class="aff-loc">
+                                    <c:LnP_Relationship Type="Owners" sObjectName="MUSW__Account_Contact__c" queryId="{!v.accountRecordId}" isAMR="true"/> 
+                                </div>
+                            </aura:if>
                         </aura:if>
                         <aura:if isTrue="{!and((section.sectionName=='Endorsement' ),v.showNotaryEndo==true, v.currentTab==section.tabIndex,v.licenseType == 'Notary Public')}">
                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">

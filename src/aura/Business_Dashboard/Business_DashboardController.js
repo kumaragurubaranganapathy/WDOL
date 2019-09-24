@@ -159,6 +159,13 @@
             helper.getEndorsementDetails(component,event,helper);
             
             helper.getAddressDetails(component,event,helper);
+            
+            component.set("v.defaultTab","Relationships");
+            
+            var tab = component.find("Admin");
+            
+            var attr = {selectedAccount : component.get("v.selectedAccount"), mainAccountName : component.get("v.mainAccountName"),licenseId:component.get("v.licenseId"), licenseDetail: component.get("v.licenseDetail")};
+            helper.injectComponent('c:Polaris_Relationship',attr,tab);
         }
         console.log('inside refresh::');
     },

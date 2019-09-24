@@ -36,6 +36,9 @@ public class AccountTriggerHandler implements BGCM.ITriggerHandler{
             if(a.FEIN_Number_Encrypted__c != null && a.recordtypeId == recordtypeId){
                 a.Last_4_Digits_of_FEIN__c = a.FEIN_Number_Encrypted__c.right(4);
             }
+            if(a.recordtypeId == recordtypeId ){
+                a.Account_Status__c = (a.UBI_Status__c != null && a.UBI_Status__c != 'NA')? a.UBI_Status__c : 'Active';
+            }
         }
     }
     

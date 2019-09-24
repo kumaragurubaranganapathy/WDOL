@@ -194,54 +194,6 @@
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>Days_After_Current_Issue_Date_30__c</fullName>
-        <description>30 days after Current Issue Date</description>
-        <externalId>false</externalId>
-        <formula>MUSW__Issue_Date__c + 30</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>30 days after Current Issue Date</inlineHelpText>
-        <label>Days After Current Issue Date 30</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Days_Before_License_Expiration_21__c</fullName>
-        <externalId>false</externalId>
-        <formula>MUSW__Expiration_Date__c - 21</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Days Before License Expiration 21</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Days_From_Today_120__c</fullName>
-        <description>120 days from today</description>
-        <externalId>false</externalId>
-        <formula>TODAY() + 120</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>120 days from today</inlineHelpText>
-        <label>Days From Today 120</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Days_after_License_Expiration_1__c</fullName>
-        <externalId>false</externalId>
-        <formula>MUSW__Expiration_Date__c + 1</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Days after License Expiration 1</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
         <fullName>Account_Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>

@@ -5,7 +5,7 @@
     <letterhead>DOL_Letterhead</letterhead>
     <name>Application submission</name>
     <style>formalLetter</style>
-    <subject>Department of Licensing - We received your {!MUSW__License2__c.Credential_Type__c} license {!MUSW__License2__c.Application_Method__c} application</subject>
+    <subject>Department of Licensing - We received your {!MUSW__License2__c.Credential_Type__c} license application</subject>
     <textOnly>LICENSED SUBMITTED
 Hi {!MUSW__License2__c.Applicant_Full_Name__c},
 
@@ -14,4 +14,5 @@ Your application is currently under review.  We will reach out directly with any
 Thanks &amp; Regards,
 Washington Department of Licensing</textOnly>
     <type>html</type>
+    <uiType>Aloha</uiType>
 </EmailTemplate>
