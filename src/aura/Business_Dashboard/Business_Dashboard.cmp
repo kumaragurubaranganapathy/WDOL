@@ -547,7 +547,7 @@
                             <!-- data is injected Dynamically-->
                         </lightning:tab>
                     </aura:if>   
-                    <lightning:tab class="tab-style" label="Administrator" onactive="{!c.setBreadCrumb}" id="Relationships" >
+                    <lightning:tab class="tab-style" aura:id="Admin" label="Administrator" onactive="{!c.setBreadCrumb}" id="Relationships" >
                         <!--<c:Polaris_Relationship selectedAccount="{!v.selectedAccount}" mainAccountName="{!v.mainAccountName}" licenseId="{!v.licenseId}" licenseDetail="{!v.licenseDetail}" />-->
                         <!-- data is injected Dynamically-->
                     </lightning:tab>
