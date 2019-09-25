@@ -2,14 +2,18 @@ public class mapDemo {
     
     @AuraEnabled
     public static List<MapMarker> getMarkers(){
+        try{
         List<MapMarker> markers = new List<MapMarker>();
         ID userID = UserInfo.getUserID();
-        List<MUSW__Inspection__c> inspections = [Select id, name,MUSW__Parcel__r.MUSW__Street__c, 
+        /*List<MUSW__Inspection__c> inspections = [Select id, name,MUSW__Parcel__r.MUSW__Street__c, 
                                                  MUSW__Parcel__r.MUSW__City__c, MUSW__Parcel__r.Zip_Postal_Code__c,
                                                  MUSW__Parcel__r.MUSW__State__c, MUSW__Parcel__r.Country__c
-                                                 from MUSW__Inspection__c where MUSW__Parcel__c <> null   ];
+                                                 from MUSW__Inspection__c where MUSW__Parcel__c <> null   ]; */
         String route = DOL_AppConstants.sRoute;
-        for(MUSW__Inspection__c inspection: inspections){
+        for(MUSW__Inspection__c inspection: [Select id, name,MUSW__Parcel__r.MUSW__Street__c, 
+                                                 MUSW__Parcel__r.MUSW__City__c, MUSW__Parcel__r.Zip_Postal_Code__c,
+                                                 MUSW__Parcel__r.MUSW__State__c, MUSW__Parcel__r.Country__c
+                                                 from MUSW__Inspection__c where MUSW__Parcel__c <> null   ]){
             route+='/';
             mapDemo.MapMarker marker = new mapDemo.MapMarker();
             mapDemo.Location location = new mapDemo.Location();
@@ -37,31 +41,35 @@ public class mapDemo {
             markers.add(marker);
         }
         return markers;
+        }
+         catch(Exception ex)
+        {   DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     @AuraEnabled
     public static String getRoute(){
-        List<MUSW__Inspection__c> inspections = [Select id, name,MUSW__Parcel__r.MUSW__Street__c, 
-                                                 MUSW__Parcel__r.MUSW__City__c, MUSW__Parcel__r.Zip_Postal_Code__c,
+        try{
+       /* List<MUSW__Inspection__c> inspections = [Select id, name,MUSW__Parcel__r.MUSW__Street__c, 
+                                                 MUSW__Parcel__r.MUSW__City__c, MUSW__Parcel__r.MUSW__Post_Zip_Code__c,
                                                  MUSW__Parcel__r.MUSW__State__c, MUSW__Parcel__r.Country__c
-                                                 from MUSW__Inspection__c where MUSW__Parcel__c <> null ];
+                                                 from MUSW__Inspection__c where MUSW__Parcel__c <> null ]; */
         String route = DOL_AppConstants.sRoute;
-        for(MUSW__Inspection__c inspection: inspections){
+        for(MUSW__Inspection__c inspection: [Select id, name,MUSW__Parcel__r.MUSW__Street__c, 
+                                                 MUSW__Parcel__r.MUSW__City__c, MUSW__Parcel__r.MUSW__Post_Zip_Code__c,
+                                                 MUSW__Parcel__r.MUSW__State__c, MUSW__Parcel__r.Country__c
+                                                 from MUSW__Inspection__c where MUSW__Parcel__c <> null ]){
             route+='/';
-            if(inspection.MUSW__Parcel__r.MUSW__Street__c!=null){
-                route+=inspection.MUSW__Parcel__r.MUSW__Street__c.replace(' ','+')+',';
-            }
-            if(inspection.MUSW__Parcel__r.MUSW__City__c!=null){
-                route+=inspection.MUSW__Parcel__r.MUSW__City__c.replace(' ','+')+',';
-            }
-            if(inspection.MUSW__Parcel__r.MUSW__State__c!=null){
-                route+=inspection.MUSW__Parcel__r.MUSW__State__c.replace(' ','+')+',';
-            }
-            if(inspection.MUSW__Parcel__r.Zip_Postal_Code__c!=null){
-                route+=inspection.MUSW__Parcel__r.Zip_Postal_Code__c.replace(' ','+');
-            }
+            route+=inspection.MUSW__Parcel__r.MUSW__Street__c.replace(' ','+')+','+inspection.MUSW__Parcel__r.MUSW__City__c.replace(' ','+')+','+
+                inspection.MUSW__Parcel__r.MUSW__State__c.replace(' ','+')+'+'+inspection.MUSW__Parcel__r.MUSW__Post_Zip_Code__c.replace(' ','+');
         }
         return route;
+        }
+         catch(Exception ex)
+        {DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     class MapMarker{
         @AuraEnabled public mapDemo.Location location{get;set;}

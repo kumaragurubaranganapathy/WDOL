@@ -1,17 +1,17 @@
 public class SOD_Autocomplete_Wrapper {
     
     public class Suggestions {
-        @AuraEnabled
+        //@AuraEnabled
         public String text;
-        @AuraEnabled
+        //@AuraEnabled
         public String street_line;
-        @AuraEnabled
+        //@AuraEnabled
         public String city;
-        @AuraEnabled
+        //@AuraEnabled
         public String state;
         
     }
-    @AuraEnabled
+    //@AuraEnabled
     public List<Suggestions> suggestions;
     
     public static SOD_Autocomplete_Wrapper parse(String json) {

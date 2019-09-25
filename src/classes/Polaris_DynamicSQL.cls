@@ -75,7 +75,7 @@ public without sharing class Polaris_DynamicSQL {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
         
     }
@@ -174,7 +174,7 @@ String pemail = (String)pdata.get('email');*/
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -196,7 +196,7 @@ String pemail = (String)pdata.get('email');*/
             if(strFieldName =='MULTIPICKLIST') {
                 sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + 'includes';
             } else {
-                 sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
+                 sqlObj.Operator = '=';
             }
            
             creterias.add(sqlObj);
@@ -213,155 +213,156 @@ String pemail = (String)pdata.get('email');*/
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
     @AuraEnabled
     public static List<SObject> generateQueryWithGenericOR(String objectName, List<String> lstFieldsName, 
                                                            Map<String,String> mapValues, Map<String, String> mapORValues, Boolean bIsStatusIncluded,
-                                                           Boolean showDeciplinary){
-                                                               try{
-                                                               system.debug('inside');
-                                                               system.debug('mapValues'+mapValues);
-                                                               system.debug(' sumeet OR Check '+mapORValues);
-                                                             
-                                                               List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
-                                                               for (String attributeName : mapValues.keyset()) {
-                                                                   Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
-                                                                   sqlObj.FieldName = attributeName;
-                                                                   sqlObj.FieldValue = mapValues.get(attributeName);
-                                                                   sqlObj.Operator = '=';
-                                                                   creterias.add(sqlObj);
-                                                               }
-                                                               List<Polaris_DynamicSQL> orcreterias = new  List<Polaris_DynamicSQL> ();
-                                                               for (String mainKey : mapORValues.keyset()) {
-                                                                   String sAllAttributes = mapORValues.get(mainKey);
-                                                                   List<String> lstAllAttributesPieces = sAllAttributes.split('=');
-                                                                   Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
-                                                                   sqlObj.FieldName = lstAllAttributesPieces[0];
-                                                                   sqlObj.FieldValue = lstAllAttributesPieces[1];//mapORValues.get(attributeName);
-                                                                   sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
-                                                                   orcreterias.add(sqlObj);
-                                                               }
-                                                               Map<String, SObject> mapAllRec = new Map<String, SObject>();
-                                                               //system.debug('criterias'+criterias);
-                                                               String whereClause = DOL_AppConstants.NULL_EMPTY_STRING + '';
-                                                               if(orcreterias <> null && !orcreterias.isEmpty())
-                                                                   whereClause = generateORQuery(orcreterias);
-                                                               if(creterias <> null && !creterias.isEmpty())
-                                                                   whereClause += 'and '+ generateWhereQuery(creterias);
-                                                               String fieldNames  = String.join(lstFieldsName, ' ,');
-                                                               String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
-                                                               SYSTEM.debug('QUERY'+query);
-                                                               List<SObject>  lstRecords  = new List<SObject> () ;
-                                                               //List<SObject>  lstRecords  = new List<SObject> () ;
-                                                               lstRecords = Utilityclass_withoutsharing.queryRecords(query); 
-                                                               
-                                                               if(!bIsStatusIncluded && !lstRecords.isEmpty())
-                                                               {
-                                                                   List<SObject>  lstTempRecords = new List<SObject>();
-                                                                   Set<SObject> setAllRec = new Set<SObject>();
-                                                                   lstTempRecords.addAll(lstRecords);
-                                                                   lstRecords = new List<SObject>();
-                                                                   if(objectName == 'MUSW__License2__c')
-                                                                   {
-                                                                       List<MUSW__License2__c> lstSSData = (List<MUSW__License2__c>)lstTempRecords;
-                                                                       for(MUSW__License2__c oData : lstSSData)
-                                                                       {
-                                                                           if(Label.SearchStatusFilter.contains(oData.MUSW__Status__c))
-                                                                               lstRecords.add(oData);
-                                                                       }
-                                                                   }
-                                                                   else if(objectName == 'MUSW__License_Parcel__c')
-                                                                   {
-                                                                       List<MUSW__License_Parcel__c> lstSSData = (List<MUSW__License_Parcel__c>)lstTempRecords;
-                                                                       for(MUSW__License_Parcel__c oData : lstSSData)
-                                                                       {
-                                                                           if(Label.SearchStatusFilter.contains(oData.MUSW__License2__r.MUSW__Status__c))
-                                                                           {
-                                                                               if(oData.MUSW__License2__r <> null && oData.MUSW__License2__r.Name <> null)
-                                                                               {
-                                                                                   if(mapAllRec <> null && mapAllRec.get(oData.MUSW__License2__r.Name) <> null)
-                                                                                   {
-                                                                                   }
-                                                                                   else
-                                                                                   {
-                                                                                       mapAllRec.put(oData.MUSW__License2__r.Name, oData);
-                                                                                   }
-                                                                               }
-                                                                           }
-                                                                       }
-                                                                   }
-                                                                   if(mapAllRec <> null && !mapAllRec.isEmpty())
-                                                                       lstRecords.addAll(mapAllRec.values());
-                                                               }
-                                                               else if(bIsStatusIncluded)
-                                                               {
-                                                                   if(objectName == 'MUSW__License_Parcel__c')
-                                                                   {
-                                                                       List<SObject>  lstTempRecords = new List<SObject>();
-                                                                       lstTempRecords.addAll(lstRecords);
-                                                                       lstRecords = new List<SObject>();
-                                                                       List<MUSW__License_Parcel__c> lstSSData = (List<MUSW__License_Parcel__c>)lstTempRecords;
-                                                                       for(MUSW__License_Parcel__c oData : lstSSData)
-                                                                       {
-                                                                           if(Label.SearchStatusFilter.contains(oData.MUSW__License2__r.MUSW__Status__c))
-                                                                           {
-                                                                               if(oData.MUSW__License2__r <> null && oData.MUSW__License2__r.Name <> null)
-                                                                               {
-                                                                                   if(mapAllRec <> null && mapAllRec.get(oData.MUSW__License2__r.Name) <> null)
-                                                                                   {
-                                                                                   }
-                                                                                   else
-                                                                                   {
-                                                                                       mapAllRec.put(oData.MUSW__License2__r.Name, oData);
-                                                                                   }
-                                                                               }
-                                                                           }
-                                                                       }
-                                                                   }
-                                                                   if(mapAllRec <> null && !mapAllRec.isEmpty())
-                                                                       lstRecords.addAll(mapAllRec.values());
-                                                               }
-                                                               Map<String,disciPlinaryAction> mapDeciplinary = new Map<String,disciPlinaryAction>();
-                                                        if(showDeciplinary == true){
-                                                            List<MUSW__License_Parcel__c> lstrec= (List<MUSW__License_Parcel__c>)lstRecords;
-                                                            if(!lstRecords.isEmpty()) {
-                                                                Set<String> licenseID  = new Set<String>();
-                                                                
-                                                                for(MUSW__License_Parcel__c license : lstrec){
-                                                                    licenseID.add(String.valueOf(license.MUSW__License2__c));
-                                                                }
-                                                                if(!getDeliplinaryAction(licenseID).isEmpty()){
-                                                                    mapDeciplinary = getDeliplinaryAction(licenseID);
-                                                                }
-                                                                
-                                                            }
-                                                            if(!mapDeciplinary.isEmpty()) {
-                                                                for(String abc : mapDeciplinary.keySet()) {
-                                                                    system.debug('mapDeciplinaryinside '+mapDeciplinary);
-                                                                    // string isAction = mapDeciplinary.get(abc);
-                                                                    // lstRecords.add(isAction);
-                                                                    for(MUSW__License_Parcel__c sob : lstrec) {
-                                                                        if(abc == sob.MUSW__License2__c) {
-                                                                            system.debug('mapDeciplinaryinside123 '+mapDeciplinary);
-                                                                            sob.MUSW__License2__r.AIDS_Affidavit__c = mapDeciplinary.get(abc).isDisciplinaryAction;
-                                                                            sob.MUSW__License2__r.Project_Address__c = mapDeciplinary.get(abc).documentId;
-                                                                        }
-                                                                    }
-                                                                }
-                                                                
-                                                            }
-                                                        }
-
-                                                               return   lstRecords; 
-                                                               }catch(Exception ex)
+                                                           Boolean showDeciplinary)
+    {
+        try{
+            system.debug('inside');
+            system.debug('mapValues'+mapValues);
+            system.debug(' sumeet OR Check '+mapORValues);
+            
+            List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
+            for (String attributeName : mapValues.keyset()) {
+                Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
+                sqlObj.FieldName = attributeName;
+                sqlObj.FieldValue = mapValues.get(attributeName);
+                sqlObj.Operator = '=';
+                creterias.add(sqlObj);
+            }
+            List<Polaris_DynamicSQL> orcreterias = new  List<Polaris_DynamicSQL> ();
+            for (String mainKey : mapORValues.keyset()) {
+                String sAllAttributes = mapORValues.get(mainKey);
+                List<String> lstAllAttributesPieces = sAllAttributes.split('=');
+                Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
+                sqlObj.FieldName = lstAllAttributesPieces[0];
+                sqlObj.FieldValue = lstAllAttributesPieces[1];//mapORValues.get(attributeName);
+                sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING+'=' ;
+                orcreterias.add(sqlObj);
+            }
+            Map<String, SObject> mapAllRec = new Map<String, SObject>();
+            //system.debug('criterias'+criterias);
+            String whereClause = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            if(orcreterias <> null && !orcreterias.isEmpty())
+                whereClause = generateORQuery(orcreterias);
+            if(creterias <> null && !creterias.isEmpty())
+                whereClause += 'and '+ generateWhereQuery(creterias);
+            String fieldNames  = String.join(lstFieldsName, ' ,');
+            String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
+            SYSTEM.debug('QUERY--'+query);
+            List<SObject>  lstRecords  = new List<SObject> () ;
+            //List<SObject>  lstRecords  = new List<SObject> () ;
+            lstRecords = Utilityclass_withoutsharing.queryRecords(query); 
+            
+            if(!bIsStatusIncluded && !lstRecords.isEmpty())
+            {
+                List<SObject>  lstTempRecords = new List<SObject>();
+                Set<SObject> setAllRec = new Set<SObject>();
+                lstTempRecords.addAll(lstRecords);
+                lstRecords = new List<SObject>();
+                if(objectName == 'MUSW__License2__c')
+                {
+                    List<MUSW__License2__c> lstSSData = (List<MUSW__License2__c>)lstTempRecords;
+                    for(MUSW__License2__c oData : lstSSData)
+                    {
+                        if(Label.SearchStatusFilter.contains(oData.MUSW__Status__c))
+                            lstRecords.add(oData);
+                    }
+                }
+                else if(objectName == 'MUSW__License_Parcel__c')
+                {
+                    List<MUSW__License_Parcel__c> lstSSData = (List<MUSW__License_Parcel__c>)lstTempRecords;
+                    for(MUSW__License_Parcel__c oData : lstSSData)
+                    {
+                        if(Label.SearchStatusFilter.contains(oData.MUSW__License2__r.MUSW__Status__c))
+                        {
+                            if(oData.MUSW__License2__r <> null && oData.MUSW__License2__r.Name <> null)
+                            {
+                                if(mapAllRec <> null && mapAllRec.get(oData.MUSW__License2__r.Name) <> null)
+                                {
+                                }
+                                else
+                                {
+                                    mapAllRec.put(oData.MUSW__License2__r.Name, oData);
+                                }
+                            }
+                        }
+                    }
+                }
+                if(mapAllRec <> null && !mapAllRec.isEmpty())
+                    lstRecords.addAll(mapAllRec.values());
+            }
+            else if(bIsStatusIncluded)
+            {
+                if(objectName == 'MUSW__License_Parcel__c')
+                {
+                    List<SObject>  lstTempRecords = new List<SObject>();
+                    lstTempRecords.addAll(lstRecords);
+                    lstRecords = new List<SObject>();
+                    List<MUSW__License_Parcel__c> lstSSData = (List<MUSW__License_Parcel__c>)lstTempRecords;
+                    for(MUSW__License_Parcel__c oData : lstSSData)
+                    {
+                        if(Label.SearchStatusFilter.contains(oData.MUSW__License2__r.MUSW__Status__c))
+                        {
+                            if(oData.MUSW__License2__r <> null && oData.MUSW__License2__r.Name <> null)
+                            {
+                                if(mapAllRec <> null && mapAllRec.get(oData.MUSW__License2__r.Name) <> null)
+                                {
+                                }
+                                else
+                                {
+                                    mapAllRec.put(oData.MUSW__License2__r.Name, oData);
+                                }
+                            }
+                        }
+                    }
+                }
+                if(mapAllRec <> null && !mapAllRec.isEmpty())
+                    lstRecords.addAll(mapAllRec.values());
+            }
+            Map<String,disciPlinaryAction> mapDeciplinary = new Map<String,disciPlinaryAction>();
+            if(showDeciplinary == true){
+                List<MUSW__License_Parcel__c> lstrec= (List<MUSW__License_Parcel__c>)lstRecords;
+                if(!lstRecords.isEmpty()) {
+                    Set<String> licenseID  = new Set<String>();
+                    
+                    for(MUSW__License_Parcel__c license : lstrec){
+                        licenseID.add(String.valueOf(license.MUSW__License2__c));
+                    }
+                    if(!getDeliplinaryAction(licenseID).isEmpty()){
+                        mapDeciplinary = getDeliplinaryAction(licenseID);
+                    }
+                    
+                }
+                if(!mapDeciplinary.isEmpty()) {
+                    for(String abc : mapDeciplinary.keySet()) {
+                        system.debug('mapDeciplinaryinside '+mapDeciplinary);
+                        // string isAction = mapDeciplinary.get(abc);
+                        // lstRecords.add(isAction);
+                        for(MUSW__License_Parcel__c sob : lstrec) {
+                            if(abc == sob.MUSW__License2__c) {
+                                system.debug('mapDeciplinaryinside123 '+mapDeciplinary);
+                                sob.MUSW__License2__r.AIDS_Affidavit__c = mapDeciplinary.get(abc).isDisciplinaryAction;
+                                sob.MUSW__License2__r.Project_Address__c = mapDeciplinary.get(abc).documentId;
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            
+            return   lstRecords; 
+        }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
-                                                           } 
+    } 
     
     @AuraEnabled
     public static List<SObject> generateQueryWithOR(String objectName, List<String> lstFieldsName, 
@@ -375,7 +376,7 @@ String pemail = (String)pdata.get('email');*/
                                                             Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
                                                             sqlObj.FieldName = attributeName;
                                                             sqlObj.FieldValue = mapValues.get(attributeName);
-                                                            sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
+                                                            sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '= DOL_AppConstants.NULL_EMPTY_STRING + ';
                                                             creterias.add(sqlObj);
                                                         }
                                                        // system.debug('criterias'+criterias);
@@ -494,7 +495,7 @@ String pemail = (String)pdata.get('email');*/
                                                           }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
                                                     } 
     
@@ -512,7 +513,7 @@ String pemail = (String)pdata.get('email');*/
                                                             Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
                                                             sqlObj.FieldName = attributeName;
                                                             sqlObj.FieldValue = mapValues.get(attributeName);
-                                                            sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
+                                                            sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '= DOL_AppConstants.NULL_EMPTY_STRING + ';
                                                             creterias.add(sqlObj);
                                                         }
                                                        // system.debug('criterias'+criterias);
@@ -631,7 +632,7 @@ String pemail = (String)pdata.get('email');*/
                                                           }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
                                                     } 
     
@@ -674,7 +675,7 @@ String pemail = (String)pdata.get('email');*/
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     } 
     
@@ -688,7 +689,7 @@ String pemail = (String)pdata.get('email');*/
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     @AuraEnabled
@@ -707,7 +708,7 @@ String pemail = (String)pdata.get('email');*/
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     @AuraEnabled
@@ -731,7 +732,7 @@ String pemail = (String)pdata.get('email');*/
        }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -746,7 +747,7 @@ String pemail = (String)pdata.get('email');*/
                                                                   Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
                                                                   sqlObj.FieldName = attributeName;
                                                                   sqlObj.FieldValue = mapValues.get(attributeName);
-                                                                  sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
+                                                                  sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '= DOL_AppConstants.NULL_EMPTY_STRING + ';
                                                                   creterias.add(sqlObj);
                                                               }
                                                               //system.debug('criterias'+criterias);
@@ -834,21 +835,21 @@ String pemail = (String)pdata.get('email');*/
                                                               }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
                                                           }
     
     public  static  Map<String, disciPlinaryAction> getDeliplinaryAction (Set<String> lstname) {
         try{
         Map<String,disciPlinaryAction> mapDesciplinaryAction = new Map<String,disciPlinaryAction>();
-        List<MUSW__Submission__c> lstSub  = [select Public_Distribution_URL__c,MUSW__License2__c ,ID from MUSW__Submission__c  where MUSW__License2__c = :lstname and  Public_Disciplinary_Action__c  = true and Disciplinary_Action_End_Date__c > :System.date.today()];
+        //List<MUSW__Submission__c> lstSub  = [select Public_Distribution_URL__c,MUSW__License2__c ,ID from MUSW__Submission__c  where MUSW__License2__c = :lstname and  Public_Disciplinary_Action__c  = true ];
         Set<Id> setDoc = new Set<ID>();
         List<ContentDocumentLink> lstCon;
-        if(!lstSub.isEmpty()) {
+        
             
             for(String key  : lstname) {
                 integer count = 0;
-                for (MUSW__Submission__c sub: lstSub) {
+                for (MUSW__Submission__c sub: [select Public_Distribution_URL__c,MUSW__License2__c ,ID from MUSW__Submission__c  where MUSW__License2__c = :lstname and  Public_Disciplinary_Action__c  = true ]) {
                     system.debug('anyways'+sub);
                     setDoc.add(sub.Id);
                     disciPlinaryAction obj = new disciPlinaryAction();
@@ -862,12 +863,12 @@ String pemail = (String)pdata.get('email');*/
                     }
                 }
             }  
-        }
+        
         return mapDesciplinaryAction;
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
 

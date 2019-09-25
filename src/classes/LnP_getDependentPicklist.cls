@@ -1,6 +1,10 @@
 public class LnP_getDependentPicklist {
     @AuraEnabled 
     public static Map<String, List<String>> getDependentMap(sObject objDetail, string contrfieldApiName,string depfieldApiName) {
+        try{
+            System.debug('First val:'+objDetail);
+            System.debug('Second Val: '+objDetail.getSObjectType());
+            
         String controllingField = contrfieldApiName.toLowerCase();
         String dependentField = depfieldApiName.toLowerCase();
         
@@ -12,6 +16,7 @@ public class LnP_getDependentPicklist {
         }
         
         Map<String, Schema.SObjectField> objFieldMap = objType.getDescribe().fields.getMap();
+            System.debug('Third Val: '+objType.getDescribe().fields.getMap());
         
         if (!objFieldMap.containsKey(controllingField) || !objFieldMap.containsKey(dependentField)){
             return objResults;     
@@ -42,6 +47,11 @@ public class LnP_getDependentPicklist {
         }
           system.debug('objResults : ' + objResults);
         return objResults;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
       
     }
     

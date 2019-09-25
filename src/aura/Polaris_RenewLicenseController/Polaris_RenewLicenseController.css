@@ -2,7 +2,11 @@
     padding:0 0 20px 0;
 }
 .THIS .uiMessage{
-    margin-left:0px;
+    height:auto;
+    border-radius:5px;
+}
+.THIS .uiMessage li{
+    line-height:30px;
 }
 .THIS label{
     font-size: 16px;
@@ -34,14 +38,6 @@
 }
 .THIS .addressBtn{
     display:none;
-}
-.THIS ul.error-messages {
-    font-size: 14px;
-    width: 90%;
-    max-width: 892px;
-    margin: 5px auto 15px;
-    padding: 10px 20px;
-    border-radius: 5px;
 }
 .THIS .Guarantee .field-item .slds-input{
     border:1px solid #5b616b;
@@ -299,9 +295,6 @@
 }
 .THIS .mandatory-fields{
     color:rgb(194, 57, 52);;
-}
-.THIS .error{
-    color:t(LnGErrorMsg);
 }
 .THIS .btn-lnp[disabled], 
 .THIS .btn-lnp:disabled{

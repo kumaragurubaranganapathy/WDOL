@@ -1,6 +1,7 @@
 public class LnP_SaveBackgroundDetails {
     @AuraEnabled
     public static List<SObject> returnIds(String  ObjectName, String applicationId, String recordTypeID,String flowType ){
+      try{
       system.debug('flowType : '+flowType);
         String appCondition = DOL_AppConstants.NULL_EMPTY_STRING + '';
         if(flowType=='Endorsement' || flowType=='CE Audit')
@@ -16,6 +17,10 @@ public class LnP_SaveBackgroundDetails {
         List<SObject> lId = Database.query(query);
       System.debug('lId>______ '+lId);  
         return lId;
+      }catch(Exception ex)
+        {DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
 	@AuraEnabled
     public static void deleteTableRecord(String recordId){
@@ -29,16 +34,19 @@ public class LnP_SaveBackgroundDetails {
             try{
                 delete recList[0];
                 if(Test.isRunningTest()){
+                    System.debug('Enter Try If');
                     integer intTest =1/0;
                 }
-            }
-            Catch(Exception e){
-                System.debug('---EXCEPTION---'+e.getMessage());
+            }catch(Exception ex)
+            {
+                DOL_CreateErrorLog_Exception.logApplicationError(ex);
+                throw new AuraHandledException('An error occurred: '+ex.getMessage());
             }
         }
     }
     @AuraEnabled
     public static String updateEducationHistoryRecord(Id educationHistoryRecordId, Id requestId){
+        try{
         System.debug('educationHistoryRecordId==' + educationHistoryRecordId + 'requestId==' + requestId);
         List<Database.SaveResult> srList = new List<Database.SaveResult>();
         String outputResponse;
@@ -49,11 +57,10 @@ public class LnP_SaveBackgroundDetails {
                 educationHistoryRecordList.add(educationRecords);
             }
         }
-        System.debug('educationHistoryRecordList====' + educationHistoryRecordList);
+      //  System.debug('educationHistoryRecordList====' + educationHistoryRecordList);
         if(!educationHistoryRecordList.isEmpty()){
             srList = Database.update(educationHistoryRecordList, false);
         }
-        System.debug('srList== ' + srList);
         // Iterate through each returned result
         for (Database.SaveResult sr : srList) {
             if (sr.isSuccess()) {
@@ -72,5 +79,9 @@ public class LnP_SaveBackgroundDetails {
             }
         }
         return outputResponse;
+        }catch(Exception ex)
+        {DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
 }

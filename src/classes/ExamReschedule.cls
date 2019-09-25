@@ -6,23 +6,26 @@ public class ExamReschedule {
         try{
         System.debug('licenseId=== ' + licenseId);
         List<Education_History__c> educationHistoryList = new List<Education_History__c>();
-        Id educationHistoryRecordId = Schema.SObjectType.Education_History__c.getRecordTypeInfosByName().get('Exam').getRecordTypeId() ;
-        if(String.isNotBlank(licenseId)){
-            system.debug('inside debug');
-            for(Education_History__c educationHistoryRecods: [Select Id, Name, License__c, License_Type__c, Exam_Type__c, Scheduled_Date__c,
-                                                              Status__c, Exam_Result_Expiry_Date__c, End_date__c, Exam_Pass_Date__c,Reschedule_Possible__c,Program_Type__c,Submit_Exam_Results__c
-                                                              From Education_History__c Where License__c = :licenseId
-                                                              And RecordTypeId = :educationHistoryRecordId]){
-                                                                  educationHistoryList.add(educationHistoryRecods);                                             
-                                                              }
-        }
-        return educationHistoryList;
+            Id educationHistoryRecordId = Schema.SObjectType.Education_History__c.getRecordTypeInfosByName().get('Exam').getRecordTypeId() ;
+            if(String.isNotBlank(licenseId)){
+                system.debug('inside debug');
+                for(Education_History__c educationHistoryRecods: [Select Id, Name, License__c, License_Type__c, Exam_Type__c, Scheduled_Date__c,
+                                                                  Status__c, Exam_Result_Expiry_Date__c, End_date__c, Exam_Pass_Date__c,Reschedule_Possible__c,Program_Type__c,Submit_Exam_Results__c
+                                                                  From Education_History__c Where License__c = :licenseId AND License__c != null AND RecordTypeId != null
+                                                                  And RecordTypeId = :educationHistoryRecordId]){
+                
+                    educationHistoryList.add(educationHistoryRecods);                                             
+                }
+            }
+            return educationHistoryList;
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
+    
+    
     @AuraEnabled
      public static String insertRequestExam(String licId,String licenseType, String board,String ServiceRequestType,String ExamRecordId)
     {
@@ -33,7 +36,6 @@ public class ExamReschedule {
         System.debug('User Id ' + queryCondition);
         String queryStr = DOL_AppConstants.SELECT_STRING+DOL_AppConstants.EMPTY_SPACE+'Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         system.debug('queryStr '+queryStr);
-        
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         Id getContactId = DOL_AppConstants.CONTACT_ID_EXPLICIT_STRING;
         if(userInfoData[0].ContactId != null){
@@ -51,22 +53,18 @@ public class ExamReschedule {
         if(licId != null && licId != ''){
             application.License__c = licId;  
         }  
-        try
-        {          
+                
             insert application;
-        }
-        catch(Exception e){
-            HandleException.LogException(e,'ExamReschedule','insertRequest');            
-        }
+        
         string appId = DOL_AppConstants.NULL_EMPTY_STRING;
         return appId = application.Id;
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
-    
+    /*
     @AuraEnabled
     public static String createReviewRecord(MUSW__License2__c licenseRecord, Id requestId){
         try{
@@ -109,7 +107,7 @@ public class ExamReschedule {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return 'Fail';
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
-    }
+    } */
 }

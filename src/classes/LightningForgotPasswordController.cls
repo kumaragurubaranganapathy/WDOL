@@ -14,9 +14,10 @@ global class LightningForgotPasswordController {
             }
             aura.redirect(checkEmailRef);
             return null;
-        }
-        catch (Exception ex) {
-            return ex.getMessage();
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
 
@@ -28,8 +29,10 @@ global class LightningForgotPasswordController {
                 Site.setExperienceId(expId);               
             }
             return null; 
-        } catch (Exception ex) {
-            return ex.getMessage();            
-        }        
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }       
     } 
 }

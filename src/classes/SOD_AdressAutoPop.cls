@@ -1,7 +1,7 @@
 public class SOD_AdressAutoPop {
     @AuraEnabled
     public static SOD_Autocomplete_Wrapper getAutoComplete(string strPrefix) {
-        
+        try{
         strPrefix = EncodingUtil.urlEncode(strPrefix, 'UTF-8');
         SOD_Address_Auth__c objCS = SOD_Address_Auth__c.getInstance('Auto_Complete_Address');
         String url = objCS.url__c
@@ -14,7 +14,11 @@ public class SOD_AdressAutoPop {
         SOD_Autocomplete_Wrapper response = SOD_Autocomplete_Wrapper.parse(makeAPICall(url));
         system.debug('response111' +response);
         return response;
-        
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     

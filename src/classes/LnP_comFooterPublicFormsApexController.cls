@@ -4,10 +4,11 @@ public class LnP_comFooterPublicFormsApexController {
          Map<String, String> mapCommonFooterLabels = new Map<String, String>();
          try{
             mapCommonFooterLabels = DE_LandingPageCustomLabels.getCommonFooterLabels(); 
-         }
-		 catch(Exception e){
-            HandleException.LogException(e,'LnP_comFooterPublicFormsApexController','getCommonFooterCustomLabels');
-         }
+         }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
          return mapCommonFooterLabels;
       }
 }

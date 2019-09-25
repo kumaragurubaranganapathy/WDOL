@@ -3,15 +3,16 @@ public class Polaris_MangeEndorsementCntrl {
     @AuraEnabled(cacheable = true)
     public static String fetchData(String licId)
     {
+        try{
         LnP_JSONParser ansWrapper; //to create Wrapper 
-        String jsonApplicationFields = '';
+        String jsonApplicationFields = DOL_AppConstants.NULL_EMPTY_STRING + '';
         List<LnP_ApplyForLicenseWrapper> lstLicenseWrapper = new List<LnP_ApplyForLicenseWrapper>();
         //Map for Question Section
         Map<String,List<LnP_ApplyForLicenseWrapper.MapLabelToFields>> mapOnQuestions = new Map<String,List<LnP_ApplyForLicenseWrapper.MapLabelToFields>>();
         
-        String questionSection = '';
-        List<BGCK__Answer__c> lstAnswers = [SELECT id,Answer_Text__c,Question_Section__c,QuestionDOL__c,QuestionDOL__r.Sub_Sub_Header__c,QuestionDOL__r.Possible_Responses__c,QuestionDOL__r.Triggering_Parent_Answer__c,QuestionDOL__r.Sub_Header__c,QuestionDOL__r.Section__c,QuestionDOL__r.Submission_Title__c,QuestionDOL__r.Parent_Question__c,QuestionDOL__r.Has_dependent_questions__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Id,QuestionDOL__r.Question_Body__c FROM BGCK__Answer__c Where License__c =:licId and Question_Section__c='Endorsement' order by Question_Order__c ];
-        for(BGCK__Answer__c answ : lstAnswers )
+        String questionSection = DOL_AppConstants.NULL_EMPTY_STRING + '';
+       // List<BGCK__Answer__c> lstAnswers = [SELECT id,Answer_Text__c,Question_Section__c,QuestionDOL__c,QuestionDOL__r.Sub_Sub_Header__c,QuestionDOL__r.Possible_Responses__c,QuestionDOL__r.Triggering_Parent_Answer__c,QuestionDOL__r.Sub_Header__c,QuestionDOL__r.Section__c,QuestionDOL__r.Submission_Title__c,QuestionDOL__r.Parent_Question__c,QuestionDOL__r.Has_dependent_questions__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Id,QuestionDOL__r.Question_Body__c FROM BGCK__Answer__c Where License__c =:licId and Question_Section__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Endorsement' order by Question_Order__c ];
+        for(BGCK__Answer__c answ : [SELECT id,Answer_Text__c,Question_Section__c,QuestionDOL__c,QuestionDOL__r.Sub_Sub_Header__c,QuestionDOL__r.Possible_Responses__c,QuestionDOL__r.Triggering_Parent_Answer__c,QuestionDOL__r.Sub_Header__c,QuestionDOL__r.Section__c,QuestionDOL__r.Submission_Title__c,QuestionDOL__r.Parent_Question__c,QuestionDOL__r.Has_dependent_questions__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Id,QuestionDOL__r.Question_Body__c FROM BGCK__Answer__c Where License__c =:licId and Question_Section__c=: DOL_AppConstants.NULL_EMPTY_STRING + 'Endorsement' order by Question_Order__c ] )
         {
             LnP_ApplyForLicenseWrapper.MapLabelToFields labelToFields = new LnP_ApplyForLicenseWrapper.MapLabelToFields();
             labelToFields.label = answ.QuestionDOL__r.Question_Body__c;
@@ -24,7 +25,7 @@ public class Polaris_MangeEndorsementCntrl {
             labelToFields.questionSectionClass = answ.QuestionDOL__r.Section__c;
             if(questionSection == answ.QuestionDOL__r.Section__c || answ.QuestionDOL__r.Section__c==null)
             {
-                labelToFields.questionSection ='null';
+                labelToFields.questionSection = DOL_AppConstants.NULL_EMPTY_STRING + 'null';
             }
             else
             {
@@ -95,18 +96,24 @@ public class Polaris_MangeEndorsementCntrl {
         }
         lstLicenseWrapper.add(licenseWrapper);
         return JSON.serialize(lstLicenseWrapper); 
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     
         @AuraEnabled
     public static List<String> fetchEndorsementTypeData(String licenseType)
     {
+        try{
         List<Endorsement_Add_Selection__mdt> lstEndoTypesMetaData = [Select id,Endorsement_Types__c,License_Type__c FROM Endorsement_Add_Selection__mdt WHERE License_Type__c=:licenseType ];
         List<String> lstEndoTypes = new List<String>();
         String endoType;
         if(!lstEndoTypesMetaData.isEmpty())
         {
-            for(Endorsement_Add_Selection__mdt endo : lstEndoTypesMetaData )
+            for(Endorsement_Add_Selection__mdt endo : [Select id,Endorsement_Types__c,License_Type__c FROM Endorsement_Add_Selection__mdt WHERE License_Type__c=:licenseType ] )
             {
                 endoType = endo.Endorsement_Types__c;
             }
@@ -118,60 +125,92 @@ public class Polaris_MangeEndorsementCntrl {
         system.debug('endoType--'+endoType);
         system.debug('lstEndoTypes--'+lstEndoTypes);
         return lstEndoTypes;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     @AuraEnabled
     public static Integer fetchAssociations(String licId)
     {
-        List<Associations__c> lstassociation = [SELECT id,Parent_License__c FROM Associations__c WHERE Parent_License__c=:licId AND Status__c='Active' AND (Parent_License_Type__c='Certified General Appraiser' OR Parent_License_Type__c='Certified Residential Appraiser')];
+        List<Associations__c> lstassociation = [SELECT id,Parent_License__c FROM Associations__c WHERE Parent_License__c=:licId AND Status__c=: DOL_AppConstants.NULL_EMPTY_STRING + 'Active' AND (Parent_License_Type__c=: DOL_AppConstants.NULL_EMPTY_STRING + 'Certified General Appraiser' OR Parent_License_Type__c=: DOL_AppConstants.NULL_EMPTY_STRING + 'Certified Residential Appraiser')];
         
         return lstassociation.size();
     }
      @AuraEnabled
     public static List<Endorsement__c> insertEndorsement(String licId, String licenseType)
     {
+        try{
         return [SELECT id,Date_Requested_for_Adding_Endorsement__c,Endorsement_Type__c,License_Type__c,License__c,Status__c FROM Endorsement__c where License__c =:licId AND Status__c!='Canceled' ];
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
+            
     }
     
     @AuraEnabled
     public static List<Electronic_Notary_Provider_Information__c> fetchProvider(String endoId)
     {
+        try{
         return [SELECT id,Description__c,Effective_Date__c,Provider_Name__c FROM Electronic_Notary_Provider_Information__c where Endorsement__c =:endoId ];
+    
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     @AuraEnabled
     public static Void removeProvider(String providerId)
     {
+       try{
        Electronic_Notary_Provider_Information__c prov = [SELECT id,Description__c,Effective_Date__c,Provider_Name__c FROM Electronic_Notary_Provider_Information__c where Id =:providerId ];
         delete prov;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     @AuraEnabled
     public static void removeEndorsement (String endoId)
     {
+        try{
         Endorsement__c endo = [SELECT id,Status__c,License_Type__c FROM Endorsement__c where id =:endoId  ];
         if(endo.License_Type__c == 'Notary Public')
         {
-            endo.Status__c = 'Remove';
+            endo.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Remove';
         }
         else
         {
-            endo.Status__c = 'Pending Remove';
+            endo.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending Remove';
         }        
         update endo;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     @AuraEnabled
     public static String insertRequest(String licId,String licenseType, String board)
     {
+        try{
         List<User> userInfoData = new  List<User>();
-        String queryCondition = ' Id=\''+sTRING.escapeSingleQuotes(UserInfo.getUserId())+'\'';
+        String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id= \''+sTRING.escapeSingleQuotes(UserInfo.getUserId())+'\'';
         System.debug('User Id ' + queryCondition);
-        String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
+        String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
         system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
-        Id getContactId = '003r000000EOhBB';
+        Id getContactId = DOL_AppConstants.NULL_EMPTY_STRING + '003r000000EOhBB';
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
@@ -180,7 +219,7 @@ public class Polaris_MangeEndorsementCntrl {
         application.Profession__c = board; 
         application.License_Type__c = licenseType;        
         application.Stage__c = 0;
-        application.Service_Request_Type__c = 'Endorsement';
+        application.Service_Request_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Endorsement';
         application.Contact__c = getContactId;
         application.License__c = licId;    
         try{
@@ -188,15 +227,21 @@ public class Polaris_MangeEndorsementCntrl {
             insert application;
         }
         catch(Exception e){
-            HandleException.LogException(e,'Polaris_MangeEndorsementCntrl','insertRequest');            
+            DOL_CreateErrorLog_Exception.logApplicationError(e);            
         }
-        string appId = '';
+        string appId = DOL_AppConstants.NULL_EMPTY_STRING + '';
         return appId = application.Id;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
         
     }
     @AuraEnabled
     public static void updateEndorsement(String dataString,String licId, String licenseType)
     {
+        try{
         List<BGCK__Answer__c> lstUpdateAnswers = new List<BGCK__Answer__c>();
         Set<String> setEndorsementType = new Set<String>();
         List<BGCK__Answer__c> lstAnswers = [SELECT id,Endorsement_Type__c,Answer_Text__c,Question_Section__c,QuestionDOL__c,QuestionDOL__r.Sub_Sub_Header__c,QuestionDOL__r.Possible_Responses__c,QuestionDOL__r.Triggering_Parent_Answer__c,QuestionDOL__r.Sub_Header__c,QuestionDOL__r.Section__c,QuestionDOL__r.Submission_Title__c,QuestionDOL__r.Parent_Question__c,QuestionDOL__r.Has_dependent_questions__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Id,QuestionDOL__r.Question_Body__c FROM BGCK__Answer__c Where License__c =:licId and Question_Section__c='Endorsement' order by Question_Order__c ];
@@ -223,7 +268,7 @@ public class Polaris_MangeEndorsementCntrl {
         update lstAnswers;
         List<Endorsement__c> lstEndorsement = [SELECT id,Status__c,License__c,Endorsement_Type__c,Date_Requested_for_Adding_Endorsement__c FROM Endorsement__c where License__c =:licId ];
         map<String, Endorsement__c> mapEndorsement= new  map<String, Endorsement__c>();
-        for(Endorsement__c endo : lstEndorsement)
+        for(Endorsement__c endo : [SELECT id,Status__c,License__c,Endorsement_Type__c,Date_Requested_for_Adding_Endorsement__c FROM Endorsement__c where License__c =:licId ])
         {
             String key = endo.Endorsement_Type__c+'_'+endo.Status__c;
             system.debug('key'+key);
@@ -237,7 +282,7 @@ public class Polaris_MangeEndorsementCntrl {
                
                 if(!mapEndorsement.isEmpty() && mapEndorsement.containsKey(insideKey))
                 {
-                    mapEndorsement.get(insideKey).Status__c = 'Pending Remove';
+                    mapEndorsement.get(insideKey).Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Pending Remove';
                 }
                 else
                 {                    
@@ -258,5 +303,11 @@ public class Polaris_MangeEndorsementCntrl {
         system.debug('lstNewEndorsement : '+lstNewEndorsement);
         update lstEndorsement;
         insert lstNewEndorsement;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
+    
 }
