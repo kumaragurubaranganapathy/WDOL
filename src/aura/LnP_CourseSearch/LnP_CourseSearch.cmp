@@ -407,7 +407,7 @@ _______________________________________________________________
                                     <div class="field-style fieldSize">First Issue Date:<span>&nbsp;</span></div>
                                     <div class="field-style-val">
                                     	<aura:if isTrue="{!item.Original_Issue_Date__c}">
-                                            {!item.Original_Issue_Date__c}
+                                            <lightning:formattedDateTime value="{!item.Original_Issue_Date__c}" year="numeric" month="long" day="2-digit"/>                                            
                                             <aura:set attribute="else">
                                                 None
                                             </aura:set>
@@ -418,7 +418,8 @@ _______________________________________________________________
                                     <div class="field-style fieldSize">Current Issue Date:<span>&nbsp;</span></div>
                                     <div class="field-style-val">
                                     	<aura:if isTrue="{!item.MUSW__Issue_Date__c}">
-                                            {!item.MUSW__Issue_Date__c}
+                                            <lightning:formattedDateTime value="{!item.MUSW__Issue_Date__c}" year="numeric" month="long" day="2-digit"/>
+                                            
                                             <aura:set attribute="else">
                                                 None
                                             </aura:set>
@@ -429,7 +430,8 @@ _______________________________________________________________
                                     <div class="field-style fieldSize">Expiration Date:<span>&nbsp;</span></div>
                                     <div class="field-style-val">
                                     	<aura:if isTrue="{!item.MUSW__Expiration_Date__c}">
-                                            {!item.MUSW__Expiration_Date__c}
+                                            <lightning:formattedDateTime value="{!item.MUSW__Expiration_Date__c}" year="numeric" month="long" day="2-digit"/>
+                                            
                                             <aura:set attribute="else">
                                                 None
                                             </aura:set>
