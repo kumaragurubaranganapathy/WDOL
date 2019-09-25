@@ -12,6 +12,30 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Application_closed_RFI_final</template>
     </alerts>
+	 <alerts>
+        <fullName>Renewal_PDH_audit_approval</fullName>
+        <description>Renewal - PDH audit approval</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Renewal_PDH_audit_approval_final</template>
+    </alerts>
+	<alerts>
+        <fullName>Renewal_PDH_audit_notification</fullName>
+        <description>Renewal - PDH audit notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Renewal_PDH_Audit_notification_final</template>
+    </alerts>
     <alerts>
         <fullName>Application_closed_RFP</fullName>
         <description>Application closed - RFP</description>
@@ -730,6 +754,30 @@
         <description>Automation rule for email notification: First license issued - Active - Funeral Director Embalmer</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
+	<rules>
+        <fullName>Email - Renewal - PDH audit approval</fullName>
+        <actions>
+            <name>Renewal_PDH_audit_approval</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Renewal_PDH_audit_approval</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.Audit_Completed_Flag__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Is_Renewal_Eligible__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>Email - First license issued - Active - Funeral Director Embalmer Intern</fullName>
         <actions>
@@ -1405,6 +1453,20 @@
         <description>Automation rule for email notification: Retired status</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
+	<rules>
+        <fullName>Email - Renewal - PDH audit notification</fullName>
+        <actions>
+            <name>Renewal_PDH_audit_notification</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Renewal_PDH_audit_notification</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <formula>Pending_Audit__c = TRUE &amp;&amp;  Text(MUSW__Status__c) = &apos;Active&apos;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>Inactivate License on expiration</fullName>
         <actions>
@@ -1550,6 +1612,17 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Application closed - RFI</subject>
+    </tasks>
+	<tasks>
+        <fullName>Email_Outbound_Renewal_PDH_audit_notification</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Renewal - PDH audit notification</subject>
     </tasks>
     <tasks>
         <fullName>Email_Outbound_Application_closed_RFP</fullName>
@@ -1748,6 +1821,17 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Renewal reminder - individual</subject>
+    </tasks>
+	<tasks>
+        <fullName>Email_Outbound_Renewal_PDH_audit_approval</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Renewal - PDH audit approval</subject>
     </tasks>
     <tasks>
         <fullName>Email_Outbound_Retired_status</fullName>
