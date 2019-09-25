@@ -4,7 +4,7 @@
  * 
  */ 
 
-public with sharing class LnP_ReceiptDHPPopupModalCtrl {
+public without sharing class LnP_ReceiptDHPPopupModalCtrl {
     
     @AuraEnabled
     public static String saveLicenseandReceipt(Id receiptId){
