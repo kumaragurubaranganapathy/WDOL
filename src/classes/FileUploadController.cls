@@ -9,6 +9,7 @@ public class FileUploadController {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
             
         }
     }
@@ -21,7 +22,7 @@ public class FileUploadController {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -43,7 +44,7 @@ public class FileUploadController {
          }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
 }

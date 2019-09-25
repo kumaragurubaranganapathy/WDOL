@@ -4,10 +4,11 @@ public class LnP_PublicFormsApexController {
          Map<String, String> mapJSON = new Map<String, String>();
          try{
            mapJSON = DE_LandingPageCustomLabels.getPublicFormsJSON(); 
-         }
-         catch(Exception e){
-            HandleException.LogException(e,'LnP_PublicFormsApexController','getFormsJSON');
-         }  
+         }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }  
           
          return mapJSON;
     }
@@ -16,19 +17,19 @@ public class LnP_PublicFormsApexController {
         
         strPrefix = EncodingUtil.urlEncode(strPrefix, 'UTF-8');
         SOD_Address_Auth__c objCS = SOD_Address_Auth__c.getInstance('Auto_Complete_Address');
-        String url = objCS.url__c
+                String url = objCS.url__c
             + 'auth-id=' +objCS.AuthID__c
             + '&auth-token=' +objCS.AuthToken__c
-            + '&prefix=' + strPrefix;
+            + '&prefix=' + strPrefix;        
         
         system.debug('URL = '+url);
-        try{
+                try{
            SOD_Autocomplete_Wrapper response = SOD_Autocomplete_Wrapper.parse(makeAPICall(url));
            return response; 
-        }
-        catch(Exception e){
-            HandleException.LogException(e,'LnP_PublicFormsApexController','getAutoComplete');
-            return null;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
 
  
@@ -63,12 +64,10 @@ public class LnP_PublicFormsApexController {
             PageReference lgn = Site.login(usrnm, pwd, startUrl);
             aura.redirect(lgn);
             system.debug('lgn='+lgn);
-        }
-        catch (Exception ex) {
-           errorMsg = ex.getMessage();
-           HandleException.LogException(ex,'LnP_PublicFormsApexController','userlogin');
-           return errorMsg;
-           
+          }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }    
          return 'Success';          
         

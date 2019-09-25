@@ -6,7 +6,7 @@ public class LnP_comHeaderPublicFormsApexController {
             mapCommonHeaderLabels = DE_LandingPageCustomLabels.getCommonHeaderLabels();
         }
         catch(Exception e){
-            HandleException.LogException(e,'LnP_comHeaderPublicFormsApexController','getCommonHeaderCustomLabels');
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
         }
          return mapCommonHeaderLabels;
       }
@@ -21,7 +21,7 @@ public class LnP_comHeaderPublicFormsApexController {
          usrInfo.add(userName);
         }
 		catch(Exception e){
-            HandleException.LogException(e,'LnP_comHeaderPublicFormsApexController','getCurrentUserInfo');
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
         }
          return usrInfo;
       }
@@ -36,7 +36,7 @@ public class LnP_comHeaderPublicFormsApexController {
          usrInfo.add(userName);
         }
 		catch(Exception e){
-            HandleException.LogException(e,'LnP_comHeaderPublicFormsApexController','getCurrentUserInfo');
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
         }
          return usrInfo;
       }

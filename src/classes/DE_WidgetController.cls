@@ -1,10 +1,17 @@
 public class DE_WidgetController {
     @AuraEnabled
     public static Map<String,String> getCustomLabelMap(){
-       Map<String, String> mapWidgetLabels = new Map<String, String>();
-       mapWidgetLabels = DE_LandingPageCustomLabels.getWidgetLabels();
-
-       return mapWidgetLabels;
+        try{
+           Map<String, String> mapWidgetLabels = new Map<String, String>();
+           mapWidgetLabels = DE_LandingPageCustomLabels.getWidgetLabels();
+    
+           return mapWidgetLabels;
+        }
+          catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     @AuraEnabled
     public static DE_CreateLightningServerResponse errorLogger(){
@@ -22,6 +29,8 @@ public class DE_WidgetController {
             String sessid=UserInfo.getSessionId().substring(15);
             LoginHistory lh=[SELECT Browser,LoginTime,SourceIp,UserId,Platform FROM LoginHistory WHERE UserId =:uid ORDER BY LoginTime DESC NULLS LAST LIMIT 1];
             //HandleException.LogException(e,'AccountTestClass','MainProcessing',lan,sessid,lh);
+            throw new AuraHandledException('An error occurred: '+e.getMessage());
+            
         }
         return new DE_CreateLightningServerResponse(bSuccessful, mapErrorInfo, mapStrObjs);
     }
@@ -38,6 +47,8 @@ public class DE_WidgetController {
             String sessid=UserInfo.getSessionId().substring(15);
             LoginHistory lh=[SELECT Browser,LoginTime,SourceIp,UserId,Platform FROM LoginHistory WHERE UserId =:uid ORDER BY LoginTime DESC NULLS LAST LIMIT 1];
             //HandleException.LogException(e,'AccountTestClass','MainProcessing',lan,sessid,lh);
+            throw new AuraHandledException('An error occurred: '+e.getMessage());
+            
         }
     }
 }

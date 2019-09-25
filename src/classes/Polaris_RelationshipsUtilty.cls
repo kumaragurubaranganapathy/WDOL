@@ -3,11 +3,13 @@ public class Polaris_RelationshipsUtilty {
     @AuraEnabled 
     public static Polaris_RelationshipsUtilty.resultWrapper removeAssociationRecord(String associationId)
     {
+        try{
         Polaris_RelationshipsUtilty.resultWrapper result;
         
         Database.SaveResult sr;
         
-        Associations__c association = [SELECT id, Status__c,End_Date__c,Child_License__r.MUSW__Applicant__c FROM Associations__c where id=:associationId ];
+        Associations__c association = [SELECT id, Status__c,End_Date__c,Child_License__r.MUSW__Applicant__c 
+        FROM Associations__c where id=:associationId ];
         
          
         
@@ -23,7 +25,7 @@ public class Polaris_RelationshipsUtilty {
                 
               result =  new Polaris_RelationshipsUtilty.resultWrapper(True,'The association has been successfully removed');
               
-                List<task> task = [select id,Whatid,Status from task where Whatid=:association.Id limit 1];
+                List<task> task = [select id,Whatid,Status from task where Whatid=:association.Id and Whatid!=null limit 1];
                 
                 if(!task.isEmpty()){
                     
@@ -49,11 +51,17 @@ public class Polaris_RelationshipsUtilty {
            result  = new Polaris_RelationshipsUtilty.resultWrapper(false,'Please contact system administrator');
         }
         return result; 
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     @AuraEnabled 
     public static Polaris_RelationshipsUtilty.resultWrapper updateAssociationRecord(String associationId,String statusOfAssociation)
     {
+        try{
         Polaris_RelationshipsUtilty.resultWrapper result;
         
         Database.SaveResult sr;
@@ -83,7 +91,7 @@ public class Polaris_RelationshipsUtilty {
                 
               result =  new Polaris_RelationshipsUtilty.resultWrapper(True,'The Operation has been successfull');
               
-                List<task> task = [select id,Whatid,Status from task where Whatid=:association.Id limit 1];
+                List<task> task = [select id,Whatid,Status from task where Whatid=:association.Id and Whatid!=null limit 1];
                 
                 if(!task.isEmpty() && statusOfAssociation != 'resend'){
                     
@@ -117,11 +125,17 @@ public class Polaris_RelationshipsUtilty {
            result  = new Polaris_RelationshipsUtilty.resultWrapper(false,'Please contact system administrator');
         }
         return result; 
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     @AuraEnabled 
     public static Polaris_RelationshipsUtilty.resultWrapper removeAffliationRecord(String affliationId)
     {
+        try{
         Polaris_RelationshipsUtilty.resultWrapper result;
         
         Database.SaveResult sr;
@@ -138,7 +152,7 @@ public class Polaris_RelationshipsUtilty {
                 
               result =  new Polaris_RelationshipsUtilty.resultWrapper(True,'The association has been successfully removed');
               
-                 List<task> task = [select id,Whatid,Status from task where Whatid=:accountContact.Id limit 1];
+                 List<task> task = [select id,Whatid,Status from task where Whatid=:accountContact.Id and Whatid!=null limit 1];
                 
                     if(!task.isEmpty()){
                         
@@ -163,7 +177,12 @@ public class Polaris_RelationshipsUtilty {
             
            result  = new Polaris_RelationshipsUtilty.resultWrapper(false,'Please contact system administrator');
         }
-        return result;  
+        return result;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     public class resultWrapper{

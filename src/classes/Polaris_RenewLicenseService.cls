@@ -28,7 +28,7 @@ public class Polaris_RenewLicenseService {
     }
     public static List<Endorsement__c> fetchEndorsements(String licID)
     {
-        return [SELECT id,Endorsement_Type__c,License__c FROM Endorsement__c WHERE License__c=:licID];
+        return [SELECT id,Endorsement_Type__c,License__c FROM Endorsement__c WHERE Status__c=: DOL_AppConstants.NULL_EMPTY_STRING + 'Active' AND License__c=:licID];
     }
     
     public static Map<string,string> fetchSubsectionIcons(String pageName)
@@ -57,7 +57,7 @@ public class Polaris_RenewLicenseService {
     
     public static List<Application_Field__c>fetchApplicationFields(String applicationType, String credentialType, String applicationMethod)
     {
-        system.debug('board : '+applicationType+'licenseType : '+credentialType+ 'applicationType: '+applicationMethod);
+        system.debug('board : '+applicationType+'licenseType : '+credentialType+ ' applicationType: '+applicationMethod);
         List<Application_Field__c> lstApplicationFields = new List<Application_Field__c>();
         String Str = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT ValidationCriteria__c, Application_Method__c,Application_Type__c,Id,Label__c,Credential_Type__c,Name,Object_Name__c,Order_Number__c,Read_Only__c,Required__c,Type__c,Validator__c, Regex_Validation__c,Error_Message__c FROM Application_Field__c where Application_Type__c = \'' +applicationType+ '\'  AND Credential_Type__c = \'' +credentialType+ '\'  ORDER BY Order_Number__c ASC';
         system.debug('Str '+Str);
@@ -80,6 +80,7 @@ public class Polaris_RenewLicenseService {
         }
         String Str = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id,Order_No__c,Submission_Type__c,Show_For__c, Name,Title__c,Question__c,Expected_Answer__c, Required__c, Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where  Application_Type__c = \'' +applicationType+ '\' AND Credential_Type__c = \'' +credentialType+ '\' AND Application_Method__c = \'' +applicationMethod +'\' AND Default__c = true And Object__c =\'Renewal_Application__c\'  '+condition1;
         lstMasterSubmission = Utilityclass_withsharing.queryRecords(Str);
+        system.debug('MasterSubListReinstate::'+lstMasterSubmission);
         return lstMasterSubmission;
     }
     

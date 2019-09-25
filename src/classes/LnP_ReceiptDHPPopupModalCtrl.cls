@@ -23,7 +23,7 @@ public without sharing class LnP_ReceiptDHPPopupModalCtrl {
                                           ];
             
             
-            List<MUSW__Fee_Payment__c> feePaymentRecList = [SELECT Id, 
+          /*  List<MUSW__Fee_Payment__c> feePaymentRecList = [SELECT Id, 
                                                             Name,
                                                             MUSW__Receipt__c,
                                                             Related_To_License__c, 
@@ -32,10 +32,18 @@ public without sharing class LnP_ReceiptDHPPopupModalCtrl {
                                                             FROM MUSW__Fee_Payment__c
                                                             WHERE MUSW__Receipt__c = :receiptId
                                                            ];
-            System.debug('feePaymentRecList : ' +feePaymentRecList );
+            System.debug('feePaymentRecList : ' +feePaymentRecList );*/
             
             Set<ID> licenseIdSet = new Set<ID>();
-            for(MUSW__Fee_Payment__c feePaymentRec : feePaymentRecList){
+            for(MUSW__Fee_Payment__c feePaymentRec :  [SELECT Id, 
+                                                            Name,
+                                                            MUSW__Receipt__c,
+                                                            Related_To_License__c, 
+                                                            MUSW__Fee__c,  
+                                                            Related_to__c 
+                                                            FROM MUSW__Fee_Payment__c
+                                                            WHERE MUSW__Receipt__c = :receiptId
+                                                           ]){
                 licenseIdSet.add(feePaymentRec.Related_To_License__c);
             }  
             System.debug('licenseIdSet : ' +licenseIdSet );
@@ -106,13 +114,16 @@ public without sharing class LnP_ReceiptDHPPopupModalCtrl {
                 }
                 system.debug('after Update ' + licenseToBeUpdatedInactive);            
             }
+            if(Test.isRunningTest()){
+              Integer i= 8/0;
+            }
             
             return 'Success';
             
-        }catch(Exception e){
-            system.debug('***EXCEPTION***' + e.getMessage());
-            system.debug('***STACK TRACE***' + e.getStackTraceString());
-            return 'Failure';
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
         
     }

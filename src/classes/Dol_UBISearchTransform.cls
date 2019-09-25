@@ -8,6 +8,8 @@ public class Dol_UBISearchTransform {
         String businessStatus = DOL_AppConstants.NULL_EMPTY_STRING + '';
         
         List<String> ubiafterHash = ubi.split('-');
+        System.debug('UBI after split'+ubi.split('-'));
+        System.debug('First term'+ubiafterHash[0].trim());
         if(Dol_IntegrationUtil.isNotEmpty(ubiafterHash)){
             newUBI = ubiafterHash[0].trim() + ubiafterHash[1].trim() + ubiafterHash[2].trim();
         }
@@ -61,6 +63,8 @@ public class Dol_UBISearchTransform {
                         acc.Account_Status__c = businessStatus;
                         
                         accountConList = [Select id,Title__c,Last_Name__c,Middle_Name__c,First_Name__c from MUSW__Account_Contact__c where MUSW__Account__c =:accountId AND MUSW__Account__c != null];
+                        system.debug('accountConList=='+accountConList);
+                        system.debug('governingdetails=='+governingdetails);
                         if(Dol_IntegrationUtil.isNotEmpty(governingdetails) && Dol_IntegrationUtil.isNotEmpty(accountConList)){
                                 for(Dol_SOSResponse.GoverningPersons govdetail : governingdetails){ 
                                     governingName= DOL_AppConstants.NULL_EMPTY_STRING + '';

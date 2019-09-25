@@ -2,46 +2,59 @@ public class LnP_dependentPicklist_UpdateCtrl {
 	
     @AuraEnabled 
     public static Map<String, List<String>> getDependentMap(sObject objDetail, string contrfieldApiName,string depfieldApiName) {
+        try{
         String controllingField = contrfieldApiName.toLowerCase();
         String dependentField = depfieldApiName.toLowerCase();
         
         Map<String,List<String>> objResults = new Map<String,List<String>>();
-        
         Schema.sObjectType objType = objDetail.getSObjectType();
+       // SYSTEM.debug('ABC'+string.valueOf(objType));
         if (objType==null){
             return objResults;
         }
-        
         Map<String, Schema.SObjectField> objFieldMap = objType.getDescribe().fields.getMap();
-        
+      //  system.debug('json'+String.valueof(objFieldMap));
+      //  SYSTEM.debug('ABC'+objFieldMap.containsKey(controllingField));
+     //   SYSTEM.debug('ABC'+objFieldMap.containsKey(dependentField));
         if (!objFieldMap.containsKey(controllingField) || !objFieldMap.containsKey(dependentField)){
             return objResults;     
         }
-        
         Schema.SObjectField theField = objFieldMap.get(dependentField);
         Schema.SObjectField ctrlField = objFieldMap.get(controllingField);
-        
+       // system.debug('ASS');
         List<Schema.PicklistEntry> contrEntries = ctrlField.getDescribe().getPicklistValues();
         List<PicklistEntryWrapper> depEntries = wrapPicklistEntries(theField.getDescribe().getPicklistValues());
         List<String> controllingValues = new List<String>();
-        
         for (Schema.PicklistEntry ple : contrEntries) {
             String label = ple.getLabel();
+            //system.debug('ple'+ple);
             objResults.put(label, new List<String>());
             controllingValues.add(label);
         }
-        
         for (PicklistEntryWrapper plew : depEntries) {
+           // system.debug('plew'+plew);
             String label = plew.label;
             String validForBits = base64ToBits(plew.validFor);
             for (Integer i = 0; i < validForBits.length(); i++) {
                 String bit = validForBits.mid(i, 1);
-                if (bit == '1') {
+                if (bit == '1') 
+                {
+                    string abc  =  controllingValues.get(i);
+                    string abcd =  label ;
                     objResults.get(controllingValues.get(i)).add(label);
+                    
                 }
             }
         }
+        string jsonstring = JSON.serialize(objResults);
+        system.debug('jsonstring'+jsonstring);
+        system.debug('objResults'+objResults.keySet());
         return objResults;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     public static String decimalToBinary(Integer val) {

@@ -29,7 +29,7 @@ public class DOL_DynamicPortalArticlesRenderer_Apex {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
         
     }
@@ -55,7 +55,7 @@ public class DOL_DynamicPortalArticlesRenderer_Apex {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -80,7 +80,7 @@ public class DOL_DynamicPortalArticlesRenderer_Apex {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
