@@ -78,6 +78,9 @@
                         filteredResults.push(result[i].Credential_Type__c);
                     }
                 }
+				if(filteredResults !== null && filteredResults != ""){
+                    filteredResults = filteredResults.sort();
+                } 
                 component.set(auraAttr, filteredResults);
                 }
                 else{
