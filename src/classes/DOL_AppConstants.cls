@@ -8,7 +8,9 @@ public class DOL_AppConstants {
     public static final String ePaymentReturnUrlNonPortalUser = 'ePayment Return Url Non Portal User';
     public static final String ePaymentSessionValuesSeperator = '|';
     public static final String ePaymentUrlListValuesSeperator = 'SEPARATOR';
+    public static final List<String> PORTAL_PROFILES = new List<String>{'eSLA Customer Community Plus Login User','eSLA Customer Community Login User'};
     
+    public static final string PREPEND_ASSOC_NAME = 'Assoc- ';
     //Class DOL_JITHandler
     public static final String sJITErrorMessageOne = 'An SAML error occurred. Please contact us for assistance.';
     public static final String sJITErrorMessageTwo = 'Configuration';
@@ -91,6 +93,7 @@ public class DOL_AppConstants {
     public static final String NOTARY_PUBLIC = 'Notary Public';
     public static final String PICKLIST = 'Picklist';
     public static final String RENEWAL_APPLICATION = 'Renewal_Application__c';
+    public static final String LICENSE = 'MUSW__License2__c';
     public static final String ANSWER_TEXT = 'Answer_Text__c';
     public static final String QUESTIONDOL = 'QuestionDOL__c';
     public static final String APPLICATION_BG = 'Application_BG__c';
@@ -171,7 +174,8 @@ public class DOL_AppConstants {
     public static final String NULL_STRING = 'null';
     public static final String BUSINESS_INFORMATION = 'Business Information';
     public static final String SUBMISSION = 'Submission'; 
-
+    public static final String SECONDARYPROVIDER = 'Secondary Provider';
+    
     //Class BusinessUtility
     public static final String COMMUNITY_PLUS_PROFILE = 'eSLA Customer Community Plus Login User' ;
     public static final String PREFIX_OLD_FIRSTNAME = 'Old-' ;
@@ -226,9 +230,9 @@ public class DOL_AppConstants {
     
     //CredCEhoursScheduler
     public static final String QUERY_LICENSE_ELIGIBLE_STRING = 'Select id, name, CE_Hours__c, Renewal_Cycle_End_Date__c, ' + 
-               		 'Renewal_window__c, MUSW__Expiration_Date__c, LastModifiedBy.Name ' +
-               		 'from MUSW__License2__c where CE_Eligible__c = true limit 200';
-               		 
+                    'Renewal_window__c, MUSW__Expiration_Date__c, LastModifiedBy.Name ' +
+                    'from MUSW__License2__c where CE_Eligible__c = true limit 200';
+                    
     //CredentialNotificationScheduler
     public static final String QUERY_CREDENTIAL_NOTIFICATION_SCHEDULER = 'Select Id, Name, MUSW__Applicant__r.FirstName, MUSW__Applicant__r.LastName, MUSW__Applicant__r.Name, MUSW__Primary_Licensee__r.Email_Primary_Contact__c, MUSW__Status__c, ' + 
             'MUSW__Expiration_Date__c, Next_Notification_Date__c, Next_Notification_Attempt__c, Business_License__c, OwnerId,Credential__c, ' + 
