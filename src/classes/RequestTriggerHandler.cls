@@ -22,15 +22,15 @@ public class RequestTriggerHandler  implements BGCM.ITriggerHandler  {
     public void onAfterUpdate() {        
         List<Request__c> lstRequests =(List<Request__c>)Trigger.new;
         Set<Id> setRequestId = new Set<Id>();
-		Set<Id> setExamRequestTaskId = new Set<Id>();
-		Set<Id> setCERequestTaskId = new Set<Id>();
+        Set<Id> setExamRequestTaskId = new Set<Id>();
+        Set<Id> setCERequestTaskId = new Set<Id>();
         for(Request__c req : lstRequests )
         {
-			if(req.Status__c == 'Under Review' && (req.Service_Request_Type__c == 'Reschedule Exam' || req.Service_Request_Type__c == 'Submit Exam Results') )
+            if(req.Status__c == 'Under Review' && (req.Service_Request_Type__c == 'Reschedule Exam' || req.Service_Request_Type__c == 'Submit Exam Results') )
             {
                 setExamRequestTaskId.add(req.Exam__c);
             }
-			if(req.Status__c == 'Under Review' && req.Service_Request_Type__c == 'CE Audit'  )
+            if(req.Status__c == 'Under Review' && req.Service_Request_Type__c == 'CE Audit'  )
             {
                 setCERequestTaskId.add(req.Id);
             }
@@ -39,14 +39,14 @@ public class RequestTriggerHandler  implements BGCM.ITriggerHandler  {
                 setRequestId.add(req.Id);
             }
         }
-		if(!setExamRequestTaskId.isEmpty())
-		{
-			updateTaskToClose(setExamRequestTaskId);
-		}
-		if(!setCERequestTaskId.isEmpty())
-		{
-			updateTaskToClose(setCERequestTaskId);
-		}
+        if(!setExamRequestTaskId.isEmpty())
+        {
+            updateTaskToClose(setExamRequestTaskId);
+        }
+        if(!setCERequestTaskId.isEmpty())
+        {
+            updateTaskToClose(setCERequestTaskId);
+        }
         if(!setRequestId.isEmpty())
         {
             automationAMR(setRequestId);
@@ -59,25 +59,25 @@ public class RequestTriggerHandler  implements BGCM.ITriggerHandler  {
     public void onBeforeUndelete() {}
     public void onBeforeUpdate() {}
     
-	public void updateTaskToClose(Set<Id> setRequestTaskId){
-		List<Task> lstTask = [SELECT id,Status,Whatid FROM Task WHERE Whatid IN:setRequestTaskId AND Status='Pending'];
-		
-		if(!lstTask.isEmpty())
-		{
-			for(Task ta : lstTask)
-			{
-				ta.Status = 'Completed';
-			}
-			try{
-			update lstTask;
+    public void updateTaskToClose(Set<Id> setRequestTaskId){
+        List<Task> lstTask = [SELECT id,Status,Whatid FROM Task WHERE Whatid IN:setRequestTaskId AND Status='Pending'];
+        
+        if(!lstTask.isEmpty())
+        {
+            for(Task ta : lstTask)
+            {
+                ta.Status = 'Completed';
+            }
+            try{
+            update lstTask;
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
             throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
-		}
-		
-	}
+        }
+        
+    }
     public void automationAMR(Set<Id> setRequestId ){
         List<Request__c> lstrequest = [SELECT id,Contact__c,Account__c,License__c,Form_JSON__c,Profession__c,Service_Request_Type__c,License_Type__c,Status__c FROM Request__c WHERE Id=: setRequestId ];
         
@@ -127,7 +127,7 @@ public class RequestTriggerHandler  implements BGCM.ITriggerHandler  {
                 
                 update detail;
         
-        if(lstrequest[0].Service_Request_Type__c == 'Update Legal Name')
+        if(lstrequest[0].Service_Request_Type__c == 'Update Legal Name' || lstrequest[0].Service_Request_Type__c == 'Update Print Name')
         {
           updateLicensePrintName(lstrequest[0]);
         }                
@@ -137,6 +137,8 @@ public class RequestTriggerHandler  implements BGCM.ITriggerHandler  {
   
   public void updateLicensePrintName(Request__c request)
   {
+    if(request.Service_Request_Type__c == 'Update Legal Name')
+    {
     List<MUSW__License2__c> lstLicence = [SELECT id,MUSW__Applicant__c,Print_First_Name__c,Print_Middle_Name__c,Print_Last_Name__c,License_Printable_Name__c,Using_my_legal_name_as_print_name__c FROM MUSW__License2__c WHERE Using_my_legal_name_as_print_name__c=true AND MUSW__Applicant__c =: request.Contact__c];
     Contact con = [SELECT id,FirstName,MiddleName,LastName FROM Contact WHERE id =: request.Contact__c];
     for(MUSW__License2__c lic : lstLicence)
@@ -149,6 +151,19 @@ public class RequestTriggerHandler  implements BGCM.ITriggerHandler  {
     if(!lstLicence.isEmpty())
     {
       update lstLicence;
+    }
+    }
+    else if(request.Service_Request_Type__c == 'Update Print Name')
+    {
+        List<MUSW__License2__c> lstLicence = [SELECT id,MUSW__Applicant__c,Print_First_Name__c,Print_Middle_Name__c,Print_Last_Name__c,License_Printable_Name__c FROM MUSW__License2__c WHERE id =: request.License__c];
+        for(MUSW__License2__c lic : lstLicence)
+        {      
+            lic.License_Printable_Name__c = (lic.Print_Middle_Name__c == null)?(lic.Print_First_Name__c+' '+ lic.Print_Last_Name__c):(lic.Print_First_Name__c+' '+ lic.Print_Middle_Name__c+' '+ lic.Print_Last_Name__c);                  
+        }
+        if(!lstLicence.isEmpty())
+        {
+            update lstLicence;
+        }
     }
   }
   

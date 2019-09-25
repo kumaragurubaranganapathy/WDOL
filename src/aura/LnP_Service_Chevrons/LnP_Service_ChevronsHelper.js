@@ -246,7 +246,7 @@
                     {
                         // Set popup property values before displayiong pop up.
                     component.set("v.popupHeader", "Successfully Submitted");
-                    component.set("v.popupBody", "Thank you for submission of your application.");
+                    component.set("v.popupBody", "Thank you for submission of your request.");
                     //component.set("v.serverStatus", "success"); 
                     //component.set("v.storeServerValue", result[0].Id);                    
                     component.set("v.isOpen", true);
