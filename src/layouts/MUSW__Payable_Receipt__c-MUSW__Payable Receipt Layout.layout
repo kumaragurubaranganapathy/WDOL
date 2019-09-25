@@ -59,7 +59,18 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>BGBK__Type__c</fields>
+        <fields>BGBK__Fund__c</fields>
+        <fields>BGBK__Amount__c</fields>
+        <fields>Journal_Voucher_Detail__c</fields>
+        <fields>Profession_Code__c</fields>
+        <fields>Agency__c</fields>
+        <fields>Intake_Method__c</fields>
+        <fields>Payment_Method__c</fields>
+        <fields>CREATED_DATE</fields>
         <relatedList>BGBK__Item__c.Payable_Receipt__c</relatedList>
+        <sortField>NAME</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
