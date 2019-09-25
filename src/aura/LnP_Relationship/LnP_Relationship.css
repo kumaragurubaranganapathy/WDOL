@@ -46,6 +46,10 @@
 .THIS .comp-desc{
     padding:16px 16px 0;
 }
+.THIS .pull-right{
+    margin-left: auto;
+    margin-right: 0;
+}
 .THIS .widget{
     /*background-color:t(LnGWhite); */
     /*border : solid 1px t(LnGWhite); */
@@ -156,6 +160,11 @@
 }
 .THIS .lic-btn .slds-button+.slds-button{
     margin: 0.25rem 0 0;
+}
+.THIS .save-btn-wrapper{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:0.5rem;
 }
 
 @media (max-width: 30em)
