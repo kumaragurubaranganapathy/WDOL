@@ -81,7 +81,7 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
-            <conditionLogic>((1 OR 3) AND 2)</conditionLogic>
+            <conditionLogic>1 OR 2</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -111,37 +111,6 @@
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.MUSW__Status__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Closed</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -217,7 +186,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_4_myRule_1_A2_5866995207</name>
+        <name>formula_4_myRule_1_A2_1786656105</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -228,7 +197,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_1_A1_8996089357</name>
+        <name>formula_5_myRule_1_A1_5416925337</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -239,7 +208,7 @@
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_7_A1_6561724148</name>
+        <name>formula_8_myRule_7_A1_3319080328</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -254,7 +223,7 @@
         <dataType>Boolean</dataType>
         <expression>ISNEW()</expression>
     </formulas>
-    <interviewLabel>Complaint_Create_Edit_Timeframe-13_InterviewLabel</interviewLabel>
+    <interviewLabel>Complaint_Create_Edit_Timeframe-14_InterviewLabel</interviewLabel>
     <label>Complaint Create Edit Timeframe</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -349,7 +318,7 @@
             </processMetadataValues>
             <field>Start_Date__c</field>
             <value>
-                <elementReference>formula_4_myRule_1_A2_5866995207</elementReference>
+                <elementReference>formula_4_myRule_1_A2_1786656105</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -488,7 +457,7 @@
             </processMetadataValues>
             <field>Start_Date__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A1_6561724148</elementReference>
+                <elementReference>formula_8_myRule_7_A1_3319080328</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -683,13 +652,12 @@
             </processMetadataValues>
             <field>End_Date__c</field>
             <value>
-                <elementReference>formula_5_myRule_1_A1_8996089357</elementReference>
+                <elementReference>formula_5_myRule_1_A1_5416925337</elementReference>
             </value>
         </inputAssignments>
         <object>Time_Frame__c</object>
     </recordUpdates>
     <startElementReference>isChangedDecision2_myRule_1_MUSW_Status_c</startElementReference>
-    <status>Active</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>
