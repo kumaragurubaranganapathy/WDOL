@@ -18,7 +18,7 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
     // Record type for DOR Interface
     private Id accountRecTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('DOR Business Account').getRecordTypeId();
     private Id licenseRecTypeId = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('DOR Licenses').getRecordTypeId();
-    private Id parcelRecTypeId = Schema.SObjectType.MUSW__Parcel__c.getRecordTypeInfosByName().get('DOR Parcels').getRecordTypeId();
+    private Id parcelRecTypeId = Schema.SObjectType.MUSW__Parcel__c.getRecordTypeInfosByName().get('DOR Address').getRecordTypeId();
     private Id accConRecTypeId = Schema.SObjectType.MUSW__Account_Contact__c.getRecordTypeInfosByName().get('DOR Account Contacts').getRecordTypeId();
 
     private List<DOR_Professional_Code_Mapping__mdt> profCodeMappingMdt = [ select License_Type__c, Professional_Code__c, Program__c from DOR_Professional_Code_Mapping__mdt ];
