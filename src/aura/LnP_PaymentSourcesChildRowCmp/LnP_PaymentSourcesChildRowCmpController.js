@@ -39,7 +39,7 @@
         //-1 for space 
         var remainingChars = 35 - _slipPrinterInput.length - 1 ; //9
         //logic for adding comma for thousand separator
-        var formattedAmount = String(_receiptRec.MUSW__Amount_Tendered__c).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
+        var formattedAmount = String(Number(_receiptRec.MUSW__Amount_Tendered__c).toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
         
         //logic for amount with preceeding spaces 
         var spaces = '';
@@ -104,7 +104,7 @@
         //-1 for space while 35 is standard size
         var remainingChars = 35 - _slipPrinterInput.length - 1 ; //9
         //logic for adding comma for thousand separator
-        var formattedAmount = String(_receiptRec.MUSW__Amount_Tendered__c).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
+        var formattedAmount = String(Number(_receiptRec.MUSW__Amount_Tendered__c).toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
         
         //logic for amount with preceeding spaces 
         var spaces = '';
@@ -151,7 +151,7 @@
         //-1 for space 
         var remainingChars = 35 - _slipPrinterInput.length - 1 ; //9
         //logic for adding comma for thousand separator
-        var formattedAmount = String(_receiptRec.MUSW__Amount_Tendered__c).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
+        var formattedAmount = String(Number(_receiptRec.MUSW__Amount_Tendered__c).toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ",") ;
         
         //logic for amount with preceeding spaces 
         var spaces = '';
