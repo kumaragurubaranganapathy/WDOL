@@ -111,6 +111,18 @@
         <template>DOL_Licensing/Intern_removal_notification_intern_final</template>
     </alerts>
     <alerts>
+        <fullName>Intern_separation_notification_intern</fullName>
+        <description>Intern separation notification - intern</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Intern_separation_notification_intern_final</template>
+    </alerts>
+    <alerts>
         <fullName>Licensee_accept_business</fullName>
         <description>Licensee accept - business</description>
         <protected>false</protected>
@@ -123,6 +135,18 @@
         <template>DOL_Licensing/Licensee_accept_business_final</template>
     </alerts>
     <alerts>
+        <fullName>Licensee_accept_licensee_additional_employer</fullName>
+        <description>Licensee accept - licensee - additional employer</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Licensee_accept_licensee_additional_employer_final</template>
+    </alerts>
+    <alerts>
         <fullName>Licensee_accept_licensee_one_employer</fullName>
         <description>Licensee accept - licensee - one employer</description>
         <protected>false</protected>
@@ -133,6 +157,54 @@
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_accept_licensee_one_employer_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Licensee_decline_business</fullName>
+        <description>Licensee decline - business</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Parent_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Licensee_decline_business_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Licensee_decline_licensee_no_employer</fullName>
+        <description>Licensee decline - licensee - no employer</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Licensee_decline_licensee_no_employer_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Licensee_invitation_notification_CR_licensee_additional_business</fullName>
+        <description>Licensee invitation notification - CR licensee - additional business</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Licensee_invitation_notification_CR_licensee_additional_business_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Licensee_invitation_notification_TS_licensee_additional_business</fullName>
+        <description>Licensee invitation notification - TS licensee - additional business</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Licensee_invitation_notification_TS_licensee_additional_business_final</template>
     </alerts>
     <alerts>
         <fullName>Licensee_invitation_notification_business</fullName>
@@ -157,6 +229,113 @@
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_invitation_notification_licensee</template>
+    </alerts>
+    <alerts>
+        <fullName>Licensee_removal_notification_business</fullName>
+        <description>Licensee removal notification - business</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Parent_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Licensee_removal_notification_business_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Licensee_removal_notification_licensee_no_employer</fullName>
+        <description>Licensee removal notification - licensee - no employer</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>DOL_Licensing/Licensee_removal_notification_licensee_no_employer_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Licensee_removal_notification_licensee_with_employer</fullName>
+        <description>Licensee removal notification - licensee - with employer</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Licensee_removal_notification_licensee_with_employer_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Licensee_separation_notification_business</fullName>
+        <description>Licensee separation notification - business</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Parent_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Licensee_separation_notification_business_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Licensee_separation_notification_licensee_no_employer</fullName>
+        <description>Licensee separation notification - licensee - no employer</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Licensee_separation_notification_licensee_no_employer_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Licensee_separation_notification_licensee_with_employer</fullName>
+        <description>Licensee separation notification - licensee - with employer</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Licensee_separation_notification_licensee_with_employer_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Trainee_accept_trainee_1st_supervisor</fullName>
+        <description>Trainee accept - trainee - 1st supervisor</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Trainee_accept_trainee_1st_supervisor_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Trainee_accept_trainee_additional_supervisor</fullName>
+        <description>Trainee accept - trainee - additional supervisor</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Trainee_accept_trainee_additional_supervisor_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Trainee_decline_trainee_additional_supervisor</fullName>
+        <description>Trainee decline - trainee - additional supervisor</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Trainee_decline_trainee_additional_supervisor_final</template>
     </alerts>
     <alerts>
         <fullName>Trainee_decline_trainee_no_supervisor</fullName>
@@ -229,6 +408,66 @@
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_intern_removal_notification_supervisor_sponsor_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Trainee_intern_separation_notification_supervisor_sponsor</fullName>
+        <description>Trainee intern separation notification - supervisor sponsor</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Parent_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Trainee_intern_separation_notification_supervisor_sponsor_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Trainee_removal_notification_trainee_no_supervisor</fullName>
+        <description>Trainee removal notification - trainee - no supervisor</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Trainee_removal_notification_trainee_no_supervisor_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Trainee_removal_notification_trainee_with_supervisor</fullName>
+        <description>Trainee removal notification - trainee - with supervisor</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Trainee_removal_notification_trainee_with_supervisor_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Trainee_separation_notification_trainee_no_supervisor</fullName>
+        <description>Trainee separation notification - trainee - no supervisor</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Trainee_separation_notification_trainee_no_supervisor_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Trainee_separation_notification_trainee_with_supervisor</fullName>
+        <description>Trainee separation notification - trainee - with supervisor</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Child_License_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Trainee_separation_notification_trainee_with_supervisor_final</template>
     </alerts>
     <fieldUpdates>
         <fullName>Update_Child_License_email</fullName>
@@ -455,6 +694,35 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>Email - Intern separation notification - intern</fullName>
+        <actions>
+            <name>Intern_separation_notification_intern</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Intern_separation_notification_intern</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Funeral Director Intern,Embalmer Intern</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>Email - Licensee accept - business</fullName>
         <actions>
             <name>Licensee_accept_business</name>
@@ -470,6 +738,40 @@
             <field>Associations__c.Status__c</field>
             <operation>equals</operation>
             <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Salesperson,Camping Resort Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Licensee accept - licensee - additional employer</fullName>
+        <actions>
+            <name>Licensee_accept_licensee_additional_employer</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Licensee_accept_licensee_additional_employer</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>2</value>
         </criteriaItems>
         <criteriaItems>
             <field>Associations__c.Association_Type__c</field>
@@ -509,6 +811,137 @@
             <field>Associations__c.Association_Type__c</field>
             <operation>equals</operation>
             <value>Timeshare Salesperson,Camping Resort Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Licensee decline - business</fullName>
+        <actions>
+            <name>Licensee_decline_business</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Licensee_decline_business</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Declined</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Salesperson,Camping Resort Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Licensee decline - licensee - no employer</fullName>
+        <actions>
+            <name>Licensee_decline_licensee_no_employer</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Licensee_decline_licensee_no_employer</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Declined</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Salesperson,Camping Resort Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Licensee invitation notification - CR licensee - additional business</fullName>
+        <actions>
+            <name>Licensee_invitation_notification_CR_licensee_additional_business</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Licensee_invitation_notification_CR_licensee_additional_business</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Invited</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Camping Resort Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Licensee invitation notification - TS licensee - additional business</fullName>
+        <actions>
+            <name>Licensee_invitation_notification_TS_licensee_additional_business</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Licensee_invitation_notification_TS_licensee_additional_business</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Invited</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1</value>
         </criteriaItems>
         <criteriaItems>
             <field>Associations__c.CreatedById</field>
@@ -590,6 +1023,300 @@
             <field>Associations__c.CreatedById</field>
             <operation>notContain</operation>
             <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Licensee removal notification - business</fullName>
+        <actions>
+            <name>Licensee_removal_notification_business</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Licensee_removal_notification_business</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Deleted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Salesperson,Camping Resort Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Licensee removal notification - licensee - no employer</fullName>
+        <actions>
+            <name>Licensee_removal_notification_licensee_no_employer</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Licensee_removal_notification_licensee_no_employer</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Deleted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Salesperson,Camping Resort Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Licensee removal notification - licensee - with employer</fullName>
+        <actions>
+            <name>Licensee_removal_notification_licensee_with_employer</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Licensee_removal_notification_licensee_with_employer</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Deleted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Salesperson,Camping Resort Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Licensee separation notification - business</fullName>
+        <actions>
+            <name>Licensee_separation_notification_business</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Licensee_separation_notification_business</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Salesperson,Camping Resort Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Licensee separation notification - licensee - no employer</fullName>
+        <actions>
+            <name>Licensee_separation_notification_licensee_no_employer</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Licensee_separation_notification_licensee_no_employer</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Salesperson,Camping Resort Salesperson</value>
+        </criteriaItems>
+        <description>Send email to parent and child license holder about cancelation</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Licensee separation notification - licensee - with employer</fullName>
+        <actions>
+            <name>Licensee_separation_notification_licensee_with_employer</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Licensee_separation_notification_licensee_with_employer</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Timeshare Salesperson,Camping Resort Salesperson</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Trainee accept - trainee - 1st supervisor</fullName>
+        <actions>
+            <name>Trainee_accept_trainee_1st_supervisor</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Trainee_accept_trainee_1st_supervisor</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Trainee</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Trainee accept - trainee - additional supervisor</fullName>
+        <actions>
+            <name>Trainee_accept_trainee_additional_supervisor</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Trainee_accept_trainee_additional_supervisor</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Trainee</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>2</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Trainee decline - trainee - additional supervisor</fullName>
+        <actions>
+            <name>Trainee_decline_trainee_additional_supervisor</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Trainee_decline_trainee_additional_supervisor</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Declined</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Trainee</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -760,6 +1487,171 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>Email - Trainee intern separation notification - supervisor sponsor</fullName>
+        <actions>
+            <name>Trainee_intern_separation_notification_supervisor_sponsor</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Trainee_intern_separation_notification_supervisor_sponsor</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Trainee,Funeral Director Intern,Embalmer Intern</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Trainee removal notification - trainee - no supervisor</fullName>
+        <actions>
+            <name>Trainee_removal_notification_trainee_no_supervisor</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Trainee_removal_notification_trainee_no_supervisor</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Deleted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Trainee</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Trainee removal notification - trainee - with supervisor</fullName>
+        <actions>
+            <name>Trainee_removal_notification_trainee_with_supervisor</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Trainee_removal_notification_trainee_with_supervisor</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Deleted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Trainee</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Trainee separation notification - trainee - no supervisor</fullName>
+        <actions>
+            <name>Trainee_separation_notification_trainee_no_supervisor</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Trainee_separation_notification_trainee_no_supervisor</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Trainee</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Trainee separation notification - trainee - with supervisor</fullName>
+        <actions>
+            <name>Trainee_separation_notification_trainee_with_supervisor</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Trainee_separation_notification_trainee_with_supervisor</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <criteriaItems>
+            <field>Associations__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Canceled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.License_Number_of_Active_Relationships__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Associations__c.Association_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraiser Trainee</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>update status and child parent license email</fullName>
         <actions>
             <name>Update_Child_License_email</name>
@@ -769,10 +1661,32 @@
             <name>update_parent_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <formula>OR( NOT (ISNULL(Parent_License__c))  ,NOT (ISNULL(Child_License__c)) )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
+    <tasks>
+        <fullName>Designated_person_decline</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Associations__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Designated person decline</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Designated_person_accept</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Associations__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email - Designated person accept</subject>
+    </tasks>
     <tasks>
         <fullName>Email_Outbound_Designated_person_invitation_notification</fullName>
         <assignedToType>owner</assignedToType>
@@ -1014,6 +1928,17 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Trainee accept - trainee - additional supervisor</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_Trainee_decline_trainee_additional_supervisor</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Associations__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Trainee decline - trainee - additional supervisor</subject>
     </tasks>
     <tasks>
         <fullName>Email_Outbound_Trainee_decline_trainee_no_supervisor</fullName>
