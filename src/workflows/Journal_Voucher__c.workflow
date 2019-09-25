@@ -20,6 +20,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>ApprovedByDate</fullName>
+        <field>Approved_by_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>ApprovedByDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>ApprovedByDate_AP</fullName>
         <field>Approved_by_Date__c</field>
         <formula>TODAY()</formula>

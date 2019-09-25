@@ -17,7 +17,7 @@
             <name>MUSW__Login_New_User_Created</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>MUSW__Login_UserInfo__c.MUSW__Email__c</field>
             <operation>notEqual</operation>

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
+        <fullName>OwnerChange</fullName>
+        <field>OwnerId</field>
+        <lookupValue>Timeshare_Queue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>OwnerChange</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>OwnerChange_Real_Estate_Appraiser_Course</fullName>
         <field>OwnerId</field>
         <lookupValue>Real_Estate_Appraiser_Courses_Queue</lookupValue>
@@ -105,11 +115,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>AND( 
-License__c != NULL, 
-OR( ISPICKVAL(License__r.Credential_Type__c, &apos;Appraisal Management Company&apos;), 
-ISPICKVAL(License__r.Credential_Type__c, &apos;Appraisal Controlling Person&apos;))	
-)</formula>
+        <formula>AND(  License__c != NULL,  OR( ISPICKVAL(License__r.Credential_Type__c, &apos;Appraisal Management Company&apos;),  ISPICKVAL(License__r.Credential_Type__c, &apos;Appraisal Controlling Person&apos;))	 )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -119,11 +125,7 @@ ISPICKVAL(License__r.Credential_Type__c, &apos;Appraisal Controlling Person&apos
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>AND( 
-License__c != NULL, 
-OR( ISPICKVAL(License__r.Credential_Type__c, &apos;Camping Resort Company&apos;), 
-ISPICKVAL(License__r.Credential_Type__c, &apos;Camping Resort Salesperson&apos;))	
-)</formula>
+        <formula>AND(  License__c != NULL,  OR( ISPICKVAL(License__r.Credential_Type__c, &apos;Camping Resort Company&apos;),  ISPICKVAL(License__r.Credential_Type__c, &apos;Camping Resort Salesperson&apos;))	 )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -133,10 +135,7 @@ ISPICKVAL(License__r.Credential_Type__c, &apos;Camping Resort Salesperson&apos;)
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>AND( 
-License__c != NULL, 
-ISPICKVAL(License__r.Credential_Type__c, &apos;Notary Public&apos;)	
-)</formula>
+        <formula>AND(  License__c != NULL,  ISPICKVAL(License__r.Credential_Type__c, &apos;Notary Public&apos;)	 )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -156,33 +155,17 @@ ISPICKVAL(License__r.Credential_Type__c, &apos;Notary Public&apos;)
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>AND( 
-
-				License__c != NULL,
-				OR( 
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Funeral Director&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Embalmer&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Embalmer Intern&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Funeral Director Intern&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Funeral Establishment&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Prearrangement Funeral Services&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Funeral Establishment Branch&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Certificate of Removal Registration&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Academic Intern&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Crematory&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Cremated Remains Disposition Permit&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Cemetery&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Engineer in Training&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Professional Engineer&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Land Surveyor in Training&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Professional Land Surveyor&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;On-site Wastewater Designer&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;On-site Wastewater Inspector&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Geologist in Training&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Geologist&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Architect&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Landscape Architect&apos;))
-)</formula>
+        <formula>AND(   				License__c != NULL, 				OR(  								ISPICKVAL(License__r.Credential_Type__c, &apos;Funeral Director&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Embalmer&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Embalmer Intern&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Funeral Director Intern&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Funeral Establishment&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Prearrangement Funeral Services&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Funeral Establishment Branch&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Certificate of Removal Registration&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Academic Intern&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Crematory&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Cremated Remains Disposition Permit&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Cemetery&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Engineer in Training&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Professional Engineer&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Land Surveyor in Training&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Professional Land Surveyor&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;On-site Wastewater Designer&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;On-site Wastewater Inspector&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Geologist in Training&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Geologist&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Architect&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Landscape Architect&apos;)) )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Real Estate Appraiser Courses Queue Assignment</fullName>
+        <actions>
+            <name>OwnerChange_Real_Estate_Appraiser_Course</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(  License__c != NULL,  ISPICKVAL(License__r.Credential_Type__c, &apos;Appraiser Course&apos;) )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -192,21 +175,7 @@ ISPICKVAL(License__r.Credential_Type__c, &apos;Notary Public&apos;)
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>AND( 
-				License__c != NULL, 
-				OR( 
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Registered Appraiser Trainee&apos;), 
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Certified General Appraiser&apos;),	
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Appraiser Trainee&apos;),	
-								ISPICKVAL(License__r.Credential_Type__c, &apos;State Licensed Appraiser&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Certified Residential Appraiser&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary Appraisal Permit&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary Certified General&apos;),
-								ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary Certified Residential&apos;),
-ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary State Licensed&apos;)
-
-				)
-)</formula>
+        <formula>AND(  				License__c != NULL,  				OR(  								ISPICKVAL(License__r.Credential_Type__c, &apos;Registered Appraiser Trainee&apos;),  								ISPICKVAL(License__r.Credential_Type__c, &apos;Certified General Appraiser&apos;),	 								ISPICKVAL(License__r.Credential_Type__c, &apos;Appraiser Trainee&apos;),	 								ISPICKVAL(License__r.Credential_Type__c, &apos;State Licensed Appraiser&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Certified Residential Appraiser&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary Appraisal Permit&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary Certified General&apos;), 								ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary Certified Residential&apos;), ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary State Licensed&apos;)  				) )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -240,11 +209,7 @@ ISPICKVAL(License__r.Credential_Type__c, &apos;Temporary State Licensed&apos;)
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>AND( 
-License__c != NULL, 
-OR( ISPICKVAL(License__r.Credential_Type__c, &apos;Timeshare Company&apos;), 
-ISPICKVAL(License__r.Credential_Type__c, &apos;Timeshare Salesperson&apos;))	
-)</formula>
+        <formula>AND(  License__c != NULL,  OR( ISPICKVAL(License__r.Credential_Type__c, &apos;Timeshare Company&apos;),  ISPICKVAL(License__r.Credential_Type__c, &apos;Timeshare Salesperson&apos;))	 )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
 </Workflow>
