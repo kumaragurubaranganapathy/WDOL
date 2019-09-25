@@ -28,7 +28,7 @@
                 var result = response.getReturnValue(); 
                 if(auraAttr == 'v.professionOptions'){
                     var filteredResults = result.filter(function(item){
-                        return (item != 'Delegated Municipality' && item != 'Manufactured Homes' && item != 'Misc Payments' && item != 'Regulatory Compliance' && item != 'Update/Close Company' && item != 'Update Legal Name' && item != 'Update Company Information' && item != 'Remove Owner' && item != 'Update Business Name');
+                        return (item != 'Delegated Municipality' && item != 'Manufactured Homes' && item != 'Misc Payments' && item != 'Regulatory Compliance' && item != 'Update/Close Company' && item != 'Update Legal Name' && item != 'Update Company Information' && item != 'Remove Owner' && item != 'Update Business Name' && item != 'Program Unknown');
                     });
                     component.set(auraAttr, filteredResults);
                 }else{
