@@ -13,6 +13,10 @@
         <name>Activity_Date__c</name>
     </fields>
     <fields>
+        <label><!-- Activity Id --></label>
+        <name>Activity_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Complaint --></label>
         <name>Complaint__c</name>
         <relationshipLabel><!-- Activity Logs --></relationshipLabel>
@@ -27,8 +31,27 @@
         <relationshipLabel><!-- Activity Logs --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
+    </fields>
+    <fields>
         <label><!-- Title --></label>
         <name>Title__c</name>
     </fields>
+    <layouts>
+        <layout>Investigation Note Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Note Details --></label>
+            <section>Note Details</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

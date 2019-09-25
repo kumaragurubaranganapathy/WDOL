@@ -30,44 +30,55 @@
         <relationshipLabel><!-- Customer Envelopes --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Number of documents --></label>
+        <label><!-- Number of Documents --></label>
         <name>Number_of_documents__c</name>
     </fields>
     <fields>
-        <label><!-- Number of payments --></label>
+        <label><!-- Number of Receipts --></label>
         <name>Number_of_payments__c</name>
     </fields>
     <fields>
         <label><!-- Status --></label>
         <name>Status__c</name>
         <picklistValues>
-            <masterLabel>Hold</masterLabel>
-            <translation><!-- Hold --></translation>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>draft</masterLabel>
-            <translation><!-- draft --></translation>
+            <masterLabel>Draft</masterLabel>
+            <translation><!-- Draft --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>pending</masterLabel>
-            <translation><!-- pending --></translation>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>processed</masterLabel>
-            <translation><!-- processed --></translation>
+            <masterLabel>Processed</masterLabel>
+            <translation><!-- Processed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submissions Attached</masterLabel>
+            <translation><!-- Submissions Attached --></translation>
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Total amount --></label>
+        <label><!-- Total Amount --></label>
         <name>Total_amount__c</name>
     </fields>
     <fields>
-        <label><!-- Validation number --></label>
+        <label><!-- Validation Number --></label>
         <name>Validation_number__c</name>
     </fields>
     <fields>
-        <label><!-- Default Profession Type --></label>
+        <label><!-- Default Program Type --></label>
         <name>wadol_DefaultProgramType__c</name>
     </fields>
+    <layouts>
+        <layout>Customer Envelope Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

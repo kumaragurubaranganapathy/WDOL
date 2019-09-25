@@ -25,8 +25,19 @@
         <name>Section__c</name>
     </fields>
     <fields>
+        <label><!-- Service Request Type --></label>
+        <name>Service_Request_Type__c</name>
+    </fields>
+    <fields>
         <label><!-- SubSection --></label>
         <name>SubSection__c</name>
     </fields>
+    <layouts>
+        <layout>Mandatory Subsections Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

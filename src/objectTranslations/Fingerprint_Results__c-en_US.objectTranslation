@@ -14,6 +14,11 @@
         <relationshipLabel><!-- Fingerprinting/Background  Results --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Account Contact --></label>
+        <name>Account_Contact__c</name>
+        <relationshipLabel><!-- Fingerprinting/Background  Results --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Agency --></label>
         <name>Agency__c</name>
         <picklistValues>
@@ -43,6 +48,95 @@
         <relationshipLabel><!-- Fingerprinting/Background  Results --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Fingerprint Id --></label>
+        <name>Fingerprint_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fingerprint Reject Reason --></label>
+        <name>Fingerprint_Reject_Reason__c</name>
+        <picklistValues>
+            <masterLabel>Blank Fill in Written Response</masterLabel>
+            <translation><!-- Blank Fill in Written Response --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corresponding Plain or Slap Fingerprint</masterLabel>
+            <translation><!-- Corresponding Plain or Slap Fingerprint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electronic Distorted or Shadowed</masterLabel>
+            <translation><!-- Electronic Distorted or Shadowed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fingerprint Missing</masterLabel>
+            <translation><!-- Fingerprint Missing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fingerprint Not Black</masterLabel>
+            <translation><!-- Fingerprint Not Black --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fingerprints Obscured</masterLabel>
+            <translation><!-- Fingerprints Obscured --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Image Too Dark</masterLabel>
+            <translation><!-- Image Too Dark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Image Too Light</masterLabel>
+            <translation><!-- Image Too Light --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Insufficient Pattern</masterLabel>
+            <translation><!-- Insufficient Pattern --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lotion/Retabs</masterLabel>
+            <translation><!-- Lotion/Retabs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Rolled in Center</masterLabel>
+            <translation><!-- Not Rolled in Center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overlapping Fingerprints</masterLabel>
+            <translation><!-- Overlapping Fingerprints --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quality Characteristic too Low</masterLabel>
+            <translation><!-- Quality Characteristic too Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sequence Error</masterLabel>
+            <translation><!-- Sequence Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Smudged or Smeared Fingerprint</masterLabel>
+            <translation><!-- Smudged or Smeared Fingerprint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unable to Determine Sequence</masterLabel>
+            <translation><!-- Unable to Determine Sequence --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- License ID --></label>
+        <name>License_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>License__c</name>
+        <relationshipLabel><!-- Fingerprinting/Background  Results --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Date --></label>
+        <name>Status_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Fingerprint Status --></label>
         <name>Status__c</name>
         <picklistValues>
@@ -66,5 +160,23 @@
         <label><!-- Submitted Date --></label>
         <name>Submitted_Date__c</name>
     </fields>
+    <fields>
+        <label><!-- WASIC Date --></label>
+        <name>WASIC_Date__c</name>
+    </fields>
+    <layouts>
+        <layout>Fingerprint Results Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Fingerprinting/Background Results Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

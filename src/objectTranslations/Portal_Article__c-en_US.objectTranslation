@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Portal Article</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Portal Articles</value>
+    </caseValues>
+    <fields>
+        <label><!-- Article Body --></label>
+        <name>Article_Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- Article Content Type --></label>
+        <name>Article_Content_Type__c</name>
+        <picklistValues>
+            <masterLabel>Button</masterLabel>
+            <translation><!-- Button --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Link</masterLabel>
+            <translation><!-- Link --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paragraph</masterLabel>
+            <translation><!-- Paragraph --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Article Link URL --></label>
+        <name>Article_Link_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Article Status --></label>
+        <name>Article_Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Draft</masterLabel>
+            <translation><!-- Draft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Article Sub description --></label>
+        <name>Article_Sub_description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Article Title --></label>
+        <name>Article_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Article body sections to display --></label>
+        <name>Article_body_sections_to_display__c</name>
+    </fields>
+    <fields>
+        <label><!-- Display Page --></label>
+        <name>Display_Page__c</name>
+        <picklistValues>
+            <masterLabel>Business</masterLabel>
+            <translation><!-- Business --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Help-Topic</masterLabel>
+            <translation><!-- Help-Topic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Professional</masterLabel>
+            <translation><!-- Professional --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Home</masterLabel>
+            <translation><!-- Public Home --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ToDo</masterLabel>
+            <translation><!-- ToDo --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- &lt;Page&gt;-&lt;RecortType&gt;-&lt;Title&gt;
+Eg: PUB-ART-SAW-1 --></help>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Populate respective Article&apos;s External Id --></help>
+        <label><!-- Internal Article Redirection --></label>
+        <name>Internal_Article_Redirection__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order of Display --></label>
+        <name>Order_of_Display__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Article --></label>
+        <name>Parent_Article__c</name>
+        <relationshipLabel><!-- Related Articles --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Child Article Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Portal Article Layout</layout>
+        <sections>
+            <label><!-- Article Body/Instructions --></label>
+            <section>Article Body/Instructions</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- Article Body Content --></description>
+        <label><!-- Body --></label>
+        <name>Body</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Article Footer Content --></description>
+        <label><!-- Footer --></label>
+        <name>Footer</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Article Header Content --></description>
+        <label><!-- Header --></label>
+        <name>Header</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Article Placeholder --></description>
+        <label><!-- Main --></label>
+        <name>Main</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

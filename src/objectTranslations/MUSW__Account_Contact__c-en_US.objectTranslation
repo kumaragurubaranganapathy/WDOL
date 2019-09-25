@@ -29,9 +29,27 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <help><!-- Current datetime --></help>
+        <label><!-- Current Datetime --></label>
+        <name>Current_Datetime__c</name>
+    </fields>
+    <fields>
         <help><!-- Designated Controlling Person --></help>
         <label><!-- DCP --></label>
         <name>DCP__c</name>
+    </fields>
+    <fields>
+        <label><!-- DOR Interface License --></label>
+        <name>DOR_Interface_License__c</name>
+    </fields>
+    <fields>
+        <help><!-- 7 days from current date --></help>
+        <label><!-- Days From Today 7 --></label>
+        <name>Days_From_Today_7__c</name>
     </fields>
     <fields>
         <label><!-- Email --></label>
@@ -85,7 +103,7 @@
         <name>Middle_Name__c</name>
     </fields>
     <fields>
-        <label><!-- Other Position(s) --></label>
+        <label><!-- Title --></label>
         <name>Other_Position__c</name>
     </fields>
     <fields>
@@ -124,44 +142,8 @@
             <translation><!-- Administrator --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Agency Principal</masterLabel>
-            <translation><!-- Agency Principal --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Controlling person</masterLabel>
-            <translation><!-- Controlling person --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Designated Architect</masterLabel>
-            <translation><!-- Designated Architect --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Designated Controlling Person</masterLabel>
-            <translation><!-- Designated Controlling Person --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Designated Engineer</masterLabel>
-            <translation><!-- Designated Engineer --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Designated Funeral Director</masterLabel>
-            <translation><!-- Designated Funeral Director --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Designated Land Surveyor</masterLabel>
-            <translation><!-- Designated Land Surveyor --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Governing Persons</masterLabel>
-            <translation><!-- Governing Persons --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Qualified Agent</masterLabel>
-            <translation><!-- Qualified Agent --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Qualifying Principal</masterLabel>
-            <translation><!-- Qualifying Principal --></translation>
+            <masterLabel>Owner</masterLabel>
+            <translation><!-- Owner --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -325,4 +307,21 @@
         <label><!-- resend Invitation --></label>
         <name>resend_Invitation__c</name>
     </fields>
+    <recordTypes>
+        <description><!-- This record type to map data coming from DOR Interface --></description>
+        <label><!-- DOR Account Contacts --></label>
+        <name>DOR_Account_Contacts</name>
+    </recordTypes>
+    <workflowTasks>
+        <name>Email_Outbound_Account_Admin_accept</name>
+        <subject><!-- Email Outbound: Account Admin accept --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Account_Admin_decline</name>
+        <subject><!-- Email Outbound: Account Admin decline --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Account_Admin_invitation_notification</name>
+        <subject><!-- Email Outbound: Account Admin invitation notification --></subject>
+    </workflowTasks>
 </CustomObjectTranslation>

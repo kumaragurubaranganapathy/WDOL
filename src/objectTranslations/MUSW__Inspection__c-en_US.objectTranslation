@@ -158,6 +158,10 @@
         <name>Inspection_Followup_Date__c</name>
     </fields>
     <fields>
+        <label><!-- Inspection Id --></label>
+        <name>Inspection_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Start Date --></label>
         <name>Inspection_Start_Date__c</name>
     </fields>
@@ -177,6 +181,10 @@
     <fields>
         <label><!-- Letter Generated --></label>
         <name>Letter_Generated__c</name>
+    </fields>
+    <fields>
+        <label><!-- License ID --></label>
+        <name>License_ID__c</name>
     </fields>
     <fields>
         <label><!-- Alert --></label>
@@ -427,6 +435,10 @@
         <name>Related_To__c</name>
     </fields>
     <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
+    </fields>
+    <fields>
         <label><!-- Requested Date --></label>
         <name>Requested_DateTime__c</name>
     </fields>
@@ -454,6 +466,25 @@
         <label><!-- recordtypeid --></label>
         <name>recordtypeid__c</name>
     </fields>
+    <layouts>
+        <layout>Inspection and Audit Page Layout</layout>
+        <sections>
+            <label><!-- Additional Details --></label>
+            <section>Additional Details</section>
+        </sections>
+        <sections>
+            <label><!-- Dates --></label>
+            <section>Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Licensee Information --></label>
+            <section>Licensee Information</section>
+        </sections>
+        <sections>
+            <label><!-- Time and Travel --></label>
+            <section>Time and Travel</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <description><!-- Annual Inspections --></description>
         <label><!-- Annual --></label>

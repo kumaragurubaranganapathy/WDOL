@@ -9,6 +9,26 @@
         <name>MUSW__Add_Edit_License_to_Contact</name>
     </fieldSets>
     <fields>
+        <label><!-- License Contact Id --></label>
+        <name>License_Contact_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Contact Name --></label>
+        <name>License_Contact_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Contact Role --></label>
+        <name>License_Contact_Role__c</name>
+        <picklistValues>
+            <masterLabel>ONR</masterLabel>
+            <translation><!-- ONR --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- License Contact Title --></label>
+        <name>License_Contact_Title__c</name>
+    </fields>
+    <fields>
         <label><!-- Contact Type --></label>
         <name>MUSW__Contact_Type__c</name>
         <picklistValues>
@@ -57,5 +77,9 @@
         <label><!-- License --></label>
         <name>MUSW__License2__c</name>
         <relationshipLabel><!-- License Contacts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
     </fields>
 </CustomObjectTranslation>

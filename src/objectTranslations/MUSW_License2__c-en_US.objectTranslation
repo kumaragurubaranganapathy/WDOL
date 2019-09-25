@@ -9,6 +9,18 @@
         <value>LightningLicenses</value>
     </caseValues>
     <fields>
+        <label><!-- Application Method --></label>
+        <name>Application_Method__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Type --></label>
+        <name>Application_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Type --></label>
+        <name>Credential_Type__c</name>
+    </fields>
+    <fields>
         <label><!-- Expiration Date --></label>
         <name>Expiration_Date__c</name>
     </fields>
@@ -81,5 +93,12 @@
             <translation><!-- Restaurant --></translation>
         </picklistValues>
     </fields>
+    <layouts>
+        <layout>License Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

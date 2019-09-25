@@ -39,8 +39,40 @@
         <relationshipLabel><!-- Refunds --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Name --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profession Code --></label>
+        <name>Profession_Code__c</name>
+    </fields>
+    <fields>
         <label><!-- Program Type --></label>
         <name>Program_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refund Id --></label>
+        <name>Refund_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refund Reason --></label>
+        <name>Refund_Reason__c</name>
+        <picklistValues>
+            <masterLabel>Duplicate Licenses</masterLabel>
+            <translation><!-- Duplicate Licenses --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incorrect License Type</masterLabel>
+            <translation><!-- Incorrect License Type --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ineligible for License</masterLabel>
+            <translation><!-- Ineligible for License --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Reissue Date --></label>
@@ -65,6 +97,14 @@
             <masterLabel>Reissue</masterLabel>
             <translation><!-- Reissue --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
+    </fields>
+    <fields>
+        <label><!-- Revenue Code --></label>
+        <name>Revenue_Code__c</name>
     </fields>
     <fields>
         <label><!-- Stage --></label>
@@ -154,4 +194,11 @@
             <translation><!-- Undeliverable --></translation>
         </picklistValues>
     </fields>
+    <layouts>
+        <layout>Refund Layout POLARIS</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
 </CustomObjectTranslation>

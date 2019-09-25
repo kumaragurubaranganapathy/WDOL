@@ -9,8 +9,18 @@
         <value>User Feedbacks</value>
     </caseValues>
     <fields>
+        <label><!-- AMR Application --></label>
+        <name>AMR_Application__c</name>
+        <relationshipLabel><!-- User Feedbacks --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Comments --></label>
         <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Endorsement Application --></label>
+        <name>Endorsement_Application__c</name>
+        <relationshipLabel><!-- User Feedbacks --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Grade --></label>
@@ -57,6 +67,11 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- License --></label>
+        <name>License__c</name>
+        <relationshipLabel><!-- User Feedbacks --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Name --></label>
         <name>Name__c</name>
         <relationshipLabel><!-- User Feedbacks --></relationshipLabel>
@@ -74,28 +89,24 @@
         <name>Rating__c</name>
     </fields>
     <fields>
+        <label><!-- Renewal &amp; Reinstatement Application --></label>
+        <name>Renewal_Reinstatement_Application__c</name>
+        <relationshipLabel><!-- User Feedbacks --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Submitted On --></label>
         <name>Submitted_On__c</name>
     </fields>
     <fields>
         <label><!-- Type --></label>
         <name>Type__c</name>
-        <picklistValues>
-            <masterLabel>Add Licensee</masterLabel>
-            <translation><!-- Add Licensee --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Add Licensee Pending Requests</masterLabel>
-            <translation><!-- Add Licensee Pending Requests --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Remove Assumed Names</masterLabel>
-            <translation><!-- Remove Assumed Names --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Renewal Licensee</masterLabel>
-            <translation><!-- Renewal Licensee --></translation>
-        </picklistValues>
     </fields>
+    <layouts>
+        <layout>User Feedback Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -18,9 +18,21 @@
         <name>External_source_c__c</name>
     </fields>
     <fields>
+        <label><!-- Historical --></label>
+        <name>Historical__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsLicenseParcelUpdatedForASC --></label>
+        <name>IsLicenseParcelUpdatedForASC__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Address Id --></label>
+        <name>License_Address_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- License --></label>
         <name>MUSW__License2__c</name>
-        <relationshipLabel><!-- Properties --></relationshipLabel>
+        <relationshipLabel>Address</relationshipLabel>
     </fields>
     <fields>
         <label><!-- Parcel --></label>
@@ -32,7 +44,11 @@
         <name>Mailing__c</name>
     </fields>
     <fields>
-        <label><!-- Parcel Address --></label>
+        <label><!-- Melissa Address Verified --></label>
+        <name>Melissa_Address_Verified__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address --></label>
         <name>Parcel_Address__c</name>
     </fields>
     <fields>
@@ -46,6 +62,27 @@
     <fields>
         <label><!-- Public --></label>
         <name>Public__c</name>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
+    </fields>
+    <fields>
+        <label><!-- Renewal &amp; Reinstatement Application --></label>
+        <name>Renewal_Reinstatement_Application__c</name>
+        <relationshipLabel><!-- Addresses --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation><!-- Inactive --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Type --></label>

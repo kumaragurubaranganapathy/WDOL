@@ -63,6 +63,10 @@
         <name>Branch_License_Admin__c</name>
     </fields>
     <fields>
+        <label><!-- Child Association Type --></label>
+        <name>Child_Association_Type__c</name>
+    </fields>
+    <fields>
         <label><!-- Child Contact Name --></label>
         <name>Child_Contact_Name__c</name>
     </fields>
@@ -102,12 +106,68 @@
         <name>Current_Datetime__c</name>
     </fields>
     <fields>
+        <help><!-- 7 days from current date --></help>
+        <label><!-- Days From Today 7 --></label>
+        <name>Days_From_Today_7__c</name>
+    </fields>
+    <fields>
         <label><!-- End Date --></label>
         <name>End_Date__c</name>
     </fields>
     <fields>
         <label><!-- Historical --></label>
         <name>Historical__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invitation Accepted Date --></label>
+        <name>Invitation_Accepted_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lic Prog Mailing City State ZIP --></label>
+        <name>Lic_Prog_Mailing_City_State_ZIP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lic Prog Mailing PO Box --></label>
+        <name>Lic_Prog_Mailing_PO_Box__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Applicant Full Name --></label>
+        <name>License_Applicant_Full_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing City --></label>
+        <name>License_Mailing_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing State --></label>
+        <name>License_Mailing_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing Street --></label>
+        <name>License_Mailing_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing ZIP --></label>
+        <name>License_Mailing_ZIP__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Number of Active Relationships --></label>
+        <name>License_Number_of_Active_Relationships__c</name>
+    </fields>
+    <fields>
+        <help><!-- Formula field for License Program Type to be used on email templates --></help>
+        <label><!-- License Program Email --></label>
+        <name>License_Program_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- Formula field for License Program Phone to be used on email templates --></help>
+        <label><!-- License Program Phone --></label>
+        <name>License_Program_Phone__c</name>
+    </fields>
+    <fields>
+        <help><!-- Formula field for License Program Type to be used on email templates --></help>
+        <label><!-- License Program Type --></label>
+        <name>License_Program_Type__c</name>
     </fields>
     <fields>
         <label><!-- Location Address --></label>
@@ -134,6 +194,10 @@
         <name>Name__c</name>
     </fields>
     <fields>
+        <label><!-- Parent Association Type --></label>
+        <name>Parent_Association_Type__c</name>
+    </fields>
+    <fields>
         <label><!-- Parent Contact Name --></label>
         <name>Parent_Contact_Name__c</name>
     </fields>
@@ -157,6 +221,14 @@
     <fields>
         <label><!-- Parent Licensee Name --></label>
         <name>Parent_Licensee_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refund Id --></label>
+        <name>Refund_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
     </fields>
     <fields>
         <label><!-- Source Id --></label>
@@ -234,6 +306,31 @@
         <label><!-- resend Invitation --></label>
         <name>resend_Invitation__c</name>
     </fields>
+    <layouts>
+        <layout>Associations Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>License Relationship Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Location Associations Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Location Information --></label>
+            <section>Location Information</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Designated Person --></label>
         <name>Designated_Person</name>
@@ -243,4 +340,128 @@
         <name>Location</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
+    <workflowTasks>
+        <name>Email_Outbound_Designated_person_invitation_notification</name>
+        <subject><!-- Email Outbound: Designated person invitation notification --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Intern_accept_intern</name>
+        <subject><!-- Email Outbound: Intern accept - intern --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Intern_decline_intern</name>
+        <subject><!-- Email Outbound: Intern decline - intern --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Intern_removal_notification_intern</name>
+        <subject><!-- Email Outbound: Intern removal notification - intern --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Intern_separation_notification_intern</name>
+        <subject><!-- Email Outbound: Intern separation notification - intern --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_accept_business</name>
+        <subject><!-- Email Outbound: Licensee accept - business --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_accept_licensee_additional_employer</name>
+        <subject><!-- Email Outbound: Licensee accept - licensee - additional employer --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_accept_licensee_one_employer</name>
+        <subject><!-- Email Outbound: Licensee accept - licensee - one employer --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_decline_business</name>
+        <subject><!-- Email Outbound: Licensee decline - business --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_decline_licensee_no_employer</name>
+        <subject><!-- Email Outbound: Licensee decline - licensee - no employer --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_invitation_notification_CR_licensee_additional_business</name>
+        <subject><!-- Email Outbound: Licensee invitation notification - CR licensee - additional business --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_invitation_notification_TS_licensee_additional_business</name>
+        <subject><!-- Email Outbound: Licensee invitation notification - TS licensee - additional business --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_invitation_notification_business</name>
+        <subject><!-- Email Outbound: Licensee invitation notification - business --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_invitation_notification_licensee</name>
+        <subject><!-- Email Outbound: Licensee invitation notification - licensee --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_removal_notification_business</name>
+        <subject><!-- Email Outbound: Licensee removal notification - business --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_removal_notification_licensee_no_employer</name>
+        <subject><!-- Email Outbound: Licensee removal notification - licensee - no employer --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_removal_notification_licensee_with_employer</name>
+        <subject><!-- Email Outbound: Licensee removal notification - licensee - with employer --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_separation_notification_business</name>
+        <subject><!-- Email Outbound: Licensee separation notification - business --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_separation_notification_licensee_no_employer</name>
+        <subject><!-- Email Outbound: Licensee separation notification - licensee - no employer --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Licensee_separation_notification_licensee_with_employer</name>
+        <subject><!-- Email Outbound: Licensee separation notification - licensee - with employer --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Trainee_accept_trainee_1st_supervisor</name>
+        <subject><!-- Email Outbound: Trainee accept - trainee - 1st supervisor --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Trainee_accept_trainee_additional_supervisor</name>
+        <subject><!-- Email Outbound: Trainee accept - trainee - additional supervisor --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Trainee_decline_trainee_no_supervisor</name>
+        <subject><!-- Email Outbound: Trainee decline - trainee - no supervisor --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Trainee_intern_accept_supervisor_sponsor</name>
+        <subject><!-- Email Outbound: Trainee intern accept - supervisor sponsor --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Trainee_intern_decline_supervisor_sponsor</name>
+        <subject><!-- Email Outbound: Trainee intern decline - supervisor sponsor --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Trainee_intern_removal_notification_supervisor_sponsor</name>
+        <subject><!-- Email Outbound: 	Trainee intern removal notification - supervisor sponsor --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Trainee_intern_separation_notification_supervisor_sponsor</name>
+        <subject><!-- Email Outbound: Trainee intern separation notification - supervisor sponsor --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Trainee_removal_notification_trainee_no_supervisor</name>
+        <subject><!-- Email Outbound: Trainee removal notification - trainee - no supervisor --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Trainee_removal_notification_trainee_with_supervisor</name>
+        <subject><!-- Email Outbound: Trainee removal notification - trainee - with supervisor --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Trainee_separation_notification_trainee_no_supervisor</name>
+        <subject><!-- Email Outbound: Trainee separation notification - trainee - no supervisor --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Email_Outbound_Trainee_separation_notification_trainee_with_supervisor</name>
+        <subject><!-- Email Outbound: Trainee separation notification - trainee - with supervisor --></subject>
+    </workflowTasks>
 </CustomObjectTranslation>

@@ -13,6 +13,10 @@
         <name>AQB_Approval_Expiration_Date__c</name>
     </fields>
     <fields>
+        <label><!-- AccountStatus --></label>
+        <name>AccountStatus__c</name>
+    </fields>
+    <fields>
         <label><!-- Additional Address --></label>
         <name>Additional_Address__c</name>
     </fields>
@@ -69,6 +73,10 @@
     <fields>
         <label><!-- Body Width (with hitch) --></label>
         <name>Body_Width_with_hitch__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bond Number --></label>
+        <name>Bond_Number__c</name>
     </fields>
     <fields>
         <label><!-- Business License --></label>
@@ -135,6 +143,11 @@
         <name>Current_Site_Count__c</name>
     </fields>
     <fields>
+        <label><!-- Customer Envelope --></label>
+        <name>Customer_Envelope__c</name>
+        <relationshipLabel><!-- Renewal Applications --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Date Facilities will be ready --></label>
         <name>Date_Facilities_will_be_ready__c</name>
     </fields>
@@ -143,8 +156,16 @@
         <name>Description_of_Disposition__c</name>
     </fields>
     <fields>
+        <label><!-- Effective Date of Bond --></label>
+        <name>Effective_Date_of_Bond__c</name>
+    </fields>
+    <fields>
         <label><!-- Email --></label>
         <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expiration Date of Bond --></label>
+        <name>Expiration_Date_of_Bond__c</name>
     </fields>
     <fields>
         <label><!-- External Id --></label>
@@ -171,6 +192,10 @@
         <name>Interval_fees__c</name>
     </fields>
     <fields>
+        <label><!-- LicenseRecordType --></label>
+        <name>LicenseRecordType__c</name>
+    </fields>
+    <fields>
         <label><!-- License Account --></label>
         <name>License_Account__c</name>
     </fields>
@@ -178,6 +203,10 @@
         <label><!-- License Application --></label>
         <name>License_Application__c</name>
         <relationshipLabel><!-- Renewal Applications --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- License Business Name --></label>
+        <name>License_Business_Name__c</name>
     </fields>
     <fields>
         <label><!-- License Number --></label>
@@ -216,6 +245,10 @@
     <fields>
         <label><!-- Makes of Homes to be Sold --></label>
         <name>Makes_of_Homes_to_be_Sold__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manual Fee Generation --></label>
+        <name>Manual_Fee_Generation__c</name>
     </fields>
     <fields>
         <label><!-- Methods of Disposition --></label>
@@ -331,8 +364,16 @@
         <name>Phone__c</name>
     </fields>
     <fields>
+        <label><!-- Physical Address Modified --></label>
+        <name>Physical_Address_Modified__c</name>
+    </fields>
+    <fields>
         <label><!-- # Pieces of Personal Property --></label>
         <name>Pieces_of_Personal_Property__c</name>
+    </fields>
+    <fields>
+        <label><!-- Policy Amount --></label>
+        <name>Policy_Amount__c</name>
     </fields>
     <fields>
         <label><!-- Pre-Approval --></label>
@@ -359,8 +400,16 @@
         <name>Program_Area__c</name>
     </fields>
     <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
+    </fields>
+    <fields>
         <label><!-- Expiration Date --></label>
         <name>Renewal_Expiration_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Renewal Id --></label>
+        <name>Renewal_Id__c</name>
     </fields>
     <fields>
         <label><!-- Renewal Reinstatement Type --></label>
@@ -419,6 +468,14 @@
         <name>Special_Accommodation_Request__c</name>
     </fields>
     <fields>
+        <label><!-- Sub Status --></label>
+        <name>Sub_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name of Bond Company --></label>
+        <name>Surety_Bond_Company_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- Time to Renewal/Reinstatement --></label>
         <name>Time_to_Renewal_Reinstatement__c</name>
     </fields>
@@ -443,6 +500,10 @@
         <name>Trade_Name__c</name>
     </fields>
     <fields>
+        <label><!-- Validation Number --></label>
+        <name>Validation_Number__c</name>
+    </fields>
+    <fields>
         <label><!-- Website --></label>
         <name>Website__c</name>
     </fields>
@@ -450,6 +511,70 @@
         <label><!-- Years Expired --></label>
         <name>Years_Expired__c</name>
     </fields>
+    <layouts>
+        <layout>Course Renewal Application Layout</layout>
+        <sections>
+            <label><!-- Course Details --></label>
+            <section>Course Details</section>
+        </sections>
+        <sections>
+            <label><!-- Course Provider Contact Information --></label>
+            <section>Course Provider Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Expiration Dates --></label>
+            <section>Expiration Dates</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RBS Renewal Application Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RE Renewal Application Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Project Size --></label>
+            <section>Project Size</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Renewal Application Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Project Size --></label>
+            <section>Project Size</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Generate Fees --></label>
+        <name>Generate_Fees</name>
+    </quickActions>
     <recordTypes>
         <label><!-- Business --></label>
         <name>Business</name>
@@ -461,16 +586,6 @@
     <recordTypes>
         <label><!-- Individual --></label>
         <name>Individual</name>
-    </recordTypes>
-    <recordTypes>
-        <description><!-- Renewal/Reinstatement record type for all Manufactured Homes credentials/permits --></description>
-        <label><!-- Manufactured Homes Renewal/Reinstatement --></label>
-        <name>Manufactured_Homes_Renewal_Reinstatement</name>
-    </recordTypes>
-    <recordTypes>
-        <description><!-- Renewal/Reinstatement record type for trades credential or Delegated Agent renewal --></description>
-        <label><!-- Universal Default Renewal/Reinstatement --></label>
-        <name>Universal_Default_Renewal</name>
     </recordTypes>
     <sharingReasons>
         <label><!-- Create Renewal by Delegate --></label>

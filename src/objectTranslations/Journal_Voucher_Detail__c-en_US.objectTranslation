@@ -13,6 +13,10 @@
         <name>AFRS_Transaction_Code__c</name>
     </fields>
     <fields>
+        <label><!-- Accounting Code --></label>
+        <name>Accounting_Code__c</name>
+    </fields>
+    <fields>
         <label><!-- Add to Interface --></label>
         <name>Add_to_Interface__c</name>
     </fields>
@@ -54,12 +58,20 @@
         <name>Journal_Voucher_Detail_Grouping__c</name>
     </fields>
     <fields>
+        <label><!-- Journal Voucher Amount --></label>
+        <name>Journal_Vouchers__c</name>
+    </fields>
+    <fields>
         <label><!-- Major Group --></label>
         <name>Major_Group__c</name>
     </fields>
     <fields>
         <label><!-- Major Source --></label>
         <name>Major_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Net Amount --></label>
+        <name>Net_Amount__c</name>
     </fields>
     <fields>
         <label><!-- Program Index --></label>
@@ -70,8 +82,20 @@
         <name>Reference_Document_Suffix__c</name>
     </fields>
     <fields>
+        <label><!-- Refund Amount --></label>
+        <name>Refund_Amount__c</name>
+    </fields>
+    <fields>
         <label><!-- Reversal --></label>
         <name>Reversal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Send_GL? --></label>
+        <name>Send_GL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Statewide Voucher Number --></label>
+        <name>Statewide_Voucher_Number__c</name>
     </fields>
     <fields>
         <label><!-- Sub Source --></label>
@@ -94,8 +118,35 @@
         <name>Target_Accounting_System__c</name>
     </fields>
     <fields>
+        <label><!-- Target Accounting Systems --></label>
+        <name>Target_Accounting_Systems__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Received Amount --></label>
+        <name>Total_Received_Reports__c</name>
+    </fields>
+    <fields>
         <label><!-- Transaction Code --></label>
         <name>Transaction_Code__c</name>
     </fields>
+    <layouts>
+        <layout>Journal Voucher Detail Layout</layout>
+        <sections>
+            <label><!-- Acounting Entry --></label>
+            <section>Acounting Entry</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- General --></label>
+            <section>General</section>
+        </sections>
+        <sections>
+            <label><!-- Interface Management --></label>
+            <section>Interface Management</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

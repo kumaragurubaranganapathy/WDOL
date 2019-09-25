@@ -109,6 +109,15 @@
         <name>Program_Area__c</name>
     </fields>
     <fields>
+        <help><!-- Check this box to make the disciplinary action public --></help>
+        <label><!-- Public Disciplinary Action --></label>
+        <name>Public_Disciplinary_Action__c</name>
+    </fields>
+    <fields>
+        <label><!-- Public Distribution URL --></label>
+        <name>Public_Distribution_URL__c</name>
+    </fields>
+    <fields>
         <label><!-- Question --></label>
         <name>Question__c</name>
         <relationshipLabel><!-- Master Submission Lists --></relationshipLabel>
@@ -146,6 +155,10 @@
         <name>Service_Request__c</name>
     </fields>
     <fields>
+        <label><!-- Show For License --></label>
+        <name>Show_For_License__c</name>
+    </fields>
+    <fields>
         <label><!-- Show For --></label>
         <name>Show_For__c</name>
     </fields>
@@ -173,6 +186,20 @@
         <label><!-- Work Type --></label>
         <name>Work_Type__c</name>
     </fields>
+    <layouts>
+        <layout>License Submissions</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Permit Submissions</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Course Information --></label>
         <name>Course_Information</name>

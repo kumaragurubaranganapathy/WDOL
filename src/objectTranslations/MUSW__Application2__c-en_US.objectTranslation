@@ -50,6 +50,10 @@
         <name>Geolocation__c</name>
     </fields>
     <fields>
+        <label><!-- Is Abandoned ? --></label>
+        <name>Is_Abandoned__c</name>
+    </fields>
+    <fields>
         <label><!-- License ID --></label>
         <name>License_ID__c</name>
     </fields>
@@ -228,6 +232,10 @@
         <label><!-- Permit --></label>
         <name>Permit__c</name>
         <relationshipLabel><!-- Service Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Physical Address Modified On Renewal --></label>
+        <name>Physical_Address_Modified_On_Renewal__c</name>
     </fields>
     <fields>
         <label><!-- Program Area --></label>

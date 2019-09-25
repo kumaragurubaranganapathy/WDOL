@@ -70,6 +70,10 @@
         <name>Associate_of_Arts_Degree_in_Mortuary_Sci__c</name>
     </fields>
     <fields>
+        <label><!-- Audit Id --></label>
+        <name>Audit_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- BREAK SUPERVISOR RELATIONSHIP(S) --></label>
         <name>BREAK_SUPERVISOR_RELATIONSHIP_S__c</name>
     </fields>
@@ -212,6 +216,10 @@
             <masterLabel>Not Met</masterLabel>
             <translation><!-- Not Met --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Course Details --></label>
+        <name>Course_Details__c</name>
     </fields>
     <fields>
         <label><!-- Current License/Certification --></label>
@@ -614,6 +622,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
+    </fields>
+    <fields>
         <label><!-- Renewal Application --></label>
         <name>Renewal_Application__c</name>
         <relationshipLabel><!-- Reviews --></relationshipLabel>
@@ -735,6 +747,252 @@
         <label><!-- Validate Fee --></label>
         <name>Validate_Fee__c</name>
     </fields>
+    <layouts>
+        <layout>CE Audit Review Layout</layout>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Certified General Appraiser</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Delegated Agent</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Dwelling Contractor</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Credential Info --></label>
+            <section>Credential Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Dwelling Contractor Qualifier</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Credential Information --></label>
+            <section>Credential Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Embalmer</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Inspection Agency</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Credential Info --></label>
+            <section>Credential Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>License Review Layout</layout>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Maintenance Request Review Layout</layout>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Manufactured Home</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Manufactured Home Plan Review</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>POWTS</layout>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Soil Erosion Inspector</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Credential Info --></label>
+            <section>Credential Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Soil Professions</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Soil Tester</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Credential Info --></label>
+            <section>Credential Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>State Licensed Appraiser</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UDC Credential</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>UDC Inspectors</layout>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Credential Info --></label>
+            <section>Credential Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <description><!-- Used for CE Audit Review --></description>
         <label><!-- CE Audit Review --></label>
@@ -815,6 +1073,10 @@
         <label><!-- UDC Inspectors --></label>
         <name>UDC_Inspectors</name>
     </recordTypes>
+    <validationRules>
+        <errorMessage><!-- License should have active DCP  to make license active. --></errorMessage>
+        <name>Active_DCP_for_Appraisal_Management</name>
+    </validationRules>
     <webLinks>
         <label><!-- Assign_to_me --></label>
         <name>Assign_to_me</name>

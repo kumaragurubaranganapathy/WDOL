@@ -104,6 +104,10 @@
             <translation><!-- Exam Approved --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>In-Review</masterLabel>
+            <translation><!-- In-Review --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Pending</masterLabel>
             <translation><!-- Pending --></translation>
         </picklistValues>
@@ -124,5 +128,16 @@
             <translation><!-- PE/FE Approved --></translation>
         </picklistValues>
     </fields>
+    <fields>
+        <label><!-- Submit Exam Results --></label>
+        <name>Submit_Exam_Results__c</name>
+    </fields>
+    <layouts>
+        <layout>Master Exam List Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

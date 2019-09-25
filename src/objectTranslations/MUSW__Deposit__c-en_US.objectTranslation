@@ -17,7 +17,7 @@
         <name>Agency_Code__c</name>
     </fields>
     <fields>
-        <label><!-- Amount --></label>
+        <label><!-- System Amount --></label>
         <name>Amount__c</name>
     </fields>
     <fields>
@@ -52,7 +52,7 @@
         <name>Deposit_Cash__c</name>
     </fields>
     <fields>
-        <label><!-- Document type --></label>
+        <label><!-- Document Type --></label>
         <name>Document_type__c</name>
         <picklistValues>
             <masterLabel>Comity</masterLabel>
@@ -76,7 +76,7 @@
         <name>Fine_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Form number --></label>
+        <label><!-- Form Number --></label>
         <name>Form_number__c</name>
         <picklistValues>
             <masterLabel>APR-622-169</masterLabel>
@@ -430,7 +430,7 @@
         <relationshipLabel><!-- Deposits --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- License type --></label>
+        <label><!-- License Type --></label>
         <name>License_type__c</name>
     </fields>
     <fields>
@@ -480,15 +480,103 @@
         <name>MUSW__Used_Amount__c</name>
     </fields>
     <fields>
-        <label><!-- Professional code --></label>
+        <label><!-- Over Short Revenue Code --></label>
+        <name>Over_Short_Revenue_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Over short Old Amount --></label>
+        <name>Over_short_Old_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overshort Amount --></label>
+        <name>Overshort_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overshort Modified --></label>
+        <name>Overshort_Modified__c</name>
+    </fields>
+    <fields>
+        <label><!-- Previous Overshort Updated --></label>
+        <name>Previous_Overshort_Updated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Professional Code --></label>
         <name>Professional_code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program type --></label>
+        <name>Program_type__c</name>
+        <picklistValues>
+            <masterLabel>Funerals</masterLabel>
+            <translation><!-- Funerals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>appraisal management companies</masterLabel>
+            <translation><!-- appraisal management companies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>appraisers-real estate</masterLabel>
+            <translation><!-- appraisers-real estate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>architects</masterLabel>
+            <translation><!-- architects --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>camping resorts</masterLabel>
+            <translation><!-- camping resorts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>cemeteries</masterLabel>
+            <translation><!-- cemeteries --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>collection agencies</masterLabel>
+            <translation><!-- collection agencies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>engineers</masterLabel>
+            <translation><!-- engineers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>geologists</masterLabel>
+            <translation><!-- geologists --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>land surveyors</masterLabel>
+            <translation><!-- land surveyors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>landscape architects</masterLabel>
+            <translation><!-- landscape architects --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>notaries public</masterLabel>
+            <translation><!-- notaries public --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>on-site wastewater</masterLabel>
+            <translation><!-- on-site wastewater --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>timeshares</masterLabel>
+            <translation><!-- timeshares --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Reapply Amount --></label>
+        <name>Reapply_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- RevenueCodeSubString --></label>
+        <name>RevenueCodeSubString__c</name>
     </fields>
     <fields>
         <label><!-- Route to Miscellaneous queue --></label>
         <name>Route_to_Miscellaneous_queue__c</name>
     </fields>
     <fields>
-        <label><!-- Sequence number --></label>
+        <label><!-- Sequence Number --></label>
         <name>Sequence_number__c</name>
     </fields>
     <fields>
@@ -504,7 +592,11 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Validation number --></label>
+        <label><!-- Validation Number --></label>
+        <name>ValidationNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Envelope --></label>
         <name>Validation_number__c</name>
         <relationshipLabel><!-- Deposits --></relationshipLabel>
     </fields>
@@ -513,9 +605,17 @@
         <name>Voucher_Number__c</name>
     </fields>
     <fields>
+        <label><!-- Professional Code --></label>
+        <name>wadol_Professional_Code__c</name>
+    </fields>
+    <fields>
         <label><!-- Program Type --></label>
         <name>wadol_Program_Type__c</name>
     </fields>
+    <quickActions>
+        <label><!-- Send to Overshort --></label>
+        <name>Send_to_Overshort</name>
+    </quickActions>
     <validationRules>
         <errorMessage><!-- Cannot refund more than Available Amount --></errorMessage>
         <name>MUSW__Cannot_refund_more_than_available_amount</name>

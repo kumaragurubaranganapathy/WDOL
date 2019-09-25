@@ -9,12 +9,101 @@
         <value>Criminal History</value>
     </caseValues>
     <fields>
+        <label><!-- Armed BAP Date --></label>
+        <name>Armed_BAP_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- BAP Date --></label>
+        <name>BAP_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Compliance Return Date --></label>
+        <name>Compliance_Return_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Compliance Review Date --></label>
+        <name>Compliance_Review_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Compliance Sent Date --></label>
+        <name>Compliance_Sent_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Criminal History Comment --></label>
+        <name>Criminal_History_Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Criminal History Id --></label>
+        <name>Criminal_History_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Denied To Date --></label>
+        <name>Denied_To_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Domestic Violence --></label>
+        <name>Domestic_Violence__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employer UBI --></label>
+        <name>Employer_UBI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Failure To Respond --></label>
+        <name>Failure_To_Respond__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>License__c</name>
+        <relationshipLabel><!-- Criminal History --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Mental Commitment --></label>
         <name>Mental_Commitment__c</name>
     </fields>
     <fields>
+        <label><!-- Misrepresentation --></label>
+        <name>Misrepresentation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other --></label>
+        <name>Other__c</name>
+    </fields>
+    <fields>
         <label><!-- Protection Order --></label>
         <name>Protection_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Qualification Type --></label>
+        <name>Qualification_Type__c</name>
+        <picklistValues>
+            <masterLabel>Disqualifying Conviction</masterLabel>
+            <translation><!-- Disqualifying Conviction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disqualifying Conviction - Armed Only</masterLabel>
+            <translation><!-- Disqualifying Conviction - Armed Only --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Conviction</masterLabel>
+            <translation><!-- No Conviction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non-Disqualifying Conviction</masterLabel>
+            <translation><!-- Non-Disqualifying Conviction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unknown Conviction</masterLabel>
+            <translation><!-- Unknown Conviction --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sex Offense --></label>
+        <name>Sex_Offense__c</name>
     </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

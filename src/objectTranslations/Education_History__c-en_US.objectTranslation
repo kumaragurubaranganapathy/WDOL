@@ -2,12 +2,16 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value>Education History</value>
+        <value>Exam</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>Education History</value>
+        <value>Exams</value>
     </caseValues>
+    <fields>
+        <label><!-- Applicant Id --></label>
+        <name>Applicant_Id__c</name>
+    </fields>
     <fields>
         <label><!-- Applicant/Licensee Name --></label>
         <name>Applicant_Licensee_Name__c</name>
@@ -29,6 +33,10 @@
     <fields>
         <label><!-- City --></label>
         <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comment --></label>
+        <name>Comment__c</name>
     </fields>
     <fields>
         <label><!-- Contact --></label>
@@ -73,6 +81,10 @@
         <name>Credits__c</name>
     </fields>
     <fields>
+        <label><!-- Current Datetime --></label>
+        <name>Current_Datetime__c</name>
+    </fields>
+    <fields>
         <label><!-- Degree --></label>
         <name>Degree__c</name>
     </fields>
@@ -99,12 +111,47 @@
         <name>Exam_Approval_Expiry_Date__c</name>
     </fields>
     <fields>
+        <help><!-- Time the applicant is scheduled to check-in for the exam --></help>
+        <label><!-- Exam Check-In Time --></label>
+        <name>Exam_Check_In_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exam Id --></label>
+        <name>Exam_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exam Location --></label>
+        <name>Exam_Location__c</name>
+    </fields>
+    <fields>
         <label><!-- Exam Pass Date --></label>
         <name>Exam_Pass_Date__c</name>
     </fields>
     <fields>
+        <help><!-- Score required to pass the exam --></help>
+        <label><!-- Exam Required Score --></label>
+        <name>Exam_Required_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exam Reschedule via DOL --></label>
+        <name>Exam_Reschedule_via_DOL__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Exam Result Expiry Date --></label>
         <name>Exam_Result_Expiry_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Time the applicant is scheduled to take exam --></help>
+        <label><!-- Exam Scheduled Time --></label>
+        <name>Exam_Scheduled_Time__c</name>
     </fields>
     <fields>
         <label><!-- Exam Type --></label>
@@ -115,17 +162,74 @@
         <name>HSW__c</name>
     </fields>
     <fields>
+        <label><!-- Historical Exam Type --></label>
+        <name>Historical_Exam_Type__c</name>
+    </fields>
+    <fields>
         <label><!-- Hours --></label>
         <name>Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lic Prog Mailing City State ZIP --></label>
+        <name>Lic_Prog_Mailing_City_State_ZIP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lic Prog Mailing PO Box --></label>
+        <name>Lic_Prog_Mailing_PO_Box__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Applicant Full Name --></label>
+        <name>License_Applicant_Full_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- License_Email --></label>
+        <name>License_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Id --></label>
+        <name>License_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing City --></label>
+        <name>License_Mailing_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing State --></label>
+        <name>License_Mailing_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing Street --></label>
+        <name>License_Mailing_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing ZIP --></label>
+        <name>License_Mailing_ZIP__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Program Email --></label>
+        <name>License_Program_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Program Phone --></label>
+        <name>License_Program_Phone__c</name>
+    </fields>
+    <fields>
+        <help><!-- Formula field for License Program Type to be used on templates --></help>
+        <label><!-- License Program Type --></label>
+        <name>License_Program_Type__c</name>
     </fields>
     <fields>
         <label><!-- License Type --></label>
         <name>License_Type__c</name>
     </fields>
     <fields>
+        <label><!-- License Ultimate Parent Account --></label>
+        <name>License_Ultimate_Parent_Account__c</name>
+    </fields>
+    <fields>
         <label><!-- License --></label>
         <name>License__c</name>
-        <relationshipLabel><!-- Education History --></relationshipLabel>
+        <relationshipLabel><!-- Exams --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Major --></label>
@@ -148,6 +252,10 @@
         <name>Other__c</name>
     </fields>
     <fields>
+        <label><!-- Parent License Name --></label>
+        <name>Parent_License_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- Permit --></label>
         <name>Permit__c</name>
         <relationshipLabel><!-- Education History --></relationshipLabel>
@@ -159,6 +267,10 @@
     <fields>
         <label><!-- Provider --></label>
         <name>Provider__c</name>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
     </fields>
     <fields>
         <label><!-- Renewal &amp; Reinstatement Application --></label>
@@ -173,6 +285,10 @@
     <fields>
         <label><!-- Reschedule Possible --></label>
         <name>Reschedule_Possible__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rescheduled Possible --></label>
+        <name>Rescheduled_Possible__c</name>
     </fields>
     <fields>
         <label><!-- Review --></label>
@@ -199,12 +315,8 @@
         <label><!-- Status --></label>
         <name>Status__c</name>
         <picklistValues>
-            <masterLabel>Complete</masterLabel>
-            <translation><!-- Complete --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Draft</masterLabel>
-            <translation><!-- Draft --></translation>
+            <masterLabel>Canceled</masterLabel>
+            <translation><!-- Canceled --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Expired</masterLabel>
@@ -215,6 +327,10 @@
             <translation><!-- Fail --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>No Show</masterLabel>
+            <translation><!-- No Show --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Pass</masterLabel>
             <translation><!-- Pass --></translation>
         </picklistValues>
@@ -222,23 +338,67 @@
             <masterLabel>Pending</masterLabel>
             <translation><!-- Pending --></translation>
         </picklistValues>
-        <picklistValues>
-            <masterLabel>Requested</masterLabel>
-            <translation><!-- Requested --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Results Pending</masterLabel>
-            <translation><!-- Results Pending --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Scheduled</masterLabel>
-            <translation><!-- Scheduled --></translation>
-        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Submit Exam Results --></label>
+        <name>Submit_Exam_Results__c</name>
     </fields>
     <fields>
         <label><!-- Trainer License --></label>
         <name>Trainer_License__c</name>
     </fields>
+    <fields>
+        <label><!-- Who_Id --></label>
+        <name>Who_Id__c</name>
+    </fields>
+    <layouts>
+        <layout>Continuing Education History Layout</layout>
+        <sections>
+            <label><!-- Continuing History Details --></label>
+            <section>Continuing History Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Education History Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Education History Details --></label>
+            <section>Education History Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Exam Page Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Exam Details --></label>
+            <section>Exam Details</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Training History Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Training History Details --></label>
+            <section>Training History Details</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Continuing Education --></label>
         <name>Continuing_Education</name>
@@ -260,4 +420,8 @@
         <name>Training</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Letter --></label>
+        <name>Letter</name>
+    </webLinks>
 </CustomObjectTranslation>

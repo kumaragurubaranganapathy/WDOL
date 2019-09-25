@@ -6,6 +6,14 @@
         <relationshipLabel><!-- Parcels (Account) --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Address Begin Date --></label>
+        <name>Address_Begin_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address End Date --></label>
+        <name>Address_End_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Address_Id --></label>
         <name>Address_Id__c</name>
     </fields>
@@ -155,6 +163,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Client_Id --></label>
+        <name>Client_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Comments --></label>
         <name>Comments__c</name>
     </fields>
@@ -176,13 +188,38 @@
         <name>Cust_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Designated Engineer License # --></label>
+        <name>Designated_Engineer_License__c</name>
+    </fields>
+    <fields>
+        <label><!-- Designated Land Surveyor License # --></label>
+        <name>Designated_Land_Surveyor_License__c</name>
+    </fields>
+    <fields>
+        <label><!-- Full Address --></label>
+        <name>Full_Address__c</name>
+    </fields>
+    <fields>
         <help><!-- Enter the international address --></help>
         <label><!-- International Address --></label>
         <name>International_Address__c</name>
     </fields>
     <fields>
+        <label><!-- IsParcelRecordUpdatedForASC --></label>
+        <name>IsParcelRecordUpdatedForASC__c</name>
+    </fields>
+    <fields>
         <label><!-- Is This A Military Address? --></label>
         <name>Is_This_A_Military_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- License_AddressId --></label>
+        <name>License_AddressId__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>License__c</name>
+        <relationshipLabel><!-- Affiliated Location --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Alert Code --></label>
@@ -675,7 +712,7 @@
     <fields>
         <label><!-- Primary Account --></label>
         <name>Primary_Account__c</name>
-        <relationshipLabel><!-- Addresses --></relationshipLabel>
+        <relationshipLabel><!-- Address --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Primary --></label>
@@ -684,6 +721,16 @@
     <fields>
         <label><!-- Release --></label>
         <name>Release__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Parcel --></label>
+        <name>Request_Parcel__c</name>
+        <relationshipLabel><!-- Address --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Request --></label>
+        <name>Request__c</name>
+        <relationshipLabel><!-- Affiliated Location --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Status --></label>
@@ -706,6 +753,10 @@
         <name>Zip_Postal_Code__c</name>
     </fields>
     <fields>
+        <label><!-- isUndo --></label>
+        <name>isUndo__c</name>
+    </fields>
+    <fields>
         <label><!-- is Physical and Mailing Address Same --></label>
         <name>is_Physical_and_Mailing_Address_Same__c</name>
     </fields>
@@ -716,6 +767,11 @@
     <recordTypes>
         <label><!-- Affiliated Location --></label>
         <name>Affiliated_Location</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This record type to map data coming from DOR Interface --></description>
+        <label><!-- DOR Address --></label>
+        <name>DOR_Parcels</name>
     </recordTypes>
     <sharingReasons>
         <label><!-- Create Parcel By Delegate --></label>

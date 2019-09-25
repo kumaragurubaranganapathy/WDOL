@@ -106,6 +106,32 @@
         <label><!-- Zip code --></label>
         <name>Zip_code__c</name>
     </fields>
+    <layouts>
+        <layout>Employment History Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Employer Information --></label>
+            <section>Employer Information</section>
+        </sections>
+        <sections>
+            <label><!-- Employment History Details --></label>
+            <section>Employment History Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Employment Training History Layout</layout>
+        <sections>
+            <label><!-- Course Information --></label>
+            <section>Course Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Default Employment History --></label>
         <name>Default_Employment_History</name>

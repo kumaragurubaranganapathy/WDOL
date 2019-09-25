@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Cart which was used to pay the cart item --></help>
+        <label><!-- Cart --></label>
+        <name>BGBK__Cart__c</name>
+        <relationshipLabel><!-- Cart Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Lookup to the associated deposit record --></help>
+        <label><!-- Deposit --></label>
+        <name>BGBK__Deposit__c</name>
+        <relationshipLabel><!-- Cart Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Lookup to the associated fee record --></help>
+        <label><!-- Fee --></label>
+        <name>BGBK__Fee__c</name>
+        <relationshipLabel><!-- Cart Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Lookup to the associated invoice record --></help>
+        <label><!-- Invoice --></label>
+        <name>BGBK__Invoice__c</name>
+        <relationshipLabel><!-- Cart Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Payment / Partial Payment amount of the fee/invoice/deposit --></help>
+        <label><!-- Payment Amount --></label>
+        <name>BGBK__Payment_Amount__c</name>
+    </fields>
+</CustomObjectTranslation>

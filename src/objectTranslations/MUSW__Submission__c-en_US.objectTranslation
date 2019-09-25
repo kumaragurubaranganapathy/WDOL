@@ -9,8 +9,18 @@
         <name>MUSW__Submission_Review_Overview</name>
     </fieldSets>
     <fields>
+        <label><!-- Activity Log --></label>
+        <name>Activity_Log__c</name>
+        <relationshipLabel><!-- Submissions --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Application Type --></label>
         <name>Application_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- Specify the last date  when the the document would be Archived --></help>
+        <label><!-- Archive Date --></label>
+        <name>Archive_Date__c</name>
     </fields>
     <fields>
         <label><!-- Attest --></label>
@@ -30,8 +40,22 @@
         <name>ContentDocumentId__c</name>
     </fields>
     <fields>
+        <label><!-- Customer Envelope --></label>
+        <name>CustomerEnvelope__c</name>
+        <relationshipLabel><!-- Submissions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Default Profession Type --></label>
+        <name>Default_Prof_Type__c</name>
+    </fields>
+    <fields>
         <label><!-- Description Long --></label>
         <name>Description_Long__c</name>
+    </fields>
+    <fields>
+        <help><!-- Specify the date until when the disciplinary action should show up in public search --></help>
+        <label><!-- Disciplinary Action End Date --></label>
+        <name>Disciplinary_Action_End_Date__c</name>
     </fields>
     <fields>
         <label><!-- Document API Name --></label>
@@ -46,13 +70,146 @@
         <name>Hardcopy__c</name>
     </fields>
     <fields>
+        <label><!-- Has Public Distribution --></label>
+        <name>Has_Public_Distribution__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this box if the document is a part of the hearing file. --></help>
+        <label><!-- Include in Hearing File --></label>
+        <name>Include_in_Hearing_File__c</name>
+    </fields>
+    <fields>
         <label><!-- Inspection --></label>
         <name>Inspection__c</name>
         <relationshipLabel><!-- Submissions --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- IsSANFileUploadTrue --></label>
+        <name>IsSANFileUploadTrue__c</name>
+    </fields>
+    <fields>
         <label><!-- Is Backend Submission --></label>
         <name>Is_Backend_Submission__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legal Action Documents --></label>
+        <name>Legal_Action_Documents__c</name>
+        <picklistValues>
+            <masterLabel>Agreed Order</masterLabel>
+            <translation><!-- Agreed Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Agreed Order - Amended</masterLabel>
+            <translation><!-- Agreed Order - Amended --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BAP Scheduled Letter</masterLabel>
+            <translation><!-- BAP Scheduled Letter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cease and Desist - BAP</masterLabel>
+            <translation><!-- Cease and Desist - BAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cease and Desist - Formal</masterLabel>
+            <translation><!-- Cease and Desist - Formal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Default Order - Amended</masterLabel>
+            <translation><!-- Default Order - Amended --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Default Order - BAP</masterLabel>
+            <translation><!-- Default Order - BAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Default Order - Formal</masterLabel>
+            <translation><!-- Default Order - Formal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Education Letter</masterLabel>
+            <translation><!-- Education Letter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ex Parte Order of Summary Suspension</masterLabel>
+            <translation><!-- Ex Parte Order of Summary Suspension --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Final Order</masterLabel>
+            <translation><!-- Final Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initial Order - BAP</masterLabel>
+            <translation><!-- Initial Order - BAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initial Order - Formal</masterLabel>
+            <translation><!-- Initial Order - Formal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intent to Deny - BAP</masterLabel>
+            <translation><!-- Intent to Deny - BAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intent to Deny - Formal</masterLabel>
+            <translation><!-- Intent to Deny - Formal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intent to Issue Cease &amp; Desist Order</masterLabel>
+            <translation><!-- Intent to Issue Cease &amp; Desist Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Order Vacating Default Order</masterLabel>
+            <translation><!-- Order Vacating Default Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Order of Director Deny Pet. 4 Recon.</masterLabel>
+            <translation><!-- Order of Director Deny Pet. 4 Recon. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Order of Summary Suspension</masterLabel>
+            <translation><!-- Order of Summary Suspension --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Permanent Cease &amp; Desist Order</masterLabel>
+            <translation><!-- Permanent Cease &amp; Desist Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Petition For Review</masterLabel>
+            <translation><!-- Petition For Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Prehearing Conference Order</masterLabel>
+            <translation><!-- Prehearing Conference Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Response to Petition For Review</masterLabel>
+            <translation><!-- Response to Petition For Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SOC-Notice of Order of Sum. Susp.</masterLabel>
+            <translation><!-- SOC-Notice of Order of Sum. Susp. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Statement of Charges - BAP</masterLabel>
+            <translation><!-- Statement of Charges - BAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Statement of Charges - Formal</masterLabel>
+            <translation><!-- Statement of Charges - Formal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Subpoena</masterLabel>
+            <translation><!-- Subpoena --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Temporary Cease &amp; Desist Order</masterLabel>
+            <translation><!-- Temporary Cease &amp; Desist Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Withdrawal</masterLabel>
+            <translation><!-- Withdrawal --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Hearing and Settlement --></label>
@@ -155,12 +312,30 @@
         <relationshipLabel><!-- Submissions --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- Check this box if the document is a physical exhibit. --></help>
+        <label><!-- Physical Exhibit --></label>
+        <name>Physical_Exhibit__c</name>
+    </fields>
+    <fields>
         <label><!-- Profession Code --></label>
         <name>Profession_Code__c</name>
     </fields>
     <fields>
+        <help><!-- Check this box to make the disciplinary action public --></help>
+        <label><!-- Public Disciplinary Action --></label>
+        <name>Public_Disciplinary_Action__c</name>
+    </fields>
+    <fields>
+        <label><!-- Public Distribution URL --></label>
+        <name>Public_Distribution_URL__c</name>
+    </fields>
+    <fields>
         <label><!-- Related To --></label>
         <name>Related_To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
     </fields>
     <fields>
         <label><!-- Request --></label>
@@ -174,6 +349,10 @@
     <fields>
         <label><!-- SAN Department Code --></label>
         <name>SAN_Department_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAN File Link --></label>
+        <name>SAN_File_Link__c</name>
     </fields>
     <fields>
         <label><!-- SAN Image Name --></label>
@@ -216,6 +395,10 @@
         <name>SAN_Image_URL__c</name>
     </fields>
     <fields>
+        <label><!-- SAN Prof. Code --></label>
+        <name>SAN_Prof_Code__c</name>
+    </fields>
+    <fields>
         <label><!-- SAN Submission --></label>
         <name>SAN_Submission__c</name>
     </fields>
@@ -254,11 +437,31 @@
             <masterLabel>Additional Info. Required</masterLabel>
             <translation><!-- Additional Info. Required --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unresolved</masterLabel>
+            <translation><!-- Unresolved --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Type --></label>
         <name>Type__c</name>
     </fields>
+    <fields>
+        <label><!-- Validation Number --></label>
+        <name>Validation_Number__c</name>
+    </fields>
+    <quickActions>
+        <label><!-- Delete SAN URL --></label>
+        <name>Delete_SAN_URL</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Upload to SAN Drive --></label>
+        <name>Upload_to_SAN</name>
+    </quickActions>
     <sharingReasons>
         <label><!-- Create Submission By Delegate --></label>
         <name>Create_Submission_By_Delegate</name>
@@ -282,5 +485,9 @@
     <webLinks>
         <label><!-- Manage_Submissions --></label>
         <name>Manage_Submissions</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Open_TIFF_Attachment --></label>
+        <name>Open_TIFF_Attachment</name>
     </webLinks>
 </CustomObjectTranslation>

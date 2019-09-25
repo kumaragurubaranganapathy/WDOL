@@ -229,6 +229,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Attorney --></label>
+        <name>Attorney__c</name>
+    </fields>
+    <fields>
         <label><!-- Complaint --></label>
         <name>Complaint__c</name>
         <relationshipLabel><!-- Sanctions --></relationshipLabel>
@@ -240,6 +244,19 @@
     <fields>
         <label><!-- Final Order Issued --></label>
         <name>Final_Order_Issued__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legal Sanction Id --></label>
+        <name>Legal_Sanction_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>License__c</name>
+        <relationshipLabel><!-- Sanctions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
     </fields>
     <fields>
         <label><!-- Sanction Comment --></label>
@@ -289,12 +306,20 @@
             <translation><!-- Other --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Probation/Stay</masterLabel>
+            <translation><!-- Probation/Stay --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Reprimand</masterLabel>
             <translation><!-- Reprimand --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Required class or course</masterLabel>
             <translation><!-- Required class or course --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restitution</masterLabel>
+            <translation><!-- Restitution --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Revocation</masterLabel>
@@ -321,6 +346,21 @@
             <translation><!-- Voluntary Surrender of License --></translation>
         </picklistValues>
     </fields>
+    <layouts>
+        <layout>Investigations Demo</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <description><!-- Investigation Demo Page Layout --></description>
         <label><!-- Sanctions Page --></label>

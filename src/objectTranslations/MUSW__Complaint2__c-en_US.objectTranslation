@@ -17,6 +17,14 @@
         <name>Anonymous__c</name>
     </fields>
     <fields>
+        <label><!-- Attorney Email --></label>
+        <name>Attorney_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attorney Phone Number --></label>
+        <name>Attorney_Phone_Number__c</name>
+    </fields>
+    <fields>
         <label><!-- Case Dispositions --></label>
         <name>Case_Dispositions__c</name>
         <picklistValues>
@@ -83,6 +91,18 @@
     <fields>
         <label><!-- Case Number Assigned --></label>
         <name>Case_Number_Assigned__c</name>
+    </fields>
+    <fields>
+        <label><!-- Citation Date --></label>
+        <name>Citation_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Close of Escrow (New Home) --></label>
+        <name>Close_of_Escrow_New_Home__c</name>
+    </fields>
+    <fields>
+        <label><!-- Closed Date --></label>
+        <name>Closed_Date__c</name>
     </fields>
     <fields>
         <label><!-- Complainant Business City --></label>
@@ -289,6 +309,10 @@
         <name>Complainant_Business_State__c</name>
     </fields>
     <fields>
+        <label><!-- Complainant Business Zipcode --></label>
+        <name>Complainant_Business_Zipcode__c</name>
+    </fields>
+    <fields>
         <label><!-- Complainant City --></label>
         <name>Complainant_City__c</name>
     </fields>
@@ -303,6 +327,10 @@
     <fields>
         <label><!-- Complainant First Name --></label>
         <name>Complainant_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complainant Full Name --></label>
+        <name>Complainant_Full_Name__c</name>
     </fields>
     <fields>
         <label><!-- Complainant Individual City --></label>
@@ -777,8 +805,16 @@
         <name>Complainant_Middle_Name__c</name>
     </fields>
     <fields>
+        <label><!-- Complainant Phone (Alternate) --></label>
+        <name>Complainant_Phone_Alternate__c</name>
+    </fields>
+    <fields>
         <label><!-- Complainant Phone (Main) --></label>
         <name>Complainant_Phone_Main__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complainant Phone (Mobile) --></label>
+        <name>Complainant_Phone_Mobile__c</name>
     </fields>
     <fields>
         <label><!-- Complainant State --></label>
@@ -787,6 +823,10 @@
     <fields>
         <label><!-- Complainant Zipcode --></label>
         <name>Complainant_Zipcode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complaint Id --></label>
+        <name>Complaint_Id__c</name>
     </fields>
     <fields>
         <label><!-- Complaint Source --></label>
@@ -825,6 +865,18 @@
         <name>Complaint_Submission_Agree__c</name>
     </fields>
     <fields>
+        <label><!-- Contract Amount --></label>
+        <name>Contract_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contract Date --></label>
+        <name>Contract_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contracting w/o a License --></label>
+        <name>Contracting_w_o_a_License__c</name>
+    </fields>
+    <fields>
         <label><!-- DOL Attorney Email --></label>
         <name>DOL_Attorney_Email__c</name>
     </fields>
@@ -835,6 +887,10 @@
     <fields>
         <label><!-- Program Code --></label>
         <name>DOL_Program_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Assigned --></label>
+        <name>Date_Assigned__c</name>
     </fields>
     <fields>
         <label><!-- Date Investigation Closed --></label>
@@ -849,8 +905,36 @@
         <name>Date_Opened__c</name>
     </fields>
     <fields>
+        <label><!-- Date Reopened --></label>
+        <name>Date_Reopened__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Submitted To Court --></label>
+        <name>Date_Submitted_To_Court__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Work Started --></label>
+        <name>Date_Work_Started__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Work Stopped --></label>
+        <name>Date_Work_Stopped__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Work Was Completed --></label>
+        <name>Date_Work_Was_Completed__c</name>
+    </fields>
+    <fields>
         <label><!-- Days Open --></label>
         <name>Days_Open__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery Date --></label>
+        <name>Delivery_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email of Construction Site Owner --></label>
+        <name>Email_of_Construction_Site_Owner__c</name>
     </fields>
     <fields>
         <label><!-- External Case Number --></label>
@@ -865,6 +949,10 @@
         <name>Incident_City__c</name>
     </fields>
     <fields>
+        <label><!-- Incident Date --></label>
+        <name>Incident_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Incident Description --></label>
         <name>Incident_Description__c</name>
     </fields>
@@ -877,6 +965,10 @@
         <name>Incident_Zipcode__c</name>
     </fields>
     <fields>
+        <label><!-- Investigation Comments --></label>
+        <name>Investigation_Comments__c</name>
+    </fields>
+    <fields>
         <label><!-- Investigation Completed Date --></label>
         <name>Investigation_Completed_Date__c</name>
     </fields>
@@ -885,12 +977,21 @@
         <name>Investigation_Due_Date__c</name>
     </fields>
     <fields>
+        <label><!-- Investigator Name --></label>
+        <name>Investigator_Name__c</name>
+        <relationshipLabel><!-- Complaints --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Jurisdiction Found? --></label>
         <name>Jurisdiction_Found__c</name>
     </fields>
     <fields>
         <label><!-- Legal Notes --></label>
         <name>Legal_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Id --></label>
+        <name>License_Id__c</name>
     </fields>
     <fields>
         <label><!-- License Type --></label>
@@ -1007,12 +1108,16 @@
             <translation><!-- High --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Immediate</masterLabel>
+            <translation><!-- Immediate --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Low</masterLabel>
             <translation><!-- Low --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Medium</masterLabel>
-            <translation><!-- Medium --></translation>
+            <masterLabel>Routine</masterLabel>
+            <translation><!-- Routine --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1320,10 +1425,6 @@
             <translation><!-- Closed --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Draft</masterLabel>
-            <translation><!-- Draft --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Inspection/Audit</masterLabel>
             <translation><!-- Inspection/Audit --></translation>
         </picklistValues>
@@ -1344,16 +1445,8 @@
             <translation><!-- Management Review --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>New</masterLabel>
-            <translation><!-- New --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Re-Open</masterLabel>
             <translation><!-- Re-Open --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Working</masterLabel>
-            <translation><!-- Working --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1404,7 +1497,7 @@
     </fields>
     <fields>
         <help><!-- Use the field to specify when this complaint is merged with another complaint. Set Status to &quot;Closed&quot;, Sub-Status to &quot;Merged&quot;. --></help>
-        <label><!-- Merged with Complaint --></label>
+        <label><!-- Master Complaint --></label>
         <name>Master_Complaint__c</name>
         <relationshipLabel><!-- Complaints --></relationshipLabel>
     </fields>
@@ -1480,6 +1573,10 @@
     <fields>
         <label><!-- Record_Type1 --></label>
         <name>Record_Type1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
     </fields>
     <fields>
         <label><!-- Respondent Attorney Name --></label>
@@ -1793,10 +1890,6 @@
             <translation><!-- Mason --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Null</masterLabel>
-            <translation><!-- Null --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Okanogan</masterLabel>
             <translation><!-- Okanogan --></translation>
         </picklistValues>
@@ -1847,10 +1940,6 @@
         <picklistValues>
             <masterLabel>Thurston</masterLabel>
             <translation><!-- Thurston --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Unknown County</masterLabel>
-            <translation><!-- Unknown County --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Wahkiakum</masterLabel>
@@ -1908,6 +1997,10 @@
     <fields>
         <label><!-- Respondent Phone Number --></label>
         <name>Respondent_Phone_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Respondent Phone --></label>
+        <name>Respondent_Phone__c</name>
     </fields>
     <fields>
         <label><!-- Respondent State --></label>
@@ -2017,6 +2110,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Submitted Date --></label>
+        <name>Submitted_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Subtype --></label>
         <name>Subtype__c</name>
         <picklistValues>
@@ -2037,6 +2134,99 @@
         <label><!-- Summary Suspension --></label>
         <name>Summary_Suspension__c</name>
     </fields>
+    <layouts>
+        <layout>Complaints Demo Page Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Intake - Complainant Information --></label>
+            <section>Intake - Complainant Information</section>
+        </sections>
+        <sections>
+            <label><!-- Intake - Incident Details --></label>
+            <section>Intake - Incident Details</section>
+        </sections>
+        <sections>
+            <label><!-- Intake - Respondent Information --></label>
+            <section>Intake - Respondent Information</section>
+        </sections>
+        <sections>
+            <label><!-- Investigation Details --></label>
+            <section>Investigation Details</section>
+        </sections>
+        <sections>
+            <label><!-- Respondent Information - DOL Verified --></label>
+            <section>Respondent Information - DOL Verified</section>
+        </sections>
+        <sections>
+            <label><!-- Section Information --></label>
+            <section>Section Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Default Complaint</layout>
+        <sections>
+            <label><!-- Complaint Details --></label>
+            <section>Complaint Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Intake - Complainant Information --></label>
+            <section>Intake - Complainant Information</section>
+        </sections>
+        <sections>
+            <label><!-- Intake - Respondent Information --></label>
+            <section>Intake - Respondent Information</section>
+        </sections>
+        <sections>
+            <label><!-- Investigation Details --></label>
+            <section>Investigation Details</section>
+        </sections>
+        <sections>
+            <label><!-- Legal --></label>
+            <section>Legal</section>
+        </sections>
+        <sections>
+            <label><!-- Respondent Information - DOL Verified --></label>
+            <section>Respondent Information - DOL Verified</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Generic Compliance Layout</layout>
+        <sections>
+            <label><!-- Action Items --></label>
+            <section>Action Items</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Details --></label>
+            <section>Additional Details</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <description><!-- Generic Compliance record type --></description>
         <label><!-- Compliance --></label>
@@ -2053,6 +2243,10 @@
     <validationRules>
         <errorMessage><!-- Please populate a respondent in contact field to send out a notification --></errorMessage>
         <name>Cannot_send_notification_is_contact_null</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone numbers length should not be greater than 10. --></errorMessage>
+        <name>Phone_Number_Length</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Set Status to &quot;Closed&quot;, Sub Status to &quot;Merged&quot;, and populate &quot;Merged With Complaint&quot; field to merge this complaint with another. --></errorMessage>

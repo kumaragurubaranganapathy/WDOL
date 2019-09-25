@@ -2,6 +2,23 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
         <label><!-- Amount --></label>
+        <name>Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bond Insurance Id --></label>
+        <name>Bond_Insurance_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- License ID --></label>
+        <name>License_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>License__c</name>
+        <relationshipLabel><!-- Bonds --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Amount --></label>
         <name>MUSW__BG_Amount__c</name>
     </fields>
     <fields>
@@ -41,8 +58,52 @@
             <translation><!-- Cash --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Insurance</masterLabel>
+            <translation><!-- Insurance --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Letter of Credit</masterLabel>
             <translation><!-- Letter of Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Security</masterLabel>
+            <translation><!-- Other Security --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Surety Bond</masterLabel>
+            <translation><!-- Surety Bond --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Continuous</masterLabel>
+            <translation><!-- Continuous --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expired</masterLabel>
+            <translation><!-- Expired --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Released</masterLabel>
+            <translation><!-- Released --></translation>
         </picklistValues>
     </fields>
 </CustomObjectTranslation>

@@ -185,8 +185,24 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Effective From Date --></label>
+        <name>Effective_From_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Effective To Date --></label>
+        <name>Effective_To_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Mandatory Citation --></label>
+        <name>Is_Mandatory_Citation__c</name>
+    </fields>
+    <fields>
         <label><!-- Law Code --></label>
         <name>Law_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Type --></label>
+        <name>License_Type__c</name>
     </fields>
     <fields>
         <label><!-- Abatement Requirement --></label>
@@ -264,6 +280,44 @@
         <label><!-- No. Reinspections --></label>
         <name>No_Reinspections__c</name>
     </fields>
+    <fields>
+        <label><!-- Program Type --></label>
+        <name>Program_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Item Weight --></label>
+        <name>Sub_Item_Weight__c</name>
+    </fields>
+    <fields>
+        <label><!-- Violation For --></label>
+        <name>Violation_For__c</name>
+        <picklistValues>
+            <masterLabel>Complaint</masterLabel>
+            <translation><!-- Complaint --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inspection</masterLabel>
+            <translation><!-- Inspection --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Compliance Violation</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Paragraph Layout</layout>
+        <sections>
+            <label><!-- Approval Section --></label>
+            <section>Approval Section</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Compliance Violation --></label>
         <name>Compliance_Violation</name>

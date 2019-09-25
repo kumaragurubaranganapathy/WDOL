@@ -371,13 +371,40 @@
         <name>Triggering_Parent_Answer__c</name>
     </fields>
     <fields>
+        <label><!-- Validation Criteria --></label>
+        <name>Validation_Criteria__c</name>
+    </fields>
+    <fields>
         <label><!-- Version --></label>
         <name>Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- Warning Message --></label>
+        <name>Warning_Message__c</name>
     </fields>
     <fields>
         <label><!-- isRequired --></label>
         <name>isRequired__c</name>
     </fields>
+    <fields>
+        <label><!-- max value --></label>
+        <name>max_value__c</name>
+    </fields>
+    <fields>
+        <label><!-- min value --></label>
+        <name>min_value__c</name>
+    </fields>
+    <layouts>
+        <layout>Question Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Question Information --></label>
+            <section>Question Information</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Qualifying Information --></label>
         <name>Background_Information</name>

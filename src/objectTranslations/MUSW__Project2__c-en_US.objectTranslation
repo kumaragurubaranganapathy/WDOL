@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
+        <help><!-- Projects that are no longer valid/closed or stop selling interests in --></help>
+        <label><!-- Close Date --></label>
+        <name>Close_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- County Name --></label>
         <name>County_Name__c</name>
         <picklistValues>
@@ -329,8 +334,17 @@
         <name>Govt_Lot__c</name>
     </fields>
     <fields>
+        <label><!-- Intervals --></label>
+        <name>Intervals__c</name>
+    </fields>
+    <fields>
         <label><!-- Land Owner Type --></label>
         <name>Land_Owner_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- License --></label>
+        <name>License__c</name>
+        <relationshipLabel><!-- Projects --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Lot --></label>
@@ -419,6 +433,19 @@
         <name>Municipality_Type__c</name>
     </fields>
     <fields>
+        <help><!-- Date Project was opened/allowed to start selling into project --></help>
+        <label><!-- Open Date --></label>
+        <name>Open_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Address --></label>
+        <name>Project_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Name --></label>
+        <name>Project_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- Quarter --></label>
         <name>Quarter__c</name>
     </fields>
@@ -457,6 +484,10 @@
     <fields>
         <label><!-- Town --></label>
         <name>Town__c</name>
+    </fields>
+    <fields>
+        <label><!-- Units --></label>
+        <name>Units__c</name>
     </fields>
     <webLinks>
         <label><!-- Link_Attachment --></label>

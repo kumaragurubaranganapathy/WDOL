@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>DOL Integration Batch Input</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>DOL Integration Batch Inputs</value>
+    </caseValues>
+    <fields>
+        <label><!-- File Name --></label>
+        <name>File_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- INFO --></label>
+        <name>INFO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Input Type --></label>
+        <name>Input_Type__c</name>
+        <picklistValues>
+            <masterLabel>DOR</masterLabel>
+            <translation><!-- DOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NCR</masterLabel>
+            <translation><!-- NCR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>REMITTANCE</masterLabel>
+            <translation><!-- REMITTANCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RTPC</masterLabel>
+            <translation><!-- RTPC --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Input --></label>
+        <name>Input__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>CONTENT VERSION CREATED</masterLabel>
+            <translation><!-- CONTENT VERSION CREATED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DATA LOADING COMPLETED</masterLabel>
+            <translation><!-- DATA LOADING COMPLETED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FAILED</masterLabel>
+            <translation><!-- FAILED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SUCCESSFUL</masterLabel>
+            <translation><!-- SUCCESSFUL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UNPROCESSED</masterLabel>
+            <translation><!-- UNPROCESSED --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

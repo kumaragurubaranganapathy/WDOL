@@ -22,7 +22,12 @@
         <name>Created_for_New_Application__c</name>
     </fields>
     <fields>
-        <label><!-- First Issue Date --></label>
+        <help><!-- Current datetime --></help>
+        <label><!-- Current Datetime --></label>
+        <name>Current_Datetime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Granted --></label>
         <name>Date_Granted__c</name>
     </fields>
     <fields>
@@ -38,12 +43,25 @@
         <name>Date_Requested_for_Removing_Endorsement__c</name>
     </fields>
     <fields>
+        <label><!-- Days After Endorsement Issue Date 30 --></label>
+        <name>Days_After_Endorsement_Issue_Date_30__c</name>
+    </fields>
+    <fields>
+        <help><!-- 30 days from current date --></help>
+        <label><!-- Days From Today 30 --></label>
+        <name>Days_From_Today_30__c</name>
+    </fields>
+    <fields>
         <label><!-- Current Issue Date --></label>
         <name>Effective_Date__c</name>
     </fields>
     <fields>
         <label><!-- Electronic Software Provider --></label>
         <name>Electronic_Software_Provider__c</name>
+    </fields>
+    <fields>
+        <label><!-- Endorsement Id --></label>
+        <name>Endorsement_Id__c</name>
     </fields>
     <fields>
         <label><!-- Endorsement Type --></label>
@@ -162,12 +180,60 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Lic Prog Mailing City State ZIP --></label>
+        <name>Lic_Prog_Mailing_City_State_ZIP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lic Prog Mailing PO Box --></label>
+        <name>Lic_Prog_Mailing_PO_Box__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Applicant Full Name --></label>
+        <name>License_Applicant_Full_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- License Applicant --></label>
         <name>License_Applicant__c</name>
     </fields>
     <fields>
+        <label><!-- License ID --></label>
+        <name>License_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing City --></label>
+        <name>License_Mailing_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing State --></label>
+        <name>License_Mailing_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing Street --></label>
+        <name>License_Mailing_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing ZIP --></label>
+        <name>License_Mailing_ZIP__c</name>
+    </fields>
+    <fields>
         <label><!-- License Number --></label>
         <name>License_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Printable Name --></label>
+        <name>License_Printable_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Program Email --></label>
+        <name>License_Program_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Program Phone --></label>
+        <name>License_Program_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Program Type --></label>
+        <name>License_Program_Type__c</name>
     </fields>
     <fields>
         <label><!-- License Status --></label>
@@ -176,6 +242,10 @@
     <fields>
         <label><!-- License Type --></label>
         <name>License_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Ultimate Parent Account --></label>
+        <name>License_Ultimate_Parent_Account__c</name>
     </fields>
     <fields>
         <label><!-- License --></label>
@@ -189,6 +259,10 @@
     <fields>
         <label><!-- Program Type --></label>
         <name>Program_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
     </fields>
     <fields>
         <label><!-- Renewal &amp; Reinstatement Application --></label>
@@ -248,9 +322,39 @@
             <translation><!-- Renew --></translation>
         </picklistValues>
     </fields>
+    <fields>
+        <label><!-- Sub Status --></label>
+        <name>Sub_Status__c</name>
+        <picklistValues>
+            <masterLabel>Applicant Action</masterLabel>
+            <translation><!-- Applicant Action --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Third Party Action</masterLabel>
+            <translation><!-- Third Party Action --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Endorsement Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RBS Endorsement Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Endorsement --></label>
         <name>Endorsement</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Letter --></label>
+        <name>Letter</name>
+    </webLinks>
 </CustomObjectTranslation>

@@ -12,8 +12,20 @@
         <label><!-- License Type --></label>
         <name>License_Type__c</name>
         <picklistValues>
+            <masterLabel> Temporary Certified General</masterLabel>
+            <translation><!--  Temporary Certified General --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Academic Intern</masterLabel>
+            <translation><!-- Academic Intern --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Appraisal Management Company</masterLabel>
             <translation><!-- Appraisal Management Company --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Appraiser Course</masterLabel>
+            <translation><!-- Appraiser Course --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Appraiser Trainee</masterLabel>
@@ -56,6 +68,10 @@
             <translation><!-- Embalmer Intern --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Engineer in Training</masterLabel>
+            <translation><!-- Engineer in Training --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Engineering LLC</masterLabel>
             <translation><!-- Engineering LLC --></translation>
         </picklistValues>
@@ -78,6 +94,14 @@
         <picklistValues>
             <masterLabel>Geologist</masterLabel>
             <translation><!-- Geologist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Geologist In Training</masterLabel>
+            <translation><!-- Geologist In Training --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Land Surveyor in Training</masterLabel>
+            <translation><!-- Land Surveyor in Training --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Landscape Architect</masterLabel>
@@ -128,6 +152,14 @@
             <translation><!-- State Licensed Appraiser --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Temporary Certified Residential</masterLabel>
+            <translation><!-- Temporary Certified Residential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Temporary State Licensed</masterLabel>
+            <translation><!-- Temporary State Licensed --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Timeshare Company</masterLabel>
             <translation><!-- Timeshare Company --></translation>
         </picklistValues>
@@ -140,5 +172,12 @@
         <label><!-- Profession Code --></label>
         <name>Profession_Code__c</name>
     </fields>
+    <layouts>
+        <layout>LnP_ProfessionalCode Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

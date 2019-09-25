@@ -132,6 +132,13 @@
         <label><!-- Status --></label>
         <name>Status__c</name>
     </fields>
+    <layouts>
+        <layout>Exam Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Vowel</startsWith>
     <validationRules>
         <errorMessage><!-- There are no seats available for this Exam Schedule --></errorMessage>

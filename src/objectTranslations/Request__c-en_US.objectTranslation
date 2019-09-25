@@ -36,9 +36,23 @@
         <relationshipLabel><!-- Requests --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Contact Email --></label>
+        <name>Contact_Email__c</name>
+    </fields>
+    <fields>
         <label><!-- Contact --></label>
         <name>Contact__c</name>
         <relationshipLabel><!-- Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Current datetime --></help>
+        <label><!-- Current Datetime --></label>
+        <name>Current_Datetime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Envelope --></label>
+        <name>Customer_Envelope__c</name>
+        <relationshipLabel><!-- Account Maintenance Requests --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Description --></label>
@@ -53,17 +67,84 @@
         <name>End_Time__c</name>
     </fields>
     <fields>
+        <label><!-- Exam Type --></label>
+        <name>Exam_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exam --></label>
+        <name>Exam__c</name>
+        <relationshipLabel><!-- Requests --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Form JSON --></label>
         <name>Form_JSON__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lic Prog Mailing City State ZIP --></label>
+        <name>Lic_Prog_Mailing_City_State_ZIP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lic Prog Mailing PO Box --></label>
+        <name>Lic_Prog_Mailing_PO_Box__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Applicant Full Name --></label>
+        <name>License_Applicant_Full_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing City --></label>
+        <name>License_Mailing_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing State --></label>
+        <name>License_Mailing_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing Street --></label>
+        <name>License_Mailing_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Mailing ZIP --></label>
+        <name>License_Mailing_ZIP__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Number --></label>
+        <name>License_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Formula field for License Program Email --></help>
+        <label><!-- License Program Email --></label>
+        <name>License_Program_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- Formula field for License Program Phone in the  Email Templates --></help>
+        <label><!-- License Program Phone --></label>
+        <name>License_Program_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Program Type --></label>
+        <name>License_Program_Type__c</name>
     </fields>
     <fields>
         <label><!-- License Type --></label>
         <name>License_Type__c</name>
     </fields>
     <fields>
+        <label><!-- License Ultimate Parent Account --></label>
+        <name>License_Ultimate_Parent_Account__c</name>
+    </fields>
+    <fields>
         <label><!-- License --></label>
         <name>License__c</name>
         <relationshipLabel><!-- Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Number Of Advertisements To Be Reviewed --></label>
+        <name>Number_Of_Advertisements_To_Be_Reviewed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number Of Certifications --></label>
+        <name>Number_Of_Certifications__c</name>
     </fields>
     <fields>
         <label><!-- Permit / Plan Review --></label>
@@ -110,6 +191,10 @@
         <label><!-- Status --></label>
         <name>Status__c</name>
         <picklistValues>
+            <masterLabel>Abandoned</masterLabel>
+            <translation><!-- Abandoned --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Approved</masterLabel>
             <translation><!-- Approved --></translation>
         </picklistValues>
@@ -130,5 +215,24 @@
             <translation><!-- Under Review --></translation>
         </picklistValues>
     </fields>
+    <fields>
+        <label><!-- Validation Number --></label>
+        <name>Validation_Number__c</name>
+    </fields>
+    <layouts>
+        <layout>Request Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Letter --></label>
+        <name>Letter</name>
+    </webLinks>
 </CustomObjectTranslation>

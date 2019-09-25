@@ -43,6 +43,10 @@
         <name>BGBK__Payable_Parents__c</name>
     </fields>
     <fields>
+        <label><!-- Payment Batch Scope --></label>
+        <name>BGBK__Payment_Batch_Scope__c</name>
+    </fields>
+    <fields>
         <label><!-- Payment Gateway Credentials --></label>
         <name>BGBK__Payment_Gateway_Credentials__c</name>
     </fields>
@@ -66,6 +70,11 @@
     <fields>
         <label><!-- Payment Gateway Requires Initialization --></label>
         <name>BGBK__Payment_Gateway_Requires_Initialization__c</name>
+    </fields>
+    <fields>
+        <help><!-- Class name which implements the IPaymentGatewayResponseHandler interface --></help>
+        <label><!-- Payment Gateway Response Handler Class --></label>
+        <name>BGBK__Payment_Gateway_Response_Handler_Class__c</name>
     </fields>
     <fields>
         <label><!-- Payment Gateway Response Protocol --></label>

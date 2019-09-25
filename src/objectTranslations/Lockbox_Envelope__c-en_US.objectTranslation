@@ -9,7 +9,7 @@
         <value>Lockbox Envelopes</value>
     </caseValues>
     <fields>
-        <label><!-- Amount --></label>
+        <label><!-- Customer Envelope Amount --></label>
         <name>Amount__c</name>
     </fields>
     <fields>
@@ -17,8 +17,48 @@
         <name>Date__c</name>
     </fields>
     <fields>
-        <label><!-- Lockbox number --></label>
+        <label><!-- Lockbox Amount --></label>
+        <name>Lockbox_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- 240Q Lockbox Number --></label>
         <name>Lockbox_number__c</name>
     </fields>
+    <fields>
+        <label><!-- NCR Amount --></label>
+        <name>Polaris_NCR_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Complete</masterLabel>
+            <translation><!-- Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Confirmed</masterLabel>
+            <translation><!-- Confirmed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hold</masterLabel>
+            <translation><!-- Hold --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- 240Q --></label>
+        <name>X240Q__c</name>
+        <relationshipLabel><!-- Lockbox Envelopes --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Lockbox Envelope Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please check the Customer Envelope Amount and NCR Amount. Lockbox Amount doesnt equal to Customer Amount and NCR Amount --></errorMessage>
+        <name>CE_Amount_and_NCR_Amount</name>
+    </validationRules>
 </CustomObjectTranslation>

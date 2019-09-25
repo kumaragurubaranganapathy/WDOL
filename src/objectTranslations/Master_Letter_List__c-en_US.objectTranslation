@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Master Letter List</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Master Letter Lists</value>
+    </caseValues>
+    <fields>
+        <label><!-- Letter Name --></label>
+        <name>Letter_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Letter Type --></label>
+        <name>Letter_Type__c</name>
+        <picklistValues>
+            <masterLabel>Self-print Certificate</masterLabel>
+            <translation><!-- Self-print Certificate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wall Certificate</masterLabel>
+            <translation><!-- Wall Certificate --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- License Type --></label>
+        <name>License_Type__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

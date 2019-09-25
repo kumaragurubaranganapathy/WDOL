@@ -133,6 +133,10 @@
         <name>Endorsement_Type__c</name>
     </fields>
     <fields>
+        <label><!-- Exam Type --></label>
+        <name>Exam_Type__c</name>
+    </fields>
+    <fields>
         <label><!-- Expedited Service Fee --></label>
         <name>Expedited_Service_Fee__c</name>
     </fields>
@@ -302,6 +306,10 @@
         <name>Project__c</name>
     </fields>
     <fields>
+        <label><!-- Relationship Fee --></label>
+        <name>Relationship_Fee__c</name>
+    </fields>
+    <fields>
         <label><!-- Replace Title --></label>
         <name>Replace_Title__c</name>
     </fields>
@@ -321,6 +329,10 @@
             <translation><!-- Ad Reviews --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Change License Status</masterLabel>
+            <translation><!-- Change License Status --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Change Name</masterLabel>
             <translation><!-- Change Name --></translation>
         </picklistValues>
@@ -329,12 +341,24 @@
             <translation><!-- Change in Status --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Duplicate License</masterLabel>
+            <translation><!-- Duplicate License --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Endorsement</masterLabel>
             <translation><!-- Endorsement --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Exam Proctor</masterLabel>
+            <translation><!-- Exam Proctor --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Exam Re-Application</masterLabel>
             <translation><!-- Exam Re-Application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>First License Fee</masterLabel>
+            <translation><!-- First License Fee --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>License History Request</masterLabel>
@@ -349,12 +373,12 @@
             <translation><!-- Manufactured Homes Title Modification --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Priority Plan Review</masterLabel>
-            <translation><!-- Priority Plan Review --></translation>
+            <masterLabel>Name Change</masterLabel>
+            <translation><!-- Name Change --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Project Size Change</masterLabel>
-            <translation><!-- Project Size Change --></translation>
+            <masterLabel>Priority Plan Review</masterLabel>
+            <translation><!-- Priority Plan Review --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Public Health Emergency Plan Review</masterLabel>
@@ -373,12 +397,24 @@
             <translation><!-- Reschedule Exam --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Self-Service - Address</masterLabel>
+            <translation><!-- Self-Service - Address --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Submit Additional Documentation</masterLabel>
             <translation><!-- Submit Additional Documentation --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Submit Exam Results</masterLabel>
             <translation><!-- Submit Exam Results --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Update Legal Name</masterLabel>
+            <translation><!-- Update Legal Name --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Update Project Size</masterLabel>
+            <translation><!-- Update Project Size --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Withdraw Application</masterLabel>
@@ -420,6 +456,10 @@
     <fields>
         <label><!-- Trigger Status --></label>
         <name>Trigger_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Two-Step Fee --></label>
+        <name>Two_Step_Fee__c</name>
     </fields>
     <fields>
         <label><!-- Type of Component Manual review --></label>
@@ -521,6 +561,24 @@
         <label><!-- is Late Renewal --></label>
         <name>is_Late_Renewal__c</name>
     </fields>
+    <layouts>
+        <layout>License Fees</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Permit Fees</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Formula Builder --></label>
+            <section>Formula Builder</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <description><!-- License Fees --></description>
         <label><!-- License --></label>
@@ -532,7 +590,15 @@
         <name>Permit</name>
     </recordTypes>
     <validationRules>
-        <errorMessage><!-- You are not allowed to enter more than 4 digits. --></errorMessage>
+        <errorMessage><!-- Base amount cannot be negative or more than 5999.99 --></errorMessage>
         <name>Allow_user_to_input_Only_till_4_digits</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Profession code should be a 5 digit number and cannot have decimal --></errorMessage>
+        <name>Profession_Code_Number_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Revenue code not in valid format --></errorMessage>
+        <name>Revenue_Code_Format</name>
     </validationRules>
 </CustomObjectTranslation>

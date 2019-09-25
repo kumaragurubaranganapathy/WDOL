@@ -84,8 +84,20 @@
         <name>Budget_Period__c</name>
     </fields>
     <fields>
+        <label><!-- DHP Amount --></label>
+        <name>DHP_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- DHPed --></label>
+        <name>DHPed__c</name>
+    </fields>
+    <fields>
         <label><!-- Department --></label>
         <name>Department__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deposit Reapply Amount --></label>
+        <name>Deposit_Reapply_Amount__c</name>
     </fields>
     <fields>
         <label><!-- External Id --></label>
@@ -159,8 +171,20 @@
         <name>Project__c</name>
     </fields>
     <fields>
+        <label><!-- Reapply Amount --></label>
+        <name>Reapply_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reapply Payment --></label>
+        <name>Reapply_Payment__c</name>
+    </fields>
+    <fields>
         <label><!-- Receipt - Amount Remaining --></label>
         <name>Receipt_Amount_Remaining__c</name>
+    </fields>
+    <fields>
+        <label><!-- Receipt Payment Method --></label>
+        <name>Receipt_Payment_Method__c</name>
     </fields>
     <fields>
         <label><!-- Record Number --></label>
@@ -175,8 +199,25 @@
         <name>Related_to__c</name>
     </fields>
     <fields>
+        <label><!-- RevenueCodeSubString --></label>
+        <name>RevenueCodeSubString__c</name>
+    </fields>
+    <fields>
         <label><!-- Revenue Code --></label>
         <name>Revenue_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reversal Reapply Payment --></label>
+        <name>Reversal_Reapply_Payment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Fee Revenue Code --></label>
+        <name>Source_Fee_Revenue_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source Fee --></label>
+        <name>Source_Fee__c</name>
+        <relationshipLabel><!-- Fee Payments (Source Fee) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- TMS Cash Code --></label>
@@ -187,6 +228,14 @@
         <name>TMS_Revenue_Code__c</name>
     </fields>
     <fields>
+        <label><!-- Target Initial Apply Amount --></label>
+        <name>Target_Initial_Apply_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Reapply Amount --></label>
+        <name>Target_Reapply_Amount__c</name>
+    </fields>
+    <fields>
         <label><!-- US Bank Payment Status --></label>
         <name>US_Bank_Payment_Status__c</name>
     </fields>
@@ -194,6 +243,17 @@
         <label><!-- Voucher Number --></label>
         <name>Voucher_Number__c</name>
     </fields>
+    <layouts>
+        <layout>Payment Layout POLARIS</layout>
+        <sections>
+            <label><!-- Accounting Details --></label>
+            <section>Accounting Details</section>
+        </sections>
+        <sections>
+            <label><!-- Revenue Reconcilliation --></label>
+            <section>Revenue Reconcilliation</section>
+        </sections>
+    </layouts>
     <sharingReasons>
         <label><!-- Create Fee Payment By Delegate --></label>
         <name>Create_Fee_Payment_By_Delegate</name>

@@ -9,12 +9,52 @@
         <value>Journal Vouchers</value>
     </caseValues>
     <fields>
+        <label><!-- AFRS - 012 Net Amount --></label>
+        <name>AFRS_012_Net_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFRS - 012 - TMS --></label>
+        <name>AFRS_012_TMS__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFRS Interface 012 Amount --></label>
+        <name>AFRS_Interface_012_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFRS Interface 012 CR Amount --></label>
+        <name>AFRS_Interface_012_CR_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFRS Interface 012 DR Amount --></label>
+        <name>AFRS_Interface_012_DR_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFRS Interface 012 Net Amount --></label>
+        <name>AFRS_Interface_012_Net_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFRS Interface CR Amount --></label>
+        <name>AFRS_Interface_CR_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFRS Interface DR Amount --></label>
+        <name>AFRS_Interface_DR_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFRS Interface Net Amount --></label>
+        <name>AFRS_Interface_Net_Amount__c</name>
+    </fields>
+    <fields>
         <label><!-- AFRS Interface Total Amount --></label>
         <name>AFRS_Interface_Total_Amount__c</name>
     </fields>
     <fields>
         <label><!-- AFRS PDF Total Amount --></label>
         <name>AFRS_PDF_Total_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- AFRS Process Date --></label>
+        <name>AFRS_Process_Date__c</name>
     </fields>
     <fields>
         <label><!-- AFRS Status --></label>
@@ -93,6 +133,10 @@
         <label><!-- Document Type --></label>
         <name>Document_Type__c</name>
         <picklistValues>
+            <masterLabel>Automated JV</masterLabel>
+            <translation><!-- Automated JV --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Manual CRJSfor Daily -Lockbox  240Q</masterLabel>
             <translation><!-- Manual CRJSfor Daily -Lockbox  240Q --></translation>
         </picklistValues>
@@ -103,10 +147,6 @@
         <picklistValues>
             <masterLabel>Manual IAP -user created to ensure document # matches OFM/AFRS</masterLabel>
             <translation><!-- Manual IAP -user created to ensure document # matches OFM/AFRS --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Manual JV</masterLabel>
-            <translation><!-- Manual JV --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Manual JV -Remittance JV from a validation number</masterLabel>
@@ -183,7 +223,7 @@
         <name>Ref_Document_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Refund1 --></label>
+        <label><!-- Refund --></label>
         <name>Refund1__c</name>
         <relationshipLabel><!-- Journal Vouchers --></relationshipLabel>
     </fields>
@@ -191,6 +231,30 @@
         <label><!-- Refund --></label>
         <name>Refund__c</name>
         <relationshipLabel><!-- Journal Vouchers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- TMS Interface CR Amount --></label>
+        <name>TMS_Interface_CR_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- TMS Interface DR Amount --></label>
+        <name>TMS_Interface_DR_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- TMS Interface Net Amount --></label>
+        <name>TMS_Interface_Net_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- TMS Interface Total Amount --></label>
+        <name>TMS_Interface_Total_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- TMS PDF Total Amount --></label>
+        <name>TMS_PDF_Total_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- TMS Process Date --></label>
+        <name>TMS_Process_Date__c</name>
     </fields>
     <fields>
         <label><!-- TMS Status --></label>
@@ -216,6 +280,52 @@
         <label><!-- Total --></label>
         <name>Total__c</name>
     </fields>
+    <layouts>
+        <layout>Journal Voucher Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Footer --></label>
+            <section>Footer</section>
+        </sections>
+        <sections>
+            <label><!-- General --></label>
+            <section>General</section>
+        </sections>
+        <sections>
+            <label><!-- Header --></label>
+            <section>Header</section>
+        </sections>
+        <sections>
+            <label><!-- Interface Management --></label>
+            <section>Interface Management</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Journal Voucher Manual</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Footer --></label>
+            <section>Footer</section>
+        </sections>
+        <sections>
+            <label><!-- General --></label>
+            <section>General</section>
+        </sections>
+        <sections>
+            <label><!-- Header --></label>
+            <section>Header</section>
+        </sections>
+        <sections>
+            <label><!-- Interface Management --></label>
+            <section>Interface Management</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <description><!-- This record type is for batch type of JVs --></description>
         <label><!-- Journal Voucher Automated --></label>

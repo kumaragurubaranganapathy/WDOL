@@ -123,7 +123,7 @@
         <name>Field4__c</name>
     </fields>
     <fields>
-        <label><!-- 0.50 --></label>
+        <label><!-- $ 0.50 --></label>
         <name>Field5__c</name>
     </fields>
     <fields>
@@ -295,6 +295,14 @@
         <name>Total_Cash_in_Register_CC__c</name>
     </fields>
     <fields>
+        <label><!-- Total Check + Credit Cards --></label>
+        <name>Total_Check_Credit_Cards__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Credit Card Receipts --></label>
+        <name>Total_Credit_Card_Receipts__c</name>
+    </fields>
+    <fields>
         <label><!-- Total Payment w/o vouchers --></label>
         <name>Total_Payment_w_o_vouchers__c</name>
     </fields>
@@ -322,6 +330,40 @@
         <label><!-- Value --></label>
         <name>X20_Multiplication__c</name>
     </fields>
+    <layouts>
+        <layout>Cash Register Layout</layout>
+        <sections>
+            <label><!-- Closing Count --></label>
+            <section>Closing Count</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Opening Count --></label>
+            <section>Opening Count</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Validation Room Cash Register</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Manual Processing --></label>
+            <section>Manual Processing</section>
+        </sections>
+        <sections>
+            <label><!-- NCR --></label>
+            <section>NCR</section>
+        </sections>
+        <sections>
+            <label><!-- Validation Room --></label>
+            <section>Validation Room</section>
+        </sections>
+    </layouts>
     <quickActions>
         <label><!-- System Generated Cash Total --></label>
         <name>System_Generated_Cash_Total</name>

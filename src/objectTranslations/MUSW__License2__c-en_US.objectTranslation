@@ -13,6 +13,14 @@
         <name>AQB_Approval_Expiration_Date__c</name>
     </fields>
     <fields>
+        <label><!-- DCP --></label>
+        <lookupFilter>
+            <errorMessage><!-- DCP Not available --></errorMessage>
+        </lookupFilter>
+        <name>Account_Contact__c</name>
+        <relationshipLabel><!-- Licenses --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Account Email --></label>
         <name>Account_Email__c</name>
     </fields>
@@ -70,6 +78,10 @@
         <relationshipLabel><!-- Licenses --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Application --></label>
+        <name>Application_formatted_number__c</name>
+    </fields>
+    <fields>
         <label><!-- AttestationFullName --></label>
         <name>AttestationFullName__c</name>
     </fields>
@@ -80,6 +92,10 @@
     <fields>
         <label><!-- Attestation --></label>
         <name>Attestation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Audit Completed Flag --></label>
+        <name>Audit_Completed_Flag__c</name>
     </fields>
     <fields>
         <label><!-- NSF --></label>
@@ -134,8 +150,44 @@
         <name>Camping_Resorts__c</name>
     </fields>
     <fields>
+        <label><!-- Case Number --></label>
+        <name>Case_Number__c</name>
+    </fields>
+    <fields>
         <label><!-- Catalog Contact Info --></label>
         <name>Catalog_Contact_Info__c</name>
+    </fields>
+    <fields>
+        <label><!-- Certificate Address City/zip --></label>
+        <name>Certificate_Address_City_zip__c</name>
+    </fields>
+    <fields>
+        <label><!-- Certificate Address Street --></label>
+        <name>Certificate_Address_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Certificate Issue Date --></label>
+        <name>Certificate_Issue_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Certificate Print Day --></label>
+        <name>Certificate_Print_Day__c</name>
+    </fields>
+    <fields>
+        <label><!-- Certificate Print Day superscript --></label>
+        <name>Certificate_Print_Day_superscript__c</name>
+    </fields>
+    <fields>
+        <label><!-- Certificate Print License Type --></label>
+        <name>Certificate_Print_License_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Certificate Print Month --></label>
+        <name>Certificate_Print_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Certificate Print Program --></label>
+        <name>Certificate_Print_Program__c</name>
     </fields>
     <fields>
         <label><!-- Client Id --></label>
@@ -242,12 +294,38 @@
         <name>Credential__c</name>
     </fields>
     <fields>
+        <help><!-- Current datetime --></help>
+        <label><!-- Current Datetime --></label>
+        <name>Current_Datetime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Envelope --></label>
+        <name>Customer_Envelope__c</name>
+        <relationshipLabel><!-- Licenses --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- DBA --></label>
         <name>DBA__c</name>
     </fields>
     <fields>
+        <label><!-- DCP Full Name --></label>
+        <name>DCP_Full_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- DHP Aging --></label>
+        <name>DHP_Aging__c</name>
+    </fields>
+    <fields>
         <label><!-- DHP Stamp Date --></label>
         <name>DHP_Stamp_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- DOR Endorsement Code --></label>
+        <name>DOR_Endorsement_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- DOR License Number --></label>
+        <name>DOR_License_Number__c</name>
     </fields>
     <fields>
         <label><!-- DOT Title Number --></label>
@@ -262,8 +340,38 @@
         <name>Date_Facilities_will_be_ready__c</name>
     </fields>
     <fields>
+        <label><!-- Date Fiscal Year Ends --></label>
+        <name>Date_Fiscal_Year_Ends__c</name>
+    </fields>
+    <fields>
         <label><!-- Date of Birth --></label>
         <name>Date_of_Birth__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dateofbirth Expiry --></label>
+        <name>Dateofbirth_Expiry__c</name>
+    </fields>
+    <fields>
+        <label><!-- DaysFromJan31 --></label>
+        <name>DaysFromJan31__c</name>
+    </fields>
+    <fields>
+        <help><!-- 30 days after Current Issue Date --></help>
+        <label><!-- Days After Current Issue Date 30 --></label>
+        <name>Days_After_Current_Issue_Date_30__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days Before License Expiration 21 --></label>
+        <name>Days_Before_License_Expiration_21__c</name>
+    </fields>
+    <fields>
+        <help><!-- 120 days from today --></help>
+        <label><!-- Days From Today 120 --></label>
+        <name>Days_From_Today_120__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days after License Expiration 1 --></label>
+        <name>Days_after_License_Expiration_1__c</name>
     </fields>
     <fields>
         <label><!-- Delivery Method --></label>
@@ -343,10 +451,6 @@
         <name>Expiration_Date_Calculation__c</name>
     </fields>
     <fields>
-        <label><!-- Expiration Date --></label>
-        <name>Expiration_Date__c</name>
-    </fields>
-    <fields>
         <help><!-- This field is created to capture the expiration date from license --></help>
         <label><!-- Expiration Date of Bond --></label>
         <name>Expiration_Date_of_Bond__c</name>
@@ -409,8 +513,16 @@
         <name>IDECC_Approval_Expiration_Date__c</name>
     </fields>
     <fields>
+        <label><!-- In Audit Selection Window --></label>
+        <name>In_Audit_Selection_Window__c</name>
+    </fields>
+    <fields>
         <label><!-- # Initial Contracts --></label>
         <name>Initial_Contracts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Intern End Date --></label>
+        <name>Intern_End_Date__c</name>
     </fields>
     <fields>
         <label><!-- # Interval fees --></label>
@@ -447,6 +559,10 @@
         <relationshipLabel><!-- Licenses --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- License Business Name --></label>
+        <name>License_Business_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- License Email --></label>
         <name>License_Email__c</name>
     </fields>
@@ -462,6 +578,10 @@
     <fields>
         <label><!-- License Printable Name --></label>
         <name>License_Printable_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- License RecordType Name --></label>
+        <name>License_RecordType_Name__c</name>
     </fields>
     <fields>
         <label><!-- Licensee Name --></label>
@@ -583,9 +703,9 @@
         <relationshipLabel><!-- Licenses (Parcel) --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Licensee --></label>
+        <label>Account</label>
         <name>MUSW__Primary_Licensee__c</name>
-        <relationshipLabel><!-- Licenses (Licensee) --></relationshipLabel>
+        <relationshipLabel><!-- Licenses (Account) --></relationshipLabel>
     </fields>
     <fields>
         <help><!-- This license is the main license for the Licensee or this License No. identifies the Licensee --></help>
@@ -656,6 +776,10 @@
         <picklistValues>
             <masterLabel>Pending Additional Qualifications</masterLabel>
             <translation><!-- Pending Additional Qualifications --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending License Fee</masterLabel>
+            <translation><!-- Pending License Fee --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Pending Payment</masterLabel>
@@ -739,6 +863,10 @@
         <name>Makes_of_Homes_to_be_Sold__c</name>
     </fields>
     <fields>
+        <label><!-- Manual Fee Generation --></label>
+        <name>Manual_Fee_Generation__c</name>
+    </fields>
+    <fields>
         <label><!-- Manufactured Homes Make --></label>
         <name>Manufactured_Homes_Make__c</name>
     </fields>
@@ -768,6 +896,10 @@
         <name>Model_Year__c</name>
     </fields>
     <fields>
+        <label><!-- Name on Certificate --></label>
+        <name>Name_on_Certificate__c</name>
+    </fields>
+    <fields>
         <label><!-- Next Notification Attempt --></label>
         <name>Next_Notification_Attempt__c</name>
     </fields>
@@ -780,12 +912,20 @@
         <name>NoEmail__c</name>
     </fields>
     <fields>
+        <label><!-- NoOfDaysExpireToPreFuneralFiscYear --></label>
+        <name>NoOfDaysExpirePreFuneral__c</name>
+    </fields>
+    <fields>
         <label><!-- No  Fee Required? --></label>
         <name>No_Fee_Required__c</name>
     </fields>
     <fields>
         <label><!-- No Fee --></label>
         <name>No_Fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- No. of Active Relationship --></label>
+        <name>No_of_Active_Relationship__c</name>
     </fields>
     <fields>
         <label><!-- No. of Associations --></label>
@@ -838,6 +978,10 @@
     <fields>
         <label><!-- Number of Units --></label>
         <name>Number_of_Units__c</name>
+    </fields>
+    <fields>
+        <label><!-- NumberoFDaysToExpired --></label>
+        <name>NumberoFDaysToExpired__c</name>
     </fields>
     <fields>
         <label><!-- Open Complaint Flag --></label>
@@ -893,6 +1037,14 @@
     <fields>
         <label><!-- # Pieces of Personal Property --></label>
         <name>Pieces_of_Personal_Property__c</name>
+    </fields>
+    <fields>
+        <label><!-- DHP --></label>
+        <name>Polaris_DHP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dishonored Receipt ID --></label>
+        <name>Polaris_Dishonored_Receipt_ID__c</name>
     </fields>
     <fields>
         <label><!-- Policy Amount --></label>
@@ -955,8 +1107,68 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Print First Name --></label>
+        <name>Print_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Print Last Name --></label>
+        <name>Print_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Print License (DES) --></label>
+        <name>Print_License_DES__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Print License (Email) --></label>
+        <name>Print_License_Email__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Print Middle Name --></label>
+        <name>Print_Middle_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- Print Renewal Coupon --></label>
         <name>Print_Renewal_Coupon__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Print Renewal Letter --></label>
+        <name>Print_Renewal_Letter__c</name>
         <picklistValues>
             <masterLabel>Completed</masterLabel>
             <translation><!-- Completed --></translation>
@@ -979,8 +1191,36 @@
         <name>Profession_Code__c</name>
     </fields>
     <fields>
+        <label><!-- Program Email --></label>
+        <name>Program_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Fax --></label>
+        <name>Program_Fax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Lockbox City State ZIP --></label>
+        <name>Program_Lockbox_City_State_ZIP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Lockbox PO Box --></label>
+        <name>Program_Lockbox_PO_Box__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Mailing City State ZIP --></label>
+        <name>Program_Mailing_City_State_ZIP__c</name>
+    </fields>
+    <fields>
         <label><!-- Program Mailing PO Box --></label>
         <name>Program_Mailing_PO_Box__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Phone --></label>
+        <name>Program_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Address --></label>
+        <name>Project_Address__c</name>
     </fields>
     <fields>
         <label><!-- Provider Account Name --></label>
@@ -1033,6 +1273,10 @@
             <translation><!-- GrandParenting --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Reciprocity</masterLabel>
             <translation><!-- Reciprocity --></translation>
         </picklistValues>
@@ -1058,6 +1302,11 @@
         <name>RFI_Notes__c</name>
     </fields>
     <fields>
+        <help><!-- Date 2nd RFI was sent --></help>
+        <label><!-- RFI Send Date 2nd --></label>
+        <name>RFI_Send_Date_2nd__c</name>
+    </fields>
+    <fields>
         <help><!-- Date 1st RFI was sent --></help>
         <label><!-- RFI Send Date --></label>
         <name>RFI_Send_Date__c</name>
@@ -1065,6 +1314,11 @@
     <fields>
         <label><!-- RFP Notes --></label>
         <name>RFP_Notes__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date 2nd RFP was sent --></help>
+        <label><!-- RFP Send Date 2nd --></label>
+        <name>RFP_Send_Date_2nd__c</name>
     </fields>
     <fields>
         <help><!-- Date 1st RFP was sent --></help>
@@ -1097,6 +1351,14 @@
         <relationshipLabel><!-- Combined Licenses --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
+    </fields>
+    <fields>
+        <label><!-- Renew/Reinstatement in progress --></label>
+        <name>Renew_Reinstatement_in_progress__c</name>
+    </fields>
+    <fields>
         <label><!-- Renewal Cycle End Date --></label>
         <name>Renewal_Cycle_End_Date__c</name>
     </fields>
@@ -1107,6 +1369,14 @@
     <fields>
         <label><!-- Renewal Grace Period End Date --></label>
         <name>Renewal_Grace_Period_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Renewal/Reinstatement Total Fee --></label>
+        <name>Renewal_Reinstatement_Total_Fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Renewal/Reinstatement Total Payment --></label>
+        <name>Renewal_Reinstatement_Total_Payment__c</name>
     </fields>
     <fields>
         <label><!-- Renewal Window --></label>
@@ -1231,6 +1501,14 @@
         <relationshipLabel><!-- Upgraded From Licenses --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Using my legal name as print name --></label>
+        <name>Using_my_legal_name_as_print_name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Validation Number --></label>
+        <name>Validation_Number__c</name>
+    </fields>
+    <fields>
         <label><!-- Comity(Reciprocity) License --></label>
         <name>WADOL_Comity_Reciprocity_License__c</name>
     </fields>
@@ -1298,6 +1576,289 @@
         <label><!-- license specific email addresses --></label>
         <name>license_specific_email_addresses__c</name>
     </fields>
+    <layouts>
+        <layout>Appraiser Course Layout</layout>
+        <sections>
+            <label><!-- Approved Licensure Levels --></label>
+            <section>Approved Licensure Levels</section>
+        </sections>
+        <sections>
+            <label><!-- Course Details --></label>
+            <section>Course Details</section>
+        </sections>
+        <sections>
+            <label><!-- Course Provider Contact Information --></label>
+            <section>Course Provider Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Event Information --></label>
+            <section>Event Information</section>
+        </sections>
+        <sections>
+            <label><!-- License Expiration --></label>
+            <section>License Expiration</section>
+        </sections>
+        <sections>
+            <label><!-- RFI Information --></label>
+            <section>RFI Information</section>
+        </sections>
+        <sections>
+            <label><!-- RFP Information --></label>
+            <section>RFP Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Business License Layout</layout>
+        <sections>
+            <label><!-- Action Items --></label>
+            <section>Action Items</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Guarantee --></label>
+            <section>Financial Guarantee</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Project Size --></label>
+            <section>Project Size</section>
+        </sections>
+        <sections>
+            <label><!-- RFI Information --></label>
+            <section>RFI Information</section>
+        </sections>
+        <sections>
+            <label><!-- RFP Information --></label>
+            <section>RFP Information</section>
+        </sections>
+        <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Course Information Layout</layout>
+        <sections>
+            <label><!-- Approved Licensure Levels --></label>
+            <section>Approved Licensure Levels</section>
+        </sections>
+        <sections>
+            <label><!-- Course Details --></label>
+            <section>Course Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Individual License Layout</layout>
+        <sections>
+            <label><!-- Action Items --></label>
+            <section>Action Items</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- RFI Information --></label>
+            <section>RFI Information</section>
+        </sections>
+        <sections>
+            <label><!-- RFP Information --></label>
+            <section>RFP Information</section>
+        </sections>
+        <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RBS Business License Layout</layout>
+        <sections>
+            <label><!-- Action Items --></label>
+            <section>Action Items</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- RFI Information --></label>
+            <section>RFI Information</section>
+        </sections>
+        <sections>
+            <label><!-- RFP Information --></label>
+            <section>RFP Information</section>
+        </sections>
+        <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RBS Individual License Layout</layout>
+        <sections>
+            <label><!-- Action Items --></label>
+            <section>Action Items</section>
+        </sections>
+        <sections>
+            <label><!-- Continuing Education Information --></label>
+            <section>Continuing Education Information</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- RFI Information --></label>
+            <section>RFI Information</section>
+        </sections>
+        <sections>
+            <label><!-- RFP Information --></label>
+            <section>RFP Information</section>
+        </sections>
+        <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RE Business License Layout</layout>
+        <sections>
+            <label><!-- Action Items --></label>
+            <section>Action Items</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Guarantee --></label>
+            <section>Financial Guarantee</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Project Size --></label>
+            <section>Project Size</section>
+        </sections>
+        <sections>
+            <label><!-- RFI Information --></label>
+            <section>RFI Information</section>
+        </sections>
+        <sections>
+            <label><!-- RFP Information --></label>
+            <section>RFP Information</section>
+        </sections>
+        <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RE Individual License Layout</layout>
+        <sections>
+            <label><!-- Action Items --></label>
+            <section>Action Items</section>
+        </sections>
+        <sections>
+            <label><!-- Continuing Education Information --></label>
+            <section>Continuing Education Information</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Guarantee --></label>
+            <section>Financial Guarantee</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- RFI Information --></label>
+            <section>RFI Information</section>
+        </sections>
+        <sections>
+            <label><!-- RFP Information --></label>
+            <section>RFP Information</section>
+        </sections>
+        <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Unlicensed Layout</layout>
+        <sections>
+            <label><!-- Action Items --></label>
+            <section>Action Items</section>
+        </sections>
+        <sections>
+            <label><!-- Continuing Education Information --></label>
+            <section>Continuing Education Information</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Guarantee --></label>
+            <section>Financial Guarantee</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- RFI Information --></label>
+            <section>RFI Information</section>
+        </sections>
+        <sections>
+            <label><!-- RFP Information --></label>
+            <section>RFP Information</section>
+        </sections>
+        <sections>
+            <label><!-- Reinstatement Information --></label>
+            <section>Reinstatement Information</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal Information --></label>
+            <section>Renewal Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Generate Fees --></label>
+        <name>Generate_Fees</name>
+    </quickActions>
     <recordTypes>
         <description><!-- for Business Type License --></description>
         <label><!-- Business --></label>
@@ -1307,6 +1868,11 @@
         <description><!-- This is the record type for Course Information --></description>
         <label><!-- Course --></label>
         <name>Course</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This record type to map data coming from DOR Interface --></description>
+        <label><!-- DOR Licenses --></label>
+        <name>DOR_Licenses</name>
     </recordTypes>
     <recordTypes>
         <description><!-- This is the record type for all Delegated Agent --></description>
@@ -1327,11 +1893,6 @@
         <description><!-- This is the record type if the application type doesn&apos;t appear on any other record types. --></description>
         <label><!-- Individual --></label>
         <name>Universal_Default_License_Record_Type</name>
-    </recordTypes>
-    <recordTypes>
-        <description><!-- For unlicensed business or professional --></description>
-        <label><!-- Unlicensed --></label>
-        <name>Unlicensed</name>
     </recordTypes>
     <recordTypes>
         <description><!-- Record Type for Portal user --></description>
