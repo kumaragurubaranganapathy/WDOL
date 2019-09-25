@@ -303,6 +303,7 @@
         <columns>Source_Package__c</columns>
         <columns>User_Impacted__c</columns>
         <columns>Error_Cause__c</columns>
+        <columns>Error_Code__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CREATED_DATE</field>
@@ -310,6 +311,7 @@
             <value>TODAY</value>
         </filters>
         <label>All TODAY</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Debug_Today</fullName>

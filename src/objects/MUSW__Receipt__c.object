@@ -292,18 +292,6 @@
         <label>Receipt Confirmation</label>
     </fieldSets>
     <fields>
-        <fullName>Case_Safe_Id__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <formula>CASESAFEID(Id)</formula>
-        <label>Case Safe Id</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>ACH_BillerBusinessDate__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -473,6 +461,17 @@
         <length>50</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case_Safe_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Id)</formula>
+        <label>Case Safe Id</label>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1893,6 +1892,7 @@
     </listViews>
     <listViews>
         <fullName>Search</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
         <columns>NAME</columns>
         <columns>Intake_Method__c</columns>
         <columns>MUSW__Payment_Method__c</columns>
@@ -1903,6 +1903,16 @@
         <columns>CREATEDBY_USER</columns>
         <columns>Polaris_CreatedDate__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>contains</operation>
+            <value>UAT Portal Tester</value>
+        </filters>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>contains</operation>
+            <value>Priya</value>
+        </filters>
         <label>Search (Demo Purposes)</label>
     </listViews>
     <listViews>

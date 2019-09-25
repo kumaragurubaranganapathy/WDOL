@@ -97,7 +97,7 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-	<fields>
+    <fields>
         <fullName>Current_Datetime__c</fullName>
         <description>Current datetime</description>
         <externalId>false</externalId>
@@ -108,17 +108,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
-    </fields>
-    <fields>
-        <fullName>License_Printable_Name__c</fullName>
-        <externalId>false</externalId>
-        <formula>License__r.License_Printable_Name__c</formula>
-        <label>License Printable Name</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Date_Granted__c</fullName>
@@ -372,7 +361,7 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
         <fullName>Lic_Prog_Mailing_City_State_ZIP__c</fullName>
         <externalId>false</externalId>
         <formula>License__r.Program_Mailing_City_State_ZIP__c</formula>
@@ -430,7 +419,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
+    <fields>
         <fullName>License_Mailing_City__c</fullName>
         <externalId>false</externalId>
         <formula>License__r.MUSW__Parcel__r.MUSW__City__c</formula>
@@ -486,7 +475,18 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
+    <fields>
+        <fullName>License_Printable_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.License_Printable_Name__c</formula>
+        <label>License Printable Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>License_Program_Email__c</fullName>
         <externalId>false</externalId>
         <formula>License__r.Program_Email__c</formula>
@@ -544,7 +544,7 @@
             <valueSetName>Credential_Type</valueSetName>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
         <fullName>License_Ultimate_Parent_Account__c</fullName>
         <externalId>false</externalId>
         <formula>License__r.Ultimate_Parent_Account__r.Name</formula>

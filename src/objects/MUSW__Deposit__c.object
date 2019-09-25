@@ -1888,6 +1888,8 @@
         <fullName>Miscellaneous_Deposit</fullName>
         <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
+        <columns>wadol_Program_Type__c</columns>
+        <columns>License_type__c</columns>
         <filterScope>Queue</filterScope>
         <label>Miscellaneous</label>
         <queue>Miscellaneous</queue>
@@ -1899,6 +1901,8 @@
         <fullName>Notaries_Queue_Deposit</fullName>
         <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
+        <columns>License_type__c</columns>
+        <columns>wadol_Program_Type__c</columns>
         <filterScope>Queue</filterScope>
         <label>Notaries Queue</label>
         <queue>Notaries_Queue</queue>
@@ -1955,6 +1959,10 @@
         <fullName>Unknown_Contacts_Deposit</fullName>
         <columns>NAME</columns>
         <columns>ValidationNumber__c</columns>
+        <columns>Contact__c</columns>
+        <columns>MUSW__Account__c</columns>
+        <columns>wadol_Program_Type__c</columns>
+        <columns>CREATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>Unknown Contacts</label>
         <queue>Unknown_Contacts</queue>

@@ -1709,6 +1709,40 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Historical_Transaction_NSFAmt__c</fullName>
+        <externalId>false</externalId>
+        <label>Historical_Transaction_NSFAmt</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Historical_Transaction_NSFFee__c</fullName>
+        <externalId>false</externalId>
+        <label>Historical_Transaction_NSFFee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Historical_Transaction_NSF__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Historical_Transaction_NSF</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Historical_Transaction_Type__c</fullName>
         <description>Venture Historical Transaction Type</description>
         <encryptionScheme>None</encryptionScheme>

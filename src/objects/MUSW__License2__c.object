@@ -844,6 +844,38 @@ Original_Issue_Date__c
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Certificate_Print_Day__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(DAY(Original_Issue_Date__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Print Day</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certificate_Print_Day_superscript__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(TEXT(DAY(Original_Issue_Date__c)),
+&quot;1&quot;, &quot;st&quot;,
+&quot;2&quot;, &quot;nd&quot;,
+&quot;3&quot;, &quot;rd&quot;,
+&quot;21&quot;,&quot;st&quot;,
+&quot;22&quot;,&quot;nd&quot;,
+&quot;23&quot;,&quot;rd&quot;,
+&quot;31&quot;,&quot;st&quot;,
+&quot;th&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certificate Print Day superscript</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Certificate_Print_License_Type__c</fullName>
         <externalId>false</externalId>
         <formula>CASE( Credential_Type__c ,
@@ -870,38 +902,6 @@ Original_Issue_Date__c
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Certificate Print License Type</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Certificate_Print_Day__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT(DAY(Original_Issue_Date__c))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Certificate Print Day</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Certificate_Print_Day_superscript__c</fullName>
-        <externalId>false</externalId>
-        <formula>CASE(TEXT(DAY(Original_Issue_Date__c)),
-&quot;1&quot;, &quot;st&quot;,
-&quot;2&quot;, &quot;nd&quot;,
-&quot;3&quot;, &quot;rd&quot;,
-&quot;21&quot;,&quot;st&quot;,
-&quot;22&quot;,&quot;nd&quot;,
-&quot;23&quot;,&quot;rd&quot;,
-&quot;31&quot;,&quot;st&quot;,
-&quot;th&quot;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Certificate Print Day superscript</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1479,7 +1479,7 @@ Original_Issue_Date__c
             <valueSetName>Credential</valueSetName>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
         <fullName>Current_Datetime__c</fullName>
         <description>Current datetime</description>
         <externalId>false</externalId>
@@ -3782,7 +3782,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	    <fields>
+    <fields>
         <fullName>Program_Email__c</fullName>
         <description>Program Email used for Notification Templates</description>
         <externalId>false</externalId>

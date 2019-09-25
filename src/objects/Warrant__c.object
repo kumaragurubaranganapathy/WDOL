@@ -154,6 +154,16 @@
         <filterScope>Mine</filterScope>
         <label>All Warrants</label>
     </listViews>
+    <listViews>
+        <fullName>Warrants_All</fullName>
+        <columns>NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Refund__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>Warrants-All</label>
+    </listViews>
     <nameField>
         <displayFormat>WAR{YY}-{000000}</displayFormat>
         <label>Warrant Number</label>
