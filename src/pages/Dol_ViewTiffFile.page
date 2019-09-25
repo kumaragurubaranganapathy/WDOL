@@ -1,30 +1,25 @@
 <apex:page standardController="MUSW__Submission__c" extensions="Dol_ViewTiffFile" standardStylesheets="false" sidebar="false" showHeader="false"
            docType="html-5.0" cache="true" applyHtmlTag="true" applyBodyTag="true">
     <html>
-        <head>
-             <title>Preview</title> 
-             <apex:includeScript value="{!$Resource.TiffMinJS}"/>
-         </head>
-         <body style="">
-            <apex:form >
-          
-                <apex:inputHidden value="{!url}" id="url"/>
-                <apex:pageMessages id="showmsg"></apex:pageMessages>
-                <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
-                <script type="text/javascript">
-                    var xhr = new XMLHttpRequest();
-                    xhr.responseType = 'arraybuffer';
-                    xhr.open('GET',"{!url}");
-                    xhr.onload = function (e) {
-                    var tiff = new Tiff({buffer: xhr.response});
-                    var canvas = tiff.toCanvas();
-                    document.body.append(canvas);
-                    };
-                    xhr.send();
-                </script>
-          
-        
-            </apex:form>
- 		</body>
-	</html>
+        <body style="">
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+             <script >
+                function myFunction(){ 
+                    var imageToken = "{!imageToken}";
+                    console.log('url=='+url);
+                    window.$Label = window.$Label || {};
+                    $Label.customLabel= '{!($Label.Dol_OpenTiffImage)}';
+                    var url = $Label.customLabel+imageToken;
+                    console.log('url=='+url);
+                    window.open(url,'popUpWindow','height=800,width=800,left=400,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');
+                }
+            
+                 var $ = jQuery;
+                    $( window ).ready(function() {
+                    myFunction();
+                    window.parent.close();
+                });
+            </script> 
+        </body>
+    </html>
 </apex:page>
