@@ -68,7 +68,7 @@
         <span class="page-info">You are applying for {!v.RenewReinstate} of <span class="italic">{!v.licenseType}</span> under <span class="italic">{!v.board}</span> <!--by <span class="italic">{!v.applicationType}</span>--></span>
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}"/>
         <aura:if isTrue="{!v.showErrorMsgs}">
-            <ul class="error-messages slds-theme_error">
+            <ul class="error uiMessage">
                 <aura:iteration items="{!v.errorMsgsList}" var="item">
             		<li>{!item}</li>
             	</aura:iteration>

@@ -1,6 +1,13 @@
 .THIS.slds-wrap{
     padding:0 0 20px 0;
 }
+.THIS .uiMessage{
+    height:auto;
+    border-radius:5px;
+}
+.THIS .uiMessage li{
+    line-height:30px;
+}
 .THIS .personal-info .slds-checkbox.certificate-checkbox br{
     display:none;
 }
@@ -41,14 +48,7 @@ display:none;
 .THIS .help-text .slds-select_container{
     width:80%;
 }
-.THIS ul.error-messages {
-    font-size: 14px;
-    width: 90%;
-    max-width: 892px;
-    margin: 5px auto 15px;
-    padding: 10px 20px;
-    border-radius: 5px;
-}
+
 .THIS .slds-form-element.slds-dropdown-trigger{
     display:inline;
 }
@@ -325,9 +325,7 @@ color: t(primary);
 .THIS .mandatory-fields{
     color:rgb(194, 57, 52);;
 }
-.THIS .error{
-    color:t(LnGErrorMsg);
-}
+
 .THIS .validate {
     position: relative;
     margin-bottom:1rem;
