@@ -985,7 +985,7 @@ public with sharing class CartController
         }
         sp = Database.setSavePoint();
         if(!rs.isEmpty()){
-            upsert rs;
+            //upsert rs;
         }
         preparePayables();
         try{
@@ -1177,7 +1177,7 @@ public with sharing class CartController
         
         if(!rs.isEmpty()){
             system.debug('nazneen--->' +rs);
-            upsert rs;
+            //upsert rs;
         }
         
         system.debug('***rs***--->' +rs);
