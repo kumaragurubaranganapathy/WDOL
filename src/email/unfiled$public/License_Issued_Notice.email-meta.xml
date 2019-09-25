@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>BGBL__My_Municipality</letterhead>
+    <name>License Issued Notice</name>
+    <style>formalLetter</style>
+    <subject>City of (   ) - {!MUSW__License2__c.MUSW__Type__c} License {!MUSW__License2__c.Name}</subject>
+    <textOnly>Your {!MUSW__License2__c.MUSW__Type__c} License ({!MUSW__License2__c.Name}) is has been issued and a copy of it is attached to this email.
+
+You can always log into the City of (          ) License and Inspections Center anytime to view your license&apos;s status, pay outstanding fees or print your issued license.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

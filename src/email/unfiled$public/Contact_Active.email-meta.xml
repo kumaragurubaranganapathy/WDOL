@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>DSPS Tax delinquency Clearance for Licensee- Contact Active</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DSPS</letterhead>
+    <name>Contact Active</name>
+    <style>freeForm</style>
+    <subject>DSPS Tax delinquency Clearance</subject>
+    <textOnly>To Whom It May Concern,
+
+
+TVS has electronically processed DSPS Tax delinquency Clearance for below Licensee:
+
+
+{!Contact.Full_Name__c}
+
+
+Please click the link below to view the processed record:
+
+
+https://dsps--uat.cs32.my.salesforce.com/{!Contact.Id}
+
+
+
+DO NOT REPLY TO THIS EMAIL</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
