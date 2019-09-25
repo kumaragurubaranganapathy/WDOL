@@ -11,7 +11,6 @@
     </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
-       
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
     <description>Generate leads faster, and qualify and nurture prospects using best practices.</description>
