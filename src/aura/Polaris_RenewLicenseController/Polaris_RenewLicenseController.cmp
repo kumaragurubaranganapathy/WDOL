@@ -64,7 +64,7 @@
     </aura:if>
      
     <div class="content-wrapper">
-        <h1 class="subheader">License {! v.RenewReinstate +' : '+v.licenseType}</h1>
+        <h1 class="subheader">{! (v.licenseType == 'Appraiser Course'?'Course ':'License ') + v.RenewReinstate +': '+v.licenseType}</h1>
         <span class="page-info">You are applying for {!v.RenewReinstate} of <span class="italic">{!v.licenseType}</span> under <span class="italic">{!v.board}</span> <!--by <span class="italic">{!v.applicationType}</span>--></span>
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}"/>
         <aura:if isTrue="{!v.showErrorMsgs}">

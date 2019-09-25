@@ -14,7 +14,8 @@
     <aura:attribute name="otherInstructions" type="List" />
     <aura:attribute name="radiooptions" type="List" default="[
                                                              {'label': 'Yes', 'value': 'Yes'},
-                                                             {'label': 'No', 'value': 'No'}]" />
+                                                             {'label': 'No', 'value': 'No'}]" />                                                             
+    <aura:attribute name="isCourseProvider" type="Boolean" default="false" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:if isTrue="{!v.spinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..." />
@@ -24,10 +25,10 @@
     <div class="lic-renew-wrapper">
         <div class="page-title-wrapper">
             <aura:if isTrue="{!v.RenewReinstate == 'Renewal'? true :false}">
-				<h1 class="page-title">Renew a License</h1>
+				<h1 class="page-title">{! 'Renew a ' + (v.isCourseProvider?'Course':'License')}</h1>
             </aura:if>
             <aura:if isTrue="{!v.RenewReinstate == 'Reinstatement'? true :false}">
-				<h1 class="page-title">Reinstate a License</h1>
+				<h1 class="page-title">{!'Reinstate a ' + (v.isCourseProvider?'Course':'License')}</h1>
             </aura:if>
         </div>
         <lightning:recordEditForm aura:id="recordViewForm" objectApiName="MUSW__License2__c">

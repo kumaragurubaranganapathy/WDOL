@@ -18,9 +18,11 @@
         } */
         if(/biz-lic/.test(docURL)){
             licenseType = 'Business';
+            component.set("v.isCourseProvider",false);
         }
         else if(/course-lic/.test(docURL)){
             licenseType = 'Course';
+            component.set("v.isCourseProvider",true);
         }
         var action = component.get("c.fetchLicenseType");
         action.setParams({

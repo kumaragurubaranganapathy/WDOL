@@ -18,14 +18,14 @@
           
           var renewreinstate = ctarget.getAttribute("data-renewereinstate");
           if(appIsRenewal == 'true'){
-              console.log('inside renewreinstate::');
-              sessionStorage.setItem("renewalReinstate", renewreinstate);
-              sessionStorage.setItem("flowType", "Application");
-              window.location.href='/lightningwashington/s/polaris-renewal';  
-          } else
-          { 	sessionStorage.setItem("flowType", renewreinstate);
-                window.location.href='/lightningwashington/s/renewreinstate';
-           }
+            console.log('inside renewreinstate::');
+            sessionStorage.setItem("renewalReinstate", renewreinstate);
+            sessionStorage.setItem("flowType", "Application");
+            window.location.href='/lightningwashington/s/polaris-renewal?course-lic';  
+        } else
+        { 	sessionStorage.setItem("flowType", renewreinstate);
+              window.location.href='/lightningwashington/s/renewreinstate?course-lic';
+         }
               
     },
     editApplication : function(component,event){

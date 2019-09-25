@@ -1,6 +1,7 @@
 ({
 	doInit : function(component, event, helper) {        
         helper.fetchAppTypeEliQuestionsHelper(component, event, helper); 
+        helper.checkForCourseProvider(component,event);
 	},
     showOrHideEliQuestion : function(component, event, helper){
         helper.showOrHideEliQuestionHelper(component, event, helper);

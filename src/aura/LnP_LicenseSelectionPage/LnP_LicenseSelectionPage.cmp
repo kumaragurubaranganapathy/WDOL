@@ -34,6 +34,8 @@
     <aura:attribute name="applicationMethodMap" type="Map" />
     <aura:attribute name="LiceneMethodMap" type="Map" />
     <aura:attribute name="applicationMethodList" type="List" />
+    <aura:attribute name="licenseSelected" type="Boolean" />
+    <aura:attribute name="isCourseProvider" type="Boolean" />
     <aura:handler event="c:Dol_FetchAccountName" action="{!c.getAccountName}" name="Dol_FetchAccountName"/>
     <aura:attribute name="proceedTemporaryLicense" type="Boolean" default="False" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -44,13 +46,13 @@
     
     <div class="lic-sel-wrapper">
         <div class="page-title-wrapper">
-            <h1 class="page-title">Apply for a New License</h1>
+            <h1 class="page-title">{!v.isCourseProvider?'Apply for New Course':'Apply for a New License'}</h1>
         </div>
         <!-- Fetch the dropdown values basis the configuration  made in the MUSW__License2__c object  -->
         <lightning:recordEditForm aura:id="recordViewForm" objectApiName="MUSW__License2__c" >
             <div class= "slds-grid card-wrapper slds-wrap">
                 <div class="slds-small-size_1-of-1 slds-medium-size_1-of-1">
-                    <h2 class="header-style">License Selection</h2>
+                    <h2 class="header-style">{!v.isCourseProvider?'Course Selection':'License Selection'}</h2>
                     <!-- <p class="slds-medium-size_11-of-12">Select the Profession Type for which you are seeking a license. Next, select the specific license type from the License Type dropdown.</p> -->
                 </div>
                 <div class="slds-small-size_1-of-1 slds-medium-size_1-of-1 prof-choice">

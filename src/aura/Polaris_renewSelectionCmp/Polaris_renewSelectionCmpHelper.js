@@ -250,5 +250,11 @@
             helper.startApplicationHelper(component, event, helper);
         }
 
+    },
+    checkForCourseProvider : function(component,event){
+        var docURL = document.URL;
+        if(/course-lic/.test(docURL)){
+            component.set("v.isCourseProvider",true);
+        }
     }
 })
