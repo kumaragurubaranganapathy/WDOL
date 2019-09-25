@@ -67,7 +67,9 @@ _______________________________________________________________
                 <aura:iteration items="{!v.taskList}" var="task">
                     <aura:if isTrue="{!task.Type == 'Contact Relationship'}">
                         <div class="task-wrapper">                    
-                            <h1 class="task-subject"><b>{!task.Subject}</b></h1>                        
+                            <div class="task-subject">
+								{!task.Subject}
+							</div>                        
                             <lightning:layout class="slds-wrap task-body">
                                 <lightning:layoutItem size="12" mediumDeviceSize="9">
                                     <lightning:layout class="slds-wrap">
