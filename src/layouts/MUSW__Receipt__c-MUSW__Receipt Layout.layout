@@ -214,21 +214,6 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
-        <relatedList>RelatedNoteList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>BGBK__Refund2__c</fields>
-        <fields>Refundee__c</fields>
-        <fields>BGBK__Amount__c</fields>
-        <fields>Stage__c</fields>
-        <fields>Status__c</fields>
-        <fields>Fee__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>BGBK__Receipt_Refund__c.BGBK__Receipt__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Related_to__c</fields>
@@ -237,11 +222,6 @@
         <relatedList>MUSW__Fee_Payment__c.MUSW__Receipt__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>MUSW__Payable_Receipt__c.MUSW__Receipt__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <customButtons>BGBK__AdjustPayments</customButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Related_To__c</fields>
@@ -250,11 +230,21 @@
         <relatedList>BGBK__Payment__c.BGBK__Receipt__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <relatedList>RelatedEntityHistoryList</relatedList>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>MUSW__Deposit__c</fields>
+        <fields>MUSW__Amount__c</fields>
+        <relatedList>MUSW__Payable_Receipt__c.MUSW__Receipt__c</relatedList>
+        <sortField>MUSW__Deposit__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <relatedList>Journal_Voucher__c.IAP_Receipt__c</relatedList>
+        <fields>Refundee__c</fields>
+        <fields>BGBK__Amount__c</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>BGBK__Receipt_Refund__c.BGBK__Receipt__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>New</excludeButtons>
@@ -266,6 +256,12 @@
         <relatedList>BGBK__Item__c.BGBK__Receipt__c</relatedList>
         <sortField>CREATEDBY_USER</sortField>
         <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedNoteList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
