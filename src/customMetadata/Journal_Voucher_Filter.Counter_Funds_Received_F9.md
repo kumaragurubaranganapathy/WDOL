@@ -31,6 +31,10 @@
         <value xsi:type="xsd:string">770</value>
     </values>
     <values>
+        <field>Item_Transaction_Type__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>JV_name__c</field>
         <value xsi:type="xsd:string">Counter Funds Received</value>
     </values>

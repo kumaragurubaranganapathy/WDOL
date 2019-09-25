@@ -3,6 +3,10 @@
     <label>Lockbox</label>
     <protected>false</protected>
     <values>
+        <field>BGBK__Gateway_Host_Page_Url__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>BGBK__Lightning_Component__c</field>
         <value xsi:nil="true"/>
     </values>

@@ -4,6 +4,6 @@
     <protected>false</protected>
     <values>
         <field>Value__c</field>
-        <value xsi:type="xsd:string">https://qa-qa-polaris.cs32.force.com/lightningwashington/apex/Cart</value>
+        <value xsi:type="xsd:string">https://uat2-wadolbuspro.cs32.force.com/lightningwashington/apex/cart</value>
     </values>
 </CustomMetadata>

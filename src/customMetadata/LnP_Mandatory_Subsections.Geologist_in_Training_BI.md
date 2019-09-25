@@ -19,6 +19,10 @@
         <value xsi:type="xsd:string">Qualifying Information</value>
     </values>
     <values>
+        <field>Service_Request_Type__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>SubSection__c</field>
         <value xsi:type="xsd:string">Qualifying Postsecondary Education</value>
     </values>
