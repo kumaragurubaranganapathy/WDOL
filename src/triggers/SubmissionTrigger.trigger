@@ -2,7 +2,7 @@
 * Name: SubmissionTrigger
 * Type: Trigger
 * Description: Trigger on MUSW__Submission__c which calls SubmissionTriggerHandler if trigger have not been disabled
-* Date:        Developer/Company                 	Description
+* Date:        Developer/Company                    Description
 * ---------------------------------------------------------------------------------------------------------------------------------------- *
 * 08/21/2018   Srikanth Kottam/Deloitte           Initial Creation
 **/
