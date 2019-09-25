@@ -50,7 +50,7 @@ public class LnP_ApplyForLicenseController {
             String str = '';
              //Modified it to  the questions object
             // str  = 'Select Id, Name, Qualifying_answer_for_Submission__c, Has_Any_Submission__c, Submission_Title__c, Board__c, Question_Body__c, Expected_Answer_To_Show_Question__c, Data_Type__c, Possible_Responses__c, License_Type__c, ApplicationType__c, Order_Number__c,Has_dependent_questions__c, Qualifying_answer_for_dependent_question__c, Parent_Question__c, Record_Type_Name__c,Section__c,Sub_Header__c,Sub_Sub_Header__c,Section_Order__c,QuestionFieldAPI__c,QuestionObjectName__c from LnP_Question1__c where ' +Condition1+ ' AND '+Condition2+ ' AND '+Condition3 + 'AND '+Condition4+' ORDER BY Section_Order__c, Order_Number__c ASC';
-            str  = 'Select Id,Name,Triggering_Parent_Answer__c,Qualifying_Response__c,Has_Any_Submission__c,Submission_Title__c,Application_Type__c,Question_Body__c,	Data_Type__c,Possible_Responses__c,Credential__c,Application_Method__c,Order_Number__c,Has_dependent_questions__c,	Parent_Question__c,	Record_Type_Name__c,Section__c,	Sub_Header__c,	Sub_Sub_Header__c,	Section_Order__c,QuestionFieldAPI__c,	QuestionObjectName__c FROM Question__c where ' +Condition1+ ' AND '+Condition2+ ' AND '+Condition3 + ' AND status__c=\'Active\' ORDER BY  Order_Number__c ASC';
+            str  = 'Select Id,Name,Triggering_Parent_Answer__c,Qualifying_Response__c,Has_Any_Submission__c,Submission_Title__c,Application_Type__c,Question_Body__c,   Data_Type__c,Possible_Responses__c,Credential__c,Application_Method__c,Order_Number__c,Has_dependent_questions__c,  Parent_Question__c, Record_Type_Name__c,Section__c, Sub_Header__c,  Sub_Sub_Header__c,  Section_Order__c,QuestionFieldAPI__c,   QuestionObjectName__c FROM Question__c where ' +Condition1+ ' AND '+Condition2+ ' AND '+Condition3 + ' AND status__c=\'Active\' ORDER BY  Order_Number__c ASC';
             system.debug('printQuestions'+ str);
             QuestionList = Utilityclass_withsharing.queryRecords(Str);
             String queryApplicationField = '';
@@ -709,7 +709,7 @@ public class LnP_ApplyForLicenseController {
             mstLicense.Credential_Type__c = application.License_Type__c;
             mstLicense.Credential__c = application.License_Type__c;
             mstLicense.Application_Method__c = application.Application_Type__c;
-			if(application.MUSW_Account__c!=null)
+            if(application.MUSW_Account__c!=null)
             {
                 mstLicense.RecordTypeId = businessRT;
             }
