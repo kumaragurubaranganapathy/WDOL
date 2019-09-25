@@ -353,10 +353,10 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     },    
-    showDependentQuestionsHelper : function(component, event, helper) {        
+    showDependentQuestionsHelper : function(component, event) {        
         component.set("v.showEndoMessage",false);
         component.set("v.showNotaryEndo",false);
-        var response = event.getSource().get("v.value").trim();
+        var response = event.getSource().get("v.value").toString().trim();
         var responsePlaceholder = response;
         var questionNumber = '';
         if(event.getSource().get("v.name").includes('License Information'))
@@ -373,18 +373,18 @@
             }
         var tabsList = component.get("v.licenseWrapper");
         var currentTab = component.get("v.currentTab");
-        if(component.get("v.licenseType")=='Notary Public' && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response)
+        if(component.get("v.licenseType")==='Notary Public' && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse !=null && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse.includes(response))
         {
             component.set("v.showNotaryEndo",true);
             //component.set("v.showEndoMessage",true);
             //component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);  
         }
-        else if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse == response && component.get("v.licenseType")!='Notary Public')
+        else if(tabsList[currentTab-1].labelFieldsMap[questionNumber] !=undefined && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse !=null && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse.contains(response) && component.get("v.licenseType")!='Notary Public')
         {            
             component.set("v.showEndoMessage",true);
             component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);            
         }
-            else if(tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse != response  && tabsList[currentTab-1].labelFieldsMap[questionNumber].warningMessages != null ) {
+            else if(tabsList[currentTab-1].labelFieldsMap[questionNumber] !=undefined && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse !=null && !tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse.includes(response)  && tabsList[currentTab-1].labelFieldsMap[questionNumber].warningMessages != null ) {
                 component.set("v.showEndoMessage",true);
                 component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].warningMessages);            
             }
@@ -393,38 +393,38 @@
         var childQuestionsArray = [];
         var subChildQuestionsArray=[];
         if(hasChildQuestion){
-            for(var index=0; index<tabsList[currentTab-1].labelFieldsMap.length ; index++){
-                if(tabsList[currentTab-1].labelFieldsMap[index].parentQuestionId == questionNumberId){
+            for(var index=0; index<tabsList[currentTab-1].labelFieldsMap.length ; index += 1){
+                if(tabsList[currentTab-1].labelFieldsMap[index].parentQuestionId === questionNumberId){
                     childQuestionsArray.push(index);
                 } 
             }
             if(childQuestionsArray.length>0){
-                for(var i=0; i<childQuestionsArray.length; i++){
+                for(var i=0; i<childQuestionsArray.length; i += 1){
                     response = responsePlaceholder;
                     var mapIndex = childQuestionsArray[i];
-                    if(tabsList[currentTab-1].labelFieldsMap[mapIndex].conditionalAnswer == response){
+                    if(tabsList[currentTab-1].labelFieldsMap[mapIndex].conditionalAnswer !=null && response.includes(tabsList[currentTab-1].labelFieldsMap[mapIndex].conditionalAnswer)){
                         tabsList[currentTab-1].labelFieldsMap[mapIndex].renderedOnUi=true;
                     } else {
-                        for(var j=0; j<tabsList[currentTab-1].labelFieldsMap.length; j++){
-                            if(tabsList[currentTab-1].labelFieldsMap[j].parentQuestionId == questionNumberId){
-                                if(tabsList[currentTab-1].labelFieldsMap[j].conditionalAnswer == response){
+                        for(var j=0; j<tabsList[currentTab-1].labelFieldsMap.length; j += 1){
+                            if(tabsList[currentTab-1].labelFieldsMap[j].parentQuestionId === questionNumberId){
+                                if(tabsList[currentTab-1].labelFieldsMap[j].conditionalAnswer !=null && response.includes(tabsList[currentTab-1].labelFieldsMap[j].conditionalAnswer)){
                                     tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=true;                       
                                 }else{
                                     if(tabsList[currentTab-1].labelFieldsMap[j].hasChild){
                                         subChildQuestionsArray=[]; 
-                                        for(var k=j; k<tabsList[currentTab-1].labelFieldsMap.length ; k++){
-                                            if(tabsList[currentTab-1].labelFieldsMap[k].parentQuestionId == questionNumberId){
+                                        for(var k=j; k<tabsList[currentTab-1].labelFieldsMap.length ; k += 1){
+                                            if(tabsList[currentTab-1].labelFieldsMap[k].parentQuestionId === questionNumberId){
                                                 subChildQuestionsArray.push(k);
                                             } 
                                         }
-                                        if(subChildQuestionsArray.length == 1){
+                                        if(subChildQuestionsArray.length === 1){
                                             questionNumberId = tabsList[currentTab-1].labelFieldsMap[j].labelId;
                                             response = '';
                                             tabsList[currentTab-1].labelFieldsMap[j].value = '';
                                             tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=false;
                                         }else{
                                             var newVar;
-                                            for(var l=0; l<subChildQuestionsArray.length ; l++){
+                                            for(var l=0; l<subChildQuestionsArray.length ; l += 1){
                                                 newVar = subChildQuestionsArray[l];
                                                 if(tabsList[currentTab-1].labelFieldsMap[newVar].renderedOnUi){
                                                     questionNumberId = tabsList[currentTab-1].labelFieldsMap[newVar].labelId;
