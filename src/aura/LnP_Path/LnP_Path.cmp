@@ -39,8 +39,8 @@
 						<aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
                            
                             
-                            <!--li data-id="{!(var+1)}" onclick="{!c.setCurrTab}" class="slds-path__item" role="presentation"-->
-							<li data-id="{!(var+1)}" class="{!'slds-path__item'+ (v.feesRequired? (tabPath.header == 'Review and Submit'?' fee-path':''):'')}" role="presentation" onclick="{!c.setCurrTab}">
+                            <!--li data-id="{!(var+1)}" onclick="{!c.setCurrTab}" class="slds-path__item" role="presentation"  onclick="{!c.setCurrTab}"-->
+							<li data-id="{!(var+1)}" class="{!'slds-path__item'+ (v.feesRequired? (tabPath.header == 'Review and Submit'?' fee-path':''):'')}" role="presentation">
 								<a style="cursor: default;" title="{!tabPath.header}">
                                     <!-- {!(var+1) + ' '}{!v.currentTab} -->
                                     <aura:if isTrue="{!tabPath.errorImage}">

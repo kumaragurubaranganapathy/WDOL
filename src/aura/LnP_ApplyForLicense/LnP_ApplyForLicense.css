@@ -223,10 +223,13 @@ display:none;
     font-size:16px;
 }
 .THIS .attValidationStyle{
-    padding-left: 13px;
-    padding-bottom: 25px;
-    color: red;
-    font-size:14px;
+    padding-left: 0px;
+    padding-bottom: 0;
+    color: t(LnGErrorMsg);
+    font-size:20px;
+    line-height: 5px;
+    position: relative;
+    left: -6px;
 }
 .THIS .slds-file-selector__text{
     font-size:14px;

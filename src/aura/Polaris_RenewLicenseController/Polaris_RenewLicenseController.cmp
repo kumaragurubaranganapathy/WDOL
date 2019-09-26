@@ -333,14 +333,14 @@
                                                 </aura:if>
                                                 
                                                 <aura:if isTrue="{!and(question.fieldType=='Attachment',question.uploadFile)}">
-                                                    <div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
-                                                        <c:LnP_Attachment appID="{!v.applicationId}" labelQuesions="{!question.label}" docList="{!question.multiValues}" />
-                                                    </div>
                                                     <aura:if isTrue = "{!(question.multiValues.length == 0 &amp;&amp; question.isMandatorySub == true)}">
                                                         <div class="attValidationStyle slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1">
-                                                            **Required Submission.
+                                                            *
                                                         </div>
                                                     </aura:if>
+													<div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                        <c:LnP_Attachment appID="{!v.applicationId}" labelQuesions="{!question.label}" docList="{!question.multiValues}" />
+                                                    </div>
                                                 </aura:if>
                                                 
                                                 <aura:if isTrue="{!and(question.fieldType=='Attachment',question.acknowledge)}">

@@ -3,6 +3,26 @@
         console.log("requestId"+ component.get("v.requestId"));
         console.log("licenseId" + component.get("v.licenseId") );
       	console.log("isAMR" + component.get("v.isAMR"));
+        var tabsList = component.get("v.sectionList");
+        if(tabsList !=undefined && tabsList !=null) {
+            for(var i=0;i<tabsList.length; i++){
+                if(tabsList[i].sectionName === "Endorsement"){
+                    
+                    var labelFieldsMap = tabsList[i].labelFieldsMap;
+                    for(var j=0;j<labelFieldsMap.length; j += 1){
+                        if(labelFieldsMap[j].label === "Are you applying for Engineering?"){
+                            if(labelFieldsMap[j].value === "Yes"){
+                                component.set("v.toShowField",true);
+                            }
+                            else{
+                                component.set("v.toShowField",false);
+                            }
+                        }
+                    }           
+                }
+            } 
+        }
+
         if(component.get("v.isAMR") != true){
             component.set("v.addAction", true);
         }
@@ -93,6 +113,7 @@
             toastEvent.fire(); 
         } 
     },
+    
       onCountryChange: function(component, event, helper){
         var selectedCountry = event.getSource().get("v.value")
         component.set("v.parcel.Country__c",selectedCountry );

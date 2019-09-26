@@ -1,4 +1,5 @@
 <aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="LnP_LicenseAddressApexController">
+
     <aura:attribute name="countryList" type="List" />
     <aura:attribute name="countyList" type="List" />
     <aura:attribute name="isCanadianProvince" type="Boolean" default="false" />
@@ -20,9 +21,11 @@
     <aura:attribute name="affLocationTableList" type="List"/>
     <aura:attribute name="isOutOfCountry" type="Boolean" />
     <aura:attribute name="selectedParcelId" type="String" />
+     <aura:attribute name="sectionList" type ="LnP_ApplyForLicenseWrapper[]"/>
     <aura:attribute name="remove" type="Boolean" default="false" />
     <aura:attribute name="locationList" type="List" />
     <aura:attribute name="checkbox" type="Boolean" default="false" />
+    <aura:attribute name="toShowField" type="Boolean" default="true" />
     <aura:attribute name="requestedLocationTableList" type="List" />
     <aura:attribute name="requestedHeaderList" type="List" />
     <aura:registerEvent name="LnP_Location" type="c:LnP_LocationEvent" />
@@ -74,6 +77,7 @@
                                       </aura:if> -->
                                     <td data-label="Designated_Engineer_License__c" class="cell-style"> 
                                         <aura:if isTrue="{!tableData.Designated_Engineer_License__c}">
+
                                             <div class="slds-truncate" title="{!tableData.Designated_Engineer_License__c}">{!tableData.Designated_Engineer_License__c}</div>
                                             <aura:set attribute="else">None</aura:set>
                                         </aura:if>
@@ -158,7 +162,7 @@
         <lightning:button label="Add Location" variant="brand" onclick="{!c.addLocation}" class="{!v.isOneLocation?'add-loc':'slds-hide'}" />
         <div class="{!v.isOneLocation?(v.isAddLocation?'fields-wrapper':'slds-hide'):'fields-wrapper'}">                    
             
-            <lightning:input  name="DELicense" label="Designated Engineer License#" value="{!v.parcel.Designated_Engineer_License__c}"  required="false" class="field-size address-fields"/>
+            <lightning:input  name="DELicense" label="Designated Engineer License#" value="{!v.parcel.Designated_Engineer_License__c}"  required="false" class="{!v.toShowField?'field-size address-fields':'slds-hide'}"/>
             <lightning:input  name="DLSLicense" label="Designated Land Surveyor License#" value="{!v.parcel.Designated_Land_Surveyor_License__c}"  required="false" class="field-size field-margin address-fields"/>
             
             <lightning:select aura:id="countryPicklist" name="country" label="Country" value="{!v.defaultCountry}" class="field-size address-fields rightsapce" onchange="{!c.onCountryChange}"> 
@@ -204,4 +208,6 @@
             </div>
         </div>
     </div> 
+    
+    
 </aura:component>
