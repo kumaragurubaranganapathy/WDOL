@@ -16,5 +16,19 @@ trigger SubmissionTrigger on MUSW__Submission__c (before insert, before update, 
     /*If the triggers have not been disabled, then call the trigger handler which then executes the required
         code based on before/after insert/update/delete/undelete condition*/
     TriggerDispatcher.Run(new SubmissionTriggerHandler()); 
-
+	
+	 if(trigger.isBefore && trigger.isUpdate){
+     set<Id> setSubIds = new set<Id>();
+     for(MUSW__Submission__c obj: trigger.new){
+       if(obj.MUSW__License2__c != null && obj.CustomerEnvelope__c!=null)
+          setSubIds.add(obj.Id);
+     }
+     list<MUSW__Submission__c> mapSubmissions = [select id,MUSW__License2__c,MUSW__License2__r.Customer_Envelope__c,MUSW__License2__r.Validation_Number__c,CustomerEnvelope__c,Validation_Number__c from MUSW__Submission__c where id IN: setSubIds ];
+     for(MUSW__Submission__c obj: mapSubmissions ){
+       if(obj.MUSW__License2__c != null ){
+       obj.MUSW__License2__r.Customer_Envelope__c = obj.CustomerEnvelope__c;
+       obj.MUSW__License2__r.Validation_Number__c = obj.Validation_Number__c;
+       }
+     }
+}
 }
