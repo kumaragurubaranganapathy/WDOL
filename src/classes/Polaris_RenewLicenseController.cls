@@ -1321,10 +1321,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 List<MUSW__Parcel__c> lstAddress  = [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
                                                      MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, RecordType.Name,
                                                      County__c, Country__c,MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
-                                                     Primary_Account__c,LastModifiedDate from MUSW__Parcel__c 
-                                                     where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
-                                                     OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId and Application_BG__c!=null)
-                                                     order by LastModifiedDate desc];
+                                                     Primary_Account__c,LastModifiedDate,Status__c from MUSW__Parcel__c 
+                                                     where Status__c ='Active' and ((MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
+                                                     OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId and Application_BG__c!=null))];
                 System.debug('lstAddress===' + lstAddress);
                 if(!lstAddress.isEmpty()){
                     for(MUSW__Parcel__c parcelAddress : lstAddress) {
@@ -1353,10 +1352,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             for(MUSW__Parcel__c allAddressRecords : [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
                                                      MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, RecordType.Name,
                                                      County__c, Country__c, MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
-                                                     Primary_Account__c,LastModifiedDate from MUSW__Parcel__c 
-                                                     where (MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
-                                                     OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId AND Application_BG__c !=null)
-                                                     order by LastModifiedDate desc]){
+                                                     Primary_Account__c,LastModifiedDate,Status__c from MUSW__Parcel__c 
+                                                     where Status__c = 'Active' and ((MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
+                                                     OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId AND Application_BG__c !=null))]){
                                                          allAddressList.add(allAddressRecords);
                                                          parcelIdSet.add(allAddressRecords.Id);
                                                      }
