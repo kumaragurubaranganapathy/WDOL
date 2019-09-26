@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>Approval_notification_supervisor</fullName>
+        <description>Approval notification - supervisor</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Approval_notification_supervisor_final</template>
+    </alerts>
+	<alerts>
         <fullName>Endorsement_add_approval</fullName>
         <description>Endorsement add - approval</description>
         <protected>false</protected>
@@ -33,6 +44,35 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Endorsement_remove_request_final</template>
     </alerts>
+	<rules>
+        <fullName>Email - Approval notification - supervisor</fullName>
+        <actions>
+            <name>Approval_notification_supervisor</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Approval_notification_supervisor</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Endorsement__c.Endorsement_Type__c</field>
+            <operation>equals</operation>
+            <value>Supervisor</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Endorsement__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Endorsement__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>Email - Endorsement add - approval</fullName>
         <actions>
@@ -44,16 +84,11 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
             <field>Endorsement__c.Status__c</field>
             <operation>equals</operation>
             <value>Active</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Endorsement__c.Endorsement_Type__c</field>
-            <operation>notEqual</operation>
-            <value>Supervisor</value>
         </criteriaItems>
         <criteriaItems>
             <field>Endorsement__c.CreatedById</field>
@@ -74,16 +109,11 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
             <field>Endorsement__c.Status__c</field>
             <operation>equals</operation>
             <value>In-Review</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Endorsement__c.Endorsement_Type__c</field>
-            <operation>notEqual</operation>
-            <value>Supervisor</value>
         </criteriaItems>
         <criteriaItems>
             <field>Endorsement__c.CreatedById</field>
@@ -103,16 +133,11 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
             <field>Endorsement__c.Status__c</field>
             <operation>equals</operation>
             <value>Remove</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Endorsement__c.Endorsement_Type__c</field>
-            <operation>notEqual</operation>
-            <value>Supervisor</value>
         </criteriaItems>
         <criteriaItems>
             <field>Endorsement__c.CreatedById</field>
@@ -121,6 +146,17 @@
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
+	<tasks>
+        <fullName>Email_Outbound_Approval_notification_supervisor</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Endorsement__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Approval notification - supervisor</subject>
+    </tasks>
     <tasks>
         <fullName>Email_Outbound_Endorsement_add_approval</fullName>
         <assignedToType>owner</assignedToType>

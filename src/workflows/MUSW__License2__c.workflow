@@ -488,7 +488,7 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND (3 OR 4 OR 5 OR 6 OR 7 OR 8) AND 9 AND 10 AND 11</booleanFilter>
+        <booleanFilter>1 AND 2 AND (3 OR 4 OR 5 OR 6 OR 7 OR 8) AND 9 AND 10</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
@@ -530,11 +530,6 @@
             <value>Temporary State Licensed</value>
         </criteriaItems>
         <criteriaItems>
-            <field>MUSW__License2__c.Application_Method__c</field>
-            <operation>equals</operation>
-            <value>General Application</value>
-        </criteriaItems>
-        <criteriaItems>
             <field>MUSW__License2__c.Original_Issue_Date__c</field>
             <operation>equals</operation>
             <value>TODAY</value>
@@ -558,7 +553,7 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND (2 OR 3 OR 4 OR 5 OR 6) AND 7 AND 8 AND 9</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3 OR 4 OR 5 OR 6) AND 7 AND 8</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
@@ -590,11 +585,6 @@
             <value>On-site Wastewater Designer</value>
         </criteriaItems>
         <criteriaItems>
-            <field>MUSW__License2__c.Application_Method__c</field>
-            <operation>equals</operation>
-            <value>General Application</value>
-        </criteriaItems>
-        <criteriaItems>
             <field>MUSW__License2__c.Original_Issue_Date__c</field>
             <operation>equals</operation>
             <value>TODAY</value>
@@ -618,7 +608,7 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND (2 OR 3 OR 4) AND 5 AND 6 AND 7</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3 OR 4) AND 5 AND 6</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
@@ -638,11 +628,6 @@
             <field>MUSW__License2__c.Credential_Type__c</field>
             <operation>equals</operation>
             <value>Land Surveyor in Training</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Application_Method__c</field>
-            <operation>equals</operation>
-            <value>General Application</value>
         </criteriaItems>
         <criteriaItems>
             <field>MUSW__License2__c.Original_Issue_Date__c</field>
@@ -668,7 +653,7 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
@@ -678,11 +663,6 @@
             <field>MUSW__License2__c.Credential_Type__c</field>
             <operation>equals</operation>
             <value>Professional Engineer</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Application_Method__c</field>
-            <operation>equals</operation>
-            <value>General Application</value>
         </criteriaItems>
         <criteriaItems>
             <field>MUSW__License2__c.Original_Issue_Date__c</field>
@@ -708,7 +688,7 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND (2 OR 3) AND 4 AND 5 AND 6</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
@@ -723,11 +703,6 @@
             <field>MUSW__License2__c.Credential_Type__c</field>
             <operation>equals</operation>
             <value>Funeral Director</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Application_Method__c</field>
-            <operation>equals</operation>
-            <value>General Application</value>
         </criteriaItems>
         <criteriaItems>
             <field>MUSW__License2__c.Original_Issue_Date__c</field>
@@ -777,7 +752,7 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND( 2 OR 3 OR 4 ) AND 5 AND 6 AND 7</booleanFilter>
+        <booleanFilter>1 AND( 2 OR 3 OR 4 ) AND 5 AND 6</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
@@ -797,11 +772,6 @@
             <field>MUSW__License2__c.Credential_Type__c</field>
             <operation>equals</operation>
             <value>Embalmer Intern</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Application_Method__c</field>
-            <operation>equals</operation>
-            <value>General Application</value>
         </criteriaItems>
         <criteriaItems>
             <field>MUSW__License2__c.Original_Issue_Date__c</field>
@@ -827,7 +797,7 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
@@ -837,11 +807,6 @@
             <field>MUSW__License2__c.Credential_Type__c</field>
             <operation>equals</operation>
             <value>Notary Public</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Application_Method__c</field>
-            <operation>equals</operation>
-            <value>General Application</value>
         </criteriaItems>
         <criteriaItems>
             <field>MUSW__License2__c.Original_Issue_Date__c</field>
@@ -867,16 +832,16 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND (3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 OR 14 OR 15 OR 16 OR 17) AND 18 AND 19</booleanFilter>
+        <booleanFilter>1 AND 2 AND (3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 OR 14 OR 15 OR 16 OR 17) AND 18</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
             <value>Active</value>
         </criteriaItems>
         <criteriaItems>
-            <field>MUSW__License2__c.Application_Method__c</field>
-            <operation>equals</operation>
-            <value>General Application</value>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
         </criteriaItems>
         <criteriaItems>
             <field>MUSW__License2__c.Credential_Type__c</field>
@@ -958,11 +923,6 @@
             <operation>equals</operation>
             <value>TODAY</value>
         </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.CreatedById</field>
-            <operation>notContain</operation>
-            <value>Data Administrator</value>
-        </criteriaItems>
         <description>Automation rule for email notification: First license issued - Active - Other R1</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -977,16 +937,16 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND (3 OR 4) AND 5 AND 6</booleanFilter>
+        <booleanFilter>1 AND 2 AND (3 OR 4) AND 5</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
             <value>Inactive</value>
         </criteriaItems>
         <criteriaItems>
-            <field>MUSW__License2__c.Application_Method__c</field>
-            <operation>equals</operation>
-            <value>General Application</value>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
         </criteriaItems>
         <criteriaItems>
             <field>MUSW__License2__c.Credential_Type__c</field>
@@ -1003,11 +963,6 @@
             <operation>equals</operation>
             <value>TODAY</value>
         </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.CreatedById</field>
-            <operation>notContain</operation>
-            <value>Data Administrator</value>
-        </criteriaItems>
         <description>Automation rule for email notification: First license issued - Inactive - business association</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -1022,16 +977,16 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND (3 OR 4 OR 5) AND 6 AND 7</booleanFilter>
+        <booleanFilter>1 AND 2 AND (3 OR 4 OR 5) AND 6</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
             <value>Inactive</value>
         </criteriaItems>
         <criteriaItems>
-            <field>MUSW__License2__c.Application_Method__c</field>
-            <operation>equals</operation>
-            <value>General Application</value>
+            <field>MUSW__License2__c.CreatedById</field>
+            <operation>notContain</operation>
+            <value>Data Administrator</value>
         </criteriaItems>
         <criteriaItems>
             <field>MUSW__License2__c.Credential_Type__c</field>
@@ -1052,11 +1007,6 @@
             <field>MUSW__License2__c.Original_Issue_Date__c</field>
             <operation>equals</operation>
             <value>TODAY</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.CreatedById</field>
-            <operation>notContain</operation>
-            <value>Data Administrator</value>
         </criteriaItems>
         <description>Automation rule for email notification: First license issued - Inactive - supervisor sponsor association</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
