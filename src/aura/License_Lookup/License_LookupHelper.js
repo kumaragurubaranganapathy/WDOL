@@ -1,12 +1,4 @@
 ({	
-    errorlog:function(component,event){
-        var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
-        var urlEvent = $A.get("e.force:navigateToURL");
-        urlEvent.setParams({
-            "url": url
-        });
-        urlEvent.fire();
-    },
     doInit : function(component, event, objectApi, fieldsName, auraAttr) {
         var localDate = new Date();
         //var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -28,7 +20,7 @@
                 var result = response.getReturnValue(); 
                 if(auraAttr == 'v.professionOptions'){
                     var filteredResults = result.filter(function(item){
-                        return (item != 'Delegated Municipality' && item != 'Manufactured Homes' && item != 'Misc Payments' && item != 'Regulatory Compliance' && item != 'Update/Close Company' && item != 'Update Legal Name' && item != 'Update Company Information' && item != 'Remove Owner' && item != 'Update Business Name' && item != 'Program Unknown');
+                        return (item != 'Delegated Municipality' && item != 'Manufactured Homes' && item != 'Misc Payments' && item != 'Regulatory Compliance' && item != 'Update/Close Company' && item != 'Update Legal Name' && item != 'Update Company Information' && item != 'Remove Owner' && item != 'Update Business Name'  && item != 'Program Unknown');
                     });
                     component.set(auraAttr, filteredResults);
                 }else{
@@ -48,14 +40,6 @@
         });
         $A.enqueueAction(action);  
     },
-    preventLeaving: function(event) {
-        window.addEventListener("beforeunload", this.leaveHandler(event));
-    },
-    leaveHandler: function(event) {
-        if(window.performance.navigation.type == 1){
-            component.set("v.popup", true);
-        }
-    }, 
     fetchLicenseTypes : function(component, event, auraAttr, licenseType) {
         var action = component.get("c.generateQuery");
         var criteria = {
@@ -69,16 +53,15 @@
         action.setCallback(this, function(response){
             var state = response.getState();
             if (state === "SUCCESS"){
-                var result = response.getReturnValue();
-                
+                var result = response.getReturnValue();               
                 var filteredResults = [];
-                if(result!=null){
-                for(var i=0; i<result.length; i++){
+                if(result!==null){
+                for(var i=0; i<result.length; i += 1){
                     if(result[i].Credential_Type__c != undefined && result[i].Credential_Type__c != "Appraiser Course" && result[i].Credential_Type__c != "Architect Firms" && result[i].Credential_Type__c != 'Appraisal Controlling Person' && filteredResults.indexOf(result[i].Credential_Type__c)==-1){
                         filteredResults.push(result[i].Credential_Type__c);
                     }
                 }
-				if(filteredResults !== null && filteredResults != ""){
+                if(filteredResults !== null && filteredResults != ""){
                     filteredResults = filteredResults.sort();
                 } 
                 component.set(auraAttr, filteredResults);
@@ -98,7 +81,15 @@
         });
         $A.enqueueAction(action);  
     },
-    navigateToCustomPlace1 : function(component, event){
+    errorlog:function(component,event){
+        var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": url
+        });
+        urlEvent.fire();
+    },
+    navigateToCustomPlace1 : function(component){
         component.set("v.screenOne", true);
         component.set("v.screenTwo", false);
         component.set("v.screenThree", false);
@@ -109,8 +100,7 @@
         component.set("v.endorsementData", "");
         component.set("v.licenseRelationData", "");
         component.set("v.selectedTabId", "tab1");
-        component.set("v.licenseNameToDisplay", "License");
-        
+        component.set("v.licenseNameToDisplay", "License");        
         component.set("v.searchOne", false);
         component.set("v.searchOneArray", []);
         component.set("v.searchTwo", false);
@@ -128,7 +118,7 @@
             component.set("v.licenseRelationData", "");            
         }
     },
-    searchWithNum : function(component, event) {
+    searchWithNum : function(component) {
         component.set("v.loaded", false);
         var objectApi =  'MUSW__License_Parcel__c';
         var fieldsList = ['MUSW__License2__r.License_Printable_Name__c','MUSW__License2__r.Name','MUSW__License2__r.Credential_Type__c',
@@ -138,7 +128,7 @@
         var licenseNumberValue = component.find("licenseNumber").get("v.value");
         var searchOneArray=[];
         var toastEvent = $A.get("e.force:showToast");
-        var initialRows = component.get("v.initialRows");
+        //var initialRows = component.get("v.initialRows");
         if(professionValue != ""){
             searchOneArray.push({label:"Profession", value:professionValue});
         }
@@ -168,7 +158,7 @@
                 if (state === "SUCCESS"){
                     var rows = response.getReturnValue();     
                     if(rows.length!=0){
-                        for (var i = 0; i < rows.length; i++) { 
+                        for (var i = 0; i < rows.length; i += 1) { 
                             var row = rows[i]; 
                             if (row.MUSW__License2__c) {
                                 if(row.MUSW__License2__r){
@@ -292,19 +282,24 @@
             toastEvent.fire();       
 		}            
     },
-	cancelSearchWithNum : function(component, event) {
+	cancelSearchWithNum : function(component) {
 		component.find("Profession").set("v.value", "");
         component.find("licenseNumber").set("v.value", "");
 	},
-    fetchLicenseDetails : function(component, event, helper, licenseId, licenseType) {
+    fetchLicenseDetails : function(component, licenseId, licenseType) {        
         component.set("v.loaded", false);
+        //var selectedTab;
+        var objectApi;
+        var fieldsList;
+        var criteria;
+        var action;
         if(licenseId != "" && licenseId != undefined){
             component.set("v.licenseId", licenseId);
-            var selectedTab = component.get("v.selectedTabId");
+            //selectedTab = component.get("v.selectedTabId");
             if(licenseType == "Business"){
-                var objectApi =  'MUSW__License_Parcel__c';
+                objectApi =  'MUSW__License_Parcel__c';
                 component.set("v.licenseNameToDisplayDetails", "Business License Details");
-                var fieldsList = ['MUSW__License2__r.Name',
+                fieldsList = ['MUSW__License2__r.Name',
                                   'MUSW__License2__r.Credential_Type__c',
                                   'MUSW__License2__r.MUSW__Status__c',
                                   'MUSW__License2__r.License_Printable_Name__c',
@@ -321,14 +316,14 @@
                                   'MUSW__License2__r.MUSW__Issue_Date__c',
                                   'MUSW__License2__r.Application_Type__c',
                                   'MUSW__License2__r.MUSW__Expiration_Date__c'];
-                var criteria = {
+                criteria = {
                     "MUSW__License2__r.Name":licenseId
                 }
-                var action = component.get("c.generateQueryWithOR");
+                action = component.get("c.generateQueryWithOR");
             } else {
-                var objectApi =  'MUSW__License_Parcel__c';
+                objectApi =  'MUSW__License_Parcel__c';
                 component.set("v.licenseNameToDisplayDetails", "Professional License Details");
-                var fieldsList = ['MUSW__License2__r.Name',
+                fieldsList = ['MUSW__License2__r.Name',
                                   'MUSW__License2__r.Credential_Type__c',
                                   'MUSW__License2__r.MUSW__Status__c',
                                   'MUSW__License2__r.License_Printable_Name__c',
@@ -342,10 +337,10 @@
                                   'MUSW__License2__r.MUSW__Expiration_Date__c',
                                   'MUSW__License2__r.Application_Type__c',
                                   'MUSW__Parcel__r.Country__c'];
-                var criteria = {
+                criteria = {
                     "MUSW__License2__r.Name":licenseId
                 }
-                var action = component.get("c.generateQueryWithOR");
+                action = component.get("c.generateQueryWithOR");
             }            
             action.setParams({
                 'objectName':objectApi,
@@ -358,7 +353,7 @@
             var state = response.getState();
             if (state === "SUCCESS"){
                 var result = response.getReturnValue();
-                for(var i=0; i<result.length; i++){
+                for(var i=0; i<result.length; i += 1){
                     if(result[i].MUSW__License2__r.MUSW__Expiration_Date__c){
                         if($A.get("$SObjectType.CurrentUser.Id")){
                             component.set("v.loggedIn", true);
@@ -373,7 +368,7 @@
                 component.set("v.screenOne", false);
                 component.set("v.screenTwo", false);
                 component.set("v.screenThree", true);
-              //  this.fetchEndorsementDetails(component, event, helper, licenseId);
+              //  this.fetchEndorsementDetails(component, event, licenseId);
                 component.set("v.loaded", true);
             }else{
                 component.set("v.loaded", true);
@@ -389,7 +384,7 @@
         $A.enqueueAction(action);
     	}	              
     },
-    fetchEndorsementDetails: function(component, event, helper, licenseRecordId){
+    fetchEndorsementDetails: function(component, licenseRecordId){
         if(licenseRecordId != "" && licenseRecordId != undefined){
             var objectApi =  'Endorsement__c';
             var fieldsList = ['Endorsement_Type__c'];
@@ -415,7 +410,7 @@
         $A.enqueueAction(action);
     	}	            
     },
-    fetchParentLicenses : function(component, event, helper, licenseRecordId){
+    fetchParentLicenses : function(component, licenseRecordId){
         if(licenseRecordId != "" && licenseRecordId != undefined){
             var objectApi =  'MUSW__License_Parcel__c';
             var fieldsList = ['MUSW__License2__r.Related_License__r.MUSW__Applicant__r.Full_Name__c',
@@ -447,7 +442,7 @@
         $A.enqueueAction(action);
     	}	            
     },
-    fetchChildLicenses : function(component, event, helper, licenseRecordId){
+    fetchChildLicenses : function(component, licenseRecordId){
         if(licenseRecordId != "" && licenseRecordId != undefined){
             var objectApi =  'MUSW__License_Parcel__c';
             var fieldsList = ['MUSW__License2__r.MUSW__Applicant__r.Name','MUSW__License2__r.Name','MUSW__License2__r.Credential_Type__c','MUSW__License2__r.MUSW__Status__c','MUSW__License2__r.Sub_Status__c','MUSW__Parcel__r.MUSW__City__c'];
@@ -475,7 +470,7 @@
         $A.enqueueAction(action);
     	}	            
     },
-    searchWithDetails : function(component, event) {
+    searchWithDetails : function(component) {
         component.set("v.loaded", false);
         var selectedTab = component.get("v.selectedTabId");
         var objectApi =  'MUSW__License_Parcel__c';
@@ -542,7 +537,7 @@
                     if (state === "SUCCESS"){
                         var rows = response.getReturnValue();
                         if(rows.length!=0){
-                            for (var i = 0; i < rows.length; i++) { 
+                            for (var i = 0; i < rows.length; i += 1) { 
                                 var row = rows[i]; 
                                 if (row.MUSW__License2__r) {
                                     if(row.MUSW__License2__r){
@@ -729,7 +724,7 @@
                     if (state === "SUCCESS"){
                         var rows = response.getReturnValue();
                         if(rows.length!=0){
-                            for (var i = 0; i < rows.length; i++) { 
+                            for (var i = 0; i < rows.length; i += 1) { 
                                 var row = rows[i]; 
                                 if (row.MUSW__License2__r) {
                                     if(row.MUSW__License2__r.License_Printable_Name__c){
@@ -859,7 +854,7 @@
             }
         }
     },
-    cancelSearchWithDetails : function(component, event) {
+    cancelSearchWithDetails : function(component) {
         var selectedTab = component.get("v.selectedTabId");
         if(selectedTab == "tab1"){
             component.find("firstName").set("v.value", "");
@@ -904,7 +899,7 @@
         var csvStringResult, counter, keys, columnDivider, lineDivider;
        
         // check if "objectRecords" parameter is null, then return from function
-        if (objectRecords == null || !objectRecords.length) {
+        if (objectRecords === null || !objectRecords.length) {
             return null;
          }
         // store ,[comma] in columnDivider variabel for sparate CSV values and 
@@ -925,17 +920,18 @@
         csvStringResult = '';
         csvStringResult += keys.join(columnDivider);
         csvStringResult += lineDivider; 
-        for(var i=0; i < objectRecords.length; i++){   
+        for(var i=0; i < objectRecords.length; i += 1){   
              counter = 0;           
              for(var sTempkey in keys) {
-                var skey = keys[sTempkey] ;   
-              // add , [comma] after every String value,. [except first]
-                  if(counter > 0){ 
-                      csvStringResult += columnDivider; 
-                   }                  
-               csvStringResult += '"'+ objectRecords[i][skey]+'"';                
-               counter++;
- 
+                 if (keys.hasOwnProperty(sTempkey)) {
+                    var skey = keys[sTempkey] ;   
+                  // add , [comma] after every String value,. [except first]
+                      if(counter > 0){ 
+                          csvStringResult += columnDivider; 
+                       }                  
+                   csvStringResult += '"'+ objectRecords[i][skey]+'"';                
+                   counter++;
+             	}
             } // inner for loop close 
              csvStringResult += lineDivider;
           }// outer main for loop close 
@@ -943,4 +939,17 @@
        // return the CSV formate String 
         return csvStringResult;        
     },
+    /*preventLeaving: function() {
+        var evt = window.attachEvent || window.addEventListener;
+        var checkEvt = window.attachEvent ? 'onbeforeunload' : 'beforeunload';
+        evt(checkEvt, function(e) { 
+            var msg = 'Are you sure you want to leave the page?';
+            (e || window.event).returnValue = msg;
+            return msg;
+        });
+    },
+    leaveHandler: function(event) {
+          event.preventDefault();
+          event.returnValue = 'chel hut';
+    },*/
 })

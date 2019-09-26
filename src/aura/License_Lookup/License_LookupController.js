@@ -1,11 +1,11 @@
 ({	
     doInit : function(component, event, helper) {
-        //helper.preventLeaving(event);
+        //helper.preventLeaving();
         var picklistArray = component.get("v.picklistList");
         var objectApi;
         var fieldsName;
         var auraAttr;
-        for(var i=0; i<picklistArray.length; i++){
+        for(var i=0; i<picklistArray.length; i += 1){
             objectApi = picklistArray[i].objectApi;
             fieldsName = picklistArray[i].fieldsName;
             auraAttr = picklistArray[i].auraAttr;
@@ -14,19 +14,11 @@
         var licenseTypePicklist = component.get("v.picklistListLicenseType");
         var licenseType;
         var auraAttr;
-        for(var i=0; i<licenseTypePicklist.length; i++){
+        for(var i=0; i<licenseTypePicklist.length; i += 1){
             auraAttr = licenseTypePicklist[i].auraAttr;
             licenseType = licenseTypePicklist[i].licenseType;
             helper.fetchLicenseTypes(component, event, auraAttr, licenseType);
         }
-	},
-    proceedPageAway : function(component, event, helper) {
-        component.set("v.popup", false);
-		return true;
-	},
-    stopPageAway : function(component, event, helper) {
-        component.set("v.popup", false);
-		event.preventDefault();
 	},
     navigateToCustomPlace1 : function(component, event, helper) {
 		helper.navigateToCustomPlace1(component, event);
@@ -63,12 +55,12 @@
         switch (action.name) {
             case 'view_details':
              	component.set("v.licenseId",licenseId);
-                helper.fetchLicenseDetails(component, event, helper, licenseId, licenseType);
-                helper.fetchEndorsementDetails(component, event, helper, licenseRecordId);
+                helper.fetchLicenseDetails(component, licenseId, licenseType);
+                helper.fetchEndorsementDetails(component, licenseRecordId);
                 if(relatedLicense!=undefined){
-                    helper.fetchParentLicenses(component, event, helper, licenseRecordId);
+                    helper.fetchParentLicenses(component, licenseRecordId);
                 } else {
-                    helper.fetchChildLicenses(component, event, helper, licenseRecordId); 
+                    helper.fetchChildLicenses(component, licenseRecordId); 
                 }
                 break;
             default:
@@ -84,14 +76,12 @@
     },
     downloadCsv : function(component,event,helper){        
         // get the Records list from 'data' attribute 
-        var stockData = component.get("v.data");
-        
+        var stockData = component.get("v.data");        
         // call the helper function which "return" the CSV data as a String   
         var csv = helper.convertArrayOfObjectsToCSV(component,stockData);   
         if (csv == null){
             return;
-        } 
-        
+        }         
         // ####--code for create a temp. <a> html tag [link tag] for download the CSV file--####     
         var hiddenElement = document.createElement('a');
         hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);

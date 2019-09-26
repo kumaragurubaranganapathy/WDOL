@@ -376,7 +376,7 @@ String pemail = (String)pdata.get('email');*/
                                                             Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
                                                             sqlObj.FieldName = attributeName;
                                                             sqlObj.FieldValue = mapValues.get(attributeName);
-                                                            sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '= DOL_AppConstants.NULL_EMPTY_STRING + ';
+                                                            sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
                                                             creterias.add(sqlObj);
                                                         }
                                                        // system.debug('criterias'+criterias);
@@ -513,7 +513,7 @@ String pemail = (String)pdata.get('email');*/
                                                             Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
                                                             sqlObj.FieldName = attributeName;
                                                             sqlObj.FieldValue = mapValues.get(attributeName);
-                                                            sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '= DOL_AppConstants.NULL_EMPTY_STRING + ';
+                                                            sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
                                                             creterias.add(sqlObj);
                                                         }
                                                        // system.debug('criterias'+criterias);
@@ -747,7 +747,7 @@ String pemail = (String)pdata.get('email');*/
                                                                   Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
                                                                   sqlObj.FieldName = attributeName;
                                                                   sqlObj.FieldValue = mapValues.get(attributeName);
-                                                                  sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '= DOL_AppConstants.NULL_EMPTY_STRING + ';
+                                                                  sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + '=';
                                                                   creterias.add(sqlObj);
                                                               }
                                                               //system.debug('criterias'+criterias);
