@@ -10,7 +10,7 @@
     <aura:if isTrue="{!v.loadingSpinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
-    <div class="slds-p-vertical_medium">
+    <div class="course-lic-wrapper">
         <aura:if isTrue="{!v.courseList.length!=0}">
             <div class="table-height">
                 <div style="height: 100%; position: relative;">                    
@@ -31,7 +31,7 @@
                             <tbody>
                                 <aura:iteration items="{!v.dispList}" var="tableData" indexVar="ind"> 
                                     <tr class="slds-hint-parent">
-                                        <td data-label="Course #" class="cell-style">
+                                        <td data-label="Course" class="cell-style">
                                             <u> <a data-index="{!ind}" data-accountId = "{!tableData.MUSW__Primary_Licensee__c}" data-licenseId="{!tableData.Id}" href="javascript:void(0)" onclick="{!c.displayCourseDetails}">
                                                 {!tableData.Name}</a>
                                             </u>
@@ -57,7 +57,7 @@
                                        
                                         <td data-label="Expiration Date" class="cell-style">
                                             <aura:if isTrue="{!tableData.MUSW__Expiration_Date__c}">
-                                                <div class="slds-truncate" title="{!tableData.MUSW__Expiration_Date__c}">{!tableData.MUSW__Expiration_Date__c}</div>
+                                                <div class="slds-truncate" title="{!tableData.MUSW__Expiration_Date__c}"><lightning:formattedDateTime year="numeric" day="2-digit" month="long" value="{!tableData.MUSW__Expiration_Date__c}" /></div>
                                                 <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </td>
@@ -74,16 +74,16 @@
                                             </aura:if>                                                
                                         </td>
                                         <td data-label="Actions" class="cell-style action-cell">
-                                            <div class="slds-truncate">
+                                            <div class="action-btn">
                                                 <aura:if isTrue="{!and((tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c|| tableData.Is_Reinstatement_Eligible__c),(tableData.MUSW__Status__c == 'Active')) ? true : false}">
                                                     <aura:if isTrue="{!and((tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c),tableData.Renew_Reinstatement_in_progress__c == false)}">
-                                                        <div class="slds-truncate"   onclick ="{!c.renewLicense}" data-appisRenewal="{!tableData.Application__r.isRenewal__c}" data-app="{!tableData.Application__c}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
+                                                        <div onclick ="{!c.renewLicense}" data-appisRenewal="{!tableData.Application__r.isRenewal__c}" data-app="{!tableData.Application__c}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
                                                              data-board = "{!tableData.Application_Type__c}" data-renewereinstate="Renewal"  data-applicationType = "{!tableData.Application_Method__c}" data-isrenewal="{!tableData.isRenewal__c}">
                                                             <lightning:button variant="brand" label="Renewal" title="Renewal" />
                                                         </div>
                                                     </aura:if>
                                                     <aura:if isTrue="{!and(tableData.Is_Reinstatement_Eligible__c,tableData.Renew_Reinstatement_in_progress__c == false)}">
-                                                        <div class="slds-truncate"   onclick ="{!c.renewLicense}" data-appisRenewal="{!tableData.Application__r.isRenewal__c}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
+                                                        <div onclick ="{!c.renewLicense}" data-appisRenewal="{!tableData.Application__r.isRenewal__c}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
                                                              data-board = "{!tableData.Application_Type__c}" data-renewereinstate="Reinstatement" data-app="{!tableData.Application__c}" data-applicationType = "{!tableData.Application_Method__c}" data-isreinstate ="{!tableData.Is_Reinstatement_Eligible__c}">
                                                             <lightning:button variant="brand" label="Reinstate" title="Reinstate" />
                                                         </div>

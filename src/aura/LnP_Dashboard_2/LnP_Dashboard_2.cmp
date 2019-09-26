@@ -228,6 +228,7 @@
                                             <aura:if isTrue="{!item.Original_Issue_Date__c}">
                                                 <div class="data-style">
                                                     <lightning:formattedDateTime value="{!item.Original_Issue_Date__c}"
+                                                                                 year="numeric" month="long" day="2-digit"
                                                                                  />
                                                 </div>
                                                 <aura:set attribute="else">
@@ -258,6 +259,7 @@
                                             <aura:if isTrue="{!item.MUSW__Issue_Date__c}">
                                                 <div class="data-style">
                                                     <lightning:formattedDateTime value="{!item.MUSW__Issue_Date__c}"
+                                                                                 year="numeric" month="long" day="2-digit"
                                                                                  />
                                                 </div>
                                                 <aura:set attribute="else">
@@ -279,6 +281,7 @@
                                             <aura:if isTrue="{!item.MUSW__Expiration_Date__c}">
                                                 <div class="data-style">
                                                     <lightning:formattedDateTime value="{!item.MUSW__Expiration_Date__c}"
+                                                                                 year="numeric" month="long" day="2-digit"
                                                                                  />
                                                 </div>
                                                 <aura:set attribute="else">

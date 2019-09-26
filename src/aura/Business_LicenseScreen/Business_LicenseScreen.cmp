@@ -54,7 +54,7 @@ _______________________________________________________________
                                 <tbody>
                                     <aura:iteration items="{!v.dispList}" var="tableData" indexVar="ind">
                                         <tr class="slds-hint-parent">    
-                                            <td data-label="License#" class="cell-style">
+                                            <td data-label="License" class="cell-style">
                                                 <div class="slds-truncate">
                                                     <u><a data-index="{!ind}" data-accountId = "{!tableData.MUSW__Primary_Licensee__c}" data-licenseId="{!tableData.Id}" href="javascript:void(0)" onclick="{!c.displayLicenseDetails}">{!tableData.Name}</a></u>
                                                 </div>
@@ -67,7 +67,7 @@ _______________________________________________________________
                                             </td>
                                             <td data-label="Expiration date" class="cell-style">
                                                 <aura:if isTrue="{!tableData.MUSW__Expiration_Date__c}">
-                                                    <div class="slds-truncate" title="{!tableData.MUSW__Expiration_Date__c}"><lightning:formattedDateTime value="{!tableData.MUSW__Expiration_Date__c}"/></div>
+                                                    <div class="slds-truncate" title="{!tableData.MUSW__Expiration_Date__c}"><lightning:formattedDateTime value="{!tableData.MUSW__Expiration_Date__c}" year="numeric" day="2-digit" month="long" /></div>
                                                     <aura:set attribute="else">None</aura:set>
                                                 </aura:if>
                                             </td>

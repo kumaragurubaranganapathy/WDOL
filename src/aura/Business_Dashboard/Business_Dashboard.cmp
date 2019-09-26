@@ -60,7 +60,7 @@
         </aura:if>
         <aura:if isTrue="{!v.screenOne}">	
             <div class="business-dashboard-header">
-                <h1 class="page-title">Manage My Businesses</h1> 
+                <h1 class="page-title">Manage My Businesses</h1>                
                 <div class="biz-welcome">   
                     <div class="add-biz-wrapper">
                         <lightning:button name="Add Business Account" label="Add Business Account" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />
@@ -138,7 +138,7 @@
                                         <span class="label-style">Doing Business As:</span> 
                                         <aura:if isTrue="{!v.LicenseData.Ultimate_Parent_Account__r.Doing_Business_As_1__c}">
                                             {!v.LicenseData.Ultimate_Parent_Account__r.Doing_Business_As_1__c}
-                                            <aura:set attribute="else">(None)</aura:set>
+                                            <aura:set attribute="else">None</aura:set>
                                         </aura:if>                                                    
                                     </lightning:layoutItem>
                                 </lightning:layout>
@@ -148,14 +148,14 @@
                                             <span class="label-style">Phone:</span>
                                             <aura:if isTrue="{!v.LicenseData.Ultimate_Parent_Account__r.Business_Phone__c}">
                                                 {!v.LicenseData.Ultimate_Parent_Account__r.Business_Phone__c}
-                                                <aura:set attribute="else">(None)</aura:set>
+                                                <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </div>
                                         <div class="contact-item">
                                             <span class="label-style">Email:</span>
                                             <aura:if isTrue="{!v.LicenseData.Ultimate_Parent_Account__r.Email__c}">
-                                                {!v.LicenseData.Ultimate_Parent_Account__r.Email__c}
-                                                <aura:set attribute="else">(None)</aura:set>
+                                                <div class="slds-truncate" title="{!v.LicenseData.Ultimate_Parent_Account__r.Email__c}">{!v.LicenseData.Ultimate_Parent_Account__r.Email__c}</div> 
+                                                <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </div>
                                     </lightning:layoutItem>
@@ -194,21 +194,21 @@
                                         <div class="contact-item">
                                             <span class="label-style">First Issue Date: </span>
                                             <aura:if isTrue="{!v.LicenseData.Original_Issue_Date__c}">
-                                                <lightning:formattedDateTime value="{!v.LicenseData.Original_Issue_Date__c}"/>
+                                                <lightning:formattedDateTime value="{!v.LicenseData.Original_Issue_Date__c}" year="numeric" day="2-digit" month="long"/>
                                                 <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </div>
                                         <div class="contact-item">
                                             <span class="label-style">Current Issue Date: </span>
                                             <aura:if isTrue="{!v.LicenseData.MUSW__Issue_Date__c}">
-                                                <lightning:formattedDateTime value="{!v.LicenseData.MUSW__Issue_Date__c}"/>
+                                                <lightning:formattedDateTime value="{!v.LicenseData.MUSW__Issue_Date__c}" year="numeric" day="2-digit" month="long" />
                                                 <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </div>
                                         <div class="contact-item">
                                             <span class="label-style">Expiration Date: </span>
                                             <aura:if isTrue="{!v.LicenseData.MUSW__Expiration_Date__c}">
-                                                <lightning:formattedDateTime value="{!v.LicenseData.MUSW__Expiration_Date__c}"/>
+                                                <lightning:formattedDateTime value="{!v.LicenseData.MUSW__Expiration_Date__c}" year="numeric" day="2-digit" month="long" />
                                                 <aura:set attribute="else">None</aura:set>
                                             </aura:if>
                                         </div>                        
@@ -258,24 +258,23 @@
                                 <lightning:layoutItem size="12" mediumDeviceSize="4">
                                     <div class="field-style">
                                         <div class="label-style">UBI:</div>
-                                        <div class="data-style">{!v.SelectedAccountDetails.UBI_Number__c}</div>
+                                        <div class="data-style slds-truncate" title="{!v.SelectedAccountDetails.UBI_Number__c}">{!v.SelectedAccountDetails.UBI_Number__c}</div>
                                     </div>
                                     <div class="field-style">
-                                        <div class="label-style">Email:</div>
-                                        <div class="data-style">{!v.SelectedAccountDetails.Email__c}</div>
+                                        <div class="label-style">Email:</div> 
+                                        <div class="data-style slds-truncate" title="{!v.SelectedAccountDetails.Email__c}">{!v.SelectedAccountDetails.Email__c}</div>
                                     </div>
                                     <div class="field-style alt-email">
                                         <div class="label-style">Alternate email:</div>
-                                        <div class="data-style">{!v.SelectedAccountDetails.Email__c}</div>
+                                        <div class="data-style slds-truncate" title="{!v.SelectedAccountDetails.Email__c}">{!v.SelectedAccountDetails.Email__c}</div>
                                     </div>                        
                                     <div class="field-style">
                                         <div class="label-style">Business Phone:</div>
-                                        <div class="data-style">{!v.SelectedAccountDetails.Business_Phone__c}</div>
+                                        <div class="data-style slds-truncate" title="{!v.SelectedAccountDetails.Business_Phone__c}">{!v.SelectedAccountDetails.Business_Phone__c}</div>
                                     </div>
                                     <!--<div class="field-style"><span class="label-style">Email : </span></div>
                                     <div class="field-style"><span class="label-style">Phone : </span>{!v.SelectedAccountDetails.Business_Phone__c}</div> -->
                                 </lightning:layoutItem>
-                                
                                 <aura:iteration items="{!v.ParcelObj}" var="parcel" indexVar = "index">
                                     <lightning:layoutItem size="12" mediumDeviceSize="4">
                                         <aura:if isTrue = "{!parcel.Address_Type__c == 'HOME'}">
@@ -290,7 +289,7 @@
                                             <div class="">{!parcel.MUSW__State__c} - {!parcel.MUSW__Post_Zip_Code__c} -->
                                             </div>
                                             <aura:set attribute="else">
-                                            	<div class="label-style">Physical address:</div>
+                                                <div class="label-style">Physical address:</div>
                                                 <div class="data-style">None</div>
                                             </aura:set>
                                         </aura:if>
@@ -306,7 +305,7 @@
                                             <div class="">{!parcel.MUSW__City__c},</div>
                                             <div class="">{!parcel.MUSW__State__c} - {!parcel.MUSW__Post_Zip_Code__c}</div>   --> 
                                             <aura:set attribute="else">
-                                            	<div class="label-style">Mailing address:</div>
+                                                <div class="label-style">Mailing address:</div>
                                                 <div class="data-style">None</div>
                                             </aura:set>
                                         </aura:if>
@@ -325,7 +324,7 @@
                                     <li data-index="1" aura:id="action-item"><a onclick ="{!c.handleLicenseLink}" href="javascript:void(0);">{!v.isCourseProvider?'Apply for Course':'Apply for Business License'}</a></li>
                                     <!--<li data-index="2" aura:id="action-item"><a onclick="{!c.updateContactInfo}" href="javascript:void(0);">Update Contact Information</a></li> -->
                                     <li data-index="2" aura:id="action-item"><a onclick="{!c.updateBusinessInfo}" href="javascript:void(0);">Close Your Business</a></li>
-                                   <!-- <li data-index="4" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Add Course</a></li> -->
+                                    <!-- <li data-index="4" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Add Course</a></li> -->
                                     <!--<li data-index="5" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Edit Profile</a></li> -->
                                     <li data-index="3" class="list-item" aura:id="action-item"><a onclick="{!c.updateBusinessName}" href="javascript:void(0);">Update Business Name</a></li>
                                     <li data-index="4" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a onclick="{!c.BillingCode}" href="javascript:void(0);">Get Billing Code</a></li>
@@ -432,24 +431,29 @@
                                             
                                             <lightning:layoutItem size="12" mediumDeviceSize="4">
                                                 <div class="contact-item">
-                                                    <div class="label-style">First Issue Date: </div> 
-                                                    <div class="data-style">
-                                                        {!v.LicenseData.Original_Issue_Date__c?v.LicenseData.Original_Issue_Date__c:'None'}
-                                                    </div>
+                                                    <div class="label-style">First Issue Date: </div>
+                                                    <aura:if isTrue="{!v.LicenseData.Original_Issue_Date__c}">
+                                                        <lightning:formattedDateTime value="{!v.LicenseData.Original_Issue_Date__c}" year="numeric" day="2-digit" month="long"/>
+                                                        <aura:set attribute="else">None</aura:set>
+                                                    </aura:if>
                                                 </div>
                                             </lightning:layoutItem>
                                             <lightning:layoutItem size="12" mediumDeviceSize="4">
                                                 <div class="contact-item">
-                                                    <div class="label-style">Current Issue Date: </div> 
-                                                    <div cass="data-style">{!v.LicenseData.MUSW__Issue_Date__c?v.LicenseData.MUSW__Issue_Date__c:'None'}</div>
+                                                    <div class="label-style">Current Issue Date: </div>
+                                                    <aura:if isTrue="{!v.LicenseData.MUSW__Issue_Date__c}">
+                                                        <lightning:formattedDateTime value="{!v.LicenseData.MUSW__Issue_Date__c}" year="numeric" day="2-digit" month="long" />
+                                                        <aura:set attribute="else">None</aura:set>
+                                                    </aura:if>
                                                 </div>
                                             </lightning:layoutItem>
                                             <lightning:layoutItem size="12" mediumDeviceSize="4">
                                                 <div class="contact-item">
-                                                    <div class="label-style">Expiration Date: </div> 
-                                                    <div class="data-style">
-                                                        {!v.LicenseData.MUSW__Expiration_Date__c?v.LicenseData.MUSW__Expiration_Date__c:'None'}
-                                                    </div>
+                                                    <div class="label-style">Expiration Date: </div>
+                                                    <aura:if isTrue="{!v.LicenseData.MUSW__Expiration_Date__c}">
+                                                        <lightning:formattedDateTime value="{!v.LicenseData.MUSW__Expiration_Date__c}" year="numeric" day="2-digit" month="long" />
+                                                        <aura:set attribute="else">None</aura:set>
+                                                    </aura:if>
                                                 </div>      
                                             </lightning:layoutItem>
                                             
@@ -478,7 +482,7 @@
                                                 </div>                                                
                                             </lightning:layoutItem>                         
                                         </lightning:layout>
-                                       <!-- <aura:if isTrue="{!v.EndorsementData.length != 0}">
+                                        <!-- <aura:if isTrue="{!v.EndorsementData.length != 0}">
                                             <div class="">
                                                 <div class="section-name bottom-border slds-p-bottom_x-small slds-m-horizontal_small">Endorsements</div>
                                                 <div class="section-content slds-p-around_small">
@@ -526,7 +530,7 @@
             
             <aura:if isTrue="{!!v.courseDetail}">
                 <lightning:tabset selectedTabId="{!v.defaultTab}" class="tabs-wrapper" >
-                  
+                    
                     <aura:if isTrue="{!v.accountDetail}">
                         <aura:if isTrue = "{!v.isCourseProvider}"> 
                             <lightning:tab class="tab-style" onactive="{!c.setBreadCrumb}"  label="Courses" id="Courses" >
@@ -571,7 +575,7 @@
                     </aura:if>
                     -->
                 </lightning:tabset>
-            </aura:if>
+            </aura:if> 
             <aura:if isTrue="{!!or(v.licenseDetail, v.courseDetail)}">
                 <div class="back-btn-wrapper" onclick="{!c.navigateToScreenOne}">
                     <lightning:button class="back-btn" label="Back" />
@@ -585,6 +589,7 @@
         </aura:if>
         <aura:if isTrue="{!v.screenThree}">
             <c:Business_LicenseScreen />
+            
         </aura:if>
     </div>
 </aura:component>
