@@ -289,7 +289,7 @@ public without sharing class LnP_DashboardApexController_2 {
             /*  List<String> statusFilterList = new List<String>{'Draft', 'Withdrawn','Submission Failed','Pending'};*/
             List<String> statusFilterList = new List<String>();
         statusFilterList = dashboardSettings.Draft_Applications_statuses__c.split(',');
-        List<SObject> columnDataList = [Select id,Name,Application_Type__c,Credential_Type__c,Application_Method__c, FORMAT(LastModifiedDate) LastModifiedDate,isRenewal__c,MUSW__Status__c
+        List<SObject> columnDataList = [Select id,Name,Application_Type__c,Credential_Type__c,Application_Method__c, FORMAT(LastModifiedDate) FormattedLastModifiedDate, LastModifiedDate ,isRenewal__c,MUSW__Status__c
                                         from MUSW__Application2__c
                                         where MUSW__Status__c IN :statusFilterList AND isRenewal__c = False AND Credential_Type__c NOT In :businessLicensesTobeIgnored AND MUSW__Applicant__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
         
@@ -314,7 +314,7 @@ public without sharing class LnP_DashboardApexController_2 {
         statusFilterList = dashboardSettings.Draft_Applications_statuses__c.split(',');
         
         List<SObject> columnDataList = [Select id,License_Number__c,License__r.id,License__r.Name,License__r.Application_Type__c,License__r.Is_Reinstatement_Eligible__c,
-                                               License__r.Application__c,License__r.MUSW__Expiration_Date__c,FORMAT(LastModifiedDate) LastModifiedDate,
+                                               License__r.Application__c,License__r.MUSW__Expiration_Date__c,FORMAT(LastModifiedDate) FormattedLastModifiedDate, LastModifiedDate,
                                                Application__r.isRenewal__c,License__r.Credential_Type__c,License__r.Application_Method__c, 
                                                FORMAT(License__r.LastModifiedDate) ,License__r.MUSW__Status__c,Application__r.MUSW__Status__c,
                                                Renewal_Status__c,Sub_Status__c
@@ -341,7 +341,7 @@ public without sharing class LnP_DashboardApexController_2 {
         //List<String> statusFilterList = new List<String>{'Draft', 'Withdrawn'};
         List<String> statusFilterList = new List<String>();
         statusFilterList = dashboardSettings.Draft_Applications_statuses__c.split(',');
-        List<SObject> columnDataList = [Select  id,License_Type__c,License__c,Profession__c, Service_Request_Type__c,Status__c, FORMAT(LastModifiedDate) LastModifiedDate
+        List<SObject> columnDataList = [Select  id,License_Type__c,License__c,Profession__c, Service_Request_Type__c,Status__c, FORMAT(LastModifiedDate) FormattedLastModifiedDate, LastModifiedDate
                                                 from Request__c
                                                 where Status__c IN :statusFilterList AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
         
@@ -364,7 +364,7 @@ public without sharing class LnP_DashboardApexController_2 {
             //List<String> statusFilterList = new List<String>{'Draft', 'Withdrawn'};
         List<String> statusFilterList = new List<String>();
         statusFilterList = dashboardSettings.Draft_Applications_statuses__c.split(',');
-        List<SObject> columnDataList = [Select  id,Name,License_Type__c, Service_Request_Type__c,Status__c, FORMAT(LastModifiedDate) LastModifiedDate,License__c,License__r.Selected_for_Audit__c,
+        List<SObject> columnDataList = [Select  id,Name,License_Type__c, Service_Request_Type__c,Status__c, FORMAT(LastModifiedDate) FormattedLastModifiedDate, LastModifiedDate,License__c,License__r.Selected_for_Audit__c,
                                         Profession__c,Stage__c,Contact__c  from Request__c
                                         where Status__c IN :statusFilterList AND License__c =: AMRlicenseId  AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
         
@@ -449,7 +449,7 @@ public without sharing class LnP_DashboardApexController_2 {
             
             List<String> columnHeaderList = new List<String>{'Request','Request Type', 'Request Against', 'Status'};
                 List<String> statusFilterList = new List<String>{'Under Review'};
-                    List<SObject> columnDataList = [Select  id,name,Status__c,License_Type__c, Service_Request_Type__c, FORMAT(LastModifiedDate) LastModifiedDate
+                    List<SObject> columnDataList = [Select  id,name,Status__c,License_Type__c, Service_Request_Type__c, FORMAT(LastModifiedDate) FormattedLastModifiedDate, LastModifiedDate
                                                     from Request__c
                                                     where Status__c IN :statusFilterList AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
             system.debug('**********columnDataList********'+columnDataList.size());

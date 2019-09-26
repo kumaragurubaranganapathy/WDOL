@@ -55,7 +55,7 @@
                 var data = response.getReturnValue();
                 console.log('renewal applications::', JSON.stringify(data));
                 component.set("v.DraftMandatoryActionsApplicationsData",data);
-                if(data != null && data != ''){
+                if(data !== null && data !== '' && data.length !== 0 && data !== undefined){
                     component.set("v.mandatoryListNotEmpty",true); 
                 }
                 component.set("v.loadingSpinner",false);

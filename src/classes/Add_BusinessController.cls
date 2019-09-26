@@ -293,7 +293,7 @@ public with sharing class Add_BusinessController {
                             MUSW__Primary_Licensee__r.Business_Name__c,MUSW__Primary_Licensee__r.Business_Phone__c,
                             MUSW__Primary_Licensee__r.Business_Website__c,MUSW__Primary_Licensee__r.Email__c,
                             Original_Issue_Date__c,MUSW__Expiration_Date__c,MUSW__Issue_Date__c,Sub_Status__c,
-                            Application_Type__c,Application_Method__c, FORMAT(LastModifiedDate) LastModifiedDate FROM MUSW__License2__c
+                            Application_Type__c,Application_Method__c, FORMAT(LastModifiedDate) FormattedLastModifiedDate, LastModifiedDate FROM MUSW__License2__c
                             WHERE RecordTypeId =: businessRecordTypeId AND Parent_License__c=:LicenseId AND isBranch_License__c=true ];
             
         }else{
@@ -303,7 +303,7 @@ public with sharing class Add_BusinessController {
                             MUSW__Primary_Licensee__r.Business_Name__c,MUSW__Primary_Licensee__r.Business_Phone__c,
                             MUSW__Primary_Licensee__r.Business_Website__c,MUSW__Primary_Licensee__r.Email__c,
                             Original_Issue_Date__c,MUSW__Expiration_Date__c,MUSW__Issue_Date__c,Sub_Status__c,
-                            Application_Type__c,Application_Method__c, FORMAT(LastModifiedDate) LastModifiedDate FROM MUSW__License2__c
+                            Application_Type__c,Application_Method__c, FORMAT(LastModifiedDate) FormattedLastModifiedDate, LastModifiedDate FROM MUSW__License2__c
                             WHERE RecordTypeId =: businessRecordTypeId AND MUSW__Primary_Licensee__c =:accountId];
         }
         
@@ -333,7 +333,7 @@ public with sharing class Add_BusinessController {
                                                        Attestation__c,Attestation_Date__c,MUSW__Completion_Date__c,License__c,License__r.Name,
                                                        License_ID__c,Credential_Type__c,Application_Type__c,Request_Type__c,MUSW__Account__r.RecordTypeId,
                                                        MUSW__Status__c,Stage__c,Submitted_Date__c,MUSW__Type__c,MUSW__Total_Payments__c,
-                                                       MUSW__Total_Fees__c,MUSW__Total_Balance__c,Branch_License__c,isRenewal__c,FORMAT(LastModifiedDate) LastModifiedDate,
+                                                       MUSW__Total_Fees__c,MUSW__Total_Balance__c,Branch_License__c,isRenewal__c,FORMAT(LastModifiedDate) FormattedLastModifiedDate, LastModifiedDate,
                                                        MUSW__Issued_Number__c,Parent_License__c,
                                                        Reason_for_Submitting_Service_Request__c 
                                                        FROM MUSW__Application2__c WHERE MUSW__Status__c IN :statusFilterList AND MUSW__Account__c =: accountId];
@@ -357,7 +357,7 @@ public with sharing class Add_BusinessController {
         system.debug('businessRecordTypeId---'+businessRecordTypeId);
         List<Renewal_Application__c> renewalAppList = [SELECT Additional_Address__c,Applicant__c,Application_Type__c,Application__c,AttestationFullName__c,Attestation_Date__c,Attestation__c,
                                                        Auto_Renew__c,Bad_Check__c,Business_License__c,CE_Hours__c,Community_Address__c,Community_ID_Number__c,Community_Name__c,Community_Owner__c,
-                                                       County__c,Credential_Type__c,Credential__c,External_Id__c,External_source_c__c,Generate_Invoice__c,Id,FORMAT(LastModifiedDate) LastModifiedDate,Licensee__c,
+                                                       County__c,Credential_Type__c,Credential__c,External_Id__c,External_source_c__c,Generate_Invoice__c,Id,FORMAT(LastModifiedDate) FormattedLastModifiedDate, LastModifiedDate,Licensee__c,
                                                        License_Application__c,License_Number__c,License__c,Makes_of_Homes_to_be_Sold__c,MHC_Application_Type__c,Model_Year__c,Name,No_Fee_Required__c,
                                                        No_Fee__c,OwnerId,Permit_Type__c,Permit__c,Program_Area__c,RecordTypeId,Renewal_Expiration_Date__c,Renewal_Reinstatement_Type__c,Renewal_Status__c,
                                                        Renewed_Date__c,Responsible_Party_Type__c,Sales_Tax_Seller_Permit_Number__c,Section_Number__c,Special_Accommodation_Request__c,Total_Balance__c,
@@ -379,7 +379,7 @@ public with sharing class Add_BusinessController {
                                                MUSW__Primary_Licensee__r.Business_Name__c,MUSW__Primary_Licensee__r.Business_Phone__c,
                                                MUSW__Primary_Licensee__r.Business_Website__c,MUSW__Primary_Licensee__r.Email__c,
                                                Original_Issue_Date__c,MUSW__Expiration_Date__c,MUSW__Issue_Date__c,Sub_Status__c,
-                                               Application_Type__c,Application_Method__c,FORMAT(LastModifiedDate) LastModifiedDate FROM MUSW__License2__c
+                                               Application_Type__c,Application_Method__c,FORMAT(LastModifiedDate) FormattedLastModifiedDate, LastModifiedDate FROM MUSW__License2__c
                                                WHERE RecordTypeId =: businessRecordTypeId  ];
         return licenseList;
     }catch(Exception ex)
@@ -919,7 +919,7 @@ public with sharing class Add_BusinessController {
             
             List<String> columnHeaderList = new List<String>{'Request','Request Type', 'Request Against', 'Status'};
                 List<String> statusFilterList = new List<String>{'Under Review'};
-                    List<SObject> columnDataList = [Select  id,name,License_Type__c, Service_Request_Type__c, FORMAT(LastModifiedDate) LastModifiedDate
+                    List<SObject> columnDataList = [Select  id,name,License_Type__c, Service_Request_Type__c, FORMAT(LastModifiedDate) FormattedLastModifiedDate, LastModifiedDate
                                                     from Request__c
                                                     where Status__c IN :statusFilterList AND Account__c=:accountID  ORDER BY CreatedDate asc];
             
