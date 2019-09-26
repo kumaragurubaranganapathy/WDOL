@@ -182,6 +182,98 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>Branch_of_Engineering__c</fullName>
+        <externalId>false</externalId>
+        <label>Branch of Engineering</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Agricultural &amp; Biological</fullName>
+                    <default>false</default>
+                    <label>Agricultural &amp; Biological</label>
+                </value>
+                <value>
+                    <fullName>Architectural</fullName>
+                    <default>false</default>
+                    <label>Architectural</label>
+                </value>
+                <value>
+                    <fullName>Chemical</fullName>
+                    <default>false</default>
+                    <label>Chemical</label>
+                </value>
+                <value>
+                    <fullName>Civil</fullName>
+                    <default>false</default>
+                    <label>Civil</label>
+                </value>
+                <value>
+                    <fullName>Control Systems</fullName>
+                    <default>false</default>
+                    <label>Control Systems</label>
+                </value>
+                <value>
+                    <fullName>Electrical</fullName>
+                    <default>false</default>
+                    <label>Electrical</label>
+                </value>
+                <value>
+                    <fullName>Environmental</fullName>
+                    <default>false</default>
+                    <label>Environmental</label>
+                </value>
+                <value>
+                    <fullName>Fire Protection</fullName>
+                    <default>false</default>
+                    <label>Fire Protection</label>
+                </value>
+                <value>
+                    <fullName>Industrial</fullName>
+                    <default>false</default>
+                    <label>Industrial</label>
+                </value>
+                <value>
+                    <fullName>Mechanical</fullName>
+                    <default>false</default>
+                    <label>Mechanical</label>
+                </value>
+                <value>
+                    <fullName>Metallurgical and Materials</fullName>
+                    <default>false</default>
+                    <label>Metallurgical and Materials</label>
+                </value>
+                <value>
+                    <fullName>Mining and Mineral Processing</fullName>
+                    <default>false</default>
+                    <label>Mining and Mineral Processing</label>
+                </value>
+                <value>
+                    <fullName>Naval Architect/Marine</fullName>
+                    <default>false</default>
+                    <label>Naval Architect/Marine</label>
+                </value>
+                <value>
+                    <fullName>Nuclear</fullName>
+                    <default>false</default>
+                    <label>Nuclear</label>
+                </value>
+                <value>
+                    <fullName>Petroleum</fullName>
+                    <default>false</default>
+                    <label>Petroleum</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
     <fields>
         <fullName>Portal_URL__c</fullName>
         <externalId>false</externalId>
