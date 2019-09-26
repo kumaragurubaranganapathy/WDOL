@@ -1276,6 +1276,34 @@
                     toastEvent.fire();
                 }     
             }
+			else if(licenseWrapper[tabNumber].subheader === "Attachments"){
+				var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
+				var validateFields = fieldsWrapper.every(function(item){
+					if(item.isMandatorySub){
+						if(item.multiValues.length != undefined && item.multiValues.length > 0){
+							return true;
+						}
+						else{
+							return false;
+						}
+					}else{
+						return true;
+					}
+				});
+				if(validateFields){
+					component.set("v.nextFlag", true);
+				}
+				else{
+					component.set("v.nextFlag", false);
+					var toastEvent = $A.get("e.force:showToast");
+					toastEvent.setParams({
+						"title": "ERROR!",
+						"message": "Please upload the required attachments.",
+						"type": "error"
+					});
+					toastEvent.fire();
+				} 
+			}
             else {
                 component.set("v.nextFlag", true);  
             }
