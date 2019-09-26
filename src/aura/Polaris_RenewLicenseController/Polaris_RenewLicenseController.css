@@ -12,7 +12,7 @@
     font-size: 16px;
 }
 .THIS .Information .slds-form-element__label span{
-    color:t(sentenceclr);
+    color:t(fieldclr);
 }
 .THIS .subheader{
     font-size:1rem;    
@@ -24,7 +24,7 @@
     /*border-bottom:0.5px solid #d6d7d9;*/
 }
 .THIS .field-item .uiOutputRichText{
-    color:t(sentenceclr);
+    color:t(fieldclr);
     font-size:t(fieldlabelsize);
 }
 .THIS .field-item .revAndSubCompletionFont .uiOutputRichText{
@@ -47,17 +47,17 @@
     padding-bottom: 25px;
 }
 .THIS .certificate-checkbox .slds-checkbox__label span{
-    color:t(sentenceclr);
+    color:t(fieldclr);
 }
 .THIS .Information .slds-text-longform{
-    color:t(sentenceclr);
+    color:t(fieldclr);
 }
 .THIS .Guarantee .slds-text-longform{
     color:t(fieldclr);
 }
 .THIS .slds-form-element__label{
     font-size: t(fieldlabelsize); 
-    color:t(sentenceclr);
+    color:t(fieldclr);
     word-break: normal;
     overflow-wrap: normal;
 }
@@ -72,7 +72,7 @@
 }
 .THIS .sectiondetail{
    font-size:t(fieldlabelsize);
-    color:t(sentenceclr);
+    color:t(fieldclr);
 }
 .THIS .field-item.attest-item{
     padding-right:0;
@@ -389,4 +389,15 @@
     .THIS .info{
         padding-left: 23px;
     }
+}
+.THIS .toastTitle {
+    font-family: t(merrifontfamily);
+}
+.THIS .toastIcon svg.slds-icon {
+    width: 24px;
+    height: 24px;
+    fill: t(fieldclr);
+}
+.THIS .forceToastMessage {
+    height: auto;
 }

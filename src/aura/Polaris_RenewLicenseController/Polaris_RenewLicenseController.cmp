@@ -68,11 +68,23 @@
         <span class="page-info">You are applying for {!v.RenewReinstate} of <span class="italic">{!v.licenseType}</span> under <span class="italic">{!v.board}</span> <!--by <span class="italic">{!v.applicationType}</span>--></span>
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}"/>
         <aura:if isTrue="{!v.showErrorMsgs}">
-            <ul class="error uiMessage">
-                <aura:iteration items="{!v.errorMsgsList}" var="item">
-            		<li>{!item}</li>
-            	</aura:iteration>
-            </ul>
+            <div class="toastContainer slds-notify_container slds-is-relative">
+                <div class="slds-theme--error slds-notify--toast slds-notify slds-notify--toast forceToastMessage" data-key="error" role="alert" data-aura-class="forceToastMessage">
+                    <lightning:icon class="toastIcon slds-m-right--small slds-no-flex slds-align-top" iconName="utility:error" alternativeText="Error!" variant="error"/>
+                    <div class="toastContent slds-notify__content">
+                        <div class="slds-align-middle slds-hyphenate">
+                            <div class="toastTitle slds-text-heading--small">Error!</div>
+                            <span class="toastMessage forceActionsText" data-aura-class="forceActionsText">
+                                <ul class="">
+                                    <aura:iteration items="{!v.errorMsgsList}" var="item">
+                                        <li>{!item}</li>
+                                    </aura:iteration>
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </aura:if>
         <aura:if isTrue="{!v.showEndoMessage}">
             <ui:message title="Warning" severity="warning" closable="true">

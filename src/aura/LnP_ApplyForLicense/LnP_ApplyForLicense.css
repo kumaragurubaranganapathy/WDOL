@@ -15,7 +15,7 @@
     color:t(fieldclr);
 }
 .THIS .License .slds-form-element__label .slds-text-longform{
-    color:t(sentenceclr);
+    color:t(fieldclr);
 }
 .THIS .validate .no-help{
     width:80%;
@@ -35,7 +35,7 @@ display:none;
     color:t(fieldclr);
 }
 .THIS .disptest .slds-rich-text-editor__output span{
-    color:t(sentenceclr);
+    color:t(fieldclr);
 }
 
 .THIS .quesclr .uiOutputRichText,.THIS .revAndSubCompletionFont .uiOutputRichText{
@@ -77,7 +77,7 @@ display:none;
 }
 .THIS .slds-form-element__label,.THIS .slds-form-element__label span{
     font-size: 14px; 
-    color:t(sentenceclr);
+    color:t(fieldclr);
     word-break: normal;
     overflow-wrap: normal;
 }
@@ -353,7 +353,7 @@ color: t(primary);
 }
 .THIS .validate .slds-form-element__label .uiOutputRichText span span span{
     font-size: t(fieldlabelsize);
-    color: t(sentenceclr);
+    color: t(fieldclr);
     word-break: normal;
     overflow-wrap: normal;
     font-family: t(publicSansfontfamily);
@@ -486,7 +486,16 @@ color: t(primary);
     }
     .THIS .addRecbtn{
         padding:5px;
-    }
-    
-    
+    }   
+}
+.THIS .toastTitle {
+    font-family: t(merrifontfamily);
+}
+.THIS .toastIcon svg.slds-icon {
+    width: 24px;
+    height: 24px;
+    fill: t(fieldclr);
+}
+.THIS .forceToastMessage {
+    height: auto;
 }
