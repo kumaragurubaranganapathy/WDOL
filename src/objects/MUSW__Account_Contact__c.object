@@ -87,6 +87,17 @@
         <unique>true</unique>
     </fields>
     <fields>
+        <fullName>Portal_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>$Label.OrgURLForPDF</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Portal_URL</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Associate_Status__c</fullName>
         <description>Associate Status between Account and Contact</description>
         <externalId>false</externalId>

@@ -161,6 +161,17 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>License_Portal_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>$Label.OrgURLForPDF</formula>
+        <label>License Portal URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Days_From_Today_30__c</fullName>
         <description>30 days from current date</description>
         <externalId>false</externalId>

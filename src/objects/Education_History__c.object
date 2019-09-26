@@ -116,6 +116,16 @@ HYPERLINK(&apos;https://wadolbuspro-dev.lightning.force.com/lightning/r/Contact/
         </valueSet>
     </fields>
     <fields>
+        <fullName>License_Portal_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>$Label.OrgURLForPDF</formula>
+        <label>License Portal URL</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Application__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>

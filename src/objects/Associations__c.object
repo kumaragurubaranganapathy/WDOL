@@ -614,6 +614,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>License_Portal_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>$Label.OrgURLForPDF</formula>
+        <label>License Portal URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>License_Program_Email__c</fullName>
         <description>Formula field for License Program Type to be used on email templates</description>
         <externalId>false</externalId>
