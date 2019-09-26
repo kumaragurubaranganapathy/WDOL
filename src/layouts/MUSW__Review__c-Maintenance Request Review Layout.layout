@@ -29,6 +29,10 @@
                 <behavior>Readonly</behavior>
                 <field>Miliatary__c</field>
             </layoutItems>
+			<layoutItems>
+				<behavior>Readonly</behavior>
+				<field>Military_Spouse__c</field>
+			</layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Review_Type__c</field>
@@ -45,10 +49,7 @@
                 <behavior>Edit</behavior>
                 <field>Review_for_del__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Military_Spouse__c</field>
-            </layoutItems>
+
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
