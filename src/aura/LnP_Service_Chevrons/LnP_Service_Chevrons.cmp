@@ -179,7 +179,8 @@
                                             </div>
                                         </aura:iteration>
                                     </div>
-									</aura:if>
+                                     
+                                    </aura:if>
                                     <!--<div id="certificationsValidation" class='field-item'> 
                                         <div class="reviewHeading certifications">CERTIFICATIONS</div><br/>
                                         <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
@@ -239,9 +240,12 @@
                                     </div>
                                     <aura:set attribute="else">
                                         <div class="{!((varSection+1)==v.currentTab)?'section-wrapper':'slds-hide'}">
+                                            <aura:if isTrue="{!section.sectionName=='Attachments'}">
+                                                <h2 class="headings underline">Attachments</h2><br/>
+                                            </aura:if>                                            
                                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
-                                                <div class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection=='General Questions'?'Request Information':question.questionSection}</div>
-                                                <div class="{!(question.questionSection!='null')?'sectiondetail sentences':'slds-hide'}">{!question.questionSectionDetail}</div>
+                                                <h2 class="{!and(question.questionSection!='null',question.fieldType!='Attachment')?'sectionwidth headings':'slds-hide'}">{!question.questionSection=='General Questions'?'Request Information':question.questionSection}</h2>
+                                                <div class="{!and(question.questionSection!='null',question.fieldType!='Attachment')?'sectiondetail sentences':'slds-hide'}">{!question.questionSectionDetail}</div>
                                                 <aura:if isTrue="{!question.fieldType=='Picklist'}">
                                                     <!--div id="{!'q'+questionItem}" class="{!(question.isChild)?'slds-hide field-item ':'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                         <ui:inputSelect label="{!question.label}" value="{!question.value}" change="{!c.showDependentQuestions}">
@@ -254,10 +258,12 @@
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
                                                         <lightning:select name="{!section.sectionName+questionItem}"  value="{!question.value}" onchange="{!c.showDependentQuestions}">
                                                             <aura:iteration items="{!question.fieldValueOptions}" var="option">
+                                                                
                                                                 <option value="{!option}">{!option}</option>
+                                                                
                                                             </aura:iteration>
                                                         </lightning:select>
-                                                    </div>
+                                                    </div>                                                    
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Radio'}">
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
@@ -321,7 +327,7 @@
                                                 <aura:if isTrue="{!question.fieldType=='Date'}">
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + ' field-item devide-list hiddenLabel slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:input type="date" name="{!section.sectionName+questionItem}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
+                                                        <lightning:input dateStyle="long" type="date" name="{!section.sectionName+questionItem}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!and(question.fieldType=='Attachment',question.uploadFile)}">

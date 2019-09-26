@@ -42,7 +42,7 @@
                     </div>
                     <div class="service-btn-container">
                         <lightning:button variant="neutral" type="cancel" name="cancel"  label="Cancel" class="cancel-button" onclick="{!c.cancel}" />
-                        <lightning:button variant="brand" type="{!v.fieldsValidated?'submit':'button'}"  name="save" label="Save" onclick="{!c.validateFields}" class="add-button" />
+                        <lightning:button variant="brand" type="{!v.fieldsValidated?'submit':'button'}"  name="submit" label="Submit" onclick="{!c.validateFields}" class="add-button" />
                     </div>
                 </div>
             </lightning:recordEditForm>
@@ -88,7 +88,7 @@
             </div>
             <div class="slds-align_absolute-center slds-p-around_medium btnalign ">
                 <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" class="cancel-button" onclick="{!c.cancel}"/>
-                <lightning:button variant="brand" type="submit" name="save" label="Save" onclick="{!c.saveWebsite}" class="add-button"/>
+                <lightning:button variant="brand" type="submit" name="submit" label="Submit" onclick="{!c.saveWebsite}" class="add-button"/>
             </div>
         </aura:if>
         <aura:if isTrue="{!v.showPrintForm}">
