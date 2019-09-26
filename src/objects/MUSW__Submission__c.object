@@ -1327,6 +1327,31 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         <label>RE - Unresolved Submissions</label>
     </listViews>
     <listViews>
+        <fullName>Resolved_Applications</fullName>
+        <columns>NAME</columns>
+        <columns>Validation_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>CustomerEnvelope__c</columns>
+        <columns>Default_Prof_Type__c</columns>
+        <columns>SAN_Image_URL__c</columns>
+        <columns>SAN_File_Link__c</columns>
+        <columns>MUSW__Application2__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>MUSW__Application2__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted,Additional Info. Required,Submitted</value>
+        </filters>
+        <label>Resolved Applications</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>Submissions_Queue_Submission</fullName>
         <columns>NAME</columns>
         <columns>MUSW__Description__c</columns>
@@ -1336,6 +1361,58 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Unresolved_Maintenance_Requests</fullName>
+        <columns>NAME</columns>
+        <columns>Validation_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>CustomerEnvelope__c</columns>
+        <columns>Default_Prof_Type__c</columns>
+        <columns>SAN_Image_URL__c</columns>
+        <columns>SAN_File_Link__c</columns>
+        <columns>Request__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Request__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted,Additional Info. Required,Submitted</value>
+        </filters>
+        <label>Unresolved Maintenance Requests</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Unresolved_Renewals</fullName>
+        <columns>Validation_Number__c</columns>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>CustomerEnvelope__c</columns>
+        <columns>Default_Prof_Type__c</columns>
+        <columns>SAN_Image_URL__c</columns>
+        <columns>SAN_File_Link__c</columns>
+        <columns>MUSW__License2__c</columns>
+        <columns>License_Renewal__c</columns>
+        <columns>Request__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>License_Renewal__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Accepted,Additional Info. Required,Submitted</value>
+        </filters>
+        <label>Unresolved Renewals</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <encryptionScheme>None</encryptionScheme>
