@@ -915,7 +915,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </valueSetDefinition>
         </valueSet>
     </fields>
-   <fields>
+    <fields>
         <fullName>MUSW__Type__c</fullName>
         <deprecated>false</deprecated>
         <description>Scope of the inspection activity to be done.</description>
@@ -931,6 +931,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <sorted>false</sorted>
                 <value>
                     <fullName>Complaint</fullName>
+<<<<<<< HEAD
                     <default>false</default>
                     <label>Complaint</label>
                 </value>
@@ -956,58 +957,15 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 </value>
                 <value>
                     <fullName>Business/School Closing</fullName>
+=======
+>>>>>>> parent of ce40675e... Rahul - Inspection Type Field
                     <default>false</default>
-                    <label>Business/School Closing</label>
+                    <label>Complaint</label>
                 </value>
                 <value>
-                    <fullName>Change Owner</fullName>
+                    <fullName>Reinspection</fullName>
                     <default>false</default>
-                    <label>Change Owner</label>
-                </value>
-                <value>
-                    <fullName>Check Ride</fullName>
-                    <default>false</default>
-                    <label>Check Ride</label>
-                </value>
-                <value>
-                    <fullName>Financial</fullName>
-                    <default>false</default>
-                    <label>Financial</label>
-                </value>
-                <value>
-                    <fullName>Follow-up audit</fullName>
-                    <default>false</default>
-                    <label>Follow-up audit</label>
-                </value>
-                <value>
-                    <fullName>High Risk</fullName>
-                    <default>false</default>
-                    <label>High Risk</label>
-                </value>
-                <value>
-                    <fullName>Initial</fullName>
-                    <default>false</default>
-                    <label>Initial</label>
-                </value>
-                <value>
-                    <fullName>New Owner</fullName>
-                    <default>false</default>
-                    <label>New Owner</label>
-                </value>
-                <value>
-                    <fullName>Observation – Classroom</fullName>
-                    <default>false</default>
-                    <label>Observation – Classroom</label>
-                </value>
-                <value>
-                    <fullName>Observation – Knowledge Exam</fullName>
-                    <default>false</default>
-                    <label>Observation – Knowledge Exam</label>
-                </value>
-                <value>
-                    <fullName>Observation – Skills Exam</fullName>
-                    <default>false</default>
-                    <label>Observation – Skills Exam</label>
+                    <label>Reinspection</label>
                 </value>
                 <value>
                     <fullName>Other</fullName>
@@ -1015,49 +973,59 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <label>Other</label>
                 </value>
                 <value>
-                    <fullName>Pre-License</fullName>
+                    <fullName>High Risk</fullName>
                     <default>false</default>
-                    <label>Pre-License</label>
+                    <label>High Risk</label>
                 </value>
                 <value>
-                    <fullName>Range/Route Review</fullName>
+                    <fullName>Follow-up Inspection</fullName>
                     <default>false</default>
-                    <label>Range/Route Review</label>
+                    <label>Follow-up Inspection</label>
                 </value>
                 <value>
-                    <fullName>Records</fullName>
+                    <fullName>Check Rides</fullName>
                     <default>false</default>
-                    <label>Records</label>
+                    <label>Check Rides</label>
                 </value>
                 <value>
-                    <fullName>Re-inspection</fullName>
+                    <fullName>Exam Observation</fullName>
                     <default>false</default>
-                    <label>Re-inspection</label>
+                    <label>Exam Observation</label>
                 </value>
                 <value>
-                    <fullName>Routine</fullName>
+                    <fullName>Record</fullName>
                     <default>false</default>
-                    <label>Routine</label>
+                    <label>Record</label>
                 </value>
                 <value>
-                    <fullName>Routine Exam</fullName>
+                    <fullName>Skills Observation</fullName>
                     <default>false</default>
-                    <label>Routine Exam</label>
+                    <label>Skills Observation</label>
                 </value>
                 <value>
-                    <fullName>Special/Priority</fullName>
+                    <fullName>Classroom Observation</fullName>
                     <default>false</default>
-                    <label>Special/Priority</label>
+                    <label>Classroom Observation</label>
                 </value>
                 <value>
-                    <fullName>Technical Assistance</fullName>
+                    <fullName>Annual</fullName>
                     <default>false</default>
-                    <label>Technical Assistance</label>
+                    <label>Annual</label>
                 </value>
                 <value>
-                    <fullName>Vehicle Inspection</fullName>
+                    <fullName>Administrative</fullName>
                     <default>false</default>
-                    <label>Vehicle Inspection</label>
+                    <label>Administrative</label>
+                </value>
+                <value>
+                    <fullName>Financial</fullName>
+                    <default>false</default>
+                    <label>Financial</label>
+                </value>
+                <value>
+                    <fullName>Examiner</fullName>
+                    <default>false</default>
+                    <label>Examiner</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
