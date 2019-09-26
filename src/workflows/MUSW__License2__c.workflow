@@ -240,18 +240,6 @@
         <template>DOL_Finance/First_License_Fee</template>
     </alerts>
     <alerts>
-        <fullName>Polaris_License_Expiration_Notice</fullName>
-        <description>Polaris - License Expiration Notice</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>vagoel@deloitte.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>unfiled$public/Polaris_120_days_Renewal_Notice</template>
-    </alerts>
-    <alerts>
         <fullName>Renewal_reminder_business</fullName>
         <description>Renewal reminder - business</description>
         <protected>false</protected>
