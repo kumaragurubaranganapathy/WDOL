@@ -10,10 +10,10 @@
     <aura:attribute name="DraftNewLicenseApplicationColumns" type="List" default="['Profession','License Type','Application Method','Last Updated','Actions']" />
     <aura:attribute name="DraftNewLicenseApplicationsData" type="List" default="" />
     
-    <aura:attribute name="DraftRenewalApplicationColumns" type="List" default="['License #','Profession','License Type', 'Last Updated','Actions']" />
+    <aura:attribute name="DraftRenewalApplicationColumns" type="List" default="['License','Profession','License Type', 'Last Updated','Actions']" />
     <aura:attribute name="DraftRenewalApplicationsData" type="List" default="" />
     
-    <aura:attribute name="DraftMaintenanceRequestApplicationColumns" type="List" default="['Request #','Request Type','Request Against','Status','Actions']" />
+    <aura:attribute name="DraftMaintenanceRequestApplicationColumns" type="List" default="['Request','Request Type','Request Against','Status','Actions']" />
     <aura:attribute name="DraftMaintenanceRequestApplicationsData" type="List" default="" />
     
     <aura:attribute name="applicationList" type="List" />
@@ -157,7 +157,7 @@
                                     </td>
                                     <td data-label="Last Updated" class="cell-style">
                                         <aura:if isTrue="{!tableData.LastModifiedDate}">
-                                            <div class="slds-truncate" title="{!tableData.LastModifiedDate}"><ui:outputDateTime value="{!tableData.LastModifiedDate}"/></div>
+                                            <div class="slds-truncate" title="{!tableData.FormattedLastModifiedDate}"><ui:outputDateTime value="{!tableData.LastModifiedDate}" format="MMMM DD, YYYY hh:mm a" /></div>
                                             <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
@@ -236,7 +236,7 @@
                                     </td>
                                     <td data-label="Last Updated" class="cell-style">
                                         <aura:if isTrue="{!tableData.LastModifiedDate}">
-                                            <div class="slds-truncate" title="{!tableData.LastModifiedDate}"><ui:outputDateTime value="{!tableData.LastModifiedDate}"/></div>
+                                            <div class="slds-truncate" title="{!tableData.FormattedLastModifiedDate}"><ui:outputDateTime value="{!tableData.LastModifiedDate}" format="MMMM DD, YYYY hh:mm a"/></div>
                                             <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>
@@ -310,7 +310,7 @@
                                     </td>                                    
                                     <td data-label="Last Updated" class="cell-style">
                                         <aura:if isTrue="{!tableData.LastModifiedDate}">
-                                            <div class="slds-truncate" title="{!tableData.LastModifiedDate}"><ui:outputDateTime value="{!tableData.LastModifiedDate}"/></div>
+                                            <div class="slds-truncate" title="{!tableData.FormattedLastModifiedDate}"><ui:outputDateTime value="{!tableData.LastModifiedDate}" format="MMMM DD, YYYY hh:mm a" /></div>
                                             <aura:set attribute="else">None</aura:set>
                                         </aura:if>
                                     </td>

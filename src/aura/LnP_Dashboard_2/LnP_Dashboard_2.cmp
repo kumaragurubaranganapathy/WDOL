@@ -383,9 +383,9 @@
                                                                     <div class="slds-truncate">{!tableData.Status__c}</div>
                                                                 </td>
                                                                 <td data-label="Last Updated" class="cell-style">
-                                                                    <div class="slds-truncate">
+                                                                    <div class="slds-truncate" title="{!tableData.FormattedLastModifiedDate}">
                                                                         <ui:outputDateTime
-                                                                                           value="{!tableData.LastModifiedDate}"
+                                                                                           value="{!tableData.LastModifiedDate}" format="MMMM DD,YYYY hh:mm a"
                                                                                            />
                                                                     </div>
                                                                 </td>
@@ -989,9 +989,10 @@
                                                                 </div>
                                                             </td>
                                                             <td data-label="Last updated" class="cell-style">
-                                                                <div class="slds-truncate" title="{!tableData.LastModifiedDate}">
+                                                                <div class="slds-truncate" title="{!tableData.FormattedLastModifiedDate}">
                                                                     <ui:outputDateTime
-                                                                                       value="{!tableData.LastModifiedDate}"
+                                                                                       value="{!tableData.LastModifiedDate}" format="MMMM DD, YYYY hh:mm a"
+                                                                                       
                                                                                        />
                                                                 </div>
                                                             </td>
@@ -1075,9 +1076,9 @@
                                                                 </div>
                                                             </td>
                                                             <td data-label="Last updated" class="cell-style">
-                                                                <div class="slds-truncate" title="{!tableData.LastModifiedDate}">
+                                                                <div class="slds-truncate" title="{!tableData.FormattedLastModifiedDate}">
                                                                     <ui:outputDateTime
-                                                                                       value="{!tableData.LastModifiedDate}"
+                                                                                       value="{!tableData.LastModifiedDate}" format="MMMM DD, YYYY hh:mm a"
                                                                                        />
                                                                 </div>
                                                             </td>
@@ -1146,9 +1147,9 @@
                                                                 <div class="slds-truncate" title="{!tableData.Status__c}">{!tableData.Status__c}</div>
                                                             </td>
                                                             <td data-label="Last updated" class="cell-style">
-                                                                <div class="slds-truncate" title="{!tableData.LastModifiedDate}">
+                                                                <div class="slds-truncate" title="{!tableData.FormattedLastModifiedDate}">
                                                                     <ui:outputDateTime
-                                                                                       value="{!tableData.LastModifiedDate}"
+                                                                                       value="{!tableData.LastModifiedDate}" format="MMMM DD, YYYY hh:mm a"
                                                                                        />
                                                                 </div>
                                                             </td>
