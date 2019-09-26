@@ -191,7 +191,12 @@ public class DOL_AppConstants {
     public static final String CONFIRM_STRING = 'confirm';
     public static final String FEE_STRING = 'fees';
     public static final String REVIEW_STRING = 'review';
-    Public static final String DEPOSIT_STRING = 'Deposit';
+    public static final String DEPOSIT_STRING = 'Deposit';
+	public static final String COMPLETE_STRING = 'Complete';
+    public static final String TEMP_STRING = 'temp';
+    public static final String COUNTER_STRING = 'Counter';
+    public static final String PORTAL_STRING = 'Portal';
+    public static final String SELECT_STRING_WITH_SPACE = 'SELECT ';
     Public static final String FEE_PAYMENT_SOQL_QUERY_STRING = 'SELECT MUSW__Fee__r.License_Number__c, MUSW__Fee__r.portal_name__c, MUSW__Fee__r.Application_Type__c,'
             +'MUSW__Fee__r.License_Type__c, MUSW__Fee__r.Application_Method__c, MUSW__Fee__r.MUSW__Amount__c, MUSW__Payment_Amount__c,'
             +'MUSW__Fee__r.MUSW__Outstanding_Fee__c, Id, MUSW__Fee__c,BGBK__Invoice__c,'

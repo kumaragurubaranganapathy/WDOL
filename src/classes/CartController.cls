@@ -90,7 +90,7 @@ public with sharing class CartController
     
     public CartController(ApexPages.StandardSetController c)
     {
-        checkOptionName = 'Check/Cashier\'s Check'; // Added as a part of bug 6337 by Abhilasha
+        checkOptionName = DOL_AppConstants.CASHIER_CHECK;//'Check/Cashier\'s Check'; // Added as a part of bug 6337 by Abhilasha
         processSuccessful = false;
         totalSelected = 0;
         totalSelectedOutstanding = 0;
@@ -115,7 +115,7 @@ public with sharing class CartController
         
         encryptedSessionInfo = System.currentPageReference().getParameters().get('session');
         if( encryptedSessionInfo != null){
-            activeTab = 'confirm';
+            activeTab = DOL_AppConstants.CONFIRM_STRING;//'confirm';
             requestFromEPayment = true;
             String decryptedSessionData = DOL_ePaymentSessionTransfer.decryptSessionData(encryptedSessionInfo);
             ePaymentReturnSession = new DOL_ePaymentReturnSession();
@@ -123,7 +123,7 @@ public with sharing class CartController
             m_cartId = ePaymentReturnSession.SFDCId;
         }
         else{
-            activeTab = 'fees';
+            activeTab = DOL_AppConstants.FEE_STRING;//'fees';
             requestFromEPayment = false; 
             m_pid = System.currentPageReference().getParameters().get('id');
             isBLic = System.currentPageReference().getParameters().get('isBLic');
@@ -217,7 +217,7 @@ public with sharing class CartController
          //clearoff account id from contact US 1976
          
         if(isPortalUser && objContact.BusinessCartToOpen__c != ''){
-            objContact.BusinessCartToOpen__c ='';
+            objContact.BusinessCartToOpen__c =DOL_AppConstants.NULL_EMPTY_STRING;//'';
             update objContact;
         }
         
@@ -299,7 +299,7 @@ public with sharing class CartController
                             onPaymentConfirmation();
                        }
                        else{
-                            receipt.Status__c = 'Complete';
+                            receipt.Status__c = DOL_AppConstants.COMPLETE_STRING;//'Complete';
                             receipt.MUSW__Amount_Tendered__c = null;
                             rs.add(receipt);
                             ReceiptVO newReceiptVO = new ReceiptVO(receipt, Decimal.valueOf(ePaymentReturnSession.PaymentAmount), m_rs);
@@ -357,7 +357,7 @@ public with sharing class CartController
             // remove invoiced fees from cart
             Set<Id> feesToRemove = new Set<Id>();
             Map<Id, BGBK__Bill__c> invoicesToAdd = new Map<Id, BGBK__Bill__c>();
-            String invoicedFees = '';
+            String invoicedFees = DOL_AppConstants.NULL_EMPTY_STRING;//'';
             for (MUSW__Fee__c f : fees)
             {
                 if (f.BGBK__Invoice__c != null)
@@ -599,7 +599,7 @@ public with sharing class CartController
         fees = m_cs.getCartFees(true);
         invoices = m_cs.getCartInvoices(true);
         deposits = m_cs.getCartDeposits(true);
-        activeTab = 'fees';
+        activeTab = DOL_AppConstants.FEE_STRING;//'fees';
         return;
     }
 
@@ -638,7 +638,7 @@ public with sharing class CartController
                 isGatewayRequiredforPaymentMethod = true;    
         }
         
-        activeTab = 'checkout';
+        activeTab = DOL_AppConstants.CHECKOUT_STRING;//'checkout';
         
         /*// we need to let user switch between Select Fee tab and Pay Fees tab, we need to requery fees
         fees = m_cs.getCartFees(true);*/
@@ -697,7 +697,7 @@ public with sharing class CartController
             ApexPages.addMessage(myMsg);
             return;
         }
-        activeTab = 'review';
+        activeTab = DOL_AppConstants.REVIEW_STRING;//'review';
          
         ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'No payment gateway is integrated with the system for credit card payment. Please select other payment methods and proceed.');
         ApexPages.addMessage(myMsg);
@@ -726,7 +726,7 @@ public with sharing class CartController
         if(receipt.Status__c == 'Complete'){
             paymentProcessed = true;// Here True means this transaction already processed by RTPC call.
         }
-        receipt.Status__c = 'Complete';
+        receipt.Status__c = DOL_AppConstants.COMPLETE_STRING;//'Complete';
         receipt.MUSW__Paid_By__c=(a != null)?a.Id:null;
         receipt.MUSW__Receipt_Paid_by__c=conId;
         receipt.MUSW__Payment_Gateway_Transaction_Number__c = transactionConformationId;
@@ -751,7 +751,7 @@ public with sharing class CartController
         if(receiptVOs.size() > 0 && receiptVOs[0].pmtMethodSelected != 'Deposit') {
             pmtSelected = pmtMethods[0].getValue();
         } else {
-            pmtSelected = 'Deposit';
+            pmtSelected = DOL_AppConstants.DEPOSIT_STRING;//'Deposit';
         }
         MUSW__Receipt__c r = new MUSW__Receipt__c(MUSW__Payment_Method__c=pmtSelected, MUSW__Paid_By__c=paidBy, MUSW__Receipt_Paid_by__c=conId, BGBK__Cart__c=cart.Id);
         rs.add(r);
@@ -1012,12 +1012,12 @@ public with sharing class CartController
     
     // Below Method will be called in Case ePayment Confirmation
     public void onPaymentConfirmation(){
-        String feePaymentQuery = 'SELECT MUSW__Fee__r.License_Number__c, MUSW__Fee__r.portal_name__c, MUSW__Fee__r.Application_Type__c,'
+        String feePaymentQuery = DOL_AppConstants.FEE_PAYMENT_SOQL_QUERY_STRING;/*'SELECT MUSW__Fee__r.License_Number__c, MUSW__Fee__r.portal_name__c, MUSW__Fee__r.Application_Type__c,'
             +'MUSW__Fee__r.License_Type__c, MUSW__Fee__r.Application_Method__c, MUSW__Fee__r.MUSW__Amount__c, MUSW__Payment_Amount__c,'
             +'MUSW__Fee__r.MUSW__Outstanding_Fee__c, Id, MUSW__Fee__c,BGBK__Invoice__c,'
             +'BGBK__Invoice__r.Name,BGBK__Invoice__r.BGBK__Balance_Due__c,BGBK__Invoice__r.BGBK__Invoice_Date__c,MUSW__Receipt__c '
             +'FROM MUSW__Fee_Payment__c '
-            +'WHERE MUSW__Receipt__c = :receiptId';
+            +'WHERE MUSW__Receipt__c = :receiptId';*/
         feePayments = (List<MUSW__Fee_Payment__c>)Database.query(feePaymentQuery);
         for(MUSW__Fee_Payment__c fp : feePayments){
             fp.BGBK__Cart__c = cart.Id;
@@ -1125,7 +1125,7 @@ public with sharing class CartController
             return;
         }
         
-        activeTab = 'confirm';
+        activeTab = DOL_AppConstants.CONFIRM_STRING;//'confirm';
 
         if(cart.BGBK__Contact__c != null && cart.BGBK__Contact__r.Name == null) {
             Contact c = [SELECT Name,Email,AccountId From Contact WHERE Id =:cart.BGBK__Contact__c];
@@ -1161,10 +1161,10 @@ public with sharing class CartController
             //Added by Nazneen on 31/05 to capture inatke method for portal and counter type of receipts
             if(receipt.Intake_Method__c == null || receipt.Intake_Method__c == ''){
                 if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || !isPortalUser){ // added as a part of bug 2164
-                    receipt.Intake_Method__c='Counter';
+                    receipt.Intake_Method__c=DOL_AppConstants.COUNTER_STRING;//'Counter';
                 }
                 else{
-                    receipt.Intake_Method__c='Portal';
+                    receipt.Intake_Method__c=DOL_AppConstants.PORTAL_STRING;//'Portal';
                 }
             }
             //rsAmt.put(receipt, rvo.amount);
@@ -1287,8 +1287,8 @@ public with sharing class CartController
     public void createReceiptForPaymentGateway(){
         MUSW__Receipt__c receipt = receiptVOs[0].r;
         receipt.BGBK__Cart__c = cart.Id;
-        receipt.Status__c = 'Draft';
-        receipt.MUSW__Payment_Gateway_Transaction_Number__c = 'temp'; // BG Case 10041
+        receipt.Status__c = DOL_AppConstants.DRAFT_STRING;//'Draft';
+        receipt.MUSW__Payment_Gateway_Transaction_Number__c = DOL_AppConstants.TEMP_STRING;//'temp';   // BG Case 10041
         List<String> feeIds = new List<String>();
         for (FeeVO feeVo : feeVOs){
             if (feeVo.isSelected){
@@ -1301,10 +1301,10 @@ public with sharing class CartController
         BGBK__Cart__c cartForIMCheck= [SELECT Id, Name, BGBK__Account__c, BGBK__BG_Payment_Batch__r.id FROM BGBK__Cart__c where Id=: cart.Id];
          if(receipt.Intake_Method__c == null || receipt.Intake_Method__c == ''){
             if(cartForIMCheck.BGBK__BG_Payment_Batch__c != null || !isPortalUser){ // added as a part of bug 2164
-                receipt.Intake_Method__c='Counter';
+                receipt.Intake_Method__c=DOL_AppConstants.COUNTER_STRING;//'Counter';
             }
             else{
-                receipt.Intake_Method__c='Portal';
+                receipt.Intake_Method__c=DOL_AppConstants.PORTAL_STRING;//'Portal';
             }
            }
         // defect 4999 ends here
@@ -1476,7 +1476,7 @@ public with sharing class CartController
         }
         
         // reset itemsUnselected
-        itemsUnselected = '';
+        itemsUnselected = DOL_AppConstants.NULL_EMPTY_STRING;//'';
         updateTotal();
     }
     
@@ -1696,7 +1696,7 @@ public with sharing class CartController
     */
     private List<MUSW__Fee_Payment__c> queryFeePayments(Set<Id> receiptIds){
         List<Schema.FieldSetMember> fieldSets = SObjectType.MUSW__Fee_Payment__c.FieldSets.BGBK__Feebasic.getFields();
-        String query = 'SELECT ';
+        String query = DOL_AppConstants.SELECT_STRING_WITH_SPACE;//'SELECT ';
 
         //Populate fields from field set
         for(Schema.FieldSetMember f : fieldSets) {
@@ -1720,7 +1720,7 @@ public with sharing class CartController
     */
     private List<MUSW__Fee_Payment__c> queryFeePaymentsById(Set<Id> ids){
         List<Schema.FieldSetMember> fieldSets = SObjectType.MUSW__Fee_Payment__c.FieldSets.BGBK__Feebasic.getFields();
-        String query = 'SELECT ';
+        String query = DOL_AppConstants.SELECT_STRING_WITH_SPACE;//'SELECT ';
 
         //Populate fields from field set
         for(Schema.FieldSetMember f : fieldSets) {
@@ -1755,7 +1755,7 @@ public with sharing class CartController
         }
 
         List<Schema.FieldSetMember> fieldSets = SObjectType.MUSW__Payable_Receipt__c.FieldSets.BGBK__Deposit_Basic.getFields();
-        String query = 'SELECT ';
+        String query = DOL_AppConstants.SELECT_STRING_WITH_SPACE;//'SELECT ';
 
         //Populate fields from field set
         for(Schema.FieldSetMember f : fieldSets) {
@@ -2075,7 +2075,7 @@ public with sharing class CartController
 	
 	//Added by Abhilasha as a part of bug 6264
     public void returnToPrevPage(){
-        activeTab = 'fees';
+        activeTab = DOL_AppConstants.FEE_STRING;//'fees';
     }
 
 }
