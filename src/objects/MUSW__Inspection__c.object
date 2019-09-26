@@ -935,31 +935,6 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <label>Complaint</label>
                 </value>
                 <value>
-                    <fullName>Annual</fullName>
-                    <default>false</default>
-                    <label>Annual</label>
-                </value>
-                <value>
-                    <fullName>Check Rides</fullName>
-                    <default>false</default>
-                    <label>Check Rides</label>
-                </value>
-                <value>
-                    <fullName>Administrative</fullName>
-                    <default>false</default>
-                    <label>Administrative</label>
-                </value>
-                <value>
-                    <fullName>Classroom Observation</fullName>
-                    <default>false</default>
-                    <label>Classroom Observation</label>
-                </value>
-                <value>
-                    <fullName>Business/School Closing</fullName>
-                    <default>false</default>
-                    <label>Complaint</label>
-                </value>
-                <value>
                     <fullName>Reinspection</fullName>
                     <default>false</default>
                     <label>Reinspection</label>
@@ -978,6 +953,11 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <fullName>Follow-up Inspection</fullName>
                     <default>false</default>
                     <label>Follow-up Inspection</label>
+                </value>
+                <value>
+                    <fullName>Check Rides</fullName>
+                    <default>false</default>
+                    <label>Check Rides</label>
                 </value>
                 <value>
                     <fullName>Exam Observation</fullName>
@@ -7434,7 +7414,7 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
             <values>
                 <fullName>Landscape Architects</fullName>
                 <default>false</default>
-            </values>>
+            </values>
             <values>
                 <fullName>Notary Public</fullName>
                 <default>false</default>
@@ -9224,8 +9204,8 @@ HYPERLINK( &quot;../&quot; &amp; MUSW__Permit__c,MUSW__Permit__r.Name,&quot;_par
         <customTabListAdditionalFields>MUSW__Due_Date__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>MUSW__Priority__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>OWNER.ALIAS</customTabListAdditionalFields>
-        <excludedStandardButtons>Accept</excludedStandardButtons>
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
         <lookupDialogsAdditionalFields>MUSW__Type__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>MUSW__Due_Date__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>MUSW__Priority__c</lookupDialogsAdditionalFields>
