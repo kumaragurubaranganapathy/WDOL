@@ -28,13 +28,7 @@
         	var state = a.getState();
             if (state === "SUCCESS") {
                 console.log("Successfully returned");
-                var name = a.getReturnValue();  
-                if(name!=""){
-                    if(name.includes("Birthdate must be")){
-                        name = "Birthdate must be in the past and Licensee should be 16years or older.";
-                    }
-                }
-               
+                var name = a.getReturnValue();
                 if(name == 'User created successfully'){
                     component.set("v.popupHeader", "Successfully Registered");
                     component.set("v.popupBody", "Please check your email to proceed!!");
@@ -120,7 +114,9 @@
         }
     },
     dateValidation: function(component, event) {
+        console.log('Entered date val');
         var valueVal = component.find("birthdate").get("v.value");
+        console.log('valueVal==' + valueVal);
         var today = new Date();
         var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
         compareDate = new Date(compareDate);
