@@ -5,7 +5,7 @@ public class Dol_RestAPIservice {
     HttpResponse res = new HttpResponse();
         try{
             HttpRequest req = new HttpRequest();
-            String url = 'https://dol-polaris-exp-dev.us-e2.cloudhub.io/api/v1/sosUbi?ubi='+ubi+'&format=json&version=2&callback=?';
+            String url = DOL_AppConstants.DEV_POLARIS_V1_API_URL+'?ubi='+ubi+'&format=json&version=2&callback=?';
             req.setEndpoint('callout:DOL_Mule_API/v1/sosUbi?ubi='+ubi+'&format=json&version=2&callback=?');
             req.setMethod('GET');
             Http http = new Http();
@@ -153,6 +153,34 @@ public class Dol_RestAPIservice {
         } catch (Exception e){
             System.debug('exception occoured'+e.getMessage()+e.getStackTraceString());
             DebugErrorLoggger.LogError(e, '', '','portalUploadToSAN','portalUploadToSAN','portalUploadToSAN Method failed');
+        }
+        return res;
+    }
+    
+    public static HttpResponse getTokenImage(Dol_ViewTiffFile.ImageBody imageBody) {
+    
+    HttpResponse res = new HttpResponse();
+        try{
+            HttpRequest req = new HttpRequest();
+            String url = DOL_AppConstants.DEV_POLARIS_V1_API_URL_GENERATEIMAGETOKEN_URI;
+            req.setEndpoint('callout:DOL_Mule_API/v1/generateImageToken');
+            req.setMethod('POST');
+            req.setHeader('content-type', 'application/json; charset=utf-8');
+            String requestPayload = json.serialize(imageBody);
+            req.setBody(requestPayload);
+            Http http = new Http();
+
+            if(!Test.isRunningTest()) {
+                res = http.send(req);
+                system.debug('getTokenImage response**'+res);
+                system.debug('getTokenImage res=='+res.getBody());
+            }else {
+                res.setBody(Dol_ImageTokenResponse_Test.mockResponse);
+                res.setStatusCode(200);
+            }
+        } catch (Exception e){
+            System.debug('exception occoured'+e.getMessage()+e.getStackTraceString());
+            DebugErrorLoggger.LogError(e, '', '','getTokenImage','getTokenImage','getTokenImage Method failed');
         }
         return res;
     }
