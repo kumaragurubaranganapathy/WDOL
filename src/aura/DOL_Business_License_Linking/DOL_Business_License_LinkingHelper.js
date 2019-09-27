@@ -70,8 +70,8 @@
                         "type": "Success"
                     });
                     toastEvent.fire();
-                    component.set("v.loadingSpinner",false);
-                    toastEvent.fire();
+                //    component.set("v.loadingSpinner",false);
+                //    toastEvent.fire();
                     var urlEvent = $A.get("e.force:navigateToURL");
                     urlEvent.setParams({
                         "url": "/business"
