@@ -74,16 +74,6 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Email - Electronic Notary software provider reminder - after issuance</fullName>
-        <actions>
-            <name>Email_Outbound_Electronic_Notary_software_provider_reminder_after_issuance</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <formula>(TODAY() -  Date_Requested_for_Adding_Endorsement__c = 15) &amp;&amp;  Text(Endorsement_Type__c) == &apos;Eletronic Notary&apos; &amp;&amp;  Text(Name_of_Electronic_Software_Provider__c) == NULL &amp;&amp; CreatedBy.Username &lt;&gt; &apos;Data Administrator&apos;</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Email - Electronic Notary software provider reminder - submission</fullName>
         <actions>
             <name>Email_Outbound_Electronic_Notary_software_provider_reminder_submission</name>
@@ -190,17 +180,6 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Approval notification - supervisor</subject>
-    </tasks>
-    <tasks>
-        <fullName>Email_Outbound_Electronic_Notary_software_provider_reminder_after_issuance</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>Endorsement__c.Current_Datetime__c</offsetFromField>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Email Outbound: Electronic Notary software provider reminder - after issuance</subject>
     </tasks>
     <tasks>
         <fullName>Email_Outbound_Electronic_Notary_software_provider_reminder_submission</fullName>

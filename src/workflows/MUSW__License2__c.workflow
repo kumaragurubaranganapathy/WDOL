@@ -380,16 +380,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Update_Record_Type_Course</fullName>
-        <field>RecordTypeId</field>
-        <lookupValue>Manual_Course</lookupValue>
-        <lookupValueType>RecordType</lookupValueType>
-        <name>Update Record Type - Course</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Update_Record_Type_Individual</fullName>
         <field>RecordTypeId</field>
         <lookupValue>Universal_Default_License_Record_Type</lookupValue>
@@ -1755,24 +1745,6 @@
             <field>MUSW__License2__c.RecordTypeId</field>
             <operation>equals</operation>
             <value>Manual Business</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Record Type Change %28Course%29</fullName>
-        <actions>
-            <name>Update_Record_Type_Course</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Status</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>MUSW__License2__c.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Manual Course</value>
         </criteriaItems>
         <triggerType>onAllChanges</triggerType>
     </rules>
