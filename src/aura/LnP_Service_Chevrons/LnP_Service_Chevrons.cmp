@@ -81,7 +81,7 @@
         </aura:if>
          
         
-        <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" isAMRFlow="true" flowType="{!v.flowType}" />
+        <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" isAMRFlow="true" flowType="{!v.flowType}" feesRequired="{!v.feesRequired}" />
         <aura:if isTrue="{!v.showErrorMsgs}">
             <ul class="error-messages slds-theme_error">
                 <aura:iteration items="{!v.errorMsgsList}" var="item">
@@ -157,7 +157,6 @@
                                             </div>                                            
                                         </aura:iteration>
                                     </div>
-									<aura:if isTrue="{!not(empty(v.attachmentResponse))}">
                                     <aura:if isTrue="{!not(empty(v.attachmentResponse))}">
                                      
                                     <div id="AttachmentValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
@@ -203,8 +202,8 @@
                                         <div class="error checkbox-error slds-m-top_large">{!v.certificateError}</div>
                                     </div>-->
                                     
-                                    <!--<div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="headings declaration">Declaration</div><br/>
+                                    <div id="certificationsValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
+                                        <h2 class="headings declaration">Declaration</h2>
                                         <div class="slds-form-element">
                                             <div class="slds-form-element__control DeclrtnWidth">
                                                 <div class="slds-checkbox declaration-checkbox">
@@ -216,7 +215,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
                                     
                                     <div id="AttestationValidation" class='field-item attest-fields'>                
                                         <h2 class="headings attestation">Signature</h2>
@@ -226,7 +225,6 @@
                                             <span>{!v.currentUser.Name}</span>                                            
                                         </div>
                                         <div class="error attestation-error">{!v.attestationError}</div>
-                                        <div class="slds-m-bottom_small attestBody sentences">I declare, under penalty of perjury under the law of Washington, that all of the information I’ve provided in this application and any associated documents is true, complete, and correct.</div>
                                         <aura:if isTrue="{!v.showMessage}">
                                             <ui:message title="{!v.title}" severity="Error" closable="true">
                                                 
@@ -331,14 +329,16 @@
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
                                                         <lightning:input dateStyle="long" type="date" name="{!section.sectionName+questionItem}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
                                                     </div>
+                                                    
                                                 </aura:if>
                                                 <aura:if isTrue="{!and(question.fieldType=='Attachment',question.uploadFile)}">
+                                                    <!--<h2 class="headings underline">Attachment</h2><br/>-->
                                                     <aura:if isTrue = "{!(question.multiValues.length == 0 &amp;&amp; question.isMandatorySub == true)}">
                                                         <div class="attValidationStyle slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1">
                                                             *
                                                         </div>
                                                     </aura:if>
-													<div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+'field-item'}">
+                                                    <div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+'field-item'}">
                                                         <c:LnP_Attachment appID="{!v.applicationId}" labelQuesions="{!question.label}" docList="{!question.multiValues}" />
                                                     </div>
                                                 </aura:if>
