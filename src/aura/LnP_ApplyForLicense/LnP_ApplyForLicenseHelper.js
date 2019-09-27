@@ -211,7 +211,7 @@
                                     a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].multiValues.toString()}); 
                                 }
                                  else {
-                                   a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value}); 
+                                    a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value, "fieldType":tabsList[key].labelFieldsMap[question].fieldType}); 
                                 }
                                 
                             }                       

@@ -140,12 +140,15 @@
                                                 <!-- <p> -->  
                                                 <aura:if isTrue="{!responses.answer != null}"> 
                                                     <!-- CR    <aura:if isTrue="{! or(responses.answer != null,responses.answer != '')}"> -->
-                                                    <div class = "revAndSubCompletionFont">
-                                                        <ui:outputRichText value="{!responses.answer}"/>
-                                                        <!-- CR <aura:if isTrue="{!and(responses.hasChild, responses.value == No)}" >
-                                                 {!varRes + 1}
-                                                </aura:if>   -->  
-                                                    </div>
+                                                        <div class = "revAndSubCompletionFont">
+                                                            <ui:outputRichText class="{!responses.fieldType == 'Date'?'slds-hide':''}" value="{!responses.answer}"/>
+                                                            <lightning:formattedDateTime class="{!responses.fieldType == 'Date'?'':'slds-hide'}" value="{!responses.answer}"
+                                                                                     year="numeric" month="long" day="2-digit"
+                                                                                     />
+                                                            <!-- CR <aura:if isTrue="{!and(responses.hasChild, responses.value == No)}" >
+                                                     {!varRes + 1}
+                                                    </aura:if>   -->  
+                                                        </div>
                                                     <!-- <h1 style="color:Red;"><i>You Have Not Uploaded/Acknowledged this Attachment Item.<br></br></i></h1> -->
                                                     <aura:set attribute="else">
                                                         <!-- <span class="">Attachment Complete</span>  -->

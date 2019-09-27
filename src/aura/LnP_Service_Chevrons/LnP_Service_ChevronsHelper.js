@@ -204,7 +204,7 @@
                 if(tabsList[key].sectionName =='License Information' || tabsList[key].sectionName =='Request Information'  ){
                     for (var question in tabsList[key].labelFieldsMap){
                         if(tabsList[key].labelFieldsMap[question].renderedOnUi == true){
-                            a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value});
+                            a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value, "fieldType":tabsList[key].labelFieldsMap[question].fieldType}); 
                         }						
                     }
                 }                
