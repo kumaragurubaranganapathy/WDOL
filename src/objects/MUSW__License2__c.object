@@ -1277,10 +1277,6 @@ Original_Issue_Date__c
                 <controllingFieldValue>Landscape Architects</controllingFieldValue>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
                 <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Delegated Municipality</controllingFieldValue>
-                <controllingFieldValue>Manufactured Homes</controllingFieldValue>
-                <controllingFieldValue>Program Unknown</controllingFieldValue>
-                <controllingFieldValue>Misc Payments</controllingFieldValue>
                 <controllingFieldValue>Notary Public</controllingFieldValue>
                 <controllingFieldValue>Geologist</controllingFieldValue>
                 <controllingFieldValue>Timeshares</controllingFieldValue>
@@ -3096,10 +3092,7 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>NoOfDaysExpirePreFuneral__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( 
-   MUSW__Issue_Date__c &lt;  DATE(YEAR(MUSW__Issue_Date__c),MONTH(Date_Fiscal_Year_Ends__c),DAY(Date_Fiscal_Year_Ends__c)), DATE(YEAR(MUSW__Issue_Date__c),MONTH(Date_Fiscal_Year_Ends__c),DAY(Date_Fiscal_Year_Ends__c)) - MUSW__Issue_Date__c,
-   MUSW__Issue_Date__c - DATE(YEAR(MUSW__Issue_Date__c),MONTH(Date_Fiscal_Year_Ends__c),DAY(Date_Fiscal_Year_Ends__c)) 
- )</formula>
+        <formula>if(MUSW__Issue_Date__c &lt; Date_Fiscal_Year_Ends__c, Date_Fiscal_Year_Ends__c-MUSW__Issue_Date__c,MUSW__Issue_Date__c-Date_Fiscal_Year_Ends__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>NoOfDaysExpireToPreFuneralFiscYear</label>
         <precision>18</precision>

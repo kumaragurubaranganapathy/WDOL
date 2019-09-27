@@ -221,12 +221,12 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     },
-    submit : function(component, event, helper) {
+	submit : function(component, event, helper) {
         // var enteredAttestText = component.get("v.attestValue");
         // var userName = component.get("v.currentUser.Name");
         // if(enteredAttestText==userName)
         this.checkboxValidation(component, event);
-        
+        var noFees;
             var action = component.get("c.callCompositeAPI");
             action.setParams({"applicationId" : component.get("v.applicationId"),
                               "description" : component.get("v.Description")});
@@ -239,22 +239,57 @@
                     if(result!=null){
                     
                     component.set("v.storeServerValue", result[0].Id);
-					component.set("v.serverStatus", "success");                     
-                    this.hideSpinner(component, event);
-                    var AMRvalues = component.get("v.amrData");
-                    if(!AMRvalues.Generate_Fee__c)
-                    {
-                        // Set popup property values before displayiong pop up.
-                    component.set("v.popupHeader", "Successfully Submitted");
-                    component.set("v.popupBody", "Thank you for submission of your request.");
-                    //component.set("v.serverStatus", "success"); 
-                    //component.set("v.storeServerValue", result[0].Id);                    
-                    component.set("v.isOpen", true);
-                    }
-                    else
-                    {
-                       helper.closeModel(component, event);
-                    }
+					//component.set("v.serverStatus", "success");                     
+                    try{
+                            return new Promise($A.getCallback(function(resolve) {
+                                var action = component.get("c.getTotalBalance");
+                                action.setParams({"reqId" : result[0].Id });
+                                action.setCallback(this, function(actionResult){
+                                    var state = actionResult.getState();
+                                    if (state === "SUCCESS"){
+                                        console.log("state::"+state);
+                                        noFees = actionResult.getReturnValue();
+                                        resolve(actionResult.getReturnValue());
+                                        console.log("state::"+state);
+                                    }
+                                    
+                                });
+                                $A.enqueueAction(action);
+                            })).then(
+                                $A.getCallback(function(){ 
+                                    var str = '';
+                                    component.set("v.loadingSpinner", false);
+                                    if(noFees){
+                                        
+                                        // below code is for no fees case
+                                       // this.hideSpinner(component,event);
+                                        component.set("v.popupHeader", "Successfully Submitted");
+                                        component.set("v.popupBody", "Thank you for submission of your application.");
+                                        component.set("v.serverStatus", "success"); 
+                                        //component.set("v.storeServerValue", result[0].Id);
+                                        component.set("v.isOpen", true); 
+                                        var isBLic = component.get("v.isbusinsessLicense");
+                                        sessionStorage.setItem('isBuz',isBLic);
+                                        // no fees code ends
+                                    }else{ 
+                                       // this.hideSpinner(component,event);
+                                        var isBizLic = component.get("v.isbusinsessLicense");
+                                        var isBLic = component.get("v.isbusinsessLicense");
+                                        console.log('***************'+isBizLic);
+                                        sessionStorage.setItem('isBuz',isBLic);
+                                        var str ='/cart?id='+result[0].Id+'&isBLic='+isBizLic;
+                                        var urlEvent = $A.get("e.force:navigateToURL");
+                                        urlEvent.setParams({
+                                            "url": str
+                                        });
+                                        urlEvent.fire();
+                                        //window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id;
+                                    } 
+                                }));
+                        }    
+                        catch(e){
+                            console.error('Error Stack Message for showQuestionHelper Helper' + e.stack);	
+                        }
                     }
                     else{
                         console.log("Submit Error->"+error);
@@ -1118,6 +1153,36 @@
                     toastEvent.fire();
                 }     
             }
+			else if(licenseWrapper[tabNumber].subheader === "Attachments"){
+				var fieldsWrapper = licenseWrapper[tabNumber].labelFieldsMap;
+				var validateFields = fieldsWrapper.every(function(item){
+					if(item.isMandatorySub){
+						if(item.multiValues.length != undefined && item.multiValues.length > 0){
+							return true;
+						}
+						else{
+							return false;
+						}
+					}else{
+						return true;
+					}
+				});
+				if(validateFields){
+					component.set("v.nextFlag", true);
+					component.set("v.showErrorMsgsOfAttachments", false);
+				}
+				else{
+					component.set("v.nextFlag", false);
+					component.set("v.showErrorMsgsOfAttachments", true);
+					var toastEvent = $A.get("e.force:showToast");
+					toastEvent.setParams({
+						"title": "ERROR!",
+						"message": "Please upload the required attachments.",
+						"type": "error"
+					});
+					toastEvent.fire();
+				} 
+			}
             else {
                 component.set("v.nextFlag", true);  
             }
