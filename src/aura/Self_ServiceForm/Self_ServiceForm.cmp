@@ -18,6 +18,9 @@
     <aura:attribute name="fieldsValidated" type="Boolean" default="false" />
     <aura:attribute name="outputcode" type="String" default=""/>
     <aura:attribute name="selectedDocumentId" type="string" default="069r0000001Z7RXAA0"/>
+    <aura:attribute name="popupHeader" type="string" default="" description="On submit success popup header"/> 
+    <aura:attribute name="popupBody" type="string" default="" description="On submit success popup body"/>
+    <aura:attribute name="isOpen" type="boolean" default="false" description="Hide or Show popup boolean"/>
 
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -95,9 +98,9 @@
             <div class="slds-form-element">
                 <lightning:select aura:id="printLicenseId" name="printLicense" label="How do you want to receive your license?"  required="true">
                     <option value="">--None--</option>
-                    <option value="email">Send to My Email</option>
-                    <option value="DES">Send to My Mailing Address</option>
-                    <option value="download">Download License</option>
+                    <!--<option value="email">Send to My Email</option>-->
+                    <option value="DES">Send to my mailing address</option>
+                    <option value="download">Download license</option>
                 </lightning:select>
             </div>
             
@@ -108,4 +111,32 @@
             </div>
         </aura:if>
     </div>
+    <!-- Pop up start -->
+    <aura:if isTrue="{!v.isOpen}">             
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- pop up header-->
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                          onclick="{! c.closeModel }"
+                                          alternativeText="close"
+                                          variant="bare-inverse"
+                                          class="slds-modal__close"/>
+                    <h2>{!v.popupHeader}</h2>
+                </header>
+                <!-- pop up body -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <p>{!v.popupBody}</p>
+                </div>
+                <!-- pop up footer -->
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral" 
+                                      label="OK"
+                                      title="Cancel"
+                                      onclick="{! c.closeModel }"/>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
 </aura:component>

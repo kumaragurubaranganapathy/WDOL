@@ -45,7 +45,7 @@
                             component.set("v.fieldApiNames", ['ThirdPary_Billing_Code__c']);
                             component.set("v.recordIDforSSAMR",recordId);
                             component.set("v.thirdpartybillingcode", true);
-                            component.set("v.recordIDforSSAMR",recordId);
+                            //component.set("v.recordIDforSSAMR",recordId);
                             var action = component.get("c.fetchAccountInfo");
                             action.setParams({
                                 "licId": recordId    
@@ -162,7 +162,11 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 //response.getReturnValue();
-                window.location.href = component.get("v.redirectURL");
+                //window.location.href = component.get("v.redirectURL");
+               // window.history.back();
+               component.set("v.popupHeader", "Successfully Submitted");
+               component.set("v.popupBody", "Thank you for your submission.");
+               component.set("v.isOpen", true);
             }
             else if (state === "ERROR") {
                 var errors = response.getError();
@@ -226,18 +230,29 @@
                 if(component.find("printLicenseId").get("v.value")=='download')
                 {
                     var conVerId = response.getReturnValue();
+                    console.log('conVerId==' + conVerId);
                     //windows.location = 'https://wadolbuspro--dev--c.cs32.content.force.com/sfc/servlet.shepherd/version/download/'+conVerId+'?asPdf=false&operationContext=CHATTER';
-                     console.log('conVerId==' + conVerId);                    
-                    var urlEvent = $A.get("e.force:navigateToURL");
+                   /* var urlEvent = $A.get("e.force:navigateToURL");
                     urlEvent.setParams({
-                        "url": $A.get("$Label.c.Polaris_Portal_URL")+'sfc/servlet.shepherd/document/download/'+conVerId+'?operationContext=S1'
+                       "url": $A.get("$Label.c.Polaris_Portal_URL")+'sfc/servlet.shepherd/document/download/'+conVerId+'?operationContext=S1'
+                        //"url": $A.get("$Label.c.Polaris_Portal_URL")+'sfc/servlet.shepherd/version/download/'+conVerId+'?asPdf=false&operationContext=CHATTER'
                     });
-                    urlEvent.fire();
+                    urlEvent.fire();*/
+                    var urlinfo = $A.get("$Label.c.Polaris_Portal_URL")+'sfc/servlet.shepherd/document/download/'+conVerId+'?operationContext=S1';
+                    window.location.href=urlinfo;
+                    window.setTimeout(
+                    $A.getCallback(function() {
+                        window.history.back();
+                    }), 5000
+                ); 
                 }
-                
-                window.location.href = component.get("v.redirectURL");
-                               
-                
+                else if(component.find("printLicenseId").get("v.value")=='DES')
+                {
+                    component.set("v.popupHeader", "Successfully Submitted");
+                    component.set("v.popupBody", "Thank you for your submission. You will receive printed license by mail within 7 days.");
+                    component.set("v.isOpen", true);
+                }
+                       
             }
             else if (state === "ERROR") {
                 var errors = response.getError();
@@ -256,7 +271,9 @@
     
     
     cancel : function(component, event, helper){
-        window.location.href = component.get("v.redirectURL");
+        component.set("v.popupHeader", "Successfully Submitted");
+        component.set("v.popupBody", "Thank you for your submission.");
+        component.set("v.isOpen", true);
     },
     
     maskInput : function(component,event){  
@@ -270,7 +287,10 @@
             }
         }
     },
-    
+    //Close the modal popup and redirect to cart page
+    closeModel: function(component, event) {
+        window.history.back();
+    },
     validateFields : function(component,event){
         var toastEvent = $A.get("e.force:showToast");
         var inputFields = component.find("input-fields");

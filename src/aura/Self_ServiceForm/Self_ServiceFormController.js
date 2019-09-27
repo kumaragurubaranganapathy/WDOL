@@ -1,7 +1,8 @@
 ({
-	doInit: function(component, event, helper) { 
+	doInit: function(component, event, helper) {	    
 		helper.doInit(component, event, helper);
         helper.getContact(component, event, helper);
+        //helper.getBusiness(component, event, helper);
     },
     cancel: function(component, event, helper) { 
 		helper.cancel(component, event, helper);
@@ -18,6 +19,9 @@
     maskInput : function(component,event,helper){
         helper.maskInput(component,event);
     },
+    closeModel: function(component, event, helper) {
+		helper.closeModel(component, event);
+	},
     validateFields : function(component,event,helper){
         helper.validateFields(component,event);
     }
