@@ -2166,10 +2166,9 @@ DATE( YEAR(TODAY())+2, MONTH( Date_of_Birth__c), DAY(Date_of_Birth__c))
         <fullName>Is_Late_Renewal_Eligible__c</fullName>
         <description>Formula to determine Late Renewal Eligibility</description>
         <externalId>false</externalId>
-        <formula>IF(Renewal_Grace_Period_End_Date__c=NULL,(IF( TODAY()&gt;MUSW__Expiration_Date__c &amp;&amp; TODAY()&lt;= Late_Renewal_Eligible_End_Date__c  &amp;&amp; (ISPICKVAL(MUSW__Status__c, &apos;Expired&apos;) || ISPICKVAL(MUSW__Status__c, &apos;Inactive&apos;)|| ISPICKVAL(MUSW__Status__c, &apos;Late Renewal&apos;)  || ISPICKVAL(MUSW__Status__c, &apos;Hold&apos;)), TRUE,FALSE) ),
+        <formula>IF(ISBLANK(Renewal_Grace_Period_End_Date__c),(IF( TODAY()&gt;MUSW__Expiration_Date__c &amp;&amp; TODAY()&lt;= Late_Renewal_Eligible_End_Date__c  &amp;&amp; (ISPICKVAL(MUSW__Status__c, &apos;Expired&apos;) || ISPICKVAL(MUSW__Status__c, &apos;Inactive&apos;)|| ISPICKVAL(MUSW__Status__c, &apos;Late Renewal&apos;)  || ISPICKVAL(MUSW__Status__c, &apos;Hold&apos;)), TRUE,FALSE) ),
  (IF(TODAY()&gt;Renewal_Grace_Period_End_Date__c  &amp;&amp; TODAY()&lt;= Late_Renewal_Eligible_End_Date__c  &amp;&amp;  (ISPICKVAL(MUSW__Status__c, &apos;Expired&apos;)   || ISPICKVAL(MUSW__Status__c, &apos;Inactive&apos;)
  || ISPICKVAL(MUSW__Status__c, &apos;Late Renewal&apos;)  || ISPICKVAL(MUSW__Status__c, &apos;Hold&apos;)), TRUE,FALSE  ) ))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Is Late Renewal Eligible?</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
