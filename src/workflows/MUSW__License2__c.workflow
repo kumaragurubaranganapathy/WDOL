@@ -1608,7 +1608,7 @@
             <name>Inactivate_License_on_expiration</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>false</active> 
         <description>Inactivate License on expiration date &lt; today</description>
         <formula>MUSW__Expiration_Date__c &lt;  TODAY() &amp;&amp; $User.Bypass_Validation_Workflow_Rules__c = FALSE</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
