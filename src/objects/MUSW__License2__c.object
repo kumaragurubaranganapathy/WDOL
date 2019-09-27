@@ -3092,7 +3092,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
     <fields>
         <fullName>NoOfDaysExpirePreFuneral__c</fullName>
         <externalId>false</externalId>
-        <formula>if(MUSW__Issue_Date__c &lt; Date_Fiscal_Year_Ends__c, Date_Fiscal_Year_Ends__c-MUSW__Issue_Date__c,MUSW__Issue_Date__c-Date_Fiscal_Year_Ends__c)</formula>
+        <formula>IF( 
+   MUSW__Issue_Date__c &lt;  DATE(YEAR(MUSW__Issue_Date__c),MONTH(Date_Fiscal_Year_Ends__c),DAY(Date_Fiscal_Year_Ends__c)), DATE(YEAR(MUSW__Issue_Date__c),MONTH(Date_Fiscal_Year_Ends__c),DAY(Date_Fiscal_Year_Ends__c)) - MUSW__Issue_Date__c,
+   MUSW__Issue_Date__c - DATE(YEAR(MUSW__Issue_Date__c),MONTH(Date_Fiscal_Year_Ends__c),DAY(Date_Fiscal_Year_Ends__c)) 
+ )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>NoOfDaysExpireToPreFuneralFiscYear</label>
         <precision>18</precision>
