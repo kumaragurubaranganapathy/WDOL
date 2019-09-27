@@ -81,6 +81,24 @@ public class DOL_CreateErrorLog_Exception extends Exception {
         }
         return null;        
     }
+    
+        public static Id logDatabaseError(Database.Error error,String className,String methodName){
+        try{
+            if(error != null ){
+            Polaris_Custom_Exception__c log = new Polaris_Custom_Exception__c();
+            log.Error_Message__c = error.getMessage();
+            log.Class_Name__c = className;
+            log.Class_Method__c = methodName;
+            log.Log_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'ERROR';
+            log.Source__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Salesforce';
+            logToDB(log);
+            return log.Id;
+            }
+        }catch(Exception e){
+            System.debug(e);
+        }
+        return null;        
+    }
 
     /**
     ** Name 			: logApplicationError

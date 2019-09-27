@@ -3,7 +3,7 @@ public class DOL_AppUtility {
     public static Boolean bIsFeeTriggerFired = false;
     public static Boolean bIsFeePaymentTriggerFired = false;
     public static Boolean isReceiptRunOnce = false;
-    private static boolean alreadyModified = false;
+    public static Boolean runfromDolBatchUpdateLicenseStatus = false;
     
     // get the state
     public static boolean isAlreadyModified() {
