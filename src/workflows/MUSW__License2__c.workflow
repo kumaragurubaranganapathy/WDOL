@@ -12,30 +12,6 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Application_closed_RFI_final</template>
     </alerts>
-	 <alerts>
-        <fullName>Renewal_PDH_audit_approval</fullName>
-        <description>Renewal - PDH audit approval</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_PDH_audit_approval_final</template>
-    </alerts>
-	<alerts>
-        <fullName>Renewal_PDH_audit_notification</fullName>
-        <description>Renewal - PDH audit notification</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_PDH_Audit_notification_final</template>
-    </alerts>
     <alerts>
         <fullName>Application_closed_RFP</fullName>
         <description>Application closed - RFP</description>
@@ -240,6 +216,78 @@
         <template>DOL_Finance/First_License_Fee</template>
     </alerts>
     <alerts>
+        <fullName>Renewal_CE_audit_notification</fullName>
+        <description>Renewal - CE audit notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Renewal_CE_audit_notification_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Renewal_PDH_audit_approval</fullName>
+        <description>Renewal - PDH audit approval</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Renewal_PDH_audit_approval_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Renewal_PDH_audit_notification</fullName>
+        <description>Renewal - PDH audit notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Renewal_PDH_audit_notification_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Renewal_issued_Active_Other</fullName>
+        <description>Renewal issued - Active - Other</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Renewal_issued_Active_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Renewal_issued_Active_TS_and_CR</fullName>
+        <description>Renewal issued - Active - TS and CR</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Renewal_issued_Active_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Renewal_issued_Inactive_TS_and_CR</fullName>
+        <description>Renewal issued - Inactive - TS and CR</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Renewal_issued_Inactive_final</template>
+    </alerts>
+    <alerts>
         <fullName>Renewal_reminder_business</fullName>
         <description>Renewal reminder - business</description>
         <protected>false</protected>
@@ -322,6 +370,54 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Update_Record_Type_Business</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>Business</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Update Record Type - Business</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Record_Type_Course</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>Manual_Course</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Update Record Type - Course</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Record_Type_Individual</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>Universal_Default_License_Record_Type</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Update Record Type - Individual</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Status</fullName>
+        <field>MUSW__Status__c</field>
+        <literalValue>Submitted</literalValue>
+        <name>Update_Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_expiration_date_of_child</fullName>
+        <field>MUSW__Expiration_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Update expiration date of child</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_the_Owner_to_Appraisal_Management</fullName>
         <description>Queue Assignment for Appraisal Management Company</description>
         <field>OwnerId</field>
@@ -352,6 +448,15 @@
         <name>Update the Owner to Real Estate Appraise</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_the_child_status</fullName>
+        <field>MUSW__Status__c</field>
+        <literalValue>Expired</literalValue>
+        <name>Update the child status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
     <rules>
@@ -715,30 +820,6 @@
             <value>Data Administrator</value>
         </criteriaItems>
         <description>Automation rule for email notification: First license issued - Active - Funeral Director Embalmer</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-	<rules>
-        <fullName>Email - Renewal - PDH audit approval</fullName>
-        <actions>
-            <name>Renewal_PDH_audit_approval</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Email_Outbound_Renewal_PDH_audit_approval</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>1 AND 2</booleanFilter>
-        <criteriaItems>
-            <field>MUSW__License2__c.Audit_Completed_Flag__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Is_Renewal_Eligible__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1217,6 +1298,136 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>Email - Renewal - CE audit notification</fullName>
+        <actions>
+            <name>Renewal_CE_audit_notification</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <formula>(MUSW__Expiration_Date__c - TODAY() = 120 || MUSW__Expiration_Date__c - TODAY() = 60 || MUSW__Expiration_Date__c - TODAY() = 30) &amp;&amp;  Selected_for_Audit__c = TRUE</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Renewal - PDH audit approval</fullName>
+        <actions>
+            <name>Renewal_PDH_audit_approval</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Renewal_PDH_audit_approval</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.Audit_Completed_Flag__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Is_Renewal_Eligible__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Renewal - PDH audit notification</fullName>
+        <actions>
+            <name>Renewal_PDH_audit_notification</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Renewal_PDH_audit_notification</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <formula>Pending_Audit__c = TRUE &amp;&amp;  Text(MUSW__Status__c) = &apos;Active&apos;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Renewal issued - Active - Other</fullName>
+        <actions>
+            <name>Renewal_issued_Active_Other</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Renewal_issued_Active_Other</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Renewal_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>notEqual</operation>
+            <value>Camping Resort Salesperson,Timeshare Salesperson</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Renewal issued - Active - TS and CR</fullName>
+        <actions>
+            <name>Renewal_issued_Active_TS_and_CR</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Renewal_issued_Active_TS_and_CR</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Renewal_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Camping Resort Salesperson,Timeshare Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Renewal issued - Inactive - TS and CR</fullName>
+        <actions>
+            <name>Renewal_issued_Inactive_TS_and_CR</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Renewal_issued_Inactive_TS_and_CR</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Renewal_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Credential_Type__c</field>
+            <operation>equals</operation>
+            <value>Camping Resort Salesperson,Timeshare Salesperson</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Inactive</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>Email - Renewal reminder - business</fullName>
         <active>true</active>
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
@@ -1391,27 +1602,13 @@
         <description>Automation rule for email notification: Retired status</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-	<rules>
-        <fullName>Email - Renewal - PDH audit notification</fullName>
-        <actions>
-            <name>Renewal_PDH_audit_notification</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Email_Outbound_Renewal_PDH_audit_notification</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <formula>Pending_Audit__c = TRUE &amp;&amp;  Text(MUSW__Status__c) = &apos;Active&apos;</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
     <rules>
         <fullName>Inactivate License on expiration</fullName>
         <actions>
             <name>Inactivate_License_on_expiration</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Inactivate License on expiration date &lt; today</description>
         <formula>MUSW__Expiration_Date__c &lt;  TODAY() &amp;&amp; $User.Bypass_Validation_Workflow_Rules__c = FALSE</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -1526,6 +1723,60 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>Record Type Change</fullName>
+        <actions>
+            <name>Update_Record_Type_Individual</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>MUSW__License2__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Manual Individual</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Record Type Change %28Business%29</fullName>
+        <actions>
+            <name>Update_Record_Type_Business</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>MUSW__License2__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Manual Business</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Record Type Change %28Course%29</fullName>
+        <actions>
+            <name>Update_Record_Type_Course</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>MUSW__License2__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Manual Course</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
         <fullName>Set Expiration Date to current date when license is sunset</fullName>
         <actions>
             <name>Set_MUSW_Expiration_Date_to_current_date</name>
@@ -1540,6 +1791,41 @@
         <description>set Expiration Date to current date when license is sunset</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
+    <rules>
+        <fullName>Update FE Branch Expiration</fullName>
+        <actions>
+            <name>Update_expiration_date_of_child</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_the_child_status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>AND(  ISPICKVAL(Credential_Type__c, &quot;Funeral Establishment Branch&quot;) , Parent_License__c  &lt;&gt; null, ISPICKVAL(Parent_License__r.Credential_Type__c,&quot;Funeral Establishment&quot;), ISPICKVAL(Parent_License__r.MUSW__Status__c,&quot;Expired&quot;),  NOT(ISPICKVAL(MUSW__Status__c,&quot;Expired&quot;))
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Pre-License Number</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>notEqual</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>activity tracker</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>notEqual</operation>
+            <value>Active</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <tasks>
         <fullName>Email_Outbound_Application_closed_RFI</fullName>
         <assignedToType>owner</assignedToType>
@@ -1550,17 +1836,6 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Application closed - RFI</subject>
-    </tasks>
-	<tasks>
-        <fullName>Email_Outbound_Renewal_PDH_audit_notification</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Email Outbound: Renewal - PDH audit notification</subject>
     </tasks>
     <tasks>
         <fullName>Email_Outbound_Application_closed_RFP</fullName>
@@ -1739,6 +2014,61 @@
         <subject>Email Outbound: License expiration notice - Renewal allowed 2</subject>
     </tasks>
     <tasks>
+        <fullName>Email_Outbound_Renewal_PDH_audit_approval</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Renewal - PDH audit approval</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_Renewal_PDH_audit_notification</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Renewal - PDH audit notification</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_Renewal_issued_Active_Other</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Renewal issued - Active - Other</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_Renewal_issued_Active_TS_and_CR</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Renewal issued - Active - TS and CR</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_Renewal_issued_Inactive_TS_and_CR</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Renewal issued - Inactive - TS and CR</subject>
+    </tasks>
+    <tasks>
         <fullName>Email_Outbound_Renewal_reminder_business</fullName>
         <assignedToType>owner</assignedToType>
         <dueDateOffset>0</dueDateOffset>
@@ -1759,17 +2089,6 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Renewal reminder - individual</subject>
-    </tasks>
-	<tasks>
-        <fullName>Email_Outbound_Renewal_PDH_audit_approval</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Email Outbound: Renewal - PDH audit approval</subject>
     </tasks>
     <tasks>
         <fullName>Email_Outbound_Retired_status</fullName>

@@ -124,7 +124,7 @@
         <criteriaItems>
             <field>Education_History__c.Status__c</field>
             <operation>equals</operation>
-            <value>Pending</value>
+            <value>Results Pending</value>
         </criteriaItems>
         <criteriaItems>
             <field>Education_History__c.CreatedById</field>
@@ -144,7 +144,7 @@
             <name>Email_Outbound_Exam_approval_email_RBS</name>
             <type>Task</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
         <criteriaItems>
             <field>Education_History__c.RecordTypeId</field>
@@ -154,7 +154,7 @@
         <criteriaItems>
             <field>Education_History__c.Status__c</field>
             <operation>equals</operation>
-            <value>Pending</value>
+            <value>Results Pending</value>
         </criteriaItems>
         <criteriaItems>
             <field>Education_History__c.Exam_Type__c</field>

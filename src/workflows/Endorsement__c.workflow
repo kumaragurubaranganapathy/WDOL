@@ -11,7 +11,7 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Approval_notification_supervisor_final</template>
     </alerts>
-	<alerts>
+    <alerts>
         <fullName>Endorsement_add_approval</fullName>
         <description>Endorsement add - approval</description>
         <protected>false</protected>
@@ -44,7 +44,7 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Endorsement_remove_request_final</template>
     </alerts>
-	<rules>
+    <rules>
         <fullName>Email - Approval notification - supervisor</fullName>
         <actions>
             <name>Approval_notification_supervisor</name>
@@ -70,6 +70,40 @@
             <field>Endorsement__c.CreatedById</field>
             <operation>notContain</operation>
             <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Electronic Notary software provider reminder - after issuance</fullName>
+        <actions>
+            <name>Email_Outbound_Electronic_Notary_software_provider_reminder_after_issuance</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <formula>(TODAY() -  Date_Requested_for_Adding_Endorsement__c = 15) &amp;&amp;  Text(Endorsement_Type__c) == &apos;Eletronic Notary&apos; &amp;&amp;  Text(Name_of_Electronic_Software_Provider__c) == NULL &amp;&amp; CreatedBy.Username &lt;&gt; &apos;Data Administrator&apos;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Electronic Notary software provider reminder - submission</fullName>
+        <actions>
+            <name>Email_Outbound_Electronic_Notary_software_provider_reminder_submission</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Endorsement__c.Endorsement_Type__c</field>
+            <operation>equals</operation>
+            <value>Eletronic Notary</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Endorsement__c.Name_of_Electronic_Software_Provider__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Endorsement__c.CreatedDate</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -146,7 +180,7 @@
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-	<tasks>
+    <tasks>
         <fullName>Email_Outbound_Approval_notification_supervisor</fullName>
         <assignedToType>owner</assignedToType>
         <dueDateOffset>0</dueDateOffset>
@@ -156,6 +190,28 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Approval notification - supervisor</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_Electronic_Notary_software_provider_reminder_after_issuance</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Endorsement__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Electronic Notary software provider reminder - after issuance</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_Electronic_Notary_software_provider_reminder_submission</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Endorsement__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Electronic Notary software provider reminder - submission</subject>
     </tasks>
     <tasks>
         <fullName>Email_Outbound_Endorsement_add_approval</fullName>
