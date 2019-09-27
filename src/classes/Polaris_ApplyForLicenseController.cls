@@ -585,17 +585,22 @@ public class Polaris_ApplyForLicenseController {
                     if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true && fieldMap.questionSectionClass.contains(DOL_AppConstants.QUESTIONS) && fieldMap.isMandatoryQues ==true ){
                         questioncount++;
                     }
-                    if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true &&  fieldMap.questionSectionClass.contains(DOL_AppConstants.FINANCIAL_GUARANTEE) ){
+                    
+                   
+                    if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true &&  fieldMap.questionSectionClass.contains(DOL_AppConstants.FINANCIAL_GUARANTEE)){
                         FGquestioncount++;
                     }
                     if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true &&  fieldMap.questionSectionClass.contains('Course') ){
                         CIquestioncount++;
                     }
                     //system.debug('fieldMap.renderedOnUi '+fieldMap.renderedOnUi);
-                    if(fieldMap.questionSectionClass.contains(DOL_AppConstants.QUESTIONS)  && fieldMap.isMandatoryQues ==true && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && fieldMap.value != null && fieldMap.value !='' ){
+                    
+                    if(fieldMap.questionSectionClass.contains(DOL_AppConstants.QUESTIONS)  && fieldMap.isMandatoryQues ==true && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && (fieldMap.value != null || !fieldMap.multiValues.isEmpty()) ){
                         questionsAnswered++;
                     }
-                    if(fieldMap.questionSectionClass.contains(DOL_AppConstants.FINANCIAL_GUARANTEE) && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && fieldMap.value != null && fieldMap.value !='' ){
+                    
+                    
+                    if(fieldMap.questionSectionClass.contains(DOL_AppConstants.FINANCIAL_GUARANTEE) && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && (fieldMap.value != null  && fieldMap.value != '')){
                         FGquestionsAnswered++;
                     }
                     if(fieldMap.questionSectionClass.contains('Course') && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && fieldMap.value != null && fieldMap.value !='' ){
