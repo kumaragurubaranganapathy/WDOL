@@ -1,4 +1,3 @@
-
 /**
 * User Story: ****
 * Class Name: DOL_ProcessRTPC_Batch
@@ -19,7 +18,7 @@ global with sharing class DOL_ProcessRTPC_Batch implements Database.Batchable<sO
                                         from DOL_Integration_Batch_Input__c 
                                         where Status__c = 'UNPROCESSED' and 
                                         Input_Type__c = 'RTPC' and 
-                                        LastModifiedDate <=: dt ]
+                                        CreatedDate <=: dt ]
                                         );
     }
 
@@ -32,11 +31,12 @@ global with sharing class DOL_ProcessRTPC_Batch implements Database.Batchable<sO
             Map<String,String> parameterMap;
             MUSW__Receipt__c receipt;
             DOL_ProcessPayment processPayment;
+            List<MUSW__Receipt__c> lstReceipts = new List<MUSW__Receipt__c>();
             
             for(DOL_Integration_Batch_Input__c record : rtpcRecords){
                 try{
                     parameterMap = new Map<String,String>();
-                    record.INFO__c = '';
+                    record.INFO__c = DOL_AppConstants.NULL_EMPTY_STRING;
                     tempRtpcInput = DOL_RTPC_Input.parse(record.Input__c);
                     for(DOL_RTPC_Input.Parameter parameter : tempRtpcInput.Parameter ){
                         parameterMap.put(parameter.ParameterName,parameter.ParameterValue);
@@ -49,15 +49,19 @@ global with sharing class DOL_ProcessRTPC_Batch implements Database.Batchable<sO
                     if(String.isBlank(receiptId)){
                        throw new CustomException('Input Receipt Id is null or blank, Parameter name for reading receipt is SFDClicId'); 
                     }
-                    receipt = [select id, Status__c, Selected_Fees__c, MUSW__Payment_Method__c, MUSW__Paid_By__c, MUSW__Receipt_Paid_by__c from MUSW__Receipt__c where id =: receiptId ];
+                    receipt = [select id, Status__c, Selected_Fees__c, MUSW__Payment_Method__c, MUSW__Paid_By__c, MUSW__Receipt_Paid_by__c from MUSW__Receipt__c where id =: receiptId and id!=null];
                     if(receipt == null){
                         throw new CustomException('Invalid receipt Id, receipt Id = '+receiptId+' is not present in ORG ');
                     }
                     updateReceiptFromRTPCPojo(tempRtpcInput, receipt);
                     if(receipt.Status__c == 'Complete'){
-                        update receipt;
+                        lstReceipts.add(receipt);
+                    }else if(isFeesAlreadyPaid(receipt.Selected_Fees__c.split(',')) ){
+                        record.INFO__c = DOL_AppConstants.NULL_EMPTY_STRING+'Fees Already Paid';
+                        lstReceipts.add(receipt);
                     }
                     else{
+                        receipt.BGBK__Cart__c = null;
                         processPayment = new DOL_ProcessPayment(Id.valueOf(SFDCappId),
                                         Id.valueOf(cartId),
                                         receipt.Selected_Fees__c.split(','),
@@ -67,20 +71,30 @@ global with sharing class DOL_ProcessRTPC_Batch implements Database.Batchable<sO
                         processPayment.doPayment();
                         
                     }
-                    record.INFO__c = 'Process Completed Successfully';
-                    record.Status__c = 'SUCCESSFUL'; 
+                    record.INFO__c += DOL_AppConstants.PROCESS_COMPLETED_SUCCESSFULLY;
+                    record.Status__c = DOL_AppConstants.SUCCESSFULL_STRING; 
 
                 }catch(Exception error){
                     record.INFO__c += 'error Msg = '+error.getMessage()+' StackTrace = '+error.getStackTraceString();
-                    record.Status__c = 'FAILED';
+                    record.Status__c = DOL_AppConstants.FAILED_STRING;
                 }
             }
+            if(lstReceipts <> null && !lstReceipts.isEmpty())
+            update lstReceipts;
+            
             update rtpcRecords;
         }
     }
 
     global void finish(Database.BatchableContext BC){   
         
+    }
+
+    private Boolean isFeesAlreadyPaid(List<String> feeIds){
+        List<MUSW__Fee__c> feeLst = [ Select Id, MUSW__Fee_Paid__c from MUSW__Fee__c where MUSW__Fee_Paid__c = false and Id IN :feeIds];
+        if( feeLst != null && feeLst.size() > 0 )
+            return false;
+        return true;
     }
 
     private void updateReceiptFromRTPCPojo(DOL_RTPC_Input rtpcData, MUSW__Receipt__c receipt){
