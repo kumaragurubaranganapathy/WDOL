@@ -74,30 +74,6 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Email - Electronic Notary software provider reminder - submission</fullName>
-        <actions>
-            <name>Email_Outbound_Electronic_Notary_software_provider_reminder_submission</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
-        <criteriaItems>
-            <field>Endorsement__c.Endorsement_Type__c</field>
-            <operation>equals</operation>
-            <value>Eletronic Notary</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Endorsement__c.Name_of_Electronic_Software_Provider__c</field>
-            <operation>equals</operation>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Endorsement__c.CreatedDate</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Email - Endorsement add - approval</fullName>
         <actions>
             <name>Endorsement_add_approval</name>
@@ -180,17 +156,6 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Approval notification - supervisor</subject>
-    </tasks>
-    <tasks>
-        <fullName>Email_Outbound_Electronic_Notary_software_provider_reminder_submission</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>Endorsement__c.Current_Datetime__c</offsetFromField>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Email Outbound: Electronic Notary software provider reminder - submission</subject>
     </tasks>
     <tasks>
         <fullName>Email_Outbound_Endorsement_add_approval</fullName>
