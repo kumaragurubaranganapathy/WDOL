@@ -1,13 +1,14 @@
 <aura:component controller="DOL_DynamicPortalArticlesRenderer_Apex" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:isUrlAddressable" access="global" >
     
     <aura:attribute name="customLblMap" type="Map" />
-    <aura:attribute name="displayPage" type="String" default="Public Home" />    
+    <aura:attribute name="displayPage" type="String"/>   
     <aura:attribute name="articleList" type="List" /> 
     <aura:attribute name="articleTitle" type="String" default="Get started" />
     <aura:attribute name="ArticlesExternalId" type="String"/>
     <aura:attribute name="isShowMore" type="Boolean" />
     <aura:attribute name="articlesLoaded" type="Boolean" default="false"/>
     <aura:attribute name="isLoggedIn" type="Boolean" default="false" />
+    <aura:registerEvent name="PortalArticleHandler" type="c:PortalArticles"/>
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>   
     
@@ -20,17 +21,20 @@
                 
                 <aura:iteration items="{!v.articleList}" var="art" indexVar="artNo">  
                     <!--{!art.childArticlesHeader} -->
-                    <lightning:layout class="">
-                        <lightning:layoutItem class="license-needs-wrapper" size="12" mediumDeviceSize="12">
+    
+                    <lightning:layout>
+                        <lightning:layoutItem aura:id="professionList" class="license-needs-wrapper"  size="12" mediumDeviceSize="12">
                             
                             <div class="license-header-wrapper">
                                 <aura:iteration items="{!art.childArticlesHeader}" var="headerArt" indexVar="headerArtNo">  
+                                   
                                     <h1 class="license-header">
                                         {!headerArt.Article_Title__c}
                                     </h1>
                                     <p class="help-text">
                                         {!headerArt.Article_Sub_description__c}
                                     </p>
+                                   
                                 </aura:iteration>
                             </div>
                             <div class="lic-body-wrapper">
@@ -79,15 +83,17 @@
                                 <aura:iteration items="{!art.childArticlesFooter}" var="footerArtList" indexVar="footerArtListtNo">
                                     <aura:if isTrue="{!footerArtList.Article_Content_Type__c == 'Link'}"> 
                                         <div data-Internal_Article_Redirection__c="{!footerArtList.Internal_Article_Redirection__c}" 
-                                             data-Article_Link_URL__c="{!footerArtList.Article_Link_URL__c}" 
+                                             data-Article_Link_URL__c="{!footerArtList.Article_Link_URL__c}"
+                                             data-Article_Title__c="{!footerArtList.Article_Title__c}"
                                              onclick="{!c.handleFooterButtonAction}"> 
                                             
-                                            <a class="footer-link" href="javascript:void(0);">{!footerArtList.Article_Title__c}</a>
+                                            <a class="footer-link" href="javascript:" >{!footerArtList.Article_Title__c}</a>
                                         </div>     
                                     </aura:if>    
                                     <aura:if isTrue="{!footerArtList.Article_Content_Type__c == 'Button'}">
                                         <div data-Internal_Article_Redirection__c="{!footerArtList.Internal_Article_Redirection__c}" 
-                                             data-Article_Link_URL__c="{!footerArtList.Article_Link_URL__c}" 
+                                             data-Article_Link_URL__c="{!footerArtList.Article_Link_URL__c}"
+                                             data-Article_Title__c="{!footerArtList.Article_Title__c}"
                                              onclick="{!c.handleFooterButtonAction}" 
                                              class="footer-button">
                                             
