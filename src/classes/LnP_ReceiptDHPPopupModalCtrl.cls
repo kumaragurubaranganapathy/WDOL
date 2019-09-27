@@ -8,6 +8,7 @@ public without sharing class LnP_ReceiptDHPPopupModalCtrl {
     
     @AuraEnabled
     public static String saveLicenseandReceipt(Id receiptId){
+		DOL_AppUtility.isAuthenticatedUser() ;
         try{
             MUSW__Receipt__c receiptRec = [Select Id,
                                            Name,

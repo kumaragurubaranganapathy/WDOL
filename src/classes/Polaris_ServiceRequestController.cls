@@ -920,6 +920,24 @@ public class Polaris_ServiceRequestController {
         }
     
     }
+	@AuraEnabled
+    public static Boolean getTotalBalance(Id reqId){        
+            Boolean noFees;
+            Integer count=0;            
+            for(MUSW__Fee__c fee : [Select Id,MUSW__Outstanding_Fee__c from MUSW__Fee__c where Request__c=:reqId] )
+            {
+                if(fee.MUSW__Outstanding_Fee__c!=0)
+                {
+                    count+=1;
+                }
+            }
+            if( count== 0){
+                noFees = true;
+            }else{
+                noFees = false;
+            }
+            return noFees;
+    }
     private static void updateLinkedEntityId (Map<String,String> mapSubmissionToFile) {
         List<String> abc  = new List<String>();
          List<ContentDocumentLink> lstFiles  = new List<ContentDocumentLink>();
