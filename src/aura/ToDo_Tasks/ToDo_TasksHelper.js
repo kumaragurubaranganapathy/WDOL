@@ -323,7 +323,7 @@
         urlEvent.fire();
     },
     openTrainingApp : function(component){
-        var str ='/licenseSelectionPage';
+        var str ='/licenseSelectionPage?course-lic';
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
             "url": str
