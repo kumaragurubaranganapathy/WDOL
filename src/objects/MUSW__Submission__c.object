@@ -1327,7 +1327,18 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
         <label>RE - Unresolved Submissions</label>
     </listViews>
     <listViews>
-        <fullName>Resolved_Applications</fullName>
+        <fullName>Submissions_Queue_Submission</fullName>
+        <columns>NAME</columns>
+        <columns>MUSW__Description__c</columns>
+        <filterScope>Queue</filterScope>
+        <label>Submissions Queue</label>
+        <queue>Submissions_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Unresolved_Applications</fullName>
         <columns>NAME</columns>
         <columns>Validation_Number__c</columns>
         <columns>Status__c</columns>
@@ -1348,19 +1359,8 @@ INCLUDES( Master_Submission_List__r.Show_For__c,&apos;Permit&apos;)),TRUE,FALSE)
             <operation>equals</operation>
             <value>Accepted,Additional Info. Required,Submitted</value>
         </filters>
-        <label>Resolved Applications</label>
+        <label>Unresolved Applications</label>
         <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>Submissions_Queue_Submission</fullName>
-        <columns>NAME</columns>
-        <columns>MUSW__Description__c</columns>
-        <filterScope>Queue</filterScope>
-        <label>Submissions Queue</label>
-        <queue>Submissions_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Unresolved_Maintenance_Requests</fullName>
