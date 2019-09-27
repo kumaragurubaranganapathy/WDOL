@@ -26,6 +26,11 @@
         <label>Cemeteries</label>
     </customValue>
     <customValue>
+        <fullName>Delegated Municipality</fullName>
+        <default>false</default>
+        <label>Delegated Municipality</label>
+    </customValue>
+    <customValue>
         <fullName>Engineers</fullName>
         <default>false</default>
         <label>Engineers</label>
@@ -51,6 +56,16 @@
         <label>Land Surveyors</label>
     </customValue>
     <customValue>
+        <fullName>Manufactured Homes</fullName>
+        <default>false</default>
+        <label>Manufactured Homes</label>
+    </customValue>
+    <customValue>
+        <fullName>Misc Payments</fullName>
+        <default>false</default>
+        <label>Misc Payments</label>
+    </customValue>
+    <customValue>
         <fullName>Notary Public</fullName>
         <default>false</default>
         <label>Notary Public</label>
@@ -61,9 +76,34 @@
         <label>On-site Wastewater</label>
     </customValue>
     <customValue>
+        <fullName>Program Unknown</fullName>
+        <default>false</default>
+        <label>Program Unknown</label>
+    </customValue>
+    <customValue>
         <fullName>Timeshares</fullName>
         <default>false</default>
         <label>Timeshares</label>
+    </customValue>
+    <customValue>
+        <fullName>Update Company Information</fullName>
+        <default>false</default>
+        <label>Update Company Information</label>
+    </customValue>
+    <customValue>
+        <fullName>Update Legal Name</fullName>
+        <default>false</default>
+        <label>Update Legal Name</label>
+    </customValue>
+    <customValue>
+        <fullName>Regulatory Compliance</fullName>
+        <default>false</default>
+        <label>Regulatory Compliance</label>
+    </customValue>
+    <customValue>
+        <fullName>Remove Owner</fullName>
+        <default>false</default>
+        <label>Remove Owner</label>
     </customValue>
     <customValue>
         <fullName>Collection Agency</fullName>
@@ -71,28 +111,9 @@
         <label>Collection Agency</label>
     </customValue>
     <customValue>
-        <fullName>Delegated Municipality</fullName>
+        <fullName>Update Business Name</fullName>
         <default>false</default>
-        <isActive>false</isActive>
-        <label>Delegated Municipality</label>
-    </customValue>
-    <customValue>
-        <fullName>Manufactured Homes</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Manufactured Homes</label>
-    </customValue>
-    <customValue>
-        <fullName>Program Unknown</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Program Unknown</label>
-    </customValue>
-    <customValue>
-        <fullName>Misc Payments</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Misc Payments</label>
+        <label>Update Business Name</label>
     </customValue>
     <customValue>
         <fullName>Collection Agencies</fullName>
@@ -436,37 +457,7 @@
         <isActive>false</isActive>
         <label>Update/Close Company</label>
     </customValue>
-    <customValue>
-        <fullName>Update Legal Name</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Update Legal Name</label>
-    </customValue>
-    <customValue>
-        <fullName>Regulatory Compliance</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Regulatory Compliance</label>
-    </customValue>
-    <customValue>
-        <fullName>Remove Owner</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Remove Owner</label>
-    </customValue>
-    <customValue>
-        <fullName>Update Company Information</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Update Company Information</label>
-    </customValue>
-    <customValue>
-        <fullName>Update Business Name</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Update Business Name</label>
-    </customValue>
     <description>This refers to the application type being applied for: Application Types- Trades Credential, Plan Review, Permit To Operate, etc.</description>
     <masterLabel>Application Type</masterLabel>
-    <sorted>false</sorted>
+    <sorted>true</sorted>
 </GlobalValueSet>
