@@ -2,7 +2,7 @@ public class DOL_AppUtility {
 
     public static Boolean bIsFeeTriggerFired = false;
     public static Boolean bIsFeePaymentTriggerFired = false;
-    
+    public static Boolean isReceiptRunOnce = false;
     private static boolean alreadyModified = false;
     
     // get the state
