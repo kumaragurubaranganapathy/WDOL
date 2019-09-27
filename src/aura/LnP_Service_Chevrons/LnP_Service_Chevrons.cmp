@@ -141,7 +141,10 @@
                                                 <aura:if isTrue="{!or(responses.answer != null,responses.answer != '')}"> 
                                                     <!-- CR    <aura:if isTrue="{! or(responses.answer != null,responses.answer != '')}"> -->
                                                     <div class = "revAndSubCompletionFont">
-                                                        <ui:outputRichText value="{!responses.answer}"/>
+                                                        <ui:outputRichText class="{!responses.fieldType == 'Date'?'slds-hide':''}" value="{!responses.answer}"/>
+                                                        <lightning:formattedDateTime class="{!responses.fieldType == 'Date'?'':'slds-hide'}" value="{!responses.answer}"
+                                                                                 year="numeric" month="long" day="2-digit"
+                                                                                 />
                                                         <!-- CR <aura:if isTrue="{!and(responses.hasChild, responses.value == No)}" >
                                                  {!varRes + 1}
                                                 </aura:if>   -->  
@@ -342,7 +345,7 @@
                                                     <div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+'field-item'}">
                                                         <c:LnP_Attachment appID="{!v.applicationId}" labelQuesions="{!question.label}" docList="{!question.multiValues}" />
                                                     </div>
-													<aura:if isTrue = "{!(question.multiValues.length == 0 &amp;&amp; question.isMandatorySub == true)}">
+                                                    <aura:if isTrue = "{!(question.multiValues.length == 0 &amp;&amp; question.isMandatorySub == true)}">
                                                         <aura:if isTrue="{!v.showErrorMsgsOfAttachments}">
                                                         	<div class="attValidationStyle fieldSpecific slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1">
                                                                 Please upload required attachment.
@@ -350,7 +353,6 @@
                                                         </aura:if>
                                                     </aura:if>
                                                 </aura:if>
-                                                
                                                 <aura:if isTrue="{!and(question.fieldType=='Attachment',question.acknowledge)}">
                                                     <div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <div class="{!(!question.uploadFile? '' : 'slds-hide')}">

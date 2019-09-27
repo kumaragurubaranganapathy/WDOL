@@ -198,7 +198,7 @@
                     if(tabsList[key].sectionName =='License Information' || tabsList[key].sectionName =='Questions' || (tabsList[key].sectionName =='Endorsement' && component.get("v.licenseType")!='Notary Public')|| tabsList[key].sectionName =='Financial Guarantee' ){
                         for (var question in tabsList[key].labelFieldsMap){
                             if(tabsList[key].labelFieldsMap[question].renderedOnUi == true && tabsList[key].labelFieldsMap[question].value != null ){
-                                a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value });
+                                a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].value, "fieldType":tabsList[key].labelFieldsMap[question].fieldType});
                             } 
                             else if(tabsList[key].labelFieldsMap[question].renderedOnUi == true && tabsList[key].labelFieldsMap[question].multiValues != null){
                                 a.push({"question": tabsList[key].labelFieldsMap[question].label, "answer":tabsList[key].labelFieldsMap[question].multiValues.toString() });

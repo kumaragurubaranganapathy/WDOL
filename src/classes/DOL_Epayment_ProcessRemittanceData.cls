@@ -1,12 +1,11 @@
 global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sObject> {
     
     private DOL_EpaymentRemittanceInput tempRemittanceInput;
-    private DOL_Integration_Batch_Input__c tempRecord;
     private MUSW__Receipt__c receipt ;
     private Map<String,String> parameterMap ;
     private DOL_ProcessPayment processPayment;
 
-    private String cartId = '',SFDCfeeIds='',SFDCappId='',receiptId = '';
+    private String cartId, SFDCfeeIds, SFDCappId, receiptId;
 
     private DOL_Dao dao = new DOL_Dao();
 
@@ -16,20 +15,20 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
     global Database.QueryLocator start(Database.BatchableContext BC){
         System.debug('DOL_Epayment_ProcessRemittanceData::start...');
         return Database.getQueryLocator([ 
-                                        select id, File_Name__c, INFO__c, Input__c, Status__c, Input_Type__c 
-                                        from DOL_Integration_Batch_Input__c 
-                                        where Status__c = 'UNPROCESSED' and Input_Type__c = 'REMITTANCE' 
-                                        ]);
+                select id, File_Name__c, INFO__c, Input__c, Status__c, Input_Type__c 
+                from DOL_Integration_Batch_Input__c 
+                where Status__c = 'UNPROCESSED' and Input_Type__c = 'REMITTANCE' 
+                ]);
     }
     
     global void execute(Database.BatchableContext BC, List<DOL_Integration_Batch_Input__c> remittanceRecords){
-        
+        List<MUSW__Receipt__c> receiptLst = new List<MUSW__Receipt__c>();
         if(remittanceRecords != null && remittanceRecords.size() > 0){
             Boolean isRecordProcessed;
             for(DOL_Integration_Batch_Input__c record : remittanceRecords){
-                tempRecord = record;
                 isRecordProcessed = false;
                 try{
+                    record.INFO__c = '';
                     tempRemittanceInput = DOL_EpaymentRemittanceInput.parse(record.Input__c);
                     receipt = null;
                     parameterMap = new Map<String,String>();
@@ -49,8 +48,14 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
                     
                     updateReceiptFromRemittanceInput();
                     if(receipt.Status__c == 'Complete' ){
-                        update receipt;
-                    }else{
+                        receiptLst.add(receipt);
+                    }
+                    else if(isFeesAlreadyPaid(receipt.Selected_Fees__c.split(',')) ){
+                        record.INFO__c = 'Fees Already Paid ';
+                        receiptLst.add(receipt);
+                    }
+                    else{
+                        receipt.BGBK__Cart__c = null; 
                         processPayment = new DOL_ProcessPayment(Id.valueOf(SFDCappId),
                                         Id.valueOf(cartId),
                                         receipt.Selected_Fees__c.split(','),
@@ -59,15 +64,21 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
                                         );
                         processPayment.doPayment();
                     }
-                    record.INFO__c = 'Process Completed Successfully';
+                    record.INFO__c += 'Process Completed Successfully';
                     record.Status__c = 'SUCCESSFUL';
 
                 }catch(Exception error){
-                    tempRecord.INFO__c += 'error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString();
+                    record.INFO__c = 'error occured  '+error.getMessage()+' stack trace '+error.getStackTraceString();
                     record.Status__c = 'FAILED';
                 }
             }
-            DOL_Dao.save(remittanceRecords);
+            try{
+                DOL_Dao.save(receiptLst);
+                DOL_Dao.save(remittanceRecords);
+            }
+            catch(Exception e){
+                DOL_CreateErrorLog_Exception.logApplicationError(e);
+            }
         }
     }
     
@@ -109,6 +120,13 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
         if(! String.isBlank(tempRemittanceInput.companyName))
             receipt.Company_Name__c = tempRemittanceInput.companyName;
         receipt.Remittance_Process_Date_Time__c = System.now();
+    }
+
+    private Boolean isFeesAlreadyPaid(List<String> feeIds){
+        List<MUSW__Fee__c> feeLst = [ Select Id, MUSW__Fee_Paid__c from MUSW__Fee__c where MUSW__Fee_Paid__c = false and Id IN :feeIds];
+        if( feeLst != null && feeLst.size() > 0 )
+            return false;
+        return true;
     }
 
 }

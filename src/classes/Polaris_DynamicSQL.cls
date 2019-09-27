@@ -845,14 +845,12 @@ String pemail = (String)pdata.get('email');*/
         //List<MUSW__Submission__c> lstSub  = [select Public_Distribution_URL__c,MUSW__License2__c ,ID from MUSW__Submission__c  where MUSW__License2__c = :lstname and  Public_Disciplinary_Action__c  = true ];
         Set<Id> setDoc = new Set<ID>();
         List<ContentDocumentLink> lstCon;
-        
-            
-            for(String key  : lstname) {
                 integer count = 0;
                 for (MUSW__Submission__c sub: [select Public_Distribution_URL__c,MUSW__License2__c ,ID from MUSW__Submission__c  where MUSW__License2__c = :lstname and  Public_Disciplinary_Action__c  = true ]) {
                     system.debug('anyways'+sub);
                     setDoc.add(sub.Id);
                     disciPlinaryAction obj = new disciPlinaryAction();
+                    for(String key  : lstname) {
                     if(key.equals(sub.MUSW__License2__c)){
                         // count++;
                         system.debug('inside later');
@@ -862,7 +860,7 @@ String pemail = (String)pdata.get('email');*/
 
                     }
                 }
-            }  
+           }  
         
         return mapDesciplinaryAction;
         }catch(Exception ex)
