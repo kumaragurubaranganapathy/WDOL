@@ -35,23 +35,27 @@
     src:url(/lightningwashington/resource/PublicSans/PublicSans-Regular.ttf); /*1560421450000*/
 }
 .THIS .slds-input::-moz-placeholder {  /*firefox*/       
-  
-    line-height: 42px !important;
+   
+    line-height:40px !important;
 }
-/*.THIS .slds-input::-webkit-input-placeholder {  
-      line-height: inherit !important;
-      height: 42px !important; 
-}*/
-/*.THIS .slds-input::-webkit-input-placeholder {  
+.THIS .slds-input::-webkit-input-placeholder {  
+      height:inherit !important;
      line-height:40px !important;
-}*/
-@supports (-webkit-overflow-scrolling: touch) {
+}
+/*@supports (-webkit-overflow-scrolling: touch) {
   .THIS .slds-input::-webkit-input-placeholder {  
      line-height:40px !important;
 }
-}
+}*/
 .THIS h1,.THIS h2,.THIS h3,.THIS h4,.THIS h5,.THIS h6{
     font-family: t(merrifontfamily);
+   
+}
+.THIS h1{
+    font-size:30px;
+}
+.THIS h2{
+    font-size:20px;
 }
 .THIS .merriweather-font{
     font-family: t(merrifontfamily);
@@ -143,6 +147,10 @@ border-radius: 5px;
     outline: dotted 2px #aeb0b5;
     outline-offset: 2px;
 }
+/*.THIS .slds-input:focus, .THIS .slds-select:focus{
+    border-radius: 5px;
+    border: solid 2px #aeb0b5;
+} */
 .THIS .address-button, .THIS .slds-button_neutral{ 
     
     
@@ -194,7 +202,7 @@ border-radius: 5px;
 }
 /*fields label and input style*/
 .THIS .field-size label,.THIS .field-size .slds-form-element__label,.THIS .fileupload .slds-form-element__label,.THIS .fileupload .slds-medium-show,.THIS .licenseinp span,.THIS .licenseinp label,.THIS .licensetab label,.THIS .businesstab label,.THIS .page-content label,.THIS .program span
-,.THIS .course-type span,.THIS .licensure span,.THIS .screen-one .section-form-container label,.THIS .field-item label,.THIS .self-service-wrapper label{
+,.THIS .course-type span,.THIS .licensure span,.THIS .screen-one .section-form-container label,.THIS .field-item label,.THIS .self-service-wrapper label,.THIS .licensecon label{
     font-family: token(publicSansfontfamily);
     font-size: token(fieldlabelsize);
     line-height:1.5;
@@ -243,7 +251,7 @@ flex-basis:auto;
     color: token(fieldclr);
     padding-bottom: 5px;
 }
-.THIS .licenseinp input::placeholder,.THIS .licensetab input::placeholder,.THIS .businesstab input::placeholder,.THIS .breadcumb a,.THIS .complaintSummary::placeholder,.THIS .slds-file-selector__text,.THIS .placeholTxt input::placeholder,.THIS .field-style input::placeholder,.THIS .userpswd1 input::placeholder{
+.THIS .licenseinp input::placeholder,.THIS .licensetab input::placeholder,.THIS .businesstab input::placeholder,.THIS .breadcumb a,.THIS .complaintSummary::placeholder,.THIS .slds-file-selector__text,.THIS .placeholTxt input::placeholder,.THIS .field-style input::placeholder,.THIS .userpswd1 input::placeholder,.THIS .managereq input::placeholder{
     height: 22px;
     font-family: token(publicSansfontfamily);
     font-size: token(fieldlabelsize);
@@ -252,8 +260,16 @@ flex-basis:auto;
     line-height: normal;
     color: token(placeholderColor);
 }
-.THIS .sub-header,.THIS .sub-section,.THIS .subheader span{
+.THIS .sub-header,.THIS .sub-section{
     font-family: token(merrifontfamily);
+    font-weight: token(txtfontweight);
+     font-size: token(senfontsize);
+    font-style: token(txtfontstyle);
+    line-height: normal;
+    color: token(subHeader);
+}
+.THIS .subheader span{
+     font-family: token(merrifontfamily);
     font-size: token(senfontsize);
     font-weight: token(txtfontweight);
     font-style: token(txtfontstyle);
@@ -409,7 +425,7 @@ padding:0;
 margin-right:10%;
 } */
 /* review and submit headings*/
-.THIS .fileupload .slds-form-input_label,.THIS .headings{
+.THIS .fileupload .slds-form-input_label{
     height: auto;
     font-family: token(publicSansfontfamily);
     font-size: token(fieldlabelsize);
@@ -419,6 +435,11 @@ margin-right:10%;
 }
 .THIS .headings{
     font-family: token(merrifontfamily);
+     height: auto;
+    font-weight: token(txtfontweight);
+    font-style: token(txtfontstyle);
+    color: token(fieldclr);
+    margin-bottom:0.5rem;
 }
 /* review and submit declaration statements*/
 .THIS .sentences,.THIS .field-item .slds-text-longform{
@@ -465,7 +486,7 @@ margin-right:10%;
     
 }
 .THIS .sentenceResp .uiOutputRichText{
-    color:t(sentenceclr);
+    color:t(fieldclr);
     font-size:t(fieldlabelsize);
 }
 .THIS .sentenceResp .revAndSubCompletionFont .uiOutputRichText{
@@ -667,6 +688,9 @@ margin-right:10%;
 }
 .THIS input[type=number]::-webkit-inner-spin-button, .THIS input[type=number]::-webkit-outer-spin-button{
     display:none;
+}
+.THIS .slds-button{
+    text-transform:capitalize;
 }
 
 @media only screen and (max-width:767.9px){    

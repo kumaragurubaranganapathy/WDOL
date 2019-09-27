@@ -15,7 +15,6 @@
     color:t(fieldclr);
 }
 .THIS .subheader{
-    font-size:1rem;    
     padding-bottom: 0.5rem;
     margin-top:1rem;
     font-weight: 600;    
@@ -39,13 +38,14 @@
 .THIS .addressBtn{
     display:none;
 }
+
 .THIS .Guarantee .field-item .slds-input{
     border:1px solid #5b616b;
     height:42px;
 }
-.THIS .attestation{
+/*.THIS .attestation{
     padding-bottom: 25px;
-}
+} */
 .THIS .certificate-checkbox .slds-checkbox__label span{
     color:t(fieldclr);
 }
@@ -165,7 +165,7 @@
     margin:8px 0 20px 0;
     color: t(fieldclr);
     font-size:14px;  
-    padding:5px 0;    
+    /*padding:5px 0;    */
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -299,6 +299,7 @@
 .THIS .mandatory-fields{
     color:rgb(194, 57, 52);;
 }
+
 .THIS .btn-lnp[disabled], 
 .THIS .btn-lnp:disabled{
     background: t(LnGGrayText);
@@ -345,6 +346,9 @@
 .THIS .attestation-error{
     margin-bottom:1rem;
     font-size:0.875rem;
+}
+.THIS .headings{
+    font-weight:bold;
 }
 
 @media only screen and (min-width: 768px)and (max-width: 1024px){

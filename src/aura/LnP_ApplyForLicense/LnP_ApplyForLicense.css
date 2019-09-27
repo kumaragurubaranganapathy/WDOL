@@ -88,11 +88,15 @@ display:none;
     width:100%;
     height:30px;
     border-bottom:0.5px solid #d6d7d9;
-    margin-bottom:1rem;
+    margin:1rem 0;
     
 }
 .THIS .sectiondetail{
-    margin-bottom:0.5rem;     
+    margin-bottom:0.5rem;
+     
+}
+.THIS .Legal{
+    font-weight:bold;
 }
 .THIS .field-item.attest-item{
     padding-right:0;
@@ -128,7 +132,7 @@ display:none;
 }*/
 .THIS fieldset .slds-form-element__control{
     display:flex;
-	flex-wrap:wrap;
+    flex-wrap:wrap;
 }
 .THIS .slds-form-element__legend{
     font-size: 14px;
@@ -177,7 +181,7 @@ display:none;
     margin:8px 0 20px 0;
     color: t(fieldclr);
     font-size:14px;  
-    padding:5px 0;    
+    /*padding:5px 0;    */
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -199,9 +203,9 @@ display:none;
 .THIS .field-item.attest{
     padding:10px 0 25px;
 }
-.THIS .attestation{
+/*.THIS .attestation{
     padding-bottom:25px;
-}
+} */
 .THIS .field-item{
     padding-left: 0;
     padding-bottom:0;
@@ -222,6 +226,12 @@ display:none;
     color: t(LnGFormGray);
     font-size:16px;
 }
+/*.THIS .attValidationStyle{
+    padding-left: 13px;
+    padding-bottom: 25px;
+    color: red;
+    font-size:14px;
+}*/
 .THIS .attValidationStyle{
     padding-left: 0px;
     padding-bottom: 0;
@@ -269,7 +279,6 @@ display:none;
     max-width: 872px;
 }
 .THIS .subheader{
-    font-size:1rem;    
     padding-bottom: 0.5rem;
     margin-top:1rem;
     font-weight: 600;    
@@ -328,7 +337,9 @@ color: t(primary);
 .THIS .mandatory-fields{
     color:rgb(194, 57, 52);;
 }
-
+/*.THIS .error{
+    color:t(LnGErrorMsg);
+}*/
 .THIS .validate {
     position: relative;
     margin-bottom:1rem;
@@ -425,11 +436,9 @@ color: t(primary);
     margin-bottom:1rem;
     font-size:0.875rem;
 }
-.THIS .Legal{
+.THIS .headings{
     font-weight:bold;
 }
-
-
 @media t(mqSmall){
     
     .THIS .button-section.buttonpos {
@@ -489,7 +498,9 @@ color: t(primary);
     }
     .THIS .addRecbtn{
         padding:5px;
-    }   
+    }
+    
+    
 }
 .THIS .toastTitle {
     font-family: t(merrifontfamily);

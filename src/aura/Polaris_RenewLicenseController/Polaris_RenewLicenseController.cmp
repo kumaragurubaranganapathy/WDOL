@@ -120,7 +120,7 @@
                                 <aura:if isTrue="{!and((section.sectionName=='Review and Submit'), v.currentTab==section.tabIndex)}">
                                     <!-- ATTEST<br></br> -->
                                     <div id="SubmitAndReview" class='field-item review-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="headings underline">Questions Review</div><br/>
+                                        <h2 class="headings underline">Questions Review</h2>
                                         <!-- <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes">
                                 <label style="font-weight: 600;">{!varRes + 1}. {!responses.question}</label><br></br>
         <p><aura:if isTrue="{!responses.answer != null}">
@@ -158,7 +158,7 @@
                                         </aura:iteration>
                                     </div>
                                     <div id="AttachmentValidation" class='slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="headings">Submissions Review</div><br/>
+                                        <h2 class="headings">Submissions Review</h2>
                                         <aura:iteration items="{!v.attachmentResponse}" var="attResponses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
                                             <div class = "slds-size--1-of-1 slds-medium-size--1-of-1 slds-small-size--1-of-1 sentenceResp">
@@ -179,7 +179,7 @@
                                         </aura:iteration>
                                     </div>
                                     <div id="certificationsValidation" class='field-item review-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="certifications headings">Certifications</div><br/>
+                                        <h2 class="certifications headings">Certifications</h2>
                                         <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                             <!--<div style="padding-top:50px" class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</div>
                                             <div class="{!(question.questionSection!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>-->
@@ -210,7 +210,7 @@
                                                   </div>
                                               </div>
                                           </div>
-                                      </div> -->
+                                      </div>-->
                                     <aura:if isTrue="{!v.licenseType=='Appraiser Course'}">
                                         <div class="slds-form-element__control slds-p-bottom_medium">
                                             <div >
@@ -220,8 +220,8 @@
                                     </aura:if>
    
                                     <div id="AttestationValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'>                
-                                        <div class="attestation headings">Signature</div>
-                                        <!-- <div class="attestBody sentences">Attest before proceeding.</div>
+                                        <h2 class="attestation headings">Signature</h2>
+                                        <!--<div class="attestBody sentences">Attest before proceeding.</div>
                                         <div class="attestBody sentences">Electronic signature name must match name shown below.</div> -->
                                         <div class="attestBody sentences">Please type your legal name as shown below.</div>
                                         <div class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
@@ -229,7 +229,7 @@
                                             <span>{!v.currentUser.Name}</span>
                                         </div>
                                         <div class="error attestation-error">{!v.attestationError}</div>
-										<div class="slds-m-bottom_small attestBody sentences">I declare, under penalty of perjury under the law of Washington, that all of the information I’ve provided in this application and any associated documents is true, complete, and correct.</div>
+                                        <div class="slds-m-bottom_small attestBody sentences">I declare, under penalty of perjury under the law of Washington, that all of the information I’ve provided in this application and any associated documents is true, complete, and correct.</div>
                                         <aura:if isTrue="{!v.showMessage}">
                                             <ui:message title="{!v.title}" severity="Error" closable="true">
                                                 
@@ -246,7 +246,7 @@
                                     <aura:set attribute="else">
                                         <div class="{!((varSection+1)==v.currentTab)?'slds-grid slds-wrap':'slds-hide'}">
                                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
-                                                <div class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</div>
+                                                <h2 class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</h2>
                                                 <div class="{!(question.questionSectionDetail!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
                                                 <aura:if isTrue="{!question.fieldType=='Picklist'}">
                                                     <!--div id="{!'q'+questionItem}" class="{!(question.isChild)?'slds-hide field-item ':'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
@@ -338,7 +338,7 @@
                                                             *
                                                         </div>
                                                     </aura:if>
-													<div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                    <div id="{!questionItem}" class="{!((question.isChild)?'slds-hide':'')+'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <c:LnP_Attachment appID="{!v.applicationId}" labelQuesions="{!question.label}" docList="{!question.multiValues}" />
                                                     </div>
                                                 </aura:if>

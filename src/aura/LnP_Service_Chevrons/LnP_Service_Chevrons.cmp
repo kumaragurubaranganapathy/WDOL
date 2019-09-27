@@ -125,7 +125,7 @@
                                         </ui:message>
                                     </aura:if>
                                     <div id="SubmitAndReview" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="headings underline">Review and Submit</div><br/>
+                                        <h2 class="headings underline">Review and Submit</h2>
                                         
                                         <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
@@ -158,8 +158,10 @@
                                         </aura:iteration>
                                     </div>
 									<aura:if isTrue="{!not(empty(v.attachmentResponse))}">
+                                    <aura:if isTrue="{!not(empty(v.attachmentResponse))}">
+                                     
                                     <div id="AttachmentValidation" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <div class="headings">Mandatory Submission Review</div><br/>
+                                        <h2 class="headings">Mandatory Submission Review</h2>
                                         <aura:iteration items="{!v.attachmentResponse}" var="attResponses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
                                             <div class = "slds-size--1-of-1 slds-medium-size--1-of-1 slds-small-size--1-of-1">
@@ -217,7 +219,7 @@
                                     </div> -->
                                     
                                     <div id="AttestationValidation" class='field-item attest-fields'>                
-                                        <div class="headings attestation">Signature</div>
+                                        <h2 class="headings attestation">Signature</h2>
                                         <!--<div class="attestBody">Declare before proceeding.</div> -->
                                         <div class="slds-form-element  field-item">
                                             <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Please type your legal name as shown below." onchange="{!c.onAttestationChange}"/>                                            
@@ -241,7 +243,7 @@
                                     <aura:set attribute="else">
                                         <div class="{!((varSection+1)==v.currentTab)?'section-wrapper':'slds-hide'}">
                                             <aura:if isTrue="{!section.sectionName=='Attachments'}">
-                                                <h2 class="headings underline">Attachments</h2><br/>
+                                                <h2 class="headings underline">Attachments</h2>
                                             </aura:if>                                            
                                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                                 <h2 class="{!and(question.questionSection!='null',question.fieldType!='Attachment')?'sectionwidth headings':'slds-hide'}">{!question.questionSection=='General Questions'?'Request Information':question.questionSection}</h2>

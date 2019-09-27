@@ -102,9 +102,9 @@
     padding: 10px;
     padding-left: 30px;
 }
-.THIS .attestation{
+/*.THIS .attestation{
     padding-bottom:25px;
-}
+} */
 .THIS .pull-right{
     margin-left: auto;
     margin-right: 0;
@@ -122,7 +122,7 @@
     margin:0.5rem 0 1.25rem;
     color: t(LnGFormTitleColor);
     font-size:0.875rem;  
-    padding:0.25rem 0;
+    /*padding:0.25rem 0; */
     /*background-color: rgb(233, 234, 236);    */
     -moz-user-select: none;
     -ms-user-select: none;
@@ -203,7 +203,6 @@
     margin: auto;     
 }
 .THIS .subheader{
-    font-size:1.25rem;
     font-weight:600;
     color:t(LnGFormTitleColor);
 }
@@ -237,6 +236,9 @@
 .THIS .mandatory-fields{
     color:rgb(194, 57, 52);;
 }
+/*.THIS .error{
+    color:t(LnGErrorMsg);
+}*/
 .THIS .btn-lnp[disabled], 
 .THIS .btn-lnp:disabled{
     background: t(LnGGrayText);
@@ -263,7 +265,10 @@
 .THIS .attestation-error{
     margin-bottom:1rem;
     font-size:0.875rem;
-	color:t(LnGErrorMsg);
+    color:red;
+}
+.THIS .headings{
+    font-weight:bold;
 }
 
 @media t(mqSmall){
