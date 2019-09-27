@@ -5,13 +5,7 @@ public class DOL_AppUtility {
     public static Boolean isReceiptRunOnce = false;
     public static Boolean runfromDolBatchUpdateLicenseStatus = false;
     
-    // get the state
-    public static boolean isAlreadyModified() {
-        return alreadyModified;
-    }
-    public static void setAlreadyModified() {
-        alreadyModified = true;
-    }
+    
     //public static List<String> lstErrorLogIds = new List<String>();
     
     @AuraEnabled
