@@ -820,3 +820,8 @@ margin-right:10%;
 .THIS .field-size .slds-datepicker .slds-form-element__control select {
     padding: 0px 20px 0px 10px;
 }
+.THIS .personal-info .slds-input[disabled],
+.THIS .personal-info .slds-input:disabled{
+    background-color: t(questxt);
+    border: 1px solid #c4c6ca;
+}
