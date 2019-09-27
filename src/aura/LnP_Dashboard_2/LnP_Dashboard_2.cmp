@@ -786,6 +786,7 @@
                                                                 <div class="slds-truncate" title="{!tableData.MUSW__Expiration_Date__c}">
                                                                     <lightning:formattedDateTime
                                                                                                  value="{!tableData.MUSW__Expiration_Date__c}"
+                                                                                                 year="numeric" month="long" day="2-digit"
                                                                                                  />
                                                                 </div>
                                                                 <aura:set attribute="else">
@@ -1065,6 +1066,7 @@
                                                                 <div class="slds-truncate" title="{!tableData.License__r.MUSW__Expiration_Date__c}">
                                                                     <lightning:formattedDateTime
                                                                                                  value="{!tableData.License__r.MUSW__Expiration_Date__c}"
+                                                                                                 year="numeric" month="long" day="2-digit"
                                                                                                  />
                                                                 </div>
                                                             </td>
@@ -1327,6 +1329,7 @@
                                                                     <div class="slds-truncate" title="{!tableData.Renewal_Expiration_Date__c}">
                                                                         <lightning:formattedDateTime
                                                                                                      value="{!tableData.Renewal_Expiration_Date__c}"
+                                                                                                     year="numeric" month="long" day="2-digit"
                                                                                                      />
                                                                     </div>
                                                                     <aura:set attribute="else">None</aura:set>

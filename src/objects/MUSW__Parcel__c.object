@@ -1342,6 +1342,11 @@ CASE( MUSW__AlertCode__c,
                     <label>FL</label>
                 </value>
                 <value>
+                    <fullName>DC</fullName>
+                    <default>false</default>
+                    <label>DC</label>
+                </value>
+                <value>
                     <fullName>GA</fullName>
                     <default>false</default>
                     <label>GA</label>
@@ -1547,11 +1552,6 @@ CASE( MUSW__AlertCode__c,
                     <label>AS</label>
                 </value>
                 <value>
-                    <fullName>GU</fullName>
-                    <default>false</default>
-                    <label>GU</label>
-                </value>
-                <value>
                     <fullName>MP</fullName>
                     <default>false</default>
                     <label>MP</label>
@@ -1565,6 +1565,26 @@ CASE( MUSW__AlertCode__c,
                     <fullName>VI</fullName>
                     <default>false</default>
                     <label>VI</label>
+                </value>
+                <value>
+                    <fullName>GU</fullName>
+                    <default>false</default>
+                    <label>GU</label>
+                </value>
+                <value>
+                    <fullName>MH</fullName>
+                    <default>false</default>
+                    <label>MH</label>
+                </value>
+                <value>
+                    <fullName>FM</fullName>
+                    <default>false</default>
+                    <label>FM</label>
+                </value>
+                <value>
+                    <fullName>PW</fullName>
+                    <default>false</default>
+                    <label>PW</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -3089,11 +3109,19 @@ CASE( MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>DC</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>DE</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FM</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3146,6 +3174,10 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>ME</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MH</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3222,6 +3254,10 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>PR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PW</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4372,11 +4408,19 @@ CASE( MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>DC</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>DE</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FM</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4429,6 +4473,10 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>ME</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MH</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4505,6 +4553,10 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>PR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PW</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5776,11 +5828,19 @@ CASE( MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>DC</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>DE</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>FL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FM</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5833,6 +5893,10 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>ME</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MH</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5909,6 +5973,10 @@ CASE( MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>PR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PW</fullName>
                 <default>false</default>
             </values>
             <values>
