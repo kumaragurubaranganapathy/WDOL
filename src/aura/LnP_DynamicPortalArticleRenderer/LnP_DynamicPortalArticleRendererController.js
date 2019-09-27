@@ -2,8 +2,11 @@
     doInit: function(component, event, helper) {
         
         helper.doInit(component,event);
+        
     },
-    
+    clickon: function(component, event, helper) {
+        helper.clickon(component,event,helper);
+    },
     handleFooterButtonAction : function(component, event, helper) {
         helper.handleFooterButtonActionHelper(component,event,helper);
     },
@@ -22,6 +25,6 @@
     },
     redirectToHelp : function(component,event,helper){
         helper.redirectToHelp(component,event);
-    }   
-       
+    }
+    
 })
