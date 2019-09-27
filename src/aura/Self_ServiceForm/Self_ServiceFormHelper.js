@@ -102,6 +102,32 @@
                                 component.set("v.redirectURL", $A.get("$Label.c.Polaris_Portal_Home"));             
                             }
     },
+    
+    getBusiness : function(component, event, helper){
+        var action = component.get("c.fetchBusinessInfo");
+        action.setParams({
+            "accId": component.get("v.recordIDforSSAMR"),            
+        });
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var accountInfo = response.getReturnValue();
+                component.set("v.accountName",accountInfo);
+            }
+            else if (state === "ERROR") {
+                var errors = response.getError();
+                if (errors) {
+                    if (errors[0] && errors[0].message) {
+                        console.error("Error message: " + errors[0].message);
+                    }
+                } else {
+                    console.error("Unknown error");
+                }
+            }
+        });
+        $A.enqueueAction(action);
+        
+    },
     getContact : function(component, event, helper){
         var action = component.get("c.fetchContactInfo");
         action.setCallback(this, function(response) {

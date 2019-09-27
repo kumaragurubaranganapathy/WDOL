@@ -2,7 +2,11 @@
 	doInit: function(component, event, helper) {	    
 		helper.doInit(component, event, helper);
         helper.getContact(component, event, helper);
-        //helper.getBusiness(component, event, helper);
+        if(component.get("v.objectApiName") == 'Account')
+        {
+            helper.getBusiness(component, event, helper);
+        }
+        
     },
     cancel: function(component, event, helper) { 
 		helper.cancel(component, event, helper);

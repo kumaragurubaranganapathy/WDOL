@@ -98,6 +98,11 @@ public class Polaris_AMRLinkCntrl {
         }
       
     }
+	@AuraEnabled
+    public static String fetchBusinessInfo(String accId)
+    {
+        return [SELECT id,Name From Account where id=:accId].Name;
+    }
     @AuraEnabled
     public static String fetchContactInfo()
     {

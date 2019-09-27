@@ -12,6 +12,7 @@
     <aura:attribute name="existingBillingCode" type="String" default="" description="store existing third party Billing code"/>
     <aura:attribute name="appId" type="String" />
     <aura:attribute name="contactName" type="String" />
+    <aura:attribute name="accountName" type="String" />
     <aura:attribute name="contactId" type="Id" />
     <aura:attribute name="AMRName" type="String" />
     <aura:attribute name="iscontactAddress" type="Boolean" default="false" />
@@ -36,7 +37,13 @@
                 <!--<lightning:messages />-->
                 <div class="service-form-container">
                     <div class="input-field-wrapper">
-                        <h2 class="contact-name">{!v.contactName}</h2>
+                        <aura:if isTrue="{!v.objectApiName == 'Account'}">
+                            <h2 class="contact-name">{!v.accountName}</h2>
+                            <aura:set attribute="else">
+                                <h2 class="contact-name">{!v.contactName}</h2>
+                            </aura:set>
+                        </aura:if> 
+                        
                         <aura:iteration items="{!v.fieldApiNames}" var="field">
                             <div class="input-field slds-p-top_large">
                                 <lightning:inputField aura:id="input-fields" fieldName="{!field}" onchange="{!c.maskInput}" class="amrfield" />
