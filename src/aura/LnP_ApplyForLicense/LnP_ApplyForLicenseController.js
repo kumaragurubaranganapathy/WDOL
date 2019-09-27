@@ -45,6 +45,7 @@
     },
     SaveAndSubmit : function(component, event, helper){
        // helper.SaveAndSubmit(component, event, helper);
+	   window.onbeforeunload = null; 
        component.set("v.saveAndSubmit",true);
        helper.goToNextTab(component, event, helper);
     },

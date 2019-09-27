@@ -95,7 +95,11 @@
         component.set("v.attestationError", "");
     },
     goToNextTab : function(component, event, helper) {
-        this.checkFieldValidations(component, event);
+        if(component.get("v.saveAndSubmit") != true){
+            this.checkFieldValidations(component, event); 
+        }else{
+            component.set("v.nextFlag", true);
+        }
         if(component.get("v.nextFlag")==true){
             component.set("v.isSSNchanged", false);
             component.set("v.showEndoMessage",false);
@@ -1292,9 +1296,11 @@
 				});
 				if(validateFields){
 					component.set("v.nextFlag", true);
+					component.set("v.showErrorMsgsOfAttachments", false);
 				}
 				else{
 					component.set("v.nextFlag", false);
+					component.set("v.showErrorMsgsOfAttachments", true);
 					var toastEvent = $A.get("e.force:showToast");
 					toastEvent.setParams({
 						"title": "ERROR!",
