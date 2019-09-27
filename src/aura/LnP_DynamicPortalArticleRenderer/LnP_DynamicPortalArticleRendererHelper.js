@@ -35,13 +35,13 @@
             
             action.setParams({"externalId": query_String_values[0]["value"]});
             
-        }else if(component.get("v.articleTitle") != null){
+        }/*else if(component.get("v.articleTitle") != null){
             
             action = component.get('c.getPortalArticlesByArticleTitle');
             
             action.setParams({"articleTitle": component.get("v.articleTitle")});            
             
-        }else if(component.get("v.displayPage") != null){
+        } */else if(component.get("v.displayPage") != null){
             
             action = component.get('c.getPortalArticlesByDisplayPage');
             
@@ -63,6 +63,8 @@
                 console.log(JSON.parse(result));
                 
                 component.set("v.articleList",JSON.parse(result));
+                
+            
             }
             else if (state === "INCOMPLETE") {
                 console.log("Unknown error");
@@ -78,30 +80,57 @@
             component.set("v.articlesLoaded",true);
         });
         $A.enqueueAction(action);
+       
+       // $A.util.toggleClass(toggleText[0], 'slds-hide');
     },
-    
+    clickon : function(component,event) {
+       
+       event.stopPropagation() ;
+        var articlediv=[];
+        articlediv=component.find("professionList");
+        for(var i=0;i<=articlediv.length;i++){
+            if($A.util.hasClass(articlediv[i], "slds-hide")){
+                 $A.util.removeClass(articlediv[i], 'slds-hide');
+            }
+        }
+       
+    },
     handleFooterButtonActionHelper : function(component,event) {
         
         var has_Internal_Article_Redirection = event.currentTarget.hasAttribute('data-Internal_Article_Redirection__c');
         
         var has_url_Redirection = event.currentTarget.hasAttribute('data-article_link_url__c');
         
+        var article_Titles_render_same_page = ["Check for other professions"];
+        
+        var should_Render_On_Same_Page = article_Titles_render_same_page.includes(event.currentTarget.getAttribute('data-Article_Title__c'));
+        
         if(has_url_Redirection == true){
             
-            var url_String = event.currentTarget.getAttribute('data-article_link_url__c');
+                var url_String = event.currentTarget.getAttribute('data-article_link_url__c');
             
-            this.gotoURL(component, event, url_String);
+                this.gotoURL(component, event, url_String);
+
             
         }else if( has_Internal_Article_Redirection == true ){
             
-            var article_External_Id = event.currentTarget.getAttribute('data-Internal_Article_Redirection__c');
+            if(should_Render_On_Same_Page){
+                
+                var compEvent=component.getEvent("PortalArticleHandler");
+                compEvent.setParams({"displayPage":true});
+                compEvent.fire();
+                //if data-Article_Title__c = "Check for other professions" then pass "Other Professions" and fire the parent compoenent(LnP_HomePage_Container).
+                
+            }else{
             
-            var redirect_To_Internal_Article =  $A.get("$Label.c.Polaris_Portal_Home")+'?ArticlesExternalId='+article_External_Id;
-            
-            console.log('redirect_To_Internal_Article --> '+redirect_To_Internal_Article);
-            
-            this.gotoURL(component, event, redirect_To_Internal_Article);
-            
+                var article_External_Id = event.currentTarget.getAttribute('data-Internal_Article_Redirection__c');
+                
+                var redirect_To_Internal_Article =  $A.get("$Label.c.Polaris_Portal_Home")+'?ArticlesExternalId='+article_External_Id;
+                
+                console.log('redirect_To_Internal_Article --> '+redirect_To_Internal_Article);
+                
+                this.gotoURL(component, event, redirect_To_Internal_Article);
+            }
         }else{
             console.log("The respective button has no action");
         }
