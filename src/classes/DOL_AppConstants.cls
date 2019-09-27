@@ -160,6 +160,7 @@ public class DOL_AppConstants {
     public static final String COMPLETE = 'Complete'; //CartController.cls,
     public static final String COMPLETED = 'Completed';
     public static final String APPROVED = 'Approved';
+    public static final String EXPIRED = 'Expired';
     public static final String INSERTLICENSE_LSTENDO = 'insertLicense-lstEndo';
     public static final String INSERTLICENSE_APPLICATIONLIST = 'insertLisence-applicationlist';
     public static final String GET_TOTAL_BALANCE = 'getTotalBalance';
@@ -192,11 +193,12 @@ public class DOL_AppConstants {
     public static final String FEE_STRING = 'fees';
     public static final String REVIEW_STRING = 'review';
     public static final String DEPOSIT_STRING = 'Deposit';
-	public static final String COMPLETE_STRING = 'Complete';
+    public static final String COMPLETE_STRING = 'Complete';
     public static final String TEMP_STRING = 'temp';
     public static final String COUNTER_STRING = 'Counter';
     public static final String PORTAL_STRING = 'Portal';
     public static final String SELECT_STRING_WITH_SPACE = 'SELECT ';
+
     Public static final String FEE_PAYMENT_SOQL_QUERY_STRING = 'SELECT MUSW__Fee__r.License_Number__c, MUSW__Fee__r.portal_name__c, MUSW__Fee__r.Application_Type__c,'
             +'MUSW__Fee__r.License_Type__c, MUSW__Fee__r.Application_Method__c, MUSW__Fee__r.MUSW__Amount__c, MUSW__Payment_Amount__c,'
             +'MUSW__Fee__r.MUSW__Outstanding_Fee__c, Id, MUSW__Fee__c,BGBK__Invoice__c,'
@@ -235,9 +237,9 @@ public class DOL_AppConstants {
     
     //CredCEhoursScheduler
     public static final String QUERY_LICENSE_ELIGIBLE_STRING = 'Select id, name, CE_Hours__c, Renewal_Cycle_End_Date__c, ' + 
-                    'Renewal_window__c, MUSW__Expiration_Date__c, LastModifiedBy.Name ' +
-                    'from MUSW__License2__c where CE_Eligible__c = true limit 200';
-                    
+                     'Renewal_window__c, MUSW__Expiration_Date__c, LastModifiedBy.Name ' +
+                     'from MUSW__License2__c where CE_Eligible__c = true limit 200';
+                     
     //CredentialNotificationScheduler
     public static final String QUERY_CREDENTIAL_NOTIFICATION_SCHEDULER = 'Select Id, Name, MUSW__Applicant__r.FirstName, MUSW__Applicant__r.LastName, MUSW__Applicant__r.Name, MUSW__Primary_Licensee__r.Email_Primary_Contact__c, MUSW__Status__c, ' + 
             'MUSW__Expiration_Date__c, Next_Notification_Date__c, Next_Notification_Attempt__c, Business_License__c, OwnerId,Credential__c, ' + 
@@ -249,6 +251,10 @@ public class DOL_AppConstants {
     //DOL_Batch_ApplictionsStatusUpdate
     public static final String QUERY_DRAFT_APPLICATIONS = 'select id,LastModifiedDate,MUSW__Status__c from MUSW__Application2__c where ((MUSW__Status__c=\'Draft\' OR MUSW__Status__c=\'Withdrawn\') OR (MUSW__Status__c=\'Pending\' OR MUSW__Status__c=\'Under Review\')) OR MUSW__Status__c=\'Abandoned\'';
     public static final String ABANDONED_STRING = 'Abandoned';
+    
+    //DOL_Batch_LicenseReminderEmail
+    public static final String QUERY_ACTIVE_LICENSES = 'select id,LastModifiedDate,MUSW__Status__c,MUSW__Expiration_Date__c,MUSW__Applicant__c,MUSW__Applicant__r.Email,MUSW__Applicant__r.Other_Email__c from MUSW__License2__c where MUSW__Status__c=\'Active\'';
+    
     
     //DOL_ContentVersionUtility
     public static final String CONTENT_LOCATION_SALESFORCE_STRING = 'S';
