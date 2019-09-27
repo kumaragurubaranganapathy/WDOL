@@ -4,11 +4,11 @@
     <protected>false</protected>
     <values>
         <field>Add_To_Interface__c</field>
-        <value xsi:type="xsd:boolean">true</value>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
         <field>Add_To_PDF__c</field>
-        <value xsi:type="xsd:boolean">true</value>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
         <field>Item_FundAccSystem__c</field>
