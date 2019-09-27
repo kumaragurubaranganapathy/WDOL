@@ -65,19 +65,15 @@ public class DOL_ProcessPayment {
 
         m_ps = new BGBK.PaymentService();
         m_rs = new BGBK.ReceiptService();
-        m_cs = new BGBK.CartService(null, cartId);
-
-        cart = m_cs.getActiveCart();
-        cart.BGBK__Last_Payment_Amount__c = paymentAmount;
-        cart.BGBK__Process_DateTime__c = System.now();
 
         accountSelected = receipt.MUSW__Paid_By__c;
 
         if( feeIdList != null && ! feeIdList.isEmpty() ){
-            allCartFees = m_cs.getCartFees(true);
-            for(MUSW__Fee__c fee : allCartFees){
-                if(feeIdList.contains(fee.id))
-                    feeVOs.add(new FeeVO(fee, true));
+            String queryString = DOL_AppUtility.getQueryString('MUSW__Fee__c');
+            queryString += ' where id IN :feeIdList';
+            allCartFees = (List<MUSW__Fee__c>)Database.query(queryString);
+            for(MUSW__Fee__c fee : allCartFees ){
+                feeVOs.add(new FeeVO(fee, true));
             }
             receipt.MUSW__Amount_Tendered__c = null;
             receipt.Status__c = 'Complete';
@@ -101,8 +97,7 @@ public class DOL_ProcessPayment {
         try{
             sp = Database.setSavePoint();
             update receipt;
-            update cart;
-            processSuccessful = m_ps.processPayment(payables, rsAmt, accountSelected, cart.BGBK__Process_DateTime__c);
+            processSuccessful = m_ps.processPayment(payables, rsAmt, accountSelected, System.now());
             if(! processSuccessful){
                 throw new CustomException('BGBK Method Failed to process payment , Payment not succeded');
             }

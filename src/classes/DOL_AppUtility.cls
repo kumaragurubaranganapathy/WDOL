@@ -285,10 +285,18 @@ public class DOL_AppUtility {
 
     // Get Field API_NAME for given sObject
     // @author Laltu Banerjee
-    public static Set<String> getSobjectFields(String sObjectApiName){
+    public static List<String> getSobjectFields(String sObjectApiName){
         SObjectType sObjType = Schema.getGlobalDescribe().get(sObjectApiName);
         Set<String> fieldApiNameSet = sObjType.getDescribe().fields.getMap().keySet();
-        return fieldApiNameSet;
+        List<String> fieldApiNameLst = new List<String>();
+        List<String> notRequiredField = new List<String>();
+        notRequiredField.add('lastvieweddate');
+        notRequiredField.add('lastreferenceddate');
+        for(String apiName : fieldApiNameSet){
+            if(! notRequiredField.contains(apiName.toLowerCase()) )
+                fieldApiNameLst.add(apiName);
+        } 
+        return fieldApiNameLst;
     }
 
     // Get Generic Query String
@@ -297,7 +305,7 @@ public class DOL_AppUtility {
     // User need to add where condition into return query string
     //@author Laltu Banerjee
     public static String getQueryString(String sObjectApiName){
-        Set<String> fieldApiNameSet = getSobjectFields(sObjectApiName);
+        List<String> fieldApiNameSet = getSobjectFields(sObjectApiName);
         String queryString = 'Select ';
         queryString += String.join(new List<String>(fieldApiNameSet),' ,');
         queryString += ' from '+sObjectApiName+' ';
