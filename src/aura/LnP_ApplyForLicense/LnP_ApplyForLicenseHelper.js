@@ -383,7 +383,7 @@
             component.set("v.showEndoMessage",true);
             component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);  
         }
-        else if(tabsList[currentTab-1].labelFieldsMap[questionNumber] !=undefined && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse !=null && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse.contains(response) && component.get("v.licenseType")!='Notary Public')
+        else if(tabsList[currentTab-1].labelFieldsMap[questionNumber] !=undefined && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse !=null && tabsList[currentTab-1].labelFieldsMap[questionNumber].messageTriggerResponse.includes(response) && component.get("v.licenseType")!='Notary Public')
         {            
             component.set("v.showEndoMessage",true);
             component.set("v.endoMessage",tabsList[currentTab-1].labelFieldsMap[questionNumber].message);            
@@ -404,14 +404,21 @@
             }
             if(childQuestionsArray.length>0){
                 for(var i=0; i<childQuestionsArray.length; i += 1){
-                    response = responsePlaceholder;
+                    response = responsePlaceholder; 
                     var mapIndex = childQuestionsArray[i];
-                    if(tabsList[currentTab-1].labelFieldsMap[mapIndex].conditionalAnswer !=null && response.includes(tabsList[currentTab-1].labelFieldsMap[mapIndex].conditionalAnswer)){
+                    var dataType = tabsList[currentTab-1].labelFieldsMap[mapIndex].fieldType;
+                    if(tabsList[currentTab-1].labelFieldsMap[mapIndex].conditionalAnswer !=null 
+                       && ((response == (tabsList[currentTab-1].labelFieldsMap[mapIndex].conditionalAnswer) && dataType !='Checkbox') || 
+                          (response.includes(tabsList[currentTab-1].labelFieldsMap[mapIndex].conditionalAnswer) && dataType =='Checkbox')
+                      )){
                         tabsList[currentTab-1].labelFieldsMap[mapIndex].renderedOnUi=true;
                     } else {
                         for(var j=0; j<tabsList[currentTab-1].labelFieldsMap.length; j += 1){
+                             var elsedataType = tabsList[currentTab-1].labelFieldsMap[j].fieldType;
                             if(tabsList[currentTab-1].labelFieldsMap[j].parentQuestionId === questionNumberId){
-                                if(tabsList[currentTab-1].labelFieldsMap[j].conditionalAnswer !=null && response.includes(tabsList[currentTab-1].labelFieldsMap[j].conditionalAnswer)){
+                                if(tabsList[currentTab-1].labelFieldsMap[j].conditionalAnswer !=null 
+                                   &&((response == (tabsList[currentTab-1].labelFieldsMap[j].conditionalAnswer) && elsedataType !='Checkbox')
+                                    || (response.includes(tabsList[currentTab-1].labelFieldsMap[j].conditionalAnswer) && elsedataType =='Checkbox') )){
                                     tabsList[currentTab-1].labelFieldsMap[j].renderedOnUi=true;                       
                                 }else{
                                     if(tabsList[currentTab-1].labelFieldsMap[j].hasChild){
@@ -454,6 +461,7 @@
         }
         component.set("v.licenseWrapper",tabsList);
     },    
+
     showSpinner: function(component, event){
         console.log('show spinner');
         //var spinner = component.find('spinner');
