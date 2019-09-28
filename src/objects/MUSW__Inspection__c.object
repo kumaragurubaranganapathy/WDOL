@@ -914,16 +914,26 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
         <type>Picklist</type>
         <valueSet>
             <valueSetDefinition>
-                <sorted>false</sorted>
+                <sorted>true</sorted>
                 <value>
-                    <fullName>Pending</fullName>
-                    <default>true</default>
-                    <label>Pending</label>
+                    <fullName>Approval</fullName>
+                    <default>false</default>
+                    <label>Approval</label>
                 </value>
                 <value>
-                    <fullName>Scheduled</fullName>
+                    <fullName>Approved</fullName>
                     <default>false</default>
-                    <label>Scheduled</label>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Assigned</fullName>
+                    <default>false</default>
+                    <label>Assigned</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
                 </value>
                 <value>
                     <fullName>Completed</fullName>
@@ -931,9 +941,9 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <label>Completed</label>
                 </value>
                 <value>
-                    <fullName>Approval</fullName>
+                    <fullName>Denied</fullName>
                     <default>false</default>
-                    <label>Approval</label>
+                    <label>Denied</label>
                 </value>
                 <value>
                     <fullName>In Violation</fullName>
@@ -941,14 +951,19 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <label>In Violation</label>
                 </value>
                 <value>
-                    <fullName>Denied</fullName>
-                    <default>false</default>
-                    <label>Denied</label>
+                    <fullName>New</fullName>
+                    <default>true</default>
+                    <label>New</label>
                 </value>
                 <value>
-                    <fullName>Approved</fullName>
+                    <fullName>Pending</fullName>
                     <default>false</default>
-                    <label>Approved</label>
+                    <label>Pending</label>
+                </value>
+                <value>
+                    <fullName>Scheduled</fullName>
+                    <default>false</default>
+                    <label>Scheduled</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -968,64 +983,24 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Complaint</fullName>
-                    <default>false</default>
-                    <label>Complaint</label>
-                </value>
-                <value>
-                    <fullName>Reinspection</fullName>
-                    <default>false</default>
-                    <label>Reinspection</label>
-                </value>
-                <value>
-                    <fullName>Other</fullName>
-                    <default>false</default>
-                    <label>Other</label>
-                </value>
-                <value>
-                    <fullName>High Risk</fullName>
-                    <default>false</default>
-                    <label>High Risk</label>
-                </value>
-                <value>
-                    <fullName>Follow-up Inspection</fullName>
-                    <default>false</default>
-                    <label>Follow-up Inspection</label>
-                </value>
-                <value>
-                    <fullName>Check Rides</fullName>
-                    <default>false</default>
-                    <label>Check Rides</label>
-                </value>
-                <value>
-                    <fullName>Exam Observation</fullName>
-                    <default>false</default>
-                    <label>Exam Observation</label>
-                </value>
-                <value>
-                    <fullName>Record</fullName>
-                    <default>false</default>
-                    <label>Record</label>
-                </value>
-                <value>
-                    <fullName>Skills Observation</fullName>
-                    <default>false</default>
-                    <label>Skills Observation</label>
-                </value>
-                <value>
                     <fullName>Classroom Observation</fullName>
                     <default>false</default>
                     <label>Classroom Observation</label>
                 </value>
                 <value>
-                    <fullName>Annual</fullName>
+                    <fullName>Business/School Closing</fullName>
                     <default>false</default>
-                    <label>Annual</label>
+                    <label>Business/School Closing</label>
                 </value>
                 <value>
-                    <fullName>Administrative</fullName>
+                    <fullName>Change Owner</fullName>
                     <default>false</default>
-                    <label>Administrative</label>
+                    <label>Change Owner</label>
+                </value>
+                <value>
+                    <fullName>Check Ride</fullName>
+                    <default>false</default>
+                    <label>Check Ride</label>
                 </value>
                 <value>
                     <fullName>Financial</fullName>
@@ -1033,12 +1008,104 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                     <label>Financial</label>
                 </value>
                 <value>
-                    <fullName>Examiner</fullName>
+                    <fullName>Follow-up audit</fullName>
                     <default>false</default>
-                    <label>Examiner</label>
+                    <label>Follow-up audit</label>
+                </value>
+                <value>
+                    <fullName>High Risk</fullName>
+                    <default>false</default>
+                    <label>High Risk</label>
+                </value>
+                <value>
+                    <fullName>Initial</fullName>
+                    <default>false</default>
+                    <label>Initial</label>
+                </value>
+                <value>
+                    <fullName>New Owner</fullName>
+                    <default>false</default>
+                    <label>New Owner</label>
+                </value>
+                <value>
+                    <fullName>Observation – Classroom</fullName>
+                    <default>false</default>
+                    <label>Observation – Classroom</label>
+                </value>
+                <value>
+                    <fullName>Observation – Knowledge Exam</fullName>
+                    <default>false</default>
+                    <label>Observation – Knowledge Exam</label>
+                </value>
+                <value>
+                    <fullName>Observation – Skills Exam</fullName>
+                    <default>false</default>
+                    <label>Observation – Skills Exam</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Pre-License</fullName>
+                    <default>false</default>
+                    <label>Pre-License</label>
+                </value>
+                <value>
+                    <fullName>Range/Route Review</fullName>
+                    <default>false</default>
+                    <label>Range/Route Review</label>
+                </value>
+                <value>
+                    <fullName>Records</fullName>
+                    <default>false</default>
+                    <label>Records</label>
+                </value>
+                <value>
+                    <fullName>Re-inspection</fullName>
+                    <default>false</default>
+                    <label>Re-inspection</label>
+                </value>
+                <value>
+                    <fullName>Routine</fullName>
+                    <default>false</default>
+                    <label>Routine</label>
+                </value>
+                <value>
+                    <fullName>Routine Exam</fullName>
+                    <default>false</default>
+                    <label>Routine Exam</label>
+                </value>
+                <value>
+                    <fullName>Special/Priority</fullName>
+                    <default>false</default>
+                    <label>Special/Priority</label>
+                </value>
+                <value>
+                    <fullName>Technical Assistance</fullName>
+                    <default>false</default>
+                    <label>Technical Assistance</label>
+                </value>
+                <value>
+                    <fullName>Vehicle Inspection</fullName>
+                    <default>false</default>
+                    <label>Vehicle Inspection</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Mailing_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__License2__r.MUSW__Parcel__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mailing Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Milage__c</fullName>
@@ -1145,6 +1212,18 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
 &quot;&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Pass/Fail</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Public_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>MUSW__License2__r.Public_Address__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Public Address</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
