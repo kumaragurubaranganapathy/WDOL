@@ -4,10 +4,8 @@
 .THIS .header-wrapper{
     padding-bottom:36px;
 }
-.THIS .contact-name{
-    font-size:2rem;    
-    color:t(LnGFormTitleColor);
-    padding-bottom:1.25rem;
+.THIS .contact-name{   
+    color:t(LnGFormTitleColor);    
     font-weight:bold;
 }
 /*.THIS .contact-item{
@@ -27,8 +25,9 @@
 .THIS .change-link{
     color:t(linksColor);
    	font-size:1rem;
-    padding-bottom:0.25rem;
-    border-bottom:solid 1px t(linksColor);
+    text-decoration:underline;
+    /*padding-bottom:0.25rem;
+    border-bottom:solid 1px t(linksColor);  */
 }
 .THIS .nav-links ul{    
     background : t(actionPanelBG);
@@ -66,8 +65,13 @@
     border: solid 1px t(grayBorder);
     border-right:none;
 }
-.THIS .change-link:hover{
-    text-decoration:none;
+.THIS .name-wrapper{
+    margin-bottom:1rem;
+}
+.THIS .update-name{
+    margin-top:0.5rem;
+    font-size: 1rem;
+    text-decoration: underline;
 }
 @media only screen and (max-width:767.9px){
     .THIS .header-wrapper{
