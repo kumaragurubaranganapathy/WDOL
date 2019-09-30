@@ -844,7 +844,7 @@
                                 </div>
                             </div>
                             <aura:set attribute="else">
-                                <div class="slds-align_absolute-center">There no licenses to display</div>
+                                <div class="empty-state">There are no licenses</div>
                             </aura:set>
                         </aura:if>
                     </div>
@@ -852,100 +852,8 @@
                         <c:LnP_Pagination pgSize="4" fullList="{!v.CurrentLicenseTableDataList}" dispList="{!v.licensePaginationList}"
                                           />
                     </div>
-                </lightning:tab>
+                </lightning:tab>             
                 
-                <lightning:tab class="tab-style" label="Relationships" id="ProfessionalRelationshipsTab">
-                    <div>
-                        <aura:if isTrue="{!v.ProfessionalRelationshipDataList.length != 0}">
-                            <aura:if isTrue="{!v.displayRemoveAccountContactModal}">
-                                <div style="height:640px">
-                                    <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content"
-                                             aria-modal="true" aria-describedby="modal-content-id-1"
-                                             class="slds-modal slds-fade-in-open">
-                                        <div class="slds-modal__container">
-                                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                                                {!v.associationModalMessage}
-                                            </div>
-                                            <footer class="slds-modal__footer">
-                                                <button class="slds-button slds-button_neutral" onclick="{!c.closeRemoveAccountContactRelationModal}">Back</button>
-                                                <button data-id="{!v.removeAccountContactRelationId}" class="slds-button slds-button_brand"
-                                                        onclick="{!c.removeAccountContactRelation}">OK</button>
-                                            </footer>
-                                        </div>
-                                    </section>
-                                    <div class="slds-backdrop slds-backdrop_open"></div>
-                                </div>
-                            </aura:if>
-                            <div class="table-height">
-                                <div style="height: 100%; position: relative;">
-                                    <div class="table-scroll">
-                                        <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
-                                            <thead>
-                                                <tr class="slds-line-height_reset">
-                                                    <aura:iteration items="{!v.ProfessionalRelationshipColumnList}" var="headerData">
-                                                        <th class="" scope="col">
-                                                            <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
-                                                        </th>
-                                                    </aura:iteration>
-                                                    <th class="" scope="col">
-                                                        <div class="slds-truncate" title="actions">
-                                                            Actions
-                                                        </div>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                
-                                                <aura:iteration items="{!v.relationPaginationList}" var="tableData" indexVar="ind">
-                                                    <tr class="slds-hint-parent">
-                                                        <td data-label="Name" class="cell-style">
-                                                            <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Name}">{!tableData.MUSW__Account__r.Name}</div>
-                                                        </td>
-                                                        <td data-label="Role" class="cell-style">
-                                                            <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Role__c}">{!tableData.Role__c}</div>
-                                                        </td>
-                                                        <td data-label="Title" class="cell-style">
-                                                            <aura:if isTrue="{!tableData.Title__c}">
-                                                                <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Title__c}">{!tableData.Title__c}</div>
-                                                                <aura:set attribute="else">None</aura:set>
-                                                            </aura:if>
-                                                        </td>
-                                                        <td data-label="Phone" class="cell-style">
-                                                            <aura:if isTrue="{!tableData.MUSW__Account__r.Business_Phone__c}">
-                                                                <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Business_Phone__c}">{!tableData.MUSW__Account__r.Business_Phone__c}</div>
-                                                                <aura:set attribute="else">None</aura:set>
-                                                            </aura:if>
-                                                        </td>
-                                                        <td data-label="Email" class="cell-style">
-                                                            <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Email__c}">{!tableData.MUSW__Account__r.Email__c}</div>
-                                                        </td>
-                                                        <td data-label="Actions" class="cell-style action-cell">
-                                                            <div class="table-btn">
-                                                                <aura:if isTrue="{!tableData.Status__c == 'Active'}">
-                                                                    <a data-index="{!ind}" data-id="{!tableData.Id}" href="javascript:void(0)" class="slds-button slds-button_brand"
-                                                                       onclick="{!c.openRemoveAccountContactRelationModal}">Separate</a>
-                                                                    <aura:set attribute="else">None</aura:set>
-                                                                </aura:if>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </aura:iteration>
-                                            </tbody>
-                                        </table>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <aura:set attribute="else">
-                                <div class="slds-align_absolute-center">There are no relationships to display</div>
-                            </aura:set>
-                        </aura:if>
-                        <div class="pagination-wrapper">
-                            <c:LnP_Pagination pgSize="4" fullList="{!v.ProfessionalRelationshipDataList}" dispList="{!v.relationPaginationList}"
-                                              />
-                        </div>
-                    </div>
-                </lightning:tab>
                 
                 <lightning:tab class="tab-style" label="Unsubmitted Applications" id="ProfessionalDraftApplicationsTab">
                     <aura:if isTrue="{!v.DraftNewLicenseApplicationsDataList.length != 0 || v.DraftRenewApplicationsDataList.length != 0 || v.DraftMaintananceRequestApplicationsDataList.length != 0}">
@@ -1188,7 +1096,7 @@
                             </div>
                         </aura:if>
                         <aura:set attribute="else">
-                            <div class="slds-align_absolute-center">There are no unsubmitted applications.</div>
+                            <div class="empty-state">There are no unsubmitted applications</div>
                         </aura:set>
                     </aura:if>
                 </lightning:tab>
@@ -1445,7 +1353,7 @@
                             </div>
                         </aura:if>
                         <aura:set attribute="else">
-                            <div class="slds-align_absolute-center">There are no submitted applications.</div>
+                            <div class="empty-state">There are no submitted applications</div>
                         </aura:set>
                         
                     </aura:if>
@@ -1509,13 +1417,106 @@
                             </div>
                         </div>
                         <aura:set attribute="else">
-                            <div class="slds-align_absolute-center">You have no completed requests from past 12 months</div>
+                            <div class="empty-state">There are no completed requests from past 12 months</div>
                         </aura:set>
                         <div class="pagination-wrapper">
                             <c:LnP_Pagination pgSize="4" fullList="{!v.CompletedMaintananceRequestApplicationsDataList}"
                                               dispList="{!v.completeRequestPaginationList}" />
                         </div>
                     </aura:if>
+                </lightning:tab>
+                
+                <lightning:tab class="tab-style" label="Relationships" id="ProfessionalRelationshipsTab">
+                    <div>
+                        <aura:if isTrue="{!v.ProfessionalRelationshipDataList.length != 0}">
+                            <aura:if isTrue="{!v.displayRemoveAccountContactModal}">
+                                <div style="height:640px">
+                                    <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content"
+                                             aria-modal="true" aria-describedby="modal-content-id-1"
+                                             class="slds-modal slds-fade-in-open">
+                                        <div class="slds-modal__container">
+                                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                                {!v.associationModalMessage}
+                                            </div>
+                                            <footer class="slds-modal__footer">
+                                                <button class="slds-button slds-button_neutral" onclick="{!c.closeRemoveAccountContactRelationModal}">Back</button>
+                                                <button data-id="{!v.removeAccountContactRelationId}" class="slds-button slds-button_brand"
+                                                        onclick="{!c.removeAccountContactRelation}">OK</button>
+                                            </footer>
+                                        </div>
+                                    </section>
+                                    <div class="slds-backdrop slds-backdrop_open"></div>
+                                </div>
+                            </aura:if>
+                            <div class="table-height">
+                                <div style="height: 100%; position: relative;">
+                                    <div class="table-scroll">
+                                        <table class="slds-table slds-table_cell-buffer slds-max-medium-table_stacked slds-table_bordered">
+                                            <thead>
+                                                <tr class="slds-line-height_reset">
+                                                    <aura:iteration items="{!v.ProfessionalRelationshipColumnList}" var="headerData">
+                                                        <th class="" scope="col">
+                                                            <div class="slds-truncate header-style" title="{!headerData}">{!headerData}</div>
+                                                        </th>
+                                                    </aura:iteration>
+                                                    <th class="" scope="col">
+                                                        <div class="slds-truncate" title="actions">
+                                                            Actions
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                <aura:iteration items="{!v.relationPaginationList}" var="tableData" indexVar="ind">
+                                                    <tr class="slds-hint-parent">
+                                                        <td data-label="Name" class="cell-style">
+                                                            <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Name}">{!tableData.MUSW__Account__r.Name}</div>
+                                                        </td>
+                                                        <td data-label="Role" class="cell-style">
+                                                            <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Role__c}">{!tableData.Role__c}</div>
+                                                        </td>
+                                                        <td data-label="Title" class="cell-style">
+                                                            <aura:if isTrue="{!tableData.Title__c}">
+                                                                <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Title__c}">{!tableData.Title__c}</div>
+                                                                <aura:set attribute="else">None</aura:set>
+                                                            </aura:if>
+                                                        </td>
+                                                        <td data-label="Phone" class="cell-style">
+                                                            <aura:if isTrue="{!tableData.MUSW__Account__r.Business_Phone__c}">
+                                                                <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Business_Phone__c}">{!tableData.MUSW__Account__r.Business_Phone__c}</div>
+                                                                <aura:set attribute="else">None</aura:set>
+                                                            </aura:if>
+                                                        </td>
+                                                        <td data-label="Email" class="cell-style">
+                                                            <div class="slds-truncate" title="{!tableData.MUSW__Account__r.Email__c}">{!tableData.MUSW__Account__r.Email__c}</div>
+                                                        </td>
+                                                        <td data-label="Actions" class="cell-style action-cell">
+                                                            <div class="table-btn">
+                                                                <aura:if isTrue="{!tableData.Status__c == 'Active'}">
+                                                                    <a data-index="{!ind}" data-id="{!tableData.Id}" href="javascript:void(0)" class="slds-button slds-button_brand"
+                                                                       onclick="{!c.openRemoveAccountContactRelationModal}">Separate</a>
+                                                                    <aura:set attribute="else">None</aura:set>
+                                                                </aura:if>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </aura:iteration>
+                                            </tbody>
+                                        </table>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <aura:set attribute="else">
+                                <div class="empty-state">There are no relationships to display</div>
+                            </aura:set>
+                        </aura:if>
+                        <div class="pagination-wrapper">
+                            <c:LnP_Pagination pgSize="4" fullList="{!v.ProfessionalRelationshipDataList}" dispList="{!v.relationPaginationList}"
+                                              />
+                        </div>
+                    </div>
                 </lightning:tab>
                 
             </lightning:tabset>
