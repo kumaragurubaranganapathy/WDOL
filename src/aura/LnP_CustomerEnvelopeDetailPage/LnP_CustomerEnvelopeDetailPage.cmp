@@ -74,10 +74,10 @@
                                                 <lightning:inputField required="true" fieldName="Document_type__c" value="{!item.Document_type__c}" />
                                             </lightning:layoutItem>
                                             <lightning:layoutItem size="5" padding="around-small">
-                                                <lightning:inputField fieldName="wadol_Program_Type__c" value="{!item.wadol_Program_Type__c}" />
+                                                <lightning:inputField required="true" fieldName="wadol_Program_Type__c" value="{!item.wadol_Program_Type__c}" />
                                             </lightning:layoutItem>
                                             <lightning:layoutItem size="5" padding="around-small">
-                                                <lightning:inputField fieldName="License_type__c" value="{!item.License_type__c}"/>
+                                                <lightning:inputField required="true" fieldName="License_type__c" value="{!item.License_type__c}"/>
                                             </lightning:layoutItem>
                                             <lightning:layoutItem size="5" padding="around-small">
                                                 <lightning:inputField fieldName="Fine_Number__c" value="{!item.Fine_Number__c}" />
