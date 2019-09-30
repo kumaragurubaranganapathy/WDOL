@@ -204,6 +204,19 @@
     position: absolute;
     pointer-events: auto;
 }
+.THIS .checkbox-wrapper{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.THIS .checkbox-wrapper label{
+    display: flex;
+    align-items: center;
+}
+.THIS .checkbox-wrapper .checkbox-style{
+    flex-basis: unset;
+    width: auto;
+}
 @media t(mqSmall){
    .THIS .iconsLayout div{
     width:100%
