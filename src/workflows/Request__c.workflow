@@ -16,8 +16,7 @@
         <description>Maintenance submission - review required</description>
         <protected>false</protected>
         <recipients>
-            <field>Request_Applicant__c</field>
-            <type>email</type>
+            <type>creator</type>
         </recipients>
         <senderAddress>christopherwillia@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
