@@ -335,40 +335,6 @@ application.MUSW_Account__c = account;*/
             lic.Renew_Reinstatement_in_progress__c = true;
             update lic;
         }
-        Set<Id> parcelIds = new Set<Id>();
-        List<MUSW__Parcel__c>lstParcels = new List<MUSW__Parcel__c>();
-        for(MUSW__License_Parcel__c licenseParcelInstance : [Select Id, MUSW__License2__c, MUSW__Parcel__c From MUSW__License_Parcel__c 
-                                                             where MUSW__License2__c=:licId]){
-            parcelIds.add(licenseParcelInstance.MUSW__Parcel__c);
-        }
-        if(!parcelIds.isEmpty()){
-        lstParcels = [Select id, Application_BG__c,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,Zip_Postal_Code__c,Country__c,
-                      Melissa_Address_Verified__c, is_Physical_and_Mailing_Address_Same__c,Address_Type__c, Canadian_provinces__c, County__c,
-                      MUSW__Primary_Contact__c FROM MUSW__Parcel__c where Id IN :parcelIds];
-                                                      }
-        List<MUSW__Parcel__c>lstupdateParcel = new List<MUSW__Parcel__c>();
-        if(!lstParcels.isEmpty())
-        {
-            for(MUSW__Parcel__c par : lstParcels )
-            {
-                MUSW__Parcel__c parcel = new MUSW__Parcel__c();
-                parcel.MUSW__Primary_Contact__c = par.MUSW__Primary_Contact__c;
-                parcel.Address_Type__c  = par.Address_Type__c;
-                parcel.MUSW__City__c = par.MUSW__City__c;
-                parcel.Country__c = par.Country__c;
-                parcel.MUSW__State__c = par.MUSW__State__c;
-                parcel.MUSW__Street2__c = par.MUSW__Street2__c;
-                parcel.Zip_Postal_Code__c = par.Zip_Postal_Code__c;
-                parcel.County__c = par.County__c ;
-                parcel.is_Physical_and_Mailing_Address_Same__c = par.is_Physical_and_Mailing_Address_Same__c;
-                lstupdateParcel.add(parcel);
-            }
-        }
-        
-        if(!lstupdateParcel.isEmpty())
-        {
-            insert lstupdateParcel;
-        }
         
        /*  commented for not showing license answers in Renewal Application
        List<BGCK__Answer__c> lstAnswer = [SELECT id,Name,BGCK__Valid__c,Answer_Text__c,QuestionDOL__c,Question_Section__c,License__c,Application_BG__c FROM BGCK__Answer__c WHERE License__c=:licId ];
