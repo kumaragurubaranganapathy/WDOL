@@ -78,7 +78,7 @@
 
             </div>
             <aura:set attribute="else">
-                <div class="empty-state">You have no exams</div>
+                <div class="empty-state">There are no exams</div>
             </aura:set>
         </aura:if>
         <aura:if isTrue="{!v.isOpen}">

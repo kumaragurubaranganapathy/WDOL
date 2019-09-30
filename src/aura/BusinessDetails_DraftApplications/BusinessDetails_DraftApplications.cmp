@@ -41,6 +41,9 @@
     <aura:if isTrue="{!v.loadingSpinner}">
         <lightning:spinner aura:id="spinner" alternativeText="Page is loading..."/>
     </aura:if>
+
+    <aura:if isTrue = "{!v.mandatoryListNotEmpty || v.courseListNotEmpty || v.draftListNotEmpty || v.renewalListNotEmpty || v.requestListNotEmpty }" >
+
     <aura:if isTrue="{!v.mandatoryListNotEmpty}">
         <div class="Mandatory-Actions">
             <div class="table-head">Mandatory Actions</div>
@@ -397,5 +400,13 @@
             </aura:set> -->
         </div>
     </aura:if>
+
+        <aura:set attribute="else">
+            <div class="empty-state">
+                <div>There are no unsubmitted applications.</div>
+            </div>
+        </aura:set> 
+        
+    </aura:if> 
     
 </aura:component>

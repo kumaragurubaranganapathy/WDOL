@@ -127,7 +127,7 @@ _______________________________________________________________
                 </div>
                 <aura:set attribute="else">
                     <div class="empty-state">
-                        There are no business licenses to display
+                        There are no business licenses
                     </div>
                 </aura:set>
             </aura:if>
@@ -219,6 +219,11 @@ _______________________________________________________________
         <div class="pagination-wrapper">
             <c:LnP_Pagination fullList="{!v.affLocationTableList}" dispList="{!v.affLocationTablePaginationList}" pgSize="4" />
         </div>
+        <aura:set attribute="else">
+                    <div class="empty-state">
+                        There are no affiliated locations
+                    </div>
+                </aura:set>
     </aura:if>
     <aura:if isTrue="{!v.affiliatedLocation ? true:false}">
         <div class="button-wrapper">
