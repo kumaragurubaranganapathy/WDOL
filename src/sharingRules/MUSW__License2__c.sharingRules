@@ -26,4 +26,38 @@
             <value>Appraisal Management Companies,Appraisers - Real Estate,Notary Public,Camping Resorts,Timeshares</value>
         </criteriaItems>
     </sharingCriteriaRules>
+	<sharingCriteriaRules>
+        <fullName>Sharing_to_Accounting_Roles</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>BUG - 7938</description>
+        <label>Sharing to Accounting Roles</label>
+        <sharedTo>
+            <group>Finance_Team</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Application_Type__c</field>
+            <operation>equals</operation>
+            <value>Appraisal Management Companies,Camping Resorts,Appraisers - Real Estate,Architects,Cemeteries</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Type__c</field>
+            <operation>equals</operation>
+            <value>Geologist,Landscape Architects,Land Surveyors,Funerals,Engineers</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Type__c</field>
+            <operation>equals</operation>
+            <value>Notary Public,Collection Agency,On-site Wastewater,Timeshares,Delegated Municipality</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Type__c</field>
+            <operation>equals</operation>
+            <value>Update Business Name,Misc Payments,Program Unknown,Manufactured Homes,Update Company Information,Regulatory Compliance</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Type__c</field>
+            <operation>equals</operation>
+            <value>Update Legal Name,Remove Owner</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
 </SharingRules>
