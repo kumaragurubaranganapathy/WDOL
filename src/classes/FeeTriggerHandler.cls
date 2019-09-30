@@ -8,11 +8,11 @@
 * 07/10/2019   Chiranth                          Added the code before Insert and before update method (US1818)
 **/
 public class FeeTriggerHandler implements BGCM.ITriggerHandler{
-    public static boolean runOnce = false;
+    
     public void onAfterDelete() {}
     public void onAfterInsert() {
-        if(!runOnce){
-            runOnce = true;
+        if(!DOL_AppUtility.isFeeRunOnce){
+            DOL_AppUtility.isFeeRunOnce = true;
             //Merging code from FeeUpdateCart Trigger **by Abhilasha**Start
             List<MUSW__Fee__c> fees = new List<MUSW__Fee__c>();
             for (SObject record : Trigger.new){
@@ -27,12 +27,14 @@ public class FeeTriggerHandler implements BGCM.ITriggerHandler{
                 afterExec(fees);
             }
             //Merging code from FeeUpdateCart Trigger **by Abhilasha**End
+            //Merging code from DRE trigger
+            BGCM.TriggerManager.execute('DRE2_MUSW_Fee_c', new DRETriggerHandler());
         }
     }
     public void onAfterUndelete() {}
     public void onAfterUpdate() {
-        if(!runOnce){
-            runOnce = true;
+        if(!DOL_AppUtility.isFeeRunOnce){
+            DOL_AppUtility.isFeeRunOnce = true;
             //Merging code from FeeUpdateCart Trigger **by Abhilasha** Start
             List<MUSW__Fee__c> fees = new List<MUSW__Fee__c>();
             Map<Id,MUSW__Fee__c> oldMap = (Map<Id,MUSW__Fee__c>)trigger.oldMap;
@@ -54,51 +56,53 @@ public class FeeTriggerHandler implements BGCM.ITriggerHandler{
     public void onBeforeInsert() {
         
         //Merging code from FeeUpdateCart Trigger **by Abhilasha**Start
-        List<MUSW__Fee__c> fees = new List<MUSW__Fee__c>();
-        //end
-        
-        //Add for the US1812 on 7/11/2019 [Chiranth]
-        for(SObject record: trigger.new) {
-            MUSW__Fee__c fee = (MUSW__Fee__c)record;
-            if(fee.MUSW__type__c == 'Trust Expense - Staff Hours'){
-                fee.MUSW__Amount__c = fee.Fee_amount_for_labor_charge__c;
-            }else if(fee.MUSW__type__c == 'Trust Expense - Mileage'){
-                fee.MUSW__Amount__c = fee.Fee_amount_for_mileage__c; 
-            }
-            //Merging code from FeeUpdateCart Trigger **by Abhilasha**Start
-            if (!fee.MUSW__Fee_Paid__c && fee.MUSW__Outstanding_Fee__c > 0){
-                fees.add(fee);
-            }//end
+            List<MUSW__Fee__c> fees = new List<MUSW__Fee__c>();
+            //end
             
-        }
-        // End of code US1812
-        //Merging code from FeeUpdateCart Trigger **by Abhilasha**Start
-        if(fees.size() >0){
-            Boolean bulkDataload = fees.size() > 100;
-            if (!bulkDataload){
-                BGBK.CartManager.addFeesToCart(fees);
-            } 
-        }
-        //Merging code from FeeUpdateCart Trigger **by Abhilasha**End
+            //Add for the US1812 on 7/11/2019 [Chiranth]
+            for(SObject record: trigger.new) {
+                MUSW__Fee__c fee = (MUSW__Fee__c)record;
+                if(fee.MUSW__type__c == 'Trust Expense - Staff Hours'){
+                    fee.MUSW__Amount__c = fee.Fee_amount_for_labor_charge__c;
+                }else if(fee.MUSW__type__c == 'Trust Expense - Mileage'){
+                    fee.MUSW__Amount__c = fee.Fee_amount_for_mileage__c; 
+                }
+                //Merging code from FeeUpdateCart Trigger **by Abhilasha**Start
+                if (!fee.MUSW__Fee_Paid__c && fee.MUSW__Outstanding_Fee__c > 0){
+                    fees.add(fee);
+                }//end
+                
+            }
+            // End of code US1812
+            //Merging code from FeeUpdateCart Trigger **by Abhilasha**Start
+            if(fees.size() >0){
+                Boolean bulkDataload = fees.size() > 100;
+                if (!bulkDataload){
+                    BGBK.CartManager.addFeesToCart(fees);
+                } 
+            }
+            //Merging code from FeeUpdateCart Trigger **by Abhilasha**End
         
     }
     public void onBeforeUndelete() {}
     public void onBeforeUpdate() {
-        
-        //Add for the US1812 on 7/11/2019 [Chiranth]
-        for(SObject record: trigger.new) {
-            MUSW__Fee__c fee = (MUSW__Fee__c)record;
-            SObject oldrecord = Trigger.oldMap.get(record.Id);
-            MUSW__Fee__c oldfee = (MUSW__Fee__c)oldrecord;
-            if(fee.MUSW__type__c == 'Trust Expense - Staff Hours' && fee.MUSW__type__c != oldfee.MUSW__type__c){
-                fee.MUSW__Amount__c = fee.Fee_amount_for_labor_charge__c;
-            }else if(fee.MUSW__type__c == 'Trust Expense - Mileage' && fee.MUSW__type__c != oldfee.MUSW__type__c){
-                fee.MUSW__Amount__c = fee.Fee_amount_for_mileage__c; 
-            }   
-            
-        }
-        // End of code US1812
-        
+         if(!DOL_AppUtility.isFeeRunOnce){
+            //Add for the US1812 on 7/11/2019 [Chiranth]
+            for(SObject record: trigger.new) {
+                MUSW__Fee__c fee = (MUSW__Fee__c)record;
+                SObject oldrecord = Trigger.oldMap.get(record.Id);
+                MUSW__Fee__c oldfee = (MUSW__Fee__c)oldrecord;
+                if(fee.MUSW__type__c == 'Trust Expense - Staff Hours' && fee.MUSW__type__c != oldfee.MUSW__type__c){
+                    fee.MUSW__Amount__c = fee.Fee_amount_for_labor_charge__c;
+                }else if(fee.MUSW__type__c == 'Trust Expense - Mileage' && fee.MUSW__type__c != oldfee.MUSW__type__c){
+                    fee.MUSW__Amount__c = fee.Fee_amount_for_mileage__c; 
+                }   
+                
+            }
+            // End of code US1812
+            //Merging code from DRE trigger
+            BGCM.TriggerManager.execute('DRE2_MUSW_Fee_c', new DRETriggerHandler());
+         }
     }
     
     //Merging code from FeeUpdateCart Trigger **by Abhilasha**Start
