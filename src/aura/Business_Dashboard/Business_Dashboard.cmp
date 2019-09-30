@@ -577,13 +577,13 @@
                 </lightning:tabset>
             </aura:if> 
             <aura:if isTrue="{!!or(v.licenseDetail, v.courseDetail)}">
-                <div class="back-btn-wrapper" onclick="{!c.navigateToScreenOne}">
-                    <lightning:button class="back-btn" label="Back" />
+                <div class="back-btn-wrapper">
+                    <lightning:button class="back-btn" label="Back" onclick="{!c.navigateToScreenOne}"/>
                 </div>
             </aura:if> 
             <aura:if isTrue="{!or(and(v.screenTwo,v.licenseDetail),and(v.screenTwo,v.courseDetail))}">
-                <div class="back-btn-wrapper" onclick="{!c.navigateToBusinessDetails}">
-                    <lightning:button class="back-btn" label="Back"  />
+                <div class="back-btn-wrapper">
+                    <lightning:button class="back-btn" label="Back" onclick="{!c.navigateToBusinessDetails}"/>
                 </div>
             </aura:if>
         </aura:if>
