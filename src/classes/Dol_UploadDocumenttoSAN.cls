@@ -48,7 +48,11 @@ public class Dol_UploadDocumenttoSAN {
         if(Dol_IntegrationUtil.isNotBlank(recordId)){
             List<MUSW__Submission__c>  submissionList  = [SELECT id, SAN_Prof_Code__c, MUSW__License2__c,Complaint__c,Complaint__r.License__r.Profession_Code__c, MUSW__License2__r.Profession_Code__c from MUSW__Submission__c where id=: recordId AND id != null Limit 1];
             System.debug('submissionList'+submissionList);
-            if(Dol_IntegrationUtil.isNotEmpty(submissionList) && 
+            if(Dol_IntegrationUtil.isNotEmpty(submissionList)&& 
+               Dol_IntegrationUtil.isNotBlank(submissionList[0].SAN_Prof_Code__c)) {
+                result = DOL_AppConstants.NULL_EMPTY_STRING + 'ProfessionCodeExists';
+            }
+            else if(Dol_IntegrationUtil.isNotEmpty(submissionList) && 
                Dol_IntegrationUtil.isNotBlank(submissionList[0].MUSW__License2__c) && (Dol_IntegrationUtil.isNotBlank(submissionList[0].MUSW__License2__r.Profession_Code__c) ||
                (Dol_IntegrationUtil.isNotBlank(submissionList[0].SAN_Prof_Code__c)))){
                 result = DOL_AppConstants.NULL_EMPTY_STRING + 'ProfessionCodeExists';
