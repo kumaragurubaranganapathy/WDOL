@@ -1297,24 +1297,29 @@ CASE( MUSW__AlertCode__c,
                     <label>WA</label>
                 </value>
                 <value>
-                    <fullName>AL</fullName>
-                    <default>false</default>
-                    <label>AL</label>
-                </value>
-                <value>
                     <fullName>AK</fullName>
                     <default>false</default>
                     <label>AK</label>
                 </value>
                 <value>
-                    <fullName>AZ</fullName>
+                    <fullName>AL</fullName>
                     <default>false</default>
-                    <label>AZ</label>
+                    <label>AL</label>
                 </value>
                 <value>
                     <fullName>AR</fullName>
                     <default>false</default>
                     <label>AR</label>
+                </value>
+                <value>
+                    <fullName>AS</fullName>
+                    <default>false</default>
+                    <label>AS</label>
+                </value>
+                <value>
+                    <fullName>AZ</fullName>
+                    <default>false</default>
+                    <label>AZ</label>
                 </value>
                 <value>
                     <fullName>CA</fullName>
@@ -1332,6 +1337,11 @@ CASE( MUSW__AlertCode__c,
                     <label>CT</label>
                 </value>
                 <value>
+                    <fullName>DC</fullName>
+                    <default>false</default>
+                    <label>DC</label>
+                </value>
+                <value>
                     <fullName>DE</fullName>
                     <default>false</default>
                     <label>DE</label>
@@ -1342,9 +1352,9 @@ CASE( MUSW__AlertCode__c,
                     <label>FL</label>
                 </value>
                 <value>
-                    <fullName>DC</fullName>
+                    <fullName>FM</fullName>
                     <default>false</default>
-                    <label>DC</label>
+                    <label>FM</label>
                 </value>
                 <value>
                     <fullName>GA</fullName>
@@ -1352,9 +1362,19 @@ CASE( MUSW__AlertCode__c,
                     <label>GA</label>
                 </value>
                 <value>
+                    <fullName>GU</fullName>
+                    <default>false</default>
+                    <label>GU</label>
+                </value>
+                <value>
                     <fullName>HI</fullName>
                     <default>false</default>
                     <label>HI</label>
+                </value>
+                <value>
+                    <fullName>IA</fullName>
+                    <default>false</default>
+                    <label>IA</label>
                 </value>
                 <value>
                     <fullName>ID</fullName>
@@ -1372,11 +1392,6 @@ CASE( MUSW__AlertCode__c,
                     <label>IN</label>
                 </value>
                 <value>
-                    <fullName>IA</fullName>
-                    <default>false</default>
-                    <label>IA</label>
-                </value>
-                <value>
                     <fullName>KS</fullName>
                     <default>false</default>
                     <label>KS</label>
@@ -1392,9 +1407,9 @@ CASE( MUSW__AlertCode__c,
                     <label>LA</label>
                 </value>
                 <value>
-                    <fullName>ME</fullName>
+                    <fullName>MA</fullName>
                     <default>false</default>
-                    <label>ME</label>
+                    <label>MA</label>
                 </value>
                 <value>
                     <fullName>MD</fullName>
@@ -1402,9 +1417,14 @@ CASE( MUSW__AlertCode__c,
                     <label>MD</label>
                 </value>
                 <value>
-                    <fullName>MA</fullName>
+                    <fullName>ME</fullName>
                     <default>false</default>
-                    <label>MA</label>
+                    <label>ME</label>
+                </value>
+                <value>
+                    <fullName>MH</fullName>
+                    <default>false</default>
+                    <label>MH</label>
                 </value>
                 <value>
                     <fullName>MI</fullName>
@@ -1417,14 +1437,19 @@ CASE( MUSW__AlertCode__c,
                     <label>MN</label>
                 </value>
                 <value>
-                    <fullName>MS</fullName>
-                    <default>false</default>
-                    <label>MS</label>
-                </value>
-                <value>
                     <fullName>MO</fullName>
                     <default>false</default>
                     <label>MO</label>
+                </value>
+                <value>
+                    <fullName>MP</fullName>
+                    <default>false</default>
+                    <label>MP</label>
+                </value>
+                <value>
+                    <fullName>MS</fullName>
+                    <default>false</default>
+                    <label>MS</label>
                 </value>
                 <value>
                     <fullName>MT</fullName>
@@ -1432,14 +1457,19 @@ CASE( MUSW__AlertCode__c,
                     <label>MT</label>
                 </value>
                 <value>
+                    <fullName>NC</fullName>
+                    <default>false</default>
+                    <label>NC</label>
+                </value>
+                <value>
+                    <fullName>ND</fullName>
+                    <default>false</default>
+                    <label>ND</label>
+                </value>
+                <value>
                     <fullName>NE</fullName>
                     <default>false</default>
                     <label>NE</label>
-                </value>
-                <value>
-                    <fullName>NV</fullName>
-                    <default>false</default>
-                    <label>NV</label>
                 </value>
                 <value>
                     <fullName>NH</fullName>
@@ -1457,19 +1487,14 @@ CASE( MUSW__AlertCode__c,
                     <label>NM</label>
                 </value>
                 <value>
+                    <fullName>NV</fullName>
+                    <default>false</default>
+                    <label>NV</label>
+                </value>
+                <value>
                     <fullName>NY</fullName>
                     <default>false</default>
                     <label>NY</label>
-                </value>
-                <value>
-                    <fullName>NC</fullName>
-                    <default>false</default>
-                    <label>NC</label>
-                </value>
-                <value>
-                    <fullName>ND</fullName>
-                    <default>false</default>
-                    <label>ND</label>
                 </value>
                 <value>
                     <fullName>OH</fullName>
@@ -1490,6 +1515,16 @@ CASE( MUSW__AlertCode__c,
                     <fullName>PA</fullName>
                     <default>false</default>
                     <label>PA</label>
+                </value>
+                <value>
+                    <fullName>PR</fullName>
+                    <default>false</default>
+                    <label>PR</label>
+                </value>
+                <value>
+                    <fullName>PW</fullName>
+                    <default>false</default>
+                    <label>PW</label>
                 </value>
                 <value>
                     <fullName>RI</fullName>
@@ -1522,44 +1557,9 @@ CASE( MUSW__AlertCode__c,
                     <label>UT</label>
                 </value>
                 <value>
-                    <fullName>VT</fullName>
-                    <default>false</default>
-                    <label>VT</label>
-                </value>
-                <value>
                     <fullName>VA</fullName>
                     <default>false</default>
                     <label>VA</label>
-                </value>
-                <value>
-                    <fullName>WV</fullName>
-                    <default>false</default>
-                    <label>WV</label>
-                </value>
-                <value>
-                    <fullName>WI</fullName>
-                    <default>false</default>
-                    <label>WI</label>
-                </value>
-                <value>
-                    <fullName>WY</fullName>
-                    <default>false</default>
-                    <label>WY</label>
-                </value>
-                <value>
-                    <fullName>AS</fullName>
-                    <default>false</default>
-                    <label>AS</label>
-                </value>
-                <value>
-                    <fullName>MP</fullName>
-                    <default>false</default>
-                    <label>MP</label>
-                </value>
-                <value>
-                    <fullName>PR</fullName>
-                    <default>false</default>
-                    <label>PR</label>
                 </value>
                 <value>
                     <fullName>VI</fullName>
@@ -1567,24 +1567,24 @@ CASE( MUSW__AlertCode__c,
                     <label>VI</label>
                 </value>
                 <value>
-                    <fullName>GU</fullName>
+                    <fullName>VT</fullName>
                     <default>false</default>
-                    <label>GU</label>
+                    <label>VT</label>
                 </value>
                 <value>
-                    <fullName>MH</fullName>
+                    <fullName>WI</fullName>
                     <default>false</default>
-                    <label>MH</label>
+                    <label>WI</label>
                 </value>
                 <value>
-                    <fullName>FM</fullName>
+                    <fullName>WV</fullName>
                     <default>false</default>
-                    <label>FM</label>
+                    <label>WV</label>
                 </value>
                 <value>
-                    <fullName>PW</fullName>
+                    <fullName>WY</fullName>
                     <default>false</default>
-                    <label>PW</label>
+                    <label>WY</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
