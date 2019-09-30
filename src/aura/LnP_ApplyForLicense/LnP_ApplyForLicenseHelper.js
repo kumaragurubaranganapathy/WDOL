@@ -394,6 +394,7 @@
             }
         var hasChildQuestion = tabsList[currentTab-1].labelFieldsMap[questionNumber].hasChild;
         var questionNumberId = tabsList[currentTab-1].labelFieldsMap[questionNumber].labelId;
+		var dataType = tabsList[currentTab-1].labelFieldsMap[questionNumber].fieldType;
         var childQuestionsArray = [];
         var subChildQuestionsArray=[];
         if(hasChildQuestion){
@@ -406,7 +407,6 @@
                 for(var i=0; i<childQuestionsArray.length; i += 1){
                     response = responsePlaceholder; 
                     var mapIndex = childQuestionsArray[i];
-                    var dataType = tabsList[currentTab-1].labelFieldsMap[mapIndex].fieldType;
                     if(tabsList[currentTab-1].labelFieldsMap[mapIndex].conditionalAnswer !=null 
                        && ((response == (tabsList[currentTab-1].labelFieldsMap[mapIndex].conditionalAnswer) && dataType !='Checkbox') || 
                           (response.includes(tabsList[currentTab-1].labelFieldsMap[mapIndex].conditionalAnswer) && dataType =='Checkbox')
