@@ -45,9 +45,9 @@ public class DE_LandingPageCustomLabels {
             
         	//mapCommonHeaderLabels.put('To Do','To Do;'+System.Label.Polaris_Portal_To_Do+','); 
         	
-        	mapCommonHeaderLabels.put('Professional','Professional;'+System.Label.Polaris_Portal_NewDashboard+',');
+        	mapCommonHeaderLabels.put('Professional Licenses','Professional Licenses;'+System.Label.Polaris_Portal_NewDashboard+',');
         	
-        	mapCommonHeaderLabels.put('Business','Business;'+System.Label.Polaris_Portal_Business_Dashboard+',');
+        	mapCommonHeaderLabels.put('Business Licenses','Business Licenses;'+System.Label.Polaris_Portal_Business_Dashboard+',');
         	
             //user feedback link
             //mapCommonHeaderLabels.put('User Feedback','User Feedback;'+System.Label.Polaris_Portal_UserFeedback+',');
