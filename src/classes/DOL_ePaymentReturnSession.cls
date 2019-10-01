@@ -99,8 +99,12 @@ public class DOL_ePaymentReturnSession {
     }
 
     private List<String> getSelectedFees(){
+        List<String> feeList = new List<String>();
         MUSW__Receipt__c receipt = [select Id,Selected_Fees__c from MUSW__Receipt__c where Id =: SFDClicId];
-        return receipt.Selected_Fees__c.split(',');
+        if(receipt != null && String.isNotBlank(receipt.Selected_Fees__c)){
+            feeList = receipt.Selected_Fees__c.split(',');
+        }
+        return feeList;
     }
 
     public void validateSessionData(){
