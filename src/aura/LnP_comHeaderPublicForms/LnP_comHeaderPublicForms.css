@@ -59,10 +59,11 @@
 /*.THIS .nav-links li.active-link{
     border-bottom: solid 4px t(actionPanelBG);
     padding-bottom:1.25rem; 
-}
+} */
 .THIS .nav-links li.active-link a{
     font-weight:bold;
-} */
+    font-size:1.125rem;
+}
 .THIS .morelinks {
     color: token(headertxt);
     font-family: token(publicSansfontfamily);
@@ -432,6 +433,10 @@
         padding : 1rem;
         background:t(headerclr);
         text-align:center;
+    }
+    .THIS .nav-links li.active-link a{
+        font-weight:normal;
+        font-size:1rem;
     }
     
 }

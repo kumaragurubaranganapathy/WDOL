@@ -1,8 +1,19 @@
 .THIS .main-title{
-    font-size: 1.875rem;
     font-weight: bold;
     color: t(headerColor);	
     margin:2rem 7.5rem 0;
+}
+.THIS .help-wrapper{
+    margin:1.5rem 7.5rem;
+}
+.THIS .list-style{
+    list-style-type:disc;
+}
+.THIS .list-style li{
+    margin-left:2rem;
+}
+.THIS .list-style li:first-of-type{
+    margin-top:1rem;
 }
 @media t(mqSmall){
     .THIS .main-title{
