@@ -92,8 +92,8 @@
                     </tr>
                     <apex:repeat value="{!licenseRecordData.MUSW__License2_Parcels__r}" var="addressRecordInstance">
                         <tr>
-                            <td>{!IF(addressRecordInstance.Mailing__c, 'Mailing Address', 'Physical Address')}</td>
-                            <td>{!addressRecordInstance.Parcel_Address__c}</td>
+                            <td >{!IF(addressRecordInstance.Mailing__c, 'Mailing Address', 'Physical Address')}</td>
+                            <td>{!addressRecordInstance.MUSW__Parcel__r.Full_Address__c}</td>
                         </tr>
                     </apex:repeat>
                 </table>

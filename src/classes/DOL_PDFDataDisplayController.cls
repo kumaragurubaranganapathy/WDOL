@@ -40,7 +40,7 @@ public with sharing class DOL_PDFDataDisplayController {
                                                        (Select Id, Name, Question_Section__c, Answer_Text__c, QuestionDOL__r.Question_Body__c, QuestionDOL__r.Record_Type_Name__c, 
                                                         QuestionDOL__r.Question_Sub_Section__c,QuestionDOL__r.Sub_Sub_Header__c, QuestionDOL__r.Section__c 
                                                         From Answers2__r),(Select Id, Name, MUSW__Description__c From  MUSW__Submissions__r), 
-                                                        (Select Id, Parcel_Address__c, Physical__c, Mailing__c, Status__c 
+                                                        (Select Id, Parcel_Address__c, Physical__c, Mailing__c, Status__c, MUSW__Parcel__r.Full_Address__c
                                                         From MUSW__License2_Parcels__r WHERE Status__c = 'Active') From MUSW__License2__c 
                                                         Where Id = :licenseData.Id LIMIT 1]){
                                                            licenseRecordData = licenseRecordInstance;
@@ -49,7 +49,7 @@ public with sharing class DOL_PDFDataDisplayController {
         recordtypeName = [Select Id, Name From RecordType Where Id = :licenseData.RecordTypeId LIMIT 1];
         System.debug('recordtypeName==' + recordtypeName);
         
-        Id questionRecordTypeId = Schema.SObjectType.Question__c.getRecordTypeInfosByName().get('Review and Submit').getRecordTypeId() ;
+        Id questionRecordTypeId = Schema.SObjectType.Question__c.getRecordTypeInfosByDeveloperName().get('Review_and_Submit').getRecordTypeId() ;
         for(Question__c questionRecordInstance : [Select Id, Question_Body__c, Order_Number__c, Status__c, Section__c From Question__c 
                                                   Where Application_Type__c = :licenseRecordData.Application_Type__c
                                                   AND Credential_Type__c = :licenseRecordData.Credential_Type__c
@@ -62,8 +62,8 @@ public with sharing class DOL_PDFDataDisplayController {
                                                   }
         System.debug('questionRecordList==' + questionRecordList);
         
-        Id qualifyingEducationRecordTypeId = Schema.SObjectType.LnP_BackgroundSection__c.getRecordTypeInfosByName().get('Qualifying Education').getRecordTypeId() ;
-        Id qualifyingExperienceRecordTypeId = Schema.SObjectType.LnP_BackgroundSection__c.getRecordTypeInfosByName().get('Qualifying Experience').getRecordTypeId() ;
+        Id qualifyingEducationRecordTypeId = Schema.SObjectType.LnP_BackgroundSection__c.getRecordTypeInfosByDeveloperName().get('Qualifying_Education').getRecordTypeId() ;
+        Id qualifyingExperienceRecordTypeId = Schema.SObjectType.LnP_BackgroundSection__c.getRecordTypeInfosByDeveloperName().get('Qualifying_Experience').getRecordTypeId() ;
         
         if(String.isNotBlank(licenseRecordData.Id)){
         for(LnP_BackgroundSection__c qualifyingEducationRecords: [Select Id, Name_of_Institution__c, DegreeEarned__c, Major__c, Minor__c,End_date__c,
