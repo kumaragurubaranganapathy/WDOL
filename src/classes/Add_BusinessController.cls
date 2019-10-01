@@ -130,7 +130,7 @@ public with sharing class Add_BusinessController {
     public static boolean createAccountContactObject(String aId){
         System.debug('inside createAccount::');
         MUSW__Account_Contact__c retRes ;
-        User currentUser = [SELECT Id,Name,firstname,lastname,ContactId,email from User Where ID = :UserInfo.getUserId() LIMIT 1];
+        User currentUser = [SELECT Id,Name,firstname,middlename,lastname,ContactId,email from User Where ID = :UserInfo.getUserId() LIMIT 1];
         list<MUSW__Account_Contact__c> businessList = new list<MUSW__Account_Contact__c>([SELECT Id, MUSW__Contact__c, MUSW__Account__r.Name, MUSW__Account__r.BillingStreet, MUSW__Account__r.BillingCity, MUSW__Account__r.BillingState, MUSW__Account__r.BillingPostalCode, MUSW__Account__r.BillingCountry FROM MUSW__Account_Contact__c WHERE MUSW__Contact__c =: currentUser.ContactId AND MUSW__Account__c =: aId ]);
         try{
             if(businessList.size()==0){
@@ -143,7 +143,7 @@ public with sharing class Add_BusinessController {
                 ac.Account_Admin__c = true;
                 ac.Email__c = currentUser.Email;
                 ac.First_Name__c = currentUser.firstname;
-                ac.Middle_Name__c = currentUser.firstname;
+                ac.Middle_Name__c = currentUser.middlename;
                 ac.Last_Name__c = currentUser.lastName;
                 ac.Email__c = currentUser.email;
                 ac.Title__c = 'Administrator';
