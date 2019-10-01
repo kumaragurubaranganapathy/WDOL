@@ -825,3 +825,8 @@ margin-right:10%;
     background-color: t(questxt);
     border: 1px solid #c4c6ca;
 }
+.THIS button.slds-button[disabled],
+.THIS button.slds-button:disabled{
+    background-color:t(headerclr);
+    color:t(buttonWhite);
+}
