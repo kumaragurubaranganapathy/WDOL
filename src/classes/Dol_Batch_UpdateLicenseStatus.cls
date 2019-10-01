@@ -32,18 +32,8 @@ global with sharing class Dol_Batch_UpdateLicenseStatus implements Database.Batc
         
         try{
             if(!lstExpiredLicenses.isEmpty()){
-                Database.SaveResult[] srList = Database.update(lstExpiredLicenses, false);
-                for (Database.SaveResult sr : srList) {
-                    if (!sr.isSuccess()) {
-                        for(Database.Error err : sr.getErrors()) {                            
-                             DOL_CreateErrorLog_Exception.logDatabaseError(err, 'Dol_Batch_UpdateLicenseStatus', 'execute');
-                        }
-                    } else  {
-                         DOL_CreateErrorLog_Exception.logDeleteDetails ('Successfully updated License ID: ' + sr.getId(),'Dol_Batch_UpdateLicenseStatus', 'execute');
-                    }
-                }
-                
-               
+                Database.SaveResult[] srList = Database.update(lstExpiredLicenses, false);                         
+                DOL_CreateErrorLog_Exception.logDataBaseSaveDetails(srList, 'Dol_Batch_UpdateLicenseStatus', 'execute');
             }
         }
         catch(Exception e){

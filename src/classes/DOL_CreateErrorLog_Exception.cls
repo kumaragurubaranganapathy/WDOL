@@ -168,4 +168,35 @@ public class DOL_CreateErrorLog_Exception extends Exception {
             exc.Class_Method__c=cmethod;
             insert exc;
     }
+	
+    // Add details related to DatabseSave
+    public static void logDataBaseSaveDetails(Database.SaveResult[] srList , String cname, String cmethod ){ 
+       List<Polaris_Custom_Exception__c> logtoDb = new List<Polaris_Custom_Exception__c>();
+        for (Database.SaveResult sr : srList) {
+            if (!sr.isSuccess()) {
+                for(Database.Error err : sr.getErrors()) {                            
+                    Polaris_Custom_Exception__c log = new Polaris_Custom_Exception__c();
+                    log.Error_Message__c = err.getMessage();
+                    log.Class_Name__c = cname;
+                    log.Class_Method__c = cmethod;
+                    log.Log_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'ERROR';
+                    log.Source__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Salesforce';
+                    logtoDb.add(log);
+                }
+            } else  {  
+                Polaris_Custom_Exception__c exc = new Polaris_Custom_Exception__c();        
+                exc.Error_Message__c ='Successfully updated License ID: ' + sr.getId();
+                exc.Class_Name__c=cname;
+                exc.Class_Method__c=cmethod;
+                logtoDb.add(exc);
+            }
+        }
+        try {
+            if(!logtoDb.isEmpty()) {
+                insert logtoDb;
+            }
+        } catch(Exception ex) {
+            system.debug('Error'+ex);
+        }
+
 }
