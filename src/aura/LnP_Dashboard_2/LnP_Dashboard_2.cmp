@@ -784,10 +784,9 @@
                                                         <td data-label="Expiration date" class="cell-style">
                                                             <aura:if isTrue="{!tableData.MUSW__Expiration_Date__c}">
                                                                 <div class="slds-truncate" title="{!tableData.MUSW__Expiration_Date__c}">
-                                                                    <lightning:formattedDateTime
-                                                                                                 value="{!tableData.MUSW__Expiration_Date__c}"
-                                                                                                 year="numeric" month="long" day="2-digit"
-                                                                                                 />
+                                                                   <!--<lightning:formattedDateTime  value="{!tableData.MUSW__Expiration_Date__c}"
+                                                                                                 year="numeric" month="long" day="2-digit" /> -->
+                                                                   <div class="slds-truncate" title="{!tableData.MUSW__Expiration_Date__c}"><ui:outputDate format="MMMM DD, YYYY" value="{!tableData.MUSW__Expiration_Date__c}"/></div>
                                                                 </div>
                                                                 <aura:set attribute="else">
                                                                     <div class="slds-truncate">None</div>
