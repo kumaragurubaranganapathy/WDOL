@@ -372,6 +372,17 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+	    <fields>
+        <fullName>Is_Record_Exists__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is to check whether Electronic Notary Provider Information records exists or not.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is to check whether Electronic Notary Provider Information records exists or not.</inlineHelpText>
+        <label>Is Record Exists ?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>Lic_Prog_Mailing_City_State_ZIP__c</fullName>
         <externalId>false</externalId>
