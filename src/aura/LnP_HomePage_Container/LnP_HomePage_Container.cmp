@@ -1,6 +1,6 @@
 <aura:component controller = "Lnp_CommonHeader_AC" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
     <aura:attribute name="isPageLoaded" type="Boolean" default="false" />
-     <aura:attribute name="displayotherprofessionspage" type="Boolean" default="false" />
+    <aura:attribute name="displayotherprofessionspage" type="Boolean" default="false" />
     <aura:attribute name="isLoggedIn" type="Boolean" default="false" />
     <aura:attribute name="isValidCommunityUser" type="Boolean" default="false" /> 
     <aura:attribute name="helpPage" type="Boolean" default="false" /> 
@@ -12,7 +12,7 @@
         <div class="home-wrapper">
             <h1 class="main-title">             
                 
-                Manage Your Professional and Business Licenses Online
+                {!v.helpPage?'Help':'Manage Your Professional and Business Licenses Online'}
             </h1>
             <aura:if isTrue="{!and(v.isLoggedIn,!v.helpPage)}">       
                 
@@ -20,13 +20,23 @@
                 
             </aura:if>
             <!--<aura:if isTrue="{!!v.isValidCommunityUser}"> -->
-            <c:LnP_DynamicPortalArticleRenderer isLoggedIn="{!v.isLoggedIn}" />
-            
-         
-            <aura:if isTrue="{!v.displayotherprofessionspage}">   
-                <c:LnP_DynamicPortalArticleRenderer articleTitle="Other Professions"/>
+            <aura:if isTrue="{!!v.helpPage}">
+                <c:LnP_DynamicPortalArticleRenderer isLoggedIn="{!v.isLoggedIn}" />
+                
+                
+                <aura:if isTrue="{!v.displayotherprofessionspage}">   
+                    <c:LnP_DynamicPortalArticleRenderer articleTitle="Other Professions"/>
+                </aura:if>
+                <aura:set attribute="else">
+                    <div class="help-wrapper">
+                        <h2> Questions? Need help?</h2>
+                        <ul class="list-style">
+                            <li>Call us xxx.xxx.xxxx</li>
+                            <li>Email us test@dol.wa.gov</li>
+                        </ul>
+                    </div>
+                </aura:set>
             </aura:if>
-            
             <!-- </aura:if>  -->
             <aura:set attribute="else">
                 <lightning:spinner aura:id="spinner" alternativeText="Page is loading..." />
