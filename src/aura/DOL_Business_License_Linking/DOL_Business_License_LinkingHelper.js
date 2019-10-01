@@ -133,7 +133,7 @@
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "message": $A.get("$Label.c.Activation_Code_No_License"),
-                        "type": "Success"
+                        "type": "Error"
                     });
                     toastEvent.fire();  
                 }
