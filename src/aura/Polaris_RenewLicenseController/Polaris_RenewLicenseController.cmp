@@ -320,7 +320,19 @@
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
                                                         <lightning:input name="{!section.sectionName+questionItem}"  value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
                                                     </div>
-                                                </aura:if> 
+                                                </aura:if>
+												<aura:if isTrue="{!question.fieldType=='Currency'}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?(question.isMandatoryQues?' validate ':' ')+section.sectionName:'') +' dispItem slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                        <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
+                                                        <lightning:input name="{!section.sectionName+questionItem}" formatter="currency" value="{!question.value}" type="number" min="{!question.minValue?question.minValue:''}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3 "/>
+                                                    </div>
+                                                </aura:if>
+                                                <aura:if isTrue="{!question.fieldType=='Decimal'}">
+                                                    <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +' dispItem slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
+                                                        <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
+                                                        <lightning:input name="{!section.sectionName+questionItem}"  value="{!question.value}" type="number" step="0.01" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
+                                                    </div>
+                                                </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Textarea'}">
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') +'fieldWidth slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <div class="slds-form-element  field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
@@ -332,7 +344,7 @@
                                                 <aura:if isTrue="{!question.fieldType=='Date'}">
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (or(question.isMandatoryQues, and((question.regex != undefined), (question.regex != '')))?' validate '+section.sectionName:'') + ' fieldWidth slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:input type="date" name="{!section.sectionName+questionItem}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3 datelabel"/>
+                                                        <lightning:input dateStyle="long" type="date" name="{!section.sectionName+questionItem}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3 datelabel"/>
                                                     </div>
                                                 </aura:if>
                                                 
