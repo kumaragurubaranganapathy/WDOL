@@ -11,6 +11,17 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Approval_notification_supervisor_final</template>
     </alerts>
+	<alerts>
+        <fullName>Electronic_Notary_software_provider_reminder_submission</fullName>
+        <description>Electronic Notary software provider reminder - submission</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Electronic_Notary_software_provider_reminder_submission_final</template>
+    </alerts>
     <alerts>
         <fullName>Endorsement_add_approval</fullName>
         <description>Endorsement add - approval</description>
@@ -70,6 +81,35 @@
             <field>Endorsement__c.CreatedById</field>
             <operation>notContain</operation>
             <value>Data Administrator</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+	<rules>
+        <fullName>Email - Electronic Notary software provider reminder - submission</fullName>
+        <actions>
+            <name>Electronic_Notary_software_provider_reminder_submission</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Electronic_Notary_software_provider_reminder_submission</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Endorsement__c.Endorsement_Type__c</field>
+            <operation>equals</operation>
+            <value>Electronic Records Notary Public Endorsement</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Endorsement__c.Is_Record_Exists__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Endorsement__c.Date_Requested_for_Adding_Endorsement__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -156,6 +196,17 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Approval notification - supervisor</subject>
+    </tasks>
+	<tasks>
+        <fullName>Email_Outbound_Electronic_Notary_software_provider_reminder_submission</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Endorsement__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Electronic Notary software provider reminder - submission</subject>
     </tasks>
     <tasks>
         <fullName>Email_Outbound_Endorsement_add_approval</fullName>
