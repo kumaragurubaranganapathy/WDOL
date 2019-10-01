@@ -1,11 +1,11 @@
 public class ContactTriggerHandler implements BGCM.ITriggerHandler {
     public void onAfterDelete() {}
     public void onAfterInsert() {
-        AfterMethod();
+       // AfterMethod();
     }
     public void onAfterUndelete() {}
     public void onAfterUpdate() {
-        AfterMethod();
+      //  AfterMethod();
     }
     public void onBeforeDelete() {}
     public void onBeforeInsert() {
@@ -88,8 +88,8 @@ public class ContactTriggerHandler implements BGCM.ITriggerHandler {
        }
     }
     
-    public void AfterMethod(){
-        /*Set<Id> conIds = new Set<Id>();
+   /* public void AfterMethod(){
+        Set<Id> conIds = new Set<Id>();
          if(Trigger.isInsert){
             System.debug('in if is insert');
           System.debug('SecurityCodeHelper.isContactSecurityCodeSet '+SecurityCodeHelper.isContactSecurityCodeSet);
@@ -105,6 +105,6 @@ public class ContactTriggerHandler implements BGCM.ITriggerHandler {
         }
         if(conIds.size() > 0){
             DeactivateUserHelper.updateUser(conIds);
-        }*/
-    }
+        }
+    }*/
 }
