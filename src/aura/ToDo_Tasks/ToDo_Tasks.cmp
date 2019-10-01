@@ -33,7 +33,7 @@ _______________________________________________________________
     <aura:attribute name="accountColumnListData" type="List" description="Holds the lists ofaccount"/>
     <aura:attribute name="LicenseColumnListData" type="List" description="Holds the lists of accounts"/>
     <aura:attribute name="AddBusinessAccountsStatusAlert" type="Boolean" default="false"/>
-     <aura:attribute name="licenseList" type="Boolean" default="false"/>
+    <aura:attribute name="licenseList" type="Boolean" default="false"/>
     <aura:attribute name="isLoaded" type="Boolean" default="false"/>
     <aura:attribute name="isBusiness" type="Boolean" default="false"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -67,9 +67,7 @@ _______________________________________________________________
                 <aura:iteration items="{!v.taskList}" var="task">
                     <aura:if isTrue="{!task.Type == 'Contact Relationship'}">
                         <div class="task-wrapper">                    
-                            <div class="task-subject">
-								{!task.Subject}
-							</div>                        
+                            <div class="task-subject">{!task.Subject}</div>                        
                             <lightning:layout class="slds-wrap task-body">
                                 <lightning:layoutItem size="12" mediumDeviceSize="9">
                                     <lightning:layout class="slds-wrap">
@@ -88,13 +86,13 @@ _______________________________________________________________
                                     </lightning:layout>
                                 </lightning:layoutItem>
                                 <lightning:layoutItem size="12" mediumDeviceSize="3" class="button-wrapper">                                    
-                                    <lightning:button class="{!or(task.Type == 'Renewal Reminder',task.Type == 'Payment Reminder')?'slds-hide':'decline-btn'}"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
+                                    <lightning:button class="{!or(task.Type == 'Renewal Reminder',task.Type == 'Payment Reminder')?'slds-hide':'decline-btn'}"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" title="Decline" onclick="{!c.declineRequest}"/>
                                     <div class="accept-btn" data-id="{!task.Id}" data-whatid="{!task.WhatId}" data-DCP="{!task.isDCP__c}" data-subject="{!task.Subject}" data-designation="{!task.Designation__c}" data-acctname="{!task.Main_License_Type__c}" onclick="{!c.acceptRequest}">
-                                        <lightning:button variant="brand" type="submit" name="{!task.Id}" label="Accept" />
+                                        <lightning:button variant="brand" type="submit" name="{!task.Id}" label="Accept" title="Accept" />
                                     </div>
-                                    <lightning:button class="{!or(task.Type == 'License Verification',task.Type == 'Experience Verification')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Confirm" onclick="{!c.confirmRequest}"/>
-                                    <lightning:button class="{!(task.Type == 'Renewal Reminder')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Renew" onclick="{!c.renewRequest}"/>
-                                    <lightning:button class="{!(task.Type == 'Payment Reminder')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Pay Now" onclick="{!c.payFees}"/>
+                                    <lightning:button class="{!or(task.Type == 'License Verification',task.Type == 'Experience Verification')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Confirm" title="Confirm" onclick="{!c.confirmRequest}"/>
+                                    <lightning:button class="{!(task.Type == 'Renewal Reminder')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Renew" title="Renew" onclick="{!c.renewRequest}"/>
+                                    <lightning:button class="{!(task.Type == 'Payment Reminder')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Pay Now" title="Pay Now" onclick="{!c.payFees}"/>
                                     
                                     
                                 </lightning:layoutItem>
@@ -172,9 +170,9 @@ _______________________________________________________________
                                 </lightning:layoutItem>
                             </lightning:layout>
                             <div class="button-wrapper license-btn">                                    
-                                <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
+                                <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" title="Decline" onclick="{!c.declineRequest}"/>
                                 <div data-licenseType="{!task.Parent_License_Type__c}" data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >
-                                    <lightning:button class="accept-btn"  variant="brand"   label="Accept"/>
+                                    <lightning:button class="accept-btn"  variant="brand" label="Accept" title="Accept" />
                                 </div>
                             </div>
                         </div>
@@ -318,17 +316,17 @@ _______________________________________________________________
                                 </lightning:layoutItem>
                             </lightning:layout>
                             <div class="button-wrapper license-btn">                                    
-                                <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
+                                <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" title="Decline" onclick="{!c.declineRequest}"/>
                                 <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
                                 <div class="slds-truncate" onclick="{!c.StartRequestEducationInformation}" data-license="{!task.Child_License_Id__c}"
-                                             data-recordId="{!task.Id}"
-                                             data-licenseType="{!task.Parent_License_Type__c}"                                             
-                                             data-board="{!task.Parent_Profession__c}"
-                                             data-requestType="Submit Exam Results"
+                                     data-recordId="{!task.Id}"
+                                     data-licenseType="{!task.Parent_License_Type__c}"                                             
+                                     data-board="{!task.Parent_Profession__c}"
+                                     data-requestType="Submit Exam Results"
                                      data-edurecord="{!task.WhatId}"
-                                      data-description="{!task.Description}">
-                                            <lightning:button class="accept-btn"  variant="brand"   label="Submit Exam" />
-                                        </div>                               
+                                     data-description="{!task.Description}">
+                                    <lightning:button class="accept-btn"  variant="brand" label="Submit Exam" title="Submit Exam" />
+                                </div>                               
                                 <!--</div>-->
                             </div>
                         </div>
@@ -363,17 +361,17 @@ _______________________________________________________________
                                 </lightning:layoutItem>
                             </lightning:layout>
                             <div class="button-wrapper license-btn">                                    
-                                <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
+                                <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" title="Decline" onclick="{!c.declineRequest}"/>
                                 <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
                                 <div class="slds-truncate" onclick="{!c.StartRequestEducationInformation}" data-license="{!task.Child_License_Id__c}"
-                                             data-recordId="{!task.Id}"
-                                             data-licenseType="{!task.Parent_License_Type__c}"                                             
-                                             data-board="{!task.Parent_Profession__c}"
-                                             data-requestType="Reschedule Exam"
+                                     data-recordId="{!task.Id}"
+                                     data-licenseType="{!task.Parent_License_Type__c}"                                             
+                                     data-board="{!task.Parent_Profession__c}"
+                                     data-requestType="Reschedule Exam"
                                      data-edurecord="{!task.WhatId}"
-                                      data-description="{!task.Description}">
-                                            <lightning:button class="accept-btn"  variant="brand"   label="Reschedule Exam" />
-                                        </div>                               
+                                     data-description="{!task.Description}">
+                                    <lightning:button class="accept-btn"  variant="brand" label="Reschedule Exam" title="Reschedule Exam" />
+                                </div>                               
                                 <!--</div>-->
                             </div>
                         </div>
@@ -411,7 +409,7 @@ _______________________________________________________________
                             Professional Licenses
                         </h2>
                         <div class="ser-btn-wrapper">
-                            <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectLicense}" label="Apply for a professional license" /> 
+                            <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectLicense}" label="Apply For Professional License" title="Apply For Professional License" /> 
                         </div>
                     </div>
                     <div class="intro-section">                    
@@ -421,8 +419,8 @@ _______________________________________________________________
                                     Have an existing professional license?
                                 </h1>                           
                                 <div class="ser-btn-wrapper">
-                                    <lightning:button class="{!v.licenseList?'ser-btn pro-license':'slds-hide'}" variant="brand" onclick="{!c.linkProfLic}" label="Link an existing professional license" /> 
-                                    <lightning:button class="{!v.licenseList?'slds-hide':'ser-btn pro-license'}" variant="brand" onclick="{!c.goToProfDashboard}" label="Manage an existing professional license" /> 
+                                    <lightning:button class="{!v.licenseList?'ser-btn pro-license':'slds-hide'}" variant="brand" onclick="{!c.linkProfLic}" label="Link Existing Professional License" title="Link Existing Professional License" /> 
+                                    <lightning:button class="{!v.licenseList?'slds-hide':'ser-btn pro-license'}" variant="brand" onclick="{!c.goToProfDashboard}" label="Manage Existing Professional License" title="Manage Existing Professional License" /> 
                                 </div>                            
                             </lightning:layoutItem>                
                         </lightning:layout>
@@ -448,13 +446,13 @@ _______________________________________________________________
                                 <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.goToBizDashboard}" label="Manage a Business Account" title="Manage a Business Account" />  
                             </div>
                             <div class="ser-btn-wrapper">
-                                <lightning:button class="ser-btn pro-license" onclick="{!c.redirectBusiness}" label="Create a Business Account" title="Create a Business Account" /> 
+                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectBusiness}" label="Create Business Account" title="Create Business Account" /> 
                             </div>
                             <div class="ser-btn-wrapper">
-                                <lightning:button class="ser-btn pro-license" onclick="{!c.bizLicApp}" label="Apply For A Business License" title="Apply For A Business License" />  
+                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.bizLicApp}" label="Apply For A Business License" title="Apply For A Business License" />  
                             </div>
                             <div class="ser-btn-wrapper course-btn">
-                                <lightning:button class="ser-btn pro-license" onclick="{!c.openTrainingApp}" label="Add a training course" title="Add a training course" />  
+                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.openTrainingApp}" label="Add a training course" title="Add a training course" />  
                             </div>
                             
                         </aura:if>
@@ -466,7 +464,7 @@ _______________________________________________________________
                                 <li>Pay license fees for others</li>
                                 <li>Add a training course</li>                            
                             </ul>
-                        </div>                      
+                        </div>                        
                         
                         <div class="{!v.isBusiness?'slds-hide':'ser-btn-wrapper create-biz'}">
                             <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectBusiness}" label="Create a Business Account" title="Create a Business Account" /> 
@@ -479,13 +477,12 @@ _______________________________________________________________
                         
                        
                         <div class="ser-btn-wrapper">
-                                    <lightning:button class="ser-btn pro-license" variant="{!v.isBusiness?'neutral':'brand'}" onclick="{!c.linkBizLic}" label="Link an Existing Business License" title="Link an Existing Business License" />  
-                                </div>
+                                    <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkBizLic}" label="Link Existing Business License" title="Link Existing Business License" />  
+                                </div>                       
                         
-                        
-                    </div>
+                    </div>                   
                     
-                   
+                    
                 </lightning:layoutItem>
             </lightning:layout>
         </div>
@@ -509,8 +506,8 @@ _______________________________________________________________
                     <!-- pop up footer -->
                     <footer class="slds-modal__footer">
                         <lightning:button variant="neutral" 
-                                          label="OK"
-                                          title="Cancel"
+                                          label="Ok"
+                                          title="Ok"
                                           onclick="{! c.closeModel }"/>
                     </footer>
                 </div>
@@ -547,7 +544,7 @@ _______________________________________________________________
                             <lightning:inputField fieldName="Description__c" />
                             <lightning:inputField fieldName="Status__c" value ="Under Review" class="slds-hide"/>
                             <div class="slds-m-top_medium">
-                                <lightning:button variant="brand" type="submit" name="save" label="Save" />
+                                <lightning:button variant="brand" type="submit" name="save" label="Save" title="Save" />
                             </div>
                         </lightning:recordEditForm>
                     </div>
