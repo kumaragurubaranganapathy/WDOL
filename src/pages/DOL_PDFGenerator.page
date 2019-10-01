@@ -198,7 +198,7 @@
                         <th>Question Body</th>
                         <th>Answer Text</th> 
                     </tr>
-                    <apex:repeat value="{!licenseRecordData.Answers2__r}" var="licenseRecordInstance">
+                    <apex:repeat value="{!answerRecordList}" var="licenseRecordInstance">
                         <tr>
                             <td>{!licenseRecordInstance.Question_Section__c}</td>
                             <td>{!licenseRecordInstance.QuestionDOL__r.Sub_Sub_Header__c}</td>

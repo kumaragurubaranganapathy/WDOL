@@ -13,18 +13,18 @@ public with sharing class DOL_PDFDataDisplayController {
     private final MUSW__License2__c licenseData;
     public MUSW__License2__c licenseRecordData {get;set;}
     public List<Question__c> questionRecordList {get;set;}
-    public List<MUSW__Parcel__c> addressRecordList {get;set;}
     public List<LnP_BackgroundSection__c> qualifyingEducationRecordList{get;set;}
     public List<LnP_BackgroundSection__c> qualifyingExperienceRecordList{get;set;}
-    public RecordType recordtypeName{get;set;}
+    public List<BGCK__Answer__c> answerRecordList{get;set;}
+
     public DOL_PDFDataDisplayController(ApexPages.StandardController stdController) {
         this.licenseData = (MUSW__License2__c)stdController.getRecord();
         system.debug('MUSW__License2__c: '+licenseData);
         licenseRecordData = new MUSW__License2__c(); 
         questionRecordList = new List<Question__c>();
-        addressRecordList = new List<MUSW__Parcel__c>();
         qualifyingEducationRecordList = new List<LnP_BackgroundSection__c>();
         qualifyingExperienceRecordList = new List<LnP_BackgroundSection__c>();
+        answerRecordList = new List<BGCK__Answer__c>();
         
         // query for getting specific License Data
         for(MUSW__License2__c licenseRecordInstance : [Select Id, Name, CreatedDate, Application_Type__c, Credential_Type__c, MUSW__Status__c,
@@ -40,15 +40,19 @@ public with sharing class DOL_PDFDataDisplayController {
                                                        (Select Id, Name, Question_Section__c, Answer_Text__c, QuestionDOL__r.Question_Body__c, QuestionDOL__r.Record_Type_Name__c, 
                                                         QuestionDOL__r.Question_Sub_Section__c,QuestionDOL__r.Sub_Sub_Header__c, QuestionDOL__r.Section__c 
                                                         From Answers2__r),(Select Id, Name, MUSW__Description__c From  MUSW__Submissions__r), 
-                                                        (Select Id, Parcel_Address__c, Physical__c, Mailing__c, Status__c, MUSW__Parcel__r.Full_Address__c
+                                                       (Select Id, Parcel_Address__c, Physical__c, Mailing__c, Status__c, MUSW__Parcel__r.Full_Address__c
                                                         From MUSW__License2_Parcels__r WHERE Status__c = 'Active') From MUSW__License2__c 
-                                                        Where Id = :licenseData.Id LIMIT 1]){
+                                                       Where Id = :licenseData.Id LIMIT 1]){
                                                            licenseRecordData = licenseRecordInstance;
                                                        }
         System.debug('licenseRecordData== ' + licenseRecordData);
-        recordtypeName = [Select Id, Name From RecordType Where Id = :licenseData.RecordTypeId LIMIT 1];
-        System.debug('recordtypeName==' + recordtypeName);
-        
+        if(!licenseRecordData.Answers2__r.isEmpty()){
+            for(BGCK__Answer__c answerRecords: licenseRecordData.Answers2__r){
+                answerRecords.Question2__c = answerRecords.QuestionDOL__r.Question_Body__c.replaceAll('<span[^>]*>','');
+                answerRecordList.add(answerRecords);
+            } 
+        }
+        System.debug('answerRecordList--' + answerRecordList);
         Id questionRecordTypeId = Schema.SObjectType.Question__c.getRecordTypeInfosByDeveloperName().get('Review_and_Submit').getRecordTypeId() ;
         for(Question__c questionRecordInstance : [Select Id, Question_Body__c, Order_Number__c, Status__c, Section__c From Question__c 
                                                   Where Application_Type__c = :licenseRecordData.Application_Type__c
@@ -66,18 +70,18 @@ public with sharing class DOL_PDFDataDisplayController {
         Id qualifyingExperienceRecordTypeId = Schema.SObjectType.LnP_BackgroundSection__c.getRecordTypeInfosByDeveloperName().get('Qualifying_Experience').getRecordTypeId() ;
         
         if(String.isNotBlank(licenseRecordData.Id)){
-        for(LnP_BackgroundSection__c qualifyingEducationRecords: [Select Id, Name_of_Institution__c, DegreeEarned__c, Major__c, Minor__c,End_date__c,
-                                                                 Country__c, State__c, City__c, Employer__c, Job_Title__c, Description_of_Duties__c, RecordTypeId,
-                                                                 Monthly_Hours__c, Total_Hours__c, Start_Date__c, Supervisor_Name__c, Supervisor_Phone_Number__c
-                                                                 From LnP_BackgroundSection__c Where License_Bg__c = :licenseRecordData.Id 
-                                                                 AND (RecordTypeId= :qualifyingEducationRecordTypeId OR RecordTypeId= :qualifyingExperienceRecordTypeId)]){
-                                                                     if(qualifyingEducationRecords.RecordTypeId == qualifyingEducationRecordTypeId){
-                                                                         qualifyingEducationRecordList.add(qualifyingEducationRecords);
-                                                                     }else{
-                                                                         qualifyingExperienceRecordList.add(qualifyingEducationRecords);
-                                                                     }
-                                                                      
-                                                                  }
+            for(LnP_BackgroundSection__c qualifyingEducationRecords: [Select Id, Name_of_Institution__c, DegreeEarned__c, Major__c, Minor__c,End_date__c,
+                                                                      Country__c, State__c, City__c, Employer__c, Job_Title__c, Description_of_Duties__c, RecordTypeId,
+                                                                      Monthly_Hours__c, Total_Hours__c, Start_Date__c, Supervisor_Name__c, Supervisor_Phone_Number__c
+                                                                      From LnP_BackgroundSection__c Where License_Bg__c = :licenseRecordData.Id 
+                                                                      AND (RecordTypeId= :qualifyingEducationRecordTypeId OR RecordTypeId= :qualifyingExperienceRecordTypeId)]){
+                                                                          if(qualifyingEducationRecords.RecordTypeId == qualifyingEducationRecordTypeId){
+                                                                              qualifyingEducationRecordList.add(qualifyingEducationRecords);
+                                                                          }else{
+                                                                              qualifyingExperienceRecordList.add(qualifyingEducationRecords);
+                                                                          }
+                                                                          
+                                                                      }
         }
         Apexpages.currentPage().getHeaders().put('content-disposition', 'attachment; filename=DownloadApplication.pdf'); 
         
