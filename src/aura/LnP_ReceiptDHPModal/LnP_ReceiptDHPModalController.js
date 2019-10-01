@@ -1,23 +1,34 @@
 ({
     onSuccess : function(component, event, helper) {
+       //debugger
         var serverCall = component.get("c.saveLicenseandReceipt");
         serverCall.setParams({"receiptId" : component.get("v.recordId")});
         serverCall.setCallback(this,function(serverResponse){
             var State = serverResponse.getState();
             if(State === 'SUCCESS'){              
-                console.log("serverResponse" + JSON.stringify(serverResponse.getReturnValue()));
+                //console.log("serverResponse" + JSON.stringify(serverResponse.getReturnValue()));
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Success!",
+                    "type":"success",
+                    "message": "The record has been Saved successfully."
+                });
+                toastEvent.fire();
+                $A.get("e.force:closeQuickAction").fire(); 
             }else{
-                alert(State);
+                //alert(State);
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Error!",
+                    "type":"error",
+                    "message": "State : "+State + ". Record saving failed"
+                });
+                toastEvent.fire();
+                $A.get("e.force:closeQuickAction").fire();
             }
         });
         $A.enqueueAction(serverCall);
-        var toastEvent = $A.get("e.force:showToast");
-        toastEvent.setParams({
-            "title": "Success!",
-            "type":"success",
-            "message": "The record has been Saved successfully."
-        });
-        toastEvent.fire();
+        
         //component.find("recordViewForm").set("v.mode","readonly");
         
     },
@@ -32,7 +43,7 @@
         toastEvent.fire();*/
     },
     onLoad : function(component, event, helper) {
-        debugger
+        //debugger
         var objectInfo = event.getParams().objectInfos;
         //alert(JSON.stringify(event.getParams("fields").records[component.get("v.recordId")].fields.Name.value));
         var _Name = event.getParams("fields").records[component.get("v.recordId")].fields.Name.value;
