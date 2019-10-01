@@ -175,7 +175,7 @@
         $A.util.toggleClass(menuItems, 'open');
     },
     checkURL : function(component,event){
-        var currURL = document.URL;
+        var currURL = document.URL;        
         if(/license-lookup/.test(currURL)){            
             component.set("v.urlString","License Lookup"); 
         }
@@ -186,10 +186,10 @@
                 component.set("v.urlString","Course Search"); 
             }
                 else if(/newdashboard/.test(currURL)){            
-                    component.set("v.urlString","Professional"); 
+                    component.set("v.urlString","Professional Licenses"); 
                 }
                     else if(/business/.test(currURL)){            
-                        component.set("v.urlString","Business"); 
+                        component.set("v.urlString","Business Licenses"); 
                     }
                         else if(/license-lookup/.test(currURL)){            
                             component.set("v.urlString","License Lookup"); 
@@ -197,8 +197,16 @@
                             else if(/Help-Topic/.test(currURL)){
                                 component.set("v.urlString","Help"); 
                             }
-                                else
-                                    component.set("v.urlString","Home");
+        					  else if(/biz-lic/.test(currURL) || /course-lic/.test(currURL)){
+                                    component.set("v.urlString","Business Licenses"); 
+                                }
+                                else if(/apply-for-license/.test(currURL) || /polaris-renewal/.test(currURL)){
+                                    component.set("v.urlString","Professional Licenses"); 
+                                }    							
+                                    else{
+                                        component.set("v.urlString","Home");
+                                        //$A.get('e.force:refreshView').fire();
+                                    }
         
     },
     redirectToHome : function(component, event) {
@@ -208,7 +216,7 @@
             "url": str
         });
         urlEvent.fire();
-      	component.set("v.urlString","Home");
+        component.set("v.urlString","Home");
     }
     
     
