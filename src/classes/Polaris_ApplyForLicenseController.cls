@@ -1562,7 +1562,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
         {
             List<MUSW__Account_Contact__c> muswAccConList = new List<MUSW__Account_Contact__c>();
             List<Account> accList  = [select id,  RecordTypeID from Account where id =:setId];
-            User currentUser = [SELECT Id,Name,firstname,lastname,ContactId,email from User Where ID = :UserInfo.getUserId() LIMIT 1];
+            User currentUser = [SELECT Id,Name,firstname,middlename,lastname,ContactId,email from User Where ID = :UserInfo.getUserId() LIMIT 1];
             for(Account acc : accList){
                 Id businessRT = SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId();
                 if(acc.RecordTypeID == businessRT ){
@@ -1575,7 +1575,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                     ac.Account_Admin__c = true;
                     ac.Email__c = currentUser.Email;
                     ac.First_Name__c = currentUser.firstname;
-                    ac.Middle_Name__c = currentUser.firstname;
+                    ac.Middle_Name__c = currentUser.middlename;
                     ac.Last_Name__c = currentUser.lastName;
                     ac.Email__c = currentUser.email;
                     ac.Title__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Administrator';
