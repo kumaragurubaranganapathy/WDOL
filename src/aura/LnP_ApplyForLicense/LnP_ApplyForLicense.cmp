@@ -113,7 +113,9 @@
                     </aura:if>
                     <div class="{!((varSection+1)==v.currentTab)?'slds-grid slds-wrap personal-info':'slds-hide'}">
                         <!--<aura:if isTrue="{!and(or(section.sectionName=='Background Information',section.sectionName=='Endorsement' ), v.currentTab==section.tabIndex)}">-->
-                        
+                                <aura:if isTrue="{!section.sectionName=='Attachments'}">
+                                        <h2 class="headings underline">Attachments</h2>
+                                    </aura:if>
                         <aura:if isTrue="{!and((section.sectionName=='Qualifying Information' ), v.currentTab==section.tabIndex)}">
                             <!-- <c:LnP_BackgroundQuestionSection  section ="{!section}" varSection="{!varSection}" currentTab= "{!v.currentTab}"></c:LnP_BackgroundQuestionSection--> 
                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
