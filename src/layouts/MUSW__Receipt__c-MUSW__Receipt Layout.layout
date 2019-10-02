@@ -211,6 +211,21 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
+        <relatedList>RelatedNoteList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>BGBK__Refund2__c</fields>
+        <fields>Refundee__c</fields>
+        <fields>BGBK__Amount__c</fields>
+        <fields>Stage__c</fields>
+        <fields>Status__c</fields>
+        <fields>Fee__c</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>BGBK__Receipt_Refund__c.BGBK__Receipt__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Related_to__c</fields>
@@ -234,14 +249,6 @@
         <relatedList>MUSW__Payable_Receipt__c.MUSW__Receipt__c</relatedList>
         <sortField>MUSW__Deposit__c</sortField>
         <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Refundee__c</fields>
-        <fields>BGBK__Amount__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>BGBK__Receipt_Refund__c.BGBK__Receipt__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>New</excludeButtons>
