@@ -295,14 +295,6 @@
             $A.enqueueAction(action);
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else{
-            var toastEvent = $A.get("e.force:showToast");
-                toastEvent.setParams({
-                    "title": "ERROR!",
-                    "message": $A.get("$Label.c.Polaris_Rev_And_Submit_Error"),
-                    "type": "error"
-                });
-                toastEvent.fire();
         }
     },
     
@@ -501,7 +493,7 @@
             component.set("v.attestationError", "");
         } else {
             component.set("v.attestationStatus", false);
-            component.set("v.attestationError", $A.get("$Label.c.Polaris_Attest_Error"));
+            component.set("v.attestationError", "Entered name should be same as name below the box.");
         }  
         if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true"  && component.get("v.declarationFlag") == true){
             component.set("v.submitButtonDisable", "false");
@@ -577,7 +569,7 @@
             component.set("v.attestationStatus", true);
             component.set("v.attestationError", "");
         } else {
-            component.set("v.attestationError", $A.get("$Label.c.Polaris_Attest_Error"));
+            component.set("v.attestationError", "Name should be same.");
         }
     },
     checkFieldValidations : function(component, event){
