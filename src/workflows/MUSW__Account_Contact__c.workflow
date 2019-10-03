@@ -2,7 +2,6 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
         <fullName>Account_Admin_accept_business</fullName>
-        <ccEmails>sisinkar@deloitte.com</ccEmails>
         <description>Account Admin accept - business</description>
         <protected>false</protected>
         <recipients>
