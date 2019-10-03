@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DOL_Letterhead</letterhead>
+    <name>Complaint Closed - No Jurisdiction</name>
+    <style>formalLetter</style>
+    <subject>Department of Licensing - Complaint closed</subject>
+    <textOnly>Case: {!MUSW__Complaint2__c.Name}
+About: {!MUSW__Complaint2__c.Licensee_Name__c}
+Status: {!MUSW__Complaint2__c.MUSW__Status__c}
+Thank you for letting us know about this issue. After careful review we’ve determined we have no jurisdiction over this issue and can’t take any action. We have closed your case.
+
+You have the right to pursue private legal action on your own. We can&apos;t provide legal advice or opinions nor help get money or property back.
+
+If you have questions or new information please contact us.
+
+
+Questions? Need Help?
+{!MUSW__Complaint2__c.License_Program_Type__c}
+{!MUSW__Complaint2__c.License_Program_Email__c}
+{!MUSW__Complaint2__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+COM005</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

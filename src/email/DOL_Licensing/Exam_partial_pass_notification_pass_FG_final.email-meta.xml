@@ -6,13 +6,39 @@
     <name>Exam partial pass notification - pass FG</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - You passed the Fundamentals of Geology exam but didn’t pass the Practice of Geology exam.</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>You took two exams on {!Education_History__c.Scheduled_Date__c}.
 
-Your application is currently under review.  We will reach out directly with any questions.
+You passed the Fundamentals of Geology exam but didn&apos;t pass the Practice of Geology exam.
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+You must pass both exams to get your license.
+
+You may take the Practice of Geology exam again. Go to our website to see next exam dates and deadlines.
+
+Register for the exam through our new online system:
+
+Go to {!Education_History__c.License_Portal_URL__c}.
+Sign in or create an account and follow instructions.
+
+To register for the exam by mail:
+
+Fill out the Geologist and/or Specialty License Reexam Registration (pdf) form
+Print completed form
+Include payment for the exam fee
+Mail completed form and payment to the address on the form
+
+You may use the “Geologist-in-Training” title until you meet all requirements for a license.
+
+
+Questions? Need help?
+{!Education_History__c.License_Program_Type__c}
+{!Education_History__c.License_Program_Email__c}
+{!Education_History__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+APP018</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

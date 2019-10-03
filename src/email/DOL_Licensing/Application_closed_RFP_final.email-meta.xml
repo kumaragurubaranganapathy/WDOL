@@ -6,13 +6,25 @@
     <name>Application closed - RFP</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - We did not receive payment. We have closed your {!MUSW__License2__c.Credential_Type__c} license application.</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>We’ve closed your {!MUSW__License2__c.Credential_Type__c} license application.
 
-Your application is currently under review.  We will reach out directly with any questions.
+We asked you to pay us on {!MUSW__License2__c.RFP_Send_Date__c} and again on {!MUSW__License2__c.RFP_Send_Date_2nd__c}.
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+We didn’t receive payment, so we have closed your application.
+
+If you want to get a license you must submit a new application and payment at {!MUSW__License2__c.Portal_URL__c}.
+
+
+Questions? Need help?
+{!MUSW__License2__c.Application_Type__c}
+{!MUSW__License2__c.Program_Email__c}
+{!MUSW__License2__c.Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+GEN007</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

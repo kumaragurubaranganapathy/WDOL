@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DOL_Letterhead</letterhead>
+    <name>Complaint - Investigator Assigned</name>
+    <style>formalLetter</style>
+    <subject>Department of Licensing - Complaint investigation</subject>
+    <textOnly>I am assigned to investigate your complaint. When I’m done I will give all the information to the program&apos;s management and they will decide the next steps.
+
+Case: {!MUSW__Complaint2__c.Name}
+About: {!MUSW__Complaint2__c.Licensee_Name__c}
+Status: {!MUSW__Complaint2__c.MUSW__Status__c}
+
+If I have questions I will contact you. Thank you for letting us know about this issue.
+
+
+Questions? Need help?
+{!MUSW__Complaint2__c.OwnerFullName}
+{!MUSW__Complaint2__c.OwnerEmail}
+{!MUSW__Complaint2__c.OwnerPhone}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+COM010</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

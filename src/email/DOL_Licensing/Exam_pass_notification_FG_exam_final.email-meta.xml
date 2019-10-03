@@ -6,13 +6,25 @@
     <name>Exam pass notification - FG exam</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - You passed the Fundamentals of Geology exam!</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>You passed the Fundamentals of Geology exam you took on {!Education_History__c.Scheduled_Date__c}!
 
-Your application is currently under review.  We will reach out directly with any questions.
+You may use the title “Geologist-in-Training” while you’re gaining your required experience.
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+Once you’ve gained your required experience you may register for the Practice of Geology exam.
+
+Go to our Geologist examinations page for the exam application deadline.
+
+
+Questions? Need help?
+{!Education_History__c.License_Program_Type__c}
+{!Education_History__c.License_Program_Email__c}
+{!Education_History__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+APP011</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

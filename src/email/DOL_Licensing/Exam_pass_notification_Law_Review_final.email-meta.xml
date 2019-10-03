@@ -6,13 +6,21 @@
     <name>Exam pass notification - Law Review</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - You passed the Law Review!</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>You passed the Law Review on {!Education_History__c.Exam_Pass_Date__c}!
 
-Your application is currently under review.  We will reach out directly with any questions.
+We are reviewing your application and will let you know if we need more information. This process can take up to 2 weeks.
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+
+Questions? Need help?
+{!Education_History__c.License_Program_Type__c}
+{!Education_History__c.License_Program_Email__c}
+{!Education_History__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+APP012</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

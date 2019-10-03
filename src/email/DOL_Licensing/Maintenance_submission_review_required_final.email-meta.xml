@@ -6,13 +6,27 @@
     <name>Maintenance submission - review required</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - You asked us to change your account information</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>You asked us to change your account information:
 
-Your application is currently under review.  We will reach out directly with any questions.
+License: {!Request__c.License__c}
+Change: {!Request__c.Service_Request_Type__c}
+Date: {!Request__c.CreatedDate}
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+We’ll review your changes and update your account.
+
+Please contact us if you did not send or approve this change.
+
+
+Questions? Need help?
+{!Request__c.License_Program_Type__c}
+{!Request__c.License_Program_Email__c}
+{!Request__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+MAI002</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

@@ -6,13 +6,39 @@
     <name>Electronic Notary software provider reminder - after issuance</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - You must send us the name of your electronic notary software by {!Days_After_Endorsement_Issue_Date_30__c}</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>We have issued your Electronic Records Notary Public endorsement:
 
-Your application is currently under review.  We will reach out directly with any questions.
+Notary Public name:  {!Endorsement__c.License_Printable_Name__c}
+License: {!Endorsement__c.License_Number__c}
+Issue date: {!Endorsement__c.Effective_Date__c}
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+You must send us the name of the software you will be using by {!Endorsement__c.Days_After_Endorsement_Issue_Date_30__c}.
+
+You can’t notarize electronic records until we’ve received the name of your software.
+
+Provide the information through our new online system:
+
+Go to {!Endorsement__c.License_Portal_URL__c}.
+Sign in or create an account and follow instructions.
+
+Or email us:
+
+Your Notary Public Commission name.
+Your license number.
+Name of your electronic notary software.
+
+
+
+Questions? Need help?
+{!Endorsement__c.License_Program_Type__c}
+{!Endorsement__c.License_Program_Email__c}
+{!Endorsement__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+APP021</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

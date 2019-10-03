@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DOL_Letterhead</letterhead>
+    <name>Memo to Case Manager - Case Assigned</name>
+    <style>formalLetter</style>
+    <subject>Department of Licensing - We&apos;ve assigned you to a case</subject>
+    <textOnly>You are now the case manager for case {!MUSW__Complaint2__c.Name}.
+
+Program: {!MUSW__Complaint2__c.Program_Type__c}
+License type: {!MUSW__Complaint2__c.License_Type__c}
+Licensee: {!MUSW__Complaint2__c.Licensee_Name__c}
+License: {!MUSW__Complaint2__c.License__c}
+
+We will email you a PDF with the case details.
+
+Please complete your review by {!MUSW__Complaint2__c.Days_After_Current_Date_30__c}. If you can’t get it done by then, please let us know.
+
+
+Questions? Need help?
+{!MUSW__Complaint2__c.License_Program_Type__c}
+{!MUSW__Complaint2__c.OwnerFullName}
+{!MUSW__Complaint2__c.OwnerPhone}
+{!MUSW__Complaint2__c.OwnerEmail}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+COM007</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

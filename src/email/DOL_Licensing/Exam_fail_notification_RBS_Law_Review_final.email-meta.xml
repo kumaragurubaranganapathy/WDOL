@@ -6,13 +6,30 @@
     <name>Exam fail notification - RBS Law Review</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - You didn’t pass the {!Education_History__c.License_Type__c} Law Review exam.</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>We&apos;re sorry to tell you that you didn’t pass the {!Education_History__c.License_Type__c} Law Review exam you sent us on {!Education_History__c.Scheduled_Date__c}.
 
-Your application is currently under review.  We will reach out directly with any questions.
+The required score was {!Education_History__c.Exam_Required_Score__c}.
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+Your score was {!Education_History__c.Score__c}.
+
+You missed questions related to the following laws and rules:
+
+RCW: [RCW #]
+WAC: [WAC #]
+
+Please correct your exam, sign and date it, and return it to us.
+
+
+Questions? Need help?
+{!Education_History__c.License_Program_Type__c}
+{!Education_History__c.License_Program_Email__c}
+{!Education_History__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+APP017</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

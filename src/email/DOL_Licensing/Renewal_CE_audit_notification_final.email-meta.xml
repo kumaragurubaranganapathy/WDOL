@@ -6,13 +6,38 @@
     <name>Renewal - CE audit notification</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - We are auditing your {!MUSW__License2__c.Credential_Type__c} continuing education. You must send us proof by {!MUSW__License2__c.Days_Before_License_Expiration_21__c}.</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>We&apos;ve randomly selected you for an audit of your continuing education.
 
-Your application is currently under review.  We will reach out directly with any questions.
+License type: {!MUSW__License2__c.Credential_Type__c}
+License #: {!MUSW__License2__c.Name}
+Expires: {!MUSW__License2__c.MUSW__Expiration_Date__c}
+Renewal period: {!MUSW__License2__c.MUSW__Issue_Date__c} to {!MUSW__License2__c.MUSW__Expiration_Date__c}
+Audit due date:  {!MUSW__License2__c.Days_Before_License_Expiration_21__c}
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+You must send us proof by {!MUSW__License2__c.Days_Before_License_Expiration_21__c}.
+
+Go to dol.wa.gov/business and choose your profession to get your continuing education requirements.
+
+Submit the information online:
+
+Go to {!MUSW__License2__c.Portal_URL__c}.
+Sign in or create an account and follow instructions.
+
+We must approve your continuing education before you can renew your license.
+
+We will email you when we have finished our audit.
+
+
+Questions? Need help?
+{!MUSW__License2__c.Application_Type__c}
+{!MUSW__License2__c.Program_Email__c}
+{!MUSW__License2__c.Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+REN003</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

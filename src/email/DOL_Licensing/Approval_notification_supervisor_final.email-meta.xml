@@ -6,13 +6,25 @@
     <name>Approval notification - supervisor</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - We approved you as a trainee supervisor</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>Congratulations! We have approved you to be a supervisor for up to 3 appraiser trainees.
 
-Your application is currently under review.  We will reach out directly with any questions.
+Add trainees through our new online system:
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+Go to https://professional-business-licensing.dol.wa.gov/.
+Login or create a new account and follow instructions.
+
+
+
+Questions? Need help?
+{!Endorsement__c.License_Program_Type__c}
+{!Endorsement__c.License_Program_Email__c}
+{!Endorsement__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+MAI022</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

@@ -6,13 +6,35 @@
     <name>Exam approval email - Appraiser</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - You may now take your {!Education_History__c.Exam_Type__c} exam before {!Education_History__c.Exam_Approval_Expiry_Date__c}</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>We have approved you to take the {!Education_History__c.Exam_Type__c} exam
 
-Your application is currently under review.  We will reach out directly with any questions.
+Exam ID: {!Education_History__c.Exam_Id__c}
+Approval expires: {!Education_History__c.Exam_Approval_Expiry_Date__c}
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+To schedule your exam:
+
+Visit PSI/AMP website
+Choose “Candidates
+Follow instructions
+
+After you pass your exam:
+
+Go to {!Education_History__c.License_Portal_URL__c}.
+Upload your exam results
+Pay licensing fee
+
+
+
+Questions? Need help?
+{!Education_History__c.License_Program_Type__c}
+{!Education_History__c.License_Program_Email__c}
+{!Education_History__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+APP010</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

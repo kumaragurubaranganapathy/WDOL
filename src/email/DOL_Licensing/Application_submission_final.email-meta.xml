@@ -6,13 +6,29 @@
     <name>Application submission</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - We received your {!MUSW__License2__c.Credential_Type__c} license application</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>We received your {!MUSW__License2__c.Credential_Type__c} license application on {!MUSW__License2__c.Current_Datetime__c}.
 
-Your application is currently under review.  We will reach out directly with any questions.
+We’ll review it and let you know if we need more information.
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+As soon as we approve your application we will issue your license.
+
+Track your application status through our new online system:
+
+Go to {!MUSW__License2__c.Portal_URL__c}.
+Sign in or create an account and follow instructions.
+
+
+
+Questions? Need help?
+{!MUSW__License2__c.Application_Type__c}
+{!MUSW__License2__c.Program_Email__c}
+{!MUSW__License2__c.Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+GEN001</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

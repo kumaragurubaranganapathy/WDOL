@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DOL_Letterhead</letterhead>
+    <name>Investigation Complete - Forwarded</name>
+    <style>formalLetter</style>
+    <subject>Department of Licensing - Investigation complete</subject>
+    <textOnly>Case: {!MUSW__Complaint2__c.Name}
+About: {!MUSW__Complaint2__c.Licensee_Name__c}
+
+We’ve completed our investigation of your complaint. We’ve sent it to the Compliance Unit for review. They will decide if we need to take action on behalf of the State of Washington.
+
+
+Questions? Need help?
+Compliance Unit
+{!MUSW__Complaint2__c.License_Program_Type__c}
+{!MUSW__Complaint2__c.License_Program_Email__c}
+{!MUSW__Complaint2__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+COM012</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
