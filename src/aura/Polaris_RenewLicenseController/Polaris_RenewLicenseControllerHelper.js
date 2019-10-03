@@ -295,6 +295,14 @@
             $A.enqueueAction(action);
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }else{
+            var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "ERROR!",
+                    "message": $A.get("$Label.c.Polaris_Rev_And_Submit_Error") , //$A.get("$Label.c.Polaris_Rev_And_Submit_Error")
+                    "type": "error"
+                });
+                toastEvent.fire();
         }
     },
     
@@ -487,7 +495,7 @@
     onAttestationChange: function(component, event, helper) {
         this.toEnableSubmitButtonCheck(component, event);
         var attestedName = component.get("v.currentUser").Name.trim().toLowerCase();
-        var givenName = component.get("v.attestValue").trim().toLowerCase();
+        var givenName = component.get("v.attestValue")?component.get("v.attestValue").trim().toLowerCase():component.get("v.attestValue");
         if(attestedName == givenName){
             component.set("v.attestationStatus", true);
             component.set("v.attestationError", "");
@@ -549,27 +557,29 @@
             //component.set("v.attestationError", "Name should be same.");
         }      */   
     },
-    checkboxValidation: function(component, event){
+    checkboxValidation: function(component,event){
         var totalCheckbox = document.getElementsByClassName("certificate-checkbox");
         var counter = 0;
-        for(var i=0; i < totalCheckbox.length; i++ ){
+        for(var i=0; i < totalCheckbox.length; i += 1 ){
             if(document.getElementById('cert'+i).checked === true){
                 counter = counter + 1;
             }
         }        
-        if(totalCheckbox.length == counter) {
+        if(totalCheckbox.length === counter) {
             component.set("v.certificateValues", true);
             component.set("v.certificateError", "");
         } else {
+            component.set("v.certificateValues", false);
             component.set("v.certificateError", "All checkbox's must be checked.");
         }
         var attestedName = component.get("v.currentUser").Name.trim().toLowerCase();
-        var givenName = component.get("v.attestValue").trim().toLowerCase();
-        if(attestedName == givenName){
+        var givenName = component.get("v.attestValue")?component.get("v.attestValue").trim().toLowerCase():component.get("v.attestValue");
+        if(attestedName === givenName){
             component.set("v.attestationStatus", true);
             component.set("v.attestationError", "");
         } else {
-            component.set("v.attestationError", "Name should be same.");
+            component.set("v.attestationStatus", false);
+            component.set("v.attestationError", $A.get("$Label.c.Polaris_Attest_Error"));
         }
     },
     checkFieldValidations : function(component, event){

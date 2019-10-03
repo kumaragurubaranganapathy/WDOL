@@ -227,6 +227,7 @@
         // if(enteredAttestText==userName)
         this.checkboxValidation(component, event);
         var noFees;
+        if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true" && document.getElementById('declaration').checked == true){
             var action = component.get("c.callCompositeAPI");
             action.setParams({"applicationId" : component.get("v.applicationId"),
                               "description" : component.get("v.Description")});
@@ -264,7 +265,7 @@
                                         // below code is for no fees case
                                        // this.hideSpinner(component,event);
                                         component.set("v.popupHeader", "Successfully Submitted");
-                                        component.set("v.popupBody", "Thank you for submission of the request.");
+                                        component.set("v.popupBody", "Thank you for submission of your application.");
                                         component.set("v.serverStatus", "success"); 
                                         //component.set("v.storeServerValue", result[0].Id);
                                         component.set("v.isOpen", true); 
@@ -308,6 +309,15 @@
             $A.enqueueAction(action);
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }else{
+            var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "ERROR!",
+                    "message": $A.get("$Label.c.Polaris_Rev_And_Submit_Error"), //$A.get("$Label.c.Polaris_Rev_And_Submit_Error")
+                    "type": "error"
+                });
+                toastEvent.fire();
+        }
         
     },
     errorlog:function(component,event){
@@ -474,26 +484,26 @@
     },
     onAttestationChange: function(component, event, helper) {
         this.toEnableSubmitButtonCheck(component, event);
-		var a = component.get('c.onCheckboxChange');
-        $A.enqueueAction(a); 
+        var a = component.get('c.onCheckboxChange');
+        $A.enqueueAction(a);        
         var attestedName = component.get("v.currentUser").Name.trim().toLowerCase();
-        var givenName = component.get("v.attestValue").trim().toLowerCase();
+        var givenName = component.get("v.attestValue")?component.get("v.attestValue").trim().toLowerCase():component.get("v.attestValue");
         if(attestedName == givenName){
             component.set("v.attestationStatus", true);
-            component.set("v.attestationError", "");
+            component.set("v.attestationError", "");            
         } else {
             component.set("v.attestationStatus", false);
-            component.set("v.attestationError", "Entered name should be same as name below the box.");
+            component.set("v.attestationError", $A.get("$Label.c.Polaris_Attest_Error"));            
         }
         if(component.get("v.attestationStatus") == true && component.get("v.certificateValues") == true && component.get("v.AttFlagForsubmit") == "true"){
-            component.set("v.submitButtonDisable", "false");
+            component.set("v.submitButtonDisable", "false");            
         }
         else {
-            component.set("v.submitButtonDisable", "true");
+            component.set("v.submitButtonDisable", "true");            
         }
         if(component.get("v.attestationStatus") == true)
         {
-            component.set("v.submitButtonDisable", "false");
+            component.set("v.submitButtonDisable", "false");            
         }
     },
     toEnableSubmitButtonCheck: function(component, event, helper) {
@@ -536,12 +546,12 @@
             component.set("v.certificateError", "All checkbox's must be checked.");
         }
         var attestedName = component.get("v.currentUser").Name.trim().toLowerCase();
-        var givenName = component.get("v.attestValue").trim().toLowerCase();
+        var givenName = component.get("v.attestValue")?component.get("v.attestValue").trim().toLowerCase():component.get("v.attestValue");
         if(attestedName == givenName){
             component.set("v.attestationStatus", true);
             component.set("v.attestationError", "");
         } else {
-            component.set("v.attestationError", "Name should be same.");
+            component.set("v.attestationError", $A.get("$Label.c.Polaris_Attest_Error"));
         }
     },
     

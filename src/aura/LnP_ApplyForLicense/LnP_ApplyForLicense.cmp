@@ -266,7 +266,7 @@
                                         <h2 class="attestation headings">Signature</h2>
                                         <div class="attestBody sentences">Please type your legal name as shown below.</div>
                                         <div class="field-item review-item attest-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-2">
-                                            <lightning:input class="underlineblk" aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}" variant="label-hidden"/>                                            
+                                            <lightning:input class="underlineblk" aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onblur="{!c.onAttestationChange}" variant="label-hidden"/>                                            
                                             <span>{!v.currentUser.Name}</span>
                                         </div>
                                         <div class="error attestation-error">{!v.attestationError}</div>
@@ -456,9 +456,9 @@
         <div class="slds-grid slds-m-top_xx-large button-section buttonpos">
             <lightning:button label="Back" title="Previous" onclick="{! c.previousTab }" class="{!(v.currentTab==1)?'hide-button':'btn back-button'}"/>
             <div class="save-buttons">
-                <lightning:button aura:id="SaveAndSubmit" label="Save and Submit Later" title="Submit" onclick="{!c.SaveAndSubmit}" class="slds-show btn-lnp next-button"/>
-                <lightning:button variant="brand" label="Continue" title="Next" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show btn-lnp'}"/>    
-                <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Continue" title="Submit" onclick="{!c.submit}" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp':'slds-hide'}"/>
+                <lightning:button aura:id="SaveAndSubmit" label="Save and Submit Later" title="Save and Submit Later" onclick="{!c.SaveAndSubmit}" class="slds-show btn-lnp next-button"/>
+                <lightning:button variant="brand" label="Continue" title="Continue" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show btn-lnp'}"/>    
+                <lightning:button aura:id="FinalSubmitBtnID" variant="brand" label="Continue" title="Continue" onclick="{!c.submit}" class="{!v.currentTab==v.totalTabs?'slds-show btn btn-lnp':'slds-hide'}"/>
             </div>
         </div>
     </div>

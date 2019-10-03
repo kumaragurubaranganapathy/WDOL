@@ -225,7 +225,7 @@
                                         <h2 class="headings attestation">Signature</h2>
                                         <!--<div class="attestBody">Declare before proceeding.</div> -->
                                         <div class="slds-form-element  field-item">
-                                            <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Please type your legal name as shown below." onchange="{!c.onAttestationChange}"/>                                            
+                                            <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Please type your legal name as shown below." onblur="{!c.onAttestationChange}"/>                                            
                                             <span>{!v.currentUser.Name}</span>                                            
                                         </div>
                                         <div class="error attestation-error">{!v.attestationError}</div>
@@ -418,7 +418,7 @@
             <lightning:button variant="neutral" label="Back" title="Back" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp prevBtn back-button'}"/>
             <lightning:button variant="neutral" label="Back" title="Back" onclick="{! c.goBack }" disabled="{!(v.currentTab==1)?'false':'true'}" class="{!(v.currentTab==1)?'btn btn-lnp prevBtn back-button':'slds-hide'}"/>
             <lightning:button variant="brand" label="Continue" title="Continue" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp add-button'}"/>
-            <lightning:button aura:id="FinalSubmitBtnID" variant="brand" label="{!v.feesRequired?'Continue':'Submit'}" title="{!v.feesRequired?'Continue':'Submit'}" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp add-button':'slds-hide'}"/>
+            <lightning:button aura:id="FinalSubmitBtnID" variant="brand" label="{!v.feesRequired?'Continue':'Submit'}" title="{!v.feesRequired?'Continue':'Submit'}" onclick="{!c.submit }" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp add-button':'slds-hide'}"/>
         </div>
     </div>
     <!-- Pop up start -->

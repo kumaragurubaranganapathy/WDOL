@@ -232,7 +232,7 @@
                                         <div class="attestBody sentences">Electronic signature name must match name shown below.</div> -->
                                         <div class="attestBody sentences">Please type your legal name as shown below.</div>
                                         <div class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
-                                            <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onchange="{!c.onAttestationChange}" variant="label-hidden"/>                                            
+                                            <lightning:input aura:id ="attestationText" type="text" name="" value="{!v.attestValue}" label="Attestation" onblur="{!c.onAttestationChange}" variant="label-hidden"/>                                            
                                             <span>{!v.currentUser.Name}</span>
                                         </div>
                                         <div class="error attestation-error">{!v.attestationError}</div>
@@ -414,11 +414,11 @@
             </aura:if>
         </aura:iteration>
         <div class="slds-grid slds-m-top_xx-large button-section buttonpos">
-                <lightning:button label="Back" title="Back" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn back-button'}"/>
-                 <lightning:button aura:id="SaveAndSubmit" variant="success" label="Save and Submit Later" title="Save and Submit Later" onclick="{!c.SaveAndSubmit}" class="slds-show pull-right btn next-button"/>
-                <lightning:button variant="brand" label="Continue" title="Continue" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn cancelbtn'}"/>
-                <lightning:button aura:id="FinalSubmitBtnID" variant="success" label="Continue" title="Continue" onclick="{!c.submit }" disabled="{!v.submitButtonDisable}" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp':'slds-hide'}"/>
-            </div>
+            <lightning:button label="Back" title="Back" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn back-button'}"/>
+             <lightning:button aura:id="SaveAndSubmit" variant="success" label="Save and Submit Later" title="Submit" onclick="{!c.SaveAndSubmit}" class="slds-show pull-right btn next-button"/>
+            <lightning:button variant="brand" label="Continue" title="Continue" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn cancelbtn'}"/>
+            <lightning:button aura:id="FinalSubmitBtnID" variant="brand" label="Continue" title="Continue" onclick="{!c.submit }" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp':'slds-hide'}"/>
+        </div>
     </div>
     <!-- Pop up start -->
     <aura:if isTrue="{!v.isOpen}">             

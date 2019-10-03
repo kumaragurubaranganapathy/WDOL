@@ -1,12 +1,15 @@
-.THIS.slds-wrap{
-    padding:0 0 20px 0;
-}
 .THIS .uiMessage{
     height:auto;
     border-radius:5px;
 }
 .THIS .uiMessage li{
     line-height:30px;
+}
+.THIS.slds-wrap{
+    padding:0 0 20px 0;
+}
+.THIS .field-item:last-of-type .fileupload .slds-form-element__control{
+    margin-bottom:1.5rem;
 }
 .THIS .personal-info .slds-checkbox.certificate-checkbox br{
     display:none;
@@ -48,7 +51,6 @@ display:none;
 .THIS .help-text .slds-select_container{
     width:80%;
 }
-
 .THIS .slds-form-element.slds-dropdown-trigger{
     display:inline;
 }
