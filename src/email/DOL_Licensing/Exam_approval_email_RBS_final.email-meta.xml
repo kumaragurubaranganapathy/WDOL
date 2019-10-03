@@ -6,13 +6,27 @@
     <name>Exam approval email - RBS</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - We scheduled you for your {!Education_History__c.Exam_Type__c} exam</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>We’ve approved and scheduled you to take the {!Education_History__c.Exam_Type__c} exam on:
 
-Your application is currently under review.  We will reach out directly with any questions.
+Date: {!Education_History__c.Scheduled_Date__c}
+Time: {!Education_History__c.Exam_Scheduled_Time__c}
+Location: {!Education_History__c.Exam_Location__c}
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+Please read the attached admission letter for instructions about the exam.
+
+Please let us know if you can’t make your exam. You may have to pay a fee if you need us to reschedule you.
+
+
+Questions? Need help?
+{!Education_History__c.License_Program_Type__c}
+{!Education_History__c.License_Program_Email__c}
+{!Education_History__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+APP008</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

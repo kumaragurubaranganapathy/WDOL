@@ -7,13 +7,42 @@
     <name>Bond cancellation</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - You must send us your surety bond by {!MUSW__License2__c.Expiration_Date_of_Bond__c} or we will cancel your {!MUSW__License2__c.Credential_Type__c} license.</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>Your surety bond company told us that your surety bond is ending on {!MUSW__License2__c.Expiration_Date_of_Bond__c}.
 
-Your application is currently under review.  We will reach out directly with any questions.
+You must send us a surety bond by {!MUSW__License2__c.Expiration_Date_of_Bond__c} or we will cancel your {!MUSW__License2__c.Credential_Type__c} license.
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+Send us:
+
+A reinstated bond from your insurance or bonding company
+
+OR
+
+A new surety bond issued to the department in the amount of ${!MUSW__License2__c.Policy_Amount__c}.
+
+Submit the information through our new online system:
+
+Go to {!MUSW__License2__c.Portal_URL__c}.
+Sign in or create an account and follow instructions.
+
+Or email or mail us your surety bond information:
+
+Email: {!MUSW__License2__c.Program_Email__c}
+Mail: {!MUSW__License2__c.Application_Type__c}
+Department of Licensing
+{!MUSW__License2__c.Program_Mailing_PO_Box__c}
+{!MUSW__License2__c.Program_Mailing_City_State_ZIP__c}
+
+
+Questions? Need help?
+{!MUSW__License2__c.Application_Type__c}
+{!MUSW__License2__c.Program_Email__c}
+{!MUSW__License2__c.Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+MAI039</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

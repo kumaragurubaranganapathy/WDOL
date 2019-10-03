@@ -6,13 +6,18 @@
     <name>Account Admin accept - business</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - {!MUSW__Account_Contact__c.Full_Name__c} agreed to be your Account Admin</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>{!MUSW__Account_Contact__c.Full_Name__c} agreed to be an Account Admin for {!MUSW__Account_Contact__c.MUSW__Account__c} on {!MUSW__Account_Contact__c.Current_Datetime__c}.
 
-Your application is currently under review.  We will reach out directly with any questions.
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+Questions? Need help?
+{!MUSW__License2__c.Application_Type__c}
+{!MUSW__License2__c.Program_Email__c}
+{!MUSW__License2__c.Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

@@ -6,13 +6,33 @@
     <name>License expiration notice - New application</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - We canceled your {!MUSW__License2__c.Credential_Type__c} license</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>We did not receive your renewal on time and we have canceled your license.
 
-Your application is currently under review.  We will reach out directly with any questions.
+Licensee name: {!MUSW__License2__c.Licensee_Name__c}
+License: {!MUSW__License2__c.Name}
+License type: {!MUSW__License2__c.Credential_Type__c}
+Profession: {!MUSW__License2__c.Application_Type__c}
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+You can’t legally work in your profession without a current license. You must send in a new application.
+
+Apply and pay through our new online system:
+
+Go to {!MUSW__License2__c.Portal_URL__c}.
+Sign in or create an account and follow instructions.
+
+Or you may go to our website and select your profession for information on how to apply by mail.
+
+
+Questions? Need help?
+{!MUSW__License2__c.Application_Type__c}
+{!MUSW__License2__c.Program_Email__c}
+{!MUSW__License2__c.Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+REN008</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

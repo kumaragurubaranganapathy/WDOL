@@ -6,13 +6,19 @@
     <name>Trainee intern accept - supervisor sponsor</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - {!Associations__c.Child_Licensee_Name__c} agreed to earn experience hours under your supervision</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>{!Associations__c.Child_Licensee_Name__c} agreed to earn experience hours under your supervision on {!Associations__c.Current_Datetime__c}.
 
-Your application is currently under review.  We will reach out directly with any questions.
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+Questions? Need help?
+{!Associations__c.License_Program_Type__c}
+{!Associations__c.License_Program_Email__c}
+{!Associations__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+MAI025</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

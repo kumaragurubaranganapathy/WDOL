@@ -67,7 +67,11 @@ so we only have to use 1 SOQL query to do all checks.
                     ref.OwnerId = QueueNameToIdMap.get('Timeshare_Queue');
                 }
             }
-            
+            //BUG 8215
+            if(String.isNotBlank(ref.Status__c) 
+                && (ref.Status__c == 'Issued in Error'  || ref.Status__c == 'Unclaimed Property')){
+                    ref.Stage__c = 'Send Refund';
+            }
         }
         if(!rejectedStatements.isEmpty()){
             // UPDATE 2/1/2014: Get the most recent approval process instance for the object.

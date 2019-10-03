@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DOL_Letterhead</letterhead>
+    <name>RFI - Investigation</name>
+    <style>formalLetter</style>
+    <subject>Department of Licensing - Complaint investigation</subject>
+    <textOnly>We’ve received a complaint against you or your business (see attached case).
+
+I’m assigned to investigate this case. I need the following information from you by {!MUSW__Complaint2__c.Days_After_Current_Date_30__c}. If I don’t get it, the investigation will move forward without your input.
+
+[Rich text free text box to enter list of needed information.]
+
+Send the information or documents via:
+
+Email: {!MUSW__Complaint2__c.License_Program_Email__c}
+
+Or mail: {!MUSW__Complaint2__c.License_Program_Type__c}
+Department of Licensing
+{!MUSW__Complaint2__c.Lic_Prog_Mailing_PO_Box__c}
+{!MUSW__Complaint2__c.Lic_Prog_Mailing_City_State_ZIP__c}
+
+When I am done I will give all the information to the program&apos;s management, and they will decide the next steps.  Please contact me if you have any questions.
+
+
+Questions? Need help?
+{!MUSW__Complaint2__c.OwnerFullName}
+{!MUSW__Complaint2__c.OwnerEmail}
+{!MUSW__Complaint2__c.OwnerPhone}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+COM011</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -6,13 +6,31 @@
     <name>Endorsement remove - request</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - We removed an endorsement from your {!Endorsement__c.License_Type__c} license</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>We removed an endorsement from your {!Endorsement__c.License_Type__c} license on {!Endorsement__c.Current_Datetime__c}:
 
-Your application is currently under review.  We will reach out directly with any questions.
+Endorsement: {!Endorsement__c.Endorsement_Type__c}
+Removed from License: {!Endorsement__c.License_Number__c}
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+You must destroy your old license and print a new one.
+
+Get and print your updated license through our new online system:
+
+Go to {!Endorsement__c.License_Portal_URL__c}.
+Sign in or create an account and follow instructions.
+
+Please call or email us if you need us to send you a printed copy.
+
+
+Questions? Need help?
+{!Endorsement__c.License_Program_Type__c}
+{!Endorsement__c.License_Program_Email__c}
+{!Endorsement__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+MAI044</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

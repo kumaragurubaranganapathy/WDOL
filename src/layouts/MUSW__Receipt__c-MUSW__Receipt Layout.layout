@@ -211,6 +211,21 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
+        <relatedList>RelatedNoteList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>BGBK__Refund2__c</fields>
+        <fields>Refundee__c</fields>
+        <fields>BGBK__Amount__c</fields>
+        <fields>Stage__c</fields>
+        <fields>Status__c</fields>
+        <fields>Fee__c</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>BGBK__Receipt_Refund__c.BGBK__Receipt__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Related_to__c</fields>
@@ -238,14 +253,6 @@
     <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Refundee__c</fields>
-        <fields>BGBK__Amount__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>BGBK__Receipt_Refund__c.BGBK__Receipt__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
         <fields>BGBK__Type__c</fields>
         <fields>BGBK__Fund__c</fields>
         <fields>BGBK__Amount__c</fields>
@@ -253,9 +260,6 @@
         <relatedList>BGBK__Item__c.BGBK__Receipt__c</relatedList>
         <sortField>CREATEDBY_USER</sortField>
         <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DOL_Letterhead</letterhead>
+    <name>Complaint Closed - Not Rise Level</name>
+    <style>formalLetter</style>
+    <subject>Department of Licensing - Complaint closed</subject>
+    <textOnly>Case: {!MUSW__Complaint2__c.Name}
+About: {!MUSW__Complaint2__c.Licensee_Name__c}
+Status: {!MUSW__Complaint2__c.MUSW__Status__c}
+After careful review we’ve decided this issue doesn’t need any action from us. We can only discipline if we find violations, and we didn&apos;t. We have closed your case.
+
+Thank you for letting us know about this issue. If you have questions or new information please contact us.
+
+
+Questions? Need help?
+{!MUSW__Complaint2__c.License_Program_Type__c}
+{!MUSW__Complaint2__c.License_Program_Email__c}
+{!MUSW__Complaint2__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+COM008</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

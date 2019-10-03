@@ -1702,6 +1702,16 @@ Original_Issue_Date__c
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Days_From_Today_30__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY() + 30</formula>
+        <label>Days From Today 30</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Days_after_License_Expiration_1__c</fullName>
         <externalId>false</externalId>
         <formula>MUSW__Expiration_Date__c + 1</formula>

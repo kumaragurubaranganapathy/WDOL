@@ -6,13 +6,43 @@
     <name>RFP - Other</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - Please pay your {!MUSW__License2__c.Credential_Type__c} license late fee by {!MUSW__License2__c.Days_From_Today_120__c}</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>We received your renewal application after your license or grace period expired. You must pay a late fee.
 
-Your application is currently under review.  We will reach out directly with any questions.
+License type: {!MUSW__License2__c.Credential_Type__c}
+License: {!MUSW__License2__c.Name}
+Amount you owe: {!MUSW__License2__c.MUSW__Total_Balance__c}
+Pay by: {!MUSW__License2__c.Days_From_Today_120__c}
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+Pay through our new online system:
+
+Go to {!MUSW__License2__c.Portal_URL__c}.
+Sign in or create an account and follow instructions.
+
+To pay by mail:
+
+Put {!MUSW__License2__c.Name} on the check
+Make check out to ‘Department of Licensing’ for {!MUSW__License2__c.MUSW__Total_Balance__c}
+Include a copy of this letter
+Mail to:
+
+{!MUSW__License2__c.Application_Type__c}
+Department of Licensing
+{!MUSW__License2__c.Program_Lockbox_PO_Box__c}
+{!MUSW__License2__c.Program_Lockbox_City_State_ZIP__c}
+
+We need to have the payment by {!MUSW__License2__c.Days_From_Today_120__c}, or we’ll close your application and you’ll have to start over.
+
+
+Questions? Need help?
+{!MUSW__License2__c.Application_Type__c}
+{!MUSW__License2__c.Program_Email__c}
+{!MUSW__License2__c.Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+GEN005</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

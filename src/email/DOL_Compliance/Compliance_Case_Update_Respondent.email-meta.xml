@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Compliance Case Update Template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DOL_Letterhead</letterhead>
+    <name>Compliance Case Update - Respondent</name>
+    <style>formalLetter</style>
+    <subject>Case Update for  {!MUSW__Complaint2__c.Name}</subject>
+    <textOnly>{!Today}
+
+{!MUSW__Complaint2__c.Licensee_Name__c}
+{!MUSW__Complaint2__c.Licensee_Address__c}
+{!MUSW__Complaint2__c.Licensee_City__c}, {!MUSW__Complaint2__c.Licensee_State__c}
+
+ 
+
+{!MUSW__Complaint2__c.Licensee_Email__c}
+
+ 
+
+RE: Case Update for {!MUSW__Complaint2__c.Name}
+            
+
+Dear {!MUSW__Complaint2__c.Licensee_Name__c},
+
+This is a courtesy notification to update you on a complaint you submitted.  The status of Case Number {!MUSW__Complaint2__c.Name}  is currently:  {!MUSW__Complaint2__c.MUSW__Status__c}
+
+You do not need to contact us or follow-up on this letter.  In the future you may receive additional updates on the status of this case. 
+
+Sincerely,
+Department of Licensing
+Business and Professions Division</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

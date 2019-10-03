@@ -6,13 +6,33 @@
     <name>Renewal issued - Active</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - We’ve renewed your {!MUSW__License2__c.Credential_Type__c} license</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>We’ve renewed your {!MUSW__License2__c.Credential_Type__c} license and your license is active!
 
-Your application is currently under review.  We will reach out directly with any questions.
+Name: {!MUSW__License2__c.License_Printable_Name__c}
+License type: {!MUSW__License2__c.Credential_Type__c}
+License: {!MUSW__License2__c.Name}
+Expires: {!MUSW__License2__c.MUSW__Expiration_Date__c}
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+Get and print your license through our new online system:
+
+Go to {!MUSW__License2__c.Portal_URL__c}.
+Sign in or create an account and follow instructions.
+
+You must post your updated license so customers can see it when they enter your business or work area.
+
+Please call or email us if you need us to send you a printed copy.
+
+
+Questions? Need help?
+{!MUSW__License2__c.Application_Type__c}
+{!MUSW__License2__c.Program_Email__c}
+{!MUSW__License2__c.Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+REN009</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

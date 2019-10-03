@@ -6,13 +6,22 @@
     <name>Designated person invitation notification - business</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - You invited a Designated {!Associations__c.Child_License_Type__c} for {!Associations__c.Parent_Licensee_Name__c}</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>You invited the following licensee to associate with your business as the Designated {!Associations__c.Child_License_Type__c} for {!Associations__c.Parent_Licensee_Name__c} on {!Associations__c.Current_Datetime__c}.
 
-Your application is currently under review.  We will reach out directly with any questions.
+Invited Designated {!Associations__c.Child_License_Type__c}: {!Associations__c.Child_Licensee_Name__c}
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+You&apos;ll be notified when they respond to your request.
+
+
+Questions? Need help?
+{!Associations__c.License_Program_Type__c}
+{!Associations__c.License_Program_Email__c}
+{!Associations__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

@@ -1,6 +1,7 @@
 public class Dol_AddressValidationServiceBckOffice {
     @auraEnabled
     public static Dol_AddressValidationService.AddrWrapper validateAddress(String addrLine1,String addrLine2,String city, String state, String zip){
+        try{ 
         String licenseKey;
         Dol_AddressValidationService.AddrWrapper validatedAddress = new Dol_AddressValidationService.AddrWrapper();
         
@@ -67,10 +68,17 @@ public class Dol_AddressValidationServiceBckOffice {
         validatedAddress.country = address.getChildElement('Country', 'urn:mdWebServiceAddress').getChildElement('Name', 'urn:mdWebServiceAddress').getText() == 'United States of America' ? 'United States' : '';
         System.debug('validatedAddress'+validatedAddress);
         return validatedAddress;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     @AuraEnabled
     public static String getObjAPI(String recordId) {
+        try{
         if(recordId == null || recordId == '') {
             return null;
         }
@@ -80,9 +88,16 @@ public class Dol_AddressValidationServiceBckOffice {
         system.debug('!!!! createTimeEntry.objName = ' + objName);
         
         return objName;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
      @AuraEnabled 
     public static List<String> getStates(sObject objObject, string fld) {
+        try{
       system.debug('objObject:' + objObject);
       system.debug('fld:' + fld);
       List<String> allOpts = new list <String> ();
@@ -100,6 +115,12 @@ public class Dol_AddressValidationServiceBckOffice {
       }
       system.debug('allOpts ---->' + allOpts);
       return allOpts;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     @auraEnabled
     public static String saveAddress(string selectedAddress,Boolean isAptInfo,Boolean isAddrValidated, String countyValue,String parentId){
@@ -110,11 +131,6 @@ public class Dol_AddressValidationServiceBckOffice {
         String state;
         String zip;
         String country;
-        
-        system.debug('selectedAddress='+selectedAddress);
-        system.debug('isAptInfo='+isAptInfo);
-        system.debug('isAddrValidated='+isAddrValidated);
-        system.debug('countyValue='+countyValue);
         try{
             if(Dol_IntegrationUtil.isNotBlank(selectedAddress)){
                 selectedAddress= selectedAddress.replaceAll('\\<.*?\\>', '');
@@ -138,77 +154,83 @@ public class Dol_AddressValidationServiceBckOffice {
                         country = Addresslist[5] != null ? Addresslist[5].trim() : '';
                     }
                 }
-                
-                List<MUSW__Parcel__c> existingParcel = [SELECT id,Account__c,Contact__c,Primary_Account__c ,MUSW__Primary_Contact__c ,MUSW__Unit__c,County__c ,Melissa_Address_Verified__c  from MUSW__Parcel__c where MUSW__Street2__c =:addres1 AND MUSW__City__c=:city AND MUSW__State__c=:state AND MUSW__Post_Zip_Code__c=:zip AND Country__c=:country Limit 1];
-                if(Dol_IntegrationUtil.isNotempty(existingParcel)){
-                   existingParcel[0].Melissa_Address_Verified__c = isAddrValidated;
-                    if(aptInfo!= null){
-                        existingParcel[0].MUSW__Unit__c = aptInfo.trim();
-                    }if(countyValue != null){
-                        existingParcel[0].County__c = countyValue.trim(); 
-                    }
-                    if(Dol_IntegrationUtil.isNotBlank(parentId)){
-                       String parentSobjName = getObjAPI(parentId);
-                        if (Dol_IntegrationUtil.isNotBlank(parentSobjName) && parentSobjName =='Account'){
-                             if(Dol_IntegrationUtil.isBlank(existingParcel[0].Account__c)){
-                            	existingParcel[0].Account__c = parentId;
-                             }
-                            if(Dol_IntegrationUtil.isBlank(existingParcel[0].Primary_Account__c)){
-                            	existingParcel[0].Primary_Account__c = parentId;
-                            }  
-                        }else if(Dol_IntegrationUtil.isNotBlank(parentSobjName) && parentSobjName =='Contact'){
-                            if(Dol_IntegrationUtil.isBlank(existingParcel[0].Contact__c)){
-                            	existingParcel[0].Contact__c = parentId;
-                             }
-                            if(Dol_IntegrationUtil.isBlank(existingParcel[0].MUSW__Primary_Contact__c)){
-                            	existingParcel[0].MUSW__Primary_Contact__c = parentId;
-                            } 
+            }
+            List<MUSW__Parcel__c> updtexistingParcel = new List<MUSW__Parcel__c>();
+            List<MUSW__Parcel__c> existingParcel = new List<MUSW__Parcel__c> ();
+            String parentSobjName = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            if(Dol_IntegrationUtil.isNotBlank(parentId)){
+                parentSobjName = getObjAPI(parentId);
+                existingParcel = [SELECT id,Account__c,Contact__c,Primary_Account__c ,MUSW__Primary_Contact__c ,MUSW__Unit__c,County__c ,Melissa_Address_Verified__c 
+                                  from MUSW__Parcel__c where MUSW__Street2__c =:addres1 AND MUSW__Street2__c != null AND MUSW__City__c=:city AND MUSW__City__c !=null 
+                                  AND MUSW__State__c=:state AND MUSW__State__c!= null AND MUSW__Post_Zip_Code__c=:zip AND MUSW__Post_Zip_Code__c != null 
+                                  AND Country__c=:country AND Country__c != null AND (Primary_Account__c =:parentId OR MUSW__Primary_Contact__c =:parentId) Limit 1];
+            }
+            if(Dol_IntegrationUtil.isNotempty(existingParcel)){
+                if (Dol_IntegrationUtil.isNotBlank(parentSobjName) && parentSobjName =='Account'){
+                    if(Dol_IntegrationUtil.isNotBlank(existingParcel[0].Primary_Account__c) && existingParcel[0].Primary_Account__c == parentId){
+                        existingParcel[0].Melissa_Address_Verified__c = isAddrValidated;
+                        if(aptInfo!= null){
+                            existingParcel[0].MUSW__Unit__c = aptInfo.trim();
+                        }if(countyValue != null){
+                            existingParcel[0].County__c = countyValue.trim(); 
                         }
+                        updtexistingParcel.add(existingParcel[0]);
                     }
-                    upsert  existingParcel[0];
-                    //recordId = existingParcel[0].id;
-                    parceLId = [select id from MUSW__Parcel__c where id =:existingParcel[0].id Limit 1].id;
                 }
-                else{
-                    MUSW__Parcel__c parcel = new MUSW__Parcel__c();
-                    parcel.MUSW__Street2__c = addres1;
-                    parcel.MUSW__City__c = city;
-                    parcel.MUSW__State__c = state;
-                    parcel.MUSW__Post_Zip_Code__c = zip;
-                    parcel.Country__c = country;
-                    parcel.Melissa_Address_Verified__c = isAddrValidated;
-                    if(aptInfo!= null){
-                        parcel.MUSW__Unit__c = aptInfo.trim();
-                    }
-                    if(countyValue != null){
-                        parcel.County__c = countyValue.trim(); 
-                    }
-                    if(Dol_IntegrationUtil.isNotBlank(parentId)){
-                       String parentSobjName = getObjAPI(parentId);
-                        if (Dol_IntegrationUtil.isNotBlank(parentSobjName) && parentSobjName =='Account'){
-                            parcel.Account__c = parentId;
-                            parcel.Primary_Account__c = parentId;
-                        }else if(Dol_IntegrationUtil.isNotBlank(parentSobjName) && parentSobjName =='Contact'){
-                            parcel.Contact__c  = parentId;
-                            parcel.MUSW__Primary_Contact__c = parentId;
+                if (Dol_IntegrationUtil.isNotBlank(parentSobjName) && parentSobjName =='Contact'){
+                    if(Dol_IntegrationUtil.isNotBlank(existingParcel[0].MUSW__Primary_Contact__c) && existingParcel[0].MUSW__Primary_Contact__c == parentId){
+                        existingParcel[0].Melissa_Address_Verified__c = isAddrValidated;
+                        if(aptInfo!= null){
+                            existingParcel[0].MUSW__Unit__c = aptInfo.trim();
+                        }if(countyValue != null){
+                            existingParcel[0].County__c = countyValue.trim(); 
                         }
+                        updtexistingParcel.add(existingParcel[0]);
                     }
-                    System.debug('parcel' + parcel);
-                    if(parcel != null){
-                        upsert parcel;
-                        parceLId = [select id from MUSW__Parcel__c where id =:parcel.id Limit 1].id;
-                    } 
-                  }
                 }
+            }else{
+                MUSW__Parcel__c parcel = new MUSW__Parcel__c();
+                parcel.MUSW__Street2__c = addres1;
+                parcel.MUSW__City__c = city;
+                parcel.MUSW__State__c = state;
+                parcel.MUSW__Post_Zip_Code__c = zip;
+                parcel.Country__c = country;
+                parcel.Melissa_Address_Verified__c = isAddrValidated;
+                if(aptInfo!= null){
+                    parcel.MUSW__Unit__c = aptInfo.trim();
+                }
+                if(countyValue != null){
+                    parcel.County__c = countyValue.trim(); 
+                }
+                if(Dol_IntegrationUtil.isNotBlank(parentId)){
+                    if (Dol_IntegrationUtil.isNotBlank(parentSobjName) && parentSobjName =='Account'){
+                        parcel.Account__c = parentId;
+                        parcel.Primary_Account__c = parentId;
+                    }else if(Dol_IntegrationUtil.isNotBlank(parentSobjName) && parentSobjName =='Contact'){
+                        parcel.Contact__c  = parentId;
+                        parcel.MUSW__Primary_Contact__c = parentId;
+                    }
+                }
+                if(parcel != null){
+                    updtexistingParcel.add(parcel);
+                } 
+            }
+            System.debug('updtexistingParcel**' + updtexistingParcel);
+            if (Dol_IntegrationUtil.isNotempty(updtexistingParcel)){
+                upsert updtexistingParcel;
+                parceLId = [select id from MUSW__Parcel__c where id =:updtexistingParcel[0].id AND id != null Limit 1].id;
+            }
             }catch(Exception e){
             System.debug('Dol_AddressValidationService - Exception: '+e);
-            DebugErrorLoggger.LogError(e, '', '','Dol_AddressValidationService','saveAddress','saveAddress Method failed');  
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
+            throw new AuraHandledException('An error occurred: '+e.getMessage());  
         }
         system.debug('parceLId=='+parceLId);
         return parceLId;
     }
     @AuraEnabled
     public static List<selectOption> getCountyValue(String state, String city){
+        try{
         List<selectOption> selectCounty = new List<selectOption>();
         String stateValue = state;
         System.debug('statevalue::'+stateValue);
@@ -239,16 +261,15 @@ public class Dol_AddressValidationServiceBckOffice {
          System.debug('selectCounty::'+selectCounty);
     return selectCounty;
            //System.debug('selectCounty::'+selectCounty);
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
      
     }
-    public class AddrWrapper {
-        @auraEnabled    public String country {get;set;}
-        @auraEnabled    public String street {get;set;}
-        @auraEnabled    public String street2 {get;set;}
-        @auraEnabled    public String city {get;set;}
-        @auraEnabled    public String state {get;set;}
-        @auraEnabled    public String zip {get;set;}
-    }
+
     public class selectOption{
         
         @AuraEnabled public string label;

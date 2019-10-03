@@ -6,13 +6,23 @@
     <name>Exam ineligible applicant</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - You aren&apos;t eligible to take the {!Education_History__c.Exam_Type__c} exam</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>You are not eligible to take the {!Education_History__c.Exam_Type__c} exam because:
 
-Your application is currently under review.  We will reach out directly with any questions.
+[List eligibility issues]
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+Send proof that you meet all the requirements by [date] to take the next exam in [Month, Year].
+
+
+Questions? Need help?
+{!Education_History__c.License_Program_Type__c}
+{!Education_History__c.License_Program_Email__c}
+{!Education_History__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+APP007</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

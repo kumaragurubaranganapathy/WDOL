@@ -6,13 +6,23 @@
     <name>Exam pass notification - two exams</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - You passed your exams!</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>You passed both the {!Education_History__c.Exam_Type__c} and [Exam type 2] exams you took on {!Education_History__c.Scheduled_Date__c}!
 
-Your application is currently under review.  We will reach out directly with any questions.
+You now meet all requirements for a {!Education_History__c.License_Type__c} license.
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+We&apos;ll send you a separate email with your license number and information on how to print your license.
+
+
+Questions? Need help?
+{!Education_History__c.License_Program_Type__c}
+{!Education_History__c.License_Program_Email__c}
+{!Education_History__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+APP014</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

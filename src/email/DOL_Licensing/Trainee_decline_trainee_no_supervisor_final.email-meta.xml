@@ -6,13 +6,23 @@
     <name>Trainee decline - trainee - no supervisor</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - You declined an invitation to gain experience hours. Your {!Associations__c.Child_License_Type__c} license is inactive.</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>You declined an invitation to gain experience hours under {!Associations__c.Parent_Licensee_Name__c} on {!Associations__c.Current_Datetime__c}.
 
-Your application is currently under review.  We will reach out directly with any questions.
+Your {!Associations__c.Child_License_Type__c} license is inactive.
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+You can’t earn any experience hours until you accept an invitation from a supervisor.
+
+
+Questions? Need help?
+{!Associations__c.License_Program_Type__c}
+{!Associations__c.License_Program_Email__c}
+{!Associations__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+MAI029</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

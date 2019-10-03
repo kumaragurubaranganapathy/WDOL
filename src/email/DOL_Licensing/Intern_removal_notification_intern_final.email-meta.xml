@@ -6,13 +6,25 @@
     <name>Intern removal notification - intern</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - {!Associations__c.Parent_Licensee_Name__c} removed you as an intern. Your {!Associations__c.Child_License_Type__c} license is inactive.</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>{!Associations__c.Parent_Licensee_Name__c} removed you as an intern on {!Associations__c.Current_Datetime__c}.
 
-Your application is currently under review.  We will reach out directly with any questions.
+You can no longer gain experience hours under the supervision of this sponsor.
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+Your {!Associations__c.Child_License_Type__c} license is inactive.
+
+You must get another sponsor to activate your license and gain experience hours.
+
+
+Questions? Need help?
+{!Associations__c.License_Program_Type__c}
+{!Associations__c.License_Program_Email__c}
+{!Associations__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+MAI020</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

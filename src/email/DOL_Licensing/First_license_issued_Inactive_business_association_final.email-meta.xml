@@ -6,13 +6,30 @@
     <name>First license issued - Inactive - business association</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - We’ve issued your {!MUSW__License2__c.Credential_Type__c} license. You must activate your license before you can work.</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>We&apos;ve issued your license and your license is inactive.
 
-Your application is currently under review.  We will reach out directly with any questions.
+Name: {!MUSW__License2__c.License_Printable_Name__c}
+License type: {!MUSW__License2__c.Credential_Type__c}
+License: {!MUSW__License2__c.Name}
+Expires: {!MUSW__License2__c.MUSW__Expiration_Date__c}
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+You must activate your license before you can work.
+
+To activate your license you must accept an invitation to join a business.
+
+Contact your employer and let them know you can now join their business.
+
+
+Questions? Need help?
+{!MUSW__License2__c.Application_Type__c}
+{!MUSW__License2__c.Program_Email__c}
+{!MUSW__License2__c.Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+APP030</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

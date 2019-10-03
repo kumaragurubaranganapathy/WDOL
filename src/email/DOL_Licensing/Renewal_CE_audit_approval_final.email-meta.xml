@@ -6,13 +6,33 @@
     <name>Renewal - CE audit approval</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - We’ve approved your continuing education. You can now renew your {!MUSW__License2__c.Credential_Type__c} license.</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>We’ve approved your continuing education (CE) for:
 
-Your application is currently under review.  We will reach out directly with any questions.
+License: {!MUSW__License2__c.Name}
+License type: {!MUSW__License2__c.Credential_Type__c}
+Profession: {!MUSW__License2__c.Application_Type__c}
+Expires: {!MUSW__License2__c.MUSW__Expiration_Date__c}
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+You can now renew your license.
+
+Renew and pay through our new online system:
+
+Go to {!MUSW__License2__c.Portal_URL__c}.
+Sign in or create an account and follow instructions.
+
+If you don’t renew within 90 days of {!MUSW__License2__c.MUSW__Expiration_Date__c} you will have to pay a late fee.
+
+
+Questions? Need help?
+{!MUSW__License2__c.Application_Type__c}
+{!MUSW__License2__c.Program_Email__c}
+{!MUSW__License2__c.Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+REN006</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

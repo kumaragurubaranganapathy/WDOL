@@ -6,13 +6,28 @@
     <name>Intern accept - intern</name>
     <style>formalLetter</style>
     <subject>Department of Licensing - You accepted an invitation to gain experience hours. Your {!Associations__c.Child_License_Type__c} license is active!</subject>
-    <textOnly>LICENSED SUBMITTED
-Hi {!MUSW__License2__c.Applicant_Full_Name__c},
+    <textOnly>You accepted an invitation to gain experience hours under the supervision of {!Associations__c.Parent_Licensee_Name__c} on {!Associations__c.Current_Datetime__c}.
 
-Your application is currently under review.  We will reach out directly with any questions.
+Your {!Associations__c.Child_License_Type__c} license is now active and you can start!
 
-Thanks &amp; Regards,
-Washington Department of Licensing</textOnly>
+Get and print your license through our new online system:
+
+Go to {!Associations__c.License_Portal_URL__c}.
+Sign in or create an account and follow instructions.
+
+Please call or email us if you need us to send you a printed copy.
+
+
+Questions? Need help?
+{!Associations__c.License_Program_Type__c}
+{!Associations__c.License_Program_Email__c}
+{!Associations__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+MAI018</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DOL_Letterhead</letterhead>
+    <name>RFI - Complaint Intake</name>
+    <style>formalLetter</style>
+    <subject>Department of Licensing - We need more information</subject>
+    <textOnly>Case: {!MUSW__Complaint2__c.Name}
+
+We’ve received your complaint.  To research it we need the following information from you by {!MUSW__Complaint2__c.Days_After_Current_Date_30__c} or we will close the case.
+
+[Rich text free text box to enter list of needed information.]
+
+Send the information or documents by:
+
+Email: {!MUSW__Complaint2__c.License_Program_Email__c}
+
+Or
+
+Mail: {!MUSW__Complaint2__c.License_Program_Type__c}
+Department of Licensing
+{!MUSW__Complaint2__c.Lic_Prog_Mailing_PO_Box__c}
+{!MUSW__Complaint2__c.Lic_Prog_Mailing_City_State_ZIP__c}
+
+
+Questions? Need help?
+{!MUSW__Complaint2__c.License_Program_Type__c}
+{!MUSW__Complaint2__c.License_Program_Email__c}
+{!MUSW__Complaint2__c.License_Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+COM004</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
