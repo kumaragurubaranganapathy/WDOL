@@ -1297,8 +1297,8 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                         acc.Extension__c  = application.MUSW__Account__r.Extension__c;
                         acc.Business_Website__c   = application.MUSW__Account__r.Business_Website__c;
                         acc.RecordTypeId = mainLicenseRT ;
+                        acc.UBI_Number__c = application.MUSW__Account__r.UBI_Number__c;
                         if(application.Branch_License__c){
-                            acc.UBI_Number__c = application.MUSW__Account__r.UBI_Number__c;
                             mstLicense.Parent_License__c = application.Parent_License__c;
                             acc.Parentid = application.MUSW__Account__c;
                             mstLicense.isBranch_License__c = true;
