@@ -480,6 +480,36 @@
             <valueSetName>Agency_Code</valueSetName>
         </valueSet>
     </fields>
+	<fields>
+        <fullName>Collection_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedDate + 75</formula>
+        <label>Collection Due Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Collection_Reminder_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedDate + 60</formula>
+        <label>Collection Reminder Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Past_Due_Letter_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedDate + 45</formula>
+        <label>Past Due Letter Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
     <fields>
         <fullName>Agency_Number__c</fullName>
         <externalId>false</externalId>
