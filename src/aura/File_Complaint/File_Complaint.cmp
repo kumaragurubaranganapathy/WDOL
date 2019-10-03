@@ -41,7 +41,7 @@
     <aura:attribute name="applicationId" type="Id" />
     <aura:attribute name="complaintId" type="String" />
     <aura:attribute name="loadingSpinner" type="boolean" default="false"/>
-	<aura:attribute name="showProfCounty" type="boolean" default="true"/>
+    <aura:attribute name="showProfCounty" type="boolean" default="true"/>
     <aura:attribute name="showBusinessCounty" type="boolean" default="true"/>
     <!-- <aura:attribute name="professionDisable" type="Boolean" default="false"/> -->
     
@@ -93,12 +93,12 @@
                 <!--<aura:if isTrue="{!v.screenOne}">-->
                 <div class="{!v.screenOne?'':'slds-hide'}">
                     <!--h2 class="heading">Complaint Against</h2-->
-                    <div class="sub-header slds-p-top_small slds-p-bottom_medium">You can file a complaint against a person or business, or you can report unlicensed activity.</div>
+                    <h2 class="sub-header slds-p-top_small slds-p-bottom_medium">You can file a complaint against a person or business, or you can report unlicensed activity.</h2>
                     <div class="">
                         <lightning:select class="field-item" name="Profession" label="Profession" required="true" aura:id="Profession" value="" onchange="{!c.showOtherFields}">
                             <option text="Select a profession" value=""/>
                             <aura:iteration items="{!v.professionOptions}" var="profession">
-                                <option text="{!profession}" value="{!profession}"/>
+                                <option text="{!profession.label}" value="{!profession.value}"/>
                             </aura:iteration>
                         </lightning:select>
                     </div>
@@ -108,7 +108,7 @@
                         </div>
                     </aura:if>
                     <aura:if isTrue="{!v.businessScreen}">
-                        <div class="heading slds-m-top_x-large">Business you wish to file a complaint against</div>
+                        <h2 class="heading slds-m-top_x-large">Business you wish to file a complaint against</h2>
                         <div class="slds-p-top_x-small slds-p-bottom_medium">Please provide as much information as you have available.</div>
                         <div class="slds-box slds-m-bottom_medium">
                             <!-- Start of form -->
@@ -142,24 +142,24 @@
                                     <lightning:select class="field-item  slds-p-around_medium" name="state" label="State" aura:id="businessForm" value="Washington" onchange="{!c.hideBusinessCounty}">
                                         <option text="Select a state" value=""/>
                                         <aura:iteration items="{!v.stateOptions}" var="option">
-                                            <option text="{!option}" value="{!option}"/>
+                                            <option text="{!option.label}" value="{!option.value}"/>
                                         </aura:iteration>
                                     </lightning:select>
-									<aura:if isTrue="{!v.showBusinessCounty}">
+                                    <aura:if isTrue="{!v.showBusinessCounty}">
                                     <lightning:select class="field-item  slds-p-around_medium" name="county" label="County" aura:id="businessForm" value="">
                                         <option text="Select a county" value=""/>
                                         <aura:iteration items="{!v.countyOptions}" var="option">
-                                            <option text="{!option}" value="{!option}"/>
+                                            <option text="{!option.label}" value="{!option.value}"/>
                                         </aura:iteration>
                                     </lightning:select>
-									</aura:if>
+                                    </aura:if>
                                 </div>
                             </div>
                             <!-- End of form -->
                         </div>
                     </aura:if>
                     <aura:if isTrue="{!v.professionalScreen}">
-                        <div class="heading slds-m-top_x-large">Person you wish to file a complaint against</div>
+                        <h2 class="heading slds-m-top_x-large">Person you wish to file a complaint against</h2>
                         <div class="slds-p-top_x-small slds-p-bottom_medium">Please provide as much information as you have available.</div>
                         <div class="slds-box">
                             <!-- Start of form -->
@@ -193,17 +193,17 @@
                                     <lightning:select class="field-item  slds-p-around_medium" name="state" label="State" aura:id="professionalForm" value="Washington" onchange="{!c.hideProfCounty}">
                                         <option text="Select a state" value=""/>
                                         <aura:iteration items="{!v.stateOptions}" var="option">
-                                            <option text="{!option}" value="{!option}"/>
+                                            <option text="{!option.label}" value="{!option.value}"/>
                                         </aura:iteration>
                                     </lightning:select>
-									<aura:if isTrue="{!v.showProfCounty}">
+                                    <aura:if isTrue="{!v.showProfCounty}">
                                     <lightning:select class="field-item slds-p-around_medium" name="county" label="County" aura:id="professionalForm" value="">
                                         <option text="Select a county" value=""/>
                                         <aura:iteration items="{!v.countyOptions}" var="option">
-                                            <option text="{!option}" value="{!option}"/>
+                                            <option text="{!option.label}" value="{!option.value}"/>
                                         </aura:iteration>
                                     </lightning:select>
-									</aura:if>
+                                    </aura:if>
                                 </div>
                             </div>
                             <!-- End of form -->
@@ -267,13 +267,13 @@
                                 <lightning:input aura:id="informationForm" label="City" placeholder="Enter City"
                                                  class="field-item  slds-p-around_medium"
                                                  name="city"/>
-                                <lightning:select value="Washington" class="field-item  slds-p-around_medium" name="state" label="State" aura:id="informationForm" >
+                                <lightning:select value="Washington" class="field-item  slds-p-around_medium" name="state" label="State" aura:id="informationForm">
                                     <option text="Select an Option" value=""/>
                                     <aura:iteration items="{!v.stateOptions}" var="option">
-                                        <aura:if isTrue="{!option=='Washington'}">
-                                            <option text="{!option}" selected="true" value="{!option}"/>
+                                        <aura:if isTrue="{!option.value =='Washington'}">
+                                            <option text="{!option.label}" selected="true" value="{!option.value}"/>
                                         </aura:if>
-                                        <option text="{!option}" value="{!option}"/>
+                                        <option text="{!option.label}" value="{!option.value}"/>
                                     </aura:iteration>
                                 </lightning:select>
                                 <lightning:input aura:id="informationForm" label="Zip Code" placeholder="Enter Zip Code"
@@ -330,7 +330,7 @@
                     <div class="slds-p-bottom_medium">{!v.complaintId}</div>
                 </div>
                 <div class="confirmation-content">
-                    <div class="slds-text-heading_medium textFormat">What happens after you submit your complaint</div>
+                    <h2 class="slds-text-heading_medium textFormat">What happens after you submit your complaint</h2>
                     <div>
                         <ol>
                             <li>
@@ -362,7 +362,7 @@
                     </div-->
                 </div>
             </div>
-			<div id="PrintButton" class="slds-grid buttons complaint-btn-wrapper">
+            <div id="PrintButton" class="slds-grid buttons complaint-btn-wrapper">
                 <div class="slds-small-size_4-of-4 slds-medium-size_1-of-4 left">
                     <lightning:button class="cancel-button" variant="neutral" type="button" label="Print" onclick="{!c.printAcknowledgement}"/>
                 </div>

@@ -712,6 +712,29 @@ String pemail = (String)pdata.get('email');*/
         }
     }
     @AuraEnabled
+    public static List<pickListLabel> MapgetPicklistFieldValues(String objectName, String pickListFieldName){
+        try{
+        List<pickListLabel> picklistValues = new List<pickListLabel>();
+        SObjectType objectType = Schema.getGlobalDescribe().get(objectName);
+        List<Schema.PicklistEntry> pick_list_values = objectType.getDescribe()
+            .fields.getMap()
+            .get(pickListFieldName)
+            .getDescribe().getPickListValues();
+        for (Schema.PicklistEntry aPickListValue : pick_list_values) {    
+            pickListLabel sqlObj = new pickListLabel();
+            sqlObj.label = aPickListValue.getLabel();
+            sqlObj.value = aPickListValue.getValue();
+            picklistValues.add(sqlObj); 
+        }
+         system.debug('picklistValues'+picklistValues);
+        return picklistValues;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
+    }
+    @AuraEnabled
     public static Map<String,List<String>> fetchMetaDataValues(){
        try{
         Map<String, List<String>> PicklistValueMap = new Map <String, List<String>>();
@@ -876,6 +899,11 @@ String pemail = (String)pdata.get('email');*/
          public String submissionId{set;get;}
          public Boolean isDisciplinaryAction{set;get;}
          public String documentId{set;get;}
+    }
+    public class pickListLabel
+    {
+         @AuraEnabled  public String label;
+         @AuraEnabled   public String value;
     }
     //private Static Map<String,Boolean> getDeciplinarySubmissions()
     public class businessDataClass
