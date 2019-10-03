@@ -240,18 +240,6 @@
         <template>DOL_Licensing/Renewal_PDH_audit_approval_final</template>
     </alerts>
     <alerts>
-        <fullName>Renewal_PDH_audit_notification</fullName>
-        <description>Renewal - PDH audit notification</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_PDH_audit_notification_final</template>
-    </alerts>
-    <alerts>
         <fullName>Renewal_issued_Active_Other</fullName>
         <description>Renewal issued - Active - Other</description>
         <protected>false</protected>
@@ -1999,17 +1987,6 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Renewal - PDH audit approval</subject>
-    </tasks>
-    <tasks>
-        <fullName>Email_Outbound_Renewal_PDH_audit_notification</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Email Outbound: Renewal - PDH audit notification</subject>
     </tasks>
     <tasks>
         <fullName>Email_Outbound_Renewal_issued_Active_Other</fullName>
