@@ -1698,6 +1698,16 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Days_After_Current_Date_30__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY() + 30</formula>
+        <label>Days After Current Date 30</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Days_Open__c</fullName>
         <externalId>false</externalId>
         <formula>IF( ISBLANK(MUSW__Closed_Date__c) ,  TODAY() - Date_Opened__c, MUSW__Closed_Date__c - Date_Opened__c)</formula>
@@ -1894,6 +1904,38 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Lic_Prog_Mailing_City_State_ZIP__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Program_Mailing_City_State_ZIP__c</formula>
+        <label>Lic Prog Mailing City State ZIP</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lic_Prog_Mailing_PO_Box__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Program_Mailing_PO_Box__c</formula>
+        <label>Lic Prog Mailing PO Box</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Expiration_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.MUSW__Expiration_Date__c</formula>
+        <label>License Expiration Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>License_Id__c</fullName>
         <description>Foreign Key for Data Migration of Legacy Data</description>
         <encryptionScheme>None</encryptionScheme>
@@ -1902,6 +1944,17 @@
         <length>50</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Portal_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Portal_URL__c</formula>
+        <label>License Portal URL</label>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1934,6 +1987,17 @@
         <externalId>false</externalId>
         <formula>Text(License__r.Application_Type__c)</formula>
         <label>License Program Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(License__r.MUSW__Status__c)</formula>
+        <label>License Status</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2021,6 +2085,18 @@
         <formula>Text(License__r.MUSW__Parcel__r.MUSW__State__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Licensee_ZIP__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.MUSW__Parcel__r.Zip_Postal_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Licensee ZIP</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
