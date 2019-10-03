@@ -5021,6 +5021,18 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <valueSetName>license_specific_email_addresses</valueSetName>
         </valueSet>
     </fields>
+		<fields>
+        <fullName>DHP_Partial_Payment_Stamp_Date__c</fullName>
+        <description>for DHP Remainder letter</description>
+        <externalId>false</externalId>
+        <formula>If( AND (MUSW__Total_Balance__c &gt; 0.00,Polaris_DHP__c = True ),  TODAY() , null )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DHP Partial Payment Stamp Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
     <label>License</label>
     <listViews>
         <fullName>Active_Converted</fullName>
