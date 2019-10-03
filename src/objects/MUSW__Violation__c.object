@@ -516,6 +516,47 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Violations</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Complaint</fullName>
+        <active>true</active>
+        <label>Complaint</label>
+        <picklistValues>
+            <picklist>MUSW__Status__c</picklist>
+            <values>
+                <fullName>Allegation</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Charged</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finding</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Inspection</fullName>
+        <active>true</active>
+        <label>Inspection</label>
+        <picklistValues>
+            <picklist>MUSW__Status__c</picklist>
+            <values>
+                <fullName>Allegation</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Charged</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finding</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts>
         <lookupDialogsAdditionalFields>MUSW__Type__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>MUSW__Status__c</lookupDialogsAdditionalFields>
