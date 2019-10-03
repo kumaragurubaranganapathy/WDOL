@@ -415,9 +415,9 @@ _______________________________________________________________
                     <div class="intro-section">                    
                         <lightning:layout class="intro-wrapper slds-wrap">
                             <lightning:layoutItem size="12" mediumDeviceSize="12" class="new-wrapper">
-                                <h1 class="ser-title">
+                                <h2 class="ser-title">
                                     Have an existing professional license?
-                                </h1>                           
+                                </h2>                           
                                 <div class="ser-btn-wrapper">
                                     <lightning:button class="{!v.licenseList?'ser-btn pro-license':'slds-hide'}" variant="brand" onclick="{!c.linkProfLic}" label="Link Existing Professional License" title="Link Existing Professional License" /> 
                                     <lightning:button class="{!v.licenseList?'slds-hide':'ser-btn pro-license'}" variant="brand" onclick="{!c.goToProfDashboard}" label="Manage Existing Professional License" title="Manage Existing Professional License" /> 
