@@ -111,6 +111,15 @@
 }
 .THIS .nav-links a:hover, .THIS .login-wrapper a:hover{
     font-weight:bold;
+    text-decoration:none;
+}
+.THIS .nav-links a:after, .THIS .login-wrapper a:after {
+    display: block;
+    content: attr(title);
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
 }
 .THIS .login-Image{
     width: 50px;

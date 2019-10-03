@@ -78,8 +78,8 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                                                     </lightning:buttonMenu>
                                                     
                                                 </li>
-                                                <aura:set attribute="else">
-                                                    <li class="{!item.key == v.urlString?'active-link':'inactive-link'}"><a href="{!item.value}" >{!item.key}</a></li>
+                                                <aura:set attribute="else" >                                                    
+                                                    <li class="{!item.key == v.urlString?'active-link':'inactive-link'}"><a href="{!item.value}" title="{!item.key}">{!item.key}</a></li>
                                                 </aura:set>
                                             </aura:if>
                                             
@@ -94,7 +94,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                             <lightning:layoutItem size="12" largeDeviceSize="{!(v.userType=='Guest'?'3':'2')}" class="login-wrapper">
                                 <aura:if isTrue="{!and(v.userType=='Guest', $Label.c.Dol_Login == 'Yes')}">                            
                                     <div class="login-div">                                        
-                                        <a class="link-style" href="https://test-secureaccess.wa.gov/myFortress/saw/select.do" target="_blank">Log in</a>
+                                        <a class="link-style" href="https://test-secureaccess.wa.gov/myFortress/saw/select.do" target="_blank" title="Log in">Log in</a>
                                     </div>
                                     <aura:set attribute="else">
                                         <div class="user-wrapper">
@@ -102,7 +102,7 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
                                                 <!--<img src="{!$Resource.LnP_Icons+'/LnP_Icons/search.svg'}" class="logo-style" />-->
                                                 <!--<img src="{!$Resource.LnP_Icons+'/LnP_Icons/notification.png'}" alt="notification" class="logo-style" />
                                                 <img src="{!$Resource.LnP_Icons+'/LnP_Icons/cart.png'}" alt="cart" class="logo-style" /> -->
-                                              <a class="logout-style" onclick="{!c.handleLogout}">Log&nbsp;out<img src="{!$Resource.LnP_Icons+'/LnP_Icons/Logout.svg'}" alt="logout" class="logo-style logout" /></a>
+                                              <a class="logout-style" href="javascript:void(0)" title="Log out" onclick="{!c.handleLogout}">Log out<img src="{!$Resource.LnP_Icons+'/LnP_Icons/Logout.svg'}" alt="logout" class="logo-style logout" /></a>
                                                 <!--  <div class="">
                                         <img src="{!$Resource.LnP_Icons+'/LnP_Icons/login.png'}" class="{!v.pageTitle=='Login'?'login-Image':(v.userType!='Guest'?'slds-hide':'login-Image')}" alt="Log In"/>
                                         <div id="profileImage" class="{!v.pageTitle=='Login'?'slds-hide':(v.userType!='Guest'?'slds-show':'slds-hide')}">{!v.userInitial}</div>
