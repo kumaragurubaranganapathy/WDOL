@@ -84,7 +84,7 @@
                     
                     component.set("v.SelectedAccountDetails",accountvar);
                     component.set("v.mainAccountName",accountMap["Account"][0].Name);
-                    component.set("v.ParcelObj",accountMap);
+                    component.set("v.ParcelObj",accountMap["parcel"][0]);
                     component.set("v.isCourseProvider",accountMap["Account"][0].Course_Provider__c);
                     if(accountMap["Account"][0].Course_Provider__c == true){
                         component.set("v.defaultTab",'Courses');

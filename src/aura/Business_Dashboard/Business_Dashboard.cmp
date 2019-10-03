@@ -275,13 +275,16 @@
                                     <!--<div class="field-style"><span class="label-style">Email : </span></div>
                                     <div class="field-style"><span class="label-style">Phone : </span>{!v.SelectedAccountDetails.Business_Phone__c}</div> -->
                                 </lightning:layoutItem>
-                                <aura:iteration items="{!v.ParcelObj}" var="parcel" indexVar = "index">
+                                <aura:iteration items="{!v.ParcelObj}" var="parcel" indexVar = "index">                                   
+                                    
                                     <lightning:layoutItem size="12" mediumDeviceSize="4">
-                                        <aura:if isTrue = "{!parcel.Address_Type__c == 'HOME'}">
+                                        <aura:if isTrue = "{!and(parcel.Address_Type__c == 'PHYSICAL ADDRESS',!parcel.is_Physical_and_Mailing_Address_Same__c)}">
                                             <div class="field-style address">
                                                 <div class="field-style address">
                                                     <div class="label-style">Physical address:</div>
-                                                    <div class="data-style">{!parcel.MUSW__Street__c}, {!parcel.MUSW__City__c}, {!parcel.MUSW__State__c} - {!parcel.MUSW__Post_Zip_Code__c}</div>
+                                                    <div class="data-style">{!parcel.MUSW__Street__c},<br/>
+                                                                            {!parcel.MUSW__City__c}, <br />
+                                                                            {!parcel.MUSW__State__c} - {!parcel.MUSW__Post_Zip_Code__c}</div>
                                                 </div>
                                                 <!--<span class="label-style">Physical Address:</span></div>
                                             <div class="">{!parcel.MUSW__Street__c},</div>
@@ -290,7 +293,7 @@
                                             </div>
                                             <aura:set attribute="else">
                                                 <div class="label-style">Physical address:</div>
-                                                <div class="data-style">None</div>
+                                                <div class="data-style">Same as Mailing Address</div>
                                             </aura:set>
                                         </aura:if>
                                     </lightning:layoutItem>
@@ -298,7 +301,9 @@
                                         <aura:if isTrue = "{!parcel.Address_Type__c == 'MAILING ADDRESS'}">
                                             <div class="field-style address">
                                                 <div class="label-style">Mailing address:</div>
-                                                <div class="data-style">{!parcel.MUSW__Street__c}, {!parcel.MUSW__City__c}, {!parcel.MUSW__State__c} - {!parcel.MUSW__Post_Zip_Code__c}</div>
+                                                <div class="data-style">{!parcel.MUSW__Street__c},<br/>
+                                                                        {!parcel.MUSW__City__c}, <br />
+                                                                        {!parcel.MUSW__State__c} - {!parcel.MUSW__Post_Zip_Code__c}</div>
                                             </div>
                                             <!--<div class="field-style"><span class="label-style">Mailing Address:</span></div>
                                             <div class="">{!parcel.MUSW__Street__c},</div>
