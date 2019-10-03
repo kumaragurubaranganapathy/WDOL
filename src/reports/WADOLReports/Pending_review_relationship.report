@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
+        <field>Associations__c.Name__c</field>
+    </columns>
+    <columns>
+        <field>Associations__c.Status__c</field>
+    </columns>
+    <columns>
         <field>Associations__c.AMR__c</field>
     </columns>
     <columns>
@@ -11,7 +17,7 @@
             <column>MUSW__License2__c.MUSW__Status__c</column>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value></value>
+            <value>Pending Review</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

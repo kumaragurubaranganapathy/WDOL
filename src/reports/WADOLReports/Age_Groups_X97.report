@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>number</bucketType>
+        <developerName>BucketField_78234093</developerName>
+        <masterLabel>Age Classifications</masterLabel>
+        <nullTreatment>z</nullTreatment>
+        <sourceColumnName>MUSW__License2__c.Age__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <to>24</to>
+            </sourceValues>
+            <value>Less than 25</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>24</from>
+                <to>34</to>
+            </sourceValues>
+            <value>Between 25 - 34</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>34</from>
+                <to>44</to>
+            </sourceValues>
+            <value>Between 35 - 44</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>44</from>
+                <to>54</to>
+            </sourceValues>
+            <value>Between 45 - 54</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>54</from>
+                <to>64</to>
+            </sourceValues>
+            <value>Between 55 - 64</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>64</from>
+            </sourceValues>
+            <value>Above 65</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>HorizontalBarStacked</chartType>
+        <enableHoverLabels>false</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>BucketField_78234093</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_BOTTOM</location>
+        <secondaryGroupingColumn>MUSW__License2__c.Application_Type__c</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>MUSW__License2__c.Credential_Type__c</field>
+    </columns>
+    <columns>
+        <field>MUSW__License2__c.MUSW__Status__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>MUSW__License2__c.MUSW__Status__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Submission Failed,Denied,Abandoned,Inactive,Sunset,Suspended,Revoked,Canceled</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>MUSW__License2__c.Application_Type__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_78234093</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <name>Age Groups</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$MUSW__License2__c@MUSW__License2__c.MUSW__Primary_Licensee__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>MUSW__License2__c.App_Submitted_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

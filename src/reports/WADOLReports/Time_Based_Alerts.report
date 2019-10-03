@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>MUSW__Inspection__c.MUSW__Type__c</field>
+    </columns>
+    <columns>
+        <field>MUSW__Inspection__c.MUSW__Due_Date__c</field>
+    </columns>
+    <columns>
+        <field>MUSW__Inspection__c.MUSW__License2__c</field>
+    </columns>
+    <columns>
+        <field>MUSW__Inspection__c.Credential_Type__c</field>
+    </columns>
+    <columns>
+        <field>MUSW__Inspection__c.Account__c</field>
+    </columns>
+    <description>Alerts for Inspections and Audits This week</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>MUSW__Inspection__c.Application_Type__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Time Based Alerts</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$MUSW__Inspection__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>MUSW__Inspection__c.MUSW__Due_Date__c</dateColumn>
+        <interval>INTERVAL_NEXT7</interval>
+    </timeFrameFilter>
+</Report>
