@@ -2,14 +2,13 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
         <fullName>Designated_person_accept_business</fullName>
-        <ccEmails>satapathy.swapna@gmail.com</ccEmails>
         <description>Designated person accept - business</description>
         <protected>false</protected>
         <recipients>
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Designated_person_accept_business_final</template>
     </alerts>
@@ -22,7 +21,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Designated_person_accept_licensee_final</template>
     </alerts>
@@ -34,7 +33,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Designated_person_decline_RBS_business_final</template>
     </alerts>
@@ -46,7 +45,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Designated_person_decline_RBS_licensee_final</template>
     </alerts>
@@ -58,7 +57,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Designated_person_invitation_notification_business_final</template>
     </alerts>
@@ -70,7 +69,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Designated_person_invitation_notification_licensee_final</template>
     </alerts>
@@ -82,7 +81,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Intern_accept_intern_final</template>
     </alerts>
@@ -94,7 +93,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Intern_decline_intern_final</template>
     </alerts>
@@ -106,7 +105,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Intern_removal_notification_intern_final</template>
     </alerts>
@@ -118,7 +117,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Intern_separation_notification_intern_final</template>
     </alerts>
@@ -130,7 +129,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_accept_business_final</template>
     </alerts>
@@ -142,7 +141,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_accept_licensee_additional_employer_final</template>
     </alerts>
@@ -154,7 +153,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_accept_licensee_one_employer_final</template>
     </alerts>
@@ -166,7 +165,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_decline_business_final</template>
     </alerts>
@@ -178,7 +177,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_decline_licensee_no_employer_final</template>
     </alerts>
@@ -190,7 +189,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_invitation_notification_CR_licensee_additional_business_final</template>
     </alerts>
@@ -202,7 +201,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_invitation_notification_TS_licensee_additional_business_final</template>
     </alerts>
@@ -214,7 +213,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_invitation_notification_business_final</template>
     </alerts>
@@ -226,7 +225,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_invitation_notification_licensee</template>
     </alerts>
@@ -238,7 +237,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_removal_notification_business_final</template>
     </alerts>
@@ -250,7 +249,8 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_removal_notification_licensee_no_employer_final</template>
     </alerts>
     <alerts>
@@ -261,7 +261,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_removal_notification_licensee_with_employer_final</template>
     </alerts>
@@ -273,7 +273,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_separation_notification_business_final</template>
     </alerts>
@@ -285,7 +285,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_separation_notification_licensee_no_employer_final</template>
     </alerts>
@@ -297,7 +297,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Licensee_separation_notification_licensee_with_employer_final</template>
     </alerts>
@@ -309,7 +309,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_accept_trainee_1st_supervisor_final</template>
     </alerts>
@@ -321,7 +321,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_accept_trainee_additional_supervisor_final</template>
     </alerts>
@@ -333,7 +333,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_decline_trainee_additional_supervisor_final</template>
     </alerts>
@@ -345,7 +345,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_decline_trainee_no_supervisor_final</template>
     </alerts>
@@ -357,7 +357,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_intern_accept_supervisor_sponsor_final</template>
     </alerts>
@@ -369,7 +369,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_Intern_decline_supervisor_sponsor_final</template>
     </alerts>
@@ -381,7 +381,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_intern_invitation_notification_supervisor_sponsor_final</template>
     </alerts>
@@ -393,7 +393,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_intern_invitation_notification_trainee_intern_final</template>
     </alerts>
@@ -405,7 +405,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_intern_removal_notification_supervisor_sponsor_final</template>
     </alerts>
@@ -417,7 +417,7 @@
             <field>Parent_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_intern_separation_notification_supervisor_sponsor_final</template>
     </alerts>
@@ -429,7 +429,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_removal_notification_trainee_no_supervisor_final</template>
     </alerts>
@@ -441,7 +441,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_removal_notification_trainee_with_supervisor_final</template>
     </alerts>
@@ -453,7 +453,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_separation_notification_trainee_no_supervisor_final</template>
     </alerts>
@@ -465,7 +465,7 @@
             <field>Child_License_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Trainee_separation_notification_trainee_with_supervisor_final</template>
     </alerts>

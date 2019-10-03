@@ -8,7 +8,7 @@
             <field>Email_Sent_To__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Exam_approval_email_Appraiser_final</template>
     </alerts>
@@ -20,7 +20,7 @@
             <field>Email_Sent_To__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Exam_approval_email_RBS_final</template>
     </alerts>
@@ -32,7 +32,7 @@
             <field>Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Exam_fail_notification_Geologist_final</template>
     </alerts>
@@ -44,7 +44,7 @@
             <field>Contact__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Exam_pass_notification_FG_exam_final</template>
     </alerts>
@@ -56,7 +56,7 @@
             <field>Email_Sent_To__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Exam_pass_notification_Law_Review_final</template>
     </alerts>
@@ -68,7 +68,7 @@
             <field>Email_Sent_To__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Exam_pass_notification_single_exam_printable_license_final</template>
     </alerts>
