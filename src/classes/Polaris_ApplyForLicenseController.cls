@@ -1285,7 +1285,6 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                         }
                         Account acc = new Account();
                         
-                        acc.Name = application.MUSW__Account__r.Name+'-'+application.Credential_Type__c;
                         acc.ParentId = application.MUSW__Account__r.Id;
                         acc.Business_Structure__c = application.MUSW__Account__r.Business_Structure__c ;
                         acc.First_Name_Primary_Contact__c  = application.MUSW__Account__r.First_Name_Primary_Contact__c;
@@ -1299,6 +1298,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                         acc.RecordTypeId = mainLicenseRT ;
                         acc.UBI_Number__c = application.MUSW__Account__r.UBI_Number__c;
                         if(application.Branch_License__c){
+                             acc.Name = application.Parent_License__r.Ultimate_Parent_Account__r.Name+'-'+application.Credential_Type__c;
                             mstLicense.Parent_License__c = application.Parent_License__c;
                             acc.Parentid = application.MUSW__Account__c;
                             mstLicense.isBranch_License__c = true;
@@ -1307,6 +1307,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                         }
                         else{
                             mstLicense.Ultimate_Parent_Account__c = application.MUSW__Account__c; 
+                            acc.Name = application.MUSW__Account__r.Name+'-'+application.Credential_Type__c;
                         }
                         //insert acc;
                         lstacc.add(acc);
