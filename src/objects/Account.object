@@ -148,6 +148,15 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Bad_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>NSF</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>BillingAddress</fullName>
         <encryptionScheme>None</encryptionScheme>
         <trackFeedHistory>false</trackFeedHistory>
@@ -701,6 +710,19 @@ CASE( MUSW__AlertCode__c,
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Mailing_Address__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Mailing Address</label>
+        <referenceTo>MUSW__Parcel__c</referenceTo>
+        <relationshipLabel>Accounts (Mailing Address)</relationshipLabel>
+        <relationshipName>Accounts1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Muni_Type_Name__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -805,6 +827,19 @@ CASE( MUSW__AlertCode__c,
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Physical_Address__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Physical Address</label>
+        <referenceTo>MUSW__Parcel__c</referenceTo>
+        <relationshipLabel>Accounts</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Provider_Type__c</fullName>
@@ -969,6 +1004,28 @@ CASE( MUSW__AlertCode__c,
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>Total_Fees__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Fees</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Payments__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Payments</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>Track_No__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -1100,6 +1157,19 @@ CASE( MUSW__AlertCode__c,
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>UBI_Validation_Response__c</fullName>
+        <description>To save the validation response of UBI number</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>UBI Validation Response</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Website</fullName>

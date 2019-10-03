@@ -1759,6 +1759,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>First_Inspection_created_date__c</fullName>
+        <description>date of the earliest inspection created date of all inspections</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>First Inspection created date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>If_no_please_provide_reasoning__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -1769,6 +1781,19 @@
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
+    <fields>
+        <fullName>In_Compliance__c</fullName>
+        <description>In-Compliance</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Out of Compliance - End</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Incident_Address__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
