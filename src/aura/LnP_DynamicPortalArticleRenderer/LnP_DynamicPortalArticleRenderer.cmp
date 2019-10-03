@@ -28,9 +28,9 @@
                             <div class="license-header-wrapper">
                                 <aura:iteration items="{!art.childArticlesHeader}" var="headerArt" indexVar="headerArtNo">  
                                    
-                                    <h1 class="license-header">
+                                    <h2 class="license-header">
                                         {!headerArt.Article_Title__c}
-                                    </h1>
+                                    </h2>
                                     <p class="help-text">
                                         {!headerArt.Article_Sub_description__c}
                                     </p>

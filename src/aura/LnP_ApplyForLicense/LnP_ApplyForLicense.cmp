@@ -73,7 +73,7 @@
             <lightning:breadcrumb class="breadcumb" label="{!'LicenseType&nbsp;:'+v.licenseType}" />
             
         </lightning:breadcrumbs>-->
-        <div class="subheader merriweather-font">{!(v.licenseType == 'Appraiser Course'?'Apply for new course: ':'Apply for a new license: ')+v.licenseType}</div>
+        <h1 class="subheader merriweather-font">{!(v.licenseType == 'Appraiser Course'?'Apply for new course: ':'Apply for a new license: ')+v.licenseType}</h1>
         <c:LnP_Path currentTab="{!v.currentTab}" path="{!v.section}" showPath="true" totalTabs="{!v.totalTabs}" items="{!v.licenseWrapper}" board="{!v.board}" licenseType="{!v.licenseType}"/>
         <aura:if isTrue="{!v.showErrorMsgs}">
             <div class="toastContainer slds-notify_container slds-is-relative">
@@ -120,7 +120,7 @@
                             <!-- <c:LnP_BackgroundQuestionSection  section ="{!section}" varSection="{!varSection}" currentTab= "{!v.currentTab}"></c:LnP_BackgroundQuestionSection--> 
                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                 <div class="{!(question.questionSection!='null')?'background-section slds-large-size_1-of-1':'slds-hide'}">
-                                    <div class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</div>
+                                    <h2 class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</h2>
                                     <div class="sectiondetail sentences">{!question.questionSectionDetail}</div>
                                     <aura:if isTrue ="{!question.questionSection!='null'}">
                                         <c:LnP_RecordEditForms sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}"/> 

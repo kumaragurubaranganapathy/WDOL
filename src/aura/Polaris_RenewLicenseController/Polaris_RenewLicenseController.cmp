@@ -113,7 +113,7 @@
                             <!--c:LnP_BackgroundQuestionSection  section ="{!section}" varSection="{!varSection}" currentTab= "{!v.currentTab}"></c:LnP_BackgroundQuestionSection--> 
                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
                                 <div class="{!(question.questionSection!='null')?'background-section slds-large-size_1-of-1':'slds-hide'}">
-                                    <div class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</div>
+                                    <h2 class="{!(question.questionSection!='null')?'sectionwidth headings':'slds-hide'}">{!question.questionSection}</h2>
                                     <div class="{!(question.questionSectionDetail!='null')?'sectiondetail':'slds-hide'}">{!question.questionSectionDetail}</div>
                                     <aura:if isTrue ="{!question.questionSection!='null'}">
                                         <c:LnP_RecordEditForms sectionList ="{!section}" sectionName="{!question.questionSection}" applicationId = "{!v.applicationId}"/> 

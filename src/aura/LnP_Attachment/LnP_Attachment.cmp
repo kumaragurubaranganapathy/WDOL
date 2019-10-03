@@ -11,10 +11,10 @@
    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
    
    <div class="attach-wrapper">
-       <div class="attach-title">
+       <h2 class="attach-title">
        	<!--Attachments -->
        	{!v.labelQuesions}
-       </div>
+       </h2>
        <div class="upload-wrapper">
            <lightning:fileUpload name="file"
                                  class="fileupload"
@@ -38,7 +38,7 @@
                                 <lightning:button label="X" iconPosition="left"  variant="destructive" onclick="{!c.deleteFile}"/>
                             </div>
                         </div>
-                        <div class="" >
+                        <div>
                             <lightning:fileCard fileId="{!file}" />
                         </div>
                     </div>

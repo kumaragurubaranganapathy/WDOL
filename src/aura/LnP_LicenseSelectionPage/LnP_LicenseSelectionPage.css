@@ -30,12 +30,10 @@
 .THIS .card-wrapper h2{
     font-weight:bold;
     padding-bottom:0.5rem;
-    font-size: token(fieldlabelsize);
     color:t(fieldclr)
 }
 .THIS .page-title{
-    font-weight:bold;
-    font-size:16px;     
+    font-weight:bold;     
 }
 .THIS .proceed-btn-wrapper{
     display:flex;
@@ -140,7 +138,6 @@
 }
 .THIS .header-style{
     padding-bottom:1rem;
-    font-size:1rem;
     font-weight:bold;
 }
 .THIS .proceed-btn{
@@ -162,6 +159,9 @@
 }
 .THIS .slds-form-element_horizontal:not(.slds-is-editing){
     padding:0;
+}
+.THIS .bullets.inner{
+    list-style-type:circle;
 }
 @media screen and (max-width:767.9px) {
     .THIS .form-wrapper{
