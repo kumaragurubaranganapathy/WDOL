@@ -1,15 +1,7 @@
 ({
-    errorlog:function(component,event){
-        var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
-        var urlEvent = $A.get("e.force:navigateToURL");
-        urlEvent.setParams({
-            "url": url
-        });
-        urlEvent.fire();
-    },
     doInit : function(component, event, objectApi, fieldsName, auraAttr) {
         component.set("v.loadingSpinner", true);
-        var action = component.get("c.getPicklistFieldValues");
+        var action = component.get("c.MapgetPicklistFieldValues");
         action.setParams({
             'objectName':objectApi,
             'pickListFieldName':fieldsName
@@ -20,7 +12,7 @@
                 var result = response.getReturnValue();
                 if(auraAttr == "v.professionOptions"){
                     var filteredResult = result.filter(function(item){
-                       return item != 'Delegated Municipality' && item != 'Manufactured Homes' && item != 'Misc Payments' && item != 'Regulatory Compliance' && item != 'Update/Close Company' && item != 'Update Legal Name' && item != 'Remove Owner' && item != 'Collection Agency' && item != 'Update Business Name' && item != 'Update Company Information' && item != 'Program Unknown';
+                       return item.label != 'Delegated Municipality' && item.label != 'Manufactured Homes' && item.label != 'Misc Payments' && item.label != 'Regulatory Compliance' && item.label != 'Update/Close Company' && item.label != 'Update Legal Name' && item.label != 'Remove Owner' && item.label != 'Collection Agency' && item.label != 'Update Business Name' && item.label != 'Update Company Information' && item.label != 'Program Unknown';
                     });
                     component.set(auraAttr, filteredResult);
                 }else{
@@ -40,8 +32,9 @@
         });
         $A.enqueueAction(action);  
     },
-	goToNext : function(component, event, helper) {
+	goToNext : function(component, event) {
 		var tabIndex = component.get("v.currentTab");
+        var toastEvent;
         if(tabIndex == 1){
             var professionValue = component.find("Profession").get("v.value");
             component.set("v.professionDisable",true);
@@ -56,14 +49,14 @@
                 if (allprofessionalFormFields) {
                     var professionalFormValues = {};
                     var professionalForm = component.find("professionalForm");          
-                    for(var i=0; i<professionalForm.length; i++){ 
+                    for(var i=0; i<professionalForm.length; i += 1){ 
                         label = component.find("professionalForm")[i].get("v.name");
                         value = component.find("professionalForm")[i].get("v.value");
                         professionalFormValues[label] = value;
                     }
                     component.set("v.professionalForm", professionalFormValues);
                 } else {
-                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": "Error!",
                         "message": "Please correct the error fields",
@@ -79,14 +72,14 @@
                     if (allBusinessFormFields) {
                         var businessFormValues = {};
                         var businessForm = component.find("businessForm");
-                        for(var i=0; i<businessForm.length; i++){ 
+                        for(var i=0; i<businessForm.length; i += 1){ 
                             label = component.find("businessForm")[i].get("v.name");
                             value = component.find("businessForm")[i].get("v.value");
                             businessFormValues[label] = value;
                         }
                         component.set("v.businessForm", businessFormValues);
                     } else {
-                        var toastEvent = $A.get("e.force:showToast");
+                        toastEvent = $A.get("e.force:showToast");
                         toastEvent.setParams({
                             "title": "Error!",
                             "message": "Please correct the error fields",
@@ -110,7 +103,7 @@
                 }
                 if(component.get("v.firstTabFlag")){
                     var applicationId = component.get("v.applicationId");
-                    if(applicationId != '' && applicationId != null){
+                    if(applicationId != '' && applicationId !== null){
                         // proceed without calling
                         component.set("v.loadingSpinner", false);
                         component.set("v.currentTab", 2);
@@ -140,7 +133,7 @@
                                 }
                             } else {
                                 component.set("v.loadingSpinner", false);
-                                var toastEvent = $A.get("e.force:showToast");
+                                toastEvent = $A.get("e.force:showToast");
                                 var errors = actionResult.getError();
                                 if (errors) {
                                     var message = "";
@@ -165,7 +158,7 @@
                     console.log("Error");
                 }
             } else {
-                var toastEvent = $A.get("e.force:showToast");
+                toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "Error!",
                     "message": "Please fill the mandatory fields",
@@ -184,7 +177,7 @@
             if (allInformationFormFields) {
                 var informationFormValues = {};
                 var informationForm = component.find("informationForm");          
-                for(var i=0; i<informationForm.length; i++){ 
+                for(var i=0; i<informationForm.length; i += 1){ 
                     labels = component.find("informationForm")[i].get("v.name");
                     values = component.find("informationForm")[i].get("v.value");
                     informationFormValues[labels] = values;
@@ -197,7 +190,7 @@
                 component.set("v.agreeCheck", true);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                var toastEvent = $A.get("e.force:showToast");
+                toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "Error!",
                     "message": "Please fill the mandatory fields",
@@ -207,7 +200,15 @@
             }            
         }
 	},
-    backToPrevious : function(component, event, helper) {
+    errorlog:function(component,event){
+        var url=$A.get("$Label.c.Polaris_Portal_Home")+'explorer-error-page';
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": url
+        });
+        urlEvent.fire();
+    },
+    backToPrevious : function(component, event) {
 		var tabIndex = component.get("v.currentTab");
         if(tabIndex == 3){
             component.set("v.currentTab", 2);
@@ -227,7 +228,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 	},
-    showOtherFields : function(component, event, helper) {
+    showOtherFields : function(component, event) {
         var professionValue = component.find("Profession").get("v.value");
         if(professionValue != ""){
             if(professionValue == "Engineers" || professionValue == "Land Surveyors"){
@@ -247,7 +248,7 @@
             component.set("v.anonymousComplaint", true);
         }
     },
-    submitComplaint : function(component, event, helper) {
+    submitComplaint : function(component, event) {
         component.set("v.loadingSpinner", true);
         var applicationId = component.get("v.applicationId");
         var selectedProfession = component.get("v.selectedProfession");
@@ -257,6 +258,7 @@
         var complaintSummary = component.find('complaintSummary').get('v.value');
         var agreeCheck = component.get('v.agreeCheck');
         var anonymous = component.get("v.anonymousComplaintCheckbox");
+        var toastEvent;
         var complaintWrapper = {
             'selectedProfession': selectedProfession,
             'professionalData': JSON.parse(professional),
@@ -290,7 +292,7 @@
             } else {
                 component.set("v.loadingSpinner", false);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                var toastEvent = $A.get("e.force:showToast");
+                toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "Error!",
                     "message": "Server Error please try again",
@@ -301,19 +303,21 @@
         });
         $A.enqueueAction(action);
     },
-    cancelComplaint : function(component, event, helper) {
+    cancelComplaint : function(component, event) {
+        var professionValue;
+        var professionalForm;
 		var tabIndex = component.get("v.currentTab");
         if(tabIndex == 1){
             if(professionValue != ""){
-                var professionValue = component.find("Profession").set("v.value","");
-                var professionalForm = component.find("professionalForm");          
-                for(var i=0; i<professionalForm.length; i++){ 
+                professionValue = component.find("Profession").set("v.value","");
+                professionalForm = component.find("professionalForm");          
+                for(var i=0; i<professionalForm.length; i += 1){ 
                     component.find("professionalForm")[i].set("v.value", "");
                 }
                 component.set("v.professionalScreen", false);
                 if(component.get("v.businessScreen")){                    
                     var businessForm = component.find("businessForm");
-                    for(var i=0; i<businessForm.length; i++){ 
+                    for(var i=0; i<businessForm.length; i += 1){ 
                         component.find("businessForm")[i].set("v.value", "");
                     }
                     component.set("v.businessScreen", false);
@@ -322,22 +326,22 @@
         }
         if(tabIndex == 2){
             if(professionValue != ""){
-                var professionValue = component.find("Profession").set("v.value","");
-                var professionalForm = component.find("professionalForm");          
-                for(var i=0; i<professionalForm.length; i++){ 
+                professionValue = component.find("Profession").set("v.value","");
+                professionalForm = component.find("professionalForm");          
+                for(var i=0; i<professionalForm.length; i += 1){ 
                     component.find("professionalForm")[i].set("v.value", "");
                 }
                 component.set("v.professionalScreen", false);
                 if(component.get("v.businessScreen")){                    
                     var businessForm = component.find("businessForm");
-                    for(var i=0; i<businessForm.length; i++){ 
+                    for(var i=0; i<businessForm.length; i += 1){ 
                         component.find("businessForm")[i].set("v.value", "");
                     }
                     component.set("v.businessScreen", false);
                 }                
             } 
             var informationForm = component.find("informationForm");          
-            for(var i=0; i<informationForm.length; i++){ 
+            for(var i=0; i<informationForm.length; i += 1){ 
                 component.find("informationForm")[i].set("v.value", "");
             }
             //component.set("v.applicationId",'');
@@ -350,22 +354,22 @@
         }
         if(tabIndex == 3){
             if(professionValue != ""){
-                var professionValue = component.find("Profession").set("v.value","");
-                var professionalForm = component.find("professionalForm");          
-                for(var i=0; i<professionalForm.length; i++){ 
+                professionValue = component.find("Profession").set("v.value","");
+                professionalForm = component.find("professionalForm");          
+                for(var i=0; i<professionalForm.length; i += 1){ 
                     component.find("professionalForm")[i].set("v.value", "");
                 }
                 component.set("v.professionalScreen", false);
                 if(component.get("v.businessScreen")){                    
                     var businessForm = component.find("businessForm");
-                    for(var i=0; i<businessForm.length; i++){ 
+                    for(var i=0; i<businessForm.length; i += 1){ 
                         component.find("businessForm")[i].set("v.value", "");
                     }
                     component.set("v.businessScreen", false);
                 }                
             } 
             var informationForm = component.find("informationForm");          
-            for(var i=0; i<informationForm.length; i++){ 
+            for(var i=0; i<informationForm.length; i += 1){ 
                 component.find("informationForm")[i].set("v.value", "");
             }
             //component.set("v.applicationId",'');
@@ -387,7 +391,7 @@
               event.getSource().set('v.value',phone);    
           }
     },
-	redirectToHome: function(component, event){
+    redirectToHome: function(component, event){
         var url=$A.get("$Label.c.Polaris_Portal_Home");
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({

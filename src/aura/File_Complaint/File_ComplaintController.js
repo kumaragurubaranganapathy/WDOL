@@ -4,7 +4,7 @@
         var objectApi;
         var fieldsName;
         var auraAttr;
-        for(var i=0; i<picklistArray.length; i++){
+        for(var i=0; i<picklistArray.length; i += 1){
             objectApi = picklistArray[i].objectApi;
             fieldsName = picklistArray[i].fieldsName;
             auraAttr = picklistArray[i].auraAttr;
@@ -12,30 +12,30 @@
         }
 	},
 	goToNext : function(component, event, helper) {
-		helper.goToNext(component, event, helper);
+		helper.goToNext(component, event);
 	},
     backToPrevious : function(component, event, helper) {
-		helper.backToPrevious(component, event, helper);
+		helper.backToPrevious(component, event);
 	},
     showOtherFields : function(component, event, helper) {
-		helper.showOtherFields(component, event, helper);
+		helper.showOtherFields(component, event);
 	},
     submitComplaint : function(component, event, helper) {
-		helper.submitComplaint(component, event, helper);
+		helper.submitComplaint(component, event);
 	},
     cancelComplaint : function(component, event, helper) {
-		helper.cancelComplaint(component, event, helper);
+		helper.cancelComplaint(component, event);
 	},
     changepattern: function(component, event, helper) {
 		helper.changepattern(component, event);
 	},
-	redirectToHome: function(component, event, helper) {
+    redirectToHome: function(component, event, helper) {
 		helper.redirectToHome(component, event);
 	},
     printAcknowledgement: function(component, event, helper) {
 		helper.printAcknowledgement(component, event);
 	},
-	hideProfCounty: function(component, event, helper){
+    hideProfCounty: function(component, event, helper){
         var selectedValue = event.getSource().get('v.value');
         if(selectedValue == "Washington" || selectedValue =="WA"){
             component.set("v.showProfCounty", true);
