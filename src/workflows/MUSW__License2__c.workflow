@@ -8,7 +8,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Application_closed_RFI_final</template>
     </alerts>
@@ -20,7 +20,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Application_closed_RFP_final</template>
     </alerts>
@@ -32,7 +32,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Application_submission_final</template>
     </alerts>
@@ -44,7 +44,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Bond_expiration_final</template>
     </alerts>
@@ -56,7 +56,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_Appraiser_final</template>
     </alerts>
@@ -68,7 +68,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_Design_except_Engineer_final</template>
     </alerts>
@@ -80,7 +80,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_EIT_LSIT_GIT_final</template>
     </alerts>
@@ -92,7 +92,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_Engineer_final</template>
     </alerts>
@@ -104,7 +104,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_FD_Embalmer_final</template>
     </alerts>
@@ -116,7 +116,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_FD_Embalmer_Intern_final</template>
     </alerts>
@@ -128,7 +128,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_Notary_final</template>
     </alerts>
@@ -140,7 +140,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_Other_R1_final</template>
     </alerts>
@@ -152,7 +152,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Inactive_business_association_final</template>
     </alerts>
@@ -164,7 +164,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Inactive_supervisor_sponsor_association_final</template>
     </alerts>
@@ -176,7 +176,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/License_expiration_notice_New_application_final</template>
     </alerts>
@@ -188,7 +188,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/License_expiration_notice_renewal_allowed_final</template>
     </alerts>
@@ -200,7 +200,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/License_expiration_notice_renewal_allowed_final</template>
     </alerts>
@@ -212,7 +212,8 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Finance/First_License_Fee</template>
     </alerts>
     <alerts>
@@ -223,7 +224,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_CE_audit_notification_final</template>
     </alerts>
@@ -235,9 +236,21 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_PDH_audit_approval_final</template>
+    </alerts>
+    <alerts>
+        <fullName>Renewal_PDH_audit_notification</fullName>
+        <description>Renewal - PDH audit notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Renewal_PDH_audit_notification_final</template>
     </alerts>
     <alerts>
         <fullName>Renewal_issued_Active_Other</fullName>
@@ -247,7 +260,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_issued_Active_final</template>
     </alerts>
@@ -259,7 +272,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_issued_Active_final</template>
     </alerts>
@@ -271,7 +284,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_issued_Inactive_final</template>
     </alerts>
@@ -283,7 +296,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_reminder_business_final</template>
     </alerts>
@@ -295,7 +308,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_reminder_individual_final</template>
     </alerts>
@@ -307,7 +320,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>christopherwillia@deloitte.com</senderAddress>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Retired_status_final</template>
     </alerts>
@@ -1307,6 +1320,25 @@
             <operation>equals</operation>
             <value>True</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>,Draft,Submitted,Submission Failed,Generate Fee,Pending Payment,Waiting for Third Party Verification,Pending Action,In-Review,In Review,Pending Additional Qualifications,Withdrawn,Denied,Abandoned,Active,Inactive,Sunset,Expired,Suspended</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Renewal - PDH audit notification</fullName>
+        <actions>
+            <name>Renewal_PDH_audit_notification</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Renewal_PDH_audit_notification</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <formula>Pending_Audit__c = TRUE &amp;&amp;  Text(MUSW__Status__c) = &apos;Active&apos;</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1969,6 +2001,17 @@
         <protected>false</protected>
         <status>Completed</status>
         <subject>Email Outbound: Renewal - PDH audit approval</subject>
+    </tasks>
+    <tasks>
+        <fullName>Email_Outbound_Renewal_PDH_audit_notification</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>MUSW__License2__c.Current_Datetime__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Email Outbound: Renewal - PDH audit notification</subject>
     </tasks>
     <tasks>
         <fullName>Email_Outbound_Renewal_issued_Active_Other</fullName>
