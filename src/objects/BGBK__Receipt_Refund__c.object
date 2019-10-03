@@ -111,6 +111,20 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+	<fields>
+        <fullName>Fee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Fee</label>
+        <referenceTo>MUSW__Fee__c</referenceTo>
+        <relationshipLabel>Receipt Refunds</relationshipLabel>
+        <relationshipName>Receipt_Refunds</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+
     <fields>
         <fullName>Refund_Type__c</fullName>
         <externalId>false</externalId>
