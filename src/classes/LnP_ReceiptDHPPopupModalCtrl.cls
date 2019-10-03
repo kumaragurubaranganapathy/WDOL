@@ -1,17 +1,18 @@
 /*@author : Rishap
- *@name : LnP_ReceiptDHPPopupModalCtrl
- *@description : US -1656
- * 
- */ 
+*@name : LnP_ReceiptDHPPopupModalCtrl
+*@description : US -1656
+* 
+*/ 
 
 public without sharing class LnP_ReceiptDHPPopupModalCtrl {
     
     @AuraEnabled
     public static String saveLicenseandReceipt(Id receiptId){
-		DOL_AppUtility.isAuthenticatedUser() ;
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
             MUSW__Receipt__c receiptRec = [Select Id,
                                            Name,
+                                           CreatedDate,
                                            MUSW__Amount_Tendered__c,
                                            MUSW__Check_Number__c,
                                            MUSW__Payment_Method__c,
@@ -24,29 +25,29 @@ public without sharing class LnP_ReceiptDHPPopupModalCtrl {
                                           ];
             
             
-          /*  List<MUSW__Fee_Payment__c> feePaymentRecList = [SELECT Id, 
-                                                            Name,
-                                                            MUSW__Receipt__c,
-                                                            Related_To_License__c, 
-                                                            MUSW__Fee__c,  
-                                                            Related_to__c 
-                                                            FROM MUSW__Fee_Payment__c
-                                                            WHERE MUSW__Receipt__c = :receiptId
-                                                           ];
-            System.debug('feePaymentRecList : ' +feePaymentRecList );*/
+            /*  List<MUSW__Fee_Payment__c> feePaymentRecList = [SELECT Id, 
+Name,
+MUSW__Receipt__c,
+Related_To_License__c, 
+MUSW__Fee__c,  
+Related_to__c 
+FROM MUSW__Fee_Payment__c
+WHERE MUSW__Receipt__c = :receiptId
+];
+System.debug('feePaymentRecList : ' +feePaymentRecList );*/
             
             Set<ID> licenseIdSet = new Set<ID>();
             for(MUSW__Fee_Payment__c feePaymentRec :  [SELECT Id, 
-                                                            Name,
-                                                            MUSW__Receipt__c,
-                                                            Related_To_License__c, 
-                                                            MUSW__Fee__c,  
-                                                            Related_to__c 
-                                                            FROM MUSW__Fee_Payment__c
-                                                            WHERE MUSW__Receipt__c = :receiptId
-                                                           ]){
-                licenseIdSet.add(feePaymentRec.Related_To_License__c);
-            }  
+                                                       Name,
+                                                       MUSW__Receipt__c,
+                                                       Related_To_License__c, 
+                                                       MUSW__Fee__c,  
+                                                       Related_to__c 
+                                                       FROM MUSW__Fee_Payment__c
+                                                       WHERE MUSW__Receipt__c = :receiptId
+                                                      ]){
+                                                          licenseIdSet.add(feePaymentRec.Related_To_License__c);
+                                                      }  
             System.debug('licenseIdSet : ' +licenseIdSet );
             
             //license associated to current receipt
@@ -69,6 +70,7 @@ public without sharing class LnP_ReceiptDHPPopupModalCtrl {
                                                            Voided_Receipt_Amount__c = receiptRec.MUSW__Amount_Tendered__c ,
                                                            Voided_Receipt_Check_Number__c =  receiptRec.MUSW__Check_Number__c,
                                                            Voided_Receipt_Payment_Method__c = receiptRec.MUSW__Payment_Method__c,
+                                                           Voided_Receipt_Created_Date__c = receiptRec.CreatedDate,
                                                            Voided_Receipt_Amount_DHP_Amount__c = receiptRec.MUSW__Amount_Tendered__c + 25.00
                                                           );
                     feeRec.MUSW__License2__c = licRec.Id;
@@ -101,7 +103,7 @@ public without sharing class LnP_ReceiptDHPPopupModalCtrl {
                 system.debug('after Update ' + licenseToBeUpdatedwithDHP);            
             }
             
-    //for Status - > Inactive logic
+            //for Status - > Inactive logic
             system.debug('receiptRec.Inactivate_License_Date__c : '+receiptRec.Inactivate_License_Date__c);
             if(receiptRec.Inactivate_License_Date__c == System.today()){
                 List<MUSW__License2__c> licenseToBeUpdatedInactive = new List<MUSW__License2__c> ();
@@ -116,7 +118,7 @@ public without sharing class LnP_ReceiptDHPPopupModalCtrl {
                 system.debug('after Update ' + licenseToBeUpdatedInactive);            
             }
             if(Test.isRunningTest()){
-              Integer i= 8/0;
+                Integer i= 8/0;
             }
             
             return 'Success';

@@ -1998,6 +1998,18 @@ TEXT(MUSW__Permit2__r.Object_Type__c)),
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	 <fields>
+        <fullName>Voided_Receipt_Created_Date__c</fullName>
+        <description>for Dishonored Payment - Reminder letter</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Voided Receipt Created Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
     <label>Fee</label>
     <listViews>
         <fullName>All</fullName>
