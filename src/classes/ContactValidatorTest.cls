@@ -1,6 +1,6 @@
 @isTest
 public class ContactValidatorTest {
-    @testSetup
+  /*  @testSetup
     static void createData(){
         Id accRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('User_Account').getRecordTypeId();
         Account acc = DOL_TestDataFactory.createAccount(accRecordTypeId);
@@ -41,4 +41,5 @@ public class ContactValidatorTest {
         
         
     }
+    */
 }
