@@ -64,6 +64,7 @@ public class AddressValidatorTest {
         update permParcel[1];
         
         AddressValidator.validate(ve, 'POWTS', 'Electrical', 'Permit__c', String.valueOf(permit.Id));
-     */   
+        
     }
+    */
 }
