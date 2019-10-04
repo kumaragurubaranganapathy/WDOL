@@ -19,6 +19,16 @@
                     toastEvent.fire(); */
                 } else  {
                     console.log('Entering else');
+                    
+                    result.forEach(function(elem){
+                        if (elem.Type == 'License Relationship'){
+                            var licenseType = elem.Parent_License_Type__c;  
+                            var businessLicenseType =$A.get("$Label.c.Business_Licenses");
+                            var businessLicenseArray = businessLicenseType.split(',');
+                            var isbusinessLicense = businessLicenseArray.includes(licenseType);
+                            elem.isBusinessLicense =  isbusinessLicense;
+                        }
+                    });
                     component.set("v.taskList",result);
                     //console.log('taskListtttttt'+v.taskList);
                 }

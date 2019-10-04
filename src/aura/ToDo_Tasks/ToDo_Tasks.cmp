@@ -138,7 +138,7 @@ _______________________________________________________________
                                     </div>  -->
                                             <div class="field-style">
                                                 <span class="label-style">{!$Label.c.Polaris_Name_Colon}</span>
-                                                <span class="data-style">{!task.Parent_Licensee_Name__c}</span>
+                                                <span class="data-style">{!task.isBusinessLicense?task.Business_Name__c:task.Parent_Licensee_Name__c}</span>
                                             </div>
                                             <!--<div class="field-style">
                                         <span class="label-style">Profession: </span>
