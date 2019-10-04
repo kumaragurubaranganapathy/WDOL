@@ -84,21 +84,25 @@
                         </aura:iteration>
                     </lightning:select>
                     
-                  
-                   
-                    
-                    
-                    
                     <aura:if isTrue="{!v.accounts.length > 0}">
-                        <div class="slds-hide account-wrapper" id="accountPickerId">
-                            <!--<div class="account-label">Account: {!v.Get_Result}</div>-->
-                            <lightning:select value="{!v.selectedAccountId}" aura:id="accountPickerId" name="" label="Select the Account" onchange="{!c.firePassValueEvent}" class="">
-                                <option value="" text="Select an option"/>    
-                                <aura:iteration items="{!v.accounts}" var="account">
-                                    <option value="{!account.Id}" selected="{!account.Id == v.selectedAccountId}">{!account.Name}</option>
-                                </aura:iteration>
-                            </lightning:select>
-                        </div>
+                        <lightning:layout class="account-outer-wrapper">
+                            <lightning:layoutItem size="12" mediumDeviceSize="6">
+                                <div class="slds-hide account-wrapper" id="accountPickerId">
+                                    <!--<div class="account-label">Account: {!v.Get_Result}</div>-->
+                                    <lightning:select value="{!v.selectedAccountId}" aura:id="accountPickerId" name="" label="Select the Account" onchange="{!c.firePassValueEvent}" class="">
+                                        <option value="" text="Select an option"/>    
+                                        <aura:iteration items="{!v.accounts}" var="account">
+                                            <option value="{!account.Id}" selected="{!account.Id == v.selectedAccountId}">{!account.Name}</option>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>    
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" mediumDeviceSize="6" class="biz-btn-wrapper">
+                                <div class="add-biz-wrapper">
+                                    <lightning:button name="Add Business Account" label="Add Business Account" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />
+                                </div>
+                            </lightning:layoutItem>
+                        </lightning:layout>
                     </aura:if>
                     
                     <aura:if isTrue="{!v.showLicenseDropdown == true}">

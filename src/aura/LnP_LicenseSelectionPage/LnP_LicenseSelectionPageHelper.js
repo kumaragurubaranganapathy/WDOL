@@ -97,7 +97,14 @@
             }
         }
     },
-    
+     addBusiness :  function(component,event){        
+        var str ='/new-business'
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": str
+        });
+        urlEvent.fire(); 
+    },
     fetchAppTypeEliQuestionsHelper : function(component, event, helper) {
 		component.find("button1").set('v.disabled',true);
         component.set("v.eliTypeQues",[]);        

@@ -47,9 +47,7 @@
     border: solid 1px #b8b8b8;
     padding: 2rem;
 }
-.THIS .account-wrapper{
-    margin-top:1.5rem;
-}
+
 .THIS .account-label{
     margin-bottom:1rem;
 }
@@ -163,6 +161,15 @@
 .THIS .bullets.inner{
     list-style-type:circle;
 }
+.THIS .account-wrapper .slds-form-element__control{
+    width:100%;
+}
+.THIS .biz-btn-wrapper{
+    align-items:flex-end;
+    display:flex;
+    justify-content:flex-end;
+}
+
 @media screen and (max-width:767.9px) {
     .THIS .form-wrapper{
         padding:16px;

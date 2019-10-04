@@ -109,6 +109,9 @@
         }
         console.log('licenseType',stringofdaya);
     },
+    addBusiness : function(component,event,helper){
+        helper.addBusiness(component,event);
+    },
     validateForm : function(component,event,helper) {
         var accountRec = component.find("accountPickerId");
         
