@@ -1051,11 +1051,6 @@
         <valueSet>
             <valueSetDefinition>
                 <sorted>false</sorted>
-				<value>
-                    <fullName>ACH</fullName>
-                    <default>true</default>
-                    <label>ACH</label>
-                </value>
                 <value>
                     <fullName>Cash</fullName>
                     <default>true</default>
@@ -1130,6 +1125,16 @@
                     <fullName>Credit Card</fullName>
                     <default>false</default>
                     <label>Credit Card</label>
+                </value>
+                <value>
+                    <fullName>NCR</fullName>
+                    <default>false</default>
+                    <label>NCR</label>
+                </value>
+                <value>
+                    <fullName>ACH</fullName>
+                    <default>false</default>
+                    <label>ACH</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
