@@ -126,7 +126,7 @@
                                         </ui:message>
                                     </aura:if>
                                     <div id="SubmitAndReview" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
-                                        <h2 class="headings underline">Review and Submit</h2>
+                                        <h2 class="headings underline">{!v.feesRequired?'Review':'Review and Submit'}</h2>
                                         
                                         <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
