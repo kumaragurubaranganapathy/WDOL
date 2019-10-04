@@ -959,6 +959,8 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                     MUSW__License2__c LicenseObj = new MUSW__License2__c(id= licenseID[0].id );
                     String courseProvider = DOL_AppConstants.NULL_EMPTY_STRING + '';
                     Boolean isAppraiserCourse = false;
+                    Map<String, String> statePicklistValues = new Map<String, String>();
+                    statePicklistValues = Polaris_ApplyForLicenseController.MapgetPicklistFieldValues('MUSW__License2__c', 'Event_State__c');
                     //Course Type Question ANswers
                     if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0 && appListOtherDetils[0].Credential_Type__c =='Appraiser Course'){
                         system.debug('in course type answers');
@@ -1097,9 +1099,9 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                                     LicenseObj.Event_Date__c = Date.valueOf(ans.Answer_Text__c);
                                     
                                 }
-                                if(QuestionObjFieldAPIName == 'Event_State__c'){
+                                if(QuestionObjFieldAPIName == 'Event_State__c' && !statePicklistValues.isEmpty()){
                                     system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
-                                    LicenseObj.Event_State__c = ans.Answer_Text__c;
+                                    LicenseObj.Event_State__c = statePicklistValues.get(ans.Answer_Text__c);
                                 }
                                 if(QuestionObjFieldAPIName == 'Clock_Hours_Continuing_Education__c'){
                                     system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
@@ -1837,5 +1839,26 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
             
         }
         
+    }
+
+    @AuraEnabled
+    public static Map<String, String> MapgetPicklistFieldValues(String objectName, String pickListFieldName){
+        try{
+            Map<String, String> picklistValues = new Map<String, String>();
+            SObjectType objectType = Schema.getGlobalDescribe().get(objectName);
+            List<Schema.PicklistEntry> pick_list_values = objectType.getDescribe()
+                .fields.getMap()
+                .get(pickListFieldName)
+                .getDescribe().getPickListValues();
+            for (Schema.PicklistEntry aPickListValue : pick_list_values) {    
+                picklistValues.put(aPickListValue.getLabel(), aPickListValue.getValue()); 
+            }
+            system.debug('picklistValues'+picklistValues);
+            return picklistValues;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
 }
