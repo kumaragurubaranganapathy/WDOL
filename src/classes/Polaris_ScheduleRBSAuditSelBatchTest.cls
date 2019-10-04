@@ -1,6 +1,6 @@
 @isTest
 public class Polaris_ScheduleRBSAuditSelBatchTest {
- @isTest
+/* @isTest
     static void schedule(){
         Test.startTest();
         Polaris_ScheduleRBSAuditSelBatch auditbatch = new Polaris_ScheduleRBSAuditSelBatch();
@@ -10,5 +10,5 @@ public class Polaris_ScheduleRBSAuditSelBatchTest {
         System.schedule('Test Record Deletion', schedule, auditbatch);
         
         Test.stopTest();
-    } 
+    } */
 }
