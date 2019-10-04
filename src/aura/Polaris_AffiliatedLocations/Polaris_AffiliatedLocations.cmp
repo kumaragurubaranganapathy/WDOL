@@ -174,24 +174,24 @@
             <lightning:input  name="Unit" label="Address Line 2" value="{!v.parcel.MUSW__Unit__c}"  required="false" class="field-size field-margin address-fields"/>
             <lightning:input name="city" label="City" value="{!v.parcel.MUSW__City__c}" required="true" class="field-size address-fields" />
            <aura:if isTrue="{!v.isState}">
-                <lightning:select aura:id="statePicklist" name="State" label="State / Territory / Province" value="{!v.defaultState}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onStateChange}"> 
+                <lightning:select aura:id="statePicklist" name="State" label="State" value="{!v.defaultState}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onStateChange}"> 
                     <aura:iteration items="{!v.stateList}" var="stateInstance">
                         <option text="{!stateInstance.label}" value="{!stateInstance.value}"/>
                     </aura:iteration>
                 </lightning:select>
             </aura:if>
             <aura:if isTrue="{!v.isCanadianProvince}">
-                <lightning:select aura:id="canadianProvincePicklist" name="State" label="State / Territory / Province" value="{!v.defaultcanadianProvince}" required="true" class="field-size address-fields rightsapce" onchange="{!c.oncanadianProvinceChange}"> 
+                <lightning:select aura:id="canadianProvincePicklist" name="State" label="State" value="{!v.defaultcanadianProvince}" required="true" class="field-size address-fields rightsapce" onchange="{!c.oncanadianProvinceChange}"> 
                     <aura:iteration items="{!v.canadianProvinceList}" var="canadianProvinceInstance">
                         <option text="{!canadianProvinceInstance.label}" value="{!canadianProvinceInstance.value}"/>
                     </aura:iteration>
                 </lightning:select>
             </aura:if>
              <aura:if isTrue="{!v.isNotApplicable}">
-                <lightning:input aura:id="notApplicable" name="State" label="State / Territory / Province" value="Out of Country" class="field-size address-fields" disabled = "true"/>
+                <lightning:input aura:id="notApplicable" name="State" label="State" value="Out of Country" class="field-size address-fields" disabled = "true"/>
             </aura:if>
            
-            <lightning:input name="zip" label="ZIP / Postal Code" value="{!v.parcel.MUSW__Post_Zip_Code__c}"  class="field-size address-fields"/>
+            <lightning:input name="zip" label="ZIP" value="{!v.parcel.MUSW__Post_Zip_Code__c}"  class="field-size address-fields"/>
              <aura:if isTrue="{!v.isOutOfCountry}">
                 <lightning:select aura:id="county" name="county" label="County" value="{!v.parcel.County__c}" required="true" class="field-size address-fields" onchange="{!c.onCountySelect}"> 
                     <aura:iteration items="{!v.countyList}" var="eachCounty">
