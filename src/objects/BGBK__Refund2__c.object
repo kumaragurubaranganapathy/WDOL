@@ -200,7 +200,13 @@
     <fields>
         <fullName>Profession_Code__c</fullName>
         <externalId>false</externalId>
-        <formula>Fee__r.MUSW__License2__r.Profession_Code__c</formula>
+        <formula>IF(NOT(ISBLANK( Fee__c ))
+, Fee__r.MUSW__License2__r.Profession_Code__c
+, IF(NOT(ISBLANK( Deposit__c))
+, Deposit__r.wadol_Professional_Code__c
+, &apos;&apos;
+)
+)</formula>
         <label>Profession Code</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -211,7 +217,13 @@
     <fields>
         <fullName>Program_Type__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(    NOT(ISBLANK( Fee__c ))  ,TEXT(Fee__r.MUSW__License2__r.Application_Type__c), &apos;&apos;)</formula>
+        <formula>IF(NOT(ISBLANK( Fee__c ))
+  , TEXT(Fee__r.MUSW__License2__r.Application_Type__c)
+  , IF(NOT(ISBLANK( Deposit__c))
+    , TEXT(Deposit__r.wadol_Program_Type__c)
+    , &apos;&apos;
+  )
+)</formula>
         <label>Program Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -562,6 +574,20 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+	<fields>
+        <fullName>Deposit__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Deposit</label>
+        <referenceTo>MUSW__Deposit__c</referenceTo>
+        <relationshipLabel>Refunds</relationshipLabel>
+        <relationshipName>Refunds</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Reissue_Date__c</fullName>
