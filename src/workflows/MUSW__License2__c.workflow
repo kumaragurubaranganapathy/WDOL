@@ -241,18 +241,6 @@
         <template>DOL_Licensing/Renewal_PDH_audit_approval_final</template>
     </alerts>
     <alerts>
-        <fullName>Renewal_PDH_audit_notification</fullName>
-        <description>Renewal - PDH audit notification</description>
-        <protected>false</protected>
-        <recipients>
-            <field>MUSW__Applicant__c</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_PDH_audit_notification_final</template>
-    </alerts>
-    <alerts>
         <fullName>Renewal_issued_Active_Other</fullName>
         <description>Renewal issued - Active - Other</description>
         <protected>false</protected>
