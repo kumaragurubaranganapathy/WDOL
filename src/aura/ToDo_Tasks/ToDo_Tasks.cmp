@@ -346,7 +346,7 @@ _______________________________________________________________
                                 </lightning:layoutItem>
                                 <lightning:layoutItem size="12" mediumDeviceSize="3">
                                     <div class="button-wrapper license-btn">                                    
-                                        <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" title="Decline" onclick="{!c.declineRequest}"/>
+                                        <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Dismiss" title="Decline" onclick="{!c.declineRequest}"/>
                                         <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
                                         <div class="slds-truncate" onclick="{!c.StartRequestEducationInformation}" data-license="{!task.Child_License_Id__c}"
                                              data-recordId="{!task.Id}"
