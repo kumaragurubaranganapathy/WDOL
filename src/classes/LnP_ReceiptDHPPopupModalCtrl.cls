@@ -15,6 +15,7 @@ public without sharing class LnP_ReceiptDHPPopupModalCtrl {
                                            CreatedDate,
                                            MUSW__Amount_Tendered__c,
                                            MUSW__Check_Number__c,
+                                           Last_4_digits_of_Credit_Card_or_ACH__c,
                                            MUSW__Payment_Method__c,
                                            DHP__c,
                                            Inactivate_License_Date__c,
@@ -68,7 +69,7 @@ System.debug('feePaymentRecList : ' +feePaymentRecList );*/
                                                            MUSW__Amount__c = 25.00,
                                                            MUSW__Description__c = DOL_AppConstants.NULL_EMPTY_STRING + 'DHP Fees', 
                                                            Voided_Receipt_Amount__c = receiptRec.MUSW__Amount_Tendered__c ,
-                                                           Voided_Receipt_Check_Number__c =  receiptRec.MUSW__Check_Number__c,
+                                                           Voided_Receipt_Check_Number__c =  String.valueOf(receiptRec.Last_4_digits_of_Credit_Card_or_ACH__c),
                                                            Voided_Receipt_Payment_Method__c = receiptRec.MUSW__Payment_Method__c,
                                                            Voided_Receipt_Created_Date__c = receiptRec.CreatedDate,
                                                            Voided_Receipt_Amount_DHP_Amount__c = receiptRec.MUSW__Amount_Tendered__c + 25.00
