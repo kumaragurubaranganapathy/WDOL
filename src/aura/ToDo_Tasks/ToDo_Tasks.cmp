@@ -102,7 +102,7 @@ _______________________________________________________________
                         </div>
                     </aura:if>
                     
-                    <aura:if isTrue="{!task.Type == $Label.c.License_Relationship }"> <!-- License  Relationship-->
+                    <aura:if isTrue="{!task.Type == 'License Relationship' }"> <!-- License  Relationship-->
                         <div class="task-wrapper">
                             <div class="task-subject">
                                 {!$Label.c.Polaris_Invite_To_Join} <!--Bug 7012-->
