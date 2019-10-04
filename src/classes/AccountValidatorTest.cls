@@ -1,6 +1,6 @@
 @isTest
 public class AccountValidatorTest {
-    @isTest
+   /* @isTest
     static void validationMethod(){
         Application_Field__c appField1 = DOL_TestDataFactory.createApplicationField('Email__c', 'Camping Resorts', 'Camping Resort Company', 'Account');
         appField1.License__c = true;
@@ -22,5 +22,5 @@ public class AccountValidatorTest {
         AccountValidator.validate(ve, acc.Id, 'Camping Resort Company', 'Camping Resort Company', 'License__c');
         AccountValidator.validate(ve, acc.Id, 'Manufactured Homes Communities', 'Mechanical', 'Permit_Renewal__c');
         Test.stopTest();
-    }
+    }*/
 }
