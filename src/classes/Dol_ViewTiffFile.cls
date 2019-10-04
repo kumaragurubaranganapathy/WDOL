@@ -10,7 +10,7 @@ public class Dol_ViewTiffFile {
         if(submission!= null){
             imagebody = new ImageBody();
             
-            submission = [select id,SAN_Image_URL__c,SAN_Prof_Code__c,MUSW__License2__c,MUSW__License2__r.Profession_Code__c from MUSW__Submission__c where id=:submission.id AND id != null];
+            submission = [select id,SAN_Image_URL__c,SAN_Image_Type__c ,SAN_Prof_Code__c,MUSW__License2__c,MUSW__License2__r.Profession_Code__c from MUSW__Submission__c where id=:submission.id AND id != null];
             if(submission.MUSW__License2__c == null && submission.SAN_Prof_Code__c != null){
               imagebody.ProfessionCode = submission.SAN_Prof_Code__c;
             }else if(submission.MUSW__License2__c != null && submission.MUSW__License2__r.Profession_Code__c != null){
@@ -36,6 +36,10 @@ public class Dol_ViewTiffFile {
                 imageId = 'testImage';
             }
             imagebody.ImageName = imageId;
+            if(Dol_IntegrationUtil.isNotBlank(submission.SAN_Image_Type__c)){
+              imagebody.ImageType = submission.SAN_Image_Type__c.trim();
+            }
+            
             getimageToken(); 
             System.debug('imageToken'+imageToken);
         }
@@ -57,8 +61,9 @@ public class Dol_ViewTiffFile {
    public class ImageBody {
        public String ImageTokenID;
        public String ImageTokenDate;
-       public String ProfessionCode; //27708
-       public String ImageName; //20190820155444175
+       public String ProfessionCode {get;set;} //27708
+       public String ImageName {get;set;} //20190820155444175
+       public String ImageType {get;set;}
        public String UserName; //lmusic@dol.wa.gov
        public String SourceIP;
        public String ImageLink; //\dolimgdata2dev.dol.wa.govData2BPDAppraiserspd1982090820155444018.tif  
