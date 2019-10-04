@@ -153,6 +153,8 @@
             var tDate = new Date();
             
             component.set("v.todayDate",tDate);
+
+            component.set("v.defaultTab","Relationships");
             
             helper.getLicenseDetails(component,event,helper);
             
