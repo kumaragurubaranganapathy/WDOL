@@ -1,6 +1,6 @@
 @isTest
 private class CEAudit_RequestTest {
-    @isTest
+   /* @isTest
     static void requestDataFetch(){
         Id accRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('User_Account').getRecordTypeId();
         Account acc = DOL_TestDataFactory.createAccount(accRecordTypeId);
@@ -14,5 +14,5 @@ private class CEAudit_RequestTest {
         CEAudit_Request.getLicenseRecordData(lic.Id);
         Test.stopTest();
         System.debug('Final Request fetched::'+requestRecordFetched);
-    }
+    }*/
 }
