@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>NCR Machine F2</label>
+    <label>NCR Machine F4</label>
     <protected>false</protected>
     <values>
         <field>Add_To_Interface__c</field>
-        <value xsi:type="xsd:boolean">false</value>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>Add_To_PDF__c</field>
-        <value xsi:type="xsd:boolean">false</value>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>Item_FundAccSystem__c</field>
@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>Item_Fund_GL__c</field>
-        <value xsi:type="xsd:string">7140</value>
+        <value xsi:type="xsd:string">3210</value>
     </values>
     <values>
         <field>Item_Intake_Method__c</field>
@@ -28,7 +28,7 @@
     </values>
     <values>
         <field>Item_Transaction_Code__c</field>
-        <value xsi:type="xsd:string">965</value>
+        <value xsi:type="xsd:string">006</value>
     </values>
     <values>
         <field>Item_Transaction_Type__c</field>
