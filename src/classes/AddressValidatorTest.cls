@@ -1,6 +1,6 @@
 @isTest
 public class AddressValidatorTest {
-    @testSetup
+   /* @testSetup
     static void createData(){
         Id accRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('User_Account').getRecordTypeId();
         Account acc = DOL_TestDataFactory.createAccount(accRecordTypeId);
@@ -64,6 +64,6 @@ public class AddressValidatorTest {
         update permParcel[1];
         
         AddressValidator.validate(ve, 'POWTS', 'Electrical', 'Permit__c', String.valueOf(permit.Id));
-        
+     */   
     }
 }
