@@ -62,7 +62,7 @@ _______________________________________________________________
             <aura:if isTrue="{!not(empty(v.taskList))}">
                 <h2 class="intro-text">
                     <!--{!v.taskList?'You have new tasks which need your attention':'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.'}-->
-                    Your To-Do's
+                    {!$Label.c.Polaris_Your_ToDo}
                 </h2>
                 <aura:iteration items="{!v.taskList}" var="task">
                     <aura:if isTrue="{!task.Type == 'Contact Relationship'}">
@@ -71,28 +71,28 @@ _______________________________________________________________
                             <lightning:layout class="slds-wrap task-body">
                                 <lightning:layoutItem size="12" mediumDeviceSize="9">
                                     <lightning:layout class="slds-wrap">
-                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style">
-                                            <div class="label-style">Business Name: </div>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style license-item">
+                                            <div class="label-style">{!$Label.c.Polaris_BizName}</div> 
                                             <div class="data-style">{!task.Business_Name__c}</div>
                                         </lightning:layoutItem>
-                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style">
-                                            <div class="label-style">Designation: </div>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style license-item">
+                                            <div class="label-style">{!$Label.c.Polaris_Designation}</div>
                                             <div class="data-style">{!task.Designation__c}</div>
                                         </lightning:layoutItem>
-                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style">
-                                            <div class="label-style">Type: </div>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="6" class="field-style license-item">
+                                            <div class="label-style">{!$Label.c.Polaris_Type}</div> 
                                             <div class="data-style">{!task.Type}</div>
                                         </lightning:layoutItem>                                    
                                     </lightning:layout>
                                 </lightning:layoutItem>
                                 <lightning:layoutItem size="12" mediumDeviceSize="3" class="button-wrapper">                                    
-                                    <lightning:button class="{!or(task.Type == 'Renewal Reminder',task.Type == 'Payment Reminder')?'slds-hide':'decline-btn'}"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" title="Decline" onclick="{!c.declineRequest}"/>
+                                    <lightning:button class="{!or(task.Type == $Label.c.Polaris_Renew_Reminder,task.Type == $Label.c.Polaris_Pay_Reminder)?'slds-hide':'decline-btn'}"  variant="neutral" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Decline}" title="{!$Label.c.Polaris_Decline}" onclick="{!c.declineRequest}"/>
                                     <div class="accept-btn" data-id="{!task.Id}" data-whatid="{!task.WhatId}" data-DCP="{!task.isDCP__c}" data-subject="{!task.Subject}" data-designation="{!task.Designation__c}" data-acctname="{!task.Main_License_Type__c}" onclick="{!c.acceptRequest}">
-                                        <lightning:button variant="brand" type="submit" name="{!task.Id}" label="Accept" title="Accept" />
+                                        <lightning:button variant="brand" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Accept}" title="{!$Label.c.Polaris_Accept}" />
                                     </div>
-                                    <lightning:button class="{!or(task.Type == 'License Verification',task.Type == 'Experience Verification')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Confirm" title="Confirm" onclick="{!c.confirmRequest}"/>
-                                    <lightning:button class="{!(task.Type == 'Renewal Reminder')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Renew" title="Renew" onclick="{!c.renewRequest}"/>
-                                    <lightning:button class="{!(task.Type == 'Payment Reminder')?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="Pay Now" title="Pay Now" onclick="{!c.payFees}"/>
+                                    <lightning:button class="{!or(task.Type == $Label.c.Polaris_Lic_Verify,task.Type == $Label.c.Polaris_Exp_Verify)?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Confirm}" title="{!$Label.c.Polaris_Confirm}" onclick="{!c.confirmRequest}"/>
+                                    <lightning:button class="{!(task.Type == $Label.c.Polaris_Renew_Reminder)?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Renew}" title="{!$Label.c.Polaris_Renew}" onclick="{!c.renewRequest}"/>
+                                    <lightning:button class="{!(task.Type == $Label.c.Polaris_Pay_Reminder)?'accept-btn':'slds-hide'}"  variant="brand" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Pay_Now}" title="{!$Label.c.Polaris_Pay_Now}" onclick="{!c.payFees}"/>
                                     
                                     
                                 </lightning:layoutItem>
@@ -102,10 +102,10 @@ _______________________________________________________________
                         </div>
                     </aura:if>
                     
-                    <aura:if isTrue="{!task.Type == 'License Relationship' }"> <!-- License  Relationship-->
+                    <aura:if isTrue="{!task.Type == $Label.c.License_Relationship }"> <!-- License  Relationship-->
                         <div class="task-wrapper">
                             <div class="task-subject">
-                                Invitation to join <!--Bug 7012-->
+                                {!$Label.c.Polaris_Invite_To_Join} <!--Bug 7012-->
                             </div>
                             <lightning:layout class="license-outer-wrapper slds-wrap">
                                 <!--<lightning:layoutItem size="12" mediumDeviceSize="3" class="license-item">
@@ -130,90 +130,102 @@ _______________________________________________________________
                                     </div>
                                     
                                 </lightning:layoutItem> -->
-                                <lightning:layoutItem size="12" mediumDeviceSize="4"  class="license-item biz-invite">
-                                    <!--<div class="license-title other-lic">
+                                <lightning:layoutItem size="12" mediumDeviceSize="9">
+                                    <lightning:layout class="slds-wrap">
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4"  class="license-item biz-invite">
+                                            <!--<div class="license-title other-lic">
                                         Invited By
                                     </div>  -->
-                                    <div class="field-style">
-                                        <span class="label-style">Name: </span>
-                                        <span class="data-style">{!task.Parent_Licensee_Name__c}</span>
-                                    </div>
-                                    <!--<div class="field-style">
+                                            <div class="field-style">
+                                                <span class="label-style">{!$Label.c.Polaris_Name_Colon}</span>
+                                                <span class="data-style">{!task.Parent_Licensee_Name__c}</span>
+                                            </div>
+                                            <!--<div class="field-style">
                                         <span class="label-style">Profession: </span>
                                         <span class="data-style">{!task.Parent_Profession__c}</span>
                                     </div> -->
-                                </lightning:layoutItem>
-                                <lightning:layoutItem size="12" mediumDeviceSize="4"  class="license-item biz-invite">
-                                    <div class="field-style">
-                                        <span class="label-style">License Type: </span>
-                                        <span class="data-style">{!task.Parent_License_Type__c}</span>
-                                    </div> 
-                                </lightning:layoutItem>
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item biz-invite">
-                                    <div class="field-style">
-                                        <span class="label-style">License Number: </span>
-                                        <span class="data-style">{!task.Parent_License_Name__c}</span>
-                                    </div>
-                                </lightning:layoutItem>                        
-                                
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item biz-invite">
-                                    <!--<div class="license-title designation">
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4"  class="license-item biz-invite">
+                                            <div class="field-style">
+                                                <span class="label-style">{!$Label.c.Polaris_Lic_Type_Colon} </span>
+                                                <span class="data-style">{!task.Parent_License_Type__c}</span>
+                                            </div> 
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item biz-invite">
+                                            <div class="field-style">
+                                                <span class="label-style">{!$Label.c.Polaris_Lic_Number_Col} </span>
+                                                <span class="data-style">{!task.Parent_License_Name__c}</span>
+                                            </div>
+                                        </lightning:layoutItem>                        
+                                        
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item biz-invite">
+                                            <!--<div class="license-title designation">
                                         Designation
                                     </div>
                                     <div class="data-style">
                                         {!task.Designation__c}
                                     </div> -->
-                                    <div class="field-style">
-                                        <span class="label-style">Designation: </span>
-                                        <span class="data-style">{!task.Designation__c}</span>
+                                            <div class="field-style">
+                                                <span class="label-style">{!$Label.c.Polaris_Designation} </span>
+                                                <span class="data-style">{!task.Designation__c}</span>
+                                            </div>
+                                        </lightning:layoutItem>
+                                    </lightning:layout>
+                                </lightning:layoutItem>
+                                
+                                <lightning:layoutItem size="12" mediumDeviceSize="3" class="button-wrapper license-btn">                                    
+                                    <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Decline}" title="{!$Label.c.Polaris_Decline}" onclick="{!c.declineRequest}"/>
+                                    <div data-licenseType="{!task.Parent_License_Type__c}" data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >
+                                        <lightning:button class="accept-btn"  variant="brand" label="{!$Label.c.Polaris_Accept}" title="{!$Label.c.Polaris_Accept}" />
                                     </div>
                                 </lightning:layoutItem>
                             </lightning:layout>
-                            <div class="button-wrapper license-btn">                                    
-                                <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" title="Decline" onclick="{!c.declineRequest}"/>
-                                <div data-licenseType="{!task.Parent_License_Type__c}" data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >
-                                    <lightning:button class="accept-btn"  variant="brand" label="Accept" title="Accept" />
-                                </div>
-                            </div>
                         </div>
                     </aura:if>
-                    <aura:if isTrue="{!task.Type == 'CE Audit' }"> <!-- CE Audit-->
+                    <aura:if isTrue="{!task.Type == $Label.c.Polaris_CE_Audit }"> <!-- CE Audit-->
                         <div class="task-wrapper">
                             <div class="task-subject">
-                                Continuing Education Audit Information
+                                {!$Label.c.Polaris_CE_Audit_Info}
                             </div>
+                            
                             <lightning:layout class="license-outer-wrapper slds-wrap">
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
-                                    <div class="field-style">
-                                        <span class="label-style">License Number: </span>
-                                        <span class="data-style">{!task.Parent_License_Name__c}</span>
-                                    </div>
-                                    <div class="field-style">
-                                        <span class="label-style">License Type: </span>
-                                        <span class="data-style">{!task.Parent_License_Type__c}</span>
-                                    </div>
+                                <lightning:layoutItem size="12" mediumDeviceSize="9" >
+                                    <lightning:layout class="slds-wrap">
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">{!$Label.c.Polaris_Lic_Number_Col} </span>
+                                                <span class="data-style">{!task.Parent_License_Name__c}</span>
+                                            </div>
+                                            <div class="field-style">
+                                                <span class="label-style">{!$Label.c.Polaris_Lic_Type_Colon} </span>
+                                                <span class="data-style">{!task.Parent_License_Type__c}</span>
+                                            </div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">{!$Label.c.Polaris_Comments_Col} </span>
+                                                <span class="data-style"><lightning:formattedRichText class="slds-text-longform" value="{!task.Description}"/></span>
+                                            </div>
+                                            <div class="field-style">
+                                                <span class="label-style">{!$Label.c.Polaris_Due_Date_Col}</span>
+                                                <span class="data-style">{!task.ActivityDate}</span>
+                                            </div>                                    
+                                        </lightning:layoutItem>
+                                    </lightning:layout>
                                 </lightning:layoutItem>
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
-                                    <div class="field-style">
-                                        <span class="label-style">Comments: </span>
-                                        <span class="data-style"><lightning:formattedRichText class="slds-text-longform" value="{!task.Description}"/></span>
+                                <lightning:layoutItem size="12" mediumDeviceSize="3">
+                                    <div class="button-wrapper license-btn">
+                                        <div class="slds-truncate" onclick="{!c.StartCEAuditAMR}" data-license="{!task.Child_License_Id__c}"
+                                             data-recordId="{!task.WhatId}"
+                                             data-licenseType="{!task.Parent_License_Type__c}"                                             
+                                             data-board="{!task.Parent_Profession__c}"
+                                             data-requestType="CE Audit"
+                                             data-description="{!task.Description}">
+                                            <lightning:button variant="brand" label="{!$Label.c.Polaris_Submit_CE_Audit}" title="{!$Label.c.Polaris_Submit_CE_Audit}"/>
+                                        </div>                                
                                     </div>
-                                    <div class="field-style">
-                                        <span class="label-style">Due Date: </span>
-                                        <span class="data-style">{!task.ActivityDate}</span>
-                                    </div>                                    
                                 </lightning:layoutItem>
                             </lightning:layout>
-                            <div class="button-wrapper license-btn">
-                                <div class="slds-truncate" onclick="{!c.StartCEAuditAMR}" data-license="{!task.Child_License_Id__c}"
-                                     data-recordId="{!task.WhatId}"
-                                     data-licenseType="{!task.Parent_License_Type__c}"                                             
-                                     data-board="{!task.Parent_Profession__c}"
-                                     data-requestType="CE Audit"
-                                     data-description="{!task.Description}">
-                                    <lightning:button variant="brand" label="Submit Continuous Education Audit" title="Submit Continuous Education Audit"/>
-                                </div>                                
-                            </div>
                         </div>
                     </aura:if>
                     <aura:if isTrue="{!task.Type == 'Request for Information' }"> <!-- Request for Information Task-->
@@ -222,33 +234,39 @@ _______________________________________________________________
                                 Provide Additional Information for License Application
                             </div>
                             <lightning:layout class="license-outer-wrapper slds-wrap">
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
-                                    <div class="field-style">
-                                        <span class="label-style">Application Number: </span>
-                                        <span class="data-style">{!task.Parent_License_Name__c}</span>
-                                    </div>
-                                    <div class="field-style">
-                                        <span class="label-style">License Type: </span>
-                                        <span class="data-style">{!task.Parent_License_Type__c}</span>
-                                    </div>
+                                <lightning:layoutItem size="12" mediumDeviceSize="9">
+                                    <lightning:layout class="slds-wrap">
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">Application Number: </span>
+                                                <span class="data-style">{!task.Parent_License_Name__c}</span>
+                                            </div>
+                                            <div class="field-style">
+                                                <span class="label-style">License Type: </span>
+                                                <span class="data-style">{!task.Parent_License_Type__c}</span>
+                                            </div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">Information Required: </span>
+                                                <span class="data-style"><lightning:formattedRichText class="slds-text-longform" value="{!task.Description}"/></span>
+                                            </div>                                    
+                                        </lightning:layoutItem>
+                                    </lightning:layout>
                                 </lightning:layoutItem>
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
-                                    <div class="field-style">
-                                        <span class="label-style">Information Required: </span>
-                                        <span class="data-style"><lightning:formattedRichText class="slds-text-longform" value="{!task.Description}"/></span>
-                                    </div>                                    
+                                <lightning:layoutItem size="12" mediumDeviceSize="3">
+                                    <div class="button-wrapper license-btn">
+                                        <div class="slds-truncate" onclick="{!c.StartRequestInformation}" data-license="{!task.WhatId}"
+                                             data-recordId="{!task.Id}"
+                                             data-licenseType="{!task.Parent_License_Type__c}"                                             
+                                             data-board="{!task.Parent_Profession__c}"
+                                             data-requestType="Request for Information"
+                                             data-description="{!task.Description}">
+                                            <lightning:button variant="brand" label="Update Information" title="Update Information"/>
+                                        </div>                                
+                                    </div>
                                 </lightning:layoutItem>
                             </lightning:layout>
-                            <div class="button-wrapper license-btn">
-                                <div class="slds-truncate" onclick="{!c.StartRequestInformation}" data-license="{!task.WhatId}"
-                                     data-recordId="{!task.Id}"
-                                     data-licenseType="{!task.Parent_License_Type__c}"                                             
-                                     data-board="{!task.Parent_Profession__c}"
-                                     data-requestType="Request for Information"
-                                     data-description="{!task.Description}">
-                                    <lightning:button variant="brand" label="Update Information" title="Update Information"/>
-                                </div>                                
-                            </div>
                         </div>
                     </aura:if>
                     <aura:if isTrue="{!task.Type == 'Payment Reminder' }"> <!-- Payment Reminder Task-->
@@ -257,33 +275,41 @@ _______________________________________________________________
                                 Pay Fees
                             </div>
                             <lightning:layout class="license-outer-wrapper slds-wrap">
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
-                                    <div class="field-style">
-                                        <span class="label-style">Application Number: </span>
-                                        <span class="data-style">{!task.Parent_License_Name__c}</span>
-                                    </div>
-                                    <div class="field-style">
-                                        <span class="label-style">License Type: </span>
-                                        <span class="data-style">{!task.Parent_License_Type__c}</span>
-                                    </div>
+                                <lightning:layoutItem size="12" mediumDeviceSize="9">
+                                    <lightning:layout class="slds-wrap">
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">Application Number: </span>
+                                                <span class="data-style">{!task.Parent_License_Name__c}</span>
+                                            </div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">License Type: </span>
+                                                <span class="data-style">{!task.Parent_License_Type__c}</span>
+                                            </div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">Transaction Type: </span>
+                                                <span class="data-style">{!task.Subject}</span>
+                                            </div>                                    
+                                        </lightning:layoutItem>
+                                    </lightning:layout>
                                 </lightning:layoutItem>
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
-                                    <div class="field-style">
-                                        <span class="label-style">Transaction Type: </span>
-                                        <span class="data-style">{!task.Subject}</span>
-                                    </div>                                    
+                                <lightning:layoutItem size="12" mediumDeviceSize="3">
+                                    <div class="button-wrapper license-btn">
+                                        <div class="slds-truncate" onclick="{!c.StartPayment}" data-license="{!task.WhatId}"
+                                             data-recordId="{!task.Id}"
+                                             data-licenseType="{!task.Parent_License_Type__c}"                                             
+                                             data-board="{!task.Parent_Profession__c}"
+                                             data-requestType="Request for Information"
+                                             data-description="{!task.Description}">
+                                            <lightning:button variant="brand" label="Pay" title="Pay"/>
+                                        </div>
+                                    </div>
                                 </lightning:layoutItem>
                             </lightning:layout>
-                            <div class="button-wrapper license-btn">
-                                <div class="slds-truncate" onclick="{!c.StartPayment}" data-license="{!task.WhatId}"
-                                     data-recordId="{!task.Id}"
-                                     data-licenseType="{!task.Parent_License_Type__c}"                                             
-                                     data-board="{!task.Parent_Profession__c}"
-                                     data-requestType="Request for Information"
-                                     data-description="{!task.Description}">
-                                    <lightning:button variant="brand" label="Pay" title="Pay"/>
-                                </div>
-                            </div>
                         </div>
                     </aura:if>
                     <aura:if isTrue="{!task.Type == 'Submit Exam' }"> <!-- Education Task-->
@@ -292,109 +318,128 @@ _______________________________________________________________
                                 Submit Exam : {!task.Subject}
                             </div>
                             <lightning:layout class="license-outer-wrapper slds-wrap">
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
-                                    <div class="field-style">
-                                        <span class="label-style">Email: </span>
-                                        <span class="data-style">{!task.Email__c}</span>
-                                    </div>
-                                    <div class="field-style">
-                                        <span class="label-style">Exam Name: </span>
-                                        <span class="data-style">{!task.Subject}</span>
-                                    </div>
-                                    <div class="field-style">
-                                        <span class="label-style">Exam Status: </span>
-                                        <span class="data-style">{!task.Description}</span>
-                                    </div>
-                                    <div class="field-style">
-                                        <span class="label-style">License Number: </span>
-                                        <span class="data-style">{!task.Parent_License_Name__c}</span>
-                                    </div>
-                                    <div class="field-style">
-                                        <span class="label-style">Due Date: </span>
-                                        <span class="data-style">{!task.ActivityDate}</span>
+                                <lightning:layoutItem size="12" mediumDeviceSize="9">
+                                    <lightning:layout class="slds-wrap">
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">Email: </span>
+                                                <span class="data-style">{!task.Email__c}</span>
+                                            </div>
+                                            <div class="field-style">
+                                                <span class="label-style">Exam Name: </span>
+                                                <span class="data-style">{!task.Subject}</span>
+                                            </div>
+                                            <div class="field-style">
+                                                <span class="label-style">Exam Status: </span>
+                                                <span class="data-style">{!task.Description}</span>
+                                            </div>
+                                            <div class="field-style">
+                                                <span class="label-style">License Number: </span>
+                                                <span class="data-style">{!task.Parent_License_Name__c}</span>
+                                            </div>
+                                            <div class="field-style">
+                                                <span class="label-style">Due Date: </span>
+                                                <span class="data-style">{!task.ActivityDate}</span>
+                                            </div>
+                                        </lightning:layoutItem>
+                                    </lightning:layout>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="12" mediumDeviceSize="3">
+                                    <div class="button-wrapper license-btn">                                    
+                                        <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" title="Decline" onclick="{!c.declineRequest}"/>
+                                        <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
+                                        <div class="slds-truncate" onclick="{!c.StartRequestEducationInformation}" data-license="{!task.Child_License_Id__c}"
+                                             data-recordId="{!task.Id}"
+                                             data-licenseType="{!task.Parent_License_Type__c}"                                             
+                                             data-board="{!task.Parent_Profession__c}"
+                                             data-requestType="Submit Exam Results"
+                                             data-edurecord="{!task.WhatId}"
+                                             data-description="{!task.Description}">
+                                            <lightning:button class="accept-btn"  variant="brand" label="Submit Exam" title="Submit Exam" />
+                                        </div>                               
+                                        <!--</div>-->
                                     </div>
                                 </lightning:layoutItem>
                             </lightning:layout>
-                            <div class="button-wrapper license-btn">                                    
-                                <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" title="Decline" onclick="{!c.declineRequest}"/>
-                                <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
-                                <div class="slds-truncate" onclick="{!c.StartRequestEducationInformation}" data-license="{!task.Child_License_Id__c}"
-                                     data-recordId="{!task.Id}"
-                                     data-licenseType="{!task.Parent_License_Type__c}"                                             
-                                     data-board="{!task.Parent_Profession__c}"
-                                     data-requestType="Submit Exam Results"
-                                     data-edurecord="{!task.WhatId}"
-                                     data-description="{!task.Description}">
-                                    <lightning:button class="accept-btn"  variant="brand" label="Submit Exam" title="Submit Exam" />
-                                </div>                               
-                                <!--</div>-->
-                            </div>
                         </div>
                     </aura:if>
                     <aura:if isTrue="{!task.Type == 'Other' }"> <!-- Education Task-->
                         <div class="task-wrapper">
                             <div class="task-subject">
-                                Reschedule Exam : {!task.Subject}
+                                Reschedule Exam: {!task.Subject}
                             </div>
                             <lightning:layout class="license-outer-wrapper slds-wrap">
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
-                                    <div class="field-style">
-                                        <span class="label-style">Email: </span>
-                                        <span class="data-style">{!task.Email__c}</span>
-                                    </div>
-                                    <div class="field-style">
-                                        <span class="label-style">Exam Name: </span>
-                                        <span class="data-style">{!task.Subject}</span>
-                                    </div>
-                                    <div class="field-style">
-                                        <span class="label-style">Exam Status: </span>
-                                        <span class="data-style">{!task.Description}</span>
-                                    </div>
-                                    <div class="field-style">
-                                        <span class="label-style">License Number: </span>
-                                        <span class="data-style">{!task.Parent_License_Name__c}</span>
-                                    </div>
-                                    <div class="field-style">
-                                        <span class="label-style">Due Date: </span>
-                                        <span class="data-style">{!task.ActivityDate}</span>
+                                <lightning:layoutItem size="12" mediumDeviceSize="9">
+                                    <lightning:layout class="slds-wrap">
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">Email: </span>
+                                                <span class="data-style">{!task.Email__c}</span>
+                                            </div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">Exam Name: </span>
+                                                <span class="data-style">{!task.Subject}</span>
+                                            </div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">Exam Status: </span>
+                                                <span class="data-style">{!task.Description}</span>
+                                            </div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">License Number: </span>
+                                                <span class="data-style">{!task.Parent_License_Name__c}</span>
+                                            </div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">Due Date: </span> 
+                                                <span class="data-style">{!task.ActivityDate}</span>
+                                            </div>
+                                        </lightning:layoutItem>
+                                    </lightning:layout>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="12" mediumDeviceSize="3">
+                                    <div class="button-wrapper license-btn">                                    
+                                        <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" title="Decline" onclick="{!c.declineRequest}"/>
+                                        <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
+                                        <div class="slds-truncate" onclick="{!c.StartRequestEducationInformation}" data-license="{!task.Child_License_Id__c}"
+                                             data-recordId="{!task.Id}"
+                                             data-licenseType="{!task.Parent_License_Type__c}"                                             
+                                             data-board="{!task.Parent_Profession__c}"
+                                             data-requestType="Reschedule Exam"
+                                             data-edurecord="{!task.WhatId}"
+                                             data-description="{!task.Description}">
+                                            <lightning:button class="accept-btn"  variant="brand" label="Reschedule Exam" title="Reschedule Exam" /> <!-- Pol_Reschedule_Exam -->
+                                        </div>                               
+                                        <!--</div>-->
                                     </div>
                                 </lightning:layoutItem>
                             </lightning:layout>
-                            <div class="button-wrapper license-btn">                                    
-                                <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" title="Decline" onclick="{!c.declineRequest}"/>
-                                <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
-                                <div class="slds-truncate" onclick="{!c.StartRequestEducationInformation}" data-license="{!task.Child_License_Id__c}"
-                                     data-recordId="{!task.Id}"
-                                     data-licenseType="{!task.Parent_License_Type__c}"                                             
-                                     data-board="{!task.Parent_Profession__c}"
-                                     data-requestType="Reschedule Exam"
-                                     data-edurecord="{!task.WhatId}"
-                                     data-description="{!task.Description}">
-                                    <lightning:button class="accept-btn"  variant="brand" label="Reschedule Exam" title="Reschedule Exam" />
-                                </div>                               
-                                <!--</div>-->
-                            </div>
                         </div>
                     </aura:if>
                     <aura:if isTrue="{!task.Type == 'DHP' }"> <!-- DHP Task-->
                         <div class="task-wrapper">
                             <div class="task-subject">
-                                Bad Payment: {!task.Subject}
+                                Bad Payment: {!task.Subject} 
                             </div>
                             <lightning:layout class="license-outer-wrapper slds-wrap">
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item bad-payment">
-                                    <div class="field-style">
-                                        <span class="label-style">{!$Label.c.Polaris_Comments + ':'} </span>
-                                        <span class="data-style">{!task.Subject}</span>
-                                    </div>
+                                <lightning:layoutItem size="12" mediumDeviceSize="9">
+                                    <lightning:layout class="slds-wrap">
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item bad-payment">
+                                            <div class="field-style">
+                                                <span class="label-style">{!$Label.c.Polaris_Comments + ':'} </span>
+                                                <span class="data-style">{!task.Subject}</span>
+                                            </div>
+                                        </lightning:layoutItem>
+                                    </lightning:layout>
                                 </lightning:layoutItem>
                             </lightning:layout>
-                            <!--<div class="button-wrapper license-btn">                                    
-                            <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
-                            <div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >
-                            <lightning:button class="accept-btn"  variant="brand"   label="Reschedule Exam" value="{!task}" onclick="{!c.openModelReschedule}"/>
-                            </div>
-                        </div>-->
+                            
                         </div>
                     </aura:if>
                 </aura:iteration>
@@ -406,7 +451,7 @@ _______________________________________________________________
                 <lightning:layoutItem size="12" mediumDeviceSize="5" class="pro-license-wrapper services">
                     <div class="ind-account-wrapper">
                         <h2 class="ser-title">
-                            Professional Licenses
+                            Professional Licenses <!--Pol_Prof_Lic -->
                         </h2>
                         <div class="ser-btn-wrapper">
                             <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectLicense}" label="Apply For Professional License" title="Apply For Professional License" /> 
@@ -425,16 +470,7 @@ _______________________________________________________________
                             </lightning:layoutItem>                
                         </lightning:layout>
                     </div> 
-                    <!--<div class="ser-desc">
-                    Washington Department of Licensing helps you obtain professional licenses
-                </div>
-                <div class="ser-links">
-                    <ul>
-                        <li><a href= "{!$Label.c.Polaris_Portal_NewDashboard}" target="_blank">View Licenses</a></li>
-                        <li><a href= "{!$Label.c.Polaris_Portal_NewDashboard}" target="_blank">View Applications</a></li>
-                        <li><a href= "{!$Label.c.Polaris_Portal_NewDashboard}" target="_blank">View Relationships</a></li>                        
-                    </ul>
-                </div> -->                
+                          
                 </lightning:layoutItem>
                 <lightning:layoutItem size="12" mediumDeviceSize="5" class="business-wrapper services">
                     <div class="ind-account-wrapper">
@@ -464,8 +500,9 @@ _______________________________________________________________
                                 <li>Pay license fees for others</li>
                                 <li>Add a training course</li>                            
                             </ul>
-                        </div>                        
+                        </div>
                         
+                       
                         <div class="{!v.isBusiness?'slds-hide':'ser-btn-wrapper create-biz'}">
                             <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectBusiness}" label="Create Business Account" title="Create Business Account" /> 
                         </div>
@@ -475,13 +512,14 @@ _______________________________________________________________
                         <h2 class="ser-title newbiz-wrapper">Have an existing business license?</h2>
                         <p class="list-desc">If you currently hold a business license from Department of Licensing, you’ll have an existing business profile in our system.</p>
                         
-                       
-                        <div class="ser-btn-wrapper">
-                                    <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkBizLic}" label="Link Existing Business License" title="Link Existing Business License" />  
-                                </div>                       
                         
-                    </div>                   
-                    
+                        <div class="ser-btn-wrapper">
+                            <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkBizLic}" label="Link Existing Business License" title="Link Existing Business License" />  
+                        </div>
+                        
+                        
+                    </div>                    
+                   
                     
                 </lightning:layoutItem>
             </lightning:layout>
