@@ -9,13 +9,11 @@
         helper.getStateList(component , helper);
         helper.getCountyList(component , helper);
         var pathname = window.location.href;
-		console.log('pathname'+pathname);
         component.set("v.pathname", pathname);
         
         
 	},
     handleCancel : function(component, event, helper) {
-        console.log("handleCancel");
         helper.setDefaultFields(component,helper);
         component.set("v.isAddAddressClicked",false);
         
@@ -38,14 +36,10 @@
             'state': stateValue,
             'zip' : zipValue,
         });
-        console.log('step2');
             action.setCallback(this, function(response){
             var state = response.getState();
-                console.log('state' + state);
                 if(state === "SUCCESS"){
-                    console.log("step4");
                 	var addr = response.getReturnValue();
-                    console.log('validatedAddress'+ addr.street2);
                 	if(addr.street != null){
                     	component.set("v.outputAddress" , addr);
                     	component.set("v.isAddAddressClicked" , true);
@@ -59,9 +53,7 @@
                         else {
                            component.set("v.issuggestedAdd2" , false);
                            suggestedAddress = addr.street+', ' +addr.city+', '+addr.state+', '+addr.zip+', '+addr.country;
-                        }
-                        console.log("issuggestedAdd2"+component.get("v.issuggestedAdd2"));
-                        console.log("suggestedAddress"+component.get("v.suggestedAddress"));
+                        }                        
                         component.set("v.suggestedAddress" , suggestedAddress);
                         helper.highlight (component, helper,suggestedAddress, originalAddressValue);
                 	}
@@ -81,13 +73,13 @@
         var selectedAddress = document.querySelector('input[name="locations"]:checked').value;
         component.set("v.userSelectedAddr" , selectedAddress);
         if(selectedAddress == 'SuggestedAddress'){
-           var addr = component.get("v.issuggestedAdd2");
-             component.set("v.isAddress2" , addr);
+           var isAddr2Present = component.get("v.issuggestedAdd2");
+            component.set("v.isAddress2" , isAddr2Present);
             component.set("v.issuggestTrue" , true);
         }
         if(selectedAddress == 'OriginalAddress'){
-           var addr = component.get("v.isOriginalAdd2");
-             component.set("v.isAddress2" , addr);
+           var isAddr2Present = component.get("v.isOriginalAdd2");
+             component.set("v.isAddress2" , isAddr2Present);
         }
          var isaddress2 = component.get("v.isAddress2");
     },
@@ -115,7 +107,6 @@
             'countyValue' : countyValue,
             'parentId' : parentSobjectID,
         });    
-         	console.log("Spinner" + component.get("v.Spinner"));
         	action.setCallback(this, function(actionResult) {
             if(actionResult.getState() ==="SUCCESS"){ 
                 component.set("v.Spinner", false);
@@ -173,7 +164,6 @@
             'countyValue' : countyValue,
             'parentId' : parentSobjectID,
         });    
-         	console.log("Spinner" + component.get("v.Spinner"));
         	action.setCallback(this, function(actionResult) {
             if(actionResult.getState() ==="SUCCESS"){ 
                 component.set("v.Spinner", false);
@@ -220,14 +210,12 @@
         var selectedCountry = selectCmp.get("v.value");
         
         if(selectedCountry =='United States'){
-            console.log('Entered condition United States');
             component.set("v.isOutOfCountry",false);
             helper.getStateList(component , helper);
             component.set("v.isStateWA",true);
             helper.getCountyList(component , helper);
         }
         else{
-            console.log('Entered condition out of United States');
             component.set("v.isOutOfCountry",true);
             component.set("v.isStateWA",false);
             component.set("v.outofState","Out Of State");
@@ -236,19 +224,14 @@
         }
     },
     onStateUpdate: function(component, event, helper){
-        console.log('onStateUpdate');
         var selectCmp = component.find("stateval");
         var selectedState = selectCmp.get("v.value");
-        
-        console.log('selectedState'+selectedState);
         if(selectedState =='WA'){
-            console.log('Entered condition State WA');
             component.set("v.isStateWA",true);
             helper.getCountyList(component , helper);
             component.set("v.isOutOfCountry",false);
         }
         else{
-            console.log('Entered condition out of WA State');
             component.set("v.isStateWA",false);
             component.set("v.outofCounty", "Out Of State");   
         }
@@ -276,11 +259,9 @@
 	},
     
     onCityChange : function(component, event, helper){
-        console.log('onCityChange');
          var selectedState = component.find("stateval");
          var stateValue = selectedState.get("v.value");
         if(component.get("v.city") != null && stateValue != null){
-            console.log('inside City and State');
         	helper.countyOnCityChange(component, event, helper);
         }
     },
