@@ -8,7 +8,7 @@ trigger DRE2_Renewal_Application_c on Renewal_Application__c (after insert, befo
             }
         
         } 
-        if(!licenseList.isEmpty()){
+        if(!licenseList.isEmpty() && !System.isBatch()){
            RenewalReinstatement.createReviewOnRenewal(licenseList);
         } 
          
