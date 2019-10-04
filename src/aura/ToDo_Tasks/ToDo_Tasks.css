@@ -44,7 +44,7 @@ content:"\2714\0020";
     font-size:18px;
     font-weight:bold;        
     border-bottom: solid 1px t(taskUnderline);  	
-    margin-bottom:32px;
+    margin-bottom:1.5rem;
     font-family:t(merrifontfamily);
     color:t(LnGFormTitleColor);
 }
@@ -80,8 +80,14 @@ content:"\2714\0020";
     border: solid 1px t(servicesBorder);
     width:45%;
 }
+.THIS .license-outer-wrapper{
+    align-items:flex-end;
+}
 .THIS .ser-title.link-title{
     padding-bottom:0.5rem;
+}
+.THIS .license-item.biz-invite:last-of-type{
+    margin-bottom:0;
 }
 .THIS .token-wrapper{
     padding:1.5rem;
@@ -135,8 +141,8 @@ content:"\2714\0020";
     margin-bottom:1rem;
 }
 .THIS .license-item:nth-of-type(3n+2){    
-    border-left: solid 1px #d9d4d4;
-    border-right: solid 1px #d9d4d4;
+    /*border-left: solid 1px #d9d4d4;
+    border-right: solid 1px #d9d4d4; */
     padding:0 0.5rem;
     margin:0 0.5rem;
 }
@@ -191,6 +197,9 @@ border:none;
 .THIS .business-wrapper .ser-btn-wrapper.course-btn{
     margin-bottom:0; 
 }
+.THIS .license-item{
+    width:30%;
+}
 @media screen and (max-width: 1279.9px){    
     .THIS .task-wrapper{
         padding:16px;
@@ -205,7 +214,7 @@ border:none;
         width:100%;
     }
     .THIS .task-subject{
-        margin-bottom:16px;
+        margin-bottom:1rem;
     }
     .THIS .services{
         width:100%;
@@ -263,6 +272,12 @@ border:none;
     .THIS .license-item .field-style{
         padding-bottom:1rem;
     }    
+    .THIS .license-item.biz-invite:last-of-type{
+        padding-bottom:0;
+    }
+    .THIS .license-item{
+        width:100%;
+    }
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px){
     .THIS .ser-btn-wrapper button{
