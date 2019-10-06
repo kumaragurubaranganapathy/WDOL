@@ -1287,49 +1287,6 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Email - Renewal - PDH audit approval</fullName>
-        <actions>
-            <name>Renewal_PDH_audit_approval</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Email_Outbound_Renewal_PDH_audit_approval</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>1 AND 2</booleanFilter>
-        <criteriaItems>
-            <field>MUSW__License2__c.Audit_Completed_Flag__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Is_Renewal_Eligible__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Status__c</field>
-            <operation>equals</operation>
-            <value>,Draft,Submitted,Submission Failed,Generate Fee,Pending Payment,Waiting for Third Party Verification,Pending Action,In-Review,In Review,Pending Additional Qualifications,Withdrawn,Denied,Abandoned,Active,Inactive,Sunset,Expired,Suspended</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Email - Renewal - PDH audit notification</fullName>
-        <actions>
-            <name>Renewal_PDH_audit_notification</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Email_Outbound_Renewal_PDH_audit_notification</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <formula>Pending_Audit__c = TRUE &amp;&amp;  Text(MUSW__Status__c) = &apos;Active&apos;</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Email - Renewal issued - Active - Other</fullName>
         <actions>
             <name>Renewal_issued_Active_Other</name>
