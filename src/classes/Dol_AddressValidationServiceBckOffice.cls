@@ -160,6 +160,7 @@ public class Dol_AddressValidationServiceBckOffice {
             String parentSobjName = DOL_AppConstants.NULL_EMPTY_STRING + '';
             if(Dol_IntegrationUtil.isNotBlank(parentId)){
                 parentSobjName = getObjAPI(parentId);
+                //Defect 7703 chnage
                 existingParcel = [SELECT id,Account__c,Contact__c,Primary_Account__c ,MUSW__Primary_Contact__c ,MUSW__Unit__c,County__c ,Melissa_Address_Verified__c 
                                   from MUSW__Parcel__c where MUSW__Street2__c =:addres1 AND MUSW__Street2__c != null AND MUSW__City__c=:city AND MUSW__City__c !=null 
                                   AND MUSW__State__c=:state AND MUSW__State__c!= null AND MUSW__Post_Zip_Code__c=:zip AND MUSW__Post_Zip_Code__c != null 
@@ -269,7 +270,6 @@ public class Dol_AddressValidationServiceBckOffice {
         }
      
     }
-
     public class selectOption{
         
         @AuraEnabled public string label;

@@ -22,10 +22,7 @@ public class Dol_ImageTokenResponse{
     }
     class Error {
        public String ErrorMessage {get;set;}
-       public MemberName[] MemberNames{get;set;}
-    }
-    class MemberName {
-       
+       public String[] MemberNames{get;set;}
     }
     public static Dol_ImageTokenResponse parse(String json){
 		return (Dol_ImageTokenResponse) System.JSON.deserialize(json, Dol_ImageTokenResponse.class);
