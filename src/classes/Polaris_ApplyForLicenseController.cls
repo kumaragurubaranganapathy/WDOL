@@ -694,9 +694,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                             LnP_JSONParser.Body bodyLink = new LnP_JSONParser.Body();
                             bodyLink.LinkedEntityId = DOL_AppConstants.NULL_EMPTY_STRING + '@{refSubId'+innerCount+'.id}';
                             bodyLink.ContentDocumentId = contentdocId;
-							 if(fieldMap.isMandatorySub == true) {
-                                bodyLink.MUSW_Required   = true;
-                            }
+							
                             bodyLink.ShareType = DOL_AppConstants.NULL_EMPTY_STRING + 'I';
                             requestDetailsContent.body = bodyLink;
                             requestDetailsList.add(requestDetailsContent); 
@@ -878,7 +876,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                     strJsonForm = strJsonForm.replaceAll('\\bMUSW_Description\\b', 'MUSW__Description__c');
                     stringJSON = stringJSON.replaceAll('\\BgckApplication\\b', 'MUSW__Description__c');
                     strJsonForm = strJsonForm.replaceAll('\\bContentDocumentId\\b', 'ContentDocumentId__c');
-					strJsonForm = strJsonForm.replaceAll('\\bMUSW_Required\\b', 'MUSW__Required__c');
+					
                     
                     strJsonForm = strJsonForm.replaceAll('\"[^\"]*\":null',''); //basic removeal of null values
                     strJsonForm = strJsonForm.replaceAll(',{2,}', ','); //remove duplicate/multiple commas
