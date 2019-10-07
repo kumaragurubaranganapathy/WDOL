@@ -127,14 +127,14 @@
                                     </aura:if>
                                     <div id="SubmitAndReview" class='field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                         <h2 class="headings underline">{!v.feesRequired?'Review':'Review and Submit'}</h2>
-                                        
+                                        <h2 class="headings">Questions Review</h2>
                                         <aura:iteration items="{!v.questionsAnswers}" var="responses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
                                             
                                             
                                             <div class = "slds-size--1-of-1 slds-medium-size--1-of-1 slds-small-size--1-of-1">
-                                                <div>
-                                                    <ui:outputRichText  value="{!responses.question}"/>
+                                                <div class="ques">
+                                                    <div class="quesclr"><ui:outputRichText  value="{!responses.question}"/></div>
                                                 </div>
                                                 <!-- <p> -->  
                                                 
@@ -168,8 +168,8 @@
                                         <aura:iteration items="{!v.attachmentResponse}" var="attResponses" indexVar="varRes"> 
                                             <!--<span style="padding-right: 9px;">{!varRes + 1}. </span> -->
                                             <div class = "slds-size--1-of-1 slds-medium-size--1-of-1 slds-small-size--1-of-1">
-                                                <div>
-                                                    <ui:inputText disabled = "true" value="{!attResponses.attachment}"/>
+                                                <div class="attach">
+                                                    <div class="quesclr"><ui:outputRichText  value="{!attResponses.attachment}"/></div>
                                                     <aura:if isTrue="{!(((attResponses.uploadOrAck == true &amp;&amp; attResponses.fileNos == 0) || (attResponses.uploadOrAck == null &amp;&amp; (attResponses.acknowledgeResponse == null || attResponses.acknowledgeResponse == false))) &amp;&amp; attResponses.isMandatorySub == true)}"> 
                                                         <div class = "revAndSubErrorFont">
                                                             <ui:outputText value="**Required Submission/Acknowledgement not Complete."/>
