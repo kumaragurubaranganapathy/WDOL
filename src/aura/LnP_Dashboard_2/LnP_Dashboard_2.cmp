@@ -693,7 +693,7 @@
                 </div>                
             </div>
             <div class="back-btn-wrapper">
-                <lightning:button class="btn btn-lnp back-button" label="Back" onclick="{!c.backToDashboard}" />
+                <lightning:button class="btn btn-lnp back-button" label="Back" title="Back" onclick="{!c.backToDashboard}" />
             </div>
         </aura:if>
         <aura:if isTrue="{!v.displayAssociationForm}">
@@ -719,7 +719,7 @@
                                 <lightning:inputField fieldName="Status__c" value="Invited" class="slds-hide" />
                                 <lightning:inputField fieldName="Parent_License__c" value="{!v.detailLicenseData[0].Id}"
                                                       />
-                                <lightning:button class="slds-m-top_small" type="submit" label="Create Licensee" onclick = "{!c.showSpinner}"
+                                <lightning:button class="slds-m-top_small" type="submit" label="Create Licensee" title="Create Licensee" onclick = "{!c.showSpinner}"
                                                   />
                             </lightning:recordEditForm>
                         </div>
@@ -740,7 +740,7 @@
                         </div>
                     </lightning:layoutItem>
                     <div data-id="{!v.pendingLicenseId}">
-                        <lightning:button class="slds-m-top_small" label="Done" onclick="{!c.setLicenseToInReview}"/>
+                        <lightning:button class="slds-m-top_small" label="Done" title="Done" onclick="{!c.setLicenseToInReview}"/>
                     </div>
                 </lightning:layout>
             </div>
@@ -817,7 +817,7 @@
                                                                 <aura:if isTrue="{!(tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c|| tableData.Is_Reinstatement_Eligible__c)? true : false}">
                                                                     <aura:if isTrue="{!(tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c)}">
                                                                         <lightning:button variant="brand" label="Renew" value="{!join(',','Renewal',tableData.Id,tableData.Application_Type__c,tableData.Credential_Type__c,tableData.Application_Method__c,tableData.Application__c,tableData.Application__r.isRenewal__c)}"
-                                                                                          title="Renewal"
+                                                                                          title="Renew"
                                                                                           onclick="{!c.renewLicense}"
                                                                                           />
                                                                     </aura:if>
@@ -917,13 +917,13 @@
                                                                      data-board="{!tableData.Application_Type__c}"
                                                                      data-applicationType="{!tableData.Application_Method__c}"
                                                                      data-isrenewal="{!tableData.isRenewal__c}">
-                                                                    <lightning:button variant="brand" label="Edit" title="Neutral action" />
+                                                                    <lightning:button variant="brand" label="Edit" title="Edit" />
                                                                     <!--<lightning:button variant="base" label="Renewal" value="{!join(',','Renewal',dataCell.Id,dataCell.board,dataCell.type,dataCell.applicationType,dataCell.licenseAppId,dataCell.appIsRenewal)}" title="Renewal" class="btn-lnp bottom-card-font-size view-text datacellId-fontBorder" onclick= "{!c.renewLicense}"/>-->
                                                                 </div>
                                                             </td>
                                                             <td data-label="actions" class="cell-style action-cell table-btn">
                                                                 <div class="slds-truncate" onclick="{!c.deleteDraftLicenseApplication}" data-recordId="{!tableData.Id}">
-                                                                    <lightning:button label="Delete" />
+                                                                    <lightning:button label="Delete" title="Delete" />
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -1005,11 +1005,11 @@
                                                                      data-board="{!tableData.License__r.Application_Type__c}"
                                                                      data-applicationType="{!tableData.License__r.Application_Method__c}"
                                                                      data-reinstatement="{!tableData.License__r.Is_Reinstatement_Eligible__c}">
-                                                                    <lightning:button variant="brand" label="Edit" title="Neutral action" />
+                                                                    <lightning:button variant="brand" label="Edit" title="Edit" />
                                                                 </div>
                                                                 <!--<lightning:button variant="base" label="Renewal" value="{!join(',','Renewal',dataCell.Id,dataCell.board,dataCell.type,dataCell.applicationType,dataCell.licenseAppId,dataCell.appIsRenewal)}" title="Renewal" class="btn-lnp bottom-card-font-size view-text datacellId-fontBorder" onclick= "{!c.renewLicense}"/>-->
                                                                 <div class="" onclick="{!c.deleteDraftRenewApplications}" data-recordId="{!tableData.Id}">
-                                                                    <lightning:button label="Delete"  />
+                                                                    <lightning:button label="Delete" title="Delete"  />
                                                                 </div>
                                                                 
                                                             </td>                                                            
@@ -1076,12 +1076,12 @@
                                                                      data-applicationType="General Application"
                                                                      data-serviceRequest="{!tableData.Service_Request_Type__c}"
                                                                      data-licenseId="{!tableData.License__c}">
-                                                                    <lightning:button variant="brand" label="Edit" title="Neutral action" />
+                                                                    <lightning:button variant="brand" label="Edit" title="Edit" />
                                                                 </div>
                                                             </td>
                                                             <td data-label="Actions" class="cell-style action-cell table-btn">
                                                                 <div class="slds-truncate" onclick="{!c.deleteDraftMaintananceRequestApplication}" data-recordId="{!tableData.Id}">
-                                                                    <lightning:button label="Delete" />
+                                                                    <lightning:button label="Delete" title="Delete" />
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -1173,7 +1173,7 @@
                                                                     </aura:if>
                                                                     <aura:if isTrue="{!tableData.MUSW__Status__c == 'Pending Action'}">
                                                                         <div onclick="{!c.uploadpendingdocuments}" data-id="{!tableData.Id}" data-number="{!tableData.Name}">
-                                                                            <lightning:button variant="brand" label="Upload Files" />
+                                                                            <lightning:button variant="brand" label="Upload Files" title="Upload Files" />
                                                                         </div>
                                                                     </aura:if>
                                                                     <aura:if isTrue="{!(tableData.MUSW__Status__c == 'Submitted')|| (tableData.MUSW__Status__c == 'In-Review')|| (tableData.MUSW__Status__c == 'In Review')}">
@@ -1279,7 +1279,7 @@
                                                                     </div>
                                                                 </aura:if>
                                                                 <aura:if isTrue="{!(tableData.Renewal_Status__c == 'Pending action')}">
-                                                                    <lightning:button variant="brand" label="Update Files" value="{!tableData.Id}" />
+                                                                    <lightning:button variant="brand" label="Update Files" title="Update Files" value="{!tableData.Id}" />
                                                                 </aura:if>
                                                                 <!--<lightning:button variant="brand" label="Download Application" value="{!tableData.Id}" title="Download Application" onclick= "{!c.redirectToCart}"/>-->
                                                             </td>

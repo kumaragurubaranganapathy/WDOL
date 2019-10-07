@@ -159,7 +159,7 @@
     <br></br>
     <div class="affiliated-loc-wrapper">
         
-        <lightning:button label="Add Location" variant="brand" onclick="{!c.addLocation}" class="{!v.isOneLocation?'add-loc':'slds-hide'}" />
+        <lightning:button label="Add Location" title="Add Location" variant="brand" onclick="{!c.addLocation}" class="{!v.isOneLocation?'add-loc':'slds-hide'}" />
         <div class="{!v.isOneLocation?(v.isAddLocation?'fields-wrapper':'slds-hide'):'fields-wrapper'}">                    
             
             <lightning:input  name="DELicense" label="Designated Engineer License Number" value="{!v.parcel.Designated_Engineer_License__c}"  required="false" class="{!v.toShowField?'field-size address-fields':'slds-hide'}"/>
@@ -203,8 +203,8 @@
                 </aura:set>
             </aura:if>
             <div class="action-buttons">
-                <lightning:button variant="neutral" label="Cancel" class="{!v.isOneLocation?'cancel-loc':'slds-hide'}" onclick="{!c.cancelLoc}"/>
-                <lightning:button variant="brand" label="Add" onclick="{!c.saveLocation}"/>
+                <lightning:button variant="neutral" label="Cancel" title="Cancel" class="{!v.isOneLocation?'cancel-loc':'slds-hide'}" onclick="{!c.cancelLoc}"/>
+                <lightning:button variant="brand" label="Add" title="Add" onclick="{!c.saveLocation}"/>
             </div>
         </div>
     </div> 
