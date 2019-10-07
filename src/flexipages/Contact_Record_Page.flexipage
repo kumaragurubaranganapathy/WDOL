@@ -6,11 +6,30 @@
                 <name>collapsed</name>
                 <value>false</value>
             </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>hideChatterActions</name>
+                <value>false</value>
+            </componentInstanceProperties>
             <componentName>force:highlightsPanel</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>hideHeader</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentName>force:relatedListQuickLinksContainer</componentName>
         </componentInstances>
         <mode>Replace</mode>
         <name>header</name>
         <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentName>force:detailPanel</componentName>
+        </componentInstances>
+        <mode>Replace</mode>
+        <name>detailTabContent</name>
+        <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
@@ -21,9 +40,10 @@
             <componentName>runtime_sales_merge:mergeCandidatesPreviewCard</componentName>
         </componentInstances>
         <componentInstances>
-            <componentName>force:relatedListQuickLinksContainer</componentName>
-        </componentInstances>
-        <componentInstances>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>NONE</value>
+            </componentInstanceProperties>
             <componentName>force:relatedListContainer</componentName>
         </componentInstances>
         <mode>Replace</mode>
@@ -38,17 +58,6 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>relatedTabContent</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Standard.Tab.relatedLists</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
                 <value>detailTabContent</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
@@ -59,12 +68,16 @@
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
+                <name>active</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>body</name>
-                <value>facet-4a718b64-c93a-412d-99fb-a8fcd7ca1c57</value>
+                <value>relatedTabContent</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
-                <value>News</value>
+                <value>Standard.Tab.relatedLists</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
@@ -73,6 +86,13 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>displayOption</name>
+                <value>BOTH</value>
+            </componentInstanceProperties>
+            <componentName>runtime_sales_merge:mergeCandidatesPreviewCard</componentName>
+        </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
                 <name>tabs</name>
@@ -86,13 +106,23 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentInstanceProperties>
-                <name>active</name>
-                <value>true</value>
-            </componentInstanceProperties>
+            <componentName>runtime_sales_activities:activityPanel</componentName>
+        </componentInstances>
+        <name>Facet-ea933ad1-2299-4707-a415-41aef997a479</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentName>forceChatter:recordFeedContainer</componentName>
+        </componentInstances>
+        <name>Facet-9825f1f2-775a-4bf4-897d-ffd620309d4c</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>activityTabContent</value>
+                <value>Facet-ea933ad1-2299-4707-a415-41aef997a479</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
@@ -103,7 +133,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>feedTabContent</value>
+                <value>Facet-9825f1f2-775a-4bf4-897d-ffd620309d4c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
@@ -111,55 +141,20 @@
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
-        <mode>Replace</mode>
-        <name>sidebartabs</name>
+        <name>Facet-e4707da9-06e6-478d-a389-ebd68cfc6c4c</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
                 <name>tabs</name>
-                <value>sidebartabs</value>
+                <value>Facet-e4707da9-06e6-478d-a389-ebd68cfc6c4c</value>
             </componentInstanceProperties>
             <componentName>flexipage:tabset</componentName>
         </componentInstances>
         <mode>Replace</mode>
         <name>sidebar</name>
         <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentName>force:detailPanel</componentName>
-        </componentInstances>
-        <mode>Replace</mode>
-        <name>detailTabContent</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentName>runtime_sales_social:socialPanel</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>wits:newsPanel</componentName>
-        </componentInstances>
-        <name>facet-4a718b64-c93a-412d-99fb-a8fcd7ca1c57</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentName>runtime_sales_activities:activityPanel</componentName>
-        </componentInstances>
-        <mode>Replace</mode>
-        <name>activityTabContent</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentName>forceChatter:recordFeedContainer</componentName>
-        </componentInstances>
-        <mode>Replace</mode>
-        <name>feedTabContent</name>
-        <type>Facet</type>
     </flexiPageRegions>
     <masterLabel>Contact Record Page</masterLabel>
     <parentFlexiPage>sfa__Contact_rec_L</parentFlexiPage>
