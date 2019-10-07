@@ -223,7 +223,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             
             if(!relatedRenewalApplications.isEmpty()){
                 for(Renewal_Application__c relatedRenewalApplicationRecord :relatedRenewalApplications ){
-                    if(relatedRenewalApplicationRecord.License__r.MUSW__Status__c == 'Inactive' && relatedRenewalApplicationRecord.License__r.Polaris_DHP__c==true && newMapLicense.get(relatedRenewalApplicationRecord.License__c).MUSW__Status__c != oldMapLicense.get(relatedRenewalApplicationRecord.License__c).MUSW__Status__c){
+                    if(relatedRenewalApplicationRecord.License__r.MUSW__Status__c == 'Inactive' && relatedRenewalApplicationRecord.License__r.Polaris_DHP__c==true ){
                         System.debug('Update');
                         Task licenseDHPTask = new Task();
                         relatedRenewalApplicationRecord.Renewal_Status__c = 'Pending Payment';
