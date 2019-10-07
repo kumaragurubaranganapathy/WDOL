@@ -144,6 +144,7 @@
     <aura:attribute name="pendingApp" type="Boolean" default="false" />
     <aura:attribute name="defaultTab" type="String" default="ProfessionalLicensesTab" />
     <aura:attribute name="licenseRecord" type="MUSW__License2__c" />
+    <aura:attribute name="showExamsTab" type="Boolean" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
     
@@ -344,9 +345,12 @@
                 <div>
                     <!--<aura:if>-->
                     <lightning:tabset class="tabs-wrapper">
-                        <lightning:tab class="tab-style" label="Exam" id="ExamTab_id">
-                            <c:LnP_ExamReschedule licenseData="{!v.detailLicenseData}" />
-                        </lightning:tab>
+                        <aura:if isTrue="{!v.showExamsTab}">
+                            <lightning:tab class="tab-style" label="Exam" id="ExamTab_id">
+                                <c:LnP_ExamReschedule licenseData="{!v.detailLicenseData}" />
+                            </lightning:tab>
+                        </aura:if>
+                       
                         <!--- To Show AMRs in related List of License Detail Page -->
                         
                         <lightning:tab class="tab-style" label="Draft Applications or Requests" id="DraftApp_id">

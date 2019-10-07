@@ -142,6 +142,23 @@
         component.set("v.DisplayLicense_Additional_Qualification","false");
         
     },  
+    setShowExamsTabFlagDashboard: function(component,event,helper,licenseId){
+        console.log('in show exam tab');
+        console.log('license data exams tab--',licenseId);
+        var action = component.get("c.showExamsTabOnDashboard");
+        action.setParams(
+            {"licenseId": licenseId}
+        );
+        action.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === "SUCCESS"){
+               var returnValue = response.getReturnValue();
+                console.log('return value exam flag',returnValue);
+               component.set("v.showExamsTab",returnValue);
+            }
+        });
+        $A.enqueueAction(action);
+    },
     viewMoreLicenses : function(component, event, helper){
         var allLicenses = component.get("v.licenses");
         var licensesLength = allLicenses.length;
