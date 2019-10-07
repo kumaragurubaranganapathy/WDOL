@@ -33,12 +33,25 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     public void onAfterUpdate() {
      if(runAgain == true) {
          runAgain= false;
+		 List<MUSW__License2__c> triggerOld = Trigger.Old;
+        List<MUSW__License2__c> triggerNew = Trigger.New;
+		 Set<Id> licenseReviewList = new Set<Id>();
+         for(MUSW__License2__c lic : triggerNew ){
+            if(lic.MUSW__Total_Balance__c == 0 && lic.MUSW__Status__c == 'Pending License Fee' && (lic.Credential_Type__c == 'Architect' || lic.Credential_Type__c == 'Landscape Architect')){
+                  licenseReviewList.add(lic.id);
+            }
+        
+        
+        } 
+         if(!licenseReviewList.isEmpty())
+         {
+             approveReview(licenseReviewList);
+         }
          afterMethod();
                
          //calling future method to generate Review on License.
          
-        List<MUSW__License2__c> triggerOld = Trigger.Old;
-        List<MUSW__License2__c> triggerNew = Trigger.New;
+        
         Map<Id,MUSW__License2__c> oldMapLicense = (Map<Id,MUSW__License2__c>)Trigger.OldMap;
         Map<Id,MUSW__License2__c> newMapLicense = (Map<Id,MUSW__License2__c>)Trigger.NewMap;
         List<Id> licenseList = new List<Id>();
@@ -165,12 +178,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
                 ta.Sub_status__c = 'Accepted';
                 lstupdateTask.add(ta);
             }
-			for(Task ta : [SELECT id,Whatid,type,Status,Sub_status__c from task where Whatid IN:childSetLicenseId and id!=null and Type = 'Payment Reminder'])
-            {
-                ta.Status = 'Completed';
-                ta.Sub_status__c = 'Accepted';
-                lstupdateTask.add(ta);
-            }
+			
             if(lstupdateChildAssociation.size() > 0)
             {
                 update lstupdateChildAssociation;
@@ -451,6 +459,31 @@ Parameter      : Nil
             update licToUpdate;
         } 
           
+    }
+	
+	public void approveReview(Set<Id>licenseReviewList)
+    {
+        List<MUSW__Review__c> lstUpdateReview = new List<MUSW__Review__c>();
+        List<Task> lstupdateTask = new List<Task>();
+        for(MUSW__Review__c review : [SELECT id,MUSW__Status__c,Review_Type__c, License__c FROM MUSW__Review__c WHERE License__c IN:licenseReviewList AND Review_Type__c='General Application' AND MUSW__Status__c='Pending'] )
+        {
+            review.MUSW__Status__c = 'Approved';
+            lstUpdateReview.add(review);
+        }
+        if(!lstUpdateReview.isEmpty())
+        {
+            update lstUpdateReview;
+        }
+        for(Task ta : [SELECT id,Whatid,type,Status,Sub_status__c from task where Whatid IN:licenseReviewList and id!=null and Type = 'Payment Reminder'])
+            {
+                ta.Status = 'Completed';
+                ta.Sub_status__c = 'Accepted';
+                lstupdateTask.add(ta);
+            }
+        if(!lstupdateTask.isEmpty())
+        {
+            update lstupdateTask;
+        }
     }
     
 }

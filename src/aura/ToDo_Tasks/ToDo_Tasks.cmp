@@ -318,7 +318,7 @@ _______________________________________________________________
                     <aura:if isTrue="{!task.Type == 'Submit Exam' }"> <!-- Education Task-->
                         <div class="task-wrapper">
                             <div class="task-subject">
-                                Submit Exam : {!task.Subject}
+                                Submit Exam: {!task.Subject}
                             </div>
                             <lightning:layout class="license-outer-wrapper slds-wrap">
                                 <lightning:layoutItem size="12" mediumDeviceSize="9">
