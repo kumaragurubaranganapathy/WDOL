@@ -82,7 +82,7 @@
         </aura:if>  
         </lightning:recordEditForm>
         <div id="proceedButtonDiv" class="proceed-btn-wrapper">
-            <lightning:Button class="proceed-btn" aura:id="button1" label="Proceed" variant="Brand" disabled="{!v.isdisabled}"
+            <lightning:Button class="proceed-btn" aura:id="button1" label="Proceed" title="Proceed" variant="Brand" disabled="{!v.isdisabled}"
                               onclick="{!c.startApplication}" />
         </div>
     </div>

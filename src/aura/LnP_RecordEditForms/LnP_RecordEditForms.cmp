@@ -160,10 +160,10 @@
         </div>
         
         <aura:if isTrue="{!v.sectionName !='Endorsement'}">
-            <lightning:button variant="brand" label="{!'Add '+ v.sectionName}" title="Add Record" onclick="{! c.showAddRecord }" class="address-button"/>
+            <lightning:button variant="brand" label="{!'Add '+ v.sectionName}" title="{!'Add '+ v.sectionName}" onclick="{! c.showAddRecord }" class="address-button"/>
         </aura:if>
         <aura:if isTrue="{!v.sectionName =='Endorsement'}">
-            <lightning:button variant="brand" label="Add Provider Information" title="Add Record" onclick="{! c.showAddRecord }" class="address-button"/>
+            <lightning:button variant="brand" label="Add Provider Information" title="Add Provider Information" onclick="{! c.showAddRecord }" class="address-button"/>
         </aura:if>
         <div class="{!v.objectRecordType +'addRecord slds-hide full-width'}">
             <lightning:recordEditForm aura:id="editForm" recordTypeId="{!v.objectRecordType}" objectApiName="{!v.sObj}"  onsuccess="{!c.handleSuccess}" onsubmit="{!c.handleSubmit}">

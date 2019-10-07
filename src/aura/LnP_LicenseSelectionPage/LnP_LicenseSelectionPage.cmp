@@ -99,7 +99,7 @@
                             </lightning:layoutItem>
                             <lightning:layoutItem size="12" mediumDeviceSize="6" class="biz-btn-wrapper">
                                 <div class="add-biz-wrapper">
-                                    <lightning:button name="Add Business Account" label="Add Business Account" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />
+                                    <lightning:button name="Add Business Account" label="Add Business Account" title="Add Business Account" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />
                                 </div>
                             </lightning:layoutItem>
                         </lightning:layout>
@@ -155,8 +155,8 @@
             </div> 
         </lightning:recordEditForm>
         <div id="proceedButtonDiv" class= "proceed-btn-wrapper">
-            <lightning:Button class="proceed-btn" aura:id="buttonBack" label="Back" onclick="{!c.goBack}" />
-            <lightning:Button class="proceed-btn" aura:id="button1" label="Continue" variant="Brand" onclick="{!c.validateForm}" disabled="true"/>
+            <lightning:Button class="proceed-btn" aura:id="buttonBack" label="Back" title="Back" onclick="{!c.goBack}" />
+            <lightning:Button class="proceed-btn" aura:id="button1" label="Continue" title="Continue" variant="Brand" onclick="{!c.validateForm}" disabled="true"/>
         </div>
     </div>
 </aura:component>

@@ -416,7 +416,7 @@
         </aura:iteration>
         <div class="slds-grid slds-m-top_xx-large button-section buttonpos">
             <lightning:button label="Back" title="Back" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn back-button'}"/>
-             <lightning:button aura:id="SaveAndSubmit" variant="success" label="Save and Submit Later" title="Submit" onclick="{!c.SaveAndSubmit}" class="slds-show pull-right btn next-button"/>
+             <lightning:button aura:id="SaveAndSubmit" variant="success" label="Save and Submit Later" title="Save and Submit Later" onclick="{!c.SaveAndSubmit}" class="slds-show pull-right btn next-button"/>
             <lightning:button variant="brand" label="Continue" title="Continue" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn cancelbtn'}"/>
             <lightning:button aura:id="FinalSubmitBtnID" variant="brand" label="Continue" title="Continue" onclick="{!c.submit }" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp':'slds-hide'}"/>
         </div>
@@ -440,9 +440,9 @@
                 </div>
                 <!-- pop up footer -->
                 <footer class="slds-modal__footer">
-                    <lightning:button variant="neutral" 
-                                      label="OK"
-                                      title="Cancel"
+                    <lightning:button variant="brand" 
+                                      label="Ok"
+                                      title="Ok"
                                       onclick="{! c.closeModel }"/>
                 </footer>
             </div>

@@ -51,8 +51,8 @@
                         </aura:iteration>
                     </div>
                     <div class="service-btn-container">
-                        <lightning:button variant="neutral" type="cancel" name="cancel"  label="Cancel" class="cancel-button" onclick="{!c.cancel}" />
-                        <lightning:button variant="brand" type="{!v.fieldsValidated?'submit':'button'}"  name="submit" label="Submit" onclick="{!c.validateFields}" class="add-button" />
+                        <lightning:button variant="neutral" type="cancel" name="cancel"  label="Cancel" title="Cancel" class="cancel-button" onclick="{!c.cancel}" />
+                        <lightning:button variant="brand" type="{!v.fieldsValidated?'submit':'button'}"  name="submit" label="Submit" title="Submit" onclick="{!c.validateFields}" class="add-button" />
                     </div>
                 </div>
             </lightning:recordEditForm>
@@ -60,7 +60,7 @@
         <!-- Form end -->
         <aura:if isTrue="{!v.address}">
             <c:LnP_LicenseAddress changeOnlyMailingAdd="false" applicationId="{!v.appId}" aura:id="lnpStoreAddress"/>
-            <lightning:button class="slds-m-top_large" variant="neutral" type="cancel" name="cancel" label="Back" onclick="{!c.cancel}"/>
+            <lightning:button class="slds-m-top_large" variant="neutral" type="cancel" name="cancel" label="Back" title="Back" onclick="{!c.cancel}"/>
         </aura:if>
          <aura:if isTrue="{!v.iscontactAddress}">
             <c:LnP_LicenseAddress changeAddress="true" contactId ="{!v.contactId}" aura:id="lnpStoreAddress"/>
@@ -80,12 +80,12 @@
                         </div>
                     </aura:iteration>
                     <div class="slds-align_absolute-center slds-p-around_medium service-btn-container">
-                        <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
+                        <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" title="Cancel" onclick="{!c.cancel}"/>
                         <aura:if isTrue="{!v.existingBillingCode != ''}">
-                            <lightning:button variant="brand"  name="CreateCode" label="CreateNewCode" onclick="{!c.createcode}" />
+                            <lightning:button variant="brand"  name="CreateCode" label="CreateNewCode" title="CreateNewCode" onclick="{!c.createcode}" />
                         </aura:if>
                         <aura:if isTrue="{!v.existingBillingCode == ''}">
-                            <lightning:button variant="brand"  name="CreateCode" label="Create Code" onclick="{!c.createcode}" />
+                            <lightning:button variant="brand"  name="CreateCode" label="Create Code" title="Create Code" onclick="{!c.createcode}" />
                         </aura:if>
                         
                     </div>
@@ -97,8 +97,8 @@
                 <lightning:input type="text" label="License Web Address" value="{!v.existWebsite}"/>
             </div>
             <div class="slds-align_absolute-center slds-p-around_medium btnalign ">
-                <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" class="cancel-button" onclick="{!c.cancel}"/>
-                <lightning:button variant="brand" type="submit" name="submit" label="Submit" onclick="{!c.saveWebsite}" class="add-button"/>
+                <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" title="Cancel" class="cancel-button" onclick="{!c.cancel}"/>
+                <lightning:button variant="brand" type="submit" name="submit" label="Submit" title="Submit" onclick="{!c.saveWebsite}" class="add-button"/>
             </div>
         </aura:if>
         <aura:if isTrue="{!v.showPrintForm}">
@@ -112,8 +112,8 @@
             </div>
             
             <div class="slds-align_absolute-center slds-p-around_medium ">
-                <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" onclick="{!c.cancel}"/>
-                <lightning:button variant="brand" type="submit" name="submit" label="Submit" onclick="{!c.printUpdate}"/>
+                <lightning:button variant="neutral" type="cancel" name="cancel" label="Cancel" title="Cancel" onclick="{!c.cancel}"/>
+                <lightning:button variant="brand" type="submit" name="submit" label="Submit" title="Submit" onclick="{!c.printUpdate}"/>
                 <!--<lightning:button variant="success" label="CreateCode" title="Success" onclick="{!!c.createcode}"/>-->
             </div>
         </aura:if>

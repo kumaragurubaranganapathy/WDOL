@@ -71,7 +71,7 @@
                                     <td>{!doc.Provider_Name__c}</td>
                                     <td>{!doc.Effective_Date__c}</td>
                                     <td>{!doc.Description__c}</td>
-                                    <td> <lightning:button aura:id="button" value="{!doc.Id}" label="Delete" onclick="{!c.deleteProvider}"/> </td>
+                                    <td> <lightning:button aura:id="button" value="{!doc.Id}" label="Delete" title="Delete" onclick="{!c.deleteProvider}"/> </td>
                                 </tr>              
                             </aura:iteration>        
                         </tbody>

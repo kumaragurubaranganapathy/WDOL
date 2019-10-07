@@ -128,7 +128,7 @@
                                         year="numeric" month="long" day="2-digit"
                                         /></td>
                                     <td >{!doc.Description__c}</td>
-                                    <td> <lightning:button aura:id="button" value="{!doc.Id}" label="Delete" onclick="{!c.deleteProvider}" class="cancel-button"/> </td>
+                                    <td> <lightning:button aura:id="button" value="{!doc.Id}" label="Delete" title="Delete" onclick="{!c.deleteProvider}" class="cancel-button"/> </td>
                                  </tr>           
                             </aura:iteration>        
                         </tbody>
@@ -269,9 +269,9 @@
                 </div>
                 <!-- pop up footer -->
                 <footer class="slds-modal__footer">
-                    <lightning:button variant="neutral" 
-                                      label="OK"
-                                      title="Cancel"
+                    <lightning:button variant="brand" 
+                                      label="Ok"
+                                      title="Ok"
                                       onclick="{! c.closeModel }"/>
                 </footer>
             </div>
