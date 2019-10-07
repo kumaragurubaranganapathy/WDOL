@@ -5092,19 +5092,16 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
-    <listViews>
-        <fullName>Appraisal_Courses_Queue_License2</fullName>
+        <listViews>
+        <fullName>Appraiser_Courses_All</fullName>
         <columns>NAME</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Mine</filterScope>
         <filters>
             <field>Credential_Type__c</field>
             <operation>equals</operation>
             <value>Appraiser Course</value>
         </filters>
-        <label>Courses Queue</label>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
+        <label>Appraiser Courses - All</label>
     </listViews>
     <listViews>
         <fullName>Appraisal_Management_Company</fullName>
@@ -5139,15 +5136,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <filterScope>Queue</filterScope>
         <label>Real Estate Appraiser Courses Queue</label>
         <queue>Real_Estate_Appraiser_Courses_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Appraiser_Provider_Queue_License2</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Appraiser Provider Queue</label>
-        <queue>Appraiser_Provider_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -5218,23 +5206,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <filterScope>Queue</filterScope>
         <label>Certified Residential Appraiser Queue</label>
         <queue>Certified_Residential_Appraiser_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Courses_Queue</fullName>
-        <columns>NAME</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>Course_Title__c</columns>
-        <columns>MUSW__Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Credential_Type__c</field>
-            <operation>equals</operation>
-            <value>Appraiser Course</value>
-        </filters>
-        <label>Courses Queue</label>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -5543,17 +5514,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <filters>
             <field>Application_Type__c</field>
             <operation>equals</operation>
-            <value>Appraisers - Real Estate,Appraisal Management Companies</value>
-        </filters>
-        <filters>
-            <field>Application_Type__c</field>
-            <operation>equals</operation>
-            <value>Program Unknown</value>
-        </filters>
-        <filters>
-            <field>MUSW__Applicant__c</field>
-            <operation>notEqual</operation>
-            <value>Adam Kebeck</value>
+            <value>Appraisers - Real Estate</value>
         </filters>
         <label>Real Estate Appraisers - All</label>
     </listViews>
