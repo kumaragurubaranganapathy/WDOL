@@ -450,7 +450,8 @@ _______________________________________________________________
                                     </lightning:layout>
                                 </lightning:layoutItem>
                             </lightning:layout>
-                            
+                             </div>
+                    </aura:if>
 					<aura:if isTrue="{!task.Type == $Label.c.Polaris_Renew_Reminder}">
                         <div class="task-wrapper">                    
                             <div class="task-subject">{!task.Subject}</div>                        
