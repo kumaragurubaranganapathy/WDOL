@@ -61,7 +61,7 @@
                                                                      data-Article_Link_URL__c="{!bodyArtListItem.Article_Link_URL__c}" 
                                                                      onclick="{!c.handleBodyButtonAction}" 
                                                                      class="slds-var-p-around_xx-small">
-                                                                    <lightning:button variant="Outline Brand Button" label="{!bodyArtListItem.Article_Title__c}" />
+                                                                    <lightning:button variant="Outline Brand Button" label="{!bodyArtListItem.Article_Title__c}" title="{!bodyArtListItem.Article_Title__c}" />
                                                                 </div>
                                                             </li>
                                                         </aura:if>
@@ -97,7 +97,7 @@
                                              onclick="{!c.handleFooterButtonAction}" 
                                              class="footer-button">
                                             
-                                            <lightning:button label="{!footerArtList.Article_Title__c}" class="{!and(v.isLoggedIn,footerArtList.Article_Title__c == 'Log in or sign up')?'slds-hide':'home-button'}" variant="brand" onclick="{!c.redirectToHelp}"/>
+                                            <lightning:button label="{!footerArtList.Article_Title__c}" title="{!footerArtList.Article_Title__c}" class="{!and(v.isLoggedIn,footerArtList.Article_Title__c == 'Log in or sign up')?'slds-hide':'home-button'}" variant="brand" onclick="{!c.redirectToHelp}"/>
                                         </div>
                                     </aura:if>
                                 </aura:iteration>

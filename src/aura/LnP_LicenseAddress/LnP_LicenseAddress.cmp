@@ -139,8 +139,8 @@
                 </aura:set>
             </aura:if>
             <div class="slds-grid slds-p-top_medium">
-                <lightning:button variant="brand" type="submit" name="save" label="Validate Address" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="MAILING ADDRESS"/>
-              <lightning:button type="cancel" name="cancel" label="Back" onclick="{!c.tolocation}" class="slds-m-left_medium addressBtn"/>
+                <lightning:button variant="brand" type="submit" name="save" label="Validate Address" title="Validate Address" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="MAILING ADDRESS"/>
+              <lightning:button type="cancel" name="cancel" label="Back" title="Back" onclick="{!c.tolocation}" class="slds-m-left_medium addressBtn"/>
             </div>
         </div>
         
@@ -185,13 +185,13 @@
                         </fieldset>
                         <lightning:layout horizontalAlign="center">
                             <lightning:layoutitem padding="around-small">
-                                <lightning:button  label="Use Selected Address" variant="brand" onclick="{!c.onsaveAddress}"/>
+                                <lightning:button  label="Use Selected Address" title="Use Selected Address" variant="brand" onclick="{!c.onsaveAddress}"/>
                             </lightning:layoutitem>
                         </lightning:layout>
                     </div>
                     
                     <div class="slds-modal__footer">
-                        <lightning:button variant="neutral" label="Back" onclick="{!c.handleCancel}"/>
+                        <lightning:button variant="neutral" label="Back" title="Back" onclick="{!c.handleCancel}"/>
                     </div>
                 </div>
             </div>
@@ -246,7 +246,7 @@
                 </aura:set>
             </aura:if>
             <div class="slds-grid slds-p-top_medium">
-                <lightning:button variant="brand" type="submit" name="save" label="Validate Address" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="MAILING ADDRESS"/>
+                <lightning:button variant="brand" type="submit" name="save" label="Validate Address" title="Validate Address" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="MAILING ADDRESS"/>
                 <!--<lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium cancelbtn addressBtn"/> -->
             </div>
         </div>
@@ -296,7 +296,7 @@
                 </aura:set>
             </aura:if>
             <div class="slds-grid slds-p-top_medium borderBtn">
-                <lightning:button variant="brand" type="submit" name="save" label="Validate Address" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="PHYSICAL ADDRESS"/>
+                <lightning:button variant="brand" type="submit" name="save" label="Validate Address" title="Validate Address" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="PHYSICAL ADDRESS"/>
               <!--<lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium cancelbtn addressBtn"/> -->
             </div> 
         </div>
@@ -341,13 +341,13 @@
                         </fieldset>
                         <lightning:layout horizontalAlign="center">
                             <lightning:layoutitem padding="around-small">
-                                <lightning:button  label="Use Selected Address" variant="brand" onclick="{!c.onsaveAddress}"/>
+                                <lightning:button  label="Use Selected Address" title="Use Selected Address" variant="brand" onclick="{!c.onsaveAddress}"/>
                             </lightning:layoutitem>
                         </lightning:layout>
                     </div>
                     
                     <div class="slds-modal__footer">
-                        <lightning:button variant="neutral" label="Back" onclick="{!c.handleCancel}"/>
+                        <lightning:button variant="neutral" label="Back" title="Back" onclick="{!c.handleCancel}"/>
                     </div>
                 </div>
             </div>
@@ -477,7 +477,7 @@
             </aura:if>
                 </div>
             <div class="slds-grid slds-p-top_medium borderBtn">
-                <lightning:button variant="brand" type="submit" name="save" label="Validate Address" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="PHYSICAL ADDRESS"/>
+                <lightning:button variant="brand" type="submit" name="save" label="Validate Address" title="Validate Address" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="PHYSICAL ADDRESS"/>
               <!--<lightning:button variant="brand" type="cancel" name="cancel" label="Back" onclick="{!c.cancelAddress}" class="slds-m-left_medium cancelbtn addressBtn"/> -->
             </div> 
         </div>
@@ -521,13 +521,13 @@
                         </fieldset>
                         <lightning:layout horizontalAlign="center">
                             <lightning:layoutitem padding="around-small">
-                                <lightning:button  label="Use Selected Address" variant="brand" onclick="{!c.onsaveAddress}"/>
+                                <lightning:button  label="Use Selected Address" title="Use Selected Address" variant="brand" onclick="{!c.onsaveAddress}"/>
                             </lightning:layoutitem>
                         </lightning:layout>
                     </div>
                     
                     <div class="slds-modal__footer">
-                        <lightning:button variant="neutral" label="Back" onclick="{!c.handleCancel}"/>
+                        <lightning:button variant="neutral" label="Back" title="Back" onclick="{!c.handleCancel}"/>
                     </div>
                 </div>
             </div>
