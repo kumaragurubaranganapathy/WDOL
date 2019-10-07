@@ -209,7 +209,7 @@ ________________________________________________________________________________
                         
                     </div>
                    <div class="btnAlign">
-                        <lightning:button variant="neutral" label="Cancel" title="Cancel" class='btn-lnp cancel-button' title="Cancel" type="text" onclick="{!c.goBack}"/>
+                        <lightning:button variant="neutral" label="Cancel" title="Cancel" class='btn-lnp cancel-button' type="text" onclick="{!c.goBack}"/>
                         <lightning:button variant="brand" label="Proceed" title="Proceed" aura:id="btnProceed"  onclick = "{!c.sendEmailFinal}"  disabled ="{!v.disabled}" class="proceed-btn"/>
                    </div>
 
