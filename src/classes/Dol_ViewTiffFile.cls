@@ -37,7 +37,7 @@ public class Dol_ViewTiffFile {
             }
             imagebody.ImageName = imageId;
             if(Dol_IntegrationUtil.isNotBlank(submission.SAN_Image_Type__c)){
-              imagebody.ImageType = submission.SAN_Image_Type__c.trim();
+              imagebody.ImageType = submission.SAN_Image_Type__c.replaceAll('\\s+', '');
             }
             
             getimageToken(); 
