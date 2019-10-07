@@ -417,7 +417,26 @@ public without sharing class LnP_DashboardApexController_2 {
             return null;
         }
     }
-    
+    @AuraEnabled
+    public static Boolean showExamsTabOnDashboard(String licenseId){
+        try{
+            system.debug('license id '+licenseId);
+            String RBSLicenseId = licenseId;
+            Boolean showExamFlag;
+            MUSW__License2__c lic = [SELECT Id, Application_Type__c, Credential_Type__c FROM MUSW__License2__c WHERE Id =: licenseId];
+            system.debug('lic----'+lic);  
+            License_Type__mdt licenseExamDetails = [SELECT Application_Type__c,Credential_Type__c,Credential__c,Has_Exams__c,Object_Name__c FROM License_Type__mdt WHERE 
+                                                   Application_Type__c =: lic.Application_Type__c AND Credential_Type__c =: lic.Credential_Type__c AND Object_Name__c = 'MUSW__License2__c' AND Has_Exams__c = TRUE ];
+            
+            system.debug('licenseExamDetails---'+licenseExamDetails);
+            showExamFlag = licenseExamDetails.Has_Exams__c;
+            system.debug('showExamFlag'+ showExamFlag);
+            return showExamFlag;
+        }catch(Exception ex){
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
+    }
     @AuraEnabled
     public static String PendingRenewApplicationsTable(){
         try{  
