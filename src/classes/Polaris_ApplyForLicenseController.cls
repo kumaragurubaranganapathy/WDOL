@@ -878,6 +878,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                     strJsonForm = strJsonForm.replaceAll('\\bMUSW_Description\\b', 'MUSW__Description__c');
                     stringJSON = stringJSON.replaceAll('\\BgckApplication\\b', 'MUSW__Description__c');
                     strJsonForm = strJsonForm.replaceAll('\\bContentDocumentId\\b', 'ContentDocumentId__c');
+					strJsonForm = strJsonForm.replaceAll('\\bMUSW_Required\\b', 'MUSW__Required__c');
                     
                     strJsonForm = strJsonForm.replaceAll('\"[^\"]*\":null',''); //basic removeal of null values
                     strJsonForm = strJsonForm.replaceAll(',{2,}', ','); //remove duplicate/multiple commas
