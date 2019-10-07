@@ -710,6 +710,19 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Payment_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Payment Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>Receipt_Amount_Remaining__c</fullName>
         <externalId>false</externalId>
         <formula>BGBK__Receipt__r.MUSW__Amount_Available__c</formula>
@@ -752,6 +765,18 @@ IF(
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Related To</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Release__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Release</label>
+        <length>20</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
