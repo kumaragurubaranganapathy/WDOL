@@ -180,7 +180,7 @@ ________________________________________________________________________________
                     </lightning:select>
                </div>
                 <div class="btnAlign">
-                        <lightning:button variant="neutral" label="Cancel" title="Cancel" class='btn-lnp cancel-button' title="Cancel" type="text" onclick="{!c.goBack}"/>
+                        <lightning:button variant="neutral" label="Cancel" title="Cancel" class='btn-lnp cancel-button' type="text" onclick="{!c.goBack}"/>
                         <lightning:button variant="brand" label="Next" title="Next" aura:id="btnNext" class="proceed-btn" onclick= "{!c.searchLicenseActivation}"/>
                    </div>
                 <div class="new-wrapper">
