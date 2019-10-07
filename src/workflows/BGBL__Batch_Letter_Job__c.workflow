@@ -630,7 +630,7 @@ CONTAINS(TEXT( BGBL__Batch_Letter__r.BGBL__Output_Type__c ), &quot;.docx&quot;) 
             <name>BGBL__Letter_Job_Send_Single42</name>
             <type>OutboundMessage</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>BGBL__Batch_Letter_Job__c.BGBL__Status__c</field>
             <operation>equals</operation>
@@ -658,7 +658,7 @@ CONTAINS(TEXT( BGBL__Batch_Letter__r.BGBL__Output_Type__c ), &quot;.docx&quot;) 
             <name>BGBL__Letter_Job_Send_Single42_Staging</name>
             <type>OutboundMessage</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>BGBL__Batch_Letter_Job__c.BGBL__Status__c</field>
             <operation>equals</operation>
@@ -728,7 +728,7 @@ CONTAINS(TEXT( BGBL__Batch_Letter__r.BGBL__Output_Type__c ), &quot;.docx&quot;) 
             <name>BGBL__Letter_Job_Send_Batch42_Staging</name>
             <type>OutboundMessage</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <formula>AND(BGBL__Parent_Letter_Job__c = null,  BGBL__Single_Letter_Job__c = False,  TEXT(BGBL__Status__c) = &apos;In Queue (verifying...)&apos;)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
