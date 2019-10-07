@@ -16,7 +16,7 @@
     </values>
     <values>
         <field>Display_In_Related_Tab__c</field>
-        <value xsi:type="xsd:boolean">false</value>
+        <value xsi:type="xsd:boolean">true</value>
     </values>
     <values>
         <field>Generate_Fee__c</field>
@@ -36,6 +36,6 @@
     </values>
     <values>
         <field>Service_Request_Type__c</field>
-        <value xsi:type="xsd:string">Duplicate Wall Certificate</value>
+        <value xsi:type="xsd:string">Request Duplicate Wall Certificate</value>
     </values>
 </CustomMetadata>

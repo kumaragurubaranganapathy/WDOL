@@ -11,7 +11,7 @@
         var status = parcedValue[1];
         if(status == 'Show Provider')
         {               
-            helper.viewProviderHelper(component, event, helper);
+            helper.viewProviderHelper(component, event, helper,endorsementID);
         }
         else if(status == 'Add Provider')
         {
