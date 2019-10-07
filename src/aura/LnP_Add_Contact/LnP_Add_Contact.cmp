@@ -16,7 +16,7 @@
     <aura:registerEvent name="RefreshComponentEvent" type="c:RefreshComponentEvent" />
     
     <div class="{!v.isOpen?'slds-hide':'slds-float_right'}">
-        <lightning:button name="Add Contact" label="Add Administrator" variant="brand" onclick="{!c.handleClick}" />
+        <lightning:button name="Add Contact" label="Add Administrator" title="Add Administrator" variant="brand" onclick="{!c.handleClick}" />
     </div>
     <aura:if isTrue="{!v.isOpen}">
         <!--###### MODAL BOX Start######--> 

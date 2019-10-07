@@ -67,13 +67,13 @@
             </fieldset>
                  <lightning:layout horizontalAlign="center">
                         <lightning:layoutitem padding="around-small">
-                            <lightning:button  label="Save Address" variant="brand" onclick="{!c.onsaveAddress}"/>
+                            <lightning:button  label="Save Address" title="Save Address" variant="brand" onclick="{!c.onsaveAddress}"/>
                         </lightning:layoutitem>
                     </lightning:layout>
                 </div>
 
                <div class="slds-modal__footer">
-                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.handleCancel}"/>
+                    <lightning:button variant="neutral" label="Cancel" title="Cancel" onclick="{!c.handleCancel}"/>
                 </div>
             </div>
         </div>

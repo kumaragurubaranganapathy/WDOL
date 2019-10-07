@@ -167,12 +167,12 @@
                                     <td data-label="actions" class="cell-style">
                                         <div class="new-lic-btn"   onclick ="{!c.editDraftLicenseApplication}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
                                              data-board = "{!tableData.Application_Type__c}" data-applicationType = "{!tableData.Application_Method__c}" data-isrenewal="{!tableData.isRenewal__c}">
-                                            <lightning:button variant="brand" label="Edit" title="Neutral action"/>
+                                            <lightning:button variant="brand" label="Edit" title="Edit"/>
                                         </div>    
                                     </td>
                                     <td data-label="actions" class="cell-style">
                                         <div class="new-lic-btn" onclick ="{!c.deleteDraftLicenseApplication}" data-recordId = "{!tableData.Id}">
-                                            <lightning:button label="Delete" title="Neutral action"/>
+                                            <lightning:button label="Delete" title="Delete"/>
                                         </div>    
                                     </td> 
                                 </tr>  
@@ -246,12 +246,12 @@
                                     <td data-label="actions" class="cell-style">
                                         <div class="new-lic-btn"   onclick ="{!c.editDraftLicenseApplication}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
                                              data-board = "{!tableData.Application_Type__c}" data-applicationType = "{!tableData.Application_Method__c}" data-isrenewal="{!tableData.isRenewal__c}">
-                                            <lightning:button variant="brand" label="Edit" title="Neutral action"/>
+                                            <lightning:button variant="brand" label="Edit" title="Edit"/>
                                         </div>    
                                     </td>
                                     <td data-label="actions" class="cell-style">
                                         <div class="new-lic-btn" onclick ="{!c.deleteDraftLicenseApplication}" data-recordId = "{!tableData.Id}">
-                                            <lightning:button label="Delete" title="Neutral action"/>
+                                            <lightning:button label="Delete" title="Delete"/>
                                         </div>    
                                     </td> 
                                 </tr>  
@@ -320,12 +320,12 @@
                                     <td data-label="actions" class="cell-style">
                                         <div class="slds-truncate new-lic-btn"   onclick ="{!c.editDraftLicenseApplication}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
                                              data-board = "{!tableData.Application_Type__c}" data-applicationType = "{!tableData.Application_Method__c}" data-isrenewal="{!tableData.isRenewal__c}">
-                                            <lightning:button label="Edit" variant="brand" title="Neutral action"/>
+                                            <lightning:button label="Edit" variant="brand" title="Edit"/>
                                         </div>    
                                     </td>
                                     <!--<td data-label="actions" class="cell-style">
                                          <div class="slds-truncate" onclick ="{!c.deleteDraftLicenseApplication}" data-recordId = "{!tableData.Id}">
-                                            <lightning:button label="Delete" title="Neutral action"/>
+                                            <lightning:button label="Delete" title="Delete"/>
                                         </div>    
                                     </td> -->
                                 </tr>  
@@ -376,12 +376,12 @@
                                     </td>
                                     <td data-label="actions" class="cell-style">
                                         <div class="slds-truncate" data-recordId="{!tableData.id}">
-                                            <lightning:button label="Edit" title="Neutral action"/>
+                                            <lightning:button label="Edit" title="Edit"/>
                                         </div>    
                                     </td>
                                     <!--<td data-label="actions" class="cell-style">
                                 <div class="slds-truncate" data-recordId="{!tableData.id}">
-                                    <lightning:button label="Delete" title="Neutral action"/>
+                                    <lightning:button label="Delete" title="Delete"/>
                                 </div>    
                             </td> -->
                                 </tr>  

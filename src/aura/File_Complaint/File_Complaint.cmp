@@ -312,12 +312,12 @@
                 <!--</aura:if>-->
                 <div class="slds-grid buttons complaint-btn-wrapper">
                     <div class="slds-small-size_4-of-4 slds-medium-size_1-of-4 left">
-                        <lightning:button class="{!(v.screenTwo || v.screenThree)?'back-button':'slds-hide'}" variant="neutral" type="button" name="back" label="Back" onclick="{!c.backToPrevious}"/>
+                        <lightning:button class="{!(v.screenTwo || v.screenThree)?'back-button':'slds-hide'}" variant="neutral" type="button" name="back" label="Back" title="Back" onclick="{!c.backToPrevious}"/>
                     </div>
                     <div class="slds-small-size_4-of-4 slds-medium-size_3-of-4 right submit-btn-wrapper">
-                        <lightning:button class="{!(v.screenOne)?'slds-hide':'cancel-button'}" variant="neutral" type="button" name="cancel" label="Cancel" onclick="{!c.cancelComplaint}"/>
-                        <lightning:button class="{!(v.screenOne || v.screenTwo)?'next-button':'slds-hide'}" variant="brand" type="submit" name="Next" label="Next" onclick="{!c.goToNext}"/>
-                        <lightning:button class="{!(v.screenThree)?'next-button':'slds-hide'}" variant="brand" type="submit" name="submit" label="Submit" onclick="{!c.submitComplaint}" disabled="{!(!v.agreeCheck)}"/>
+                        <lightning:button class="{!(v.screenOne)?'slds-hide':'cancel-button'}" variant="neutral" type="button" name="cancel" label="Cancel" title="Cancel" onclick="{!c.cancelComplaint}"/>
+                        <lightning:button class="{!(v.screenOne || v.screenTwo)?'next-button':'slds-hide'}" variant="brand" type="submit" name="Next" label="Next" title="Next" onclick="{!c.goToNext}"/>
+                        <lightning:button class="{!(v.screenThree)?'next-button':'slds-hide'}" variant="brand" type="submit" name="submit" label="Submit" title="Submit" onclick="{!c.submitComplaint}" disabled="{!(!v.agreeCheck)}"/>
                     </div>
                 </div>            
             </div>
@@ -364,10 +364,10 @@
             </div>
             <div id="PrintButton" class="slds-grid buttons complaint-btn-wrapper">
                 <div class="slds-small-size_4-of-4 slds-medium-size_1-of-4 left">
-                    <lightning:button class="cancel-button" variant="neutral" type="button" label="Print" onclick="{!c.printAcknowledgement}"/>
+                    <lightning:button class="cancel-button" variant="neutral" type="button" label="Print" title="Print" onclick="{!c.printAcknowledgement}"/>
                 </div>
                 <div class="slds-small-size_4-of-4 slds-medium-size_3-of-4 right submit-btn-wrapper">
-                    <lightning:button class="next-button" variant="brand" type="submit" label="I'm Done" onclick="{!c.redirectToHome}" />
+                    <lightning:button class="next-button" variant="brand" type="submit" label="I'm Done" title="I'm Done" onclick="{!c.redirectToHome}" />
                 </div>
             </div>
         </aura:if>

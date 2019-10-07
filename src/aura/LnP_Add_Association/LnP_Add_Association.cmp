@@ -18,7 +18,7 @@
     
     <div class="association-wrapper">
         <div class="{!v.isAssociationOpen?'slds-hide':'slds-float_right'}">
-            <lightning:button name="Add Licensee" label="Add Licensee" variant="brand" onclick="{!c.handleAssociationClick}" />
+            <lightning:button name="Add Licensee" label="Add Licensee" title="Add Licensee" variant="brand" onclick="{!c.handleAssociationClick}" />
         </div>
         <aura:if isTrue="{!v.isAssociationOpen}">
             

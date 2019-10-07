@@ -155,12 +155,12 @@
                    <div class="slds-m-around--medium">
                         <!-- <lightning:button variant="neutral" label="Reset" onclick="{! c.resetTimeEntry }" /> -->
                        <aura:if isTrue="{!v.isOutOfCountry}">
-                        	<lightning:button  label="Save Address" variant="brand" onclick="{!c.saveNonUSAAddress}"/>&nbsp;&nbsp;
+                        	<lightning:button  label="Save Address" title="Save Address"  variant="brand" onclick="{!c.saveNonUSAAddress}"/>&nbsp;&nbsp;
                         <aura:set attribute="else">
-                        	<lightning:button variant="brand" label="Add Address" onclick="{!c.getValidatedAddress}" />&nbsp;&nbsp;
+                        	<lightning:button variant="brand" label="Add Address" title="Add Address" onclick="{!c.getValidatedAddress}" />&nbsp;&nbsp;
                         </aura:set>
                        </aura:if>
-                       <lightning:button  label="Cancel" variant="brand" onclick="{!c.handleBack}"/>
+                       <lightning:button  label="Cancel" title="Cancel" onclick="{!c.handleBack}"/>
                     </div> 
                     
                     
@@ -203,13 +203,13 @@
             </fieldset>
                  <lightning:layout horizontalAlign="center">
                         <lightning:layoutitem padding="around-small">
-                            <lightning:button  label="Save Address" variant="brand" onclick="{!c.saveUSAAddress}"/>
+                            <lightning:button  label="Save Address" title="Save Address" variant="brand" onclick="{!c.saveUSAAddress}"/>
                         </lightning:layoutitem>
                     </lightning:layout>
                 </div>
 
                <div class="slds-modal__footer">
-                    <lightning:button variant="neutral" label="Cancel" onclick="{!c.handleCancel}"/>
+                    <lightning:button variant="neutral" label="Cancel" title="Cancel" onclick="{!c.handleCancel}"/>
                 </div>
             </div>
         </div>

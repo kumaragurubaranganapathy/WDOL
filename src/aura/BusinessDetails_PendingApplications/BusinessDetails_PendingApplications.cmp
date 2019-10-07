@@ -206,7 +206,7 @@
                                                     </aura:if>
                                                     <aura:if isTrue="{!tableData.MUSW__Status__c == 'Pending action'}">
                                                         <div  onclick="{!c.uploadpendingdocuments}" data-id="{!tableData.Id}" data-number="{!tableData.Name}">
-                                                            <lightning:button variant="brand" label="Upload Files"/>
+                                                            <lightning:button variant="brand" label="Upload Files" title="Upload Files" />
                                                         </div>    
                                                     </aura:if>
                                                     <aura:if isTrue="{!(tableData.MUSW__Status__c == 'Submitted')|| (tableData.MUSW__Status__c == 'In-Review')|| (tableData.MUSW__Status__c == 'In Review')}">
@@ -298,10 +298,10 @@
                                                     <lightning:button variant="brand" label="Pay Fee" value="{!tableData.Id}" title="Pay Fee" onclick= "{!c.redirectToCart}"/>
                                                 </aura:if>
                                                 <aura:if isTrue="{!(tableData.Renewal_Status__c == 'Pending Additional Qualification')}">
-                                                    <lightning:button variant="brand" label="Update" value="{!tableData.Id}"/>
+                                                    <lightning:button variant="brand" label="Update" title="Update" value="{!tableData.Id}"/>
                                                 </aura:if>
                                                 <aura:if isTrue="{!(tableData.Renewal_Status__c == 'Pending action')}">
-                                                    <lightning:button variant="brand" label="Update Files" value="{!tableData.Id}"/>
+                                                    <lightning:button variant="brand" label="Update Files" title="Update Files" value="{!tableData.Id}"/>
                                                 </aura:if>
                                                 <aura:if isTrue="{!(tableData.MUSW__Status__c == 'Submitted')|| (tableData.MUSW__Status__c == 'In-Review')|| (tableData.MUSW__Status__c == 'In Review')}">
                                                     <lightning:button variant="brand" label="Download Application" value="{!tableData.Id}" title="Download Application" onclick= "{!c.downloadDocument}"/>

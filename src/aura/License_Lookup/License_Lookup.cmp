@@ -129,7 +129,7 @@ _______________________________________________________________
                 </div>
                 <div class="slds-m-top_large license-buttons searchNum alignRight">
                     <!--lightning:button variant="neutral" class="cancel-button" type="button" name="cancel" label="Cancel" onclick="{!c.cancelSearchWithNum}"/-->
-                    <lightning:button variant="brand" class="next-button" type="submit" name="Search" label="Search" onclick="{!c.searchWithNum}"/>
+                    <lightning:button variant="brand" class="next-button" type="submit" name="Search" label="Search" title="Search" onclick="{!c.searchWithNum}"/>
                 </div>
                 <div class="heading slds-m-top_x-large">Search with License Details</div>
                 <div class="sub-section-header slds-m-vertical_medium">If you don’t have a License Number or UBI, you may use any of the ﬁelds below to search</div>
@@ -237,7 +237,7 @@ _______________________________________________________________
                 <div class="slds-m-top_large">
                     <div class="license-buttons alignRight">
                         <!--lightning:button class="cancel-button" variant="neutral" type="button" name="cancel" label="Cancel" onclick="{!c.cancelSearchWithDetails}"/-->
-                        <lightning:button class="next-button" variant="brand" type="submit" name="Search" label="Search" onclick="{!c.searchWithDetails}"/>
+                        <lightning:button class="next-button" variant="brand" type="submit" name="Search" label="Search" title="Search" onclick="{!c.searchWithDetails}"/>
                     </div>
                 </div>
             </aura:if>
@@ -311,7 +311,7 @@ _______________________________________________________________
                     <a class="link download-link" onclick="{!c.downloadCsv}">Download As CSV</a>
                 </div>
                 <div class="license-buttons">
-                    <lightning:button class="cancel-button new-search" variant="neutral" type="button" name="Back" label="New Search" onclick="{!c.navigateToCustomPlace1}"/>
+                    <lightning:button class="cancel-button new-search" variant="neutral" type="button" name="Back" label="New Search" title="New Search" onclick="{!c.navigateToCustomPlace1}"/>
                 </div>
             </div>
         </aura:if> 
@@ -726,10 +726,10 @@ _______________________________________________________________
                 </aura:iteration>
                 <div class="buttons slds-m-top_x-large">
                     <div class="license-buttons buttons-left">
-                        <lightning:button class="cancel-button" variant="neutral" type="button" name="Back" label="Back" onclick="{!c.navigateToCustomPlace2}"/>
+                        <lightning:button class="cancel-button" variant="neutral" type="button" name="Back" label="Back" title="Back" onclick="{!c.navigateToCustomPlace2}"/>
                     </div>
                     <div class="buttons-right">
-                        <lightning:button class="next-button" variant="brand" type="button" name="cancel" label="Search Another License" onclick="{!c.modifySearch}"/>
+                        <lightning:button class="next-button" variant="brand" type="button" name="cancel" label="Search Another License" title="Search Another License" onclick="{!c.modifySearch}"/>
                     </div>
                 </div>
             </div>

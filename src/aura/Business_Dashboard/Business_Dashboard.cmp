@@ -63,7 +63,7 @@
                 <h1 class="page-title">Manage My Businesses</h1>                
                 <div class="biz-welcome">   
                     <div class="add-biz-wrapper">
-                        <lightning:button name="Add Business Account" label="Add Business Account" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />
+                        <lightning:button name="Add Business Account" label="Add Business Account" title="Add Business Account" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />
                     </div>
                     <!-- <c:LnP_AddBusiness recordTypeId="{!v.recordTypeId}"/> -->
                 </div>
@@ -101,7 +101,7 @@
             </aura:if>
         </aura:if>
         <aura:if isTrue="{!v.thirdpartybillingcode}">
-            <lightning:button class="slds-m-top_large" variant="neutral" type="cancel" name="Create Code" label="Create Code" onclick="{!c.createcode}"/>
+            <lightning:button class="slds-m-top_large" variant="neutral" type="cancel" name="Create Code" label="Create Code" title="Create Code" onclick="{!c.createcode}"/>
         </aura:if>
         
         <aura:if isTrue="{!v.courseDetail}">
@@ -583,12 +583,12 @@
             </aura:if> 
             <aura:if isTrue="{!!or(v.licenseDetail, v.courseDetail)}">
                 <div class="back-btn-wrapper">
-                    <lightning:button class="back-btn" label="Back" onclick="{!c.navigateToScreenOne}"/>
+                    <lightning:button class="back-btn" label="Back" title="Back" onclick="{!c.navigateToScreenOne}"/>
                 </div>
             </aura:if> 
             <aura:if isTrue="{!or(and(v.screenTwo,v.licenseDetail),and(v.screenTwo,v.courseDetail))}">
                 <div class="back-btn-wrapper">
-                    <lightning:button class="back-btn" label="Back" onclick="{!c.navigateToBusinessDetails}"/>
+                    <lightning:button class="back-btn" label="Back" title="Back" onclick="{!c.navigateToBusinessDetails}"/>
                 </div>
             </aura:if>
         </aura:if>
