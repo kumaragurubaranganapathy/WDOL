@@ -10,8 +10,6 @@
 
 public class License2TriggerHandler implements BGCM.ITriggerHandler {
     public static user u;
-    public static boolean runAgain = true;
-    public static boolean runOnce = false;
     public License2TriggerHandler() {
         u = [Select Id, UserType, Is_Portal_User__c From User where Id = :UserInfo.getUserId()];
     }
@@ -19,21 +17,23 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     public void onAfterDelete() {}
     public void onAfterInsert() {
         //This method is to run the automation rules
-        BGCM.TriggerManager.execute('DRE2_MUSW_License2_c', new DRETriggerHandler());
         
         /*Calling the after method to create submissions*/   
-        if(runAgain == true) {
-            runAgain= false;
-            afterMethod();
+        if(DOL_AppUtility.IsLicenseTriggerFired == false) {
+           
+         BGCM.TriggerManager.execute('DRE2_MUSW_License2_c', new DRETriggerHandler());
+         DOL_AppUtility.IsLicenseTriggerFired = true;
+         afterMethod();
         }
        
             
     }
     public void onAfterUndelete() {}
     public void onAfterUpdate() {
-     if(runAgain == true) {
-         runAgain= false;
-		 List<MUSW__License2__c> triggerOld = Trigger.Old;
+        //afterMethod();
+     if(DOL_AppUtility.IsLicenseTriggerFired == false) {
+         DOL_AppUtility.IsLicenseTriggerFired = true;
+         List<MUSW__License2__c> triggerOld = Trigger.Old;
         List<MUSW__License2__c> triggerNew = Trigger.New;
 		 Set<Id> licenseReviewList = new Set<Id>();
          for(MUSW__License2__c lic : triggerNew ){
@@ -69,7 +69,9 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     }
     public void onBeforeDelete() {}
     public void onBeforeInsert() {
-        if (u.Is_Portal_User__c == true) {
+        
+        if(trigger.isBefore && trigger.isinsert && DOL_AppUtility.IsLicenseTriggerFired == false) {
+                   if (u.Is_Portal_User__c == true) {
             //This method is for base validation on license details provided by the Applicant
            
         }else{
@@ -95,17 +97,21 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
         //Dol_IsLicenseRecordUpdatedForASC start
         changeData();
         //end
-        MUSW.SequenceNumber.updateNumbers(Trigger.New, Trigger.Old);
+        MUSW.SequenceNumber.updateNumbers(Trigger.New, Trigger.Old); 
+        }
+
         
       //  Notificationdate();
     }
     public void onBeforeUndelete() {}
     public void onBeforeUpdate() {
-	
-	//Added by Abhilasha for bug 6999
-	    List<MUSW__License2__c> triggerNew = Trigger.New;
-		WA_License_utility.updateProfessionCode(triggerNew);
-		
+    
+    //Added by Abhilasha for bug 6999
+    //
+        if(trigger.isBefore && trigger.isupdate && DOL_AppUtility.IsLicenseTriggerFired == false) {
+        List<MUSW__License2__c> triggerNew = Trigger.New;
+        WA_License_utility.updateProfessionCode(triggerNew);
+        
         if (u.Is_Portal_User__c == true) {
             //This method is for base validation on license details provided by the Applicant
             
@@ -114,7 +120,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
         
         //This is to Update sequence number & Automation Rules
         DRESequence();
-        
+        }
       //  Notificationdate();
       //  
     }
@@ -205,9 +211,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
         }
         
         //DHP Task
-         if(trigger.isUpdate && runOnce == false){
-            System.debug('Start executing');
-            runOnce = true;
+         if(trigger.isUpdate ){
             List<Renewal_Application__c> relatedRenewalApplications  = new List<Renewal_Application__c>();
             
             set<id> licenseIDs = new Set<Id>();
