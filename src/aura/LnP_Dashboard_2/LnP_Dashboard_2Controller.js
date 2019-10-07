@@ -8,6 +8,7 @@
         helper.setDraftNewLicenseApplicationsTableData(component, event, helper);
         helper.setDraftRenewalApplicationsTableData(component, event, helper);
         helper.setDraftMaintanceRequestTableData(component, event, helper);
+      
         
         helper.setPendingNewLicenseApplicationsTableData(component, event, helper);
         helper.setPendingRenewalApplicationsTableData(component, event, helper);
@@ -321,6 +322,7 @@
         }if(actionOnModal === "Cancel" || actionOnModal === "resend" || actionOnModal === "remove"){
             
             helper.updateAssociationRelationHelper(component, event, helper,associateId,actionOnModal);
+            
         }
         
     },
@@ -342,6 +344,8 @@
         helper.setDraftAMRLicenseDetailTableData(component,event,helper,licenseId);
         
         helper.fetchLicenseDetailsHelper(component, event, helper, licenseId);
+        
+        helper.setShowExamsTabFlagDashboard(component,event,helper,licenseId);
     },
     
     dsiplayPendingLicenseDetails : function(component, event, helper){

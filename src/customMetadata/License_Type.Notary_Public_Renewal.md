@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>Application_Type__c</field>
-        <value xsi:type="xsd:string">Notary Public</value>
+        <value xsi:type="xsd:string">Notary</value>
     </values>
     <values>
         <field>Credential_Type__c</field>
@@ -17,6 +17,10 @@
     <values>
         <field>Functional_Area__c</field>
         <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Has_Exams__c</field>
+        <value xsi:type="xsd:boolean">false</value>
     </values>
     <values>
         <field>IndividualBusinessType__c</field>
