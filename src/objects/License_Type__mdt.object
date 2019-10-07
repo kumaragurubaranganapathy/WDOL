@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>This is the configuration that helps create application.</description>
     <fields>
         <fullName>Application_Type__c</fullName>
         <description>This refers to the type of application.</description>
@@ -42,6 +41,14 @@
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Has_Exams__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Has Exams</label>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IndividualBusinessType__c</fullName>
@@ -146,21 +153,4 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>License Type</label>
-    <listViews>
-        <fullName>myView</fullName>
-        <columns>MasterLabel</columns>
-        <columns>Application_Type__c</columns>
-        <columns>Credential_Type__c</columns>
-        <columns>NamespacePrefix</columns>
-        <columns>IndividualBusinessType__c</columns>
-        <columns>Record_type_Name__c</columns>
-        <columns>Is_Available_for_Audit__c</columns>
-        <columns>RBS_RE__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>myView</label>
-        <language>en_US</language>
-    </listViews>
-    <pluralLabel>License Types</pluralLabel>
-    <visibility>Public</visibility>
 </CustomObject>

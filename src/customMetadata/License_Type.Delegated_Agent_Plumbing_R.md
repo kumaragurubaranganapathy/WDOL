@@ -19,6 +19,10 @@
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>Has_Exams__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
         <field>IndividualBusinessType__c</field>
         <value xsi:type="xsd:string">Business</value>
     </values>
