@@ -694,6 +694,9 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                             LnP_JSONParser.Body bodyLink = new LnP_JSONParser.Body();
                             bodyLink.LinkedEntityId = DOL_AppConstants.NULL_EMPTY_STRING + '@{refSubId'+innerCount+'.id}';
                             bodyLink.ContentDocumentId = contentdocId;
+							 if(fieldMap.isMandatorySub == true) {
+                                bodyLink.MUSW_Required   = true;
+                            }
                             bodyLink.ShareType = DOL_AppConstants.NULL_EMPTY_STRING + 'I';
                             requestDetailsContent.body = bodyLink;
                             requestDetailsList.add(requestDetailsContent); 
@@ -1217,6 +1220,7 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                             if(submissions!=null && submissions.ContentDocumentId__c != null ) {
                                 submissions.IsSANFileUploadTrue__c = true;
                                 submissions.SAN_Image_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Applications';
+								submissions.MUSW__Required__c = true;
                                 mapSubmissionToFile.put(submissions.ID, submissions.ContentDocumentId__c.replace(';',''));
                                 lstSubmissions.add(submissions);
                             }
