@@ -451,6 +451,32 @@ _______________________________________________________________
                                 </lightning:layoutItem>
                             </lightning:layout>
                             
+					<aura:if isTrue="{!task.Type == $Label.c.Polaris_Renew_Reminder}">
+                        <div class="task-wrapper">                    
+                            <div class="task-subject">{!task.Subject}</div>                        
+                            <lightning:layout class="slds-wrap task-body">
+                                <lightning:layoutItem size="12" mediumDeviceSize="9">
+                                    <lightning:layout class="slds-wrap">
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style license-item">
+                                            <div class="label-style">License</div> 
+                                            <div class="data-style">{!task.Parent_License_Name__c}</div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style license-item">
+                                            <div class="label-style">License Type</div>
+                                            <div class="data-style">{!task.Parent_License_Type__c}</div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="6" class="field-style license-item">
+                                            <div class="label-style">Expiration Date</div> 
+                                            <div class="data-style">{!task.Expiration_Date__c}</div>
+                                        </lightning:layoutItem>                                    
+                                    </lightning:layout>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="12" mediumDeviceSize="3" class="button-wrapper">                                    
+                                    <div class="accept-btn" data-id="{!task.Id}" data-whatid="{!task.WhatId}" data-board="{!task.Parent_Profession__c}" data-licenseType="{!task.Parent_License_Type__c}" data-appType="{!task.License_Application_Type__c}" onclick="{!c.renewLicense}" >
+                                        <lightning:button class="accept-btn" variant="brand" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Renew}" title="{!$Label.c.Polaris_Renew}" />
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>  
                         </div>
                     </aura:if>
                 </aura:iteration>

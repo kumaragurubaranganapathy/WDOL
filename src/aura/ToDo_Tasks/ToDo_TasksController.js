@@ -129,5 +129,15 @@
     StartRequestEducationInformation : function(component,event,helper){
         helper.StartRequestEducationInformationHelper(component,event);
     },
+    renewLicense: function(component,event,helper){
+        var ctarget = event.currentTarget;
+        sessionStorage.setItem("licId", ctarget.getAttribute("data-whatid"));
+        sessionStorage.setItem("licenseType", ctarget.getAttribute("data-licenseType"));
+        sessionStorage.setItem("board", ctarget.getAttribute("data-board") );
+        sessionStorage.setItem("applicationType", ctarget.getAttribute("data-appType"));
+        sessionStorage.setItem("renewalReinstate", 'Renewal');
+        sessionStorage.setItem("flowType", 'Renewal');
+        window.location.href='/lightningwashington/s/renewreinstate';
+    }
  
 })

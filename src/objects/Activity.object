@@ -429,6 +429,24 @@ CASE( MUSW__AlertCode__c,
         <type>Text</type>
         <unique>false</unique>
     </fields>
+     <fields>
+        <fullName>Expiration_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Expiration Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>License_Application_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>License Application Type</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Sub_status__c</fullName>
         <externalId>false</externalId>
