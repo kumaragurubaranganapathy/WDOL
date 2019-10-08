@@ -14,7 +14,7 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
-            <conditionLogic>or</conditionLogic>
+            <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -52,47 +52,10 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideReferenceTo</name>
-                    <value>
-                        <stringValue>MUSW__Inspection__c</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>ID</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Inspection__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>Complaint or Inspection Look up is not null</label>
+            <label>Complaint Look up is not null</label>
         </rules>
     </decisions>
     <description>Change Owner when a fine is created</description>
@@ -103,11 +66,11 @@
                 <stringValue>[MUSW__Fee__c].MUSW__Complaint2__c.MUSW__Primary_Contact__c.User__c.Id </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_5064113113</name>
+        <name>formula_2_myRule_1_A1_5305452706</name>
         <dataType>String</dataType>
         <expression>{!myVariable_current.MUSW__Complaint2__r.MUSW__Primary_Contact__r.User__r.Id}</expression>
     </formulas>
-    <interviewLabel>Complaint_Fine_Creation-10_InterviewLabel</interviewLabel>
+    <interviewLabel>Complaint_Fine_Creation-11_InterviewLabel</interviewLabel>
     <label>Complaint Fine Creation</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -209,7 +172,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_5064113113</elementReference>
+                <elementReference>formula_2_myRule_1_A1_5305452706</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -251,6 +214,7 @@
         <object>MUSW__Fee__c</object>
     </recordUpdates>
     <startElementReference>myDecision</startElementReference>
+    <status>Active</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>
