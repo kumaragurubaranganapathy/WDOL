@@ -4,7 +4,7 @@
 	},
     close:function(component, event) {
         component.set("v.alertClose",true);
-     },
+     }, 
     handleAlertClose : function(component,event){
         var alertType = component.get("v.alertType");
         var alertClose = component.get("v.alertClose");

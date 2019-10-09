@@ -8,4 +8,4 @@
     handleAlertClose : function(component,event,helper){
         helper.handleAlertClose(component,event);
     }
-})
+}) 
