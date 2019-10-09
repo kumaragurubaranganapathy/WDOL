@@ -264,12 +264,13 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             }
     }
 	
+        Set<String> statusList = new Set<String> {'Inactive','Canceled','Expired'};
 	 //Update FE Branch Status to 'Expired'
-        List<MUSW__License2__c> childFEBranchLicense = [select Parent_License__c, Credential_Type__c,MUSW__Status__c,Sub_Status__c,MUSW__Expiration_Date__c FROM MUSW__License2__c WHERE Parent_License__c IN :newMapLicense.keySet() AND Parent_License__r.Credential_Type__c='Funeral Establishment' AND Parent_License__r.MUSW__Status__c='Expired' AND MUSW__Status__c!='Expired' AND Credential_Type__c='Funeral Establishment Branch'];
+        List<MUSW__License2__c> childFEBranchLicense = [select Parent_License__c, Credential_Type__c,MUSW__Status__c,Sub_Status__c,MUSW__Expiration_Date__c FROM MUSW__License2__c WHERE Parent_License__c IN :newMapLicense.keySet() AND Parent_License__r.Credential_Type__c='Funeral Establishment' AND Parent_License__r.MUSW__Status__c IN:statusList AND MUSW__Status__c!='Expired' AND Credential_Type__c='Funeral Establishment Branch'];
         List<MUSW__License2__c> updateChildFEBranchLicense = new List<MUSW__License2__c>();
         for(MUSW__License2__c childFEB : childFEBranchLicense)
         {
-             childFEB.MUSW__Status__c = 'Expired';
+             childFEB.MUSW__Status__c = 'Inactive';
              childFEB.MUSW__Expiration_Date__c = Date.today();
              updateChildFEBranchLicense.add(childFEB);
         }

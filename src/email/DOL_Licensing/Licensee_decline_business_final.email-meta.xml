@@ -5,7 +5,7 @@
     <letterhead>DOL_Letterhead</letterhead>
     <name>Licensee decline - business</name>
     <style>formalLetter</style>
-    <subject>Department of Licensing - {!Associations__c.Child_Licensee_Name__c} declined to join your business {!Associations__c.Parent_Licensee_Name__c}</subject>
+    <subject>{!Associations__c.Child_Licensee_Name__c} declined to join your business {!Associations__c.Parent_Licensee_Name__c}</subject>
     <textOnly>{!Associations__c.Child_Licensee_Name__c} declined your invitation to join your business {!Associations__c.Parent_Licensee_Name__c} on {!Associations__c.Current_Datetime__c}.
 
 

@@ -1,9 +1,8 @@
 .THIS {
 }
-.THIS .text-wrap{
-    text-align:center;
-    padding: calc((100vh - 370px)/2);
-    font-size:14px;
+.THIS .text-wrap{    
+    padding:1.5rem 7.5rem;
+    font-size:1rem;
 }
 .THIS .slds-icon-text-warning{
     fill:#cd2026;
@@ -21,10 +20,20 @@
 }
 .THIS .imgLayout{
     display:flex;
-    justify-content:center;
-    width:50%;
-    margin:0 auto;
-    padding-left:60px;
+    
+}
+.THIS .img-style{
+    width:40px;
+}
+.THIS .link-text{
+    margin-top:0.5rem;
+    font-size:1rem;
+}
+.THIS .header{
+    margin-bottom:1.5rem;
+}
+.THIS .text-wrap.ie-error .alertWid{
+    width:auto;
 }
 .THIS .imgLayout a{
     font-size:11px;
@@ -73,7 +82,7 @@
     font-weight:bold;
 }
 .THIS .download{
-    color:t(sentenceclr);
+    color:t(fieldclr);
     font-weight:bold;
 }
 .THIS .underline{

@@ -20,7 +20,7 @@
     </values>
     <values>
         <field>Item_Intake_Method__c</field>
-        <value xsi:type="xsd:string">Counter</value>
+        <value xsi:type="xsd:string">NCR</value>
     </values>
     <values>
         <field>Item_Payment_Method__c</field>

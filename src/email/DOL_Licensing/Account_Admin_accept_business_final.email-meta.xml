@@ -5,14 +5,13 @@
     <letterhead>DOL_Letterhead</letterhead>
     <name>Account Admin accept - business</name>
     <style>formalLetter</style>
-    <subject>Department of Licensing - {!MUSW__Account_Contact__c.Full_Name__c} agreed to be your Account Admin</subject>
+    <subject>{!MUSW__Account_Contact__c.Full_Name__c} agreed to be your Account Admin</subject>
     <textOnly>{!MUSW__Account_Contact__c.Full_Name__c} agreed to be an Account Admin for {!MUSW__Account_Contact__c.MUSW__Account__c} on {!MUSW__Account_Contact__c.Current_Datetime__c}.
 
 
 Questions? Need help?
-{!MUSW__License2__c.Application_Type__c}
-{!MUSW__License2__c.Program_Email__c}
-{!MUSW__License2__c.Program_Phone__c}
+
+Contact Us
 
 Thank you.
 

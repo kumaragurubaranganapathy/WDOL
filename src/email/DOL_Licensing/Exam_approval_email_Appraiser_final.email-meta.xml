@@ -5,7 +5,7 @@
     <letterhead>DOL_Letterhead</letterhead>
     <name>Exam approval email - Appraiser</name>
     <style>formalLetter</style>
-    <subject>Department of Licensing - You may now take your {!Education_History__c.Exam_Type__c} exam before {!Education_History__c.Exam_Approval_Expiry_Date__c}</subject>
+    <subject>You may now take your {!Education_History__c.Exam_Type__c} exam before {!Education_History__c.Exam_Approval_Expiry_Date__c}</subject>
     <textOnly>We have approved you to take the {!Education_History__c.Exam_Type__c} exam
 
 Exam ID: {!Education_History__c.Exam_Id__c}
@@ -19,7 +19,7 @@ Follow instructions
 
 After you pass your exam:
 
-Go to {!Education_History__c.License_Portal_URL__c}.
+Go to {!Education_History__c.License_Portal_URL__c}
 Upload your exam results
 Pay licensing fee
 

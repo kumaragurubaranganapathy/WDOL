@@ -1,0 +1,33 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="alertType" type="String"/>
+    <aura:attribute name="alertHeader" type="String"/>
+    <aura:attribute name="alertText" type="List"/>
+    <aura:attribute name="fieldBody" type="String" default="" />
+    <aura:attribute name="alertClose" type="Boolean" default="false" />
+    <aura:attribute name="redirectUrl" type="String" default="" />
+    <aura:attribute name="refresh" type="String" default="" />
+    <aura:attribute name="buttonDisable" type="Boolean" default="false" />
+   
+    
+    <aura:handler name="change" value="{!v.alertClose}" action="{!c.handleAlertClose}"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:if isTrue="{!!v.alertClose}">
+        <div aura:id="closeBtn">
+            <!--<div class="delete-button"><button class="slds-button slds-button_destructive"  onclick="{!c.close}">X</button></div> -->
+            <div class="{!'alertWid '+v.alertType}">
+                <span><lightning:icon iconName="{!'utility:'+ v.alertType}" alternativeText="{!v.alertType}" /></span>
+                <div class="alertHeader">{!v.alertHeader}</div>
+                <aura:iteration items="{!v.alertText}" var="rec">
+                     <div class="alertText">{!rec}</div>
+                </aura:iteration> 
+                
+                
+                
+            </div>
+        </div>
+    </aura:if>
+    
+    
+    
+</aura:component>

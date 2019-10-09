@@ -308,6 +308,16 @@ Permit__r.Business_License__c
         <type>Number</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Current_Datetime__c</fullName>
+        <externalId>false</externalId>
+        <formula>NOW()</formula>
+        <label>Current Datetime</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
     <fields>
         <fullName>Co_owner_Name__c</fullName>
         <description>co-owner name to be displayed on renewal application</description>
@@ -452,6 +462,16 @@ Permit__r.Business_License__c
             <restricted>true</restricted>
             <valueSetName>Credential</valueSetName>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Current_Issue_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Current Issue Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Current_Site_Count__c</fullName>
@@ -657,6 +677,73 @@ Permit__r.Business_License__c
         <formula>License__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>License Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Portal_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Portal_URL__c</formula>
+        <label>License Portal URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Printable_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>License Printable Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Program_Email__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Program_Email__c</formula>
+        <label>License Program Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Program_Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Program_Phone__c</formula>
+        <label>License Program Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Program_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(License__r.Application_Type__c)</formula>
+        <label>License Program Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(License__r.Credential_Type__c)</formula>
+        <label>License Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

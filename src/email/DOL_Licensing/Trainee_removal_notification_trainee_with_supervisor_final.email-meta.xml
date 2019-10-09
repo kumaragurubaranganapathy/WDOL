@@ -5,7 +5,7 @@
     <letterhead>DOL_Letterhead</letterhead>
     <name>Trainee removal notification - trainee - with supervisor</name>
     <style>formalLetter</style>
-    <subject>Department of Licensing - {!Associations__c.Parent_Licensee_Name__c} removed you as an Appraiser Trainee. Your license is still active.</subject>
+    <subject>{!Associations__c.Parent_Licensee_Name__c} removed you as an Appraiser Trainee. Your license is still active.</subject>
     <textOnly>{!Associations__c.Parent_Licensee_Name__c} removed you as an Appraiser Trainee on {!Associations__c.Current_Datetime__c}.
 
 You can no longer earn experience hours under this supervisor.

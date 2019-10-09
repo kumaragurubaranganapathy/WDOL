@@ -5,7 +5,7 @@
     <letterhead>DOL_Letterhead</letterhead>
     <name>Renewal reminder - individual</name>
     <style>formalLetter</style>
-    <subject>Department of Licensing - Time to renew your {!MUSW__License2__c.Credential_Type__c} license</subject>
+    <subject>Time to renew your {!MUSW__License2__c.Credential_Type__c} license</subject>
     <textOnly>Your {!MUSW__License2__c.Credential_Type__c} license expires on {!MUSW__License2__c.MUSW__Expiration_Date__c} and it’s time to renew.
 
 License: {!MUSW__License2__c.Name}
@@ -14,7 +14,7 @@ Profession: {!MUSW__License2__c.Application_Type__c}
 
 Renew and pay with our online system:
 
-Go to {!MUSW__License2__c.Portal_URL__c}.
+Go to {!MUSW__License2__c.Portal_URL__c}
 Sign in or create an account and follow instructions.
 
 You can’t legally practice your profession with an expired license. If you don’t renew before {!MUSW__License2__c.MUSW__Expiration_Date__c} you may have to pay a late fee or start a new application.

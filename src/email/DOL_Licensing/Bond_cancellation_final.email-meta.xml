@@ -6,7 +6,7 @@
     <letterhead>DOL_Letterhead</letterhead>
     <name>Bond cancellation</name>
     <style>formalLetter</style>
-    <subject>Department of Licensing - You must send us your surety bond by {!MUSW__License2__c.Expiration_Date_of_Bond__c} or we will cancel your {!MUSW__License2__c.Credential_Type__c} license.</subject>
+    <subject>You must send us your surety bond by {!MUSW__License2__c.Expiration_Date_of_Bond__c} or we will cancel your {!MUSW__License2__c.Credential_Type__c} license.</subject>
     <textOnly>Your surety bond company told us that your surety bond is ending on {!MUSW__License2__c.Expiration_Date_of_Bond__c}.
 
 You must send us a surety bond by {!MUSW__License2__c.Expiration_Date_of_Bond__c} or we will cancel your {!MUSW__License2__c.Credential_Type__c} license.
@@ -21,7 +21,7 @@ A new surety bond issued to the department in the amount of ${!MUSW__License2__c
 
 Submit the information through our new online system:
 
-Go to {!MUSW__License2__c.Portal_URL__c}.
+Go to {!MUSW__License2__c.Portal_URL__c}
 Sign in or create an account and follow instructions.
 
 Or email or mail us your surety bond information:

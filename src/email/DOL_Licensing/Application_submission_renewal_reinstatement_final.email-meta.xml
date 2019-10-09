@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>DOL_Letterhead</letterhead>
+    <name>Application submission - renewal reinstatement</name>
+    <style>formalLetter</style>
+    <subject>We received your {!Renewal_Application__c.License_Type__c} license application</subject>
+    <textOnly>We received your {!MUSW__License2__c.Credential_Type__c} license application on {!MUSW__License2__c.Current_Datetime__c}.
+
+We’ll review it and let you know if we need more information.
+
+As soon as we approve your application we will issue your license.
+
+Track your application status through our new online system:
+
+Go to {!MUSW__License2__c.Portal_URL__c}
+Sign in or create an account and follow instructions.
+
+
+
+Questions? Need help?
+{!MUSW__License2__c.Application_Type__c}
+{!MUSW__License2__c.Program_Email__c}
+{!MUSW__License2__c.Program_Phone__c}
+
+Thank you.
+
+Department of Licensing
+www.dol.wa.gov
+GEN001</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
