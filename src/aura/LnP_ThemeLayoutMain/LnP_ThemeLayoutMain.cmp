@@ -19,11 +19,12 @@ DEVELOPER           DATE            DESCRIPTION
         <aura:if isTrue="{!!v.isBrowserIE}">
             <div class="layout-wrapper" onclick="{!c.closeServiceMenu}">
                 <div class="main-container slds-grid slds-grid_vertical" aura:id="mainWrapper">
+                    <a href="#main-content" class="skip-content">Skip to Main Content</a>
                     <div class="header">
                         <!--c:LnP_CommonHeader aura:id="header"/-->
                         <c:LnP_comHeaderPublicForms aura:id="header"/>
                     </div>            
-                    <div class="main-content" aura:id="main-content" role="main">
+                    <div class="main-content" aura:id="main-content" role="main" id="main-content" tabindex="-1">
                         {!v.body}
                     </div>
                     <div class="footer">               

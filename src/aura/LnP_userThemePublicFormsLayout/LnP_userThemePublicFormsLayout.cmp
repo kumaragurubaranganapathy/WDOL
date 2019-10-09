@@ -18,17 +18,17 @@ Sanghmitra Sahu/Tuhin Mazumder     14-Sep-2018             Initial Creation
     <aura:attribute name="isScriptLoaded" type="Boolean" />
     <ltng:require styles="{!$Resource.Lnp_communityStyles}" />
     <ltng:require styles="{!$Resource.GlobalCSS}" />
+    
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     <aura:if isTrue="{!v.isScriptLoaded}">
         <aura:if isTrue="{!!v.isBrowserIE}">
             <div class="{!v.pageTitle=='wizard'?'theme-background':''}">   
-                <!--<div role="banner" class="mainheader"> <h1 class="slds-hide">Delaware L&amp;P</h1> </div> -->
+                <a href="#main" class="skip-content">Skip to main content</a>
+                
                 <c:LnP_comHeaderPublicForms/>
-                <!--a href="#main">Skip to main content</a>-->
+                
                 <div role="main" class="slds-grid slds-wrap themeContainer" id="main" tabindex="-1">
-                    <!-- <div class="{!(and(v.showSideNav==true)?'':'slds-hide')+' side-bar'}">
-               <c:LnP_VerticalNav/>
-            </div>    -->         
+                         
                     <div class="{!(v.showSideNav==true)?'body':'full-body'}">
                         {!v.body}
                     </div>
