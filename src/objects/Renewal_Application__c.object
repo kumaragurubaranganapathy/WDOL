@@ -308,6 +308,16 @@ Permit__r.Business_License__c
         <type>Number</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Current_Datetime__c</fullName>
+        <externalId>false</externalId>
+        <formula>NOW()</formula>
+        <label>Current Datetime</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
     <fields>
         <fullName>Co_owner_Name__c</fullName>
         <description>co-owner name to be displayed on renewal application</description>
