@@ -309,6 +309,17 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	 <fields>
+        <fullName>License_Parcel_Address__c</fullName>
+        <description>for Letter</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>License Parcel Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
     <label>License Parcel</label>
     <nameField>
         <displayFormat>{0000000}</displayFormat>
