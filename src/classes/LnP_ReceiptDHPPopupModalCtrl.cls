@@ -13,6 +13,7 @@ public without sharing class LnP_ReceiptDHPPopupModalCtrl {
             MUSW__Receipt__c receiptRec = [Select Id,
                                            Name,
                                            CreatedDate,
+                                           MUSW__Effective_Date__c,
                                            MUSW__Amount_Tendered__c,
                                            MUSW__Check_Number__c,
                                            Last_4_digits_of_Credit_Card_or_ACH__c,
@@ -71,7 +72,7 @@ System.debug('feePaymentRecList : ' +feePaymentRecList );*/
                                                            Voided_Receipt_Amount__c = receiptRec.MUSW__Amount_Tendered__c ,
                                                            Voided_Receipt_Check_Number__c =  String.valueOf(receiptRec.Last_4_digits_of_Credit_Card_or_ACH__c),
                                                            Voided_Receipt_Payment_Method__c = receiptRec.MUSW__Payment_Method__c,
-                                                           Voided_Receipt_Created_Date__c = receiptRec.CreatedDate,
+                                                           Voided_Receipt_Created_Date__c = receiptRec.MUSW__Effective_Date__c,
                                                            Voided_Receipt_Amount_DHP_Amount__c = receiptRec.MUSW__Amount_Tendered__c + 25.00
                                                           );
                     feeRec.MUSW__License2__c = licRec.Id;
