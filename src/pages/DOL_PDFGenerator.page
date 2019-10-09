@@ -8,16 +8,72 @@
 * ---------------------------------------------------------------------------------------------
 -->
 <apex:page renderAs="pdf" standardController="MUSW__License2__c" docType="html-5.0" extensions="DOL_PDFDataDisplayController" showHeader="false" sidebar="false" applyBodyTag="false">
+    <apex:stylesheet value="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap"/>
     <head>
         <style>
-            body { font-family: 'monospace'; }
-        </style> 
+            *{
+            	padding:0px;
+            	margin:0px;
+            }
+            @page {
+                border: 2px solid #888;    
+            }
+            h1, h2, h3, tr, td, th, div, span, table{
+            	padding:0px;
+            	margin:0px;
+            }
+            body { 
+            	font-family: 'Source Sans Pro', sans-serif;
+            	font-size:12px;
+            	color:rgb(49, 56, 68);
+            	text-align:left;
+            }
+            body .blackTable{
+            	padding:60px 60px 30px 60px;
+            	color:rgb(0, 0, 0);
+            }
+            table.generalTable {
+            	width: 82%;
+    			margin: 0px auto;
+            }
+            .blackTable .title{
+            	padding-bottom:15px;
+            }
+            .title{
+            	font-size:14px;
+            	padding:0px 0px 5px;
+            	font-weight:600;
+            	color:rgb(31, 83, 147);
+            }
+            .borderTitle {
+            	font-size:14px;
+            	font-weight:600;
+            	margin-bottom:8px;
+            	color:rgb(255,255,255);
+            	padding:5px 0px 5px 60px;
+            	background:rgb(31, 83, 147);
+            }
+            .licenseInformation tr td {
+            	padding:8px;
+            	border:1px solid rgb(31, 83, 147);
+            	border-style: none solid none none;
+            }
+            .licenseInformation tr th.border {
+            	padding:8px;
+            	border:1px solid rgb(31, 83, 147);
+            	border-style: none solid solid none;
+            }
+            .licenseInformation tr td.noborder, .licenseInformation tr th.noborder {
+            	border-right:none;
+            }
+        </style>  
     </head>
     <body>
+        <div id="wrapper">
         <div>
-            <table border="0" width="100%">
+            <table class="blackTable" border="0" width="100%">
                 <tr>
-                    <th><h3>Date Time-stamp</h3></th>
+                    <th class="title">Date Time-stamp</th>
                 </tr>
                 <tr>
                     <td>Name:</td>
@@ -37,13 +93,16 @@
                 </tr>
             </table>
         </div>
-        <div style="margin-top: 30px">
-            <table border="1" width="100%" style="border-collapse: collapse;">
+        <div>
+            <div class="borderTitle">
+                Personal / Business Information
+            </div>
+            <table class="generalTable" style="border-collapse: collapse;">
+                <!--tr>
+                    <th class="borderTitle" colspan="2"><h3>Personal / Business Information</h3></th>
+                </tr-->
                 <tr>
-                    <th colspan="2"><h3>Personal / Business Information</h3></th>
-                </tr>
-                <tr>
-                    <th colspan="2">General Information</th>
+                    <th class="title" colspan="2">General Information</th>
                 </tr>
                 <tr>
                     <td>Applicant Name:</td>
@@ -82,10 +141,13 @@
         </div>
         <apex:outputPanel rendered="{!licenseRecordData.MUSW__License2_Parcels__r.size>0}">
             <div style="margin-top: 30px">
-                <table border="1" width="100%" style="border-collapse: collapse;">
-                    <tr>
+                <div class="borderTitle">
+                    Address Information
+                </div>
+                <table class="generalTable" style="border-collapse: collapse;">
+                    <!--tr>
                         <th colspan="2"><h3>Address Information</h3></th>
-                    </tr>
+                    </tr-->
                     <tr>
                         <th>Address Type:</th>
                         <th>Address:</th>
@@ -101,12 +163,15 @@
         </apex:outputPanel>
         <apex:outputPanel rendered="{!qualifyingEducationRecordList.size>0 || qualifyingExperienceRecordList.size>0}">
             <div style="margin-top: 30px">
-                <table border="1" width="100%" style="border-collapse: collapse;">
+                <div class="borderTitle">
+                    Qualifying Information
+                </div>
+                <table class="generalTable" style="border-collapse: collapse;">
+                    <!--tr>
+                        <th class="borderTitle" colspan="2"><h3>Qualifying Information</h3></th>
+                    </tr-->
                     <tr>
-                        <th colspan="2"><h3>Qualifying Information</h3></th>
-                    </tr>
-                    <tr>
-                        <th colspan="2">Qualifying Post Education</th>
+                        <th class="title" colspan="2">Qualifying Post Education</th>
                     </tr>
                     <apex:repeat value="{!qualifyingEducationRecordList}" var="qualifyingEducationRecordInstance">
                         <tr>
@@ -135,7 +200,7 @@
                         </tr>
                     </apex:repeat>
                     <tr>
-                        <th colspan="2">Qualifying Experience</th>
+                        <th class="title" colspan="2">Qualifying Experience</th>
                     </tr>
                     <apex:repeat value="{!qualifyingExperienceRecordList}" var="qualifyingExperienceRecordInstance">
                         <tr>
@@ -184,26 +249,28 @@
         </apex:outputPanel>
         <apex:outputPanel rendered="{!licenseRecordData.Answers2__r.size>0}">
             <div style="margin-top: 30px">
-                
-                <table border="1" width="100%" style="border-collapse: collapse;">
+                <div class="borderTitle">
+                    License Information
+                </div>
+                <table class="licenseInformation generalTable" style="border-collapse: collapse;">
+                    <!--tr>
+                        <th class="borderTitle" colspan="5"><h3>License Information</h3></th>
+                    </tr-->
                     <tr>
-                        <th colspan="5"><h3>License Information</h3></th>
+                        <th class="title" colspan="5">Questions Details</th>
                     </tr>
                     <tr>
-                        <th colspan="5">Questions Details</th>
-                    </tr>
-                    <tr>
-                        <th>Question Section</th>
-                        <th>Question Header</th>
-                        <th>Question Body</th>
-                        <th>Answer Text</th> 
+                        <th class="border">Question Section</th>
+                        <th class="border">Question Header</th>
+                        <th class="border">Question Body</th>
+                        <th class="border noborder">Answer Text</th> 
                     </tr>
                     <apex:repeat value="{!answerRecordList}" var="licenseRecordInstance">
                         <tr>
                             <td>{!licenseRecordInstance.Question_Section__c}</td>
                             <td>{!licenseRecordInstance.QuestionDOL__r.Sub_Sub_Header__c}</td>
                             <td>{!licenseRecordInstance.QuestionDOL__r.Question_Body__c}</td>
-                            <td>{!licenseRecordInstance.Answer_Text__c}</td>
+                            <td class="noborder">{!licenseRecordInstance.Answer_Text__c}</td>
                         </tr>
                     </apex:repeat>
                 </table>
@@ -212,10 +279,13 @@
         
         <apex:outputPanel rendered="{!licenseRecordData.MUSW__Submissions__r.size>0}">
             <div style="margin-top: 30px">
-                <table border="1" width="100%" style="border-collapse: collapse;">
-                    <tr>
-                        <th colspan="2"><h3>Attachments</h3></th>
-                    </tr>
+                <div class="borderTitle">
+                    Attachments
+                </div>
+                <table class="generalTable" style="border-collapse: collapse;">
+                    <!--tr>
+                        <th class="borderTitle" colspan="2"><h3>Attachments</h3></th>
+                    </tr-->
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
@@ -231,10 +301,13 @@
         </apex:outputPanel>
         
         <div style="margin-top: 30px">
-            <table border="1" width="100%" style="border-collapse: collapse;">
-                <tr>
-                    <th colspan="2"><h3>Fees</h3></th>
-                </tr>
+            <div class="borderTitle">
+                Fees
+            </div>
+            <table class="generalTable" style="border-collapse: collapse;">
+                <!--tr>
+                    <th class="borderTitle" colspan="2"><h3>Fees</h3></th>
+                </tr-->
                 <tr>
                     <td>Total Fees:</td>
                     <td>{!licenseRecordData.MUSW__Total_Fees__c}</td>
@@ -252,9 +325,9 @@
         
         <apex:outputPanel rendered="{!questionRecordList.size>0}">
             <div style="margin-top: 30px">
-                <table border="0" width="100%">
+                <table class="generalTable">
                     <tr>
-                        <th colspan="2"><h3>Review And Submit</h3></th>
+                        <th class="title" colspan="2"><h3>Review And Submit</h3></th>
                     </tr>
                     <tr>
                         <th>Certifications</th>
@@ -265,13 +338,13 @@
                         </tr>
                     </apex:repeat>
                     <tr>
-                        <th style="padding-top: 30px">Declaration</th>
+                        <th class="title" style="padding-top: 30px">Declaration</th>
                     </tr>
                     <tr>
                         <td>{!$Label.Declaration}</td>
                     </tr>
                     <tr>
-                        <th style="padding-top: 30px">Signature</th>
+                        <th class="title" style="padding-top: 30px">Signature</th>
                     </tr>
                     <tr>
                         <td>{!licenseRecordData.Owner.Name}</td>
@@ -279,5 +352,6 @@
                 </table>
             </div>
         </apex:outputPanel>
+        </div>
     </body>
 </apex:page>
