@@ -390,6 +390,20 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Complaince__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Complaince</label>
+        <referenceTo>MUSW__Complaint2__c</referenceTo>
+        <relationshipLabel>Invoices</relationshipLabel>
+        <relationshipName>Invoices</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <label>Invoice</label>
     <listViews>
         <fullName>BGBK__All</fullName>
