@@ -62,11 +62,11 @@
         <label>Payment Info</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>MUSW__Receipt_Paid_By__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>MUSW__Payment_Method__c</field>
             </layoutItems>
             <layoutItems>
@@ -74,11 +74,11 @@
                 <field>MUSW__Check_Number__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>MUSW__Payment_Gateway_Transaction_Number__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Transaction_Confirmation_ID__c</field>
             </layoutItems>
         </layoutColumns>
