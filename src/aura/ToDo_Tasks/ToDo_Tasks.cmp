@@ -242,6 +242,12 @@ _______________________________________________________________
                                                 <span class="data-style"><lightning:formattedRichText class="slds-text-longform" value="{!task.Description}"/></span>
                                             </div>                                    
                                         </lightning:layoutItem>
+										<lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                            <div class="field-style">
+                                                <span class="label-style">Due Date: </span>
+                                                <span class="data-style">{!task.ActivityDate}</span>
+                                            </div>
+                                        </lightning:layoutItem>
                                     </lightning:layout>
                                 </lightning:layoutItem>
                                 <lightning:layoutItem size="12" mediumDeviceSize="3">

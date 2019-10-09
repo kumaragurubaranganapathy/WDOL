@@ -570,7 +570,7 @@
             component.set("v.certificateError", "");
         } else {
             component.set("v.certificateValues", false);
-            component.set("v.certificateError", "All checkbox's must be checked.");
+            component.set("v.certificateError", $A.get("$Label.c.Polaris_Checkbox_Error"));
         }
         var attestedName = component.get("v.currentUser").Name.trim().toLowerCase();
         var givenName = component.get("v.attestValue")?component.get("v.attestValue").trim().toLowerCase():component.get("v.attestValue");
