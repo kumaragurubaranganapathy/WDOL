@@ -143,7 +143,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         }
         
         
-        list<string> lstValueIntakeMethod=new list<String>{'Counter','Portal','Validation Room','N/A'};
+        list<string> lstValueIntakeMethod=new list<String>{'Counter','Portal','Validation Room','N/A','NCR'};
             list<string> lstValuePaymentMethod=new list<String>{'Cash','Check','Money Order','Vital Check','ACH','Credit Card','Lockbox'};
                 list<string> lstTargetAccountingSystem= new list<String>{'TMS','AFRS'};
                     list<string> lstTraansactionCode= new list<String>{'770','001','780','012','062','298','965','006','781','008','966','068'};
