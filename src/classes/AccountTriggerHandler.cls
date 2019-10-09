@@ -68,11 +68,11 @@ public class AccountTriggerHandler implements BGCM.ITriggerHandler{
     }
     
     public void afterMethod(){
-        /*if(Trigger.isInsert){
+        if(Trigger.isInsert){
             if(!SecurityCodeHelper.isAccountSecurityCodeSet){
                 SecurityCodeHelper.setAccountSecurityCode();
             }
             
-        }*/
+        }
     }
 }
