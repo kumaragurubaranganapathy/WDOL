@@ -39,25 +39,12 @@ _______________________________________________________________
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
     <aura:if isTrue="{!v.isLoaded}">
+            
         <div class="todo-wrapper">
+                <aura:if isTrue="{!and(v.AddBusinessAccountsStatusAlert,v.licenseList)}">
+                        <c:StatusAlertForAddingBusinessComponent isLandingPage="true" />
+                    </aura:if>
             
-            <!--<div class="intro-section">
-            
-            <lightning:layout class="intro-wrapper slds-wrap">
-                <lightning:layoutItem size="12" mediumDeviceSize="12" class="new-wrapper services">
-                    <div class="ser-title">
-                        Have an existing License?
-                    </div>
-                    
-                    <div class="ser-btn-wrapper slds-m-bottom_large">
-                        <lightning:button class="ser-btn pro-license" onclick="{!c.linkProfLic}" label="Link your professional license" /> 
-                    </div>
-                    <div class="ser-btn-wrapper">
-                        <lightning:button class="ser-btn pro-license" onclick="{!c.linkBizLic}" label="Link your business" />  
-                    </div>
-                </lightning:layoutItem>                
-            </lightning:layout>
-        </div>  -->
             
             <aura:if isTrue="{!not(empty(v.taskList))}">
                 <h2 class="intro-text">
@@ -482,9 +469,9 @@ _______________________________________________________________
                     </aura:if>
                 </aura:iteration>
             </aura:if>
-            <aura:if isTrue="{!and(v.AddBusinessAccountsStatusAlert,v.licenseList)}">
+            <!-- <aura:if isTrue="{!and(v.AddBusinessAccountsStatusAlert,v.licenseList)}">
                 <c:StatusAlertForAddingBusinessComponent isLandingPage="true" />
-            </aura:if>
+            </aura:if> -->
             <lightning:layout class="additional-services slds-wrap">
                 <lightning:layoutItem size="12" mediumDeviceSize="5" class="pro-license-wrapper services">
                     <div class="ind-account-wrapper">
