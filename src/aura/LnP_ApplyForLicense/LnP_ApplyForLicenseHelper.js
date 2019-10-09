@@ -663,7 +663,7 @@
             component.set("v.certificateError", "");
         } else {
             component.set("v.certificateValues", false);
-            component.set("v.certificateError", "All checkboxes must be checked.");
+            component.set("v.certificateError", $A.get("$Label.c.Polaris_Checkbox_Error"));
         }
         var totalDeclarationCheckbox = document.getElementsByClassName("declaration-checkbox");
         var declarationCounter = 0;
