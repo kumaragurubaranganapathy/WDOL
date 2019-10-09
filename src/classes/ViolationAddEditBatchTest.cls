@@ -98,8 +98,8 @@ public class ViolationAddEditBatchTest{
         insert iv3;
        // insert ivs;
         
-        system.debug('iv2='+ iv2);
-        system.debug('iv3='+ iv3);
+        system.debug('iv2= DOL_AppConstants.NULL_EMPTY_STRING + '+ iv2);
+        system.debug('iv3= DOL_AppConstants.NULL_EMPTY_STRING + '+ iv3);
 */        
         //update iv2;
         
