@@ -213,7 +213,7 @@
                                             </div>                                            
                                             <!--</aura:if>-->
                                         </aura:iteration> 
-                                        <div class="error checkbox-error slds-m-top_large">{!v.certificateError}</div>
+                                        <div class="error checkbox-error">{!v.certificateError}</div>
                                     </div>
                                     <!--   <aura:if isTrue="{!v.licenseType=='Appraiser Course'}">
                                         <div class="slds-form-element__control slds-p-bottom_medium">

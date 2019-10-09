@@ -178,7 +178,7 @@
                                                         </div>
                                                         <aura:set attribute="else">
                                                             <div class = "revAndSubCompletionFont">
-                                                                <ui:outputRichText value="Complete"/>
+                                                                <ui:outputRichText value="{!attResponses.fileNos == 0?'This is not a required submission':'Complete'}"/>
                                                             </div>
                                                         </aura:set>  
                                                     </aura:if>  
@@ -203,7 +203,7 @@
                                                 </div>
                                             </div>
                                         </aura:iteration> 
-                                        <div class="error checkbox-error slds-m-top_large">{!v.certificateError}</div>
+                                        <div class="error checkbox-error">{!v.certificateError}</div>
                                     </div>
                                     <!--<div id="declarationsValidation" class='field-item review-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'> 
                                         <div class="declaration headings">Declaration</div><br/>

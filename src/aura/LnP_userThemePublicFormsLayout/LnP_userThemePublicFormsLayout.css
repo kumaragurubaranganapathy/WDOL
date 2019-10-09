@@ -88,7 +88,7 @@
 }
 .THIS .ie-header{
     width:100%;
-    padding:1.5rem;	
+    padding:1.5rem 7.5rem;	
 	background-color:t(headerclr);
 }
 .THIS.main-content.ie-content .footerWrapper{
@@ -691,6 +691,10 @@ margin-right:10%;
 }
 .THIS .slds-button{
     text-transform:capitalize;
+}
+.THIS .checkbox-error.error, .THIS .attestation-error.error{
+    margin-bottom:1rem;
+    color:red;
 }
 
 @media only screen and (max-width:767.9px){    
