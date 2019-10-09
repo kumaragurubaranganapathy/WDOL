@@ -3,18 +3,16 @@
     <available>true</available>
     <encodingKey>ISO-8859-1</encodingKey>
     <letterhead>DOL_Letterhead</letterhead>
-    <name>License expiration notice - renewal allowed</name>
+    <name>Application submission - renewal reinstatement</name>
     <style>formalLetter</style>
-    <subject>Your {!MUSW__License2__c.Credential_Type__c} license has expired!</subject>
-    <textOnly>Your license has expired!
+    <subject>We received your {!Renewal_Application__c.License_Type__c} license application</subject>
+    <textOnly>We received your {!MUSW__License2__c.Credential_Type__c} license application on {!MUSW__License2__c.Current_Datetime__c}.
 
-License: {!MUSW__License2__c.Name}
-License type: {!MUSW__License2__c.Credential_Type__c}
-Profession: {!MUSW__License2__c.Application_Type__c}
+We’ll review it and let you know if we need more information.
 
-You can’t legally work in your profession with an expired license. You need to renew your license. You may have to pay a late fee too.
+As soon as we approve your application we will issue your license.
 
-Renew and pay through our new online system:
+Track your application status through our new online system:
 
 Go to {!MUSW__License2__c.Portal_URL__c}
 Sign in or create an account and follow instructions.
@@ -30,7 +28,7 @@ Thank you.
 
 Department of Licensing
 www.dol.wa.gov
-REN007</textOnly>
+GEN001</textOnly>
     <type>html</type>
     <uiType>Aloha</uiType>
 </EmailTemplate>

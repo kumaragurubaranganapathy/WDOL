@@ -5,7 +5,7 @@
     <letterhead>DOL_Letterhead</letterhead>
     <name>Exam fail notification - Geologist</name>
     <style>formalLetter</style>
-    <subject>Department of Licensing - You didn’t pass the {!Education_History__c.Exam_Type__c} exam</subject>
+    <subject>You didn’t pass the {!Education_History__c.Exam_Type__c} exam</subject>
     <textOnly>We&apos;re sorry to tell you that you didn’t pass the {!Education_History__c.Exam_Type__c} exam you took on {!Education_History__c.Scheduled_Date__c}.
 
 The required score was {!Education_History__c.Exam_Required_Score__c}.
@@ -16,7 +16,7 @@ You may retake the exam. Go to our Geologist examinations page to see next exam 
 
 Register for the exam through our new online system:
 
-Go to {!Education_History__c.License_Portal_URL__c}.
+Go to {!Education_History__c.License_Portal_URL__c}
 Sign in or create an account and follow instructions.
 
 To register for the exam by mail:

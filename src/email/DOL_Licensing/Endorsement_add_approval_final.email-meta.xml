@@ -5,7 +5,7 @@
     <letterhead>DOL_Letterhead</letterhead>
     <name>Endorsement add - approval</name>
     <style>formalLetter</style>
-    <subject>Department of Licensing - We&apos;ve added your {!Endorsement__c.Endorsement_Type__c} endorsement to your {!Endorsement__c.License_Type__c} license</subject>
+    <subject>We&apos;ve added your {!Endorsement__c.Endorsement_Type__c} endorsement to your {!Endorsement__c.License_Type__c} license</subject>
     <textOnly>We&apos;ve added your {!Endorsement__c.Endorsement_Type__c} endorsement to your {!Endorsement__c.License_Type__c} license:
 
 Endorsement: {!Endorsement__c.Endorsement_Type__c}
@@ -13,7 +13,7 @@ License: {!Endorsement__c.License_Number__c}
 
 Get and print your updated license through our new online system:
 
-Go to {!Endorsement__c.License_Portal_URL__c}.
+Go to {!Endorsement__c.License_Portal_URL__c}
 Sign in or create an account and follow instructions.
 
 Please call or email us if you need us to send you a printed copy.

@@ -5,14 +5,14 @@
     <letterhead>DOL_Letterhead</letterhead>
     <name>Designated person accept - business</name>
     <style>formalLetter</style>
-    <subject>Department of Licensing - {!Associations__c.Child_Licensee_Name__c} agreed to be your Designated {!Associations__c.Child_License_Type__c}</subject>
+    <subject>{!Associations__c.Child_Licensee_Name__c} agreed to be your Designated {!Associations__c.Child_License_Type__c}</subject>
     <textOnly>{!Associations__c.Child_Licensee_Name__c} agreed to be a Designated {!Associations__c.Child_License_Type__c} for {!Associations__c.Parent_Licensee_Name__c} on {!Associations__c.Current_Datetime__c}.
 
 You may now print an updated license.
 
 Get and print your license with our new online system:
 
-Go to {!Associations__c.License_Portal_URL__c}.
+Go to {!Associations__c.License_Portal_URL__c}
 Login or create an account and follow instructions.
 
 Please call or email us if you need us to send you a printed copy.
