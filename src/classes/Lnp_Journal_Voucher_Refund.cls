@@ -233,7 +233,9 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             objJVD.Subsidiary_Account_Debit__c = DOL_AppConstants.NULL_EMPTY_STRING + '';
             objJVD.Subsidiary_Account_Credit__c = DOL_AppConstants.NULL_EMPTY_STRING + '';
             objJVD.JournalVoucher__c = objJournalWrapper.objItemsData.Journal_Voucher__c; 
-            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == 'AFRS' && objJournalWrapper.objItemsData.Transaction_Code__c=='198' && objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c =='5111'){
+            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == 'AFRS' 
+            && (objJournalWrapper.objItemsData.Transaction_Code__c=='951' || objJournalWrapper.objItemsData.Transaction_Code__c=='455'||objJournalWrapper.objItemsData.Transaction_Code__c=='198'||objJournalWrapper.objItemsData.Transaction_Code__c=='449')
+            && (objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c =='5199' || objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c =='3205' || objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c =='3210')){
                 objJVD.Add_to_Interface__c=true;
             	objJVD.Add_to_PDF__c=true;	
             }else{
