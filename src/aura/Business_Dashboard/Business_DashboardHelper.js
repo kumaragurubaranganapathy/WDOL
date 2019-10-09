@@ -61,7 +61,30 @@
         }
         
     },
-    
+    checkForCartHelper : function (component,event,helper) {
+        var action = component.get("c.checkActiveCart");
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var checkResult = response.getReturnValue();
+                if(checkResult){
+                    component.set("v.activeCart",true);
+                }
+                else component.set("v.activeCart",false);
+            }
+            else if (state === "ERROR") {
+                var errors = response.getError();
+                if (errors) {
+                    if (errors[0] && errors[0].message) {
+                        console.error("Error message: " + errors[0].message);
+                    }
+                } else {
+                    console.error("Unknown error");
+                }
+            }
+        });
+        $A.enqueueAction(action);
+    },
     setSelectedAccountData : function (component,event,helper,selectedAccountId) {
         console.log("inside selectedAccountData::");
         var action = component.get("c.getAccountData");

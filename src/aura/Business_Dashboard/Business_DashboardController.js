@@ -4,6 +4,7 @@
         helper.getRecordTypeId(component,event,helper);
         helper.fetchData(component,event, helper);
         helper.getLicenseDetails(component,event,helper);
+		helper.checkForCartHelper(component,event,helper);
         var redirect = sessionStorage.getItem("fromAddbusiness");
         var businessAccountID = sessionStorage.getItem("businessAccountId");
         if(redirect){

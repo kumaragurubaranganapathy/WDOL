@@ -1082,7 +1082,7 @@ public with sharing class Add_BusinessController {
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         
-        List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Contact__c =:userInfoData[0].ContactId];
+        List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Contact__c =:userInfoData[0].ContactId and BGBK__Status__c =: 'Open' and BGBK__Total_Amount__c > 0 ];
         if(!crtList.isEmpty()){
             redirect = true;
         }

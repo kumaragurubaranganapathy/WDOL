@@ -51,6 +51,15 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
+	<fieldUpdates>
+        <fullName>Update_End_Date_and_Time</fullName>
+        <field>End_Time__c</field>
+        <formula>Now()</formula>
+        <name>Update End Date and Time</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>Email - Maintenance request complete</fullName>
         <actions>
@@ -92,6 +101,21 @@
             <value>Under Review</value>
         </criteriaItems>
         <description>Automation rule for email notification: Maintenance submission - review required</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+	<rules>
+        <fullName>Update End Time on Approval</fullName>
+        <actions>
+            <name>Update_End_Date_and_Time</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Request__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <description>Bug 8229</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

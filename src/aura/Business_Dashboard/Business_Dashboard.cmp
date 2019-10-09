@@ -25,6 +25,7 @@
     <aura:attribute name="screenOne" type="Boolean" default="true"/>
     <aura:attribute name="screenTwo" type="Boolean" default="false"/>
     <aura:attribute name="screenThree" type="Boolean" default="false"/>
+	<aura:attribute name="activeCart" type="Boolean" default="false"/>
     <aura:attribute name="todayDate" type="String" />
     <aura:attribute name="SelectedAccountDetails" type="Account"/>
     <aura:attribute name ="ParcelObj" type ="List"/>
@@ -333,7 +334,7 @@
                                     <!--<li data-index="5" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a href="javascript:void(0);">Edit Profile</a></li> -->
                                     <li data-index="3" class="list-item" aura:id="action-item"><a onclick="{!c.updateBusinessName}" href="javascript:void(0);">Update Business Name</a></li>
                                     <li data-index="4" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a onclick="{!c.BillingCode}" href="javascript:void(0);">Get Billing Code</a></li>
-                                    <li data-index="5" class="{!v.expandedMenu?'list-item':'slds-hide'}" aura:id="action-item"><a onclick="{!c.GoToBusinessCart}" href="javascript:void(0);">Payment Cart</a></li> <!-- US 1976 -->
+                                    <li data-index="5" class="{!v.activeCart?'list-item':'slds-hide'}" aura:id="action-item"><a onclick="{!c.GoToBusinessCart}" href="javascript:void(0);">Payment Cart</a></li> <!-- US 1976 -->
                                     
                                     <li aura:id="more-action" onclick="{!c.showMoreActions}"><a href="javascript:void(0);">{!v.expandedMenu?'Less Actions':'More Actions'}</a></li>
                                 </ul>
