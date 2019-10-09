@@ -62,7 +62,7 @@
                                 <ul class="slds-path__nav" role="listbox">
                                     <aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
                                         <li class="slds-path__item" role="presentation">
-                                            <a style="cursor: default;" title="{!tabPath.header}" href="javascript:void(0)">
+                                            <a style="cursor: default;" title="{!tabPath.header}" href="javascript:void(0)" aria-label="{!tabPath.header}">
                                                 <aura:if isTrue="{!tabPath.errorImage}">
                                                     <div id ="{!'ExcIcon'+(var+1)}" class="{!(lessthan((var+1),v.currentTab)==true?'':'slds-hide')+' icon'}">
                                                         <div class="red-circle" ></div>

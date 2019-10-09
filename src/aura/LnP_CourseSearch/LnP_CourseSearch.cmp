@@ -226,7 +226,7 @@ _______________________________________________________________
         <div class="screen-two">
             <aura:if isTrue="{!v.screenTwo}">
                 <div class="headerWrap">
-                    <span class="sub-header">Course Search Criteria</span>
+                    <h2 class="">Course Search Criteria</h2>
                     <!--span>
                         <lightning:button variant="neutral" class="button-border modify-btn" type="button" name="cancel"
                                           label="Modify Search" onclick="{!c.modifySearch}" />
@@ -251,7 +251,7 @@ _______________________________________________________________
                     </aura:if>
                 </div>
                 <div class="slds-m-bottom_medium">
-                    <span class="heading">Course Search Results</span>
+                    <h2 class="heading">Course Search Results</h2>
                     <span class="sub-section slds-m-left_medium">Click on any row below for more information</span>
                     <br />
                     <!--  <span> T = Trainee L = State Licensed R = Certified Residential G = Certified General</span> -->
@@ -271,7 +271,7 @@ _______________________________________________________________
         <div class="screen-three">
             <aura:if isTrue="{!v.screenThree}">
                 <div class="slds-m-vertical_medium">
-                    <span class="heading">{!v.courseNameToDisplayDetails}</span>
+                    <h2 class="heading">{!v.courseNameToDisplayDetails}</h2>
                 </div>
                 <div class="buttons-right text-size">
                     <span>Information as of </span>
