@@ -653,6 +653,13 @@ margin-right:10%;
     color:t(buttonNeutral);
     border : solid 1px t(buttonNeutral);
 }
+.THIS .slds-button.slds-button_brand:hover, .THIS .slds-button.slds-button_brand:focus{
+    box-shadow: 0 0 3px #0070d2;
+}
+.THIS .slds-button.slds-button_neutral:hover, .THIS .slds-button.slds-button_neutral:focus{
+    box-shadow: 0 0 3px #0070d2;
+    background-color:t(LnGWhite);
+}
 .THIS a:focus{
     text-decoration:underline;
     color:t(actionPanelBG);

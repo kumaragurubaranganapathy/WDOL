@@ -154,6 +154,13 @@
 	box-shadow:none;
 	outline:none;
 }
+.THIS .slds-button.slds-button_brand:hover, .THIS .slds-button.slds-button_brand:focus{
+    box-shadow: 0 0 3px #0070d2;
+}
+.THIS .slds-button.slds-button_neutral:hover, .THIS .slds-button.slds-button_neutral:focus{
+    box-shadow: 0 0 3px #0070d2;
+    background-color:t(LnGWhite);
+}
 .THIS a.skip-content {
     left:-999px;
     position:absolute;
