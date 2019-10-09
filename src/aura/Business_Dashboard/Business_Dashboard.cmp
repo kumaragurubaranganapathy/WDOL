@@ -23,9 +23,9 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute name="breadcrumbLabel" type="string" />
     <aura:attribute name="screenOne" type="Boolean" default="true"/>
-    <aura:attribute name="screenTwo" type="Boolean" default="false"/>
+    <aura:attribute name="screenTwo" type="Boolean" default="false"/>    
     <aura:attribute name="screenThree" type="Boolean" default="false"/>
-	<aura:attribute name="activeCart" type="Boolean" default="false"/>
+    <aura:attribute name="activeCart" type="Boolean" default="false"/>
     <aura:attribute name="todayDate" type="String" />
     <aura:attribute name="SelectedAccountDetails" type="Account"/>
     <aura:attribute name ="ParcelObj" type ="List"/>
@@ -186,7 +186,7 @@
                                             </div>
                                             
                                         </aura:iteration>
-                                    </lightning:layoutItem>
+                                    </lightning:layoutItem> 
                                     
                                 </lightning:layout>
                                 
@@ -398,9 +398,9 @@
                                                     <aura:iteration items="{!v.AddressData}" var="addressvar">
                                                         <div class="address data-style">
                                                             
-                                                            {!addressvar.MUSW__Street2__c},<br />
-                                                            {!addressvar.MUSW__City__c},<br />
-                                                            {!addressvar.MUSW__State__c} - {!addressvar.Zip_Postal_Code__c}
+                                                            {!addressvar.MUSW__Street2__c}<br />
+                                                            {!addressvar.MUSW__City__c}, 
+                                                            {!addressvar.MUSW__State__c + ' '} {!addressvar.Zip_Postal_Code__c}
                                                         </div>
                                                         
                                                     </aura:iteration> 
@@ -419,10 +419,10 @@
                                                         
                                                         <div class="address data-style">
                                                             
-                                                            {!addressvar.MUSW__Street2__c},<br />
-                                                            {!addressvar.MUSW__City__c},<br />
-                                                            {!addressvar.MUSW__State__c} - {!addressvar.Zip_Postal_Code__c}
-                                                            
+                                                            {!addressvar.MUSW__Street2__c}<br />
+                                                            {!addressvar.MUSW__City__c}, 
+                                                            {!addressvar.MUSW__State__c + ' '} {!addressvar.Zip_Postal_Code__c}
+                                                        
                                                             
                                                             
                                                         </div>
