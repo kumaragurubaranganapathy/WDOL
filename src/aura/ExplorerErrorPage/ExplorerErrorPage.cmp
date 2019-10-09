@@ -7,19 +7,35 @@
     <div>
         <aura:if isTrue="{!v.dispPage}">
             
-            <div class="text-wrap">
-                <lightning:icon iconName="utility:warning" alternativeText="Warning!" variant="warning"/>
-                <div class="EerrorHeading">IMPORTANT</div>
-                <ui:outputRichText class="Eunderline EerrorSentnce" value="{!$Label.c.ExplorerErrorText}"/>
-                
-              <!--  <div class="EerrorSentnce">Support for Internet Explorer 11 to access Lightning</div>
-                <div class="Eunderline EerrorSentnce">Experience is retiring beginning in Summer'16.</div>-->
-                <div class="download slds-m-vertical_medium">DOWNLOAD</div>
+            <div class="text-wrap ie-error">
+                <h1 class="header">Our site doesn’t support the browser you’re using</h1>                
+                <c:ErrorStatus alertType="error" alertHeader="Please use an up to date browser" />                
+                <div class="download slds-m-vertical_medium">To continue to our professional and business licensing system, please use one of these browsers.</div>
                 <div class="imgLayout">
-                    <div class="layout" ><img src="{!$Resource.LnP_Icons+'/LnP_Icons/chrome.png'}" alt="chrome" /><div><a class="link" href="https://www.google.com/chrome/" target="_blank">Chrome</a><img class="dwnldImg" src="{!$Resource.LnP_Icons+'/LnP_Icons/group.png'}"></img></div></div>
-                    <div class="layout" ><img src="{!$Resource.LnP_Icons+'/LnP_Icons/firefox.png'}" alt="firefox"  /><div><a class="link" href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">FireFox</a><img class="dwnldImg" src="{!$Resource.LnP_Icons+'/LnP_Icons/group.png'}"></img></div></div>
-                    <div class="layout" ><img src="{!$Resource.LnP_Icons+'/LnP_Icons/safari.png'}" alt="safari"  /><div><a class="link" href="https://support.apple.com/downloads/safari" target="_blank">Safari</a><img class="dwnldImg" src="{!$Resource.LnP_Icons+'/LnP_Icons/group.png'}"></img></div></div>
-                    <div class="layout" ><img src="{!$Resource.LnP_Icons+'/LnP_Icons/edge.png'}" alt="edge"  /><div><a class="link" href="https://www.microsoft.com/en-us/windows/microsoft-edge" target="_blank">Edge</a><img class="dwnldImg" src="{!$Resource.LnP_Icons+'/LnP_Icons/group.png'}"></img></div></div>
+                    <div class="layout" >
+                        <a class="link" href="https://www.google.com/chrome/" target="_blank">
+                            <img src="{!$Resource.LnP_Icons+'/LnP_Icons/chrome.png'}" class="img-style" alt="chrome" />
+                            <div class="link-text">Google Chrome</div>
+                        </a>
+                    </div>
+                    <div class="layout" >
+                        <a class="link" href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">
+                            <img src="{!$Resource.LnP_Icons+'/LnP_Icons/firefox.png'}" class="img-style" alt="firefox"  />
+                            <div class="link-text">Mozilla FireFox</div>
+                        </a>
+                    </div>
+                    <div class="layout" >
+                        <a class="link" href="https://support.apple.com/downloads/safari" target="_blank">
+                            <img src="{!$Resource.LnP_Icons+'/LnP_Icons/safari.png'}" class="img-style" alt="safari"  />
+                            <div class="link-text">Apple Safari</div>
+                        </a>
+                    </div>
+                    <div class="layout" >
+                        <a class="link" href="https://www.microsoft.com/en-us/windows/microsoft-edge" target="_blank">
+                            <img src="{!$Resource.LnP_Icons+'/LnP_Icons/edge-logo.png'}" class="img-style" alt="edge"  />
+                            <div class="link-text">Microsoft Edge</div>
+                        </a>
+                    </div>
                 </div>
             </div>
             
