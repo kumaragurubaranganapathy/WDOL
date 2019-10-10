@@ -254,7 +254,7 @@ public class Polaris_AMRLinkCntrl {
 }
     
     @AuraEnabled
-    public static String insertRequest(String licId,String licenseType, String board,String ServiceRequestType)
+    public static String insertRequest(String licId,String licenseType, String board,String ServiceRequestType,String acctId)
     {
         try{
         List<User> userInfoData = new  List<User>();
@@ -276,6 +276,9 @@ public class Polaris_AMRLinkCntrl {
         application.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Draft';
         application.Service_Request_Type__c = ServiceRequestType;
         application.Contact__c = getContactId;
+		if(acctId != null && acctId != ''){
+                application.Account__c = acctId;  
+            }  
         if(licId != null && licId != ''){
             application.License__c = licId;  
         }  

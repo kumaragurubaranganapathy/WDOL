@@ -491,7 +491,7 @@ public without sharing class LnP_DashboardApexController_2 {
                 List<String> statusFilterList = new List<String>{'Approved'};
                     List<SObject> columnDataList = [Select  id,Name,License_Type__c, Service_Request_Type__c, End_Time__c
                                                     from Request__c
-                                                    where Status__c IN :statusFilterList AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
+                                                    where Status__c IN :statusFilterList AND Account__c=null AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
             
             LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
             

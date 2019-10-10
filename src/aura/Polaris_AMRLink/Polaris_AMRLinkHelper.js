@@ -75,7 +75,8 @@
             "licId": component.get("v.recordId"),
             "licenseType": component.get("v.licenseType"),
             "board":component.get("v.board"),
-            "ServiceRequestType": component.get("v.ServiceRequestType"),           
+            "ServiceRequestType": component.get("v.ServiceRequestType"),
+			"acctId":component.get("v.accountId"),			
         });
         action.setCallback(this, function(actionResult){
             
