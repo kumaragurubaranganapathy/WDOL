@@ -209,11 +209,13 @@
     
     setLocationTable : function(component,event,helper){
         var action = component.get("c.setLocationTable");
-        var applicationId = component.get("v.isAMR") ? component.get("v.licenseId") : component.get("v.applicationId");
+        var applicationId = component.get("v.isAMR") || component.get("v.isRenewal") ? component.get("v.licenseId") : component.get("v.applicationId");
         console.log('applicationId::'+applicationId);
         action.setParams({'applicationId': applicationId,
                           'requestId' : component.get("v.requestId"),
-                          'isAMR': component.get("v.isAMR")});
+                          'isAMR': component.get("v.isAMR"),
+                          'isRenewal' : component.get("v.isRenewal")
+                         });
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {

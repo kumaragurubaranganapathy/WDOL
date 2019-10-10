@@ -258,12 +258,13 @@
                     component.set('v.LicenseID',message[0].Id);
                     component.set('v.ActivationCode',message[0].MUSW__Applicant__r.Security_Code__c);
                     component.set('v.ReviewName','Send Professional Activation Code');
-                    component.set('v.disabled',false);                   
+                    component.set('v.disabled',false);   
+                    component.set("v.showEmail",true);
                 } else {
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "message": $A.get("$Label.c.Activation_Code_No_License"),
-                        "type": "Success"
+                        "type": "Error"
                     });
                     toastEvent.fire();  
                 }

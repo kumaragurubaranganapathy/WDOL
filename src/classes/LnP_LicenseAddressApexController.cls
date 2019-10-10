@@ -905,7 +905,7 @@ return null;
     }    
     
     @AuraEnabled
-    public static String setLocationTable(String applicationId,String requestId, Boolean isAMR){
+    public static String setLocationTable(String applicationId,String requestId, Boolean isAMR,Boolean isRenewal){
         try{
             System.debug('applicationId::'+ applicationId);
             System.debug('isAMR::'+isAMR);  
@@ -923,7 +923,11 @@ return null;
                 }
                 columnHeaderList = new List<String>{'Designated Engineer' , 'Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code','Status','Action'};
                     
-                    }else{
+           }else if(isRenewal){
+                   columnHeaderList = new List<String>{'Designated Engineer','Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code','Status','Action'};
+                   columnDataList = [SELECT id, Designated_Engineer_License__c,Status__c, Designated_Land_Surveyor_License__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,MUSW__Post_Zip_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where License__c=: applicationId AND Status__c =:'Active' AND recordtypeid =:LocationRT];                          
+               }
+           else{
                         columnHeaderList = new List<String>{'Designated Engineer','Designated Land Surveyor','Country','Address Line 1','State','County','Zip Code','Status','Action'};
                             columnDataList = [SELECT id, Designated_Engineer_License__c,Status__c, Designated_Land_Surveyor_License__c,MUSW__Street2__c,License__c,MUSW__Unit__c,MUSW__City__c, Country__c, County__c,MUSW__State__c,Canadian_provinces__c,MUSW__Post_Zip_Code__c, Address_Type__c, Application_BG__c from MUSW__Parcel__c where Application_BG__c=: applicationId AND Status__c =:'Active' AND recordtypeid =:LocationRT];                          
                     }

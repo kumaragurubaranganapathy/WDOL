@@ -28,6 +28,7 @@
     <aura:attribute name="toShowField" type="Boolean" default="true" />
     <aura:attribute name="requestedLocationTableList" type="List" />
     <aura:attribute name="requestedHeaderList" type="List" />
+    <aura:attribute name="isRenewal" type="Boolean" />
     <aura:registerEvent name="LnP_Location" type="c:LnP_LocationEvent" />
     <aura:attribute name="status" type="String" />
     <aura:attribute name="licenseData" type="String"/>

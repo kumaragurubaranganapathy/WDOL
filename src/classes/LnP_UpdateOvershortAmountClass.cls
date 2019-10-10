@@ -14,7 +14,7 @@ public with sharing class LnP_UpdateOvershortAmountClass {
                     
                     return 'Send to Overshort cannot be processed.';
                 }
-                else if((depositRec.MUSW__Available_Amount__c <= decimal.valueOf(System.Label.OverShortDepositUpperLimit) && depositRec.MUSW__Available_Amount__c > decimal.valueOf(System.Label.OverShortDepositLowerLimit)) ){
+                else if( depositRec.MUSW__Available_Amount__c > decimal.valueOf(System.Label.OverShortDepositLowerLimit) ){
                     //update MUSW__Deposit__c overshort Amount with available amount.
                     depositRec.Overshort_Amount__c = depositRec.MUSW__Available_Amount__c;
                     depositRec.Overshort_Modified__c = True;
@@ -28,9 +28,9 @@ public with sharing class LnP_UpdateOvershortAmountClass {
                     
                     update depositRec;
                     return 'True';
-                }else if(depositRec.MUSW__Available_Amount__c > decimal.valueOf(System.Label.OverShortDepositUpperLimit)){
+                }/*else if(depositRec.MUSW__Available_Amount__c > decimal.valueOf(System.Label.OverShortDepositUpperLimit)){
                     return 'False';
-                }
+                }*/
             }
         }catch(Exception e){DOL_CreateErrorLog_Exception.logApplicationError(e,'LnP_UpdateOvershortAmountClass','payFromOverShort');return null;}return null;
     }
@@ -69,8 +69,7 @@ public with sharing class LnP_UpdateOvershortAmountClass {
             MUSW__Receipt__c receiptRec;
             
             FeeRec =Database.query(FeeQuery);
-            
-            if( FeeRec.MUSW__Outstanding_Fee__c< decimal.valueOf(System.Label.OverShortFeeUpperLimit) && FeeRec.MUSW__Outstanding_Fee__c > decimal.valueOf(System.Label.OverShortFeeLowerLimit)){
+            if(  FeeRec.MUSW__Outstanding_Fee__c > decimal.valueOf(System.Label.OverShortFeeLowerLimit)){
                     receiptRec = new MUSW__Receipt__c();
                     receiptRec.MUSW__Amount_Tendered__c =  FeeRec.MUSW__Outstanding_Fee__c;
                     receiptRec.MUSW__Payment_Method__c ='Overshort';

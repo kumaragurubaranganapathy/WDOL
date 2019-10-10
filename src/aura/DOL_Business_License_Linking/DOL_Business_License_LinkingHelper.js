@@ -128,7 +128,8 @@
                     component.set('v.LicenseID',message[0].Id);
                     component.set('v.ActivationCode',message[0].Ultimate_Parent_Account__r.Security_Code__c);
                     component.set('v.ReviewName','Send Business Activation Code');
-                    component.set('v.disabled',false);                   
+                    component.set('v.disabled',false); 
+                    component.set("v.showEmail",true);
                 } else {
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({

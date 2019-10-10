@@ -108,6 +108,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     
     //Added by Abhilasha for bug 6999
     //
+		DRESequence();
         if(trigger.isBefore && trigger.isupdate && DOL_AppUtility.IsLicenseTriggerFired == false) {
         List<MUSW__License2__c> triggerNew = Trigger.New;
         WA_License_utility.updateProfessionCode(triggerNew);

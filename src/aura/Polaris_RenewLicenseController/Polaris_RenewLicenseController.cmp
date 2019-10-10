@@ -407,7 +407,7 @@
                         </aura:if>
                         <aura:if isTrue="{!and(section.sectionName=='Locations',v.currentTab==section.tabIndex)}">
                             <div class="aff-loc">
-                                <c:Polaris_AffiliatedLocations applicationId = "{!v.applicationId}" />
+                                <c:Polaris_AffiliatedLocations applicationId = "{!v.applicationId}" isRenewal="true" licenseId="{!v.licID}" />
                             </div>
                         </aura:if>
                     </div>

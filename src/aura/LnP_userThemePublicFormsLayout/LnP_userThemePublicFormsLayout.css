@@ -697,6 +697,9 @@ margin-right:10%;
     margin-bottom:1rem;
     color:red;
 }
+.THIS .slds-file-selector__button.slds-button.slds-button_neutral:hover, .THIS .slds-file-selector__button.slds-button.slds-button_neutral:focus{
+    background-color:t(primary);
+}
 
 @media only screen and (max-width:767.9px){    
     .THIS .next-button{
@@ -757,6 +760,9 @@ margin-right:10%;
     .THIS .personal-info .background-section{
         padding:0;
     }
+    .THIS .personal-info{
+        margin:0 1rem;
+    }
     .THIS .content-wrapper .buttonpos{
         margin: 10% 0;
         padding:0;
@@ -776,6 +782,7 @@ margin-right:10%;
     }
     .THIS .personal-info .field-item{
         padding:0;
+        width:100%;
     } 
     .THIS table.slds-table_bordered tbody td{
         border-right:none;

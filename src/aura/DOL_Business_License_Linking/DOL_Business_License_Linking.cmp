@@ -20,7 +20,7 @@ ________________________________________________________________________________
                                                                                                        ]"/>
     <aura:attribute name="value" type="String" default=""/>
     <aura:attribute name="emailID" type="String" />
-    <aura:attribute name="media" type="String" default=""/>
+    <aura:attribute name="media" type="String" default="Email"/>
     <aura:attribute name="mailID" type="String"  />
     <aura:attribute name="emailToSend" type="String"  />
     <aura:attribute name="mailToSend" type="String"  />
@@ -29,6 +29,7 @@ ________________________________________________________________________________
     <aura:attribute name="ReviewName" type="String"  />
     <aura:attribute name="loadingSpinner" type="Boolean" default="false" />
     <aura:attribute name="programTypeList" type="List" description="Holds the lists of programType"/>
+    <aura:attribute name="showEmail" type="Boolean" default="false" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
     
@@ -38,14 +39,14 @@ ________________________________________________________________________________
     <div class="biz-link-wrapper">
         <aura:if isTrue="{!v.linkingScreen}">
             <div class="page-header">
-                Link an existing business profile
+                Link Existing Business License
             </div>
             <div class="new-wrapper">
                 <div class="heading link-title">
-                    Link your Business License with an Activation Code
+                    Link using an activation code
                 </div>
-                <p class="link-help">If you have received an activation code, enter it below.</p>
-                <p class="link-help">If you would like to request an activation code, please click <a href="javascript:void(0)" onclick="{!c.redirectRequest}">here</a></p>                
+                <p class="link-help">If you have an activation code, enter it below or you can <a href="javascript:void(0)" onclick="{!c.redirectRequest}">request an activation code</a> using your license number.</p>
+             
                 
                 
                 <div class="token-wrapper">
@@ -97,15 +98,13 @@ ________________________________________________________________________________
             </aura:if>
             
             <aura:set attribute="else">
-                <!-- <div class="biz-link-title">
-                    Request an activation code for linking a professional license
-                </div>-->
+                
                 <div class="heading pad link-title">
-                    License Details
+                    Request Activation Code
                 </div>
                 <div class="slds-m-bottom_small">Enter license details to request an activation code</div>
                 <div class="token-wrapper licensecon">
-                    <lightning:input aura:id="licenseNumber" label="License#"
+                    <lightning:input aura:id="licenseNumber" label="License"
                                      name="License"
                                      value=""
                                      />
@@ -118,15 +117,10 @@ ________________________________________________________________________________
                 </div>
                 <div class="btnAlign">
                     <lightning:button variant="neutral" label="Cancel" class='btn-lnp cancel-button' title="Cancel" type="text" onclick="{!c.goBack}"/>
-                    <lightning:button variant="brand" label="Next" title="Next" aura:id="btnProceed" class="proceed-btn" onclick= "{!c.searchLicenseActivation}"/>
+                    <lightning:button variant="Brand" label="Next" aura:id="btnProceed" class="proceed-btn" onclick= "{!c.searchLicenseActivation}"/>
                 </div>
-                <div class="new-wrapper">
-                    <div class="heading pad link-title">
-                        Choose a method to receive an activation code                       
-                    </div>
-                    <div class="sentenceflex">
-                        <div class="">You can get activation code by calling on &nbsp; </div><div class="txtStyle">{!$Label.c.Phone_number_Activation_code}</div>
-                    </div>
+                <div class="{!v.showEmail?'new-wrapper':'slds-hide'}">
+                   
                     <div class="token-wrapper">
                         <!-- <lightning:radioGroup name="radioGroup"                          
                                               options="{! v.options }"
@@ -134,20 +128,18 @@ ________________________________________________________________________________
                                               type="radio"
                                               class="radio-style" onchange= "{!c.sendEmail}" />{!v.emailID}-->
                         <div class="flexdisp">
-                            <lightning:input type="radio" name="select" label="Email" value="Email" onchange="{!c.sendEmail}"/>
+                          
                             <div class="emaillabel">{!v.emailID}</div>
                         </div>
                         
-                        <div class="flexdisp itemBtm">
-                            <lightning:input type="radio" name="select" label="Mail" value="Mail"   onchange="{!c.sendEmail}"/>
-                            <div class="emaillabel">{!v.mailID}</div>
-                        </div>
+                       
                         
                         
                     </div>
+                    <div class="call-option">If your email is incorrect or you want to get an activation code by phone, please contact {!$Label.c.Phone_number_Activation_code}</div>
                     <div class="btnAlign">
-                        <lightning:button variant="neutral" label="Cancel" title="Cancel" class='btn-lnp cancel-button' type="text" onclick="{!c.goBack}"/>
-                        <lightning:button variant="brand" label="Proceed" title="Proceed" aura:id="btnProceed"  onclick = "{!c.sendEmailFinal}"  disabled ="{!v.disabled}" class="proceed-btn"/>
+                        <lightning:button variant="neutral" label="Cancel" class='btn-lnp cancel-button' title="Cancel" type="text" onclick="{!c.goBack}"/>
+                        <lightning:button variant="Brand" label="Submit" title="Submit" aura:id="btnProceed"  onclick = "{!c.sendEmailFinal}"  disabled ="{!v.disabled}" class="proceed-btn"/>
                     </div>
                     
                 </div>
