@@ -1322,7 +1322,7 @@
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
-            <value>,Draft,Submitted,Submission Failed,Generate Fee,Pending Payment,Waiting for Third Party Verification,Pending Action,In-Review,In Review,Pending Additional Qualifications,Withdrawn,Denied,Abandoned,Active,Inactive,Sunset,Expired,Suspended</value>
+            <value>Active,Inactive,Expired</value>
         </criteriaItems>
         <triggerType>onAllChanges</triggerType>
     </rules>
