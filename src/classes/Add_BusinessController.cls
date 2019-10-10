@@ -1069,7 +1069,21 @@ public with sharing class Add_BusinessController {
             return null;
         }
     }
-    
+    @AuraEnabled
+    public static List<Request__c> CompletedMaintananceRequestApplicationsTable(String accountId){        
+        try{
+            List<Request__c> requestList = [Select  id,Name,License_Type__c, Service_Request_Type__c, End_Time__c
+                                                    from Request__c
+                                                    where Status__c =:'Approved' AND Account__c=:accountId  ORDER BY CreatedDate asc];
+          system.debug('requestList--'+requestList);
+            return requestList;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
+    }
     @AuraEnabled
     public static Boolean checkActiveCart(){
         try{
