@@ -250,7 +250,7 @@
         </recipients>
         <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_PDH_audit_notification_final</template>
+        <template>DOL_Licensing/Renewal_PDH_audit_notification_final_1</template>
     </alerts>
     <alerts>
         <fullName>Renewal_issued_Active_Other</fullName>
