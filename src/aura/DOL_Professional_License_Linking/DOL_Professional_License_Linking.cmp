@@ -32,9 +32,10 @@ ________________________________________________________________________________
                                                                                                        
                                                                                                        ]"/>
     <aura:attribute name="value" type="String" default=""/>
-    <aura:attribute name="media" type="String" default=""/>
+    <aura:attribute name="media" type="String" default="Email"/>
     <aura:attribute name="loadingSpinner" type="Boolean" default="false" />
     <aura:attribute name="disabled" type="Boolean" default="true" />
+    <aura:attribute name="showEmail" type="Boolean" default="false" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 	<aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
     
@@ -45,31 +46,18 @@ ________________________________________________________________________________
         <aura:if isTrue="{!v.linkingScreen}">
             
             <div class="page-header prof-link-title">
-                Link an existing professional profile
+                Link Existing Professional License
             </div>
-            <!--<div class="">
-                <a href="javascript:void(0)" class="license-link" onclick ="{!c.showSecurityCode}">I have a Security</a>
-                |
-                <a href ="javascript:void(0)"  class ="license-link" onclick ="{!c.hideSecurityCode}">I Don't Have a Security Token</a>
-            </div> -->            
+              
             <div class="new-wrapper">
                 <div class="link-help">
-                    Link a professional license using below details
+                    <p class="link-help">If you don't have an activation code, use the search below to link your professional license.</p>                
+                   
                 </div>
-                <p class="link-help">Search your professional license using the details below and link it to your account</p>                
+                
                 
                 
                 <div class="token-wrapper details-search">
-                    <lightning:select aura:id="securityToken" name="licenseType" label="License Type" variant="Brand"  class="field-size">
-                        <option value="" text="None"/>    
-                        <aura:iteration items="{!v.licenseTypeList}" var="licenseType">
-                            <option value="{!licenseType}">{!licenseType}</option>
-                        </aura:iteration>
-                    </lightning:select>
-                    <lightning:input aura:id="securityToken" label="License" class="field-size"
-                                     name="license"
-                                     value=""
-                                     />
                     <lightning:input aura:id="securityToken" label="First Name" class="field-size"
                                      name="FirstName"
                                      value=""
@@ -88,6 +76,17 @@ ________________________________________________________________________________
                                      value=""
                                      required="true"
                                      maxlength ="4"/>
+                    <lightning:select aura:id="securityToken" name="licenseType" label="License Type" variant="Brand"  class="field-size">
+                        <option value="" text="None"/>    
+                        <aura:iteration items="{!v.licenseTypeList}" var="licenseType">
+                            <option value="{!licenseType}">{!licenseType}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                    <lightning:input aura:id="securityToken" label="License" class="field-size"
+                                     name="license"
+                                     value=""
+                                     />
+                    
                     
                 </div>
                 
@@ -99,10 +98,10 @@ ________________________________________________________________________________
             </div>             
             <div class="new-wrapper">
                 <div class="heading link-title">
-                    Link a professional license using an activation code
+                    Link using an activation code
                 </div>
-                <p class="link-help">If you have received an activation code, enter it below.</p>
-                <p class="link-help">If you would like to request an activation code, please click <a href="javascript:void(0)" onclick="{!c.redirectRequest}">here</a></p>
+                <p class="link-help">If you have an activation code, enter it below or you can <a href="javascript:void(0)" onclick="{!c.redirectRequest}">request an activation code</a> using your license number.</p>
+              
                 
                 
                 
@@ -160,15 +159,13 @@ ________________________________________________________________________________
             </aura:if>
             
         <aura:set attribute="else">
-               <!-- <div class="biz-link-title">
-                    Request an activation code for linking a professional license
-                </div>-->
+               
                 <div class="heading pad link-title">
-                    License Details
+                    Request Activation Code
                 </div>
                <div class="slds-m-bottom_small">Enter license details to request an activation code</div>
                <div class="token-wrapper licensecon">
-                   <lightning:input aura:id="licenseNumber" label="License#" class="field-size"
+                   <lightning:input aura:id="licenseNumber" label="License" class="field-size"
                                      name="License"
                                      value=""
                                      required = "true"/>
@@ -180,16 +177,11 @@ ________________________________________________________________________________
                     </lightning:select>
                </div>
                 <div class="btnAlign">
-                        <lightning:button variant="neutral" label="Cancel" title="Cancel" class='btn-lnp cancel-button' type="text" onclick="{!c.goBack}"/>
-                        <lightning:button variant="brand" label="Next" title="Next" aura:id="btnNext" class="proceed-btn" onclick= "{!c.searchLicenseActivation}"/>
+                        <lightning:button variant="neutral" label="Cancel" class='btn-lnp cancel-button' title="Cancel" type="text" onclick="{!c.goBack}"/>
+                        <lightning:button variant="Brand" label="Next" aura:id="btnNext" class="proceed-btn" onclick= "{!c.searchLicenseActivation}"/>
                    </div>
-                <div class="new-wrapper">
-                    <div class="heading pad link-title">
-                        Choose a method to receive an activation code
-                    </div>
-                    <div class="sentenceflex">
-                     <div class="">You can get activation code by calling on &nbsp; </div><div class="txtStyle">{!$Label.c.Phone_number_Activation_code}</div>
-                    </div>
+                <div class="{!v.showEmail?'new-wrapper':'slds-hide'}">
+                   
                         <div class="token-wrapper">
                        <!-- <lightning:radioGroup name="radioGroup"                          
                                               options="{! v.options }"
@@ -197,20 +189,17 @@ ________________________________________________________________________________
                                               type="radio"
                                               class="radio-style" onchange= "{!c.sendEmail}" />{!v.emailID}-->
                         <div class="flexdisp">
-                        <lightning:input type="radio" name="select" label="Email" value="Email" onchange="{!c.sendEmail}"/>
+                      
                         <div class="emaillabel"> {!v.emailID}</div>
                         </div>
-                        
-                        <div class="flexdisp itemBtm">
-                        <lightning:input type="radio" name="select" label="Mail" value="Mail"   onchange="{!c.sendEmail}"/>
-                        <div class="emaillabel">{!v.mailID}</div>
-                        </div>
+                    
                    
                         
                     </div>
+                    <div class="call-option">If your email is incorrect or you want to get an activation code by phone, please contact {!$Label.c.Phone_number_Activation_code}</div>
                    <div class="btnAlign">
-                        <lightning:button variant="neutral" label="Cancel" title="Cancel" class='btn-lnp cancel-button' type="text" onclick="{!c.goBack}"/>
-                        <lightning:button variant="brand" label="Proceed" title="Proceed" aura:id="btnProceed"  onclick = "{!c.sendEmailFinal}"  disabled ="{!v.disabled}" class="proceed-btn"/>
+                        <lightning:button variant="neutral" label="Cancel" class='btn-lnp cancel-button' title="Cancel" type="text" onclick="{!c.goBack}"/>
+                        <lightning:button variant="Brand" label="Submit" title="Submit" aura:id="btnProceed"  onclick = "{!c.sendEmailFinal}"  disabled ="{!v.disabled}" class="proceed-btn"/>
                    </div>
 
                 </div>

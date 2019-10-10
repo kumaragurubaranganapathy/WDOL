@@ -65,7 +65,7 @@
        component.set('v.media',value); 
     },
     sendEmailFinal : function(component,event,helper) {
-        var value = component.get('v.media');
+        var value = component.get('v.media');        
         if(value == null || value =='') {
             var toastEvent = $A.get("e.force:showToast");
             toastEvent.setParams({
@@ -75,7 +75,7 @@
             });
             toastEvent.fire();  
         }
-        if(value =='Email') {
+        if(value === 'Email') {
             var valueEmail = component.get('v.emailID');
             if(valueEmail == null || valueEmail== '') {
                 var toastEvent = $A.get("e.force:showToast");
