@@ -32,7 +32,6 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
     global void execute(Database.BatchableContext BC, List<DOL_Integration_Batch_Input__c> records){
         Savepoint sp = null;
         if(records != null && records.size() > 0 ){
-            String tempSfdcLicenceId = '';
             MUSW__License2__c tempLicenseRecord;
             // to get all the failed records
             List<NCRFailedRecord> ncrFailedRecords = new List<NCRFailedRecord>();
@@ -45,27 +44,21 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
                     tempNCRFileData.INFO__C = ' ';
                     // parsing the json string
                     tempNCRInput = DOL_NCR_Input.parse(tempNCRFileData.Input__c);
-                    tempSfdcLicenceId = tempNCRInput.PolarisRecordID;
-                    if(tempSfdcLicenceId != null && tempSfdcLicenceId != '' ){
-                        // get the license information and renewal record info
-                        tempLicenseRecord = dolDao.getLicenseAndRenewalRecordByLicenseId(tempSfdcLicenceId);
-                        // Check if we can create renewal record
-                        isEligibleForRenewalRecordCreation(tempLicenseRecord);
-                        // setting the SavePoint
-                        sp = Database.setSavePoint();
-                        // create renewalApplication Record
-                        createRenewalApplication(tempLicenseRecord);
-                        // create submission record
-                        createSubmissionRecord();
-                        // intiate payment for renewal application
-                        doPaymentForRenewalApplication(tempLicenseRecord);
-                        // update the status of the record
-                        tempNCRFileData.INFO__C += ' Data processed successfully ';
-                        tempNCRFileData.Status__c = ' SUCCESSFUL';
-                    }
-                    else{
-                         throw new CustomException('Polaris Id is null or Blank in the input');
-                    }
+                    // get the license information and renewal record info
+                    tempLicenseRecord = getLicenseRecord(tempNCRInput);
+                    // Check if we can create renewal record
+                    isEligibleForRenewalRecordCreation(tempLicenseRecord);
+                    // setting the SavePoint
+                    sp = Database.setSavePoint();
+                    // create renewalApplication Record
+                    createRenewalApplication(tempLicenseRecord);
+                    // create submission record
+                    createSubmissionRecord();
+                    // intiate payment for renewal application
+                    doPaymentForRenewalApplication(tempLicenseRecord);
+                    // update the status of the record
+                    tempNCRFileData.INFO__C += ' Data processed successfully ';
+                    tempNCRFileData.Status__c = ' SUCCESSFUL';
                 }catch(Exception error){
                     // get the error message into record
                      tempNCRFileData.INFO__c += ' error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString();
@@ -98,6 +91,24 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
                 }
             }
         }
+    }
+
+    /*
+    * get MUSW__License2__c record for given PolarisRecordID OR LicenseNumber
+    */
+    private MUSW__License2__c getLicenseRecord(DOL_NCR_Input ncrInput){
+        MUSW__License2__c license;
+        if(String.isNotBlank(ncrInput.PolarisRecordID) )
+            license = dolDao.getLicenseAndRenewalRecordByLicenseId(ncrInput.PolarisRecordID);
+        else if(String.isNotBlank(ncrInput.LicenseNumber))
+            license = dolDao.getLicenseAndRenewalRecordByLicenseNumber(ncrInput.LicenseNumber);
+        else{
+            throw new CustomException('PolarisRecordID and LicenseNumber both are blank');
+        }
+        if(license == null){
+            throw new CustomException('No license record found for given PolarisRecordID = '+ncrInput.PolarisRecordID+', OR LicenseNumber = '+ncrInput.LicenseNumber);
+        }
+        return license;
     }
 
     /*
@@ -141,11 +152,12 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
         tempRenewalApplication.Credential__c = licenseRecord.Credential_Type__c;
         tempRenewalApplication.Licensee__c = licenseRecord.MUSW__Primary_Licensee__c;
         tempRenewalApplication.License__c = licenseRecord.Id;
-        tempRenewalApplication.Renewal_Status__c = 'Generate Fee';
+        tempRenewalApplication.Online_or_Paper_Application__c = DOL_AppConstants.NULL_EMPTY_STRING+'Online'; 
+        tempRenewalApplication.Renewal_Status__c = DOL_AppConstants.NULL_EMPTY_STRING+'Generate Fee';
         if(licenseRecord.Is_Renewal_Eligible__c)
-            tempRenewalApplication.Renewal_Reinstatement_Type__c = 'Renewal';
+            tempRenewalApplication.Renewal_Reinstatement_Type__c = DOL_AppConstants.NULL_EMPTY_STRING+'Renewal';
         else
-            tempRenewalApplication.Renewal_Reinstatement_Type__c = 'Reinstatement';
+            tempRenewalApplication.Renewal_Reinstatement_Type__c = DOL_AppConstants.NULL_EMPTY_STRING+'Reinstatement';
         tempRenewalApplication.RecordTypeId = getRenewalAppRecordTypeId(licenseRecord.RecordType.Name);
         // below are exception Application Type
         if(licenseRecord.Application_Type__c == 'Camping Resorts'){
@@ -238,7 +250,7 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
                 record.Validation_Sequence_Number__c = ncrInput.ValidationSeqNum;
             }
             if(license != null){
-                record.Licensee_Name__c = license.Name;
+                record.Licensee_Name__c = license.Name_on_Certificate__c;
                 record.Profession_Name__c = license.Credential_Type__c;
             }
             record.Error_message__c = errorMsg;
