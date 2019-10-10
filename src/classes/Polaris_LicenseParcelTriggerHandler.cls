@@ -51,7 +51,7 @@ public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler
         for (MUSW__License_Parcel__c licP :triggerNew){
             licenseParcelIds.add(licP.MUSW__License2__c);
         }
-        for (MUSW__License2__c lst  : [Select Id, MUSW__Parcel__c,Public_Address__c from MUSW__License2__c where id = :licenseParcelIds]) {
+        for (MUSW__License2__c lst  : [Select Id, MUSW__Parcel__c,Public_Address__c from MUSW__License2__c where id = :licenseParcelIds order by createdDate desc]) {
             licenseMap.put(lst.Id,lst);
         }
         for(MUSW__License_Parcel__c lp : triggerNew){
@@ -86,7 +86,7 @@ public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler
         for (MUSW__License_Parcel__c licP :triggerNew){
             licenseParcelIds.add(licP.MUSW__License2__c);
         }
-        for (MUSW__License2__c lst  : [Select Id, MUSW__Parcel__c,Public_Address__c from MUSW__License2__c where id = :licenseParcelIds]) {
+        for (MUSW__License2__c lst  : [Select Id, MUSW__Parcel__c,Public_Address__c from MUSW__License2__c where id = :licenseParcelIds order by createdDate desc]) {
             licenseMap.put(lst.Id,lst);
         }
         for(MUSW__License_Parcel__c lp : triggerNew){
