@@ -155,7 +155,7 @@ so we only have to use 1 SOQL query to do all checks.
         try{
             if(!refundeeContactIdList.isEmpty()){
                 //Fetch the parcel contact using refundee Id
-                List<MUSW__Parcel_Contact2__c> parcelContactList = [Select Id,Name,AddressClient_Id__c, MUSW__Contact__c, MUSW__Contact_Type__c,Mailing__c,
+                List<MUSW__Parcel_Contact2__c> parcelContactList = [Select Id,Name, MUSW__Contact__c, MUSW__Contact_Type__c,Mailing__c,
                                                                     MUSW__Parcel__r.MUSW__Street_Number__c,MUSW__Parcel__r.MUSW__Street_Direction__c,MUSW__Parcel__r.MUSW__Street2__c, 
                                                                     MUSW__Parcel__r.MUSW__Street_Suffix__c,MUSW__Parcel__r.MUSW__Unit__c ,MUSW__Parcel__r.MUSW__Unit_Type__c,
                                                                     MUSW__Parcel__r.MUSW__City__c ,MUSW__Parcel__r.MUSW__Post_Zip_Code__c ,MUSW__Parcel__r.MUSW__State__c,
