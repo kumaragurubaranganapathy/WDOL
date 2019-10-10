@@ -27,7 +27,7 @@ public class LnP_CustomerEnvelope_Test {
         Customer_Envelope__c cEnve = TestUtility.getCEnvelope();
         insert cEnve;
         
-        cEnve.Hold_Status__c = true;
+        cEnve.DHP__c = true;
         update cEnve;
         
         Database.DeleteResult delcEnve = database.delete(cEnve.Id);
