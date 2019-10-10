@@ -159,14 +159,8 @@ border-radius: 5px;
     
 }
 .THIS .cancel-button,.THIS .add-button {
-    width: 111px;
-    height: 42px;
-    border-radius: 5px;
-    border: solid 2px #0872b9;
-    background-color: #ffffff;
-    font-family: token(publicSansfontfamily);
-    font-size: token(fieldlabelsize);
-    font-weight: token(btnfontweight);
+    width: auto;
+    height: 42px;    
 }
 .THIS .cancelbtn{
     
@@ -179,26 +173,13 @@ border-radius: 5px;
     font-weight: token(btnfontweight);
 }
 .THIS .back-button{
-    width: 130px;
-    height: 42px;
-    border-radius: 5px;
-    border: solid 2px #0872b9;
-    background-color: #ffffff;
-    font-family: token(publicSansfontfamily);
-    font-size: 15px;
-    font-weight: token(btnfontweight);
-    color:t(primary);
+    width: auto;
+    height: 42px;    
 }
 
 .THIS .next-button {/* next or continue button*/
     width: auto;
-    height: 42px;
-    font-family: token(publicSansfontfamily);
-    font-size: token(fieldlabelsize);
-    font-weight: token(btnfontweight);
-    background-color :token(primary);
-    border-radius: 5px;
-    color:token(white);
+    height: 42px;    
 }
 /*fields label and input style*/
 .THIS .field-size label,.THIS .field-size .slds-form-element__label,.THIS .fileupload .slds-form-element__label,.THIS .fileupload .slds-medium-show,.THIS .licenseinp span,.THIS .licenseinp label,.THIS .licensetab label,.THIS .businesstab label,.THIS .page-content label,.THIS .program span
@@ -651,6 +632,7 @@ margin-right:10%;
     font-weight:bold;
     border-radius:4px;
     color:t(buttonNeutral);
+    background:t(LnGWhite);
     border : solid 1px t(buttonNeutral);
 }
 .THIS .slds-button.slds-button_brand:hover, .THIS .slds-button.slds-button_brand:focus{
@@ -699,6 +681,21 @@ margin-right:10%;
 }
 .THIS .slds-file-selector__button.slds-button.slds-button_neutral:hover, .THIS .slds-file-selector__button.slds-button.slds-button_neutral:focus{
     background-color:t(primary);
+}
+.THIS .buttonpos{
+    margin:0;
+    padding-top: 45px;
+    padding-bottom: 22px;
+    border-top:1px solid #5b616b;
+    display:flex;
+    justify-content:space-between;
+}
+.THIS .save-buttons{
+    display:flex;
+    
+}
+.THIS .hide-button{
+    visibility:hidden;
 }
 
 @media only screen and (max-width:767.9px){    
@@ -765,7 +762,7 @@ margin-right:10%;
     }
     .THIS .content-wrapper .buttonpos{
         margin: 10% 0;
-        padding:0;
+        padding:1rem 0;
         display:flex;
         align-items:flex-end;
         justify-content:flex-end;
@@ -806,6 +803,18 @@ margin-right:10%;
     .THIS .slds-tabs_default__overflow-button .slds-button{
         
         font-size:0.8125rem;
+    }
+    .THIS .button-section.buttonpos {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items:center;
+    }  
+    .THIS .save-buttons{
+        flex-direction:column-reverse;    
+        width:100%;
+    }
+    .THIS .button-section button{
+        width:100%;
     }
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px){

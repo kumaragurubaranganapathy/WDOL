@@ -415,10 +415,13 @@
         </aura:iteration>
         
         <div class="slds-grid slds-m-top_xx-large button-section buttonpos">
-            <lightning:button variant="neutral" label="Back" title="Back" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'btn btn-lnp prevBtn back-button'}"/>
-            <lightning:button variant="neutral" label="Back" title="Back" onclick="{! c.goBack }" disabled="{!(v.currentTab==1)?'false':'true'}" class="{!(v.currentTab==1)?'btn btn-lnp prevBtn back-button':'slds-hide'}"/>
-            <lightning:button variant="brand" label="Continue" title="Continue" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show pull-right btn btn-lnp add-button'}"/>
-            <lightning:button aura:id="FinalSubmitBtnID" variant="brand" label="{!v.feesRequired?'Continue':'Submit'}" title="{!v.feesRequired?'Continue':'Submit'}" onclick="{!c.submit }" class="{!v.currentTab==v.totalTabs?'slds-show pull-right btn btn-lnp add-button':'slds-hide'}"/>
+            <lightning:button variant="neutral" label="Back" title="Back" onclick="{! c.previousTab }" disabled="{!(v.currentTab==1)?'true':'false'}" class="{!(v.currentTab==1)?'slds-hide':'back-button'}"/>
+            
+            <lightning:button variant="neutral" label="Back" title="Back" onclick="{! c.goBack }" disabled="{!(v.currentTab==1)?'false':'true'}" class="{!(v.currentTab==1)?'back-button':'slds-hide'}"/>
+            <div class="save-buttons">
+                <lightning:button variant="brand" label="Continue" title="Continue" onclick="{! c.nextTab }" class="{!(v.currentTab==v.totalTabs)?'slds-hide':'slds-show add-button'}"/>
+                <lightning:button aura:id="FinalSubmitBtnID" variant="brand" label="{!v.feesRequired?'Continue':'Submit'}" title="{!v.feesRequired?'Continue':'Submit'}" onclick="{!c.submit }" class="{!v.currentTab==v.totalTabs?'slds-show add-button':'slds-hide'}"/>
+            </div>
         </div>
     </div>
     <!-- Pop up start -->
