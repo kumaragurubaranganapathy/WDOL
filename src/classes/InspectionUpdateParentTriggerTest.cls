@@ -99,6 +99,42 @@ public class InspectionUpdateParentTriggerTest{
         
     */
     }  
+    
+    @isTest
+    public static void unitTest2(){
+        Test.startTest();
+        
+        Global_Settings__c globalSettings = new Global_Settings__c(Name = Userinfo.getUserName(), Disable_Triggers__c = false);
+        insert globalSettings; 
+        globalSettings.Disable_Triggers__c = true;
+        update globalSettings;
+        
+        MUSW__Inspection__c preIns = new MUSW__Inspection__c();
+                
+        preIns.Name = DOL_AppConstants.NULL_EMPTY_STRING + 'asfsdafsda';
+        preIns.MUSW__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Mechanical';
+        preIns.MUSW__Priority__c= DOL_AppConstants.NULL_EMPTY_STRING + '2 Normal';
+        preIns.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'failed';
+        preIns.Close_Inspection__c = false;
+        preIns.MUSW__On_Itinerary__c = false;
+        preIns.Letter_Generated__c = false;
+        preIns.MUSW__Scheduled_Start_Date__c = date.today();
+        preIns.Requested_DateTime__c = date.today();
+        preIns.Completed_DateTime__c = date.today();
+        preIns.MUSW__Completed_Date__c = date.today();
+        preIns.MUSW__Closed_DateTime__c = date.today();
+        preIns.Inspection_Chain_Closed__c = false;
+        preIns.MUSW__Previous_Inspection__c = null;
+        insert preIns;  
+        
+         preIns.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'pending';
+        update preIns;
+        
+        delete preIns;
+        
+        test.stopTest();
+        
+    }
 
 
 }
