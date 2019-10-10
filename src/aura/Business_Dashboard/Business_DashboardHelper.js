@@ -365,7 +365,7 @@
                 this.injectComponent('c:BusinessDetails_DraftApplications',attr, tab);
                 break;
             case 'Completed Requests':
-                var attr = {CompletedRequestData:component.get("v.CompletedRequestData"),CompletedRequestColumns : component.get("v.CompletedRequestColumns")};
+                var attr = {accountId: component.get("v.selectedAccount")};
                 this.injectComponent('c:LnP_CompletedRequest',attr, tab);
                 break;
                 

@@ -1,7 +1,9 @@
-<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
-    <aura:attribute name="CompletedRequestData" type="Object" /> 
-    <aura:attribute name="CompletedRequestColumns" type="Object"/>
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="Add_BusinessController" >
+    <aura:attribute name="CompletedRequestData" type="List" /> 
+    <aura:attribute name="CompletedRequestColumns" type="List" default="['Request #','Request Type','Request against', 'Completion date']" />
+    <aura:attribute name="accountId" type="String" />
     <aura:attribute name="dispList" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <div class="Completed-Requests">
         
         <aura:if isTrue="{!v.CompletedRequestData.length}">
@@ -22,8 +24,8 @@
                         <aura:iteration items="{!v.dispList}" var="tableData" indexVar="ind">
                             <tr class="slds-hint-parent">
                                 <td data-label="Service_Request_Type__c">
-                                    <aura:if isTrue="{!tableData.name}">
-                                        <div class="slds-truncate" title="{!tableData.name}">{!tableData.name}</div>
+                                    <aura:if isTrue="{!tableData.Name}">
+                                        <div class="slds-truncate" title="{!tableData.Name}">{!tableData.Name}</div>
                                         <aura:set attribute="else">None</aura:set>
                                     </aura:if>
                                 </td>        
@@ -40,8 +42,8 @@
                                     </aura:if>
                                 </td>
                                 <td data-label="LastModifiedDate">
-                                    <aura:if isTrue="{!tableData.endTime}">
-                                        <div class="slds-truncate" title="{!tableData.endTime}">{!tableData.endTime}</div>
+                                    <aura:if isTrue="{!tableData.End_Time__c}">
+                                        <div class="slds-truncate" title="{!tableData.End_Time__c}">{!tableData.End_Time__c}</div>
                                         <aura:set attribute="else">None</aura:set>
                                     </aura:if>
                                 </td>  
