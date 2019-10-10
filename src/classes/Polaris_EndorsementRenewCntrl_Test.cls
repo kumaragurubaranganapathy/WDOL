@@ -107,4 +107,32 @@ public class Polaris_EndorsementRenewCntrl_Test {
             Polaris_EndorsementRenewCntrl.changeStatus(endo.Id, 'In-Review', app.Id);
         }catch(exception ex){}
     }
+    
+     public static testmethod void unitTest2()
+    {
+       
+       
+        Id appRecId = Schema.SObjectType.MUSW__Application2__c.getRecordTypeInfosByName().get('Registration').getRecordTypeId();
+        MUSW__Application2__c app = DOL_TestDataFactory.createApplication(appRecId);
+        Id AccRecTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId();
+        Account a = DOL_TestDataFactory.createAccount(AccRecTypeId);
+        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
+        MUSW__License2__c lic1 = DOL_TestDataFactory.createLicense(LicRecTypeId1, a.Id, 'Architects', 'Architect', 'General Application');
+        lic1.Application__c = app.id;
+        update lic1;
+        Test.startTest();
+        
+        Global_Settings__c globalSettings = new Global_Settings__c(Name = Userinfo.getUserName(), Disable_Triggers__c = false);
+        insert globalSettings; 
+        globalSettings.Disable_Triggers__c = true;
+        update globalSettings;
+        
+        Endorsement__c endo = DOL_TestDataFactory.createEndorsement(lic1.Id, 'Active');
+        Polaris_EndorsementRenewCntrl.changeStatus(endo.Id, 'In-Review', app.Id);
+       
+        delete endo;
+        
+        Test.stopTest() ;
+    }   
+    
 }
