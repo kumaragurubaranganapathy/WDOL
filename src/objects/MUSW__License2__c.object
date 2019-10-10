@@ -5228,29 +5228,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <label>Courses by Provider</label>
     </listViews>
     <listViews>
-        <fullName>Delegated_Municipality1</fullName>
-        <columns>NAME</columns>
-        <columns>MUSW__Applicant__c</columns>
-        <columns>MUSW__Primary_Licensee__c</columns>
-        <columns>MUSW__Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Credential__c</field>
-            <operation>contains</operation>
-            <value>Delegated Agent</value>
-        </filters>
-        <label>Delegated Municipality</label>
-    </listViews>
-    <listViews>
-        <fullName>Demo_List_View</fullName>
-        <columns>NAME</columns>
-        <columns>Applicant_Full_Name__c</columns>
-        <columns>Account_Email__c</columns>
-        <columns>MUSW__Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>Demo List View</label>
-    </listViews>
-    <listViews>
         <fullName>Funeral_Embalmer</fullName>
         <columns>NAME</columns>
         <columns>LAST_UPDATE</columns>
@@ -5337,41 +5314,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>Manufactured_Home_Converted</fullName>
-        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
-        <columns>NAME</columns>
-        <columns>MUSW__Applicant__c</columns>
-        <columns>MUSW__Status__c</columns>
-        <columns>MUSW__Expiration_Date__c</columns>
-        <columns>MUSW__Primary_Licensee__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CREATEDBY_USER.ALIAS</field>
-            <operation>equals</operation>
-            <value>dadmi</value>
-        </filters>
-        <filters>
-            <field>Credential__c</field>
-            <operation>equals</operation>
-            <value>Manufactured Homes Dealer,Manufactured Homes Installer</value>
-        </filters>
-        <filters>
-            <field>Credential__c</field>
-            <operation>equals</operation>
-            <value>Manufactured Homes Manufacturer,Manufactured Homes Salesperson</value>
-        </filters>
-        <label>Manufactured Home Converted</label>
-    </listViews>
-    <listViews>
-        <fullName>Notaries_Queue_License2</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Notaries Queue</label>
-        <queue>Notaries_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Notarty_Public</fullName>
@@ -5693,36 +5635,6 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>UDC_Professions</fullName>
-        <booleanFilter>(1 OR 2 OR 3) AND 4</booleanFilter>
-        <columns>NAME</columns>
-        <columns>MUSW__Applicant__c</columns>
-        <columns>MUSW__Status__c</columns>
-        <columns>MUSW__Expiration_Date__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Credential__c</field>
-            <operation>equals</operation>
-            <value>UDC Construction Inspector,UDC Electrical Inspector,UDC HVAC Inspector</value>
-        </filters>
-        <filters>
-            <field>Credential__c</field>
-            <operation>equals</operation>
-            <value>UDC HVAC Inspector,UDC Inspection Agency</value>
-        </filters>
-        <filters>
-            <field>Credential__c</field>
-            <operation>equals</operation>
-            <value>UDC Plumbing Inspector</value>
-        </filters>
-        <filters>
-            <field>MUSW__Expiration_Date__c</field>
-            <operation>lessOrEqual</operation>
-            <value>10/10/2018</value>
-        </filters>
-        <label>UDC Professions</label>
     </listViews>
     <nameField>
         <encryptionScheme>None</encryptionScheme>
