@@ -697,6 +697,12 @@ margin-right:10%;
 .THIS .hide-button{
     visibility:hidden;
 }
+.THIS .slds-file-selector.slds-file-selector_files, .THIS .slds-file-selector .slds-file-selector__dropzone{
+    width:100%;
+}
+.THIS .slds-file-selector slot[interop-primitiveFileDroppableZone_primitiveFileDroppableZone]{
+    display:block;
+}
 
 @media only screen and (max-width:767.9px){    
     .THIS .next-button{
