@@ -158,14 +158,6 @@ display:none;
     padding: 10px;
     padding-left: 30px;
 }
-.THIS .buttonpos{
-    margin:0;
-    padding-top: 45px;
-    padding-bottom: 22px;
-    border-top:1px solid #5b616b;
-    display:flex;
-    justify-content:space-between;
-}
 .THIS .devide-list{
     display:inline-block;
     margin-right: .25em; 
@@ -432,10 +424,7 @@ color: t(primary);
     margin-right:1rem;
     background-color:t(LnGWhite);
 }
-.THIS .save-buttons{
-    display:flex;
-    
-}
+
 .THIS .hide-button{
     visibility:hidden;
 }
@@ -449,12 +438,9 @@ color: t(primary);
     
     .THIS .button-section.buttonpos {
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items:center;
-    }
-    .THIS .personal-info{
-        width:85%;
-    }
+    }    
     .THIS .sectionwidth{
         margin-left: 0;
     }
@@ -464,16 +450,19 @@ color: t(primary);
     .THIS .personal-info .validate{
         margin-bottom: 0.8rem;
     }
+    .THIS .personal-info{
+        margin:0 1rem;
+    }
     .THIS .subheader{
         padding-left:29px;
     }
     .THIS .save-buttons{
-        flex-direction:column;
+        flex-direction:column-reverse;
         
     }
     .THIS .buttonpos button {
-        width: 242px;
-        margin: 10px auto;
+        width: auto;
+        margin: 10px 0;
         height: 42px;    
         font-size: 14px;
         font-weight: bold;

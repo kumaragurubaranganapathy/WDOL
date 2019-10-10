@@ -213,7 +213,12 @@
     .THIS.lic-sel-wrapper{
         margin: 1rem;
     }
-    
+    .THIS .proceed-btn-wrapper{
+        flex-direction:column-reverse;
+    }
+    .THIS .proceed-btn-wrapper .slds-button + .slds-button{
+        margin:0 0 0.5rem;
+    }
 }
 .THIS .proceed-btn[disabled], .THIS .proceed-btn:disabled {
     background:t(LnGGrayText);
