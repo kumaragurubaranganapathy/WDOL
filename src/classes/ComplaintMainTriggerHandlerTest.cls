@@ -40,6 +40,11 @@ public class ComplaintMainTriggerHandlerTest {
         System.assert(delCompl.isSuccess());
         Database.UndeleteResult undelCompl = Database.undelete(complaintRecord2.Id);
         System.assert(undelCompl.isSuccess());
+        
+        Global_Settings__c gs = new Global_Settings__c(Name = 'Gs', Disable_Triggers__c = true);
+        insert gs;
+        MUSW__Complaint2__c complaintRecord3 = DOL_TestDataFactory.createComplaintRecord('Funerals','Active', licObj.Id);
+
     }    
     
 }
