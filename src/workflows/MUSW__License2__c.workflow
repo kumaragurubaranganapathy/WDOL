@@ -1328,7 +1328,7 @@
     </rules>
     <rules>
         <fullName>Email - Renewal - PDH audit notification</fullName>
-        <active>true</active>
+        <active>false</active>
         <formula>Selected_for_Audit__c = TRUE &amp;&amp; Audit_Completed_Flag__c = FALSE &amp;&amp; Text(MUSW__Status__c) = &apos;Active&apos;</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
