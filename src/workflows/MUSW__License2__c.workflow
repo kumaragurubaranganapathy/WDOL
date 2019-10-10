@@ -241,6 +241,18 @@
         <template>DOL_Licensing/Renewal_PDH_audit_approval_final</template>
     </alerts>
     <alerts>
+        <fullName>Renewal_PDH_audit_notification</fullName>
+        <description>Renewal - PDH audit notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>MUSW__Applicant__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>DOL_Licensing/Renewal_PDH_audit_notification_final</template>
+    </alerts>
+    <alerts>
         <fullName>Renewal_issued_Active_Other</fullName>
         <description>Renewal issued - Active - Other</description>
         <protected>false</protected>
@@ -1287,6 +1299,79 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>Email - Renewal - PDH audit approval</fullName>
+        <actions>
+            <name>Renewal_PDH_audit_approval</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Email_Outbound_Renewal_PDH_audit_approval</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>MUSW__License2__c.Audit_Completed_Flag__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.Is_Renewal_Eligible__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>MUSW__License2__c.MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>,Draft,Submitted,Submission Failed,Generate Fee,Pending Payment,Waiting for Third Party Verification,Pending Action,In-Review,In Review,Pending Additional Qualifications,Withdrawn,Denied,Abandoned,Active,Inactive,Sunset,Expired,Suspended</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Email - Renewal - PDH audit notification</fullName>
+        <active>true</active>
+        <formula>Selected_for_Audit__c = TRUE &amp;&amp; Audit_Completed_Flag__c = FALSE &amp;&amp; Text(MUSW__Status__c) = &apos;Active&apos;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Renewal_PDH_audit_notification</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Email_Outbound_Renewal_PDH_audit_notification</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>MUSW__License2__c.MUSW__Expiration_Date__c</offsetFromField>
+            <timeLength>-60</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Renewal_PDH_audit_notification</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Email_Outbound_Renewal_PDH_audit_notification</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>MUSW__License2__c.MUSW__Expiration_Date__c</offsetFromField>
+            <timeLength>-30</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Renewal_PDH_audit_notification</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Email_Outbound_Renewal_PDH_audit_notification</name>
+                <type>Task</type>
+            </actions>
+            <offsetFromField>MUSW__License2__c.MUSW__Expiration_Date__c</offsetFromField>
+            <timeLength>-120</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
         <fullName>Email - Renewal issued - Active - Other</fullName>
         <actions>
             <name>Renewal_issued_Active_Other</name>
@@ -1461,7 +1546,7 @@
             <value>True</value>
         </criteriaItems>
         <criteriaItems>
-            <field>MUSW__License2__c.Pending_Audit__c</field>
+            <field>MUSW__License2__c.Selected_for_Audit__c</field>
             <operation>notEqual</operation>
             <value>True</value>
         </criteriaItems>
