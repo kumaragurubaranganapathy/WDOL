@@ -41,11 +41,11 @@
                 var updatedReceiptRec = response.getReturnValue();
                 var _insertedReceiptList = component.get("v.insertedReceiptList");
                 var _insertedReceiptList_Size = _insertedReceiptList.length;
-                for(var i=0  ; i < _insertedReceiptList_Size ; i++){
-                    if(_insertedReceiptList[i].Id === updatedReceiptRec.Id){
-                        //console.log("before : "+_insertedReceiptList[i]);
-                        _insertedReceiptList[i] = updatedReceiptRec;
-                        //console.log("after : "+_insertedReceiptList[i]);
+                for(var j=0  ; j < _insertedReceiptList_Size ; j++){
+                    if(_insertedReceiptList[j].Id === updatedReceiptRec.Id){
+                        //console.log("before : "+_insertedReceiptList[j]);
+                        _insertedReceiptList[j] = updatedReceiptRec;
+                        //console.log("after : "+_insertedReceiptList[j]);	
                     }
                 }
                 component.set("v.insertedReceiptList",_insertedReceiptList);
@@ -136,9 +136,9 @@
         
         //to disable the Submit and Next button and add new row
         var _receiptList = component.get("v.receiptList");  
-        
+        var _paymentType;
         switch(_callType.toUpperCase()){
-            case 'ADD' :  var _paymentType = {'sobjectType': 'MUSW__Receipt__c',
+            case 'ADD' :   _paymentType = {'sobjectType': 'MUSW__Receipt__c',
                                               'MUSW__Check_Number__c' : '', 
                                               'MUSW__Amount_Tendered__c' : '',
                                               'IAP_Doc__c': '',
@@ -153,7 +153,7 @@
                 break;
             case 'CLONE':
                 var currentReceiptRec =  component.get("v.receiptRec");
-                var _paymentType = {'sobjectType': 'MUSW__Receipt__c',
+                 _paymentType = {'sobjectType': 'MUSW__Receipt__c',
                                     'MUSW__Payment_Method__c': currentReceiptRec.MUSW__Payment_Method__c,
                                     'MUSW__Check_Number__c' : currentReceiptRec.MUSW__Check_Number__c, 
                                     'MUSW__Amount_Tendered__c' : currentReceiptRec.MUSW__Amount_Tendered__c,

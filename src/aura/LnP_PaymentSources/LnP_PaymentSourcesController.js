@@ -76,7 +76,34 @@
     },
     
     gotoListView : function (component, event, helper) {
-        helper.gotoListView(component,event);
+          //for deleting the Customer Envelope record on failure or cancellations
+         var servercall = component.get("c.deleteCustomerEnvelope");
+        servercall.setParams({
+            "custEnv": component.get("v.customerEnvelopeRec")
+        });
+        servercall.setCallback(this,function(response){
+            var state = response.getState();
+            if(state === "SUCCESS"){
+                //console.log(JSON.stringify(response.getReturnValue()));
+            }
+        });      
+		 
+        var action = component.get("c.getObjViews");
+        action.setCallback(this, function(response){
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var listviews = response.getReturnValue();
+                var navEvent = $A.get("e.force:navigateToList");
+                navEvent.setParams({
+                    "listViewId": listviews.Id,
+                    "listViewName": null,
+                    "scope": "Customer_Envelope__c"
+                });
+                navEvent.fire();
+            }
+        });
+        $A.enqueueAction(servercall);
+        $A.enqueueAction(action);
     }
     
 })

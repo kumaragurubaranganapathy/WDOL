@@ -142,17 +142,17 @@
         }
         component.find("numberOfDocuments").set('v.value',_insertedDepositList_size);
         component.find("documentTotal").set('v.value', totalAmount);
-        
+        var _depositList ;
         if( component.find("documentTotal").get('v.value') === component.get("v.paymentSourceTotal")){
             component.set("v.isDisabledSubmit",false);
             //console.log("_callType : "+_callType);
             if(_callType.toUpperCase() === 'ADD' || _callType.toUpperCase() === 'CLONE'){
-                var _depositList = component.get("v.depositList");           
+                 _depositList = component.get("v.depositList");           
                 component.set("v.depositList", _depositList); 
             }
             
         }else{
-            var _depositList = component.get("v.depositList");             
+             _depositList = component.get("v.depositList");             
             switch(_callType.toUpperCase()){
                     
                 case 'ADD' : component.set("v.amountDifference",(component.get("v.paymentSourceTotal") - component.find("documentTotal").get('v.value')));
