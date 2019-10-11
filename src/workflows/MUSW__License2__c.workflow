@@ -1049,7 +1049,7 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND (3 OR 4 OR 5) AND 6</booleanFilter>
+        <booleanFilter>1 AND 2 AND (3 OR 4) AND 5</booleanFilter>
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
@@ -1059,11 +1059,6 @@
             <field>MUSW__License2__c.CreatedById</field>
             <operation>notContain</operation>
             <value>Data Administrator</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Credential_Type__c</field>
-            <operation>equals</operation>
-            <value>Appraiser Trainee</value>
         </criteriaItems>
         <criteriaItems>
             <field>MUSW__License2__c.Credential_Type__c</field>
@@ -1328,7 +1323,7 @@
     </rules>
     <rules>
         <fullName>Email - Renewal - PDH audit notification</fullName>
-        <active>false</active>
+        <active>true</active>
         <formula>Selected_for_Audit__c = TRUE &amp;&amp; Audit_Completed_Flag__c = FALSE &amp;&amp; Text(MUSW__Status__c) = &apos;Active&apos;</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
