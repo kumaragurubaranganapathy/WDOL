@@ -273,6 +273,29 @@ public with sharing class CartController
                 totalSelected = tempOutstanding;
                 totalSelectedOutstanding = tempOutstanding;
             }
+			//defect 8051
+			if(invoices.size()>0){
+				Set<Id> invoiceIds = new Set<Id>();
+				map<id,BGBK__Bill__c> mapInvoiceIdInvoice = new map<id,BGBK__Bill__c>();
+				for(BGBK__Bill__c objInvoice : invoices){
+					invoiceIds.add(objInvoice.id);
+					mapInvoiceIdInvoice.put(objInvoice.id, objInvoice);
+					
+				}
+				List<MUSW__Fee__c> invoiceFee = DOL_License_Linking.fetchFeeFromInvoice(invoiceIds);
+				system.debug('invoiceFee$$'+invoiceFee);
+				system.debug('feeIdList$$'+feeIdList);
+				invoices = new List<BGBK__Bill__c>();
+				for(MUSW__Fee__c objFee: invoiceFee){
+					if(feeIdList.contains(objFee.id) &&(!invoices.contains(mapInvoiceIdInvoice.get(objFee.BGBK__Invoice__c))) ){
+						//if(!InvoiceVOs.contains(new InvoiceVO(mapInvoiceIdInvoice.get(objFee.BGBK__Invoice__c))))
+						invoiceVOs.add(new InvoiceVO(mapInvoiceIdInvoice.get(objFee.BGBK__Invoice__c)));
+						invoices.add(mapInvoiceIdInvoice.get(objFee.BGBK__Invoice__c));
+					}
+				}
+			}
+			system.debug('InvoiceVOs$$'+invoiceVOs);
+
             system.debug('Intializing receipt');
             // initialize receipt
             rs = new MUSW__Receipt__c[]{};
@@ -293,6 +316,9 @@ public with sharing class CartController
                            ApexPages.addMessage(myMsg);
                            return;
                        }
+						receipt.MUSW__Paid_By__c=accountSelected;
+						receipt.BGBK__Cart__c =cart.Id;
+
                        ePaymentReturnSession.updateReceipt(receipt);
                        if(receipt.Status__c == 'Complete'){
                             update receipt;
@@ -306,7 +332,7 @@ public with sharing class CartController
                             newReceiptVO.pmtMethodSelected=receipt.MUSW__Payment_Method__c;
                             receiptVOs.add(newReceiptVO);
                             cart.BGBK__Process_DateTime__c = System.now();
-                            processEPayment(); 
+                    processEPayment(receipt);
                        }
                    }
             else{
@@ -972,7 +998,7 @@ public with sharing class CartController
         }       
     }
 
-    public void processEPayment(){
+    public void processEPayment(MUSW__Receipt__c receiptRec){
         Savepoint sp = null;
         if(cart.BGBK__Contact__c != null && cart.BGBK__Contact__r.Name == null) {
             Contact c = [SELECT Name,Email,AccountId From Contact WHERE Id =:cart.BGBK__Contact__c];
@@ -980,10 +1006,12 @@ public with sharing class CartController
         }
         Map<MUSW__Receipt__c, Decimal> rsAmt = new Map<MUSW__Receipt__c, Decimal>();
         for (ReceiptVO rvo : receiptVOs){
+            //system.debug('rvo==='+rvo);
             MUSW__Receipt__c receipt = rvo.r;
             rsAmt.put(receipt, rvo.amount);
         }
         sp = Database.setSavePoint();
+        //system.debug('rs==='+rs);
         if(!rs.isEmpty()){
             //upsert rs;
         }
@@ -2042,6 +2070,26 @@ public with sharing class CartController
                     feeIds.add(feeVo.f.Id);
                 }
             }
+            // Defect 8051
+            if(invoiceVOs.size()>0){
+                Set<Id> invoiceIds = new Set<Id>();
+                for (InvoiceVO invoiceVo : invoiceVOs){
+                    if (invoiceVo.isSelected){
+                        invoiceIds.add(invoiceVo.i.Id);
+                    }
+               }
+                system.debug('invoiceIds$$'+invoiceIds);
+                if(invoiceIds.size()>0)  { 
+                     List<MUSW__Fee__c> invoiceFee = DOL_License_Linking.fetchFeeFromInvoice(invoiceIds);
+                         //[SELECT Id, BGBK__Invoice__c FROM MUSW__Fee__c WHERE BGBK__Invoice__c IN :invoiceIds];
+                    for(MUSW__Fee__c oFee: invoiceFee){
+                        feeIds.add(oFee.Id);
+                    }
+                 }
+            }
+            system.debug('feeIds$$'+feeIds);
+            
+            
             
             // create the object DOL_ePaymentSessionTransferDetails with required parameter
             DOL_ePaymentSessionTransferDetails sessionTransferDetails = new DOL_ePaymentSessionTransferDetails(paymentGatewaySettings.Product_Code__c,
