@@ -1697,9 +1697,9 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
                     licenseParcelRecord.MUSW__Parcel__c = parcelInstance.Id;
                     licenseParcelRecord.MUSW__License2__c    = licenseId;
                     licenseParcelRecord.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Active';
-                    if(parcelInstance.Address_Type__c == DOL_AppConstants.MAILING_ADDRESS && !parcelInstance.is_Physical_and_Mailing_Address_Same__c){
+                    if(parcelInstance.Address_Type__c == DOL_AppConstants.CAP_MAILING_ADDRESS && !parcelInstance.is_Physical_and_Mailing_Address_Same__c){
                         licenseParcelRecord.Mailing__c = true;
-                    }else if(parcelInstance.Address_Type__c == DOL_AppConstants.MAILING_ADDRESS && parcelInstance.is_Physical_and_Mailing_Address_Same__c){
+                    }else if(parcelInstance.Address_Type__c == DOL_AppConstants.CAP_MAILING_ADDRESS && parcelInstance.is_Physical_and_Mailing_Address_Same__c){
                         licenseParcelRecord.Mailing__c = true;
                         licenseParcelRecord.Physical__c = true;
                     }else{
