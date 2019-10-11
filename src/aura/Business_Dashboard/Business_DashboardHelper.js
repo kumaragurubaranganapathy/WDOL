@@ -238,12 +238,12 @@
                 if (!($A.util.isEmpty(data) || $A.util.isUndefined(data))){
                   for(var key = 0; key < data.length; key++){
                    
-                    if(data[key].Address_Type__c == 'Mailing Address' && !(data[key].is_Physical_and_Mailing_Address_Same__c) ){
+                    if(data[key].Address_Type__c == 'MAILING ADDRESS' && !(data[key].is_Physical_and_Mailing_Address_Same__c) ){
                         mailingAddress.push(data[key]);
                         console.log('mailingAddress--'+mailingAddress);
                         component.set("v.MailingAddressData",mailingAddress);
                         
-                    }else if(data[key].Address_Type__c == 'Physical Address'){
+                    }else if(data[key].Address_Type__c == 'PHYSICAL ADDRESS'){
                         physicalAddress.push(data[key]);
                         console.log('physicalAddress--'+physicalAddress);
                         component.set("v.PhysicalAddressData",physicalAddress);
