@@ -510,16 +510,16 @@ _______________________________________________________________
                         </h2>
                         <aura:if isTrue="{!v.isBusiness}">
                             <div class="ser-btn-wrapper">
-                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.goToBizDashboard}" label="Manage a Business Account" title="Manage a Business Account" />  
+                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.goToBizDashboard}" label="Manage Business Account" title="Manage Business Account" />  
                             </div>
                             <div class="ser-btn-wrapper">
                                 <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectBusiness}" label="Create Business Account" title="Create Business Account" /> 
                             </div>
                             <div class="ser-btn-wrapper">
-                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.bizLicApp}" label="Apply For A Business License" title="Apply For A Business License" />  
+                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.bizLicApp}" label="Apply For Business License" title="Apply For Business License" />  
                             </div>
                             <div class="ser-btn-wrapper course-btn">
-                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.openTrainingApp}" label="Add a training course" title="Add a training course" />  
+                                <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.openTrainingApp}" label="Add training course" title="Add training course" />  
                             </div>
                            
                         </aura:if>
@@ -540,8 +540,7 @@ _______________________________________________________________
                     </div>
                     
                     <div class="businessStatus">
-                        <h2 class="ser-title newbiz-wrapper">Have an existing business license?</h2>
-                        <p class="list-desc">If you currently hold a business license from Department of Licensing, you’ll have an existing business profile in our system.</p>
+                        <h2 class="ser-title newbiz-wrapper">Have an existing business license?</h2>                       
                         
                         
                         <div class="ser-btn-wrapper">

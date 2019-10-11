@@ -14,8 +14,7 @@
     width:50%;
 }
 .THIS.todo-wrapper .businessStatus{
-    margin:unset;  
-    margin-bottom:1rem;  
+    margin:unset;
 }
 /*.THIS ul.biz li:before{
 content:"\2714\0020";
@@ -34,8 +33,12 @@ content:"\2714\0020";
 .THIS .new-wrapper{
     margin:1rem 0 0;
 }
-.THIS .newbiz-wrapper{
+.THIS .ser-title.newbiz-wrapper{
     margin-top:1rem;
+    padding-bottom:0;
+}
+.THIS .business-wrapper .businessStatus .ser-btn-wrapper{
+    margin-bottom:0;
 }
 .THIS .link-help{
     padding-bottom:0.5rem;
@@ -180,8 +183,7 @@ border:none;
     justify-content:flex-end;
 }
 .THIS .intro-text{
-    padding: 0 0 1.5rem;
-    font-size:1.25rem;
+    padding: 0 0 1.5rem;    
     font-family:t(merrifontfamily);
     font-weight:600;
     color:t(LnGFormTitleColor);
