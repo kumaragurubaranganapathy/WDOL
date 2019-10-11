@@ -15,6 +15,7 @@ _______________________________________________________________
     <aura:attribute name="CurrentLicenseTableColumnsList" type="List"/>
     <aura:attribute name="CurrentLicenseTableDataList" type="List"/>
     <aura:attribute name="licenseId" type="String" />
+    <aura:attribute name="parentLicenseStatus" type="String" />
     <aura:attribute name="BranchLicenses" type="Boolean" default="false" />
     <aura:attribute name="affiliatedLocation" type="Boolean" default ="false" />
     <aura:attribute name="loadingSpinner" type="Boolean" default="true" />
@@ -91,13 +92,13 @@ _______________________________________________________________
                                             <td data-label="Actions" class="cell-style action-cell">
                                                 <div class="slds-truncate">
                                                     <aura:if isTrue="{!(tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c|| tableData.Is_Reinstatement_Eligible__c)? true : false}">
-                                                        <aura:if isTrue="{!and((tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c),tableData.Renew_Reinstatement_in_progress__c == false)}">
+                                                        <aura:if isTrue="{!and(and((tableData.Is_Renewal_Eligible__c || tableData.Is_Late_Renewal_Eligible__c),tableData.Renew_Reinstatement_in_progress__c == false),and(v.BranchLicenses,v.parentLicenseStatus == 'Active'))}">
                                                             <div class="slds-truncate"   onclick ="{!c.renewLicense}" data-appisRenewal="{!tableData.Application__r.isRenewal__c}" data-app="{!tableData.Application__c}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
                                                                  data-board = "{!tableData.Application_Type__c}" data-renewereinstate="Renewal"  data-applicationType = "{!tableData.Application_Method__c}" data-isrenewal="{!tableData.isRenewal__c}">
                                                                 <lightning:button variant="brand" label="Renewal" title="Renewal" />
                                                             </div>
                                                         </aura:if>
-                                                        <aura:if isTrue="{!and(tableData.Is_Reinstatement_Eligible__c,tableData.Renew_Reinstatement_in_progress__c == false)}">
+                                                        <aura:if isTrue="{!and(and(tableData.Is_Reinstatement_Eligible__c,tableData.Renew_Reinstatement_in_progress__c == false),and(v.BranchLicenses,v.parentLicenseStatus == 'Active'))}">
                                                             <div class="slds-truncate"   onclick ="{!c.renewLicense}" data-appisRenewal="{!tableData.Application__r.isRenewal__c}" data-recordId = "{!tableData.Id}" data-licenseType = "{!tableData.Credential_Type__c}"
                                                                  data-board = "{!tableData.Application_Type__c}" data-renewereinstate="Reinstatement" data-app="{!tableData.Application__c}" data-applicationType = "{!tableData.Application_Method__c}" data-isreinstate ="{!tableData.Is_Reinstatement_Eligible__c}">
                                                                 <lightning:button variant="brand" label="Reinstate" title="Reinstate" />

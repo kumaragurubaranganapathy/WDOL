@@ -356,7 +356,7 @@
                 if(component.get("v.LicenseData.Credential_Type__c")== 'Engineering/Land Surveying Company'){
                     attr =  {accountId: component.get("v.selectedAccount"),licenseId:component.get("v.licenseId"), BranchLicenses : "false",affiliatedLocation : "true",licenseType : component.get("v.LicenseData.Credential_Type__c"),board : component.get("v.LicenseData.Application_Type__c")};
                 }else{
-                  attr = {accountId: component.get("v.selectedAccount"),licenseId:component.get("v.licenseId"), BranchLicenses : "true"};   
+                    attr = {accountId: component.get("v.selectedAccount"),licenseId:component.get("v.licenseId"), BranchLicenses : "true" , parentLicenseStatus :component.get("v.LicenseData.MUSW__Status__c")};   
                 }
                 this.injectComponent('c:Business_LicenseScreen',attr, tab);
                 break;
