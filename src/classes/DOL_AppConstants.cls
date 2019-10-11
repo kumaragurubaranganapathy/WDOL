@@ -124,6 +124,7 @@ public class DOL_AppConstants {
     public static final String CLASSROOM_INSTRUCTOR = 'Classroom (Instructor in room with students)';
     public static final String YES_NO = 'Yes_No';
     public static final String ACTIVE = 'Active';
+	public static final String INACTIVE = 'Inactive';
     public static final String NOTARY = 'Notary';
     public static final String CALLCOMPOSITEAPTLST_ENDORSEMENT='callCompositeAPI-lstEndorsements';
     public static final String CALLCOMPOSITEAPI_lSTANSWERS = 'callCompositeAPI-lstAnswers';
