@@ -109,7 +109,7 @@
             <apex:repeat value="{!jvd}" var="item">
                 <tr>
                     <td>{!item.Reference_Document_Suffix__c}</td>
-                    <td>{!item.Transaction_Code__c}</td>
+                    <td>{!item.AFRS_Transaction_Code__c}</td>
                     <td></td>
                     <td></td>
                     <td>{!item.Agency__c}</td>
@@ -186,9 +186,17 @@
                 <tr>
                     <td>{!jv.Prepared_By__c	}</td>
                     <td>{!jv.Telephone_Number__c}</td>
-                     <td>{!preparedByDate}</td>
-                     <td>{!jv.Approved_By__c}</td>
-                    <td>{!preparedByDate}</td>
+                    <td>
+                        <apex:outputText styleclass="fieldContent" value="{0,date,MM'/'dd'/'yy}" escape="false" >
+                            <apex:param value="{!jv.Prepared_by_Date__c}" /> 
+                        </apex:outputText>
+                    </td>
+                    <td>{!jv.Approved_By__c}</td>
+                    <td>
+                        <apex:outputText styleclass="fieldContent" value="{0,date,MM'/'dd'/'yy}" escape="false" >
+                            <apex:param value="{!jv.Approved_by_Date__c}" /> 
+                        </apex:outputText>
+                    </td>
                 </tr>
             </apex:repeat>
         </table>

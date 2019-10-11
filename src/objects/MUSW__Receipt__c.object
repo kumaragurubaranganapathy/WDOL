@@ -1979,7 +1979,8 @@
         <columns>CREATED_DATE</columns>
         <columns>NAME</columns>
         <columns>MUSW__Amount_Tendered__c</columns>
-        <columns>MUSW__Amount_Available__c</columns>
+        <columns>Remittance_Process_Date_Time__c</columns>
+        <columns>Settlement_Date__c</columns>
         <columns>US_Bank_Payment_Status__c</columns>
         <columns>MUSW__Receipt_Paid_By__c</columns>
         <columns>MUSW__Payment_Method__c</columns>
@@ -1989,6 +1990,20 @@
             <field>US_Bank_Payment_Status__c</field>
             <operation>equals</operation>
             <value>Processed,Settled</value>
+        </filters>
+        <filters>
+            <field>ACH_BillerBusinessDate__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>DHP__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Returned</value>
         </filters>
         <label>US Bank Settlement</label>
     </listViews>
@@ -2085,6 +2100,13 @@
         <active>true</active>
         <errorConditionFormula>AND(ISCHANGED( MUSW__Amount_Rejected__c ), BLANKVALUE(MUSW__Amount_Rejected__c,0) - BLANKVALUE(PRIORVALUE( MUSW__Amount_Rejected__c),0)  - (MUSW__Amount_Tendered__c - PRIORVALUE(MUSW__Amount_Tendered__c)) &gt; BLANKVALUE( MUSW__Amount_Available__c,0) )</errorConditionFormula>
         <errorMessage>Cannot Reject more than the Remaining Amount of Receipts</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Stop_update_DHP_receipt_to_Settled</fullName>
+        <active>true</active>
+        <description>Stop a DHP-ed receipt from getting updated to Settled.</description>
+        <errorConditionFormula>AND (ISCHANGED( US_Bank_Payment_Status__c),  ISPICKVAL(US_Bank_Payment_Status__c, &quot;Settled&quot;), OR(DHP__c = TRUE, ISPICKVAL( Status__c, &quot;Returned&quot;)))</errorConditionFormula>
+        <errorMessage>DHP-ed receipt cannot be marked as settled.</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
     <webLinks>

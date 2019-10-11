@@ -183,6 +183,7 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
         submission.SAN_Image_URL__c = tempNCRInput.ncrFileImageURL;
         submission.SAN_Image_Name__c = tempNCRInput.ImageName;
         submission.License_Renewal__c = tempRenewalApplication.Id;
+		submission.SAN_Image_Type__c = DOL_AppConstants.NULL_EMPTY_STRING+'NCR Revenue';
         insert submission;
         tempNCRFileData.INFO__C += ' Submission Record created '+submission.Id;
     }

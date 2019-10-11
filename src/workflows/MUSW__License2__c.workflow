@@ -250,7 +250,7 @@
         </recipients>
         <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
-        <template>DOL_Licensing/Renewal_PDH_audit_notification_final</template>
+        <template>DOL_Licensing/Renewal_PDH_audit_notification_final_1</template>
     </alerts>
     <alerts>
         <fullName>Renewal_issued_Active_Other</fullName>
@@ -1322,13 +1322,13 @@
         <criteriaItems>
             <field>MUSW__License2__c.MUSW__Status__c</field>
             <operation>equals</operation>
-            <value>,Draft,Submitted,Submission Failed,Generate Fee,Pending Payment,Waiting for Third Party Verification,Pending Action,In-Review,In Review,Pending Additional Qualifications,Withdrawn,Denied,Abandoned,Active,Inactive,Sunset,Expired,Suspended</value>
+            <value>Active,Inactive,Expired</value>
         </criteriaItems>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>Email - Renewal - PDH audit notification</fullName>
-        <active>true</active>
+        <active>false</active>
         <formula>Selected_for_Audit__c = TRUE &amp;&amp; Audit_Completed_Flag__c = FALSE &amp;&amp; Text(MUSW__Status__c) = &apos;Active&apos;</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
