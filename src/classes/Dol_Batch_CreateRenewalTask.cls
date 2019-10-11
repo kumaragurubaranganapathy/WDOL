@@ -1,12 +1,12 @@
 global with sharing class Dol_Batch_CreateRenewalTask implements Database.Batchable<sObject> {
     global Database.QueryLocator start(Database.BatchableContext BC){
-            return Database.getQueryLocator([SELECT ID,Name,(select id from tasks where Status ='Pending' and Type = 'Renewal Reminder'),Application_Method__c,MUSW__Expiration_Date__c,Late_Renewal_Eligible_End_Date__c,Renewal_Grace_Period_End_Date__c,Renewal_Eligible_Start_Date__c,MUSW__Status__c  from MUSW__License2__c WHERE Is_Renewal_Eligible__c = true and Renew_Reinstatement_in_progress__c = false]);
+            return Database.getQueryLocator([SELECT ID,Name,CreatedById,Application_Type__c,Credential_Type__c,MUSW__Applicant__r.Email,MUSW__Applicant__c,(select id from tasks where Status ='Pending' and Type = 'Renewal Reminder'),Application_Method__c,MUSW__Expiration_Date__c,Late_Renewal_Eligible_End_Date__c,Renewal_Grace_Period_End_Date__c,Renewal_Eligible_Start_Date__c,MUSW__Status__c  from MUSW__License2__c WHERE Is_Renewal_Eligible__c = true and Renew_Reinstatement_in_progress__c = false]);
         
     }    
     global void execute(Database.BatchableContext BC, List<MUSW__License2__c> lstLicense) {
         List<Task>  lstRenewalLicenses = new List<Task>();
         for(MUSW__License2__c appLicense : lstLicense) {
-            if(!appLicense.Tasks.isEmpty()) {
+            if(appLicense.Tasks.isEmpty()) {
                 Task renewTask = new Task();
                 renewTask.WhatId = appLicense.Id;
                 renewTask.Type = System.Label.Polaris_Renew_Reminder;
