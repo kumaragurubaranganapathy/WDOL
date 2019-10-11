@@ -32,7 +32,7 @@
     </values>
     <values>
         <field>Item_Transaction_Type__c</field>
-        <value xsi:type="xsd:string">Overshort</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>JV_name__c</field>
