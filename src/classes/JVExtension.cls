@@ -17,7 +17,15 @@ public class JVExtension {
             date createdDate = date.valueOf(jv.createddate);
             	preparedByDate =createdDate.format();
             
-            jvd = [SELECT id,Add_to_Interface__c,Add_to_PDF__c, Agency__c, Amount__c,Debit_Credit__c,Fund__c,General_Ledger_Account__c,Send_GL__c,JournalVoucher__r.Amount__c,Major_Group__c,Major_Source__c,Program_Index__c,Reference_Document_Suffix__c,Reversal__c,Subsidiary_Account_Credit__c,Subsidiary_Account_Debit__c,Sub_Source__c,Target_Accounting_System__c,Transaction_Code__c FROM Journal_Voucher_Detail__c WHERE JournalVoucher__c = :jv.id and Add_to_PDF__c = true];     
+            jvd = [SELECT id,Add_to_Interface__c,Add_to_PDF__c, Agency__c, 
+            Amount__c,Debit_Credit__c,Fund__c,General_Ledger_Account__c,
+            Send_GL__c,JournalVoucher__r.Amount__c,Major_Group__c,
+            Major_Source__c,Program_Index__c,Reference_Document_Suffix__c,
+            Reversal__c,Subsidiary_Account_Credit__c,Subsidiary_Account_Debit__c,
+            Sub_Source__c,Target_Accounting_System__c,AFRS_Transaction_Code__c 
+            
+            FROM Journal_Voucher_Detail__c WHERE JournalVoucher__c = :jv.id 
+            and Add_to_PDF__c = true];     
              Amt=0;
             for(Journal_Voucher_Detail__c jvdrec:jvd){
                 if(jvdrec.Amount__c != null)
