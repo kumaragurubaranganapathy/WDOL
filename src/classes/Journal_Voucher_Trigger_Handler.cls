@@ -21,7 +21,7 @@ public void onInsert(List<Journal_Voucher__c> journalVoucherList)
                 }
               
                 
-             objJVseq.Current_sequence__c=currentSeq++;
+             objJVseq.Current_sequence__c=currentSeq;
                 system.debug('the increased currentSeq' +currentSeq);
             string sTemp =String.Valueof(currentSeq);
             if(sTemp.length() == 1){
@@ -105,12 +105,15 @@ update objJVseq;
                 if(sTemp.length() == 1){
                     sTemp = DOL_AppConstants.NULL_EMPTY_STRING + '0'+ sTemp;
                 }
+                if(voucher.Fiscal_Month__c == null)
                 voucher.Fiscal_Month__c =sTemp;
                 sTemp =String.Valueof(FiscalYear);
                 if(sTemp.length() == 1){
                     sTemp = DOL_AppConstants.NULL_EMPTY_STRING + '0'+ sTemp;
                 }
+                if(voucher.Fiscal_Year__c == null)
                 voucher.Fiscal_Year__c =sTemp;
+                if(voucher.Biennium_Year__c == null)
                 voucher.Biennium_Year__c= String.valueOf(BienniumYear);
             }
         }
