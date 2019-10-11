@@ -76,7 +76,11 @@ public with sharing class LnP_DepositTriggerHandler implements BGCM.ITriggerHand
                 depositRec.Overshort_Modified__c = True;
                 depositRec.Over_short_Old_Amount__c = olddeposit.Overshort_Amount__c;
                 depositRec.Previous_Overshort_Updated__c = True;
-            }   
+            }  
+            if(olddeposit.MUSW__Available_Amount__c != depositRec.MUSW__Available_Amount__c){ 
+                depositRec.Old_Available_Amount__c = olddeposit.MUSW__Available_Amount__c;
+                
+            }  
         }
         
     }
