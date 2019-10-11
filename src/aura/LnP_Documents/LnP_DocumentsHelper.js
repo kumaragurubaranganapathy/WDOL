@@ -138,7 +138,7 @@
         var _insertedDepositList = component.get("v.insertedDepositList");
         var i,totalAmount = 0, _insertedDepositList_size = _insertedDepositList.length;
         for(i=0 ; i < _insertedDepositList_size ; i++){
-            totalAmount = totalAmount + Number(_insertedDepositList[i].Amount__c);
+            totalAmount = Number((totalAmount + Number(_insertedDepositList[i].Amount__c)).toFixed(2));
         }
         component.find("numberOfDocuments").set('v.value',_insertedDepositList_size);
         component.find("documentTotal").set('v.value', totalAmount);

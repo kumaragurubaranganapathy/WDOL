@@ -125,7 +125,7 @@
         var _insertedReceiptList = component.get("v.insertedReceiptList");
         var i,totalAmount = 0, _insertedReceiptList_size = _insertedReceiptList.length;
         for(i=0 ; i < _insertedReceiptList_size ; i++){
-            totalAmount = totalAmount + Number(_insertedReceiptList[i].MUSW__Amount_Tendered__c) ;
+            totalAmount = Number((totalAmount + Number(_insertedReceiptList[i].MUSW__Amount_Tendered__c)).toFixed(2)) ;
         }
         component.find("numOfPaymentSources").set('v.value',_insertedReceiptList_size);
         component.find("paymentSourceTotal").set('v.value', totalAmount);
