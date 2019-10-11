@@ -16,9 +16,11 @@
     <aura:attribute name="accountName" type="String" />
     <aura:attribute name="isAMR" type="Boolean" default="false" />
     <aura:attribute name="associateFlag" type="Boolean" default="false" />
+    <aura:attribute name="ownerFlag" type="Boolean" default="false" /> <!-- Bug 7931 changes -->    
     <aura:attribute name="loadingSpinner" type="Boolean" default="true" />
     <aura:attribute name="AssociationMessage" type="String" default="Are you sure you want to remove this relationship ? " />
     <aura:attribute name="accountId" type="string" />
+    <aura:attribute name="ownerId" type="string" />
     <aura:attribute name="dispList" type="List" />
     <aura:attribute name="Type" type="String" />
     <aura:registerEvent name="businessRefresh" type="c:RefreshEvent" />
@@ -68,9 +70,9 @@
                                                 <td data-label="DCP" class="cell-style">
                                                     <div class="slds-truncate" title="{!tableData.DCP__c}">
                                                         <aura:if isTrue="{!v.isAMR}">
-                                                            <lightning:input type="checkbox" checked="{!tableData.DCP__c}" value="{!tableData.DCP__c}" />
+                                                            <lightning:input type="radio" checked="{!tableData.DCP__c}" value="{!tableData.DCP__c}" />
                                                             <aura:set attribute="else">
-                                                                <lightning:input type="checkbox" checked="{!tableData.DCP__c}" value="{!tableData.DCP__c}" disabled="true" />
+                                                                <lightning:input type="radio" checked="{!tableData.DCP__c}" value="{!tableData.DCP__c}" disabled="true" />
                                                             </aura:set>
                                                         </aura:if>
                                                     </div>                                            			
@@ -97,7 +99,7 @@
                                                         </aura:if>
                                                         <aura:if isTrue="{! and(tableData.Status__c != 'Invited',tableData.Status__c != 'No Response') ? true :false }">
                                                             <aura:if isTrue="{!tableData.DCP__c==false}">
-                                                                <lightning:button class="rel-btn"   variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.removeClickOwner}"/>
+                                                                <lightning:button class="rel-btn"  variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.openOwnerModal}"/>
                                                             </aura:if>                                                        
                                                         </aura:if>
                                                     </div>    
@@ -275,6 +277,13 @@
                                     </b>
                                 </p>
                             </aura:if>
+                            <aura:if isTrue="{!v.ownerFlag}">
+                                <p>
+                                    <b>
+                                        Are you sure you want to remove this owner?
+                                    </b>
+                                </p>
+                            </aura:if>
                         </div>
                         <!--Modal/Popup Box Footer Starts here-->
                         <footer class="slds-modal__footer">
@@ -282,11 +291,17 @@
                                               label="Cancel"
                                               title="Cancel"
                                               onclick="{! c.closeModel }"/>
-                            <aura:if isTrue="{!v.associateFlag == false}">
+                            <aura:if isTrue="{!and(v.associateFlag == false,!v.ownerFlag)}">
                                 <lightning:button variant="brand"
                                                   label="Ok"
                                                   title="Ok"
                                                   onclick="{!c.submitDetails}"/>
+                            </aura:if>
+                            <aura:if isTrue="{!v.ownerFlag}">
+                                <lightning:button variant="brand"
+                                                  label="Ok"
+                                                  title="Ok"
+                                                  onclick="{!c.removeClickOwner}"/>
                             </aura:if>
                             <aura:if isTrue="{!v.associateFlag}">
                                 <lightning:button variant="brand"

@@ -65,7 +65,8 @@
         }
     }, 
     removeClickOwner:function(component,event,helper){
-        console.log("inside removeClickOwner");
+        component.set("v.isModalOpen",false);
+        component.set("v.ownerFlag",false);        
         var Objectlist = component.get("v.CurrentLicenseTableDataList");
         for(var j=0;j<Objectlist.length;j++){
             component.set("v.accountContact",Objectlist[j]);
@@ -188,6 +189,12 @@
          component.set("v.isModalOpen", false);
          helper.removeAssociationRecord(component,event,helper);
          component.set("v.associateFlag", false);
+    },
+    openOwnerModal : function(component,event,helper){
+        component.set("v.ownerFlag",true);
+        component.set("v.isModalOpen",true);
+        var ownerId = event.getSource().get("v.value");
+        component.set("v.ownerId",ownerId);
     }
         
 })

@@ -127,9 +127,9 @@
     },
     
     removeOwnerRecordHelper:function(cmp,event,helper){
-        
+        var ownerId = cmp.get("v.ownerId");
         var action = cmp.get("c.removeOwnerRecord");
-        action.setParams ({"accConId": event.getSource().get("v.value")});
+        action.setParams ({"accConId": ownerId});
         action.setCallback(this, function (response) {
             var state = response.getState();
             if (state === "SUCCESS") {
