@@ -59,16 +59,13 @@ public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler
                 MUSW__License2__c licRec = licenseMap.get(lp.MUSW__License2__c) ;
                 if(!licenseMap.isEmpty() && lp.Mailing__c == true && lp.MUSW__Parcel__c != null &&  lp.Physical__c == false  && lp.MUSW__License2__c != null){                
                     licRec.MUSW__Parcel__c = lp.MUSW__Parcel__c;
-                    licensetoUpdate.add(licRec);
                 } else if(!licenseMap.isEmpty() && lp.Physical__c == true && lp.Mailing__c == false && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null)  {
                     licRec.Public_Address__c = lp.MUSW__Parcel__c;
-                    licensetoUpdate.add(licRec);
                 } else if(!licenseMap.isEmpty() && lp.Physical__c == true  && lp.Mailing__c == true && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null) {
-                    
                     licRec.MUSW__Parcel__c = lp.MUSW__Parcel__c;
-                    licRec.Public_Address__c = lp.MUSW__Parcel__c;
-                    licensetoUpdate.add(licRec);   
+                    licRec.Public_Address__c = lp.MUSW__Parcel__c; 
                 }
+               licensetoUpdate.add(licRec);  
             }
         }
         if(!licensetoUpdate.isEmpty()){
@@ -97,17 +94,14 @@ public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler
                 if(!licenseMap.isEmpty() && lp.Mailing__c == true  &&  lp.Physical__c == false  && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null){                
                     licRec.MUSW__Parcel__c = lp.MUSW__Parcel__c;
                     licRec.Public_Address__c = null;
-                    licensetoUpdate.add(licRec);
                 } else if(!licenseMap.isEmpty() && lp.Physical__c == true  &&  lp.Mailing__c == false && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null)  {    
                     licRec.Public_Address__c = lp.MUSW__Parcel__c;
-                    licRec.MUSW__Parcel__c =null;
-                    licensetoUpdate.add(licRec);
-                    
+                    licRec.MUSW__Parcel__c =null;   
                 } else if(!licenseMap.isEmpty() && (lp.Physical__c == true  && lp.Mailing__c == true) && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null) {
                     licRec.MUSW__Parcel__c = lp.MUSW__Parcel__c;
-                    licRec.Public_Address__c = lp.MUSW__Parcel__c;
-                    licensetoUpdate.add(licRec);   
-                } 
+                    licRec.Public_Address__c = lp.MUSW__Parcel__c;       
+                }
+                licensetoUpdate.add(licRec);
             }
             
         }
