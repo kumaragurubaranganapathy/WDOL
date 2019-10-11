@@ -14,7 +14,7 @@
     <aura:attribute name="otherInstructions" type="List" />
     <aura:attribute name="radiooptions" type="List" default="[
                                                              {'label': 'Yes', 'value': 'Yes'},
-                                                             {'label': 'No', 'value': 'No'}]" />                                                             
+                                                             {'label': 'No', 'value': 'No'}]" />
     <aura:attribute name="isCourseProvider" type="Boolean" default="false" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:if isTrue="{!v.spinner}">
@@ -35,11 +35,12 @@
             <div id="applicationInstuctionDiv" class="card-wrapper slds-wrap">
                 <!--Application Instructions-->
                 <div id="appTextDiv">
-                    <h2 class="header-style">Are You Ready?</h2>
-                    <lightning:formattedRichText aura:id="readyHeader" class="slds-m-right_xx-large slds-hide" value="{!v.instructions}"/>
+                    <h2 class="header-style">What you'll need</h2>
+                    <!--<lightning:formattedRichText aura:id="readyHeader" class="slds-m-right_xx-large slds-hide" value="{!v.instructions}"/> -->
+                    <div class="need-text">Make sure you meet all the requirements listed on our<a href="{!v.instructions}" target="_blank">{!' ' + v.licenseType + ' website'}</a></div>
                 </div>
                 <div aura:id="reqDocTextDiv" class="slds-p-top_xx-large slds-hide">
-                    <h2 class="">Required documents for this Application</h2>
+                    <h2 class="">Gather your files</h2>
                     <ul>
                         <aura:iteration items="{!v.otherInstructions}" var="instr">
                             <li class="bullets">{!instr}</li>
@@ -47,14 +48,20 @@
                     </ul>
                 </div>
                 <div id="necInstr">
-                    <h2 class="slds-p-top_large">What you’ll need before you start</h2>
+                    <h2 class="slds-p-top_large">If payment required, these are the options available:</h2>
                     <ul>
-                        <li class="bullets">Visa, Mastercard, or American Express credit or debit card or e-check for
-                            payment of the
-                            license fee</li>
-                        <li class="bullets">Required documents listed above (if any), ready for upload</li>
-                        <li class="bullets">If needed, any legal background documents for the last 10 years, ready for
-                            upload</li>
+                        
+                        <li class="bullets">Credit or debit card</li>
+                        <li class="bullets">Bank account</li>
+                        <li class="bullets">
+                            Billing code
+                            <ul>
+                                <li class="bullets inner">If a business or someone else is paying for you, they’ll give you a billing code to use as payment.</li>
+                            </ul>
+                        </li>
+                       
+                    
+                      
                     </ul>
                 </div>
             </div>
