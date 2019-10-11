@@ -9,12 +9,12 @@ _______________________________________________________________
 *******************************************************************************-->
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" 
                 access="global" >
-    
+   
     <div class="info-outer-wrapper">
         <h1 class="info-title">
             We Use SecureAccess Washington (SAW) to Protect Your Personal Information
         </h1>
-        <lightning:layout class="info-wrapper">
+        <lightning:layout class="info-wrapper slds-wrap">
             <lightning:layoutItem size="12" mediumDeviceSize="6" padding="around-large">
                 
                 <p class="info-text">
@@ -38,19 +38,18 @@ _______________________________________________________________
                         </li>          
                     </ul>
                 </div>
-                <p>If you don’t have a SAW login, sign up now.</p>
+                <p>If you don’t have a SAW login, <a href="https://test-secureaccess.wa.gov/public/saw/pub/displayRegister.do" target="_blank">sign up</a> now.</p>
+                <div class="btn-wrapper"> 
+                    <a class="slds-button slds-button_brand" href="https://test-secureaccess.wa.gov/myFortress/saw/select.do" target="blank"> Continue to SecureAccess Washington </a>
+                </div> 
             </lightning:layoutItem>
             <lightning:layoutItem size="12" mediumDeviceSize="6" padding="around-large">
                 <div class="image-wrapper">
                     <img class="saw-image" alt="Saw Page Sample" src="{!$Resource.LnP_Icons+'/LnP_Icons/PortalLogIn.png'}" />
-                </div>
-                <div class="btn-wrapper">
-                    <a class="slds-button slds-button_brand" href="https://test-secureaccess.wa.gov/myFortress/saw/select.do" target="blank"> Continue to SecureAccess Washington </a>
-                </div> 
+                </div>                
             </lightning:layoutItem>
         </lightning:layout>
-       
-        
+      
     </div>
     
 </aura:component>
