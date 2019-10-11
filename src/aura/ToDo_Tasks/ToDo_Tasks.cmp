@@ -4,6 +4,8 @@ Created By : Chaitanya B
 Creation Date : 29-May-2019
 
 Modification Log
+
+
 Name			Date			Issue
 _______________________________________________________________
 *******************************************************************************-->
@@ -36,15 +38,30 @@ _______________________________________________________________
     <aura:attribute name="licenseList" type="Boolean" default="false"/>
     <aura:attribute name="isLoaded" type="Boolean" default="false"/>
     <aura:attribute name="isBusiness" type="Boolean" default="false"/>
+    <aura:attribute name="declineRequestNew" type="Boolean" default="false"/>
+    <aura:attribute name="isBusinessLicense" type="Boolean" default="false"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
     <aura:if isTrue="{!v.isLoaded}">
-            
         <div class="todo-wrapper">
-                <aura:if isTrue="{!and(v.AddBusinessAccountsStatusAlert,v.licenseList)}">
-                        <c:StatusAlertForAddingBusinessComponent isLandingPage="true" />
-                    </aura:if>
             
+            <!--<div class="intro-section">
+            
+            <lightning:layout class="intro-wrapper slds-wrap">
+                <lightning:layoutItem size="12" mediumDeviceSize="12" class="new-wrapper services">
+                    <div class="ser-title">
+                        Have an existing License?
+                    </div>
+                    
+                    <div class="ser-btn-wrapper slds-m-bottom_large">
+                        <lightning:button class="ser-btn pro-license" onclick="{!c.linkProfLic}" label="Link your professional license" /> 
+                    </div>
+                    <div class="ser-btn-wrapper">
+                        <lightning:button class="ser-btn pro-license" onclick="{!c.linkBizLic}" label="Link your business" />  
+                    </div>
+                </lightning:layoutItem>                
+            </lightning:layout>
+        </div>  -->
             
             <aura:if isTrue="{!not(empty(v.taskList))}">
                 <h2 class="intro-text">
@@ -60,20 +77,35 @@ _______________________________________________________________
                                     <lightning:layout class="slds-wrap">
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style license-item">
                                             <div class="label-style">{!$Label.c.Polaris_BizName}</div> 
-                                            <div class="data-style">{!task.Business_Name__c}</div>
+                                            <aura:if isTrue="{!task.Business_Name__c ? true :false }">
+												<div class="data-style">{!task.Business_Name__c}</div>
+												<aura:set attribute="else">
+													<div class="data-style">None</div>
+												</aura:set>
+											</aura:if>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style license-item">
                                             <div class="label-style">{!$Label.c.Polaris_Designation}</div>
-                                            <div class="data-style">{!task.Designation__c}</div>
+											<aura:if isTrue="{!task.Designation__c ? true :false}">
+												<div class="data-style">{!task.Designation__c}</div>
+												<aura:set attribute="else">
+													<div class="data-style">None</div>
+												</aura:set>
+											</aura:if>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style license-item">
-                                            <div class="label-style">{!$Label.c.Polaris_Type}</div> 
-                                            <div class="data-style">{!task.Type}</div>
+                                            <div class="label-style">{!$Label.c.Polaris_Type}</div>
+											<aura:if isTrue="{!task.Type  ? true :false}">
+												<div class="data-style">{!task.Type}</div>
+												<aura:set attribute="else">
+													<div class="data-style">None</div>
+												</aura:set>
+											</aura:if>
                                         </lightning:layoutItem>                                    
                                     </lightning:layout>
                                 </lightning:layoutItem>
                                 <lightning:layoutItem size="12" mediumDeviceSize="3" class="button-wrapper">                                    
-                                    <lightning:button class="{!or(task.Type == $Label.c.Polaris_Renew_Reminder,task.Type == $Label.c.Polaris_Pay_Reminder)?'slds-hide':'decline-btn'}"  variant="neutral" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Decline}" title="{!$Label.c.Polaris_Decline}" onclick="{!c.declineRequest}"/>
+                                    <lightning:button class="{!or(task.Type == $Label.c.Polaris_Renew_Reminder,task.Type == $Label.c.Polaris_Pay_Reminder)?'slds-hide':'decline-btn'}"  variant="neutral" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Decline}" title="{!$Label.c.Polaris_Decline}" onclick="{!c.declineRequestNew}"/>
                                     <div class="accept-btn" data-id="{!task.Id}" data-whatid="{!task.WhatId}" data-DCP="{!task.isDCP__c}" data-subject="{!task.Subject}" data-designation="{!task.Designation__c}" data-acctname="{!task.Main_License_Type__c}" onclick="{!c.acceptRequest}">
                                         <lightning:button variant="brand" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Accept}" title="{!$Label.c.Polaris_Accept}" />
                                     </div>
@@ -89,7 +121,7 @@ _______________________________________________________________
                         </div>
                     </aura:if>
                     
-                    <aura:if isTrue="{!task.Type == 'License Relationship' }"> <!-- License  Relationship-->
+                    <aura:if isTrue="{!task.Type == $Label.c.License_Relationship }"> <!-- License  Relationship-->
                         <div class="task-wrapper">
                             <div class="task-subject">
                                 {!$Label.c.Polaris_Invite_To_Join} <!--Bug 7012-->
@@ -127,22 +159,33 @@ _______________________________________________________________
                                                 <span class="label-style">{!$Label.c.Polaris_Name_Colon}</span>
                                                 <span class="data-style">{!task.isBusinessLicense?task.Business_Name__c:task.Parent_Licensee_Name__c}</span>
                                             </div>
-                                            
+                                            <!--<div class="field-style">
+                                        <span class="label-style">Profession: </span>
+                                        <span class="data-style">{!task.Parent_Profession__c}</span>
+                                    </div> -->
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4"  class="license-item biz-invite">
+                                            <div class="field-style">
+                                                <span class="label-style">{!$Label.c.Polaris_Lic_Type_Colon} </span>
+												<aura:if isTrue="{!task.Parent_License_Type__c ? true :false}">
+													 <span class="data-style">{!task.Parent_License_Type__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
+                                            </div> 
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item biz-invite">
                                             <div class="field-style">
                                                 <span class="label-style">{!$Label.c.Polaris_Lic_Number_Col} </span>
-                                                <span class="data-style">{!task.Parent_License_Name__c}</span>
+												<aura:if isTrue="{!task.Parent_License_Name__c!= null ? true :false}">
+													<span class="data-style">{!task.Parent_License_Name__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
-                                        </lightning:layoutItem>   
-                                        <lightning:layoutItem size="12" mediumDeviceSize="4"  class="license-item biz-invite">
-                                            <div class="field-style">
-                                                <span class="label-style">{!$Label.c.Polaris_Lic_Type_Colon} </span>
-                                                <span class="data-style">{!task.Parent_License_Type__c}</span>
-                                            </div> 
-                                        </lightning:layoutItem>
-                                                             
-                                        
+                                        </lightning:layoutItem>                  
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item biz-invite">
                                             <!--<div class="license-title designation">
                                         Designation
@@ -152,7 +195,12 @@ _______________________________________________________________
                                     </div> -->
                                             <div class="field-style">
                                                 <span class="label-style">{!$Label.c.Polaris_Designation} </span>
-                                                <span class="data-style">{!task.Designation__c}</span>
+												<aura:if isTrue="{!task.Designation__c  ? true :false}">
+													<span class="data-style">{!task.Designation__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                     </lightning:layout>
@@ -171,32 +219,51 @@ _______________________________________________________________
                             <div class="task-subject">
                                 {!$Label.c.Polaris_CE_Audit_Info}
                             </div>
-                            
                             <lightning:layout class="license-outer-wrapper slds-wrap">
                                 <lightning:layoutItem size="12" mediumDeviceSize="9" >
                                     <lightning:layout class="slds-wrap">
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">{!$Label.c.Polaris_Lic_Number_Col} </span>
-                                                <span class="data-style">{!task.Parent_License_Name__c}</span>
+                                                <aura:if isTrue="{!task.Parent_License_Name__c  ? true :false }">
+													<span class="data-style">{!task.Parent_License_Name__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">{!$Label.c.Polaris_Lic_Type_Colon} </span>
-                                                <span class="data-style">{!task.Parent_License_Type__c}</span>
+												<aura:if isTrue="{!task.Parent_License_Type__c  ? true :false}">
+													<span class="data-style">{!task.Parent_License_Type__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">{!$Label.c.Polaris_Comments_Col} </span>
-                                                <span class="data-style"><lightning:formattedRichText class="slds-text-longform" value="{!task.Description}"/></span>
+												<aura:if isTrue="{!task.Description  ? true :false}">
+													<span class="data-style"><lightning:formattedRichText class="slds-text-longform" value="{!task.Description}"/></span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">{!$Label.c.Polaris_Due_Date_Col}</span>
-                                                <span class="data-style">{!task.ActivityDate}</span>
+												<aura:if isTrue="{!task.ActivityDate  ? true :false }">
+													<span class="data-style">{!task.ActivityDate}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>                                    
                                         </lightning:layoutItem>
                                     </lightning:layout>
@@ -227,25 +294,45 @@ _______________________________________________________________
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">Application Number: </span>
-                                                <span class="data-style">{!task.Parent_License_Name__c}</span>
+												<aura:if isTrue="{!task.Parent_License_Name__c  ? true :false}">
+													<span class="data-style">{!task.Parent_License_Name__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">License Type: </span>
-                                                <span class="data-style">{!task.Parent_License_Type__c}</span>
+												<aura:if isTrue="{!task.Parent_License_Type__c  ? true :false}">
+													<span class="data-style">{!task.Parent_License_Type__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">Information Required: </span>
-                                                <span class="data-style"><lightning:formattedRichText class="slds-text-longform" value="{!task.Description}"/></span>
+												<aura:if isTrue="{!task.Description  ? true :false}">
+													<span class="data-style"><lightning:formattedRichText class="slds-text-longform" value="{!task.Description}"/></span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>                                    
                                         </lightning:layoutItem>
-										<lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
+                                        <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">Due Date: </span>
-                                                <span class="data-style">{!task.ActivityDate}</span>
+												<aura:if isTrue="{!task.ActivityDate  ? true :false}">
+													<span class="data-style">{!task.ActivityDate}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                     </lightning:layout>
@@ -276,19 +363,35 @@ _______________________________________________________________
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">Application Number: </span>
-                                                <span class="data-style">{!task.Parent_License_Name__c}</span>
+												<aura:if isTrue="{!task.Parent_License_Name__c  ? true :false}">
+													<span class="data-style">{!task.Parent_License_Name__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">License Type: </span>
-                                                <span class="data-style">{!task.Parent_License_Type__c}</span>
+												<aura:if isTrue="{!task.Parent_License_Type__c  ? true :false}">
+													<span class="data-style">{!task.Parent_License_Type__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">Transaction Type: </span>
-                                                <span class="data-style">{!task.Subject}</span>
+												<aura:if isTrue="{!task.Parent_License_Type__c  ? true :false}">
+													<span class="data-style">{!task.Parent_License_Type__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
+                                                
                                             </div>                                    
                                         </lightning:layoutItem>
                                     </lightning:layout>
@@ -319,38 +422,64 @@ _______________________________________________________________
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">Email: </span>
-                                                <span class="data-style">{!task.Email__c}</span>
+												<aura:if isTrue="{!task.Email__c  ? true :false}">
+													<span class="data-style">{!task.Email__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">Exam Name: </span>
-                                                <span class="data-style">{!task.Subject}</span>
+												<aura:if isTrue="{!task.Subject  ? true :false}">
+													 <span class="data-style">{!task.Subject}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">Exam Status: </span>
-                                                <span class="data-style">{!task.Description}</span>
+												<aura:if isTrue="{!task.Description  ? true :false}">
+													 <span class="data-style">{!task.Description}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">License Number: </span>
-                                                <span class="data-style">{!task.Parent_License_Name__c}</span>
+												<aura:if isTrue="{!task.Parent_License_Name__c  ? true :false}">
+													<span class="data-style">{!task.Parent_License_Name__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">Due Date: </span>
-                                                <span class="data-style">{!task.ActivityDate}</span>
+												<aura:if isTrue="{!task.ActivityDate  ? true :false}">
+													<span class="data-style">{!task.ActivityDate}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
+                                                
                                             </div>
                                         </lightning:layoutItem>
                                     </lightning:layout>
                                 </lightning:layoutItem>
                                 <lightning:layoutItem size="12" mediumDeviceSize="3">
                                     <div class="button-wrapper license-btn">                                    
-                                        <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Dismiss" title="Dismiss" onclick="{!c.declineRequest}"/>
+                                        <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Dismiss" title="Decline" onclick="{!c.declineRequestNew}"/>
                                         <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
                                         <div class="slds-truncate" onclick="{!c.StartRequestEducationInformation}" data-license="{!task.Child_License_Id__c}"
                                              data-recordId="{!task.Id}"
@@ -378,38 +507,63 @@ _______________________________________________________________
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">Email: </span>
-                                                <span class="data-style">{!task.Email__c}</span>
+												<aura:if isTrue="{!task.Email__c  ? true :false}">
+													<span class="data-style">{!task.Email__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">Exam Name: </span>
-                                                <span class="data-style">{!task.Subject}</span>
+												<aura:if isTrue="{!task.Subject  ? true :false}">
+													<span class="data-style">{!task.Subject}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">Exam Status: </span>
-                                                <span class="data-style">{!task.Description}</span>
+												<aura:if isTrue="{!task.Description  ? true :false}">
+													<span class="data-style">{!task.Description}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
                                                 <span class="label-style">License Number: </span>
-                                                <span class="data-style">{!task.Parent_License_Name__c}</span>
+												<aura:if isTrue="{!task.Parent_License_Name__c  ? true :false}">
+													<span class="data-style">{!task.Parent_License_Name__c}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item">
                                             <div class="field-style">
-                                                <span class="label-style">Due Date: </span> 
-                                                <span class="data-style">{!task.ActivityDate}</span>
+                                                <span class="label-style">Due Date: </span> <!-- Polaris_Due_Date_Col -->
+												<aura:if isTrue="{!task.ActivityDate  ? true :false}">
+													<span class="data-style">{!task.ActivityDate}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                     </lightning:layout>
                                 </lightning:layoutItem>
                                 <lightning:layoutItem size="12" mediumDeviceSize="3">
                                     <div class="button-wrapper license-btn">                                    
-                                        <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Dismiss" title="Dismiss" onclick="{!c.declineRequest}"/>
+                                        <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Dismiss" title="Decline" onclick="{!c.declineRequestNew}"/>
                                         <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
                                         <div class="slds-truncate" onclick="{!c.StartRequestEducationInformation}" data-license="{!task.Child_License_Id__c}"
                                              data-recordId="{!task.Id}"
@@ -429,7 +583,7 @@ _______________________________________________________________
                     <aura:if isTrue="{!task.Type == 'DHP' }"> <!-- DHP Task-->
                         <div class="task-wrapper">
                             <div class="task-subject">
-                                Bad Payment: {!task.Subject} 
+                                Bad Payment: {!task.Subject} <!-- Pol_Bad_Pay_Col -->
                             </div>
                             <lightning:layout class="license-outer-wrapper slds-wrap">
                                 <lightning:layoutItem size="12" mediumDeviceSize="9">
@@ -437,13 +591,24 @@ _______________________________________________________________
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="license-item bad-payment">
                                             <div class="field-style">
                                                 <span class="label-style">{!$Label.c.Polaris_Comments + ':'} </span>
-                                                <span class="data-style">{!task.Subject}</span>
+												<aura:if isTrue="{!task.Subject  ? true :false}">
+													<span class="data-style">{!task.Subject}</span>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+												</aura:if>
                                             </div>
                                         </lightning:layoutItem>
                                     </lightning:layout>
                                 </lightning:layoutItem>
                             </lightning:layout>
-                             </div>
+                            <!--<div class="button-wrapper license-btn">                                    
+                            <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Decline" onclick="{!c.declineRequest}"/>
+                            <div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >
+                            <lightning:button class="accept-btn"  variant="brand"   label="Reschedule Exam" value="{!task}" onclick="{!c.openModelReschedule}"/>
+                            </div>
+                        </div>-->
+                        </div>
                     </aura:if>
 					<aura:if isTrue="{!task.Type == $Label.c.Polaris_Renew_Reminder}">
                         <div class="task-wrapper">                    
@@ -453,15 +618,30 @@ _______________________________________________________________
                                     <lightning:layout class="slds-wrap">
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style license-item">
                                             <div class="label-style">License</div> 
-                                            <div class="data-style">{!task.Parent_License_Name__c}</div>
+											<aura:if isTrue="{!task.Parent_License_Name__c  ? true :false}">
+													<div class="data-style">{!task.Parent_License_Name__c}</div>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+											</aura:if>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="4" class="field-style license-item">
                                             <div class="label-style">License Type</div>
-                                            <div class="data-style">{!task.Parent_License_Type__c}</div>
+											<aura:if isTrue="{!task.Parent_License_Type__c  ? true :false}">
+													<div class="data-style">{!task.Parent_License_Type__c}</div>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+											</aura:if>
                                         </lightning:layoutItem>
                                         <lightning:layoutItem size="12" mediumDeviceSize="6" class="field-style license-item">
-                                            <div class="label-style">Expiration Date</div> 
-                                            <div class="data-style">{!task.Expiration_Date__c}</div>
+                                            <div class="label-style">Expiration Date</div>
+											<aura:if isTrue="{!task.Expiration_Date__c  ? true :false}">
+													<div class="data-style">{!task.Expiration_Date__c}</div>
+													<aura:set attribute="else">
+														<span class="data-style">None</span>
+													</aura:set>
+											</aura:if>
                                         </lightning:layoutItem>                                    
                                     </lightning:layout>
                                 </lightning:layoutItem>
@@ -475,9 +655,9 @@ _______________________________________________________________
                     </aura:if>
                 </aura:iteration>
             </aura:if>
-            <!-- <aura:if isTrue="{!and(v.AddBusinessAccountsStatusAlert,v.licenseList)}">
+            <aura:if isTrue="{!and(v.AddBusinessAccountsStatusAlert,v.licenseList)}">
                 <c:StatusAlertForAddingBusinessComponent isLandingPage="true" />
-            </aura:if> -->
+            </aura:if>
             <lightning:layout class="additional-services slds-wrap">
                 <lightning:layoutItem size="12" mediumDeviceSize="5" class="pro-license-wrapper services">
                     <div class="ind-account-wrapper">
@@ -501,7 +681,16 @@ _______________________________________________________________
                             </lightning:layoutItem>                
                         </lightning:layout>
                     </div> 
-                         
+                    <!--<div class="ser-desc">
+                    Washington Department of Licensing helps you obtain professional licenses
+                </div>
+                <div class="ser-links">
+                    <ul>
+                        <li><a href= "{!$Label.c.Polaris_Portal_NewDashboard}" target="_blank">View Licenses</a></li>
+                        <li><a href= "{!$Label.c.Polaris_Portal_NewDashboard}" target="_blank">View Applications</a></li>
+                        <li><a href= "{!$Label.c.Polaris_Portal_NewDashboard}" target="_blank">View Relationships</a></li>                        
+                    </ul>
+                </div> -->                
                 </lightning:layoutItem>
                 <lightning:layoutItem size="12" mediumDeviceSize="5" class="business-wrapper services">
                     <div class="ind-account-wrapper">
@@ -521,7 +710,11 @@ _______________________________________________________________
                             <div class="ser-btn-wrapper course-btn">
                                 <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.openTrainingApp}" label="Add training course" title="Add training course" />  
                             </div>
-                           
+                            <!--<aura:set attribute="else">-->
+                            <!--    <div class="ser-btn-wrapper">-->
+                            <!--        <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkBizLic}" label="Link an Existing Business License" title="Link an Existing Business License" />  -->
+                            <!--    </div>-->
+                            <!--</aura:set>-->
                         </aura:if>
                         <div class="{!v.isBusiness?'slds-hide':'bizlayout'}">
                             <p class="list-desc">You must have a business profile before you can:</p>
@@ -533,24 +726,66 @@ _______________________________________________________________
                             </ul>
                         </div>
                         
-                      
+                        <!--<div class="ser-desc">
+                    Washington Department of Licensing helps you obtain business licenses.
+                </div>
+                <div class="ser-links">
+                    <ul>
+                        <li><a href= "{!$Label.c.Polaris_Portal_Business_Dashboard}" target="_blank">Create Business</a></li>
+                        <li><a href= "{!$Label.c.Polaris_Portal_Business_Dashboard}" target="_blank">View Businesses</a></li>
+                        <li><a href= "{!$Label.c.Polaris_Portal_Business_Dashboard}" target="_blank">Become a Course/Exam Provider</a></li>    
+                        <li><a href= "{!$Label.c.Polaris_Portal_Business_Dashboard}" target="_blank">Understand how to manage Businesses</a></li>    
+                    </ul>
+                </div> -->
                         <div class="{!v.isBusiness?'slds-hide':'ser-btn-wrapper create-biz'}">
                             <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.redirectBusiness}" label="Create Business Account" title="Create Business Account" /> 
                         </div>
                     </div>
                     
                     <div class="businessStatus">
-                        <h2 class="ser-title newbiz-wrapper">Have an existing business license?</h2>                       
+                        <h2 class="ser-title newbiz-wrapper">Have an existing business license?</h2>
+                       <!-- <p class="list-desc">If you currently hold a business license from Department of Licensing, you’ll have an existing business profile in our system.</p> -->
                         
                         
                         <div class="ser-btn-wrapper">
                             <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkBizLic}" label="Link Existing Business License" title="Link Existing Business License" />  
                         </div>
                         
-                       
+                        <!--<aura:if isTrue="{!v.isBusiness}">-->
+                        <!--    <div class="ser-btn-wrapper">-->
+                        <!--        <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.goToBizDashboard}" label="Manage a Business Account" title="Manage a Business Account" />  -->
+                        <!--    </div>-->
+                        <!--    <div class="ser-btn-wrapper">-->
+                        <!--        <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.bizLicApp}" label="Apply For A Business License" title="Apply For A Business License" />  -->
+                        <!--    </div>-->
+                        <!--    <div class="ser-btn-wrapper">-->
+                        <!--        <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.openTrainingApp}" label="Add a training course" title="Add a training course" />  -->
+                        <!--    </div>-->
+                        <!--    <aura:set attribute="else">-->
+                        
+                        <!--    </aura:set>-->
+                        
+                        <!--</aura:if>-->
                     </div>
                     
-                    
+                    <!-- <div class="ser-btn-wrapper">
+                    <div class="businessStatus">
+                        <h2 class="ser-title newbiz-wrapper">Have an existing business license?</h2>
+                        <p class="list-desc">If you currently hold a business license from Department of Licensing, you’ll have an existing business profile in our system.</p>
+                        <div class="bizlayout">
+                            <ul class="biz">
+                                <li>Apply for a business license</li>
+                                <li>Link to existing licenses</li>
+                                <li>Add other businesses</li>
+                                <li>Add training courses</li>
+                                <li>Pay fees for others</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="ser-btn-wrapper">
+                        <lightning:button class="ser-btn pro-license" variant="brand" onclick="{!c.linkBizLic}" label="Link a Business license to your account" />  
+                    </div>
+                </div> -->
                     
                 </lightning:layoutItem>
             </lightning:layout>
@@ -574,7 +809,7 @@ _______________________________________________________________
                     </div>
                     <!-- pop up footer -->
                     <footer class="slds-modal__footer">
-                        <lightning:button variant="brand" 
+                        <lightning:button variant="neutral" 
                                           label="Ok"
                                           title="Ok"
                                           onclick="{! c.closeModel }"/>
