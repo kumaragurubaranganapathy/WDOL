@@ -25,14 +25,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Application_Method__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Paper_Application__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Course_Title__c</field>
             </layoutItems>
             <layoutItems>
@@ -50,6 +42,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Pre_Approval__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Paper_Application__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -298,9 +294,197 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>First_Name__c</fields>
+        <fields>Last_Name__c</fields>
+        <fields>Role__c</fields>
+        <fields>DCP__c</fields>
+        <fields>Account_Admin__c</fields>
+        <fields>Status__c</fields>
+        <relatedList>MUSW__Account_Contact__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MailMerge</excludeButtons>
+        <excludeButtons>ViewAll</excludeButtons>
+        <fields>TASK.SUBJECT</fields>
+        <fields>TASK.TYPE</fields>
+        <fields>TASK.STATUS</fields>
+        <fields>TASK.DUE_DATE</fields>
+        <fields>MUSW__Completed_Date2__c</fields>
+        <fields>CORE.USERS.FULL_NAME</fields>
+        <relatedList>RelatedHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Parcel_Address__c</fields>
+        <fields>Primary__c</fields>
+        <fields>Mailing__c</fields>
+        <fields>Physical__c</fields>
+        <fields>MUSW__Parcel__c.MUSW__Post_Zip_Code__c</fields>
+        <relatedList>MUSW__License_Parcel__c.MUSW__License2__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__Parcel_Number2__c</fields>
+        <fields>MUSW__City__c</fields>
+        <fields>MUSW__Primary_Zoning__c</fields>
+        <fields>MUSW__Alert_Indicator__c</fields>
+        <fields>UPDATEDBY_USER</fields>
+        <relatedList>MUSW__Parcel__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Type__c</fields>
+        <fields>Description__c</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>Alert__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__Status__c</fields>
+        <fields>Date_Opened__c</fields>
+        <fields>MUSW__Closed_Date__c</fields>
+        <relatedList>MUSW__Complaint2__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__Amount__c</fields>
+        <fields>MUSW__Available_Amount__c</fields>
+        <relatedList>MUSW__Deposit__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Endorsement_Type__c</fields>
+        <fields>Status__c</fields>
+        <fields>Date_Requested_for_Adding_Endorsement__c</fields>
+        <fields>Date_Granted__c</fields>
+        <relatedList>Endorsement__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <customButtons>Add_Fees_to_Cart2</customButtons>
+        <customButtons>BGBK__AdjustFees</customButtons>
+        <fields>NAME</fields>
+        <fields>MUSW__Type__c</fields>
+        <fields>MUSW__Amount__c</fields>
+        <fields>MUSW__Amount_Waived__c</fields>
+        <fields>MUSW__Outstanding_Fee__c</fields>
+        <fields>MUSW__Fee_Paid_Date2__c</fields>
+        <relatedList>MUSW__Fee__c.MUSW__License2__c</relatedList>
+        <sortField>MUSW__Outstanding_Fee__c</sortField>
+        <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Agency__c</fields>
+        <fields>Status__c</fields>
+        <fields>Submitted_Date__c</fields>
+        <fields>Close_Date__c</fields>
+        <fields>Comments__c</fields>
+        <fields>AMR__c</fields>
+        <relatedList>Fingerprint_Results__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Historical_Operator_ID__c</fields>
+        <fields>Historical_Transaction_Date__c</fields>
+        <fields>Historical_Transaction_Type__c</fields>
+        <relatedList>License_History__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__Type__c</fields>
+        <fields>MUSW__Due_Date__c</fields>
+        <fields>MUSW__Priority__c</fields>
+        <fields>OWNER.ALIAS</fields>
+        <relatedList>MUSW__Inspection__c.MUSW__License2__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedEntityHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Status__c</fields>
+        <fields>Child_License__c</fields>
+        <fields>Child_Contact__c</fields>
+        <fields>Association_Type__c</fields>
+        <fields>Start_Date__c</fields>
+        <fields>End_Date__c</fields>
+        <relatedList>Associations__c.Parent_License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Status__c</fields>
+        <fields>Parent_License__c</fields>
+        <fields>Parent_Contact_Name__c</fields>
+        <fields>Association_Type__c</fields>
+        <fields>Start_Date__c</fields>
+        <fields>End_Date__c</fields>
+        <relatedList>Associations__c.Child_License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <relatedList>RelatedContentNoteList</relatedList>
     </relatedLists>
     <relatedLists>
+        <relatedList>RelatedNoteList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <customButtons>Task.MUSW__Add_Multiple_Tasks</customButtons>
+        <excludeButtons>NewEvent</excludeButtons>
+        <fields>TASK.SUBJECT</fields>
+        <fields>TASK.TYPE</fields>
+        <fields>TASK.STATUS</fields>
+        <fields>TASK.DUE_DATE</fields>
+        <fields>CORE.USERS.FULL_NAME</fields>
+        <relatedList>RelatedActivityList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <customButtons>BGBK__AdjustPayments</customButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>Related_To__c</fields>
+        <fields>BGBK__Amount__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>BGBK__Payment_Source__c</fields>
+        <relatedList>BGBK__Payment__c.BGBK__License2__c</relatedList>
+        <sortField>CREATED_DATE</sortField>
+        <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__Status__c</fields>
+        <relatedList>MUSW__Project2__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Renewal_Reinstatement_Type__c</fields>
+        <fields>Auto_Renew__c</fields>
+        <fields>Renewal_Status__c</fields>
+        <fields>Total_Balance__c</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>Renewal_Application__c.License__c</relatedList>
+        <sortField>CREATED_DATE</sortField>
+        <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Service_Request_Type__c</fields>
+        <fields>Status__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>Contact__c</fields>
+        <relatedList>Request__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>License_Type__c</fields>
+        <fields>Review_Type__c</fields>
+        <fields>MUSW__Status__c</fields>
+        <fields>LAST_UPDATE</fields>
+        <relatedList>MUSW__Review__c.License__c</relatedList>
+        <sortField>LAST_UPDATE</sortField>
+        <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <customButtons>MUSW__Manage_Submissions</customButtons>
         <fields>NAME</fields>
         <fields>MUSW__Required__c</fields>
         <fields>CREATED_DATE</fields>
@@ -309,23 +493,14 @@
         <relatedList>MUSW__Submission__c.MUSW__License2__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>TASK.SUBJECT</fields>
-        <fields>TASK.WHO_NAME</fields>
-        <fields>ACTIVITY.TASK</fields>
-        <fields>TASK.DUE_DATE</fields>
-        <fields>TASK.STATUS</fields>
-        <fields>TASK.PRIORITY</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <relatedList>RelatedActivityList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>TASK.SUBJECT</fields>
-        <fields>TASK.WHO_NAME</fields>
-        <fields>ACTIVITY.TASK</fields>
-        <fields>TASK.DUE_DATE</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <fields>TASK.LAST_UPDATE</fields>
-        <relatedList>RelatedHistoryList</relatedList>
+        <fields>NAME</fields>
+        <fields>Time_Frame_Name__c</fields>
+        <fields>Start_Date__c</fields>
+        <fields>End_Date__c</fields>
+        <fields>CREATEDBY_USER</fields>
+        <relatedList>Time_Frame__c.License__c</relatedList>
+        <sortField>End_Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
