@@ -47,16 +47,17 @@ public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler
         List<MUSW__License_Parcel__c> triggerNew = Trigger.New;
         List<MUSW__License2__c> licensetoUpdate = new list<MUSW__License2__c>();
         Map<Id, MUSW__License2__c> licenseMap = new  Map<Id, MUSW__License2__c>();
-        List<Id> licenseParcelIds  = new List<Id>();
+        MUSW__License2__c licRec = new MUSW__License2__c();
+        Set<Id> licenseParcelIds  = new Set<Id>();
         for (MUSW__License_Parcel__c licP :triggerNew){
             licenseParcelIds.add(licP.MUSW__License2__c);
         }
-        for (MUSW__License2__c lst  : [Select Id, MUSW__Parcel__c,Public_Address__c from MUSW__License2__c where id = :licenseParcelIds order by createdDate desc]) {
+        for (MUSW__License2__c lst  : [Select Id, MUSW__Parcel__c,Public_Address__c from MUSW__License2__c where id in :licenseParcelIds order by createdDate desc]) {
             licenseMap.put(lst.Id,lst);
         }
         for(MUSW__License_Parcel__c lp : triggerNew){
             if(!licenseMap.isEmpty()){
-                MUSW__License2__c licRec = licenseMap.get(lp.MUSW__License2__c) ;
+                licRec = licenseMap.get(lp.MUSW__License2__c) ;
                 if(!licenseMap.isEmpty() && lp.Mailing__c == true && lp.MUSW__Parcel__c != null &&  lp.Physical__c == false  && lp.MUSW__License2__c != null){                
                     licRec.MUSW__Parcel__c = lp.MUSW__Parcel__c;
                 } else if(!licenseMap.isEmpty() && lp.Physical__c == true && lp.Mailing__c == false && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null)  {
@@ -78,25 +79,26 @@ public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler
         DOL_AppUTility.runfromDolBatchUpdateLicenseStatus = true;
         system.debug('inside test');
         List<MUSW__License_Parcel__c> triggerNew = Trigger.New;
+        MUSW__License2__c licRec = new MUSW__License2__c();
         List<MUSW__License2__c> licensetoUpdate = new list<MUSW__License2__c>();
         Map<Id, MUSW__License2__c> licenseMap = new  Map<Id, MUSW__License2__c>();
-        List<Id> licenseParcelIds  = new List<Id>();
+        Set<Id> licenseParcelIds  = new Set<Id>();
         for (MUSW__License_Parcel__c licP :triggerNew){
             licenseParcelIds.add(licP.MUSW__License2__c);
         }
-        for (MUSW__License2__c lst  : [Select Id, MUSW__Parcel__c,Public_Address__c from MUSW__License2__c where id = :licenseParcelIds order by createdDate desc]) {
+        for (MUSW__License2__c lst  : [Select Id, MUSW__Parcel__c,Public_Address__c from MUSW__License2__c where id in :licenseParcelIds order by createdDate desc]) {
             licenseMap.put(lst.Id,lst);
         }
         for(MUSW__License_Parcel__c lp : triggerNew){
             
             if(!licenseMap.isEmpty()){
-                MUSW__License2__c licRec = licenseMap.get(lp.MUSW__License2__c) ;
+                licRec = licenseMap.get(lp.MUSW__License2__c) ;
                 if(!licenseMap.isEmpty() && lp.Mailing__c == true  &&  lp.Physical__c == false  && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null){                
                     licRec.MUSW__Parcel__c = lp.MUSW__Parcel__c;
                     licRec.Public_Address__c = null;
                 } else if(!licenseMap.isEmpty() && lp.Physical__c == true  &&  lp.Mailing__c == false && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null)  {    
                     licRec.Public_Address__c = lp.MUSW__Parcel__c;
-                    licRec.MUSW__Parcel__c =null;   
+                    licRec.MUSW__Parcel__c =null;
                 } else if(!licenseMap.isEmpty() && (lp.Physical__c == true  && lp.Mailing__c == true) && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null) {
                     licRec.MUSW__Parcel__c = lp.MUSW__Parcel__c;
                     licRec.Public_Address__c = lp.MUSW__Parcel__c;       
