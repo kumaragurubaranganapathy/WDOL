@@ -53,7 +53,7 @@
             <div class= "slds-grid card-wrapper slds-wrap">
                 <div class="slds-small-size_1-of-1 slds-medium-size_1-of-1">
                     <h2 class="header-style">{!v.isCourseProvider?'Course Selection':'License Selection'}</h2>
-                    <!-- <p class="slds-medium-size_11-of-12">Select the Profession Type for which you are seeking a license. Next, select the specific license type from the License Type dropdown.</p> -->
+                    <!--<p class="slds-medium-size_11-of-12">Select the Profession Type for which you are seeking a license. Next, select the specific license type from the License Type dropdown.</p> -->
                 </div>
                 <div class="slds-small-size_1-of-1 slds-medium-size_1-of-1 prof-choice">
                     
@@ -64,13 +64,9 @@
                         </aura:iteration>
                     </lightning:select>
                     
-                   <!-- <lightning:inputField aura:id="board" label="Select a Profession" fieldName="Application_Type__c" value="" onchange="{!c.resetAttributes}" /> -->
-                    <!-- <aura:if isTrue="{!Credential_Type__c.apiname !='Unlicensed'}"> -->
-                   <!-- <lightning:inputField options ="{!v.licenseList}" aura:id="licenseType" class="slds-hide slds-m-vertical_large" label="Select a License Type" fieldName="Credential_Type__c" value="" onchange="{!c.resetApplicationMethod}"/>-->
-                 
-                   <!-- <lightning:inputField  aura:id="licenseType" class="slds-hide" label="Select a License Type" fieldName="Credential_Type__c" value="{!v.licenseList[0]}" /> -->
-                    <lightning:select value="" aura:id="licenseType" name="Credential_Type__c" label="Select a License Type" onchange="{!c.resetApplicationMethod}" class="application slds-hide slds-m-vertical_large">
-                         <option value="" >--None--</option>
+                    
+                    <lightning:select value="{!v.licenseSelected}" aura:id="licenseType" name="Credential_Type__c" label="Select a License Type" onchange="{!c.resetApplicationMethod}" class="application slds-hide slds-m-vertical_large">
+                        <option value="" >--None--</option>
                         <aura:iteration items="{!v.licenseList}" var="license">
                             <option value="{!license}" >{!license}</option>
                         </aura:iteration>
@@ -80,7 +76,7 @@
                         <option value="" >--None--</option>
                         <aura:iteration items="{!v.applicationMethodList}" var="license">
                             
-                            <option value="{!license}" >{!license}</option>
+                            <option value="{!license}" >{!license == 'Comity/Reciprocity'?'Reciprocity or Comity':license}</option>
                         </aura:iteration>
                     </lightning:select>
                     
@@ -99,7 +95,7 @@
                             </lightning:layoutItem>
                             <lightning:layoutItem size="12" mediumDeviceSize="6" class="biz-btn-wrapper">
                                 <div class="add-biz-wrapper">
-                                    <lightning:button name="Add Business Account" label="Add Business Account" title="Add Business Account" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />
+                                    <lightning:button name="Add New Business Account" label="Add New Business Account" class="add-biz-btn" variant="brand" onclick="{!c.addBusiness}" />
                                 </div>
                             </lightning:layoutItem>
                         </lightning:layout>
@@ -117,12 +113,13 @@
             </div>
             <div id="applicationInstuctionDiv" class = "slds-hide card-wrapper slds-wrap slds-m-top_xx-large">
                 <div id="appTextDiv">
-                    <h2>Are You Ready?</h2>
-                    <!--<h2>Application Instructions</h2>-->
-                    <lightning:formattedRichText aura:id="readyHeader" class="slds-m-right_xx-large slds-hide" value="{!v.instructions}"> </lightning:formattedRichText>                
+                    <h2>What you’ll need</h2>
+                    
+                    <div class="need-text">Make sure you meet all the requirements listed on our<a href="{!v.instructions}" target="_blank">{!' ' + v.licenseSelected + ' website'}</a></div>
+                    
                 </div>
                 <div aura:id="reqDocTextDiv" class="slds-hide">
-                    <h2 class="slds-m-top_large">Required documents for this Application</h2>
+                    <h2 class="slds-m-top_large">Gather your files</h2>
                     <ul>
                         <aura:iteration items="{!v.otherInstructions}" var="instr">
                             <li class="bullets">{!instr}</li>
@@ -130,11 +127,17 @@
                     </ul>
                 </div>    
                 <div id="necInstr">
-                    <h2 class="slds-p-top_large">What you’ll need before you start</h2>
+                    <h2 class="slds-p-top_large">If payment required, these are the options available:</h2>
                     <ul>
-                        <li class="bullets">Visa, Mastercard, or American Express credit or debit card or e-check for payment of the license fee</li>
-                        <li class="bullets">Required documents listed above (if any), ready for upload</li>
-                        <li class="bullets">If needed, any legal background documents for the last 10 years, ready for upload</li>
+                        <li class="bullets">Credit or debit card</li>
+                        <li class="bullets">Bank account</li>
+                        <li class="bullets">
+                            Billing code
+                            <ul>
+                                <li class="bullets inner">If a business or someone else is paying for you, they’ll give you a billing code to use as payment.</li>
+                            </ul>
+                        </li>
+                        
                     </ul>
                 </div>
             </div>

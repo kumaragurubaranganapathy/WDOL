@@ -429,69 +429,81 @@ insert bgckList;
     
     @AuraEnabled
     public  static List<String> fetchInstructions(String Board, String LicenseType, String ApplicationType, String Obj, String renewalReinstate, String upgradeLicenseIdValue) {
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
-        System.debug('IDIDIDIDIDIDDID'+upgradeLicenseIdValue);
-        List<String> result = new List<String>();
-        String condition1 = DOL_AppConstants.NULL_EMPTY_STRING + 'Application_Type__c = \''+Board+'\'';
-        String condition2 = DOL_AppConstants.NULL_EMPTY_STRING + 'Credential_Type__c = \''+LicenseType+'\'';
-        String condition3 = DOL_AppConstants.NULL_EMPTY_STRING + 'Application_Method__c = \''+ApplicationType+'\'';
-        String condition4 = DOL_AppConstants.NULL_EMPTY_STRING + 'Required__c = True'; 
-        String condition5 = DOL_AppConstants.NULL_EMPTY_STRING + 'Active__c = True';
-        String condition6 = DOL_AppConstants.NULL_EMPTY_STRING + 'Default__c = True';
-        String condition7 = DOL_AppConstants.NULL_EMPTY_STRING + 'Object__c = \''+Obj+'\'';
-        //String condition7 = DOL_AppConstants.NULL_EMPTY_STRING + 'Object__c = \'MUSW__License2__c\'';
-       system.debug('test123::'+renewalReinstate);
-        String condition8 = DOL_AppConstants.NULL_EMPTY_STRING + '';
-        String condition9 = DOL_AppConstants.NULL_EMPTY_STRING + 'Order_No__c';
-        MUSW__License2__c upgradeLicense = new MUSW__License2__c();
-        if(upgradeLicenseIdValue!=null && upgradeLicenseIdValue!=''){
-         upgradeLicense = [select id, Application_Type__c,Credential_Type__c from MUSW__License2__c where id=:upgradeLicenseIdValue limit 1];
-        }
-        String condition10 = DOL_AppConstants.NULL_EMPTY_STRING + 'Show_For_License__c = \''+upgradeLicense.Credential_Type__c+'\'';
-        if(renewalReinstate=='Renewal')
-        {
-            condition8 = DOL_AppConstants.NULL_EMPTY_STRING + ' AND Show_For__c includes (\'Credential Renewal\')';
-        }
-        else if(renewalReinstate=='Reinstatement')
-        {
-            condition8 = DOL_AppConstants.NULL_EMPTY_STRING + ' AND Show_For__c includes (\'Credential Reinstatement\')';
-        }
-        list<Newsfeed__c> appInstructionList = new list<Newsfeed__c>();
-        list<MUSW__Master_Submission_List__c> masterSubListOnAppInstrList = new list<MUSW__Master_Submission_List__c>();
-        
-        String Str1 = DOL_AppConstants.NULL_EMPTY_STRING + 'select id,Instructions__c from Newsfeed__c  where ' +condition1+' AND '+condition2+' AND '+condition3;       
-        appInstructionList = Utilityclass_withsharing.queryRecords(Str1);
-        system.debug('News Query::'+appInstructionList);
-        String Str2 = DOL_AppConstants.NULL_EMPTY_STRING + '';
-        if(ApplicationType == 'Upgrade' && upgradeLicenseIdValue != null){
-          Str2 = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition10  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
-         
-        }
-        else{
-        Str2 = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
-        }
-        masterSubListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
-        system.debug('MSL Query::'+masterSubListOnAppInstrList);
-        
-        if(!appInstructionList.isEmpty()){
-            result.add(appInstructionList[0].Instructions__c);             
-        }
-        else{
-            result.add('null');
-        }
-        if(!masterSubListOnAppInstrList.isEmpty()){
-            for(MUSW__Master_Submission_List__c subm : masterSubListOnAppInstrList){
-                result.add(subm.Name);
+            System.debug('IDIDIDIDIDIDDID'+upgradeLicenseIdValue);
+            List<String> result = new List<String>();
+            String condition1 = DOL_AppConstants.NULL_EMPTY_STRING + 'Application_Type__c = \''+Board+'\'';
+            String condition2 = DOL_AppConstants.NULL_EMPTY_STRING + 'Credential_Type__c = \''+LicenseType+'\'';
+            String condition3 = DOL_AppConstants.NULL_EMPTY_STRING + 'Application_Method__c = \''+ApplicationType+'\'';
+            String condition4 = DOL_AppConstants.NULL_EMPTY_STRING + 'Required__c = True'; 
+            String condition5 = DOL_AppConstants.NULL_EMPTY_STRING + 'Active__c = True';
+            String condition6 = DOL_AppConstants.NULL_EMPTY_STRING + 'Default__c = True';
+            String condition7 = DOL_AppConstants.NULL_EMPTY_STRING + 'Object__c = \''+Obj+'\'';
+            //String condition7 = DOL_AppConstants.NULL_EMPTY_STRING + 'Object__c = \'MUSW__License2__c\'';
+            system.debug('test123::'+renewalReinstate);
+            String condition8 = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            String condition9 = DOL_AppConstants.NULL_EMPTY_STRING + 'Order_No__c';
+            MUSW__License2__c upgradeLicense = new MUSW__License2__c();
+            if(upgradeLicenseIdValue!=null && upgradeLicenseIdValue!=''){
+                upgradeLicense = [select id, Application_Type__c,Credential_Type__c from MUSW__License2__c where id=:upgradeLicenseIdValue and id!=null limit 1];
             }
-        }
-        system.debug('@@@@result'+result);
-        
-        return result;
+            String condition10 = DOL_AppConstants.NULL_EMPTY_STRING + 'Show_For_License__c = \''+upgradeLicense.Credential_Type__c+'\'';
+            String condition14 = DOL_AppConstants.NULL_EMPTY_STRING + 'Section__c = \'New Applications\'';
+            if(renewalReinstate=='Renewal')
+            {
+                //condition8 = DOL_AppConstants.NULL_EMPTY_STRING + ' AND Show_For__c includes (\'Credential Renewal\')';
+                condition8 = DOL_AppConstants.NULL_EMPTY_STRING + ' AND Show_For__c includes (\'Credential Renewal\')';
+                condition14 = DOL_AppConstants.NULL_EMPTY_STRING + ' Section__c = \'Renewals\' AND Show_For__c includes (\'Credential Renewal\')';
+            }
+            else if(renewalReinstate=='Reinstatement')
+            {
+                //condition8 = DOL_AppConstants.NULL_EMPTY_STRING + ' AND Show_For__c includes (\'Credential Reinstatement\')';
+                condition8 = DOL_AppConstants.NULL_EMPTY_STRING + ' AND Show_For__c includes (\'Credential Reinstatement\')';
+                condition14 = DOL_AppConstants.NULL_EMPTY_STRING + ' Section__c = \'Renewals\' AND Show_For__c includes (\'Credential Reinstatement\')';
+            }
+            list<Newsfeed__c> appInstructionList = new list<Newsfeed__c>();
+            list<MUSW__Master_Submission_List__c> masterSubListOnAppInstrList = new list<MUSW__Master_Submission_List__c>();
+
+            String Str1 = DOL_AppConstants.NULL_EMPTY_STRING;
+            if(ApplicationType == 'Upgrade'){
+             Str1 = DOL_AppConstants.NULL_EMPTY_STRING + 'select id,Link__c from Newsfeed__c  where ' +condition1+' AND '+condition2+' AND Application_Method__c = \'General Application\' AND '+condition14 ;       
+            }
+            else{
+                Str1 = DOL_AppConstants.NULL_EMPTY_STRING + 'select id,Link__c from Newsfeed__c  where ' +condition1+' AND '+condition2+' AND '+condition3+ ' AND '+condition14 ;       
+            }
+            appInstructionList = Utilityclass_withsharing.queryRecords(Str1);
+            system.debug('News Query::'+appInstructionList);
+            String Str2 = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            if(ApplicationType == 'Upgrade' && upgradeLicenseIdValue != null){
+                Str2 = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition10  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
+                
+            }
+            else{
+                Str2 = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Id, Name FROM MUSW__Master_Submission_List__c WHERE ' + condition1 + ' AND ' + condition2 + ' AND ' + condition3 + ' AND ' + condition4 + ' AND ' + condition5 + ' AND ' + condition6  + ' AND ' + condition7 + condition8 + ' ORDER BY ' + condition9;
+            }
+            masterSubListOnAppInstrList = Utilityclass_withsharing.queryRecords(Str2);
+            system.debug('MSL Query::'+masterSubListOnAppInstrList);
+            
+            if(!appInstructionList.isEmpty()){
+                result.add(appInstructionList[0].Link__c);             
+            }
+            else{
+                result.add('null');
+            }
+            if(!masterSubListOnAppInstrList.isEmpty()){
+                for(MUSW__Master_Submission_List__c subm : masterSubListOnAppInstrList){
+                    result.add(subm.Name);
+                }
+            }
+            system.debug('@@@@result'+result);
+            
+            return result;
         }
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     @AuraEnabled
