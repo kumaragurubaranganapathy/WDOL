@@ -10,18 +10,23 @@ global class Dol_PartialPaymentGeneralEmailScheduler implements Schedulable {
             invIdSet.add(inv.Id);
         }
         system.debug('invIdSet::'+invIdSet);
-        for(Attachment att: [SELECT Id,Name, Body, ContentType,ParentId FROM Attachment WHERE ParentId In:invIdSet ]){
-            invoiceToAttachmentMap.put(att.ParentId,att.Id);
+        for(ContentDocumentLink clink: [SELECT ContentDocument.title,ContentDocumentId,LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId In: invIdSet and ContentDocument.title like 'Partial_Payment%' ] ){
+            contentDocumentLinkToInvoiceMap.put(clink.ContentDocumentId,clink.LinkedEntityId);
         }
-        system.debug('invoiceToAttachmentMap::'+invoiceToAttachmentMap);
-                
+        Set<Id> keySet = contentDocumentLinkToInvoiceMap.keySet();
+        for(ContentVersion cv: [Select Id,Title, ContentDocumentId from ContentVersion where ContentDocumentId In: keySet ] ){
+            if(contentDocumentLinkToInvoiceMap.containsKey(cv.ContentDocumentId)){
+                invoiceToContentVersionMap.put(contentDocumentLinkToInvoiceMap.get(cv.ContentDocumentId),cv.Id);
+            }
+        }
+        
         List<Messaging.SingleEmailMessage> emailList = new list<Messaging.SingleEmailMessage>();
         for(BGBK__Bill__c inv: invoiceList){
-            if(invoiceToAttachmentMap.containsKey(inv.Id)){
+            if(invoiceToContentVersionMap.containsKey(inv.Id)){
                 Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
                 message.setToAddresses(new String[]{inv.BGBK__Recipient2__r.Email__c});
                 message.setSubject('Dept of Licensing – Partial Payment Reminder');
-                message.setEntityAttachments(new List<Id>{invoiceToAttachmentMap.get(inv.Id)});
+                message.setEntityAttachments(new List<Id>{invoiceToContentVersionMap.get(inv.Id)});
                 message.setPlainTextBody('Please find attached a copy of your partial payment letter');
                 emailList.add(message);
             }
