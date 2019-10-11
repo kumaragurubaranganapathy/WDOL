@@ -21,7 +21,7 @@ trigger DRE2_ContentDocumentLink on ContentDocumentLink (before insert,after ins
         }
         List<ContentDocumentLink> lstContentDocLink = Trigger.new;
         List<ContentDocumentLink> lstNewContentDocLink =  new List<ContentDocumentLink>();
-        List<ContentDocumentLink> lstdeleteContDocLink  = [SELECT ContentDocumentId,ContentDocument.Title,Id,IsDeleted,LinkedEntityId,ShareType,SystemModstamp,Visibility FROM ContentDocumentLink WHERE LinkedEntityId IN:lstdocs AND ShareType = 'V' AND ContentDocument.Title Like '%License_Certificate%'];
+         List<ContentDocumentLink> lstdeleteContDocLink  = [SELECT ContentDocumentId,ContentDocument.Title,Id,IsDeleted,LinkedEntityId,ShareType,SystemModstamp,Visibility FROM ContentDocumentLink WHERE LinkedEntityId IN:lstdocs and LinkedEntityId != null AND ShareType =: DOL_AppConstants.NULL_EMPTY_STRING + 'V' and ShareType != null AND (ContentDocument.Title Like '%License_Certificate%' OR ContentDocument.Title Like '%Self-print_Certificate%') and ContentDocument.Title != null];
         for(ContentDocumentLink cd : lstdeleteContDocLink )
         {
             ContentDocumentLink cd1 = new ContentDocumentLink();
