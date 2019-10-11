@@ -1,6 +1,8 @@
 .THIS {
 }
-.THIS .text-wrap{    
+.THIS .text-wrap{
+    /*text-align:center; */
+    /*padding: calc((100vh - 370px)/2);*/
     padding:1.5rem 7.5rem;
     font-size:1rem;
 }
@@ -13,14 +15,13 @@
     font-weight:bold;
     
 }
-.THIS .layout{
-    padding-right:2rem;
-    flex:1;
+.THIS .layout{       
     text-decoration:underline;
 }
 .THIS .imgLayout{
     display:flex;
-    
+    width:800px;
+    justify-content:space-between;
 }
 .THIS .img-style{
     width:40px;
@@ -28,6 +29,7 @@
 .THIS .link-text{
     margin-top:0.5rem;
     font-size:1rem;
+    
 }
 .THIS .header{
     margin-bottom:1.5rem;
@@ -38,8 +40,10 @@
 .THIS .imgLayout a{
     font-size:11px;
 }
-.THIS .link{
-    margin-right:4px;
+.THIS .link{    
+    display:flex;
+    flex-direction:column;
+    align-items: center;
 }
 .THIS .dwnldImg{
     width:10px;
@@ -82,8 +86,8 @@
     font-weight:bold;
 }
 .THIS .download{
-    color:t(fieldclr);
-    font-weight:bold;
+    color:t(fieldclr); 
+    font-size:1rem;
 }
 .THIS .underline{
     padding-bottom: 8px;

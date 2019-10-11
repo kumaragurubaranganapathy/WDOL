@@ -43,7 +43,7 @@
             <aura:set attribute="else">
                 <div class="text-wrap">
                     <lightning:icon iconName="utility:warning" alternativeText="Warning!" variant="warning"/>
-                    <!--<div class="errorHeading">Oops!</div>-->
+                    
                     <ui:outputRichText class="errorHeading" value="{!$Label.c.ErrorText}"/>
                     <div class="slds-m-top_small">Error ReferenceID</div>
                     <div class="errorid">

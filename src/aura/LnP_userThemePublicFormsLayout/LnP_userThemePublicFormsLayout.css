@@ -53,9 +53,11 @@
 }
 .THIS h1{
     font-size:30px;
+    font-weight: 700
 }
 .THIS h2{
     font-size:20px;
+    font-weight: 700
 }
 .THIS .merriweather-font{
     font-family: t(merrifontfamily);
@@ -828,6 +830,9 @@ margin-right:10%;
     .THIS .button-section button{
         width:100%;
     }
+    .THIS .field-size .slds-form-element__control{
+    	width:100%;
+	}
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px){
     .THIS .field-size .slds-form-element__control{
