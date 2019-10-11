@@ -102,7 +102,7 @@
         <criteriaItems>
             <field>Endorsement__c.Endorsement_Type__c</field>
             <operation>equals</operation>
-            <value>Eletronic Notary</value>
+            <value>Electronic Notary</value>
         </criteriaItems>
         <criteriaItems>
             <field>Endorsement__c.Is_Record_Exists__c</field>
@@ -139,7 +139,7 @@
         <criteriaItems>
             <field>Endorsement__c.Endorsement_Type__c</field>
             <operation>equals</operation>
-            <value>Eletronic Notary</value>
+            <value>Electronic Notary</value>
         </criteriaItems>
         <criteriaItems>
             <field>Endorsement__c.Is_Record_Exists__c</field>
