@@ -83,9 +83,9 @@
                     $A.util.addClass(component.find("professionalLicenseDetails"), 'slds-hide');	
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
-                        "title": "Success!",
-                        "message": "No License Found!!",
-                        "type": "Success"
+                        "title": "Error!",
+                        "message": "No License Found!",
+                        "type": "Error"
                     });
                     toastEvent.fire();
                     
@@ -213,7 +213,7 @@
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         "title": "Error!",
-                        "message": 'Error occoured please contact system admin!!',
+                        "message": 'Error occoured please contact system admin!',
                         "type": "Error"
                     });
                     toastEvent.fire();  
@@ -273,7 +273,7 @@
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
                     "title": "Error!",
-                    "message": 'Error occoured please contact system admin!!',
+                    "message": 'Error occoured please contact system admin!',
                     "type": "Error"
                 });
                 toastEvent.fire();  
