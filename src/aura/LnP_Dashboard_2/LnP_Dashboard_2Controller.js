@@ -362,6 +362,7 @@
         
         helper.fetchEndorsementDetails(component, event, helper, licenseId);
         
+        helper.setShowExamsTabFlagDashboard(component,event,helper,licenseId);
         
     },
     
