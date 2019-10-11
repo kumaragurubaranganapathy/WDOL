@@ -1252,7 +1252,7 @@ Original_Issue_Date__c
         <label>Course Type</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <valueSet>
@@ -4030,7 +4030,7 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <relationshipName>Course</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -8027,7 +8027,15 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <picklistValues>
             <picklist>Course_Type__c</picklist>
             <values>
+                <fullName>Continuing Education Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Pre-Qualifying Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualifying Elective Course</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8403,6 +8411,10 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         </picklistValues>
         <picklistValues>
             <picklist>Delivery_Method__c</picklist>
+            <values>
+                <fullName>Classroom %28Instructor in room with students%29</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Distance %2F On-Line</fullName>
                 <default>false</default>
