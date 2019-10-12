@@ -100,7 +100,7 @@
     <aura:if isTrue= "{!v.changeAddress}">        
         <div id="usAddr" class ="usAddress">
             <div class="address-type">
-                <h2>Your Mailing Address</h2>
+                <h1>Update your Mailing Address</h1>
             </div>
             <lightning:select aura:id="countryPicklist" name="country" label="Country" value="{!v.defaultCountry}" required="true" class="field-size address-fields rightsapce" onchange="{!c.onCountryChange}"> 
                 <aura:iteration items="{!v.countryList}" var="countryInstance">
@@ -140,7 +140,7 @@
             </aura:if>
             <div class="slds-grid slds-p-top_medium">
                 <lightning:button variant="brand" type="submit" name="save" label="Validate Address" title="Validate Address" onclick="{!c.getValidatedAddress}" class="slds-m-right_x-large cancelbtn" value="MAILING ADDRESS"/>
-              <lightning:button type="cancel" name="cancel" label="Back" title="Back" onclick="{!c.tolocation}" class="slds-m-left_medium addressBtn"/>
+             
             </div>
         </div>
         
@@ -149,7 +149,7 @@
         </aura:if>
     
        <aura:if isTrue="{!v.isAddAddressClicked}">
-            <div class="slds-modal slds-fade-in-open" id="newModal" style="width:100%;">
+            <div class="slds-modal slds-fade-in-open address-modal" id="newModal" style="width:100%;">
                 <div class="slds-modal__container">
                     <div class="slds-modal__header">
                         <h2 class="title slds-text-heading--large">Review your Address</h2><br/>
@@ -162,7 +162,7 @@
                             <legend class="slds-form-element__legend slds-form-element__label"></legend>
                             <div class="slds-form-element__control slds-list_horizontal">
                                 <span class="slds-radio">
-                                    <input type="radio" id="original" name="locations" checked="true" value="OriginalAddress"  onchange="{!c.onChange}" />
+                                    <input type="radio" id="original" name="locations" value="OriginalAddress"  onchange="{!c.onChange}" />
                                     <label class="slds-radio__label" for="original">
                                         <span class="slds-radio_faux"></span>
                                         <span class="slds-form-element__label">Original Address</span>
@@ -174,7 +174,7 @@
                             <div></div>
                             <div class="slds-form-element__control slds-list_horizontal">
                                 <span class="slds-radio">
-                                    <input type="radio" id="suggested" name="locations" value="SuggestedAddress" onchange="{!c.onChange}"/>
+                                    <input type="radio" id="suggested" name="locations" checked="true" value="SuggestedAddress" onchange="{!c.onChange}"/>
                                     <label class="slds-radio__label" for="suggested">
                                         <span class="slds-radio_faux"></span>
                                         <span class="slds-form-element__label">Suggested Address</span><br/>
@@ -318,7 +318,7 @@
                             <legend class="slds-form-element__legend slds-form-element__label"></legend>
                             <div class="slds-form-element__control slds-list_horizontal">
                                 <span class="slds-radio">
-                                    <input type="radio" id="original" name="locations" checked="true" value="OriginalAddress"  onchange="{!c.onChange}" />
+                                    <input type="radio" id="original" name="locations" value="OriginalAddress"  onchange="{!c.onChange}" />
                                     <label class="slds-radio__label" for="original">
                                         <span class="slds-radio_faux"></span>
                                         <span class="slds-form-element__label">Original Address</span>
@@ -330,7 +330,7 @@
                             <div></div>
                             <div class="slds-form-element__control slds-list_horizontal">
                                 <span class="slds-radio">
-                                    <input type="radio" id="suggested" name="locations" value="SuggestedAddress" onchange="{!c.onChange}"/>
+                                    <input type="radio" id="suggested" name="locations" checked="true" value="SuggestedAddress" onchange="{!c.onChange}"/>
                                     <label class="slds-radio__label" for="suggested">
                                         <span class="slds-radio_faux"></span>
                                         <span class="slds-form-element__label">Suggested Address</span><br/>
@@ -498,7 +498,7 @@
                             <legend class="slds-form-element__legend slds-form-element__label"></legend>
                             <div class="slds-form-element__control slds-list_horizontal">
                                 <span class="slds-radio">
-                                    <input type="radio" id="original" name="locations" checked="true" value="OriginalAddress"  onchange="{!c.onChange}" />
+                                    <input type="radio" id="original" name="locations" value="OriginalAddress"  onchange="{!c.onChange}" />
                                     <label class="slds-radio__label" for="original">
                                         <span class="slds-radio_faux"></span>
                                         <span class="slds-form-element__label">Original Address</span>
@@ -510,7 +510,7 @@
                             <div></div>
                             <div class="slds-form-element__control slds-list_horizontal">
                                 <span class="slds-radio">
-                                    <input type="radio" id="suggested" name="locations" value="SuggestedAddress" onchange="{!c.onChange}"/>
+                                    <input type="radio" id="suggested" name="locations" checked="true" value="SuggestedAddress" onchange="{!c.onChange}"/>
                                     <label class="slds-radio__label" for="suggested">
                                         <span class="slds-radio_faux"></span>
                                         <span class="slds-form-element__label">Suggested Address</span><br/>
