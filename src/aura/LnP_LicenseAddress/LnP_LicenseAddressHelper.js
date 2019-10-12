@@ -552,10 +552,7 @@
                         }
                     }
                     helper.showToast(component, event, "Success!", "success", "Your address Entry has been successfully created."); 
-					if(!component.get("v.changeOnlyMailingAdd"))
-                    {
-                        document.location = $A.get("$Label.c.Polaris_Portal_URL")+"s/user-feedback" ;
-                    }
+					
                 }
                 else{
                     helper.showToast(component, event, "Error!", "Error", "Error on saving your address Entry."); 
