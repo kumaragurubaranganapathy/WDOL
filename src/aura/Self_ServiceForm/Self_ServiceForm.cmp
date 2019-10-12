@@ -59,11 +59,21 @@
         </aura:if>
         <!-- Form end -->
         <aura:if isTrue="{!v.address}">
+            
             <c:LnP_LicenseAddress changeOnlyMailingAdd="false" applicationId="{!v.appId}" aura:id="lnpStoreAddress"/>
-            <lightning:button class="slds-m-top_large" variant="neutral" type="cancel" name="cancel" label="Back" title="Back" onclick="{!c.cancel}"/>
+            <div class="action-buttons"> 
+                <lightning:button variant="neutral" type="cancel" name="Back" label="Back" title="Back" onclick="{!c.cancel}"/>
+                <lightning:button variant="brand" type="save" name="save" label="Submit" title="Submit" onclick="{!c.cancel}"/>
+            </div>
         </aura:if>
-         <aura:if isTrue="{!v.iscontactAddress}">
-            <c:LnP_LicenseAddress changeAddress="true" contactId ="{!v.contactId}" aura:id="lnpStoreAddress"/>
+        <aura:if isTrue="{!v.iscontactAddress}">
+            <div class="address-wrapper">
+                <c:LnP_LicenseAddress changeAddress="true" contactId ="{!v.contactId}" aura:id="lnpStoreAddress"/>
+            </div>
+            <div class="action-buttons">
+                <lightning:button type="cancel" name="back" label="Back" onclick="{!c.tolocation}" />
+                <lightning:button variant="brand" type="save" name="save" label="Submit" title="Submit" onclick="{!c.tolocation}"/>
+            </div>
         </aura:if>
         
         <aura:if isTrue="{!v.thirdpartybillingcode}">

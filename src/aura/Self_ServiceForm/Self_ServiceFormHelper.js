@@ -75,7 +75,7 @@
         
                             else if(value.toLowerCase() == "address"){			
                                 component.set("v.recordIDforSSAMR",recordId);
-                                component.set("v.AMRName",'Update Address');
+                                component.set("v.AMRName",'Update your Mailing Address');
                                 var action = component.get("c.fetchAppId");
                                 action.setParams({
                                     "licId": recordId    
@@ -189,10 +189,10 @@
             if (state === "SUCCESS") {
                 //response.getReturnValue();
                 //window.location.href = component.get("v.redirectURL");
-               // window.history.back();
-               component.set("v.popupHeader", "Successfully Submitted");
-               component.set("v.popupBody", "Thank you for your submission.");
-               component.set("v.isOpen", true);
+                // window.history.back();
+                component.set("v.popupHeader", "Successfully Submitted");
+                component.set("v.popupBody", "Thank you for your submission.");
+                component.set("v.isOpen", true);
             }
             else if (state === "ERROR") {
                 var errors = response.getError();
@@ -226,7 +226,7 @@
             if (state === "SUCCESS") {
                 var output = response.getReturnValue();
                 component.set("v.outputcode",output);
-              
+                
                 
                 //window.location.href = component.get("v.redirectURL");
             }
@@ -258,7 +258,7 @@
                     var conVerId = response.getReturnValue();
                     console.log('conVerId==' + conVerId);
                     //windows.location = 'https://wadolbuspro--dev--c.cs32.content.force.com/sfc/servlet.shepherd/version/download/'+conVerId+'?asPdf=false&operationContext=CHATTER';
-                   /* var urlEvent = $A.get("e.force:navigateToURL");
+                    /* var urlEvent = $A.get("e.force:navigateToURL");
                     urlEvent.setParams({
                        "url": $A.get("$Label.c.Polaris_Portal_URL")+'sfc/servlet.shepherd/document/download/'+conVerId+'?operationContext=S1'
                         //"url": $A.get("$Label.c.Polaris_Portal_URL")+'sfc/servlet.shepherd/version/download/'+conVerId+'?asPdf=false&operationContext=CHATTER'
@@ -267,10 +267,10 @@
                     var urlinfo = $A.get("$Label.c.Polaris_Portal_URL")+'sfc/servlet.shepherd/document/download/'+conVerId+'?operationContext=S1';
                     window.location.href=urlinfo;
                     window.setTimeout(
-                    $A.getCallback(function() {
-                        window.history.back();
-                    }), 5000
-                ); 
+                        $A.getCallback(function() {
+                            window.history.back();
+                        }), 5000
+                    ); 
                 }
                 else if(component.find("printLicenseId").get("v.value")=='DES')
                 {
@@ -278,7 +278,7 @@
                     component.set("v.popupBody", "Thank you for your submission. You will receive printed license by mail within 7 days.");
                     component.set("v.isOpen", true);
                 }
-                       
+                
             }
             else if (state === "ERROR") {
                 var errors = response.getError();
@@ -297,9 +297,19 @@
     
     
     cancel : function(component, event, helper){
-        component.set("v.popupHeader", "Successfully Submitted");
-        component.set("v.popupBody", "Thank you for your submission.");
-        component.set("v.isOpen", true);
+        var buttonSource = event.getSource().get("v.name");
+        if(buttonSource === "Back"){
+            var urlEvent = $A.get("e.force:navigateToURL");
+            urlEvent.setParams({
+                "url": "/business"
+            });
+            urlEvent.fire();
+        }
+        else{
+            component.set("v.popupHeader", "Successfully Submitted");
+            component.set("v.popupBody", "Thank you for your submission.");
+            component.set("v.isOpen", true);
+        }
     },
     
     maskInput : function(component,event){  
@@ -376,7 +386,7 @@
             component.find("UpdateContactId").submit();
         }
         else
-        	component.set("v.fieldsValidated",false);
+            component.set("v.fieldsValidated",false);
     }
     
     

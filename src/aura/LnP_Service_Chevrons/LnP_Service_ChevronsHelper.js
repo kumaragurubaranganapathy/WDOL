@@ -265,7 +265,7 @@
                                         // below code is for no fees case
                                        // this.hideSpinner(component,event);
                                         component.set("v.popupHeader", "Successfully Submitted");
-                                        component.set("v.popupBody", "Thank you for submission of your application.");
+                                        component.set("v.popupBody", "Thank you for submission of your request.");
                                         component.set("v.serverStatus", "success"); 
                                         //component.set("v.storeServerValue", result[0].Id);
                                         component.set("v.isOpen", true); 
@@ -453,6 +453,7 @@
     //Close the modal popup and redirect to cart page
     closeModel: function(component, event) {
         component.set("v.isOpen", false);
+        component.set("v.loadingSpinner",true);
         var id = component.get("v.storeServerValue");
         var amr = component.get("v.amrData");
         console.log('id',id);
@@ -461,10 +462,12 @@
                 $A.getCallback(function() {
                     if(amr.Generate_Fee__c ){
                         sessionStorage.setItem('isBuz', component.get("v.isbusinsessLicense"));
+                        component.set("v.loadingSpinner",false);
                         window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'cart?id='+id+'&isBLic='+component.get("v.isbusinsessLicense");
                     }else{                        
                         sessionStorage.setItem('isBuz', component.get("v.isbusinsessLicense"));
-                        document.location = $A.get("$Label.c.Polaris_Portal_URL")+"s/user-feedback";
+                        component.set("v.loadingSpinner",false);
+                        window.location.href = $A.get("$Label.c.Polaris_Portal_URL")+"s/user-feedback";
                     }
                     
                 }), 2000);

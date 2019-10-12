@@ -42,7 +42,7 @@
 }
 
 .THIS .amr-title{
-   
+    
     margin-bottom:1rem;
     color:t(LnGFormTitleColor); 
     font-weight:600;
@@ -55,6 +55,13 @@
     font-size:1.25rem;
     margin-bottom:1rem;
     font-weight:600;
+}
+.THIS .action-buttons{
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: solid 1px black;
+    display: flex;
+    justify-content: space-between;
 }
 
 @media t(mqSmall){
@@ -91,6 +98,14 @@
         padding:1rem;
     }
     .THIS .input-field .slds-form-element__control{
-		width:100%;        
+        width:100%;        
+    }
+    .THIS .action-buttons{
+		margin-top:1rem;        
+        border-top: solid 1px t(grayBorder);        
+        flex-direction:column-reverse;        
+    }
+    .THIS .action-buttons .slds-button+.slds-button{
+        margin:0 0 0.5rem;
     }
 }

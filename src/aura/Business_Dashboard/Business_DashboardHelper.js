@@ -485,9 +485,8 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                
-                
-                var str ='/cart';
+                sessionStorage.setItem('isBuz',true);
+                var str ='/cart?isBLic=true';
                 var urlEvent = $A.get("e.force:navigateToURL");
                 urlEvent.setParams({
                     "url": str

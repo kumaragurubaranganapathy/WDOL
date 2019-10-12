@@ -253,7 +253,7 @@ String pemail = (String)pdata.get('email');*/
             if(creterias <> null && !creterias.isEmpty())
                 whereClause += 'and '+ generateWhereQuery(creterias);
             String fieldNames  = String.join(lstFieldsName, ' ,');
-            String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
+            String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+ 'Limit 49999';
             SYSTEM.debug('QUERY--'+query);
             List<SObject>  lstRecords  = new List<SObject> () ;
             //List<SObject>  lstRecords  = new List<SObject> () ;
@@ -383,7 +383,7 @@ String pemail = (String)pdata.get('email');*/
                                                         String whereClause = generateWhereQuery(creterias);
                                                         Map<String, SObject> mapAllRec = new Map<String, SObject>();
                                                         String fieldNames  = String.join(lstFieldsName, ' ,');
-                                                        String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
+                                                        String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+ 'Limit 49999';
                                                         SYSTEM.debug('QUERYGenerate'+query);
                                                         List<SObject>  lstRecords  = new List<SObject> () ;
                                                         //List<SObject>  lstRecords  = new List<SObject> () ;
@@ -711,7 +711,8 @@ String pemail = (String)pdata.get('email');*/
             throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
-    @AuraEnabled
+    
+        @AuraEnabled
     public static List<pickListLabel> MapgetPicklistFieldValues(String objectName, String pickListFieldName){
         try{
         List<pickListLabel> picklistValues = new List<pickListLabel>();
@@ -900,6 +901,7 @@ String pemail = (String)pdata.get('email');*/
          public Boolean isDisciplinaryAction{set;get;}
          public String documentId{set;get;}
     }
+    
     public class pickListLabel
     {
          @AuraEnabled  public String label;

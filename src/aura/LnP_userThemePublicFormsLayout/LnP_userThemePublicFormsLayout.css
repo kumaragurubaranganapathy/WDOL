@@ -53,11 +53,11 @@
 }
 .THIS h1{
     font-size:30px;
-    font-weight: 700
+    font-weight: 700;
 }
 .THIS h2{
     font-size:20px;
-    font-weight: 700
+    font-weight: 700;
 }
 .THIS .merriweather-font{
     font-family: t(merrifontfamily);
@@ -215,6 +215,9 @@ border-radius: 5px;
 }
 .THIS .field-item .slds-form-element__control,.THIS .self-service-wrapper .slds-form-element__control{
     width:50%;
+}
+.THIS .self-service-wrapper .address-modal .slds-form-element__control{
+    width:100%;
 }
 .THIS .field-size .slds-form-element__control{
     width:50%;

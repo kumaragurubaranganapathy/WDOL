@@ -28,7 +28,7 @@ public class Polaris_AMRLinkCntrl {
                 }
                 if(!setConId.isEmpty()){
                     system.debug('--setConId'+setConId);
-                ContentVersion conVersion = [SELECT CreatedDate,ContentDocumentId,Id,Title FROM ContentVersion WHERE ContentDocumentId IN:setConId and ContentDocumentId!=null AND (Title LIKE '%License_Certificate%' OR Title LIKE '%Self-print_Certificate%' ) AND Title!=null  ORDER BY CreatedDate DESC NULLS FIRST LIMIT 1];
+                ContentVersion conVersion = [SELECT CreatedDate,ContentDocumentId,Id,Title FROM ContentVersion WHERE ContentDocumentId IN:setConId and ContentDocumentId!=null AND (Title LIKE '%License_Certificate%' OR Title LIKE '%Self-print_Certificate%' OR Title LIKE '%Appraiser_Course_Certificate%' ) AND Title!=null  ORDER BY CreatedDate DESC NULLS FIRST LIMIT 1];
             	return conVersion.ContentDocumentId;
                 }  
             }

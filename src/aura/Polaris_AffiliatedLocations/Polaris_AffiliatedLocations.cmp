@@ -127,9 +127,11 @@
                                     </td>
                                     <aura:if isTrue="{!v.isAMR ? true :false}">
                                     <td data-label="actions" class="cell-style action-cell">
-                                        <div class="slds-truncate">
-                                           <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" class="slds-button slds-button_brand slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="" onclick="{!c.onRemoveAMRClick}" target="_blank">Remove</a>
-									    </div>  
+                                        <aura:if isTrue="{!tableData.Status__c != 'Pending Remove'}">
+                                                <div class="slds-truncate">
+                                                    <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" class="slds-button slds-button_brand slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="" onclick="{!c.onRemoveAMRClick}" target="_blank">Remove</a>
+                                                </div>  
+                                            </aura:if> 
                                         <aura:if isTrue="{!and(or(tableData.Status__c == 'Pending Add',tableData.Status__c == 'Pending Remove'),tableData.isUndo__c == true) ? true :false}">
                                                 <div class="slds-truncate slds-m-top_small">
                                                    <a data-index="{!ind}" data-button="remove"  data-id="{!tableData.Id}" data-status="{!tableData.Status__c}" data-license="{tableData.License__c}" class="slds-button slds-button_brand slds-truncate bottom-card-font-size view-text datacellId-fontBorder" href="" onclick="{!c.undoAction}" target="_blank">undo</a>

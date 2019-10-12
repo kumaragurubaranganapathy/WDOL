@@ -1,5 +1,5 @@
 ({
-	doInit: function(component, event, helper) {	    
+	doInit: function(component, event, helper) {	  
 		helper.doInit(component, event, helper);
         helper.getContact(component, event, helper);
         if(component.get("v.objectApiName") == 'Account')
@@ -28,5 +28,12 @@
 	},
     validateFields : function(component,event,helper){
         helper.validateFields(component,event);
+    },
+    tolocation: function(component, event){
+        var urlEvent = $A.get("e.force:navigateToURL");
+        urlEvent.setParams({
+            "url": "/newdashboard"
+        });
+        urlEvent.fire();
     }
 })
