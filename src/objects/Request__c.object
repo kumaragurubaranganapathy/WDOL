@@ -14,7 +14,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
-        <type>Default</type> 
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
@@ -71,7 +71,7 @@
         <externalId>false</externalId>
         <label>Account Contact</label>
         <referenceTo>MUSW__Account_Contact__c</referenceTo>
-        <relationshipLabel>Requests</relationshipLabel>
+        <relationshipLabel>Maintenance Requests</relationshipLabel>
         <relationshipName>Requests</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -85,7 +85,7 @@
         <externalId>false</externalId>
         <label>Account</label>
         <referenceTo>Account</referenceTo>
-        <relationshipLabel>Requests</relationshipLabel>
+        <relationshipLabel>Maintenance Requests</relationshipLabel>
         <relationshipName>Requests</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -139,7 +139,7 @@
         <externalId>false</externalId>
         <label>Assigned Resource</label>
         <referenceTo>Resource__c</referenceTo>
-        <relationshipLabel>Requests</relationshipLabel>
+        <relationshipLabel>Maintenance Requests</relationshipLabel>
         <relationshipName>Requests</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -166,7 +166,7 @@
         <externalId>false</externalId>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Requests</relationshipLabel>
+        <relationshipLabel>Maintenance Requests</relationshipLabel>
         <relationshipName>Requests</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -256,7 +256,7 @@
         <externalId>false</externalId>
         <label>Exam</label>
         <referenceTo>Education_History__c</referenceTo>
-        <relationshipLabel>Requests</relationshipLabel>
+        <relationshipLabel>Maintenance Requests</relationshipLabel>
         <relationshipName>Requests</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -365,6 +365,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>License_Portal_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>License__r.Portal_URL__c</formula>
+        <label>License Portal URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>License_Program_Email__c</fullName>
         <description>Formula field for License Program Email</description>
         <externalId>false</externalId>
@@ -415,47 +426,6 @@
             <restricted>true</restricted>
             <valueSetName>Credential_Type</valueSetName>
             <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineering/Land Surveying Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Land Surveyor in Training</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Land Surveyors</controllingFieldValue>
-                <valueName>Professional Land Surveyor</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Update Company Information</controllingFieldValue>
-                <valueName>Update Company Information</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Notary Public</controllingFieldValue>
-                <valueName>Notary Public</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Designer</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
-                <valueName>On-site Wastewater Inspector</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Timeshares</controllingFieldValue>
-                <valueName>Timeshare Salesperson</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Update Legal Name</controllingFieldValue>
-                <valueName>Update Legal Name</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>Appraisal Management Companies</controllingFieldValue>
                 <valueName>Appraisal Controlling Person</valueName>
             </valueSettings>
@@ -481,10 +451,6 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
-                <valueName>Registered Appraiser Trainee</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Appraisers - Real Estate</controllingFieldValue>
                 <valueName>State Licensed Appraiser</valueName>
             </valueSettings>
             <valueSettings>
@@ -496,6 +462,18 @@
                 <valueName>Temporary State Licensed</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Designer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On-site Wastewater</controllingFieldValue>
+                <valueName>On-site Wastewater Inspector</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Update Business Name</controllingFieldValue>
+                <valueName>Update Business Name</valueName>
+            </valueSettings>
+            <valueSettings>
                 <controllingFieldValue>Architects</controllingFieldValue>
                 <valueName>Architect</valueName>
             </valueSettings>
@@ -504,12 +482,8 @@
                 <valueName>Architect Firm</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <valueName>Camping Resort Company</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Camping Resorts</controllingFieldValue>
-                <valueName>Camping Resort Salesperson</valueName>
+                <controllingFieldValue>Landscape Architects</controllingFieldValue>
+                <valueName>Landscape Architect</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Cemeteries</controllingFieldValue>
@@ -524,16 +498,53 @@
                 <valueName>Crematory</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
                 <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineering Corporations</valueName>
+                <valueName>Engineering/Land Surveying Company</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Engineer in Training</valueName>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Land Surveyor in Training</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Engineers</controllingFieldValue>
-                <valueName>Professional Engineer</valueName>
+                <controllingFieldValue>Land Surveyors</controllingFieldValue>
+                <valueName>Professional Land Surveyor</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Timeshares</controllingFieldValue>
+                <valueName>Timeshare Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <valueName>Camping Resort Company</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Camping Resorts</controllingFieldValue>
+                <valueName>Camping Resort Salesperson</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Notary Public</controllingFieldValue>
+                <valueName>Notary Public</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Geologist</controllingFieldValue>
+                <valueName>Geologist In Training</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Update Company Information</controllingFieldValue>
+                <valueName>Update Company Information</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Update Legal Name</controllingFieldValue>
+                <valueName>Update Legal Name</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
@@ -565,27 +576,23 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Funerals</controllingFieldValue>
-                <valueName>Funeral Establishment Branch</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Funerals</controllingFieldValue>
                 <valueName>Prearrangement Funeral Services</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Update Business Name</controllingFieldValue>
-                <valueName>Update Business Name</valueName>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineering Corporations</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist</valueName>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Engineer in Training</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Geologist</controllingFieldValue>
-                <valueName>Geologist In Training</valueName>
+                <controllingFieldValue>Engineers</controllingFieldValue>
+                <valueName>Professional Engineer</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>Landscape Architects</controllingFieldValue>
-                <valueName>Landscape Architect</valueName>
+                <controllingFieldValue>Remove Owner</controllingFieldValue>
+                <valueName>Remove Owner</valueName>
             </valueSettings>
         </valueSet>
     </fields>
@@ -606,7 +613,7 @@
         <externalId>false</externalId>
         <label>License</label>
         <referenceTo>MUSW__License2__c</referenceTo>
-        <relationshipLabel>Requests</relationshipLabel>
+        <relationshipLabel>Maintenance Requests</relationshipLabel>
         <relationshipName>Requests</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -647,7 +654,7 @@
         <externalId>false</externalId>
         <label>Permit / Plan Review</label>
         <referenceTo>MUSW__Permit2__c</referenceTo>
-        <relationshipLabel>Requests</relationshipLabel>
+        <relationshipLabel>Maintenance Requests</relationshipLabel>
         <relationshipName>Requests</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -783,11 +790,6 @@
                     <label>Deny</label>
                 </value>
                 <value>
-                    <fullName>Abandoned</fullName>
-                    <default>false</default>
-                    <label>Abandoned</label>
-                </value>
-                <value>
                     <fullName>Under Review</fullName>
                     <default>false</default>
                     <label>Under Review</label>
@@ -803,10 +805,9 @@
                     <label>Pending</label>
                 </value>
                 <value>
-                    <fullName>Approve</fullName>
+                    <fullName>Abandoned</fullName>
                     <default>false</default>
-                    <isActive>false</isActive>
-                    <label>Approve</label>
+                    <label>Abandoned</label>
                 </value>
                 <value>
                     <fullName>Canceled</fullName>
@@ -846,120 +847,18 @@
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>Permit_Plan_Review__c</columns>
-        <columns>Resource_Name__c</columns>
+        <columns>License__c</columns>
+        <columns>License_Type__c</columns>
+        <columns>Service_Request_Type__c</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>Status__c</columns>
         <columns>Start_Time__c</columns>
-        <columns>OWNER.FIRST_NAME</columns>
-        <columns>OWNER.LAST_NAME</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Applicant_Full_name__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-    </listViews>
-    <listViews>
-        <fullName>Ed_Taylors_Reviews</fullName>
-        <columns>Resource_Name__c</columns>
-        <columns>Permit_Plan_Review__c</columns>
-        <columns>Applicant_Full_name__c</columns>
-        <columns>Start_Time__c</columns>
-        <columns>Duration__c</columns>
-        <columns>Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Assigned_Resource__c</field>
-            <operation>equals</operation>
-            <value>R-0005</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>notEqual</operation>
-            <value>Canceled</value>
-        </filters>
-        <filters>
-            <field>Permit_Plan_Review__c</field>
-            <operation>contains</operation>
-            <value>DIS</value>
-        </filters>
-        <label>Ed Taylor&apos;s Reviews</label>
-    </listViews>
-    <listViews>
-        <fullName>Jerry_Swim_Reviews</fullName>
-        <columns>Resource_Name__c</columns>
-        <columns>Permit_Plan_Review__c</columns>
-        <columns>Applicant_Full_name__c</columns>
-        <columns>Start_Time__c</columns>
-        <columns>Duration__c</columns>
-        <columns>Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Assigned_Resource__c</field>
-            <operation>equals</operation>
-            <value>R-0006</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>notEqual</operation>
-            <value>Canceled</value>
-        </filters>
-        <filters>
-            <field>Permit_Plan_Review__c</field>
-            <operation>contains</operation>
-            <value>DIS</value>
-        </filters>
-        <label>Jerry Swim&apos;s Reviews</label>
-    </listViews>
-    <listViews>
-        <fullName>Mark_Fingers_Reviews</fullName>
-        <columns>Resource_Name__c</columns>
-        <columns>Permit_Plan_Review__c</columns>
-        <columns>Applicant_Full_name__c</columns>
-        <columns>Start_Time__c</columns>
-        <columns>Duration__c</columns>
-        <columns>Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Assigned_Resource__c</field>
-            <operation>equals</operation>
-            <value>R-0008</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>notEqual</operation>
-            <value>Canceled</value>
-        </filters>
-        <filters>
-            <field>Permit_Plan_Review__c</field>
-            <operation>contains</operation>
-            <value>DIS</value>
-        </filters>
-        <label>Mark Finger&apos;s Reviews</label>
-    </listViews>
-    <listViews>
-        <fullName>Matt_Janzen_Reviews</fullName>
-        <columns>Resource_Name__c</columns>
-        <columns>NAME</columns>
-        <columns>Permit_Plan_Review__c</columns>
-        <columns>Applicant_Full_name__c</columns>
-        <columns>Start_Time__c</columns>
-        <columns>Duration__c</columns>
-        <columns>Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Assigned_Resource__c</field>
-            <operation>equals</operation>
-            <value>R-0009</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>notEqual</operation>
-            <value>Canceled</value>
-        </filters>
-        <filters>
-            <field>Permit_Plan_Review__c</field>
-            <operation>contains</operation>
-            <value>DIS</value>
-        </filters>
-        <label>Matt Janzen&apos;s Reviews</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>RBS_AMR_Queue_Request</fullName>
@@ -972,6 +871,10 @@
     </listViews>
     <listViews>
         <fullName>RBS_Queue_Request</fullName>
+        <columns>NAME</columns>
+        <columns>Service_Request_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>CREATED_DATE</columns>
         <filterScope>Queue</filterScope>
         <label>RBS Queue</label>
         <queue>RBS_Queue</queue>
@@ -981,8 +884,10 @@
     </listViews>
     <listViews>
         <fullName>RE_AMR_Queue_Request</fullName>
+        <columns>NAME</columns>
         <filterScope>Queue</filterScope>
         <label>RE AMR Queue</label>
+        <language>en_US</language>
         <queue>RE_AMR_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -996,58 +901,6 @@
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Tim_Vander_Leest_s_Reviews</fullName>
-        <columns>Resource_Name__c</columns>
-        <columns>Permit_Plan_Review__c</columns>
-        <columns>Applicant_Full_name__c</columns>
-        <columns>Start_Time__c</columns>
-        <columns>Duration__c</columns>
-        <columns>Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Assigned_Resource__c</field>
-            <operation>equals</operation>
-            <value>R-0004</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>notEqual</operation>
-            <value>Canceled</value>
-        </filters>
-        <filters>
-            <field>Permit_Plan_Review__c</field>
-            <operation>contains</operation>
-            <value>DIS</value>
-        </filters>
-        <label>Tim Vander Leest&apos;s Reviews</label>
-    </listViews>
-    <listViews>
-        <fullName>Travis_Wagners_Reviews</fullName>
-        <columns>Resource_Name__c</columns>
-        <columns>Permit_Plan_Review__c</columns>
-        <columns>Applicant_Full_name__c</columns>
-        <columns>Start_Time__c</columns>
-        <columns>Duration__c</columns>
-        <columns>Status__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Assigned_Resource__c</field>
-            <operation>equals</operation>
-            <value>R-0010</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>notEqual</operation>
-            <value>Canceled</value>
-        </filters>
-        <filters>
-            <field>Permit_Plan_Review__c</field>
-            <operation>contains</operation>
-            <value>DIS</value>
-        </filters>
-        <label>Travis Wagner&apos;s Reviews</label>
     </listViews>
     <nameField>
         <displayFormat>REQ-{0000}</displayFormat>
