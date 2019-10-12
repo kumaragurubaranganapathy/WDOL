@@ -105,7 +105,7 @@ _______________________________________________________________
                                     </lightning:layout>
                                 </lightning:layoutItem>
                                 <lightning:layoutItem size="12" mediumDeviceSize="3" class="button-wrapper">                                    
-                                    <lightning:button class="{!or(task.Type == $Label.c.Polaris_Renew_Reminder,task.Type == $Label.c.Polaris_Pay_Reminder)?'slds-hide':'decline-btn'}"  variant="neutral" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Decline}" title="{!$Label.c.Polaris_Decline}" onclick="{!c.declineRequestNew}"/>
+                                    <lightning:button class="{!or(task.Type == $Label.c.Polaris_Renew_Reminder,task.Type == $Label.c.Polaris_Pay_Reminder)?'slds-hide':'decline-btn'}"  variant="neutral" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Portal_Decline}" title="{!$Label.c.Polaris_Portal_Decline}" onclick="{!c.declineRequestNew}"/>
                                     <div class="accept-btn" data-id="{!task.Id}" data-whatid="{!task.WhatId}" data-DCP="{!task.isDCP__c}" data-subject="{!task.Subject}" data-designation="{!task.Designation__c}" data-acctname="{!task.Main_License_Type__c}" onclick="{!c.acceptRequest}">
                                         <lightning:button variant="brand" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Accept}" title="{!$Label.c.Polaris_Accept}" />
                                     </div>
@@ -206,7 +206,7 @@ _______________________________________________________________
                                     </lightning:layout>
                                 </lightning:layoutItem>
                                 <lightning:layoutItem size="12" mediumDeviceSize="3" class="button-wrapper license-btn">                                    
-                                    <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Decline}" title="{!$Label.c.Polaris_Decline}" onclick="{!c.declineRequest}"/>
+                                    <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="{!$Label.c.Polaris_Portal_Decline}" title="{!$Label.c.Polaris_Portal_Decline}" onclick="{!c.declineRequest}"/>
                                     <div data-licenseType="{!task.Parent_License_Type__c}" data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >
                                         <lightning:button class="accept-btn"  variant="brand" label="{!$Label.c.Polaris_Accept}" title="{!$Label.c.Polaris_Accept}" />
                                     </div>
@@ -479,7 +479,7 @@ _______________________________________________________________
                                 </lightning:layoutItem>
                                 <lightning:layoutItem size="12" mediumDeviceSize="3">
                                     <div class="button-wrapper license-btn">                                    
-                                        <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Dismiss" title="Decline" onclick="{!c.declineRequestNew}"/>
+                                        <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Dismiss" title="Dismiss" onclick="{!c.declineRequestNew}"/>
                                         <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
                                         <div class="slds-truncate" onclick="{!c.StartRequestEducationInformation}" data-license="{!task.Child_License_Id__c}"
                                              data-recordId="{!task.Id}"
@@ -563,7 +563,7 @@ _______________________________________________________________
                                 </lightning:layoutItem>
                                 <lightning:layoutItem size="12" mediumDeviceSize="3">
                                     <div class="button-wrapper license-btn">                                    
-                                        <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Dismiss" title="Decline" onclick="{!c.declineRequestNew}"/>
+                                        <lightning:button class="decline-btn"  variant="neutral" type="submit" name="{!task.Id}" label="Dismiss" title="Dismiss" onclick="{!c.declineRequestNew}"/>
                                         <!--<div  data-id="{!task.Id}" onclick="{!c.acceptLicenseRequest}" >-->
                                         <div class="slds-truncate" onclick="{!c.StartRequestEducationInformation}" data-license="{!task.Child_License_Id__c}"
                                              data-recordId="{!task.Id}"
