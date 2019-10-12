@@ -208,7 +208,7 @@ HYPERLINK(&apos;/lightning/r/Contact/&apos;&amp; Request__r.Contact__r.Id &amp;&
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Course Name</label>
-        <length>40</length>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -743,7 +743,7 @@ HYPERLINK(&apos;/lightning/r/Contact/&apos;&amp; Request__r.Contact__r.Id &amp;&
     <fields>
         <fullName>License_Mailing_ZIP__c</fullName>
         <externalId>false</externalId>
-        <formula>License__r.MUSW__Parcel__r.Zip_Postal_Code__c</formula>
+        <formula>License__r.MUSW__Parcel__r.MUSW__Post_Zip_Code__c</formula>
         <label>License Mailing ZIP</label>
         <required>false</required>
         <trackTrending>false</trackTrending>

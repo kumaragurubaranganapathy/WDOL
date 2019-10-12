@@ -170,6 +170,7 @@ IF(ispickval( BGBL__Output_Type__c ,&quot;Word 2007 (.docx)&quot;), &quot;docx&q
     </fields>
     <fields>
         <fullName>External_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
         <encryptionScheme>None</encryptionScheme>
         <externalId>true</externalId>
         <label>External Id</label>
@@ -177,17 +178,20 @@ IF(ispickval( BGBL__Output_Type__c ,&quot;Word 2007 (.docx)&quot;), &quot;docx&q
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
+        <unique>true</unique>
     </fields>
     <label>Letter</label>
     <listViews>
         <fullName>BGBL__All</fullName>
         <columns>NAME</columns>
+        <columns>External_Id__c</columns>
         <columns>BGBL__Merge_Template__c</columns>
         <columns>BGBL__Output_Type__c</columns>
         <columns>UPDATEDBY_USER</columns>
+        <columns>CREATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <encryptionScheme>None</encryptionScheme>

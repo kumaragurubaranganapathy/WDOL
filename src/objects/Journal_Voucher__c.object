@@ -385,6 +385,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Approved_Date_Time__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Approved Date Time</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Approved__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Mark as approved or not approved to send to AFRS or TMS.</description>
@@ -678,6 +689,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Ready_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(RecordType.Name = &apos;Journal Voucher Manual&apos;,  Approved_Date_Time__c,  CreatedDate)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Ready Date Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>Ref_Document_Number__c</fullName>

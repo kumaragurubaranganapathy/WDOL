@@ -567,10 +567,10 @@
     </fields>
     <label>Sanction</label>
     <nameField>
-        <encryptionScheme>None</encryptionScheme>
+        <displayFormat>{YY}-{000}-DOL</displayFormat>
         <label>Action Id</label>
         <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Sanctions</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>

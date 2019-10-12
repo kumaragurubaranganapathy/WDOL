@@ -5929,7 +5929,15 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>Immediate</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Routine</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6232,6 +6240,22 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Intake</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Investigation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Management Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Re-Open</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6701,8 +6725,16 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <fullName>Oklahoma</fullName>
                 <default>false</default>
             </values>
+	    <values>
+                <fullName>Ontario</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Oregon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out of Country</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10107,7 +10139,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <fullName>On-site Wastewater</fullName>
                 <default>false</default>
             </values>
-            <values>
+	    <values>
+                <fullName>Program Unknown</fullName>
+		<default>false</default>
+               <values>
                 <fullName>Timeshares</fullName>
                 <default>false</default>
             </values>
@@ -10298,6 +10333,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>Alberta</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>American Samoa</fullName>
                 <default>false</default>
             </values>
@@ -10430,6 +10469,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>New Brunswick</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>New Hampshire</fullName>
                 <default>false</default>
             </values>
@@ -10446,6 +10489,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>Newfoundland and Labrador</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>North Carolina</fullName>
                 <default>false</default>
             </values>
@@ -10458,11 +10505,27 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>Northwest Territories</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nova Scotia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nunavut</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Ohio</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Oklahoma</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ontario</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10482,11 +10545,23 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
+                <fullName>Prince Edward Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Puerto Rico</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Quebec</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Rhode Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saskatchewan</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10539,6 +10614,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Wyoming</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yukon Territory</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11824,6 +11903,10 @@ CASE( MUSW__Parcel__r.MUSW__AlertCode__c,
             </values>
             <values>
                 <fullName>Oklahoma</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>Ontario</fullName>
                 <default>false</default>
             </values>
             <values>

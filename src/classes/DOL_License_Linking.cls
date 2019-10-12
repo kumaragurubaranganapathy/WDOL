@@ -323,4 +323,9 @@ public without Sharing class DOL_License_Linking {
         }
         return message;
     }
+   public static List<MUSW__Fee__c> fetchFeeFromInvoice(Set<Id> invoiceIds){
+        DOL_AppUtility.isAuthenticatedUser() ;
+        List<MUSW__Fee__c> invoiceFee =[SELECT Id, BGBK__Invoice__c FROM MUSW__Fee__c WHERE BGBK__Invoice__c IN :invoiceIds];
+        return invoiceFee; 
+    }
 }
