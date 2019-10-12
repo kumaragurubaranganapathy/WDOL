@@ -31,15 +31,19 @@
     </entryCriteria>
     <finalApprovalActions>
         <action>
-            <name>Approved</name>
+            <name>Approved_AP</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>ApprovedBy</name>
+            <name>ApprovedBy_AP</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>ApprovedByDate</name>
+            <name>ApprovedByDate_AP</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>ApprovedByDateTime</name>
             <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>

@@ -34,14 +34,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>AFRS_Process_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>TMS_Process_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Refund1__c</field>
             </layoutItems>
         </layoutColumns>
@@ -53,6 +45,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IAP_Receipt__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Number__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -133,7 +129,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Approved_by_Date__c</field>
+                <field>Approved_Date_Time__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -149,12 +145,44 @@
                 <field>AFRS_Status__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AFRS_Process_Date__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>AFRS_Interface_Total_Amount__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>AFRS_PDF_Total_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AFRS_Interface_DR_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AFRS_Interface_CR_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AFRS_Interface_Net_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AFRS_Interface_012_DR_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AFRS_Interface_012_CR_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AFRS_Interface_012_Net_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AFRS_012_Net_Amount__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -163,12 +191,41 @@
                 <field>TMS_Status__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>TMS_Process_Date__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>TMS_Interface_Total_Amount__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>TMS_PDF_Total_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>TMS_Interface_DR_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>TMS_Interface_CR_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>TMS_Interface_Net_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AFRS_012_TMS__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -202,6 +259,10 @@
                 <behavior>Readonly</behavior>
                 <field>LastModifiedById</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Ready_Date_Time__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -219,13 +280,11 @@
         <fields>NAME</fields>
         <fields>AFRS_Transaction_Code__c</fields>
         <fields>TMS_Transaction_Code__c</fields>
-        <fields>General_Ledger_Account__c</fields>
+        <fields>Accounting_Code__c</fields>
         <fields>Amount__c</fields>
         <fields>Debit_Credit__c</fields>
-        <fields>Fund__c</fields>
-        <fields>Major_Group__c</fields>
-        <fields>Major_Source__c</fields>
         <fields>Add_to_Interface__c</fields>
+        <fields>Add_to_PDF__c</fields>
         <relatedList>Journal_Voucher_Detail__c.JournalVoucher__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -240,7 +299,8 @@
         <relatedList>RelatedProcessHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
-        <relatedList>RelatedEntityHistoryList</relatedList>
+        <fields>NAME</fields>
+        <relatedList>Lockbox_Envelope__c.X240Q__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
