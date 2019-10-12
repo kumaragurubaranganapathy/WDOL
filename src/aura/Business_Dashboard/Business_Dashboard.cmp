@@ -344,9 +344,9 @@
                 </aura:if>
                 <aura:if isTrue="{!v.licenseDetail}">
                     <div class="license-outer-wrapper">
-                        <div class="info-date">
+                        <!-- <div class="info-date">
                             {!'Information as of ' + v.todayDate}
-                        </div>
+                        </div> -->
                         <div class="actions-wrapper slds-hide_medium">                        
                             <a class="action-link" href="javascript:void(0)" onclick="{!c.showMoreAMR}">{!v.showMoreAMR?'Hide actions':'Actions'}</a>
                         </div>
