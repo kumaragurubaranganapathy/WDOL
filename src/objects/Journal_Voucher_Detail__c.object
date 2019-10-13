@@ -319,7 +319,7 @@ IF(ISBLANK(General_Ledger_Account__c), &quot;&quot;, &quot;-&quot; &amp; General
       &quot;049-5292&quot;,1,&quot;071-5292&quot;,1,&quot;074R-1312&quot;,1,&quot;090-1312&quot;,1,&quot;455-5194&quot;,1,&quot;966-5199&quot;,1, 
       0 
     ), 
-    CASE(AFRS_Transaction_Code__c &amp; Reversal__c, 
+    CASE(AFRS_Transaction_Code__c &amp; Reversal__c &amp; &quot;-&quot; &amp; General_Ledger_Account__c, 
       &quot;049R-5292&quot;,1,&quot;071R-5292&quot;,1,&quot;074-1312&quot;,1, &quot;951-5194&quot;,1,&quot;951-5199&quot;,1, &quot;955-5199&quot;,1, &quot;965-5199&quot;,1, 
       0 
     ) 
