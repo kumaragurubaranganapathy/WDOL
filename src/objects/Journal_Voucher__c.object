@@ -920,7 +920,13 @@
     <label>Journal Voucher</label>
     <listViews>
         <fullName>JV_Approval_queue_Journal_Voucher</fullName>
+        <columns>NAME</columns>
         <filterScope>Queue</filterScope>
+        <filters>
+            <field>Approved__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
         <label>JV Approval queue</label>
         <queue>JV_Approval_queue</queue>
         <sharedTo>
