@@ -1401,22 +1401,7 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Renewal_Date__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Credential_Type__c</field>
-            <operation>equals</operation>
-            <value>Camping Resort Salesperson,Timeshare Salesperson</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Status__c</field>
-            <operation>equals</operation>
-            <value>Active</value>
-        </criteriaItems>
+        <formula>ISCHANGED( MUSW__Renewal_Date__c )  &amp;&amp;  MUSW__Renewal_Date__c  =  TODAY() &amp;&amp;  ISPICKVAL(MUSW__Status__c,&apos;Active&apos;) &amp;&amp; ( ISPICKVAL(Credential_Type__c,&apos;Camping Resort Salesperson&apos;)  || ISPICKVAL(Credential_Type__c,&apos;Timeshare Salesperson&apos;))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -1430,23 +1415,8 @@
             <type>Task</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Renewal_Date__c</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.Credential_Type__c</field>
-            <operation>equals</operation>
-            <value>Camping Resort Salesperson,Timeshare Salesperson</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>MUSW__License2__c.MUSW__Status__c</field>
-            <operation>equals</operation>
-            <value>Inactive</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <formula>ISCHANGED(MUSW__Status__c)&amp;&amp; ISPICKVAL(MUSW__Status__c,&apos;Inactive&apos;) &amp;&amp; ( ISPICKVAL(Credential_Type__c,&apos;Camping Resort Salesperson&apos;) || ISPICKVAL(Credential_Type__c,&apos;Timeshare Salesperson&apos;))</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>Email - Renewal reminder - business</fullName>
