@@ -81,6 +81,17 @@ public with sharing class LnP_DepositTriggerHandler implements BGCM.ITriggerHand
                 depositRec.Old_Available_Amount__c = olddeposit.MUSW__Available_Amount__c;
                 
             }  
+	    if(olddeposit.wadol_Program_Type__c != depositRec.wadol_Program_Type__c){
+                String ProgramType = depositRec.wadol_Program_Type__c;
+                List<Master_ConfigData_Listing__c> mastConfigList = new List<Master_ConfigData_Listing__c>();
+                mastConfigList =[Select Id, Revenue_Account_Code__c,Listing_Type__c,Program_Type__c from Master_ConfigData_Listing__c where Listing_Type__c ='Overshort Queue' AND Program_Type__c INCLUDES(:ProgramType)];
+                if(!mastConfigList.isEmpty()){
+                    depositRec.Over_Short_Revenue_Code__c = mastConfigList[0].Revenue_Account_Code__c;
+                }
+                else{
+                    depositRec.Over_Short_Revenue_Code__c = '';
+                }
+            }
         }
         
     }
