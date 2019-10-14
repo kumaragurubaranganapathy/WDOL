@@ -66,8 +66,8 @@
             .licenseInformation tr td.noborder, .licenseInformation tr th.noborder {
             	border-right:none;
             }
-            .image-wrapper{
-                padding:1rem 0 0 1rem;
+            #wrapper .image-wrapper{
+                margin:15px 0px 0px 15px;
             }
         </style>  
     </head>
@@ -96,7 +96,11 @@
                 </tr>
                 <tr>
                     <td>Date Of Submission:</td>
-                    <td>{!licenseRecordData.CreatedDate}</td>
+                    <td>
+                        <apex:outputText value="{0,date,MMMM d', 'yyyy}">
+                            <apex:param value="{!licenseRecordData.CreatedDate}" /> 
+                        </apex:outputText>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -121,7 +125,11 @@
                 </tr>
                 <tr>
                     <td>Birthdate:</td>
-                    <td>{!licenseRecordData.MUSW__Applicant__r.Birthdate}</td>
+                    <td>
+                    <apex:outputText value="{0,date,MMMM d', 'yyyy}">
+                        <apex:param value="{!licenseRecordData.MUSW__Applicant__r.Birthdate}" /> 
+                    </apex:outputText>
+                    </td>
                 </tr>
                 <tr>
                     <td>Personal ID:</td>
@@ -199,7 +207,11 @@
                         </tr>
                         <tr>
                             <td>End Date:</td>
-                            <td>{!qualifyingEducationRecordInstance.End_date__c}</td>
+                            <td>
+                            <apex:outputText value="{0,date,MMMM d', 'yyyy}">
+                            	<apex:param value="{!qualifyingEducationRecordInstance.End_date__c}" /> 
+                        	</apex:outputText>
+                            </td>
                         </tr>
                         <tr>
                             <td>Country: State / Territory / Province: City:</td>
@@ -232,11 +244,19 @@
                         </tr>
                         <tr>
                             <td>Start Date:</td>
-                            <td>{!qualifyingExperienceRecordInstance.Start_Date__c}</td>
+                            <td>
+                            <apex:outputText value="{0,date,MMMM d', 'yyyy}">
+                            	<apex:param value="{!qualifyingExperienceRecordInstance.Start_Date__c}" /> 
+                        	</apex:outputText>
+                            </td>
                         </tr>
                         <tr>
                             <td>End Date:</td>
-                            <td>{!qualifyingExperienceRecordInstance.End_date__c}</td>
+                            <td>
+                            <apex:outputText value="{0,date,MMMM d', 'yyyy}">
+                            	<apex:param value="{!qualifyingExperienceRecordInstance.End_date__c}" /> 
+                        	</apex:outputText>
+                            </td>
                         </tr>
                         <tr>
                             <td>Country: State / Territory / Province: City:</td>
