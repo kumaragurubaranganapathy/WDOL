@@ -836,6 +836,12 @@ margin-right:10%;
     .THIS .field-size .slds-form-element__control{
     	width:100%;
 	}
+    .THIS .buttons-align{
+        flex-direction:column-reverse;
+    }
+    .THIS table.slds-table lightning-formatted-text{
+        white-space:normal;
+    }
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px){
     .THIS .field-size .slds-form-element__control{
