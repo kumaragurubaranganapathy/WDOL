@@ -1312,18 +1312,20 @@ public with sharing class CartController
         receiptId = receipt.Id;
     } */
 
-    public void createReceiptForPaymentGateway(){
+    public void createReceiptForPaymentGateway(List<String> feeIds){
         MUSW__Receipt__c receipt = receiptVOs[0].r;
         receipt.BGBK__Cart__c = cart.Id;
         receipt.Status__c = DOL_AppConstants.DRAFT_STRING;//'Draft';
         receipt.MUSW__Payment_Gateway_Transaction_Number__c = DOL_AppConstants.TEMP_STRING;//'temp';   // BG Case 10041
-        List<String> feeIds = new List<String>();
+        /*List<String> feeIds = new List<String>();
         for (FeeVO feeVo : feeVOs){
             if (feeVo.isSelected){
                 feeIds.add(feeVo.f.Id);
             }
+        }*/
+        if(!feeIds.isEmpty()){
+            receipt.Selected_Fees__c = String.join(feeIds, ',');
         }
-        receipt.Selected_Fees__c = String.join(feeIds, ',');
         
         //Added by Vinanthi for defect 4999
         BGBK__Cart__c cartForIMCheck= [SELECT Id, Name, BGBK__Account__c, BGBK__BG_Payment_Batch__r.id FROM BGBK__Cart__c where Id=: cart.Id];
@@ -2062,7 +2064,7 @@ public with sharing class CartController
                 return null;
             }
             // create receipt manually before proceding to payment gateway
-            createReceiptForPaymentGateway();
+            
             // list of all selected feeIds
             List<String> feeIds = new List<String>();
             for (FeeVO feeVo : feeVOs){
@@ -2088,7 +2090,7 @@ public with sharing class CartController
                  }
             }
             system.debug('feeIds$$'+feeIds);
-            
+            createReceiptForPaymentGateway(feeIds);
             
             
             // create the object DOL_ePaymentSessionTransferDetails with required parameter
