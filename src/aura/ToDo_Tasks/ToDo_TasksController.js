@@ -10,7 +10,15 @@
         console.log("taskdId::"+ taskId);
         component.set("v.taskId",taskId);
         component.set("v.actionclicked",'Declined');
-        
+        component.set("v.declineRequestNew", false);
+        helper.actionRequest(component, event);
+    },
+	declineRequestNew : function(component, event, helper) {
+        var taskId = event.getSource().get("v.name");
+        console.log("taskdId::"+ taskId);
+        component.set("v.taskId",taskId);
+        component.set("v.actionclicked",'Declined');
+        component.set("v.declineRequestNew", true);
         helper.actionRequest(component, event);
     },
     acceptRequest : function(component, event, helper) {
