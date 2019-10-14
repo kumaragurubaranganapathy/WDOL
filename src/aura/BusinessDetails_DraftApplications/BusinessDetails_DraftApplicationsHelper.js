@@ -126,6 +126,57 @@
         });
         
         $A.enqueueAction(action);
-    }
+    },
+    
+    setAbandonedStatus : function(component,event, helper, record_Id){
+        
+        var action = component.get("c.setAbandonStatus");
+        
+        action.setParams({"record_Id_String":record_Id});
+        
+        action.setCallback(this,function(response){
+            
+            var state = response.getState();
+            
+            if (state === "SUCCESS") {
+                
+                var res = response.getReturnValue();
+                
+                if(res == true){
+                    
+                    this.fetchData(component,event, helper);
+                    
+                    this.showToast(component, event, helper,"You have successfully deleted your draft application.","success"); 
+                    
+                }
+                if(res == false){
+                    
+                    this.showToast(component, event, helper,"Seems like there is an error.\n please contact your system administrator","error");
+                }
+                
+            }
+            else if (state === "ERROR") {
+                
+                var errors = response.getError();
+                
+                console.error(JSON.stringify(errors));
+            }    
+        });
+        $A.enqueueAction(action);    
+        
+    },
+    showToast : function(component, event, helper,message,type) {
+        
+        var toastEvent = $A.get("e.force:showToast");
+        
+        toastEvent.setParams({
+            
+            "message": message,
+            
+            "type" : type
+        });
+        toastEvent.fire();
+    },
+    
     
 })

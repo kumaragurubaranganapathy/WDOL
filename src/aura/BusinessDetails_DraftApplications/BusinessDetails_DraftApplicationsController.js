@@ -39,9 +39,10 @@
         }
     },
     
-    deleteDraftLicenseApplication: function(component, event) {
+    deleteDraftLicenseApplication: function(component, event,helper) {
         var ctarget = event.currentTarget;
         var application_Id = ctarget.getAttribute("data-recordId");
+        helper.setAbandonedStatus(component, event, helper,application_Id);
     },
     
     ActionClick :  function(component,event,helper){
