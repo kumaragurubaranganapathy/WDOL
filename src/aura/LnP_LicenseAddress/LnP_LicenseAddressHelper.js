@@ -431,8 +431,8 @@
         var selectedAddressFromDocument = document.querySelector('input[name="locations"]:checked').value;
         console.log('selectedAddress from document===' + selectedAddressFromDocument);
         console.log('selectedAddress===' + selectedAddress);
-        if(($A.util.isEmpty(selectedAddress) || $A.util.isUndefined(selectedAddress)) || selectedAddressFromDocument == 'OriginalAddress'){
-            selectedAddress = 'OriginalAddress';
+        if(($A.util.isEmpty(selectedAddress) || $A.util.isUndefined(selectedAddress)) || selectedAddressFromDocument == 'SuggestedAddress'){
+            selectedAddress = 'SuggestedAddress';
         }
         console.log('selectedAddress=='+ selectedAddress);
         var issuggestTrue = component.get("v.isSelectedAddrTrue");
