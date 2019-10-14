@@ -25,7 +25,7 @@ global class DRELogsCleanerBatch implements Database.Batchable<sObject>, Databas
         {
             System.debug(' S '+scope.size());
             try{
-            //delete scope;
+            delete scope;
             } catch (Exception e) {
             DOL_CreateErrorLog_Exception.logApplicationError(e);
             }
