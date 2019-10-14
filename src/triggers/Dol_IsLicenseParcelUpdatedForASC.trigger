@@ -1,4 +1,4 @@
-trigger Dol_IsLicenseParcelUpdatedForASC on MUSW__License_Parcel__c (after insert, after update) {
+trigger Dol_IsLicenseParcelUpdatedForASC on MUSW__License_Parcel__c (after insert, after update, before insert, before update) {
     Global_Settings__c gs = Global_Settings__c.getInstance(UserInfo.getUserId());
     if(gs.Disable_Triggers__c == true){
         // If the triggers have been disabled, then do not call the trigger handler
