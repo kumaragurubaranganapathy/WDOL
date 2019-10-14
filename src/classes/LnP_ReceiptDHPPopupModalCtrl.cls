@@ -105,7 +105,8 @@ System.debug('feePaymentRecList : ' +feePaymentRecList );*/
                                                            Voided_Receipt_Created_Date__c = receiptRec.MUSW__Effective_Date__c,
                                                            Voided_Receipt_Amount_DHP_Amount__c = receiptRec.MUSW__Amount_Tendered__c + 25.00
                                                           );
-                    feeRec.MUSW__License2__c = licRec.Id;                  
+                    feeRec.MUSW__License2__c = licRec.Id;
+					feeRec.Application_Type__c = licRec.Application_Type__c;
                     feeRec.License_Type__c = licRec.Credential_Type__c;
                     feeRec.Application_Method__c = licRec.Application_Method__c;
                     feeRec.Profession_Code__c = licRec.Profession_Code__c;
