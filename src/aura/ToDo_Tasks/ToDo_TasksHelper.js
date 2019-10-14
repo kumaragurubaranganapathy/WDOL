@@ -156,7 +156,12 @@
     },
     actionRequest : function(component, event,subject) {
         console.log('inside actionRequest');
-        var action = component.get("c.updateTask");
+        var declineRequestNewMethod = component.get("v.declineRequestNew");
+        if(declineRequestNewMethod){
+            var action = component.get("c.updateTaskAMR");
+        }else{
+            var action = component.get("c.updateTask");
+        }
         action.setParams({"taskId": component.get("v.taskId"),"subStatus": component.get("v.actionclicked")});
         action.setCallback(this, function(response){
             var state = response.getState();

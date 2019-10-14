@@ -158,7 +158,27 @@ public without Sharing class  Polaris_TodoList{
             return null;
         }
     }
-    
+    @AuraEnabled
+    public static String updateTaskAMR(Id taskId,String subStatus){
+        try{
+            String message = '';
+            task tskList = [select id,Whatid,Status,Sub_status__c from task where id=:taskId];
+            
+            tskList.Status = 'Completed';
+            if(subStatus == 'Accepted'){
+                tskList.Sub_status__c = 'Accepted';
+            }else if(subStatus == 'Declined'){
+                tskList.Sub_status__c = 'Declined';
+            }
+            update tskList;
+            return 'Success';
+    	}
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
+    }
     @AuraEnabled
     public static String updateTask(Id taskId,String subStatus){
         try{
