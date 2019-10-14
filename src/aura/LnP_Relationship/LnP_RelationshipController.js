@@ -21,6 +21,7 @@
                 delete Objectlist[j].url;
                 if(component.get("v.sObjectName") === 'MUSW__Account_Contact__c'){
                     if(Objectlist[j].Role__c == 'Administrator' && buttonClicked != 'cancel'){
+                        console.log('admincount::'+component.get("v.adminCount"));
                         if(component.get("v.adminCount") == 1){
                             toRemove  = false; 
                             var toastEvent = $A.get("e.force:showToast");
@@ -35,20 +36,9 @@
                         	component.set("v.adminFlag",true);  
                         }
                         
-                    }
-                    else{
-                        if(component.get("v.Type") == 'Owners'){
-                             var toastEvent = $A.get("e.force:showToast");
-                             toastEvent.setParams({
-                                "type":"Error",
-                                "title": "Warning",
-                                "message": "Action is Yet to be Decided"
-                            });
-                            toastEvent.fire();
                         }else{
-                            component.set("v.adminFlag",true);
                          	component.set("v.isModalOpen", true);
-                        }
+                         component.set("v.adminFlag",true);
                                                  
                     } 
                     component.set("v.accountContact",Objectlist[j]);

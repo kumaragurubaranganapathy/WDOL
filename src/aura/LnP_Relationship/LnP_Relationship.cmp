@@ -97,10 +97,13 @@
                                                             <lightning:button class="rel-btn"   variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.removeClick}"/>                                                        
                                                             <lightning:button class="rel-btn"  variant="neutral" label="Resend" title="Resend" value="{!tableData.Id}" onclick = "{!c.resendClick}"/>
                                                         </aura:if>
-                                                        <aura:if isTrue="{! and(tableData.Status__c != 'Invited',tableData.Status__c != 'No Response') ? true :false }">
-                                                            <aura:if isTrue="{!tableData.DCP__c==false}">
+                                                        <aura:if isTrue="{!and(and(tableData.Status__c != 'Invited',tableData.Status__c != 'No Response'),v.Type == 'Administrators') ? true :false }">
+                                                             <a data-index="{!ind}" data-button="Remove" data-id="{!tableData.Id}" class="slds-button_brand slds-button"  onclick="{!c.onCancelAccnConClick}" target="_blank">Remove</a>
+                                                            <aura:set attribute="else">
+                                                                <aura:if isTrue="{!and(tableData.DCP__c==false,v.Type != 'Administrators')}">
                                                                 <lightning:button class="rel-btn"  variant="brand" label="Remove" title="Remove" value="{!tableData.Id}" onclick = "{!c.openOwnerModal}"/>
                                                             </aura:if>                                                        
+                                                            </aura:set>                                                        
                                                         </aura:if>
                                                     </div>    
                                                 </td>
