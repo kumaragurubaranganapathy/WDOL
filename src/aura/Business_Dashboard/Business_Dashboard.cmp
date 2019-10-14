@@ -273,6 +273,14 @@
                                         <div class="label-style">Business Phone:</div>
                                         <div class="data-style slds-truncate" title="{!v.SelectedAccountDetails.Business_Phone__c}">{!v.SelectedAccountDetails.Business_Phone__c}</div>
                                     </div>
+                                    <div class="field-style">
+                                        <div class="label-style">Primary Contact Name:</div>
+                                        <div class="data-style slds-truncate" title="{!v.SelectedAccountDetails.First_Name_Primary_Contact__c}">{!v.SelectedAccountDetails.First_Name_Primary_Contact__c + ' '+ v.SelectedAccountDetails.Last_Name_Primary_Contact__c}</div>
+                                    </div>
+                                    <div class="field-style">
+                                        <div class="label-style">Primary Contact Phone:</div>
+                                        <div class="data-style slds-truncate" title="{!v.SelectedAccountDetails.Phone_Primary_Contact__c}">{!v.SelectedAccountDetails.Phone_Primary_Contact__c}</div>
+                                    </div>
                                     <!--<div class="field-style"><span class="label-style">Email : </span></div>
                                     <div class="field-style"><span class="label-style">Phone : </span>{!v.SelectedAccountDetails.Business_Phone__c}</div> -->
                                 </lightning:layoutItem>

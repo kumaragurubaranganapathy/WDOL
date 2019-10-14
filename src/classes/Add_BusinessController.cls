@@ -93,7 +93,7 @@ public with sharing class Add_BusinessController {
             
             Map<String,List<Sobject>> mapOfSobjects= new Map<String,List<Sobject>>();
             
-            for(Account acc: [SELECT  Id,  Name,  Email__c,UBI_Number__c,  Business_Phone__c, Course_Provider__c,
+            for(Account acc: [SELECT  Id,  Name,  Email__c,UBI_Number__c,  Business_Phone__c,First_Name_Primary_Contact__c,Last_Name_Primary_Contact__c,Phone_Primary_Contact__c, Course_Provider__c,
                               (SELECT Address_Type__c,Country__c,County__c,Id,MUSW__City__c,MUSW__District__c,
                                MUSW__Post_Zip_Code__c,MUSW__State__c,MUSW__Street2__c,MUSW__Street_Number__c,
                                MUSW__Street_Suffix__c,MUSW__Street__c,Name, LastModifiedDate, is_Physical_and_Mailing_Address_Same__c
