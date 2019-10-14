@@ -3,16 +3,16 @@ public with sharing class LnP_LicenseAddressApexController {
     @AuraEnabled
     public static List<LnP_Parcel__c> getAddressLines(LnP_Parcel__c addr, Id applicationId){
         try{
-        List<LnP_Parcel__c> ListAddress = new List<LnP_Parcel__c>();
-        System.debug('--addr--'+addr);
-        if(addr != null){
-            insert addr;
-        }
-        
-        //system.debug('hey !!');
-        ListAddress = [select Id,Address_Type__c, Street__c,Unit__c, City__c,State__c, County__c, Country__c, Zip_Postal_Code__c,Application_BG__c, is_Physical_and_Mailing_Address_Same__c from LnP_Parcel__c where Application_BG__c=: applicationId];        
-        system.debug('ListAddress'+ListAddress);
-        return ListAddress;
+            List<LnP_Parcel__c> ListAddress = new List<LnP_Parcel__c>();
+            System.debug('--addr--'+addr);
+            if(addr != null){
+                insert addr;
+            }
+            
+            //system.debug('hey !!');
+            ListAddress = [select Id,Address_Type__c, Street__c,Unit__c, City__c,State__c, County__c, Country__c, Zip_Postal_Code__c,Application_BG__c, is_Physical_and_Mailing_Address_Same__c from LnP_Parcel__c where Application_BG__c=: applicationId];        
+            system.debug('ListAddress'+ListAddress);
+            return ListAddress;
         }
         catch(Exception ex)
         {
@@ -63,8 +63,7 @@ public with sharing class LnP_LicenseAddressApexController {
             return null;
         }        
     }
-	
-	@AuraEnabled
+    @AuraEnabled
     public static MUSW__Parcel__c getPhysicalAddressForRequest(String requestId){
         MUSW__Parcel__c physicalParcelRecord = new MUSW__Parcel__c();
         try{
@@ -73,7 +72,7 @@ public with sharing class LnP_LicenseAddressApexController {
                                                  County__c, Country__c, MUSW__Post_Zip_Code__c, Application_BG__c, MUSW__Primary_Contact__c,
                                                  Primary_Account__c FROM MUSW__Parcel__c Where Request_Parcel__c = :requestId
                                                  AND Address_Type__c = 'PHYSICAL ADDRESS' AND Status__c ='Active']){
-                                                    physicalParcelRecord =  physicalParcel;
+                                                     physicalParcelRecord =  physicalParcel;
                                                  }
             return physicalParcelRecord;
         }
@@ -570,127 +569,54 @@ return null;
     @auraEnabled
     public static List<MUSW__Parcel__c> integrationsaveAddress(string selectedAddress,Boolean isAptInfo,String applicationId, Boolean issuggestTrue,String addresstype, String county, String accountOrContactId, String objectRecordName, Boolean isAMR,Boolean UpdateMailing){
         try{
-            List<MUSW__Parcel__c> parcelList = new List<MUSW__Parcel__c>();
-            Set<Id> parcelIdForPhysicalAddress = new Set<Id>();
-            String addres1;
-            String aptInfo = '';
-            String city;
-            String state;
-            String zip;
-            String country;
-            String countyVal = county;
-            system.debug('isAptInfo=='+isAptInfo + 'objectname---' + objectRecordName);
-            system.debug('selectedAddress=='+selectedAddress);
-            
-            
-            if(Dol_IntegrationUtil.isNotBlank(selectedAddress)){
-                selectedAddress= selectedAddress.replaceAll('\\<.*?\\>', '');
-                system.debug('selectedAddress='+selectedAddress);
-                List<String> Addresslist = selectedAddress.split(',');
-                if(Dol_IntegrationUtil.isNotempty(Addresslist)){
-                    addres1 = Addresslist[0] != null ? Addresslist[0].trim() : '';
-                    //if address line 2 is null
-                    if(!isAptInfo){
-                        city = Addresslist[1] != null ? Addresslist[1].trim() : '';
-                        state = Addresslist[2] != null ? Addresslist[2].trim() : '';
-                        zip = Addresslist[3] != null ? Addresslist[3].trim() : '';
-                        country = Addresslist[4] != null ? Addresslist[4].trim() : '';
-                    }
-                    //if address line 2 is NOT null
-                    else if(isAptInfo){
-                        aptInfo = Addresslist[1] != null ? Addresslist[1].trim() : '';
-                        city = Addresslist[2] != null ? Addresslist[2].trim() : '';
-                        state = Addresslist[3] != null ? Addresslist[3].trim() : '';
-                        zip = Addresslist[4] != null ? Addresslist[4].trim() : '';
-                        country = Addresslist[5] != null ? Addresslist[5].trim() : '';
-                    }
+        List<MUSW__Parcel__c> parcelList = new List<MUSW__Parcel__c>();
+        Set<Id> parcelIdForPhysicalAddress = new Set<Id>();
+        String addres1;
+        String aptInfo = '';
+        String city;
+        String state;
+        String zip;
+        String country;
+        String countyVal = county;
+        system.debug('isAptInfo=='+isAptInfo + 'objectname---' + objectRecordName);
+        system.debug('selectedAddress=='+selectedAddress);
+        
+        
+        if(Dol_IntegrationUtil.isNotBlank(selectedAddress)){
+            selectedAddress= selectedAddress.replaceAll('\\<.*?\\>', '');
+            system.debug('selectedAddress='+selectedAddress);
+            List<String> Addresslist = selectedAddress.split(',');
+            if(Dol_IntegrationUtil.isNotempty(Addresslist)){
+                addres1 = Addresslist[0] != null ? Addresslist[0].trim() : '';
+                //if address line 2 is null
+                if(!isAptInfo){
+                    city = Addresslist[1] != null ? Addresslist[1].trim() : '';
+                    state = Addresslist[2] != null ? Addresslist[2].trim() : '';
+                    zip = Addresslist[3] != null ? Addresslist[3].trim() : '';
+                    country = Addresslist[4] != null ? Addresslist[4].trim() : '';
                 }
-                for(MUSW__Parcel__c existingParcel : [SELECT id, MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,MUSW__Post_Zip_Code__c,Country__c,
-                                                      Melissa_Address_Verified__c, is_Physical_and_Mailing_Address_Same__c,Address_Type__c, 
-                                                      Canadian_provinces__c, County__c, Primary_Account__c, MUSW__Primary_Contact__c from MUSW__Parcel__c 
-                                                      where Address_Type__c = :addresstype AND Status__c ='Active' AND ((MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :accountOrContactId) 
-                                                                                                                        OR (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId AND 
-                                                                                                                            Application_BG__c = :applicationId)) Limit 1])
+                //if address line 2 is NOT null
+                else if(isAptInfo){
+                    aptInfo = Addresslist[1] != null ? Addresslist[1].trim() : '';
+                    city = Addresslist[2] != null ? Addresslist[2].trim() : '';
+                    state = Addresslist[3] != null ? Addresslist[3].trim() : '';
+                    zip = Addresslist[4] != null ? Addresslist[4].trim() : '';
+                    country = Addresslist[5] != null ? Addresslist[5].trim() : '';
+                }
+            }
+            for(MUSW__Parcel__c existingParcel : [SELECT id, MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,MUSW__Post_Zip_Code__c,Country__c,
+                                                  Melissa_Address_Verified__c, is_Physical_and_Mailing_Address_Same__c,Address_Type__c, 
+                                                  Canadian_provinces__c, County__c, Primary_Account__c, MUSW__Primary_Contact__c from MUSW__Parcel__c 
+                                                  where Address_Type__c = :addresstype AND Status__c ='Active' AND ((MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :accountOrContactId) 
+                                                                                                                    OR (Primary_Account__c!=null AND Primary_Account__c = :accountOrContactId AND 
+                                                                                                                        Application_BG__c = :applicationId)) Limit 1])
+            {
+                if(!UpdateMailing && existingParcel.is_Physical_and_Mailing_Address_Same__c)
                 {
-                    if(!UpdateMailing && existingParcel.is_Physical_and_Mailing_Address_Same__c)
-                    {
-                        existingParcel.is_Physical_and_Mailing_Address_Same__c = false;
-                        existingParcel.Address_Type__c = 'PHYSICAL ADDRESS';
-                        parcelList.add(existingParcel);
-                        
-                        MUSW__Parcel__c parcel = new MUSW__Parcel__c();
-                        parcel.MUSW__Street2__c = addres1;
-                        parcel.MUSW__Unit__c = aptInfo;
-                        parcel.MUSW__City__c = city;
-                        parcel.Country__c = country;
-                        parcel.County__c = countyVal;
-                        System.debug('country===' + country);
-                        if(country!= 'Canada'){
-                            parcel.MUSW__State__c = state; 
-                            parcel.Canadian_provinces__c = null;
-                        }else {
-                            parcel.Canadian_provinces__c = state;
-                            parcel.MUSW__State__c = null;
-                        }
-                        parcel.MUSW__Post_Zip_Code__c = zip;
-                        if(objectRecordName=='Contact' || String.isBlank(objectRecordName)){
-                            parcel.MUSW__Primary_Contact__c = accountOrContactId;
-                        }else{
-                            parcel.Primary_Account__c = accountOrContactId;
-                        }
-                        if(issuggestTrue == true){
-                            parcel.Melissa_Address_Verified__c = true;
-                        }
-                        if(addresstype != null && addresstype !='--None--'){
-                            parcel.Address_Type__c = addresstype;
-                        }
-                        system.debug('isAMR--'+isAMR);
-                        if(Dol_IntegrationUtil.isNotBlank(applicationId) && !isAMR) {
-                            parcel.Application_BG__c = applicationId;
-                        }
-                        else
-                        {
-                            parcel.Request_Parcel__c = applicationId;
-                        }
-                        System.debug('parcel' + parcel);
-                        parcelList.add(parcel);
-                    }
-                    else
-                    {                        
-                        System.debug('existingParcel=='+ existingParcel);
-                        existingParcel.MUSW__Street2__c = addres1;
-                        existingParcel.MUSW__Unit__c = aptInfo;
-                        existingParcel.MUSW__City__c = city;
-                        existingParcel.Country__c = country;
-                        existingParcel.County__c = countyVal;
-                        if(objectRecordName=='Contact' || String.isBlank(objectRecordName)){
-                            existingParcel.MUSW__Primary_Contact__c = accountOrContactId;
-                        }else{
-                            existingParcel.Primary_Account__c = accountOrContactId;
-                        }
-                        existingParcel.Application_BG__c = applicationId;
-                        if(country!= 'Canada'){
-                            existingParcel.MUSW__State__c = state; 
-                            existingParcel.Canadian_provinces__c = null;
-                        }else {
-                            existingParcel.Canadian_provinces__c = state;
-                            existingParcel.MUSW__State__c = null;
-                        }
-                        existingParcel.MUSW__Post_Zip_Code__c = zip;
-                        if(isAMR)
-                        {
-                            existingParcel.Request_Parcel__c = applicationId;
-                        }
-                        parcelList.add(existingParcel);
-                    }
-                }
-                if(!parcelList.isEmpty()){
+                    existingParcel.is_Physical_and_Mailing_Address_Same__c = false;
+                    existingParcel.Address_Type__c = 'PHYSICAL ADDRESS';
+                    parcelList.add(existingParcel);
                     
-                    upsert parcelList;
-                    
-                    System.debug('updated parcelList'+parcelList);
-                }
-                else{
                     MUSW__Parcel__c parcel = new MUSW__Parcel__c();
                     parcel.MUSW__Street2__c = addres1;
                     parcel.MUSW__Unit__c = aptInfo;
@@ -726,46 +652,141 @@ return null;
                         parcel.Request_Parcel__c = applicationId;
                     }
                     System.debug('parcel' + parcel);
-                    if(parcel != null ){
-                        
-                        upsert parcel; 
-                        
-                        if(Dol_IntegrationUtil.isNotBlank(parcel.id)){
-                            List<MUSW__Parcel__c> insertedParcel = [SELECT id,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,
-                                                                    MUSW__Post_Zip_Code__c, Canadian_provinces__c, Country__c,County__c,
-                                                                    Melissa_Address_Verified__c,Address_Type__c, Application_BG__c, Primary_Account__c,
-                                                                    is_Physical_and_Mailing_Address_Same__c, MUSW__Primary_Contact__c from MUSW__Parcel__c 
-                                                                    where id =:parcel.id Limit 1];
-                            System.debug('insertedParcel'+insertedParcel);
-                            
-                            if(Dol_IntegrationUtil.isNotempty(insertedParcel)){ 
-                                parcelList.add(insertedParcel[0]);
-                            }if(insertedParcel[0].Address_Type__c == DOL_AppConstants.CAP_PHYSICAL_ADDRESS){
-                                for(MUSW__Parcel__c allParcelForUpdateLicenseParcel: [SELECT id, MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,MUSW__Post_Zip_Code__c,Country__c,
-                                                                                      Melissa_Address_Verified__c, is_Physical_and_Mailing_Address_Same__c,Address_Type__c, 
-                                                                                      Canadian_provinces__c, County__c, Primary_Account__c, MUSW__Primary_Contact__c from MUSW__Parcel__c 
-                                                                                      where ((MUSW__Primary_Contact__c!=null 
-                                                                                              AND MUSW__Primary_Contact__c = :accountOrContactId) OR (Primary_Account__c!=null 
-                                                                                                                                                      AND Primary_Account__c = :accountOrContactId AND Application_BG__c = :applicationId))]){
-                                                                                                                                                          parcelIdForPhysicalAddress.add(allParcelForUpdateLicenseParcel.Id);
-                                                                                                                                                      }
-                                if(!parcelIdForPhysicalAddress.isEmpty()){
-                                    updateLicenseParcels(parcelIdForPhysicalAddress,false,'integrationsaveAddress');
-                                }
-                            }   
-                        }
-                    } 
+                    parcelList.add(parcel);
+                }
+                else
+                {                        
+                    System.debug('existingParcel=='+ existingParcel);
+                    existingParcel.MUSW__Street2__c = addres1;
+                    existingParcel.MUSW__Unit__c = aptInfo;
+                    existingParcel.MUSW__City__c = city;
+                    existingParcel.Country__c = country;
+                    existingParcel.County__c = countyVal;
+                    if(objectRecordName=='Contact' || String.isBlank(objectRecordName)){
+                        existingParcel.MUSW__Primary_Contact__c = accountOrContactId;
+                    }else{
+                        existingParcel.Primary_Account__c = accountOrContactId;
+                    }
+                    existingParcel.Application_BG__c = applicationId;
+                    if(country!= 'Canada'){
+                        existingParcel.MUSW__State__c = state; 
+                        existingParcel.Canadian_provinces__c = null;
+                    }else {
+                        existingParcel.Canadian_provinces__c = state;
+                        existingParcel.MUSW__State__c = null;
+                    }
+                    existingParcel.MUSW__Post_Zip_Code__c = zip;
+                    if(isAMR)
+                    {
+                        existingParcel.Request_Parcel__c = applicationId;
+                    }
+                    parcelList.add(existingParcel);
                 }
             }
-            
-            system.debug('parcelList=='+parcelList);
-            return parcelList;
+            if(!parcelList.isEmpty()){
+                
+                upsert parcelList;
+                
+                System.debug('updated parcelList'+parcelList);
+                //for update mailing address AMR with same physical and mailing address
+                if(parcelList.size()>=2)
+                {
+                    Set<Id> parcelIdForMailingAddress = new Set<Id>();
+                    if(parcelList[1].Address_Type__c == DOL_AppConstants.CAP_MAILING_ADDRESS){
+                        for(MUSW__Parcel__c allParcelForUpdateLicenseParcel: [SELECT id, MUSW__Street2__c,Status__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,MUSW__Post_Zip_Code__c,Country__c,
+                                                                              Melissa_Address_Verified__c, is_Physical_and_Mailing_Address_Same__c,Address_Type__c, 
+                                                                              Canadian_provinces__c, County__c, Primary_Account__c, MUSW__Primary_Contact__c from MUSW__Parcel__c 
+                                                                              where  Status__c ='Active' AND ((MUSW__Primary_Contact__c!=null 
+                                                                                                               AND MUSW__Primary_Contact__c = :accountOrContactId) OR (Primary_Account__c!=null 
+                                                                                                                                                                       AND Primary_Account__c = :accountOrContactId AND Application_BG__c = :applicationId))])
+                        {
+                            parcelIdForMailingAddress.add(allParcelForUpdateLicenseParcel.Id);
+                        }
+                        if(!parcelIdForMailingAddress.isEmpty()){
+                            updateLicenseParcels(parcelIdForMailingAddress,false,'integrationsaveAddressMailing');
+                        }
+                    }   
+                }
+                
+                
+            }
+            else{
+                MUSW__Parcel__c parcel = new MUSW__Parcel__c();
+                parcel.MUSW__Street2__c = addres1;
+                parcel.MUSW__Unit__c = aptInfo;
+                parcel.MUSW__City__c = city;
+                parcel.Country__c = country;
+                parcel.County__c = countyVal;
+                System.debug('country===' + country);
+                if(country!= 'Canada'){
+                    parcel.MUSW__State__c = state; 
+                    parcel.Canadian_provinces__c = null;
+                }else {
+                    parcel.Canadian_provinces__c = state;
+                    parcel.MUSW__State__c = null;
+                }
+                parcel.MUSW__Post_Zip_Code__c = zip;
+                if(objectRecordName=='Contact' || String.isBlank(objectRecordName)){
+                    parcel.MUSW__Primary_Contact__c = accountOrContactId;
+                }else{
+                    parcel.Primary_Account__c = accountOrContactId;
+                }
+                if(issuggestTrue == true){
+                    parcel.Melissa_Address_Verified__c = true;
+                }
+                if(addresstype != null && addresstype !='--None--'){
+                    parcel.Address_Type__c = addresstype;
+                }
+                system.debug('isAMR--'+isAMR);
+                if(Dol_IntegrationUtil.isNotBlank(applicationId) && !isAMR) {
+                    parcel.Application_BG__c = applicationId;
+                }
+                else
+                {
+                    parcel.Request_Parcel__c = applicationId;
+                }
+                System.debug('parcel' + parcel);
+                if(parcel != null ){
+                    
+                    upsert parcel; 
+                    
+                    if(Dol_IntegrationUtil.isNotBlank(parcel.id)){
+                        List<MUSW__Parcel__c> insertedParcel = [SELECT id,MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,
+                                                                MUSW__Post_Zip_Code__c, Canadian_provinces__c, Country__c,County__c,
+                                                                Melissa_Address_Verified__c,Address_Type__c, Application_BG__c, Primary_Account__c,
+                                                                is_Physical_and_Mailing_Address_Same__c, MUSW__Primary_Contact__c from MUSW__Parcel__c 
+                                                                where id =:parcel.id Limit 1];
+                        System.debug('insertedParcel'+insertedParcel);
+                        
+                        if(Dol_IntegrationUtil.isNotempty(insertedParcel)){ 
+                            parcelList.add(insertedParcel[0]);
+                        }if(insertedParcel[0].Address_Type__c == DOL_AppConstants.CAP_PHYSICAL_ADDRESS){
+                            for(MUSW__Parcel__c allParcelForUpdateLicenseParcel: [SELECT id, MUSW__Street2__c,MUSW__Unit__c,MUSW__City__c,MUSW__State__c,MUSW__Post_Zip_Code__c,Country__c,
+                                                                                  Melissa_Address_Verified__c, is_Physical_and_Mailing_Address_Same__c,Address_Type__c, 
+                                                                                  Canadian_provinces__c, County__c, Primary_Account__c, MUSW__Primary_Contact__c from MUSW__Parcel__c 
+                                                                                  where ((MUSW__Primary_Contact__c!=null 
+                                                                                          AND MUSW__Primary_Contact__c = :accountOrContactId) OR (Primary_Account__c!=null 
+                                                                                                                                                  AND Primary_Account__c = :accountOrContactId AND Application_BG__c = :applicationId))]){
+                                                                                                                                                      parcelIdForPhysicalAddress.add(allParcelForUpdateLicenseParcel.Id);
+                                                                                                                                                  }
+                            if(!parcelIdForPhysicalAddress.isEmpty()){
+                                updateLicenseParcels(parcelIdForPhysicalAddress,false,'integrationsaveAddress');
+                            }
+                        }   
+                    }
+                } 
+            }
+        }
+        
+        system.debug('parcelList=='+parcelList);
+        return parcelList;
         }
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
+        
     }
     
     
@@ -1170,6 +1191,30 @@ return parcelList;
                         licenseParcelInstance.MUSW__License2__c    = licenseId;
                         licenseParcelInstance.Status__c ='Active';
                         licenseParcelInstance.Physical__c = true;
+                        licenseParcelListToBeUpdated.add(licenseParcelInstance); 
+                        
+                    }
+                    try{
+                        if(!licenseParcelListToBeUpdated.isEmpty()){
+                            insert licenseParcelListToBeUpdated;
+                        } 
+                    }catch(DmlException e){
+                        System.debug('Error while inserting license Parcel when not same address---' + e.getMessage());
+                    }
+                }
+            }else if(!licenseParcelList.isEmpty() && !isAddressSame && methodName=='integrationsaveAddressMailing'){
+                if(!licenseRecordId.isEmpty() && !parcelIdSet.isEmpty()){
+                    Id parcelId;
+                    for(MUSW__Parcel__c parcelIdForMailingAddress : [Select Id, Address_Type__c From MUSW__Parcel__c 
+                                                                     Where Id IN :parcelIdSet AND Address_Type__c ='MAILING ADDRESS']){
+                                                                         parcelId = parcelIdForMailingAddress.Id;  
+                                                                     }
+                    for(Id licenseId: licenseRecordId){
+                        MUSW__License_Parcel__c licenseParcelInstance = new MUSW__License_Parcel__c();
+                        licenseParcelInstance.MUSW__Parcel__c = parcelId;
+                        licenseParcelInstance.MUSW__License2__c    = licenseId;
+                        licenseParcelInstance.Status__c ='Active';
+                        licenseParcelInstance.Mailing__c = true;
                         licenseParcelListToBeUpdated.add(licenseParcelInstance); 
                         
                     }
