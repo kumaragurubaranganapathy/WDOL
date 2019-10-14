@@ -18,12 +18,6 @@ public class LnP_CommonHeader_AC_Test {
         }catch(Exception ex){}
     }
     
-    @isTest
-    public static void testGetImageText(){
-        String base64Str = EncodingUtil.base64Encode(Blob.valueOf('Test Content'));
-        try{
-            Lnp_CommonHeader_AC.getImageText('abc123');
-        }catch(Exception ex){}
-    }
+   
 
 }
