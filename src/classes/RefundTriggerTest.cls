@@ -1,6 +1,6 @@
 @isTest
 public class RefundTriggerTest {
-	private static testmethod void testRejectionWithComment()
+	private static void testRejectionWithComment()
     {
         // Generate sample work item using utility method.
         Id testWorkItemId = generateAndSubmitObject();
@@ -66,7 +66,7 @@ public class RefundTriggerTest {
     {
         Id AccRecTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId();
         Account a = DOL_TestDataFactory.createAccount(AccRecTypeId);
-        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
+        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Individual').getRecordTypeId();
         MUSW__License2__c lic1 = DOL_TestDataFactory.createLicense(LicRecTypeId1, a.Id, 'Architects', 'Architect', 'General Application');
         MUSW__Fee__c fee = DOL_TestDataFactory.createFeeWithLicense('Fine', 100, lic1.Id);
         
@@ -97,7 +97,7 @@ public class RefundTriggerTest {
         testReq.setNextApproverIds(userList);
         Approval.ProcessResult reqResult = Approval.process(testReq);
         
-        System.assert(reqResult.isSuccess(),'Unable to submit new invoice statement record for approval');
+        System.assert(reqResult.isSuccess(),'Unable to submit new refund record for approval');
         
         return reqResult.getNewWorkitemIds()[0];
     }
@@ -106,7 +106,7 @@ public class RefundTriggerTest {
     public static void testRefund1(){
         Id AccRecTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId();
         Account a = DOL_TestDataFactory.createAccount(AccRecTypeId);
-        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
+        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Individual').getRecordTypeId();
         MUSW__License2__c lic1 = DOL_TestDataFactory.createLicense(LicRecTypeId1, a.Id, 'Notary Public', 'Notary Public', 'General Application');
         MUSW__Fee__c fee = DOL_TestDataFactory.createFeeWithLicense('Fine', 100, lic1.Id);
         
@@ -120,6 +120,7 @@ public class RefundTriggerTest {
         MUSW__Fee__c fee2 = DOL_TestDataFactory.createFeeWithLicense('Credential', 200, lic1.Id);
         ref.Fee__c = fee2.Id;
         ref.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Rejected';
+        
         update ref;
     }
     
@@ -127,7 +128,9 @@ public class RefundTriggerTest {
     public static void testRefund2(){
         Id AccRecTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId();
         Account a = DOL_TestDataFactory.createAccount(AccRecTypeId);
-        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
+        Id ConRecTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Contact').getRecordTypeId();
+        Contact con = DOL_TestDataFactory.createContact(ConRecTypeId, a.Id);
+        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Individual').getRecordTypeId();
         MUSW__License2__c lic1 = DOL_TestDataFactory.createLicense(LicRecTypeId1, a.Id, 'Appraisal Management Companies', 'Appraisal Management Company', 'General Application');
         MUSW__Fee__c fee = DOL_TestDataFactory.createFeeWithLicense('Fine', 100, lic1.Id);
         
@@ -140,13 +143,14 @@ public class RefundTriggerTest {
         
         MUSW__Fee__c fee2 = DOL_TestDataFactory.createFeeWithLicense('Credential', 200, lic1.Id);
         ref.Fee__c = fee2.Id;
+        ref.BGBK__Contact__c = con.Id;
         update ref;
     }
      @isTest
     public static void testRefund3(){
         Id AccRecTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId();
         Account a = DOL_TestDataFactory.createAccount(AccRecTypeId);
-        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
+        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Individual').getRecordTypeId();
         MUSW__License2__c lic1 = DOL_TestDataFactory.createLicense(LicRecTypeId1, a.Id, 'Camping Resorts', 'Camping Resort Company', 'General Application');
         MUSW__Fee__c fee = DOL_TestDataFactory.createFeeWithLicense('Fine', 100, lic1.Id);
         
@@ -165,7 +169,7 @@ public class RefundTriggerTest {
     public static void testRefund4(){
         Id AccRecTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId();
         Account a = DOL_TestDataFactory.createAccount(AccRecTypeId);
-        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
+        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Individual').getRecordTypeId();
         MUSW__License2__c lic1 = DOL_TestDataFactory.createLicense(LicRecTypeId1, a.Id, 'Appraisers - Real Estate', 'Appraiser Course', 'General Application');
         MUSW__Fee__c fee = DOL_TestDataFactory.createFeeWithLicense('Fine', 100, lic1.Id);
         
@@ -184,7 +188,7 @@ public class RefundTriggerTest {
     public static void testRefund5(){
         Id AccRecTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId();
         Account a = DOL_TestDataFactory.createAccount(AccRecTypeId);
-        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
+        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Individual').getRecordTypeId();
         MUSW__License2__c lic1 = DOL_TestDataFactory.createLicense(LicRecTypeId1, a.Id, 'Timeshares', 'Timeshare Company', 'General Application');
         MUSW__Fee__c fee = DOL_TestDataFactory.createFeeWithLicense('Fine', 100, lic1.Id);
         
@@ -199,4 +203,60 @@ public class RefundTriggerTest {
         ref.Fee__c = fee2.Id;
         update ref;
     }
+    
+    @isTest
+    public static void testRefund6(){
+        Id AccRecTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId();
+        Account a = DOL_TestDataFactory.createAccount(AccRecTypeId);
+        Id ConRecTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Contact').getRecordTypeId();
+        Contact con = DOL_TestDataFactory.createContact(ConRecTypeId, a.Id);
+        Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Individual').getRecordTypeId();
+        MUSW__License2__c lic1 = DOL_TestDataFactory.createLicense(LicRecTypeId1, a.Id, 'Appraisal Management Companies', 'Appraisal Management Company', 'General Application');
+        MUSW__Fee__c fee = DOL_TestDataFactory.createFeeWithLicense('Fine', 100, lic1.Id);
+        
+        Id parclRecTypeId = Schema.SObjectType.MUSW__Parcel__c.getRecordTypeInfosByName().get('Address').getRecordTypeId();
+        MUSW__Parcel__c p = new MUSW__Parcel__c();
+        p.RecordTypeId = parclRecTypeId;
+        p.MUSW__Street_Number__c = 'Street1';
+        p.MUSW__Street_Direction__c = 'north';
+        p.MUSW__Street2__c = 'Street2';
+        p.MUSW__Street_Suffix__c = 'ST';
+        p.MUSW__Unit__c = 'unit';
+        p.MUSW__Unit_Type__c = 'type';
+        p.MUSW__City__c = 'city';
+        p.MUSW__Post_Zip_Code__c = '54634';
+        p.Country__c = 'United States';
+        p.MUSW__State__c = 'WA';
+        insert p;
+        
+        MUSW__Parcel_Contact2__c pc = new MUSW__Parcel_Contact2__c();
+        pc.MUSW__Contact__c = con.Id;
+        pc.MUSW__Contact_Type__c = 'Owner';
+        pc.Mailing__c = true;
+        pc.MUSW__Parcel__c = p.Id;
+        insert pc;
+
+        
+        /*
+         Select Id,Name, MUSW__Contact__c, MUSW__Contact_Type__c,Mailing__c,
+                                                                    e__c ,MUSW__Parcel__r.MUSW__State__c,
+                                                                    MUSW__Parcel__r.Country__c 
+                                                                    from MUSW__Parcel_Contact2__c 
+                                                                    where MUSW__Contact__c IN: refundeeContactIdList     
+		*/
+        
+        // Create a sample refund record and then submit it for approval.
+        BGBK__Refund2__c ref = new BGBK__Refund2__c();
+        ref.BGBK__Amount__c = 100;
+        ref.Fee__c = fee.Id;
+        ref.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Requested';
+        insert ref;
+        
+        MUSW__Fee__c fee2 = DOL_TestDataFactory.createFeeWithLicense('Credential', 200, lic1.Id);
+        ref.Fee__c = fee2.Id;
+        ref.BGBK__Contact__c = con.Id;
+        update ref;
+        
+    }
+   
 }
