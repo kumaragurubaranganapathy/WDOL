@@ -2,12 +2,12 @@ public class DOL_AppUtility {
 
     public static Boolean bIsFeeTriggerFired = false;
     public static Boolean bIsFeePaymentTriggerFired = false;
-	public static Boolean IsLicenseTriggerFired = false;
+    public static Boolean IsLicenseTriggerFired = false;
     public static Boolean isReceiptRunOnce = false;
-	public static Boolean isFeeRunOnce = false;
-    public static Boolean runfromDolBatchUpdateLicenseStatus = false; 
-    
-    
+    public static Boolean isFeeRunOnce = false;
+    public static Boolean isFeePaymentRunOnce = false;
+    public static Boolean runfromDolBatchUpdateLicenseStatus = false;
+    public static Boolean isDolLicenseParcelTrigger = false;
     //public static List<String> lstErrorLogIds = new List<String>();
     
     @AuraEnabled

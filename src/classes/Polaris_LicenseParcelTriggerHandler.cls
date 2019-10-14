@@ -1,11 +1,18 @@
 public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler {
     public void onAfterDelete() {}
     public void onAfterInsert() {
-        updateLicenseRecordwithAddress();
+        if(DOL_AppUtility.isDolLicenseParcelTrigger== false) {
+                DOL_AppUtility.isDolLicenseParcelTrigger= true;
+                updateLicenseRecordwithAddress();
+        }
+
     }
     public void onAfterUndelete() {}
     public void onAfterUpdate() {
+    if(DOL_AppUtility.isDolLicenseParcelTrigger == false) {
+        DOL_AppUtility.isDolLicenseParcelTrigger = true;
         updateLicenseRecordwithAddressAfterUpdate();
+        }
     }
     public void onBeforeDelete() {}
     public void onBeforeInsert() {
@@ -60,14 +67,21 @@ public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler
                 licRec = licenseMap.get(lp.MUSW__License2__c) ;
                 if(!licenseMap.isEmpty() && lp.Mailing__c == true && lp.MUSW__Parcel__c != null &&  lp.Physical__c == false  && lp.MUSW__License2__c != null){                
                     licRec.MUSW__Parcel__c = lp.MUSW__Parcel__c;
+                 
                 } else if(!licenseMap.isEmpty() && lp.Physical__c == true && lp.Mailing__c == false && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null)  {
-                    licRec.Public_Address__c = lp.MUSW__Parcel__c;
+                        licRec.Public_Address__c = lp.MUSW__Parcel__c;
+                    
                 } else if(!licenseMap.isEmpty() && lp.Physical__c == true  && lp.Mailing__c == true && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null) {
                     licRec.MUSW__Parcel__c = lp.MUSW__Parcel__c;
                     licRec.Public_Address__c = lp.MUSW__Parcel__c; 
                 }
-               licensetoUpdate.add(licRec);  
+                if(licenseMap.containsKey(lp.MUSW__License2__c)) {
+                    licenseMap.put(lp.MUSW__License2__c,licRec);
+                } 
             }
+        }
+        for(Id licenseID : licenseMap.keySet()) {
+            licensetoUpdate.add(licenseMap.get(licenseID)); 
         }
         if(!licensetoUpdate.isEmpty()){
             update licensetoUpdate;
@@ -98,14 +112,19 @@ public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler
                     licRec.Public_Address__c = null;
                 } else if(!licenseMap.isEmpty() && lp.Physical__c == true  &&  lp.Mailing__c == false && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null)  {    
                     licRec.Public_Address__c = lp.MUSW__Parcel__c;
-                    licRec.MUSW__Parcel__c =null;
+                    licRec.MUSW__Parcel__c = null;
                 } else if(!licenseMap.isEmpty() && (lp.Physical__c == true  && lp.Mailing__c == true) && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null) {
                     licRec.MUSW__Parcel__c = lp.MUSW__Parcel__c;
                     licRec.Public_Address__c = lp.MUSW__Parcel__c;       
                 }
-                licensetoUpdate.add(licRec);
+                if(licenseMap.containsKey(lp.MUSW__License2__c)) {
+                    licenseMap.put(lp.MUSW__License2__c,licRec);
+                } 
             }
             
+        }
+        for(Id licenseID : licenseMap.keySet()) {
+            licensetoUpdate.add(licenseMap.get(licenseID)); 
         }
         if(!licensetoUpdate.isEmpty()){
             update licensetoUpdate;

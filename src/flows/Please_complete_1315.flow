@@ -1853,7 +1853,7 @@
 )</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_10_A1_2399808617</name>
+        <name>formula_11_myRule_10_A1_2387477067</name>
         <dataType>Date</dataType>
         <expression>IF(
    {!myVariable_current.NoOfDaysExpirePreFuneral__c} &lt; 90,
@@ -1875,7 +1875,7 @@
 	[MUSW__License2__c].AQB_Approval_Expiration_Date__c,DATE(YEAR([MUSW__License2__c].MUSW__Issue_Date__c)+3,MONTH( [MUSW__License2__c].MUSW__Issue_Date__c ), DAY( [MUSW__License2__c].MUSW__Issue_Date__c )) )))) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_14_myRule_13_A1_4379567259</name>
+        <name>formula_14_myRule_13_A1_7457850348</name>
         <dataType>Date</dataType>
         <expression>IF(
 	INCLUDES({!myVariable_current.Delivery_Method__c} , &quot;One-time event / Seminar&quot;), 
@@ -1894,19 +1894,19 @@
 		IF(	
 		 [MUSW__License2__c].NumberoFDaysToExpired__c &gt; 90,
 		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c),MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c )),
-		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c ) + 2, MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c ) )
+		DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c ) + 1, MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c ) )
 		 ),
 	    DATE( YEAR( [MUSW__License2__c].MUSW__Issue_Date__c)+1,MONTH( [MUSW__License2__c].Dateofbirth_Expiry__c ), DAY( [MUSW__License2__c].Dateofbirth_Expiry__c ))
 	 )</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_17_myRule_16_A1_8467226011</name>
+        <name>formula_17_myRule_16_A1_6916054621</name>
         <dataType>Date</dataType>
         <expression>	If(  {!myVariable_current.NumberoFDaysToExpired__c} &gt;0,
 		IF(	
 		 {!myVariable_current.NumberoFDaysToExpired__c} &gt; 90,
 		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c}),MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} )),
-		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c} ) + 2, MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ) )
+		DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c} ) + 1, MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ) )
 		 ),
 	    DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c})+1,MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ))
 	 )</expression>
@@ -1925,7 +1925,7 @@
 	 ) </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_0659731579</name>
+        <name>formula_2_myRule_1_A1_2067556424</name>
         <dataType>Date</dataType>
         <expression>	If( {!myVariable_current.NumberoFDaysToExpired__c} &gt;0,
 	  IF(	
@@ -1947,7 +1947,7 @@
 	)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_5_myRule_4_A1_5572116108</name>
+        <name>formula_5_myRule_4_A1_7490810823</name>
         <dataType>Date</dataType>
         <expression>	IF(
 	{!myVariable_current.DaysFromJan31__c} &gt;90,
@@ -1969,7 +1969,7 @@
 	 )</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_7_A1_7491574463</name>
+        <name>formula_8_myRule_7_A1_2008226485</name>
         <dataType>Date</dataType>
         <expression>	If(  {!myVariable_current.NumberoFDaysToExpired__c} &gt;0,
 		IF(	
@@ -1980,7 +1980,7 @@
 	    DATE( YEAR( {!myVariable_current.MUSW__Issue_Date__c})+2,MONTH( {!myVariable_current.Dateofbirth_Expiry__c} ), DAY( {!myVariable_current.Dateofbirth_Expiry__c} ))
 	 )</expression>
     </formulas>
-    <interviewLabel>Please_complete_1315-77_InterviewLabel</interviewLabel>
+    <interviewLabel>Please_complete_1315-80_InterviewLabel</interviewLabel>
     <label>Enterprise - Expiration Dates and Fees - Licenses with Set Expiration Date (Pre-Grace Period)5.</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -2098,6 +2098,55 @@
                 <elementReference>myVariable_current.Id</elementReference>
             </value>
         </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Renew/Reinstatement in progress</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Renew_Reinstatement_in_progress__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
@@ -2167,7 +2216,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_11_myRule_10_A1_2399808617</elementReference>
+                <elementReference>formula_11_myRule_10_A1_2387477067</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -2263,6 +2312,55 @@
                 <elementReference>myVariable_current.Id</elementReference>
             </value>
         </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Renewed/Reinstated Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>MUSW__Renewal_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
@@ -2332,7 +2430,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_14_myRule_13_A1_4379567259</elementReference>
+                <elementReference>formula_14_myRule_13_A1_7457850348</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -2428,6 +2526,55 @@
                 <elementReference>myVariable_current.Id</elementReference>
             </value>
         </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Renewed/Reinstated Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>MUSW__Renewal_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
@@ -2497,7 +2644,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_17_myRule_16_A1_8467226011</elementReference>
+                <elementReference>formula_17_myRule_16_A1_6916054621</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -2593,6 +2740,55 @@
                 <elementReference>myVariable_current.Id</elementReference>
             </value>
         </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Renewed/Reinstated Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>MUSW__Renewal_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
@@ -2662,7 +2858,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_0659731579</elementReference>
+                <elementReference>formula_2_myRule_1_A1_2067556424</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -2758,6 +2954,55 @@
                 <elementReference>myVariable_current.Id</elementReference>
             </value>
         </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Renewed/Reinstated Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>MUSW__Renewal_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
@@ -2827,7 +3072,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_5_myRule_4_A1_5572116108</elementReference>
+                <elementReference>formula_5_myRule_4_A1_7490810823</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>
@@ -2923,6 +3168,55 @@
                 <elementReference>myVariable_current.Id</elementReference>
             </value>
         </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Renewed/Reinstated Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>MUSW__Renewal_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
@@ -2992,7 +3286,7 @@
             </processMetadataValues>
             <field>MUSW__Expiration_Date__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A1_7491574463</elementReference>
+                <elementReference>formula_8_myRule_7_A1_2008226485</elementReference>
             </value>
         </inputAssignments>
         <object>MUSW__License2__c</object>

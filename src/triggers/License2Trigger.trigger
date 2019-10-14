@@ -10,7 +10,7 @@ trigger License2Trigger on MUSW__License2__c(before insert, before update, befor
     
     /*Checking whehter triggers have been disabled for the user or not*/
     Global_Settings__c globalSetting = Global_Settings__c.getInstance(UserInfo.getUserId());
-    if(globalSetting.Disable_Triggers__c == true || DOL_AppUtility.runfromDolBatchUpdateLicenseStatus == true) {
+    if(globalSetting.Disable_Triggers__c == true || DOL_AppUtility.runfromDolBatchUpdateLicenseStatus == true || DOL_AppUtility.isDolLicenseParcelTrigger == true) {
         /*If the triggers have been disabled, then do not call the trigger handler*/
         return;
     }
