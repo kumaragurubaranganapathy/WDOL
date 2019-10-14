@@ -405,7 +405,7 @@
                             <span class="slds-form-element__label">License Type :</span> {!v.licenseType}
                             <span class="slds-form-element__label">Service Request Type :</span> {!v.flowType}
                             <aura:if isTrue="{!v.flowType == 'Request for Information'}">
-                                <span class="slds-form-element__label">Requested Infromation :</span> {!v.taskDescription}
+                                <span class="slds-form-element__label">Requested Infromation :</span> {!v.taskDescription!='null'?v.taskDescription:'None'}
                             </aura:if>                            
                             <span class="slds-form-element__label">Response :</span> <ui:inputTextArea value="{!v.Description}" rows="5" />
                         </aura:if>
