@@ -114,8 +114,8 @@ public class Utilities {
     
     public static boolean checkBlockedEmail (Contact con) {
         boolean emailPass = true;
-        list <Blocked_Email_Registration__mdt> blockedEmails = [SELECT Email__c FROM Blocked_Email_Registration__mdt Limit 100];
-        for (Blocked_Email_Registration__mdt bemail :blockedEmails){
+        //list <Blocked_Email_Registration__mdt> blockedEmails = [SELECT Email__c FROM Blocked_Email_Registration__mdt Limit 100];
+        for (Blocked_Email_Registration__mdt bemail :[SELECT Email__c FROM Blocked_Email_Registration__mdt Limit 100]){
             if(bemail.Email__c != null){
                 if (con.Email.containsIgnoreCase(bemail.Email__c)) {
                     emailPass = false;
@@ -154,7 +154,7 @@ public class Utilities {
         
     }
     
-    public static  Set<String> getallPlanreviewsandpermits()
+    /*public static  Set<String> getallPlanreviewsandpermits()
     {
         String allperms = label.Str_All_Permits_and_plan_review;
         List<String> permsinlabels =allperms.split(';');
@@ -182,16 +182,16 @@ public class Utilities {
         offices.addall(mhcofflabels);
         return offices;
         
-    }
+    }*/
     
     /**
     * Method to create invoice for Permit
     * */
-    public static void createInvoice(SObject sobj){
+    /*public static void createInvoice(SObject sobj){
         Id recordId = sobj.Id;
         if(sobj instanceof MUSW__Permit2__c){
             MUSW__Permit2__c permitObj = [Select ID,MUSW__Account__c, Generate_Invoice__c,MUSW__Total_Fees__c,
-                                          (Select ID,BGBK__Invoice__c from MUSW__Fees__r) from MUSW__Permit2__c where ID = :recordId];
+                                          (Select ID,BGBK__Invoice__c from MUSW__Fees__r) from MUSW__Permit2__c where ID = :recordId and Id != null];
             //Generate Invoice only if Flag is checked
             if(permitObj.Generate_Invoice__c){
                 BGBK__Bill__c invoice = getInvoice(permitObj.MUSW__Account__c, permitObj.MUSW__Total_Fees__c,permitObj.Id);
@@ -200,7 +200,7 @@ public class Utilities {
             } 
         }else if(sobj instanceof Renewal_Application__c){
             Renewal_Application__c renewalApp = [Select ID,Licensee__c, Generate_Invoice__c,Total_Fees__c,Permit__c,
-                                                 (Select ID,BGBK__Invoice__c from Fees__r) from Renewal_Application__c where ID = :recordId];
+                                                 (Select ID,BGBK__Invoice__c from Fees__r) from Renewal_Application__c where ID = :recordId and ID != null];
             //Generate Invoice only if Flag is checked
             if(renewalApp.Generate_Invoice__c){
                 BGBK__Bill__c invoice = getInvoice(renewalApp.Licensee__c, renewalApp.Total_Fees__c,renewalApp.Permit__c);
@@ -208,26 +208,26 @@ public class Utilities {
                 assoiceateFeesToInvoice(renewalApp.Fees__r, invoice);
             } 
         }
-    }
+    }*/
     
     /**
     * Assoicate Fees to Invoice
     * */
-    private static void assoiceateFeesToInvoice(List<MUSW__Fee__c> feeList, BGBK__Bill__c invoice){
+    /*private static void assoiceateFeesToInvoice(List<MUSW__Fee__c> feeList, BGBK__Bill__c invoice){
         for(MUSW__Fee__c fee : feeList){
             fee.BGBK__Invoice__c = invoice.Id;
         }
         update feeList;
-    }
+    }*/
     
     /**
     * Get Invoice record
     * */
-    private static BGBK__Bill__c getInvoice(Id recipient, Decimal totalFees, Id permitId){
+    /*private static BGBK__Bill__c getInvoice(Id recipient, Decimal totalFees, Id permitId){
         BGBK__Bill__c invoice = new BGBK__Bill__c(BGBK__Recipient2__c = recipient,
                                                   BGBK__Invoice_Date__c = System.today(),
                                                   BGBK__Total_Fees__c = totalFees,
                                                   Permit__c = permitId);
         return invoice;
-    }
+    }*/
 }

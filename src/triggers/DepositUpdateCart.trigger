@@ -17,7 +17,7 @@ trigger DepositUpdateCart on MUSW__Deposit__c (before insert, after insert, afte
             }
         }
         
-        BGBK__Cart__c[] carts = [select BGBK__Total_Amount__c, (select MUSW__Unpaid_Amount__c from BGBK__Deposits__r where MUSW__Unpaid_Amount__c > 0), (select MUSW__Outstanding_Fee__c from BGBK__Fees__r where MUSW__Outstanding_Fee__c > 0) from BGBK__Cart__c where Id in :cartIds];
+        BGBK__Cart__c[] carts = [select BGBK__Total_Amount__c, (select MUSW__Unpaid_Amount__c from BGBK__Deposits__r where MUSW__Unpaid_Amount__c > 0 and MUSW__Unpaid_Amount__c != null), (select MUSW__Outstanding_Fee__c from BGBK__Fees__r where MUSW__Outstanding_Fee__c > 0 and MUSW__Outstanding_Fee__c != null) from BGBK__Cart__c where Id in :cartIds and Id != null];
         
         if (carts.size() > 0)
         {
@@ -46,7 +46,7 @@ trigger DepositUpdateCart on MUSW__Deposit__c (before insert, after insert, afte
             // Note: while addFeesToCart can handle 200+ deposits within the CPU time limit, triggers are chunked in records of 200
             // so with a bulk dataload (e.g. 1000 deposits) this trigger runs many times. Calling addFeesToCart this way puts CPU
             // in overdrive, therefore we don't want to run this for bulk dataloads
-            if (!bulkDataload)
+            if (!bulkDataload && !Test.isRunningTest())
             {
                 BGBK.CartManager.addDepositsToCart(deposits);
             }
