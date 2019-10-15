@@ -126,6 +126,21 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Created_Biennium__c</fullName>
+        <description>Date - Year</description>
+        <externalId>false</externalId>
+        <formula>(YEAR(DATEVALUE(CreatedDate))) - (VALUE(JournalVoucher__r.Biennium_Year__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Created - Biennium</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Debit_Credit__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
