@@ -59,18 +59,7 @@
         </rules>
     </decisions>
     <description>Change Owner when a fine is created</description>
-    <formulas>
-        <processMetadataValues>
-            <name>originalFormula</name>
-            <value>
-                <stringValue>[MUSW__Fee__c].MUSW__Complaint2__c.MUSW__Primary_Contact__c.User__c.Id </stringValue>
-            </value>
-        </processMetadataValues>
-        <name>formula_2_myRule_1_A1_5305452706</name>
-        <dataType>String</dataType>
-        <expression>{!myVariable_current.MUSW__Complaint2__r.MUSW__Primary_Contact__r.User__r.Id}</expression>
-    </formulas>
-    <interviewLabel>Complaint_Fine_Creation-11_InterviewLabel</interviewLabel>
+    <interviewLabel>Complaint_Fine_Creation-14_InterviewLabel</interviewLabel>
     <label>Complaint Fine Creation</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -167,12 +156,12 @@
             <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
-                    <stringValue>Formula</stringValue>
+                    <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_5305452706</elementReference>
+                <elementReference>myVariable_current.Contact__r.User__r.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
