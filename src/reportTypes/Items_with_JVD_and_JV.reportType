@@ -198,6 +198,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Related_To__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>BGBK__Revenue_Source__c</field>
             <table>BGBK__Item__c</table>
         </columns>
@@ -241,6 +246,61 @@
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_012_TMS__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_Interface_012_Amount__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_Interface_012_CR_Amount__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_Interface_012_DR_Amount__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_Interface_012_Net_Amount__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_Interface_CR_Amount__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_Interface_DR_Amount__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_Interface_Net_Amount__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_Interface_Total_Amount__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_PDF_Total_Amount__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_Process_Date__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_Status__c</field>
             <table>BGBK__Item__c</table>
         </columns>
@@ -272,6 +332,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Journal_Voucher_Detail__c.JournalVoucher__c.Approved_by_Date__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.Approved_Date_Time__c</field>
             <table>BGBK__Item__c</table>
         </columns>
         <columns>
@@ -386,6 +451,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.Ready_Date_Time__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Journal_Voucher_Detail__c.JournalVoucher__c.RecordType</field>
             <table>BGBK__Item__c</table>
         </columns>
@@ -406,6 +476,21 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.TMS_Interface_CR_Amount__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.TMS_Interface_DR_Amount__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.TMS_Interface_Net_Amount__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Journal_Voucher_Detail__c.JournalVoucher__c.TMS_Interface_Total_Amount__c</field>
             <table>BGBK__Item__c</table>
         </columns>
@@ -416,17 +501,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Journal_Voucher_Detail__c.JournalVoucher__c.TMS_Status__c</field>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.TMS_Process_Date__c</field>
             <table>BGBK__Item__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_Interface_Total_Amount__c</field>
-            <table>BGBK__Item__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_PDF_Total_Amount__c</field>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.AFRS_012_Net_Amount__c</field>
             <table>BGBK__Item__c</table>
         </columns>
         <columns>
@@ -434,9 +514,19 @@
             <field>Journal_Voucher_Detail__c.JournalVoucher__c.Total__c</field>
             <table>BGBK__Item__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.JournalVoucher__c.TMS_Status__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
         <masterLabel>Journal Vouchers</masterLabel>
     </sections>
     <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.Add_to_Interface__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Journal_Voucher_Detail__c.Add_to_PDF__c</field>
@@ -455,6 +545,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Journal_Voucher_Detail__c.Amount__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.Created_Biennium__c</field>
             <table>BGBK__Item__c</table>
         </columns>
         <columns>
@@ -599,16 +694,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Journal_Voucher_Detail__c.Accounting_Code__c</field>
-            <table>BGBK__Item__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Journal_Voucher_Detail__c.Add_to_Interface__c</field>
-            <table>BGBK__Item__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Journal_Voucher_Detail__c.Total_Received_Reports__c</field>
             <table>BGBK__Item__c</table>
         </columns>
@@ -617,6 +702,129 @@
             <field>Journal_Voucher_Detail__c.Transaction_Code__c</field>
             <table>BGBK__Item__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Journal_Voucher_Detail__c.Accounting_Code__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
         <masterLabel>Journal Voucher Details</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.Name</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.Agency__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.Agency_Code__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.CreatedBy</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.CreatedDate</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.BGBK__Description__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.ExternalId__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.Fund__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.Id</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.GL__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.GL_Cash_Cash_and_Check__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.GL_Cash_CC_and_ACH__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.GL_Revenue__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.LastModifiedBy</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.LastModifiedDate</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.Major_Group__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.Major_Source__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.Owner</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.Prof_ID__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.Reports_Revenue_Account_Code__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.Accounting_System__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.BGBK__Total_Balance__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BGBK__Fund__c.Sub_Source__c</field>
+            <table>BGBK__Item__c</table>
+        </columns>
+        <masterLabel>Fund</masterLabel>
     </sections>
 </ReportType>

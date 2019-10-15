@@ -432,6 +432,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Created_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Created Date Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Current_Document_Number__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -617,6 +628,16 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>JV_Ready_on_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( OR(TIMEVALUE(Ready_Date_Time__c) &lt; TIMEVALUE(&apos;02:15:00.000&apos;), DATEVALUE(Ready_Date_Time__c)&lt; TODAY()) , TRUE, FALSE)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>JV Ready on Time?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Journal_Voucher_Type__c</fullName>

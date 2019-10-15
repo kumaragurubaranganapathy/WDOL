@@ -511,6 +511,35 @@ BGBK__Fund__r.GL__c</formula>
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Related_To__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(NOT(ISBLANK(Fee_Payment__c)),
+  &quot;Fee Payment: &quot; &amp; Fee_Payment__r.Name,
+  IF(NOT(ISBLANK(BGBK__Fee__c)), 
+    &quot;Fee: &quot; &amp; BGBK__Fee__r.Name,
+    IF(NOT(ISBLANK(Payable_Receipt__c)),
+      &quot;Payable Receipt: &quot; &amp; Payable_Receipt__r.Name,
+      IF(NOT(ISBLANK(Deposit__c)),
+        &quot;Deposit: &quot; &amp; Deposit__r.Name,
+        IF(NOT(ISBLANK(BGBK__Refund2__c)),
+          &quot;Refund: &quot; &amp; BGBK__Refund2__r.Name,
+          IF(NOT(ISBLANK(Receipt_Refund__c)),
+            &quot;Receipt Refund: &quot;&amp; Receipt_Refund__r.Name,
+            &quot;Receipt, Payment, or Blank&quot;
+          )
+        )
+      )
+    )
+  )
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Related To</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Target_Accounting_System__c</fullName>
         <externalId>false</externalId>
         <formula>Case( 
