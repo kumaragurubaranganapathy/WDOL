@@ -35,7 +35,7 @@
             <div class="slds-grid slds-path__scroller-container">
                 <div class="slds-path__scroller" role="application">
                     
-					<ul class="{!(v.totalTabs == 6?'six-circles':'')+(v.totalTabs == 5?'five-circles':'')+(v.totalTabs == 4?'four-circles':'')+(v.totalTabs == 3?'three-circles':'')+(v.totalTabs == 2?'two-circles':'')+' slds-path__nav'}" role="listbox">
+					<ul class="{!(v.totalTabs == 6?'six-circles':'')+(v.totalTabs == 5?'five-circles':'')+(v.totalTabs == 4?'four-circles':'')+(v.totalTabs == 3?'three-circles':'')+(v.totalTabs == 2?'two-circles':'')+' slds-path__nav'}">
 						<aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
                            
                             
@@ -73,8 +73,8 @@
 							</li>
 							<aura:if isTrue="{!lessthan((var+1),v.totalTabs)}">
                                
-								<hr id="totaltabs" class="{!'slds-show_medium ' + ((lessthan((var+1),v.currentTab)==true)?'active-path':'')}"></hr>
-                                <hr id="{!var}" class="{!'slds-hide_medium ' + (or(var == v.currentTab-1 , var == v.currentTab-2 )?(var == v.currentTab-2?'active-path':''):'slds-hide')}"></hr>
+								<hr id="{!var + 'hr'}" class="{!'slds-show_medium ' + ((lessthan((var+1),v.currentTab)==true)?'active-path':'')}"></hr>
+                                <hr id="{!var + 'hrdesktop'}" class="{!'slds-hide_medium ' + (or(var == v.currentTab-1 , var == v.currentTab-2 )?(var == v.currentTab-2?'active-path':''):'slds-hide')}"></hr>
 							</aura:if>
                             
 						</aura:iteration>
