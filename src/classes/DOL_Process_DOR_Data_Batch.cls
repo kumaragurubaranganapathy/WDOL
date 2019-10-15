@@ -176,6 +176,8 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
             if(dorResponses != null && ! dorResponses.isEmpty()){
                 Map<String,String> headerMap = new  Map<String,String>();
                 headerMap.put('Content-Type','application/json');
+				headerMap.put(DOL_AppConstants.MULE_AUTHORIZATION_KEY, 
+                                DOL_AppConstants.MULE_AUTHORIZATION_VALUE_CONSTANT+DOL_AppConstants.integrationSettingsMetadataMap.get(DOL_AppConstants.MULE_AUTHORIZATION_VALUE_METADATA_LABEL));
                 String url = 'callout:DOL_Mule_API/v1/dorUpload';
                 String responseString = JSON.serialize(dorResponses);
                 //String url = 'https://dol-polaris-exp-dev.us-e2.cloudhub.io/api/v1/dorUpload';

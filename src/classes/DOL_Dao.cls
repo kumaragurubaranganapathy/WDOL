@@ -38,17 +38,19 @@ public with sharing class DOL_Dao {
         return fees;
     }
 
-    public MUSW__License2__c getLicenseAndRenewalRecordByLicenseNumber(String licenseNumber){
-        MUSW__License2__c license = [SELECT id, Name, RecordType.Name, Is_Renewal_Eligible__c, MUSW__Applicant__c, Name_on_Certificate__c,
+    public MUSW__License2__c getLicenseAndRenewalRecordByLicenseNumber(String licenseNumber,String profCode){
+        List<MUSW__License2__c> license = [SELECT id, Name, RecordType.Name, Is_Renewal_Eligible__c, MUSW__Applicant__c, Name_on_Certificate__c,
                                         Is_Reinstatement_Eligible__c, Application_Type__c, Phone__c, Credential_Type__c, 
                                         MUSW__Primary_Licensee__c,Camping_Resorts__c,Initial_Contracts__c, Timeshare_Projects__c, 
                                         Apartment_Units__c, Interval_fees__c, Advertising_Fees__c, Pieces_of_Personal_Property__c,
                                             ( select id, Renewal_Reinstatement_Type__c, Renewal_Status__c 
                                                 from Renewal_Applications__r ) 
                                         FROM MUSW__License2__c 
-                                        WHERE Name =: licenseNumber
+                                        WHERE Name =: licenseNumber and Profession_Code__c =: profCode
                                     ];
-        return license;
+        if(license != null && license.size() > 0)
+            return license.get(0);
+        return null;
     }
 
     public MUSW__License2__c getLicenseAndRenewalRecordByLicenseId(String licenseId){
