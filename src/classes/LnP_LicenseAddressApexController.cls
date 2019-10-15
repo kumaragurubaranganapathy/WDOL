@@ -1203,6 +1203,20 @@ return parcelList;
                     }
                 }
             }else if(!licenseParcelList.isEmpty() && !isAddressSame && methodName=='integrationsaveAddressMailing'){
+				for(MUSW__License_Parcel__c licenseParcelInstance: licenseParcelList){
+                    if(licenseParcelInstance.Mailing__c && licenseParcelInstance.Physical__c){
+                        licenseParcelInstance.Mailing__c = false;                        
+                    }
+                    licenseParcelListToBeUpdated.add(licenseParcelInstance); 
+                }
+                try{
+                    if(!licenseParcelListToBeUpdated.isEmpty()){
+                        update licenseParcelListToBeUpdated;
+                    } 
+                    System.debug('licenseParcelListToBeUpdated---' + licenseParcelListToBeUpdated);
+                }catch(DmlException e){
+                    System.debug('Error while updating license Parcel---' + e.getMessage());
+                }
                 if(!licenseRecordId.isEmpty() && !parcelIdSet.isEmpty()){
                     Id parcelId;
                     for(MUSW__Parcel__c parcelIdForMailingAddress : [Select Id, Address_Type__c From MUSW__Parcel__c 
