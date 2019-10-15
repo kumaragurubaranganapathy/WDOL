@@ -441,7 +441,7 @@ public without sharing class LnP_DashboardApexController_2 {
     public static String PendingRenewApplicationsTable(){
         try{  
             
-            List<String> columnHeaderList = new List<String>{'License','Profession','License Type','Expiration Date','Status','Sub-status',''};
+            List<String> columnHeaderList = new List<String>{'License','Profession','License Type','Expiration Date','Status','Sub-status'};
             List<String> statusFilterList = new List<String>{'Submitted','In-Review','In Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
                     
                     List<SObject> columnDataList = [Select id,Name,License_Number__c,Credential_Type__c,License__r.Application_Method__c, Renewal_Expiration_Date__c,Renewal_Status__c,Application_Type__c,Sub_Status__c

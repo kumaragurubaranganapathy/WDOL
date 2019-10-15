@@ -66,8 +66,8 @@
     bottom:0px;
 }
 /*common style for table */
-.THIS .slds-table thead th{
-    background-color:#eaeaea;
+.THIS .slds-table thead th, .THIS .slds-table thead td{
+    background-color:t(headerclr);
     padding: 1rem 2rem;
     font-size:t(tableFontSize);
 }

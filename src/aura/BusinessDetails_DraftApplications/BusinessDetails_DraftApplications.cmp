@@ -57,9 +57,9 @@
                                         <div class="slds-truncate" title="{!headerData}">{!headerData}</div>
                                     </th> 
                                 </aura:iteration>
-                                <th class="" scope="col">
-                                    <div class="slds-truncate"></div>
-                                </th> 
+                                <td class="" scope="col">
+                                    <div class="slds-truncate" title="Actions"></div>
+                                </td> 
                             </tr>
                         </thead>
                         <tbody>
@@ -131,9 +131,9 @@
                                         <div class="slds-truncate" title="{!headerData}">{!headerData}</div>
                                     </th> 
                                 </aura:iteration>
-                                <th scope="col">
-                                    <div class="slds-truncate"></div>
-                                </th>
+                                <td class="" scope="col">
+                                    <div class="slds-truncate" title="Actions"></div>
+                                </td> 
                             </tr>
                         </thead>
                         <tbody>
@@ -208,12 +208,9 @@
                                         <div class="slds-truncate" title="{!headerData}">{!headerData}</div>
                                     </th> 
                                 </aura:iteration>
-                                <th class="" scope="col">
-                                    <div class="slds-truncate" title="Action">Action</div>
-                                </th>
-                                <th class="" scope="col">
-                                    <div class="slds-truncate" title="Action"></div>
-                                </th>
+                                <td class="" scope="col">
+                                    <div class="slds-truncate" title="Actions"></div>
+                                </td> 
                             </tr>
                         </thead>
                         <tbody>
