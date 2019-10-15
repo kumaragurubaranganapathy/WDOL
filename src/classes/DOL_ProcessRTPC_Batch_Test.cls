@@ -1,18 +1,22 @@
 @IsTest
-public class DOL_Process_NCR_Data_Batch_Test {
-   	
+public class DOL_ProcessRTPC_Batch_Test {
+	
     @IsTest
-    public static void testNCRBatch(){
+    public static void testRtpcBatch(){
         Id accRecId = SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId();
         Account acc = DOL_TestDataFactory.createAccount(accRecId);
         
         Id conRecId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get('Contact').getRecordTypeId();
         Contact c = DOL_TestDataFactory.createContact(conRecId, acc.Id);
-        
-        MUSW__Account_Contact__c accCon = DOL_TestDataFactory.createAccountContact(c.Id,acc.Id);
-        
-        BGBK__Cart__c testCart = new BGBK__Cart__c(BGBK__Account__c= acc.Id, 
-                                                   BGBK__Contact__c= c.Id, 
+		        
+        Contact cq = [select AccountId from Contact where Id=:c.Id];
+
+        MUSW__Account_Contact__c accCon = new MUSW__Account_Contact__c(MUSW__Account__c=acc.Id,	
+                                                                       MUSW__Contact__c=c.Id);
+        insert accCon;
+                
+        BGBK__Cart__c testCart = new BGBK__Cart__c(BGBK__Account__c= cq.AccountId, 
+                                                   BGBK__Contact__c= cq.Id, 
                                                    BGBK__Expiration_DateTime__c=system.now().addDays(1));
         insert testCart;
         
@@ -22,24 +26,36 @@ public class DOL_Process_NCR_Data_Batch_Test {
                                                                   'Architects', 
                                                                   'Architect', 
                                                                   'General Application');
-        DateTime pastDate = DateTime.now().addDays(-10);
-        lic.Renewal_Eligible_Start_Date__c = Date.newinstance(pastDate.year(), pastDate.month(), pastDate.day());
-        update lic;
         
         MUSW__Fee__c objFee = DOL_TestDataFactory.createFeeWithLicense('General',100.00,lic.id);
         objFee.BGBK__Cart__c = testCart.Id;
         update objFee;
         
-        DOL_NCR_Input ncrInput = TestUtility.getNCRInput(lic.Id, '100');
+        Double totalDue = 0;
+        List<String> feeIds = new List<String>();
+        feeIds.add(objFee.Id);
+        totalDue = objFee.MUSW__Amount__c;
+        
+        MUSW__Receipt__c receipt = new MUSW__Receipt__c();
+        receipt.BGBK__Cart__c = testCart.Id;
+        receipt.Status__c = 'Draft';
+        receipt.Selected_Fees__c = String.join(feeIds,',');
+        insert receipt;
+        
+        String rtpcInput = TestUtility.getRtpcInput(testCart.Id,
+                                    String.join(feeIds,DOL_AppConstants.ePaymentUrlListValuesSeperator),
+                                    receipt.Id,
+                                    totalDue,c.Id);
         
         DOL_Integration_Batch_Input__c rtpcBatchInput = new DOL_Integration_Batch_Input__c();
-        rtpcBatchInput.Input__c = json.serialize(ncrInput);
-        rtpcBatchInput.Input_Type__c = 'NCR';
+        rtpcBatchInput.Input__c = rtpcInput;
+        rtpcBatchInput.Input_Type__c = 'RTPC';
         rtpcBatchInput.Status__c = 'UNPROCESSED';
         insert rtpcBatchInput;
+        Test.setCreatedDate(rtpcBatchInput.Id, Datetime.now().addMinutes(-30));
         
         Test.startTest();
-        DOL_Process_NCR_Data_Batch batch = new DOL_Process_NCR_Data_Batch();
+        DOL_ProcessRTPC_Batch batch = new DOL_ProcessRTPC_Batch();
         Database.executeBatch(batch);
         Test.stopTest();
     }
