@@ -708,11 +708,16 @@ margin-right:10%;
 .THIS .hide-button{
     visibility:hidden;
 }
+/* file upload common css start*/
 .THIS .slds-file-selector.slds-file-selector_files, .THIS .slds-file-selector .slds-file-selector__dropzone{
     width:100%;
 }
 .THIS .slds-file-selector slot[interop-primitiveFileDroppableZone_primitiveFileDroppableZone]{
     display:block;
+}
+/* file upload common css end*/
+.THIS .slds-tabs_default .slds-tabs_default__item .slds-tabs_default__link:focus{
+    text-decoration:underline;
 }
 
 @media only screen and (max-width:767.9px){    
