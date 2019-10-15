@@ -1,11 +1,17 @@
 public class ContactTriggerHandler implements BGCM.ITriggerHandler {
-    public void onAfterDelete() {}
+public void onAfterDelete() {}
     public void onAfterInsert() {
-       // AfterMethod();
+     if(DOL_AppUtility.isContactTrigger == false){
+        DOL_AppUtility.isContactTrigger = true;
+         AfterMethod();
+        }
     }
     public void onAfterUndelete() {}
     public void onAfterUpdate() {
-      //  AfterMethod();
+      if(DOL_AppUtility.isContactTrigger == false){
+        DOL_AppUtility.isContactTrigger = true;
+         AfterMethod();
+        }
     }
     public void onBeforeDelete() {}
     public void onBeforeInsert() {
@@ -15,8 +21,10 @@ public class ContactTriggerHandler implements BGCM.ITriggerHandler {
     }
     public void onBeforeUndelete() {}
     public void onBeforeUpdate() {
-        
-        /* Added this part of code to change last 4 digits of SSN when SSN is changed in ViewPII page */
+    
+    if(DOL_AppUtility.isContactTrigger == false){
+
+         /* Added this part of code to change last 4 digits of SSN when SSN is changed in ViewPII page */
         list<Contact> triggerNew = trigger.new;
         for(Contact con: triggerNew){
             Contact oldcon = new Contact();
@@ -31,6 +39,7 @@ public class ContactTriggerHandler implements BGCM.ITriggerHandler {
         }
         
         BeforeMethod();
+        }
     }
     
     public void last4SSN(){
@@ -88,23 +97,9 @@ public class ContactTriggerHandler implements BGCM.ITriggerHandler {
        }
     }
     
-   /* public void AfterMethod(){
-        Set<Id> conIds = new Set<Id>();
-         if(Trigger.isInsert){
-            System.debug('in if is insert');
-          System.debug('SecurityCodeHelper.isContactSecurityCodeSet '+SecurityCodeHelper.isContactSecurityCodeSet);
+    public void AfterMethod(){
             if(!SecurityCodeHelper.isContactSecurityCodeSet){
                 SecurityCodeHelper.setContactSecurityCode();
-            }
          }
-        
-        for(Contact c: (list<contact>)Trigger.New){
-            if(c.Contact_Status__c ==Label.St_Inactive){
-                conIds.add(c.Id);
-            }
-        }
-        if(conIds.size() > 0){
-            DeactivateUserHelper.updateUser(conIds);
-        }
-    }*/
+    }
 }

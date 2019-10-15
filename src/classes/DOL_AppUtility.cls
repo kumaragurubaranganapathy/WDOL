@@ -8,6 +8,7 @@ public class DOL_AppUtility {
     public static Boolean isFeePaymentRunOnce = false;
     public static Boolean runfromDolBatchUpdateLicenseStatus = false;
     public static Boolean isDolLicenseParcelTrigger = false;
+	public static Boolean isContactTrigger = false;
     //public static List<String> lstErrorLogIds = new List<String>();
     
     @AuraEnabled
