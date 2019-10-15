@@ -88,7 +88,7 @@ System.debug('feePaymentRecList : ' +feePaymentRecList );*/
                               AND Program_Type__c =: licenseToBeUpdated[0].Application_Type__c                                                        
                               Limit 1];   
             }
-            
+            system.debug('mastConfig ' + mastConfig);
             
             
             // for Fee Creation logic
@@ -105,12 +105,14 @@ System.debug('feePaymentRecList : ' +feePaymentRecList );*/
                                                            Voided_Receipt_Created_Date__c = receiptRec.MUSW__Effective_Date__c,
                                                            Voided_Receipt_Amount_DHP_Amount__c = receiptRec.MUSW__Amount_Tendered__c + 25.00
                                                           );
-                    feeRec.MUSW__License2__c = licRec.Id;
-					feeRec.Application_Type__c = licRec.Application_Type__c;
+                    feeRec.Revenue_Code__c = (mastConfig!= null && mastConfig.Revenue_Account_Code__c != null) ?  mastConfig.Revenue_Account_Code__c : '';
+                    feeRec.MUSW__License2__c = licRec.Id;  
+                    feeRec.Application_Type__c = licRec.Application_Type__c;
                     feeRec.License_Type__c = licRec.Credential_Type__c;
                     feeRec.Application_Method__c = licRec.Application_Method__c;
                     feeRec.Profession_Code__c = licRec.Profession_Code__c;
-                    feeRec.Revenue_Account_Code__c = (mastConfig!= null && mastConfig.Revenue_Account_Code__c != null) ?  mastConfig.Revenue_Account_Code__c : '';
+                  
+                      system.debug('feeRec ' + feeRec);
                     feeTobeInserted.add(feeRec);
                 }
                 system.debug('Before Insert ' + feeTobeInserted);
