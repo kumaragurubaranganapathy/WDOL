@@ -802,7 +802,10 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Alert__c.License__c</relatedList>
+        <fields>Historical_Operator_ID__c</fields>
+        <fields>Historical_Transaction_Date__c</fields>
+        <fields>Historical_Transaction_Type__c</fields>
+        <relatedList>License_History__c.License__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
