@@ -1149,6 +1149,15 @@
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
+    <validationRules>
+        <fullName>ValidateCurrentDocNumber</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+$RecordType.Name = &quot;Journal Voucher Manual&quot;, 
+ISBLANK(Current_Document_Number__c), 
+ISPICKVAL(Document_Type__c, &quot;Manual IAP -user created to ensure document # matches OFM/AFRS&quot;))</errorConditionFormula>
+        <errorMessage>Current Document Number cannot be blank.</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>Generate_Pdf</fullName>
         <availability>online</availability>
