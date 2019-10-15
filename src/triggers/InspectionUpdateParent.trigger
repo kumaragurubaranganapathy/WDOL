@@ -52,9 +52,9 @@ trigger InspectionUpdateParent on MUSW__Inspection__c (before update)
             }
         }
         
-        if (parents2closeChain.size() > 0 || parents2closeChainRoot.size() > 0)
+       /* if (parents2closeChain.size() > 0 || parents2closeChainRoot.size() > 0)
         {
-            // do not block DRE for root Inspections (DRE letter rules need to run)
+             do not block DRE for root Inspections (DRE letter rules need to run)
             if (parents2closeChainRoot.size() > 0)
             {
                 update parents2closeChainRoot;
@@ -65,6 +65,6 @@ trigger InspectionUpdateParent on MUSW__Inspection__c (before update)
                 update parents2closeChain;
                 TriggerService.releaseLock();
             }
-        }
+        }*/
     }
 }
