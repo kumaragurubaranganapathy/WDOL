@@ -3,8 +3,11 @@ public class DOL_ePaymentSessionTransfer_Test {
 	
     @isTest
     public static void test(){
-        Contact con = TestUtility.getContact();
-        insert con;
+        Id accRecId = SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId();
+        Account acc = DOL_TestDataFactory.createAccount(accRecId);
+        
+        Id conRecId = SObjectType.Contact.getRecordTypeInfosByDeveloperName().get('Contact').getRecordTypeId();
+        Contact c = DOL_TestDataFactory.createContact(conRecId, acc.Id);
         List<String>  ids = new List<String>();
         ids.add('0000001');
         ids.add('0000002');
@@ -12,9 +15,7 @@ public class DOL_ePaymentSessionTransfer_Test {
         
         DOL_ePaymentSessionTransferDetails detail = new DOL_ePaymentSessionTransferDetails(
         											'product Code',
-        											'567','CC',con.id,'56666tyyy',ids,true);
-        DOL_ePaymentSessionTransferDetails detail2 = new DOL_ePaymentSessionTransferDetails(
-        											'product-code','564','CC',con.Id);
+        											'567','CC',c.id,'56666tyyy',ids,true);
         
         String encryptedString = DOL_ePaymentSessionTransfer.getEncryptedSessionString(detail);
         DOL_ePaymentSessionTransfer.decryptSessionData(encryptedString);
