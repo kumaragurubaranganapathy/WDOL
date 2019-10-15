@@ -46,6 +46,8 @@ public class DOL_TestDataFactory {
         Contact con = new Contact(LastName= lastName);
         con.RecordTypeId = recordTypeId;
         con.AccountId = accId;
+        con.Unique_ID_To_Provide__c = 'SSN';
+        con.Social_Security_Number_Encrypted__c ='543128855';
         insert con;
         return con;
     }
@@ -57,6 +59,15 @@ public class DOL_TestDataFactory {
         return license;
     }
     
+    //
+        //method for creating License
+    public static MUSW__License2__c createLicenseIndividual(Id recordTypeId, Id accId,String programType, String licenseType,String applicationMethod){
+        MUSW__License2__c license = new MUSW__License2__c(Name='System Number', RecordTypeId = recordTypeId,MUSW__Applicant__c = accId, Application_Type__c = programType,Credential_Type__c = licenseType,Application_Method__c = applicationMethod,Manual_Fee_Generation__c = true);
+        insert license;
+        return license;
+    }
+    
+    //
     //method for creating Association
     public static Associations__c createAssociation(Id licId){
         Associations__c association = new Associations__c(Association_Type__c = 'Designated Architect', Parent_License__c = licId, Child_License__c = licId, Status__c = 'Pending Add');
@@ -287,7 +298,8 @@ public class DOL_TestDataFactory {
                 Lastname = 'McTesty',
                 AccountId = portalAccount1.Id,
                 Unique_ID_To_Provide__c = 'No_SSN_or_ITIN',
-                Email = System.now().millisecond() + 'test@test.com'
+                Email = System.now().millisecond() + 'test@test.com',
+                BusinessCartToOpen__c = portalAccount1.Id
             );
             Database.insert(contact1);
             
@@ -481,6 +493,27 @@ public class DOL_TestDataFactory {
         rene.External_Id__c = 'teste1';
         insert rene;
         return rene;
+    }
+    
+    //Create an Inspection Record
+    public static MUSW__Inspection__c createInspection(Id recordTypeId, String type, String programType, String credType){
+        MUSW__Inspection__c inspec = new MUSW__Inspection__c(Name = 'System Number', RecordTypeId = recordTypeId, MUSW__Type__c = type, Application_Type__c = programType, Credential_Type__c = credType, MUSW__Status__c = 'Pending');
+    	insert inspec;
+        return inspec;
+    }
+    
+    //Create a Violation Record
+    public static MUSW__Violation__c createViolation(Id recordTypeId){
+        MUSW__Violation__c violation = new MUSW__Violation__c(RecordTypeId = recordTypeId);
+        insert violation;
+        return violation;
+    }
+    
+    //Create an Inspection_Violation record
+    public static MUSW__Inspection_Violation__c createInspectionViolation(Id inpectionId, Id violationId){
+        MUSW__Inspection_Violation__c inspVio = new MUSW__Inspection_Violation__c(MUSW__Inspection__c = inpectionId, MUSW__Violation__c = violationId);
+        insert inspVio;
+        return inspVio;
     }
         
 }//Class End

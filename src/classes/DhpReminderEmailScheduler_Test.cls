@@ -18,7 +18,7 @@ public class DhpReminderEmailScheduler_Test {
         update fee;
         
         ContentVersion contentVersion = new ContentVersion(
-            Title = 'DHP',
+            Title = 'Dishonored',
             PathOnClient = 'Penguins.jpg',
             VersionData = Blob.valueOf('Test Content'),
             IsMajorVersion = true
