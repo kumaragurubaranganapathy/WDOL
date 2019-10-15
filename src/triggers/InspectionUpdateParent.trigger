@@ -61,9 +61,9 @@ trigger InspectionUpdateParent on MUSW__Inspection__c (before update)
             }
             if (parents2closeChain.size() > 0)
             {
-                TriggerService.setLock();
+               // TriggerService.setLock();
                 update parents2closeChain;
-                TriggerService.releaseLock();
+               // TriggerService.releaseLock();
             }
         }*/
     }
