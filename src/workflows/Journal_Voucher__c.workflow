@@ -20,10 +20,10 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>ApprovedByDate</fullName>
-        <field>Approved_by_Date__c</field>
-        <formula>TODAY()</formula>
-        <name>ApprovedByDate</name>
+        <fullName>ApprovedByDateTime</fullName>
+        <field>Approved_Date_Time__c</field>
+        <formula>NOW()</formula>
+        <name>ApprovedByDateTime</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -64,7 +64,16 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
-	<fieldUpdates>
+    <fieldUpdates>
+        <fullName>ApprovedbyDate</fullName>
+        <field>Approved_by_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Approved by Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_Owner</fullName>
         <field>OwnerId</field>
         <lookupValue>JV_Approval_queue</lookupValue>
