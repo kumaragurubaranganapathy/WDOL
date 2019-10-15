@@ -2,6 +2,14 @@
 <Queue xmlns="http://soap.sforce.com/2006/04/metadata">
     <doesSendEmailToMembers>true</doesSendEmailToMembers>
     <name>JV Approval queue</name>
+    <queueMembers>
+        <roles>
+            <role>Accounting_Supervisor</role>
+        </roles>
+        <users>
+            <user>pchaubal@deloitte.com.wadolbuspro</user>
+        </users>
+    </queueMembers>
     <queueSobject>
         <sobjectType>Journal_Voucher__c</sobjectType>
     </queueSobject>
