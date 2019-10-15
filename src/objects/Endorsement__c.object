@@ -152,8 +152,7 @@
     <fields>
         <fullName>Days_After_Endorsement_Issue_Date_30__c</fullName>
         <externalId>false</externalId>
-        <formula>Effective_Date__c + 30</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>Date_Requested_for_Adding_Endorsement__c + 30</formula>
         <label>Days After Endorsement Issue Date 30</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
