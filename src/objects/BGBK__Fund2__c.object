@@ -225,6 +225,20 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Reports_Revenue_Account_Code__c</fullName>
+        <description>Formula Field to concatenate the RAC</description>
+        <externalId>false</externalId>
+        <formula>Fund__c +   Major_Group__c +  Major_Source__c +  Sub_Source__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>RAC code for reporting</inlineHelpText>
+        <label>Reports - Revenue Account Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Sub_Source__c</fullName>
         <externalId>false</externalId>
         <formula>IF(RIGHT(LEFT(Name, 16),6)=&quot;xxxxxx&quot;,&quot;&quot;,RIGHT(LEFT(Name, 16),6))</formula>
