@@ -120,6 +120,8 @@ public class Polaris_ServiceRequestController {
             labelToFields.endorsementType=Ques.Endorsement_Type__c;
             labelToFields.messageTriggerResponse = Ques.MessageTriggerResponse__c;
             labelToFields.warningMessages = Ques.Warning_Message__c;
+			labelToFields.regex = Ques.Regex_Validation__c;
+            labelToFields.errormsg = Ques.Error_Message__c;
             if(Ques.isRequired__c==true){
             	labelToFields.isMandatoryQues = true;
              }
