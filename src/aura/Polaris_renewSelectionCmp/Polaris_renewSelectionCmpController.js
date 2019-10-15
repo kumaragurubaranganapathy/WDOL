@@ -8,7 +8,7 @@
     },
     startApplication : function(component, event, helper){
         component.set("v.isdisabled",true);
-        component.set("v.spinner",true);
+        helper.hideOrShowSpinner(component,event,helper);        
         helper.validateform(component, event, helper);
     },
     

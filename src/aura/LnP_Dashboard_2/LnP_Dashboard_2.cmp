@@ -693,7 +693,7 @@
                 </div>                
             </div>
             <div class="back-btn-wrapper">
-                <lightning:button class="btn btn-lnp back-button" label="Back" title="Back" onclick="{!c.backToDashboard}" />
+                <lightning:button class="btn-lnp back-button" label="Back" title="Back" onclick="{!c.backToDashboard}" />
             </div>
         </aura:if>
         <aura:if isTrue="{!v.displayAssociationForm}">
