@@ -222,6 +222,12 @@
         <fields>UPDATEDBY_USER</fields>
         <relatedList>MUSW__Project_Contact__c.MUSW__Contact__c</relatedList>
     </relatedLists>
+	<relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__Account__c</fields>
+        <fields>Email__c</fields>
+        <relatedList>MUSW__Account_Contact__c.MUSW__Contact__c</relatedList>
+    </relatedLists> 
     <relatedLists>
         <fields>MUSW__Complaint2__c</fields>
         <fields>MUSW__Contact_Type__c</fields>
