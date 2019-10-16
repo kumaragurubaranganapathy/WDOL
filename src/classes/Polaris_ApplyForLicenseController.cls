@@ -1815,7 +1815,8 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
         }
     }
     
-    private static Id getCommunityUserContactId(){
+    @AuraEnabled
+    public static Id getCommunityUserContactId(){
         try{
             Id contactId;
             for(User userRecord: [Select Id, username, contactId from User where Id = :UserInfo.getUserId() LIMIT 1]){
@@ -1843,7 +1844,33 @@ if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.up
         }
         
     }
-
+    
+    @AuraEnabled
+    public static List<MUSW__Parcel__c> getAllAddressForValidation(Id accountOrContactId, Id applicationId){
+        try{
+        //    system.debug('accountOrContactId==='+ accountOrContactId + 'application Id--' + applicationId);
+            List<MUSW__Parcel__c> allAddressList = new List<MUSW__Parcel__c>();
+            if(String.isNotBlank(accountOrContactId)){
+                for(MUSW__Parcel__c addressRecords : [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
+                                                      MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, 
+                                                      County__c, Country__c, MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
+                                                      Primary_Account__c,LastModifiedDate FROM MUSW__Parcel__c 
+                                                      WHERE Status__c ='Active' AND ((MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :accountOrContactId)
+                                                                                     OR (Primary_Account__c!= null AND Primary_Account__c = :accountOrContactId AND Application_BG__c = :applicationId 
+                                                                                        ))]){
+                                                                                            allAddressList.add(addressRecords);
+                                                                                        }  
+             //   system.debug('allAddressList'+allAddressList);
+            }
+            return allAddressList;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
+    }
+    
     @AuraEnabled
     public static Map<String, String> MapgetPicklistFieldValues(String objectName, String pickListFieldName){
         try{
