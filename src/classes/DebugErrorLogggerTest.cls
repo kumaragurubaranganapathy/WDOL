@@ -4,9 +4,9 @@ public class DebugErrorLogggerTest {
         Test.startTest();
         
         try{
-                Contact cc = new Contact();
-                insert cc;
-            }catch(Exception e){
+            Contact cc = new Contact();
+            insert cc;
+        }catch(Exception e){
             
             DebugErrorLoggger ee = new DebugErrorLoggger();
             ee.LogError(e);
@@ -17,8 +17,15 @@ public class DebugErrorLogggerTest {
             DebugErrorLoggger.LogWarning(e, 'sObjectId', 'sObjectName','className','functionalityImpacted','comments');
             DebugErrorLoggger.LogError(e, 'sObjectId', 'sObjectName','className','functionalityImpacted','comments');
             System.assert(true);  
-      }//end try
-      Test.stopTest();
-     } //end method
-     
+            
+            Dol_LoggerInput di = new Dol_LoggerInput();
+            
+            DebugErrorLoggger.dolLogger(di);
+            
+            PageReference pageRef = new PageReference('http://www.google.com');
+            DebugErrorLoggger.getURIDetailsForLog();
+        }//end try
+        Test.stopTest();
+    } //end method
+    
 }//end class
