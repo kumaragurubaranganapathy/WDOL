@@ -4115,6 +4115,20 @@ CASE( MUSW__AlertCode__c,
         <searchResultsAdditionalFields>Cust_Id__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>UBI_Number_should_be_of_9_digit</fullName>
+        <active>true</active>
+        <description>UBI # should be of 9 digit</description>
+        <errorConditionFormula>AND(
+RecordType.DeveloperName = &apos;Business_Account&apos;,  Course_Provider__c == FALSE,
+  NOT(ISBLANK(UBI_Number__c)), 
+ NOT(LEN(SUBSTITUTE(SUBSTITUTE(UBI_Number__c, &quot;.&quot;, &quot;&quot;),&quot;-&quot;,&quot;&quot;)) = 9 ) 
+
+                
+)</errorConditionFormula>
+        <errorDisplayField>UBI_Number__c</errorDisplayField>
+        <errorMessage>UBI Number should be of 9 digit.</errorMessage>
+    </validationRules> 
     <webLinks>
         <fullName>AltavistaNews</fullName>
         <availability>online</availability>
