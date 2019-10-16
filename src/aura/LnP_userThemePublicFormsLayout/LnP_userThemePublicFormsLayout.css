@@ -809,7 +809,7 @@ margin-right:10%;
     .THIS .page-width .field-item .slds-form-element__control,.THIS .page-width .field-size .slds-form-element__control,.THIS .portal-registration-form-container .field-item .slds-form-element__control,.THIS .personal-info .field-size .slds-form-element__control{
         width:100%;
     }
-    .THIS .slds-table tbody td{
+    .THIS .slds-table tbody td, .THIS .slds-table tbody td div{
         padding:0.75rem;
         font-size:0.8125rem;
         border:none;
@@ -848,15 +848,22 @@ margin-right:10%;
         white-space:normal;
     }
 }
-@media only screen and (min-width: 768px) and (max-width: 1023px){
+@media only screen and (min-width: 768px) and (max-width: 1279.9px){
     .THIS .field-size .slds-form-element__control{
         width:100%
     }
     .THIS  .field-item .slds-form-element__control{
         width:100%;
     }
-    
-    
+    .THIS .slds-max-medium-table_stacked.slds-table_cell-buffer tr>td:first-child{
+        padding-left:0;
+    }
+    .THIS .slds-table tbody td{
+        padding-left:0;
+    }    
+    .THIS .slds-max-medium-table_stacked tr:last-of-type{
+        border-bottom:2px solid t(sectionBG);
+    }
 }
 .THIS .slds-spinner_container {
     position:fixed;
@@ -881,4 +888,12 @@ margin-right:10%;
 .THIS button.slds-button:disabled{
     background-color:t(headerclr);
     color:t(buttonWhite);
+}
+@media screen and (max-width: 1279.9px){
+    .THIS .slds-table tbody td, .THIS .slds-table tbody td div{
+        padding:0.75rem;
+        font-size:0.8125rem;
+        color:t(LnGFormTitleColor);
+        border:none;
+    }
 }

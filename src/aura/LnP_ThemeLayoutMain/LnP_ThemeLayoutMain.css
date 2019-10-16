@@ -218,11 +218,10 @@
 }
 @media t(mqSmall){
     .THIS .slds-table tbody td{
-        padding:0.75rem;
-        font-size:0.8125rem;
+        padding:0.75rem;        
         color:t(LnGFormTitleColor);
         border:none;
-    }
+    }    
     .THIS .slds-table tbody tr{
         border:solid 1px t(grayBorder);
         margin-top:1rem;
@@ -237,6 +236,22 @@
     }
     .THIS table.slds-table lightning-formatted-text{
         white-space:normal;
+    }
+}
+@media screen and (max-width: 1279.9px){
+    .THIS .slds-table tbody td, .THIS .slds-table tbody td div{
+        font-size:0.8125rem;        
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1279.9px){
+    .THIS .slds-max-medium-table_stacked.slds-table_cell-buffer tr>td:first-child{
+        padding-left:0;
+    }
+    .THIS .slds-table tbody td{
+        padding-left:0;
+    }
+    .THIS .slds-max-medium-table_stacked tr:last-of-type{
+        border-bottom:2px solid t(sectionBG);
     }
 }
 .THIS .slds-spinner_container {
