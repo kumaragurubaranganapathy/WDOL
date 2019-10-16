@@ -27,7 +27,7 @@
                                                         
                                                             <lightning:menuItem label="Payment cart" value="Payment cart"/>
                                                          <lightning:menuItem label="Apply for new license" value="licenseSelectionPage"/>
-                                                         <lightning:menuItem label="Update legal name" value="Update legal name"/>
+                                                         <lightning:menuItem label="Change legal name" value="Change legal name"/>
                                                         
                                                     </lightning:buttonMenu>
                                                     
@@ -43,7 +43,7 @@
                     <a onclick="{!c.updateLegalName}" class="update-name" href="javascript:void(0);">Update legal name</a>
                 </div>
                 <lightning:layout class="slds-wrap contact-details">
-                    <lightning:layoutItem size="12" mediumDeviceSize="6" class="contact-item">
+                    <lightning:layoutItem size="12" largeDeviceSize="6" class="contact-item">
                         <div class="field-style">
                             <div class="label-style">Email:</div>
                             <div class="data-style slds-truncate" title="{!v.ContactObj.Email?v.ContactObj.Email:'None'}">{!v.ContactObj.Email?v.ContactObj.Email:'None'}</div>
@@ -69,7 +69,7 @@
                     <aura:if isTrue="{!not(empty(v.ParcelObj))}">
                         <aura:iteration items="{!v.ParcelObj}" var="parcel" indexVar = "index">
                             <aura:if isTrue = "{!parcel.Address_Type__c == 'MAILING ADDRESS'}">
-                                <lightning:layoutItem size="12" mediumDeviceSize="6" class="{!v.showAddress?'contact-item':'contact-item slds-show_medium'}">
+                                <lightning:layoutItem size="12" largeDeviceSize="6" class="{!v.showAddress?'contact-item':'contact-item slds-show_medium'}">
                                     <div class="field-style address">
                                         <div class="label-style">Mailing address:</div>
                                         <div class="data-style">{!parcel.MUSW__Street2__c}<br/>
@@ -102,9 +102,7 @@
                     <lightning:layoutItem size="12" mediumDeviceSize="6" class="change-link-wrapper">
                         <a href="javascript:void(0);" class="change-link" onclick="{!c.updateContactInfo}">Update contact information</a>
                     </lightning:layoutItem>
-                    <!--<lightning:layoutItem size="12" mediumDeviceSize="6" class="change-link-wrapper">
-                        <a href="javascript:void(0);" class="change-link" onclick="{!c.updateAddress}">Change address</a>
-                    </lightning:layoutItem> -->                   
+                                 
                 </lightning:layout>
             </lightning:layoutItem>
             <lightning:layoutItem size="12" mediumDeviceSize="3" class="{!v.showMoreAMR?'nav-links exp-links':'nav-links slds-show_medium'}">

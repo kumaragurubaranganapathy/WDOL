@@ -355,9 +355,9 @@
                         
                         <lightning:tab class="tab-style" label="Draft Applications or Requests" id="DraftApp_id">
                             <aura:if isTrue="{!v.DraftAMRDataList.length != 0}">
-                                <div class="slds-p-vertical_large">
+                                <div>
                                     
-                                    <div class="slds-p-vertical_small table-height">
+                                    <div class="table-height">
                                         
                                         <div style="height: 100%; position: relative;">
                                             <div class="table-scroll">
