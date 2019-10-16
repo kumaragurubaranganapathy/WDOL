@@ -8,8 +8,8 @@ public without Sharing class  Polaris_TodoList{
         
         //Status =:'Pending',
         User currentUser = [SELECT Name,Id,ContactId,Email from User Where ID = :UserInfo.getUserId() LIMIT 1];
-        system.debug('currentUser :'+currentUser);
-        Contact con = [Select id,Email FROM Contact where id=:currentUser.ContactId];
+        //system.debug('currentUser :'+currentUser);
+        Contact con = [Select id,Email FROM Contact where id=:currentUser.ContactId];        
         return [select id,ActivityDate,Description,License_Application_Type__c,Subject,Email__c,isDCP__c,Child_License_Id__c,AccountId__c,Main_License_Type__c,Business_Name__c,Whatid,type,Parent_Licensee_Name__c,Parent_License_Name__c,Parent_License_Type__c,Parent_Profession__c,Child_Licensee_Name__c,Child_License_Name__c,Child_License_Type__c,Child_Profession__c,Expiration_Date__c,Designation__c from task where Status ='Pending' and Email__c=:con.Email ];
             
     }
@@ -19,16 +19,16 @@ public without Sharing class  Polaris_TodoList{
         try{
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
-        System.debug('User Id ' + queryCondition);
+       // System.debug('User Id ' + queryCondition);
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
+       // system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         Id getContactId = '003r000000EOhBB';
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
-        system.debug('licenseType'+licenseType+'board');
+       // system.debug('licenseType'+licenseType+'board');
         Request__c application = new Request__c();
         application.Profession__c = board; 
         application.License_Type__c = licenseType;        
@@ -45,7 +45,7 @@ public without Sharing class  Polaris_TodoList{
             insert application;
         }
         catch(Exception e){
-            HandleException.LogException(e,'ExamReschedule','insertRequest');            
+            DOL_CreateErrorLog_Exception.logApplicationError(e);            
         }
         string appId = '';
         return appId = application.Id;
@@ -61,16 +61,16 @@ public without Sharing class  Polaris_TodoList{
         Id getContactId ; 
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
-        System.debug('User Id ' + queryCondition);
+       // System.debug('User Id ' + queryCondition);
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
+      //  system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
-        system.debug('licenseType'+licenseType+'board');
+       // system.debug('licenseType'+licenseType+'board');
         Request__c application = new Request__c();
         application.Profession__c = board; 
         application.License_Type__c = licenseType;        
@@ -105,7 +105,7 @@ public without Sharing class  Polaris_TodoList{
         {
             associ.Status__c = 'Generate Fee';
         }        
-        system.debug('lstAssociation from child : '+lstAssociation);
+       // system.debug('lstAssociation from child : '+lstAssociation);
         if(!lstAssociation.isEmpty()){   
             ta.Sub_status__c = 'Accepted';
             update ta;
@@ -126,16 +126,16 @@ public without Sharing class  Polaris_TodoList{
         Id getContactId ; 
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
-        System.debug('User Id ' + queryCondition);
+      //  System.debug('User Id ' + queryCondition);
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
+      //  system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
-        system.debug('licenseType'+licenseType+'board');
+    //    system.debug('licenseType'+licenseType+'board');
         Request__c application = new Request__c();
         application.Profession__c = board; 
         application.License_Type__c = licenseType;        
@@ -148,7 +148,7 @@ public without Sharing class  Polaris_TodoList{
             insert application;
         }
         catch(Exception e){
-            HandleException.LogException(e,'Polaris_AMRLinkCntrl','insertRequest');            
+            DOL_CreateErrorLog_Exception.logApplicationError(e);            
         }
         string appId = '';
         return appId = application.Id;   
@@ -158,6 +158,7 @@ public without Sharing class  Polaris_TodoList{
             return null;
         }
     }
+    
     @AuraEnabled
     public static String updateTaskAMR(Id taskId,String subStatus){
         try{
@@ -172,7 +173,7 @@ public without Sharing class  Polaris_TodoList{
             }
             update tskList;
             return 'Success';
-    	}
+        }
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
@@ -219,7 +220,8 @@ public without Sharing class  Polaris_TodoList{
             update tskList;
             update accList;
             return 'Success';
-        }else if(lstAssociationsOnChild.size() < 1){
+        }
+        else if(lstAssociationsOnChild.size() < 1){
             for(Associations__c associ : lstAssociation)
             {
                 if(subStatus == 'Accepted'){
@@ -237,8 +239,7 @@ public without Sharing class  Polaris_TodoList{
             }else{
                 return 'Fail';
             }
-        }
-        else if(lstAssociationsOnChild.size() >= 1)
+        }else if(lstAssociationsOnChild.size() >= 1)
         {
             
             for(Associations__c associ : lstAssociation)
@@ -247,7 +248,7 @@ public without Sharing class  Polaris_TodoList{
                 if(subStatus == 'Accepted'){
                     //associ.Status__c = 'Generate Fee';
                     Integer days = (associ.Child_License__r.MUSW__Expiration_Date__c != null) ? system.today().daysBetween(associ.Child_License__r.MUSW__Expiration_Date__c):0;
-                    system.debug('days : '+days);
+                 //   system.debug('days : '+days);
                     if(days < 120)
                     {
                         message = 'Pay Fee Near Expiration';
@@ -261,7 +262,7 @@ public without Sharing class  Polaris_TodoList{
                 }
                 lstUpdateAssociation.add(associ);
             }
-            system.debug('lstUpdateAssociation : '+lstUpdateAssociation);
+         //   system.debug('lstUpdateAssociation : '+lstUpdateAssociation);
             if(!lstUpdateAssociation.isEmpty() && subStatus == 'Accepted' ){
                 //update tskList;
                 //update lstUpdateAssociation;
@@ -397,5 +398,6 @@ public without Sharing class  Polaris_TodoList{
             return null;
         }
     }
+    
     
 }
