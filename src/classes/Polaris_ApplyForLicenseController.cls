@@ -15,7 +15,7 @@ public class Polaris_ApplyForLicenseController {
     @AuraEnabled(cacheable = true)
     public static String fetchData(String board, String licenseType, String applicationType, String flowType, String appId) {
         try{
-          //  system.debug('board : '+board+'licenseType : '+licenseType+ 'applicationType: '+applicationType + 'appId :'+appId);
+            system.debug('board : '+board+'licenseType : '+licenseType+ 'applicationType: '+applicationType + 'appId :'+appId);
             //Creating the conditions for fetching the data       
             Integer tabIndex = 1;
             Integer currentTab = 0;
@@ -68,7 +68,8 @@ public class Polaris_ApplyForLicenseController {
             if(!lstTempMasterSubmission.isEmpty())
             {
                 lstMasterSubmission = lstTempMasterSubmission;
-            }           
+            }    
+            system.debug('lstMasterSubmission : '+lstMasterSubmission);        
             //Fetching Section
             List<LnP_License_Type_Sections_Setting__mdt> lstSections = new List<LnP_License_Type_Sections_Setting__mdt>();        
             lstSections = Polaris_ApplyForLicenseService.fetchSection(board,licenseType,applicationType);
@@ -76,7 +77,7 @@ public class Polaris_ApplyForLicenseController {
             {
                 sections = lstSections[0].Sections__c;
             }
-           // system.debug('sections'+sections);
+            system.debug('sections'+sections);
             List<String> lstOfSections = new List<String>();
             if(sections != null){
                 lstOfSections = sections.split(',');
@@ -110,14 +111,12 @@ public class Polaris_ApplyForLicenseController {
                 mapLabel.fieldType = DOL_AppConstants.ATTACHMENT;
                 mapLabel.isGenericSub = true;
                 mapLabel.orderBy = masterSubmissionRecord.Order_No__c;
-                if(masterSubmissionRecord.Submission_Type__c != null 
-                   && masterSubmissionRecord.Submission_Type__c.contains('Softcopy: To be Uploaded')){
-                       mapLabel.uploadFile = true;
-                   }
-                if(masterSubmissionRecord.Submission_Type__c != null 
-                   && masterSubmissionRecord.Submission_Type__c.contains('Hardcopy: To be Mailed')){
-                       mapLabel.acknowledge = true;
-                   }
+                if(masterSubmissionRecord.Submission_Type__c != null && masterSubmissionRecord.Submission_Type__c.contains('Softcopy: To be Uploaded')){
+                    mapLabel.uploadFile = true;
+                }
+                if(masterSubmissionRecord.Submission_Type__c != null && masterSubmissionRecord.Submission_Type__c.contains('Hardcopy: To be Mailed')){
+                    mapLabel.acknowledge = true;
+                }
                 mapLabel.isMandatorySub = false; 
                 if(masterSubmissionRecord.Required__c){
                     mapLabel.isMandatorySub = true;   
@@ -200,8 +199,8 @@ public class Polaris_ApplyForLicenseController {
                     labelToFields.fieldValueOptions = Ques.Possible_Responses__c.split(';');
                 }
                 else if(Ques.Possible_Responses__c != null 
-                        && (Ques.Data_Type__c == DOL_AppConstants.RADIO ||Ques.Data_Type__c == DOL_AppConstants.CHECKBOX 
-                            ||Ques.Data_Type__c == DOL_AppConstants.YES_NO))
+                && (Ques.Data_Type__c == DOL_AppConstants.RADIO ||Ques.Data_Type__c == DOL_AppConstants.CHECKBOX 
+                ||Ques.Data_Type__c == DOL_AppConstants.YES_NO))
                 { 
                     for(String radio : Ques.Possible_Responses__c.split(';')){
                         LnP_ApplyForLicenseWrapper.MapRadioButtons radioMap = new LnP_ApplyForLicenseWrapper.MapRadioButtons();
@@ -262,9 +261,9 @@ public class Polaris_ApplyForLicenseController {
                     licenseWrapper.personalInfoObjectName = DOL_AppConstants.NULL_EMPTY_STRING + 'Contact';
                     licenseWrapper.fieldJson = jsonApplicationFields;
                     /* if(!lstLicenseApplication.isEmpty() && lstLicenseApplication[0].Contact__c != null )
-{
-licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
-}*/
+                    {
+                    licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
+                    }*/
                     if (!lstApps.isEmpty() && lstApps[0].MUSW__Applicant__c != null) {
                         licenseWrapper.contactId = lstApps[0].MUSW__Applicant__c;   
                     }
@@ -305,7 +304,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 lstLicenseWrapper.add(licenseWrapper);
                 tabIndex++;
             }
-          //  system.debug('lstLicenseWrapper : '+JSON.serialize(lstLicenseWrapper));            
+            system.debug('lstLicenseWrapper : '+JSON.serialize(lstLicenseWrapper));            
             return JSON.serialize(lstLicenseWrapper);  
         }catch(Exception ex)
         {
@@ -324,7 +323,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             Map<String,Object> mapfield = (Map<String,Object>)JSON.deserializeUntyped(strJsonForm);        
             strJsonForm = JSON.serialize(mapfield);        
             LnP_JSONParser parser = LnP_JSONParser.parse(strJsonForm);
-         //   System.debug('Map of JSON--->'+parser);
+            System.debug('Map of JSON--->'+parser);
             return parser;
         }
         catch(Exception ex)
@@ -343,26 +342,26 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFieldTemp = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
             //List<string> lstMandatorySubSections= new  List<string>();
             for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
-             //   system.debug('wrapperlist123444'+wrapperList);
+                system.debug('wrapperlist123444'+wrapperList);
                 if(objWrapper.sectionName.contains(DOL_AppConstants.LICENSE_INFORMATION)||objWrapper.sectionName.contains(DOL_AppConstants.QUESTIONS) 
-                   || objWrapper.sectionName.contains(DOL_AppConstants.ENDORSEMENT)){
-                      // system.debug('Inside section=Question');             
-                       for(LnP_ApplyForLicenseWrapper.MapLabelToFields abc: objWrapper.labelFieldsMap) {
-                           listFields.add(abc);
-                       }                
-                   }
+                || objWrapper.sectionName.contains(DOL_AppConstants.ENDORSEMENT)){
+                    system.debug('Inside section=Question');             
+                    for(LnP_ApplyForLicenseWrapper.MapLabelToFields abc: objWrapper.labelFieldsMap) {
+                        listFields.add(abc);
+                    }                
+                }
                 if(objWrapper.sectionName.contains(DOL_AppConstants.ATTACHMENTS)){
                     listFieldSub = objWrapper.labelFieldsMap;
                 }
             }
-         //   system.debug('List Fields '+Json.serialize(listFieldSub));
+            system.debug('List Fields '+Json.serialize(listFieldSub));
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
                 if((fieldMap.submissionDetails != '' && fieldMap.submissionDetails != null) ){
-                //    system.debug('insdie submissiondetails'+fieldMap);
+                    system.debug('insdie submissiondetails'+fieldMap);
                     if (fieldMap.value != null && fieldMap.value != '' ) {
-                     //   system.debug('insdie submissiondetailsvalues'+fieldMap.value);
+                        system.debug('insdie submissiondetailsvalues'+fieldMap.value);
                         Map<String, String> mapAttachment = (Map<String, String>)JSON.deserialize(fieldMap.submissionDetails,Map<String, String>.class);
-                   //     system.debug('mapAttachment12344'+mapAttachment);
+                        system.debug('mapAttachment12344'+mapAttachment);
                         if(mapAttachment.containsKey(fieldMap.value)){
                             submissionList.addAll(mapAttachment.get(fieldMap.value).split(','));
                         }
@@ -389,27 +388,26 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             String mastSubCond2 = DOL_AppConstants.NULL_EMPTY_STRING + 'Application_Method__c =\''+ApplicationType+'\'';
             String mastSubCond3 = DOL_AppConstants.NULL_EMPTY_STRING + 'Credential_Type__c =\''+LicenseType+'\'';
             String mastSubCond4 = DOL_AppConstants.NULL_EMPTY_STRING + 'Title__c IN: XXX ';
-            String mastSubCond6 = DOL_AppConstants.NULL_EMPTY_STRING + 'Active__c = True';
             MUSW__License2__c upgradeLic = new MUSW__License2__c();
             String strSubmission = DOL_AppConstants.NULL_EMPTY_STRING + '';
-         //   System.debug('upgradeLicenseId:'+upgradeLicenseId);
+            System.debug('upgradeLicenseId:'+upgradeLicenseId);
             if(upgradeLicenseId!=null)
             {
-                upgradeLic = [SELECT id,Credential_Type__c FROM MUSW__License2__c where id=:upgradeLicenseId and id!=null limit 1];
+                upgradeLic = [SELECT id,Credential_Type__c FROM MUSW__License2__c where id=:upgradeLicenseId limit 1];
             } 
             if(upgradeLic != null){
                 String mastSubCond5 = DOL_AppConstants.NULL_EMPTY_STRING + 'Show_For_License__c =\''+upgradeLic.Credential_Type__c+'\'';        
                 strSubmission = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Show_For_License__c,Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ( ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+' AND '+mastSubCond5+' ) OR (Title__c IN: XXX) ORDER BY  Order_No__c ASC' ;
             }
             else{
-                strSubmission = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+ ' AND ' +mastSubCond4+' AND '+mastSubCond6 ;
+                strSubmission = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+ ' AND ' +mastSubCond4 ;
             }
-          //  system.debug('submissionList'+submissionList);
+            system.debug('submissionList'+submissionList);
             masterSubmissionList = Utilityclass_withsharing.queryRecordsInClause(strSubmission,submissionList);
-          //  system.debug('masterSubmissionList12345'+masterSubmissionList);
+            system.debug('masterSubmissionList12345'+masterSubmissionList);
             
             
-          //  System.debug('Field Map'+JSON.serialize(listFieldSub));
+            System.debug('Field Map'+JSON.serialize(listFieldSub));
             Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields> submissions = new Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields>();
             Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields> warapperMapSorted = new Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields>();
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFieldSub){
@@ -421,7 +419,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     submissions.put(fieldMap.orderBy,fieldMap);  
                 }
             }
-           // system.debug('submissions3454'+submissions);
+            system.debug('submissions3454'+submissions);
             //Map<String,LnP_ApplyForLicenseWrapper.MapLabelToFields> warapperMapSorted = new Map<String,LnP_ApplyForLicenseWrapper.MapLabelToFields>();
             if(masterSubmissionList.size()>0){
                 for(MUSW__Master_Submission_List__c master : masterSubmissionList){
@@ -432,7 +430,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         //  System.debug('submission'+submissions.get(master.Name));
                     }
                     else{
-                       // System.debug('Create new submission'+master.id);
+                        System.debug('Create new submission'+master.id);
                         LnP_ApplyForLicenseWrapper.MapLabelToFields submissionMap = new LnP_ApplyForLicenseWrapper.MapLabelToFields();
                         submissionMap.label = master.Name;
                         submissionMap.conditionalAnswer = master.Title__c;
@@ -483,13 +481,12 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             Boolean FGquestionsIncomplete = false;
             Boolean CIquestionsIncomplete = false;
             Boolean submissionsIncomplete = true;
-            Boolean endquestionsIncomplete = false;
             Map<String,List<MUSW__Parcel__c>> mapAddress = new  Map<String,List<MUSW__Parcel__c>>();
             Map<String,List<LnP_BackgroundSection__c>> mapEducation = new  Map<String,List<LnP_BackgroundSection__c>>();
             Set<Id>  setAppId = new Set<Id> ();
             setAppId.add(appId);
             mapEducation = getBackgroundInformation(setAppId);
-         //   System.debug('dataString---->'+dataString + 'Application Id---' + appId);
+            System.debug('dataString---->'+dataString + 'Application Id---' + appId);
             Id accountIdFromApplication; 
             for(MUSW__Application2__c getAccountIdFromApplication: [Select Id, MUSW__Account__c From MUSW__Application2__c where Id = :appId]){
                 accountIdFromApplication = getAccountIdFromApplication.MUSW__Account__c;
@@ -501,19 +498,19 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             String accountId= DOL_AppConstants.NULL_EMPTY_STRING + '';
             if(!wrapperList.isEmpty()){
                 accountId =  wrapperList[0].accountId != null ? wrapperList[0].accountId : '';
-               // system.debug('accountId---'+accountId);
+                system.debug('accountId---'+accountId);
             }
             wrapperList = fetchSubmission(wrapperList, Board,  LicenseType,  ApplicationType,upgradeLicenseId);
-           // System.debug('Wrapper'+JSON.serialize(wrapperList));
+            System.debug('Wrapper'+JSON.serialize(wrapperList));
             Id contactAccountId;
             Id contactRecordId = getCommunityUserContactId();
-           // System.debug('contactRecordId for insert application===' + contactRecordId + 'accountIdFromApplication---' + accountIdFromApplication);
+            System.debug('contactRecordId for insert application===' + contactRecordId + 'accountIdFromApplication---' + accountIdFromApplication);
             if(String.isNotBlank(accountIdFromApplication)){
                 contactAccountId = accountIdFromApplication;
             }else{
                 contactAccountId = contactRecordId;
             }
-           // System.debug('Entered mapAddress method');
+            System.debug('Entered mapAddress method');
             mapAddress = getAddresses(contactAccountId, appId);
             List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
             List<LnP_ApplyForLicenseWrapper.MapLabelToFields> submissionFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
@@ -532,7 +529,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             LnP_JSONParser finalRequest = new LnP_JSONParser();
             List<LnP_JSONParser.CompositeRequest> requestDetailsList = new List<LnP_JSONParser.CompositeRequest>();
             for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
-              //  system.debug('objWrapper.labelFieldsMap'+objWrapper.labelFieldsMap);
+                system.debug('objWrapper.labelFieldsMap'+objWrapper.labelFieldsMap);
                 if(objWrapper.sectionName.contains(DOL_AppConstants.LICENSE_INFORMATION) || objWrapper.sectionName.contains(DOL_AppConstants.FINANCIAL_GUARANTEE) 
                    || objWrapper.sectionName.contains(DOL_AppConstants.ENDORSEMENT) || objWrapper.sectionName.contains(DOL_AppConstants.QUESTIONS) || objWrapper.sectionName.contains('Review and Submit')){
                        listFields.addAll(objWrapper.labelFieldsMap);
@@ -542,15 +539,13 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     submissionFields = objWrapper.labelFieldsMap;
                 }
             }
-           // System.debug('listFields'+JSON.serialize(listFields));
+            System.debug('listFields'+JSON.serialize(listFields));
             if(listFields.size()>0){
                 Integer count = 0;
                 Integer questioncount = 0;
                 Integer FGquestioncount = 0;
                 Integer CIquestioncount = 0;
                 Integer refcount = 0;
-                Integer edquestionsAnswered =0;
-                Integer edquestioncount =0;
                 for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
                     refcount++;
                     if(fieldMap.questionSectionClass ==DOL_AppConstants.CERTIFICATIONS || (fieldMap.value != null  && fieldMap.value != '' && fieldMap.value != '--None--') || (fieldMap.multiValues != null && fieldMap.multiValues.size()>0)){
@@ -583,7 +578,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         requestDetailsList.add(requestDetails);
                         
                     }
-                   // system.debug('requestDetailsList : '+requestDetailsList);
+                    system.debug('requestDetailsList : '+requestDetailsList);
                     if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true && fieldMap.questionSectionClass.contains(DOL_AppConstants.QUESTIONS) || fieldMap.questionSectionClass.contains(DOL_AppConstants.FINANCIAL_GUARANTEE) || fieldMap.questionSectionClass.contains(DOL_AppConstants.ENDORSEMENT) || fieldMap.questionSectionClass.contains('Course') || fieldMap.questionSectionClass.contains('Application Fees')){
                         count++;  
                     }
@@ -591,27 +586,20 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         questioncount++;
                     }
                     
-                    if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true && fieldMap.questionSectionClass.contains(DOL_AppConstants.ENDORSEMENT) && fieldMap.isMandatoryQues ==true ){
-                        edquestioncount++;
-                    }
-                    if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true &&  fieldMap.questionSectionClass.contains(DOL_AppConstants.FINANCIAL_GUARANTEE) && fieldMap.isMandatoryQues ==true){
+                   
+                    if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true &&  fieldMap.questionSectionClass.contains(DOL_AppConstants.FINANCIAL_GUARANTEE)){
                         FGquestioncount++;
                     }
                     if(fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi == true &&  fieldMap.questionSectionClass.contains('Course') ){
                         CIquestioncount++;
                     }
                     //system.debug('fieldMap.renderedOnUi '+fieldMap.renderedOnUi);
-                  //  System.debug('1:'+fieldMap.questionSectionClass.contains(DOL_AppConstants.QUESTIONS));
-                  //  System.debug('1:'+fieldMap.isMandatoryQues);
-                 //   System.debug('1:'+fieldMap.renderedOnUi);
-                  //  System.debug('Value'+fieldMap.value);
+                    
                     if(fieldMap.questionSectionClass.contains(DOL_AppConstants.QUESTIONS)  && fieldMap.isMandatoryQues ==true && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && (fieldMap.value != null || !fieldMap.multiValues.isEmpty()) ){
                         questionsAnswered++;
                     }
                     
-                    if(fieldMap.questionSectionClass.contains(DOL_AppConstants.ENDORSEMENT)  && fieldMap.isMandatoryQues ==true && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && (fieldMap.value != null || !fieldMap.multiValues.isEmpty()) ){
-                        edquestionsAnswered++;
-                    }
+                    
                     if(fieldMap.questionSectionClass.contains(DOL_AppConstants.FINANCIAL_GUARANTEE) && fieldMap.renderedOnUi!=null && fieldMap.renderedOnUi==true && (fieldMap.value != null  && fieldMap.value != '')){
                         FGquestionsAnswered++;
                     }
@@ -620,11 +608,10 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     }
                 }
                 //validationForQuestions:
-               // system.debug('Count '+count);
-              //  system.debug('questioncount '+questioncount);
-              //  system.debug('questionsAnswered '+questionsAnswered);
+                system.debug('Count '+count);
+                system.debug('questioncount '+questioncount);
+                system.debug('questionsAnswered '+questionsAnswered);
                 if(questionsAnswered != questioncount ){
-                  //  System.debug('Inside error if');
                     questionsIncomplete = true;
                 }
                 if(FGquestionsAnswered != FGquestioncount ){
@@ -632,10 +619,6 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 }
                 if(CIquestionAnswered != CIquestioncount){
                     CIquestionsIncomplete = true;
-                }
-                
-                if(edquestionsAnswered != edquestioncount) {
-                    endquestionsIncomplete = true;
                 }
             }
             if(submissionFields.size()>0){
@@ -657,8 +640,8 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     queryFiles = queryFiles;
                     contentLink = Utilityclass_withsharing.queryRecordsInClause(queryFiles,docId);
                     for(ContentDocumentLink link : contentLink){
-                     //   System.debug('link.LinkedEntityId--->'+link.LinkedEntityId);
-                  //      System.debug('appId--->'+appId);
+                        System.debug('link.LinkedEntityId--->'+link.LinkedEntityId);
+                        System.debug('appId--->'+appId);
                         
                         if(link.LinkedEntityId == appId)
                             docLinkMap.put(link.ContentDocumentId,link.Id);
@@ -666,10 +649,10 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 }
                 Integer count = 0;
                 Integer subcount = 0;
-               // system.debug('submissionFields'+submissionFields);
+                system.debug('submissionFields'+submissionFields);
                 for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : submissionFields){
-                    // LnP_JSONParser.CompositeRequest requestDetailSub = new LnP_JSONParser.CompositeRequest();
-                    // LnP_JSONParser.Body bodySub = new LnP_JSONParser.Body();
+                   // LnP_JSONParser.CompositeRequest requestDetailSub = new LnP_JSONParser.CompositeRequest();
+                   // LnP_JSONParser.Body bodySub = new LnP_JSONParser.Body();
                     subcount++;
                     if(fieldMap.isMandatorySub == true){
                         count++;
@@ -677,9 +660,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     if(fieldMap.isMandatorySub == true && !fieldMap.multiValues.isEmpty()){
                         filesSubmitted++;
                     }
-                  //  system.debug('counttotal'+count);
-                  //  system.debug('filesSubmitted'+filesSubmitted);
-                    if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.uploadFile) ){
+                    system.debug('counttotal'+count);
+                    system.debug('filesSubmitted'+filesSubmitted);
+if((fieldMap.multiValues != null && fieldMap.multiValues.size()>0 && fieldMap.uploadFile) ){
                         Integer innerCount = 0;
                         for(String contentdocId : fieldMap.multiValues){
                             innerCount++;
@@ -711,14 +694,10 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                             LnP_JSONParser.Body bodyLink = new LnP_JSONParser.Body();
                             bodyLink.LinkedEntityId = DOL_AppConstants.NULL_EMPTY_STRING + '@{refSubId'+innerCount+'.id}';
                             bodyLink.ContentDocumentId = contentdocId;
-                       //     System.debug('*****Inside Controller*****'+fieldMap.isMandatorySub);
-                            if(fieldMap.isMandatorySub == true) {
-                                bodyLink.MUSW_Required   = true;
-                            }
+							
                             bodyLink.ShareType = DOL_AppConstants.NULL_EMPTY_STRING + 'I';
                             requestDetailsContent.body = bodyLink;
                             requestDetailsList.add(requestDetailsContent); 
-                            
                             
                             bodySub.ContentDocumentId = contentdocId +';'+ bodySub.ContentDocumentId ;
                         }
@@ -733,7 +712,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             } 
             finalRequest.compositeRequest = requestDetailsList;
             String JSONstr = JSON.serialize(finalRequest);
-           // System.debug('JSONstr-->'+JSONstr);
+            System.debug('JSONstr-->'+JSONstr);
             Map<String,Object> field = (Map<String,Object>)JSON.deserializeUntyped(JSONstr);
             List<Object> keyValueList = new List<Object>();
             keyValueList = (List<Object>)field.get('compositeRequest');
@@ -756,8 +735,8 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     mapObj1.remove('body');
                 }
             }
-          //  System.debug('Map of JSON--->'+JSON.serialize(field));
-          //  System.debug('tabNumber-->'+tabNumber);
+            System.debug('Map of JSON--->'+JSON.serialize(field));
+            System.debug('tabNumber-->'+tabNumber);
             String jsonString = JSON.serialize(field);
             List<MUSW__Application2__c> appList =new List<MUSW__Application2__c>();
             String appCondition = DOL_AppConstants.NULL_EMPTY_STRING + 'Id=\''+appId+'\'';
@@ -794,24 +773,15 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             
             //Subsection  error
             List<String> lstMandatorySubsection;
-            
             for(LnP_ApplyForLicenseWrapper objWrapper : wrapperList){
                 objWrapper.sectionError = false;
                 lstMandatorySubsection= new List<String> ();
                 if(objWrapper.sectionName.contains(DOL_AppConstants.LICENSE_INFORMATION) && questionsIncomplete==true){
-                  //  System.debug('Inside error check');
-                    objWrapper.sectionError = true;
-                } 
-                if(objWrapper.sectionName.contains(DOL_AppConstants.PERSONAL_INFORMATION) && objWrapper.sectionError == true ){
-                  //  System.debug('Inside error check');
                     objWrapper.sectionError = true;
                 } 
                 if(objWrapper.sectionName.contains(DOL_AppConstants.FINANCIAL_GUARANTEE) && FGquestionsIncomplete==true){
                     objWrapper.sectionError = true;
                 } 
-                if(objWrapper.sectionName.contains(DOL_AppConstants.ENDORSEMENT) && endquestionsIncomplete==true){
-                    objWrapper.sectionError = true;
-                }
                 if(objWrapper.sectionName.contains(DOL_AppConstants.QUESTIONS) && CIquestionsIncomplete==true){
                     // objWrapper.sectionError = true;
                 } 
@@ -821,15 +791,15 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 if(objWrapper.mandatorySubsection != null){
                     lstMandatorySubsection = objWrapper.mandatorySubsection.split(',') ;
                     if(lstMandatorySubsection != null){
-                       // system.debug('mapAddress'+ mapAddress);
+                        system.debug('mapAddress'+ mapAddress);
                         for(String mandatorySubSection : lstMandatorySubsection){
-                         //   system.debug('mandatorySubsection098'+ mandatorySubSection);
+                            system.debug('mandatorySubsection098'+ mandatorySubSection);
                             if((mandatorySubSection == DOL_AppConstants.PHYSICAL_ADDRESS || mandatorySubSection == DOL_AppConstants.MAILING_ADDRESS)){
                                 if(mapAddress.isEmpty()){
                                     objWrapper.sectionError = true;
                                 }else{
                                     if(!mapAddress.containsKey(DOL_AppConstants.CAP_MAILING_ADDRESS) || (!mapAddress.containsKey(DOL_AppConstants.CAP_PHYSICAL_ADDRESS) && !mapAddress.get(DOL_AppConstants.CAP_MAILING_ADDRESS)[0].is_Physical_and_Mailing_Address_Same__c)){
-                                     //   system.debug('inside the mandatory'+mapAddress.get(DOL_AppConstants.CAP_PHYSICAL_ADDRESS));
+                                        system.debug('inside the mandatory'+mapAddress.get(DOL_AppConstants.CAP_PHYSICAL_ADDRESS));
                                         objWrapper.sectionError = true;
                                     }
                                 }   
@@ -838,7 +808,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                 if(mapEducation.isEmpty()){
                                     objWrapper.sectionError = true;
                                 } else if(mapEducation.get(mandatorySubSection) == null ||  mapEducation.get(mandatorySubSection).size() == 0 ){
-                               //     system.debug('inside the mandatory');
+                                    system.debug('inside the mandatory');
                                     objWrapper.sectionError = true;
                                 }
                             }
@@ -849,7 +819,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 
             }
             upsert application;
-          //  system.debug('wrapperList123'+wrapperList);
+            system.debug('wrapperList123'+wrapperList);
             return JSON.serialize(wrapperList);
         }catch(Exception ex)
         {
@@ -860,7 +830,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
     @AuraEnabled
     public static List<MUSW__License2__c> callCompositeAPI(String applicationId,String childlicenseRecordID){
         try{
-          //  system.debug('applicationId=='+applicationId+'childlicenseRecordID :'+childlicenseRecordID);
+            system.debug('childlicenseRecordID :'+childlicenseRecordID);
             Map<String,String> mapSubmissionToFile = new Map<String,String>();
             List<MUSW__Application2__c> appList =new List<MUSW__Application2__c>();
             Set<Id>  setapplicationId =  new Set<Id> ();
@@ -870,23 +840,21 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             String appCondition = DOL_AppConstants.NULL_EMPTY_STRING + 'Id=\''+applicationId+'\'';
             // String strApp = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, MUSW__Account__r.Parent, Stage__c, Application_Type__c,  Credential_Type__c, Application_Method__c, (Select Id, Sequence__c, LnP_Form_JSON__c from License_Application__r ORDER BY Sequence__c ASC) from MUSW__Application2__c where '+appCondition;
             String strApp = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, MUSW__Account__c, Stage__c, Form_JSON__c, Upgrading_License__c,Application_Type__c,  Credential_Type__c, Application_Method__c from MUSW__Application2__c where '+appCondition;
-          //  system.debug('StrApp Query--->'+strApp);
+            system.debug('StrApp Query--->'+strApp);
             appList = Utilityclass_withsharing.queryRecords(strApp);
-           // system.debug('Applist In AController--->'+appList);
+            system.debug('Applist In AController--->'+appList);
             String stringJSON = DOL_AppConstants.NULL_EMPTY_STRING + '';
             stringJSON = appList[0].Form_JSON__c;
             Boolean checkSuccess = false;
-            
             //Modified code for handling 25 subrequest governor limit
             
             LnP_JSONParser ansWrapper= Polaris_ApplyForLicenseController.getJSONWrapper(stringJSON);
-         //   system.debug('answerWrapper==='+ansWrapper);
             List<LnP_JSONParser.CompositeRequest> requestDetailsList = new List<LnP_JSONParser.CompositeRequest>();
             for(LnP_JSONParser.CompositeRequest req : ansWrapper.compositeRequest){
                 requestDetailsList.add(req);
             }
-            // requestDetailsList.add(ansWrapper.compositeRequest[0]);
-         //   system.debug('requestdetails to  remove' + requestDetailsList);
+           // requestDetailsList.add(ansWrapper.compositeRequest[0]);
+           system.debug('requestdetails to  remove' + requestDetailsList);
             List<List<LnP_JSONParser.CompositeRequest>> compositeReq = Polaris_ApplyForLicenseService.partition(requestDetailsList,24);
             if(appList[0].Upgrading_License__c!=null)
             {
@@ -895,11 +863,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             
             updateRecordId = childlicenseRecordID;
             // System.debug('appList '+appList);
-          //  System.debug('appList[0].Stage__c '+appList[0].Stage__c);
-         //   System.debug('compositeRequesst===='+compositeReq);
+            System.debug('appList[0].Stage__c '+appList[0].Stage__c);
             if(appList != null && appList.size()>0 && appList[0].Stage__c != -1){
-                for(List<LnP_JSONParser.CompositeRequest> record: compositeReq) {   
-                   // System.debug('CompositeRequest===='+record);
+                for(List<LnP_JSONParser.CompositeRequest> record: compositeReq) {    
                     Map<String,List<LnP_JSONParser.CompositeRequest>> mapList = new  Map<String,List<LnP_JSONParser.CompositeRequest>>();
                     mapList.put('compositeRequest',record);
                     string strJsonForm = JSON.serialize(mapList);
@@ -910,7 +876,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     strJsonForm = strJsonForm.replaceAll('\\bMUSW_Description\\b', 'MUSW__Description__c');
                     stringJSON = stringJSON.replaceAll('\\BgckApplication\\b', 'MUSW__Description__c');
                     strJsonForm = strJsonForm.replaceAll('\\bContentDocumentId\\b', 'ContentDocumentId__c');
-                    strJsonForm = strJsonForm.replaceAll('\\bMUSW_Required\\b', 'MUSW__Required__c');
+					
                     
                     strJsonForm = strJsonForm.replaceAll('\"[^\"]*\":null',''); //basic removeal of null values
                     strJsonForm = strJsonForm.replaceAll(',{2,}', ','); //remove duplicate/multiple commas
@@ -920,9 +886,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     strJsonForm = strJsonForm.replace(',]', ']');            
                     // stringJSON = stringJSON.replaceAll('\\questionsBody\\b', 'Question_Body__c');
                     
-                  //  system.debug('stringJSON '+strJsonForm);
+                    system.debug('stringJSON '+strJsonForm);
                     //stringJSON.replaceAll('Answer', 'Answer__c');
-                 //   system.debug('String sessionId=UserInfo.getSessionId();'+UserInfo.getSessionId());
+                    system.debug('String sessionId=UserInfo.getSessionId();'+UserInfo.getSessionId());
                     HttpRequest req = new HttpRequest();
                     String url = System.Label.CompositeAPIURL;
                     req.setEndpoint(url);
@@ -934,15 +900,15 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     req.setTimeout(60000);
                     Http http = new Http();
                     HTTPResponse res = http.send(req);
-                 //   System.debug('ResponseBody'+res.getBody());
-                 //   System.debug('Response ' + res.getStatusCode());
+                    System.debug('ResponseBody'+res.getBody());
+                    System.debug('Response ' + res.getStatusCode());
                     if(res.getStatusCode() == 200) {
                         checkSuccess = true;
                     }
                     
                 }
                 
-              //  system.debug('stringJSONfianl'+stringJSON);
+                system.debug('stringJSONfianl'+stringJSON);
                 
                 if(checkSuccess) {
                     appList[0].Stage__c = -1;
@@ -951,7 +917,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     //Fetch Parcel Record data based on Logged in User
                     Id contactRecordIdData = getCommunityUserContactId();
                     Id contactAccountId;
-                    //System.debug('contactRecordIdData===' + contactRecordIdData + 'account Id==='+ appList[0].MUSW__Account__c);
+                    System.debug('contactRecordIdData===' + contactRecordIdData + 'account Id==='+ appList[0].MUSW__Account__c);
                     if(String.isNotBlank(appList[0].MUSW__Account__c)){
                         contactAccountId = appList[0].MUSW__Account__c;
                     }else{
@@ -963,8 +929,8 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     List<MUSW__Application2__c> appListOtherDetils =new List<MUSW__Application2__c>();
                     // String strAppOther = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Stage__c, Application_Type__c,  Board__c, License_Type__c,(select id,License__c from MUSW_Submissions__r) ,(select Id,License__c from Answers__r),(Select Id,License__c FROM Employment_History__r),(Select Id,License__c FROM Education_History__r),(Select Id,License__c FROM LnP_Parcels__r) from MUSW_Application2__c where '+appCondition;
                     String strAppOther = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id,MUSW__Account__c,Stage__c, Application_Type__c,  Application_Method__c, Credential_Type__c, (select id,MUSW__License2__c,ContentDocumentId__c from MUSW__Submissions__r) ,(select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c from Answers1__r),(Select Id,License__c FROM LnP_BackgroundSections__r),(Select Id,License__c,RecordType.Name FROM Parcels__r) from MUSW__Application2__c where '+appCondition;
-                  //  system.debug('StrApp Query--->'+strAppOther);
-                 //   system.debug('licenseID[0].Id --->'+licenseID[0].Id);
+                    system.debug('StrApp Query--->'+strAppOther);
+                    system.debug('licenseID[0].Id --->'+licenseID[0].Id);
                     appListOtherDetils = Utilityclass_withsharing.queryRecords(strAppOther);
                     List<LnP_BackgroundSection__c> lstEduHist = new List<LnP_BackgroundSection__c>();            
                     if(appListOtherDetils[0].LnP_BackgroundSections__r != null && appListOtherDetils[0].LnP_BackgroundSections__r.size()>0){
@@ -973,8 +939,8 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                             lstEduHist.add(EduHist);
                         }
                         update lstEduHist;                
-                    } 
-                    //update Affiliated Locations 
+                    }
+                     //update Affiliated Locations 
                     List<MUSW__Parcel__c> lstParcels = new List<MUSW__Parcel__c>();
                     if(appListOtherDetils[0].Parcels__r != null && appListOtherDetils[0].Parcels__r.size()>0 ){
                         for(MUSW__Parcel__c parcel : appListOtherDetils[0].Parcels__r){
@@ -986,7 +952,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     }
                     if(!lstParcels.isEmpty()){
                         update lstParcels; 
-                    } 
+                    }    
                     List<BGCK__Answer__c> lstAnswers = new List<BGCK__Answer__c>();
                     List<Endorsement__c> lstEndorsements = new List<Endorsement__c>();
                     String providerName = DOL_AppConstants.NULL_EMPTY_STRING + '';
@@ -997,11 +963,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     Boolean isAppraiserCourse = false;
                     Map<String, String> statePicklistValues = new Map<String, String>();
                     statePicklistValues = Polaris_ApplyForLicenseController.MapgetPicklistFieldValues('MUSW__License2__c', 'Event_State__c');
-                    
-                    
                     //Course Type Question ANswers
                     if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0 && appListOtherDetils[0].Credential_Type__c =='Appraiser Course'){
-                       // system.debug('in course type answers');
+                        system.debug('in course type answers');
                         isAppraiserCourse = true;
                         List<String> preApproval = new List<String>();
                         List<String> courseTypeVal = new List<String>();
@@ -1011,20 +975,20 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                             ans.License__c = LicenseObj.Id; 
                             ans.Question2__c = ans.QuestionDOL__r.Question_Body__c.replaceAll('(<[^>]*>)+',''); 
                             //ans.Question2__c = ans.QuestionDOL__r.Question_Body__c.replaceAll('</span[^>]*>','');
-                          //  system.debug('ans.QuestionDOL__r.RecordType.DeveloperName---'+ans.QuestionDOL__r.RecordType.DeveloperName);
-                         //   system.debug('question body===' + ans.QuestionDOL__r.Question_Body__c);
+                            system.debug('ans.QuestionDOL__r.RecordType.DeveloperName---'+ans.QuestionDOL__r.RecordType.DeveloperName);
+                            system.debug('question body===' + ans.QuestionDOL__r.Question_Body__c);
                             
                             if(ans.QuestionDOL__r.RecordType.DeveloperName =='Course_Information'){
-                             //   system.debug(' in course info rec type filter');
+                                system.debug(' in course info rec type filter');
                                 String QuestionObjFieldAPIName = ans.QuestionDOL__r.QuestionFieldAPI__c;
-                             //   system.debug('QuestionObjFieldAPIName--'+QuestionObjFieldAPIName);
+                                system.debug('QuestionObjFieldAPIName--'+QuestionObjFieldAPIName);
                                 if(QuestionObjFieldAPIName == 'Course_Type__c'){
-                                //    system.debug('QuestionObjFieldAPIName course type'+ QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName course type'+ QuestionObjFieldAPIName);
                                     
                                     
                                     if(ans.Answer_Text__c == DOL_AppConstants.YES){
                                         courseTypeVal.add(ans.QuestionDOL__r.Question_Body__c);
-                                        //system.debug('courseTypeVal==='+courseTypeVal);
+                                        system.debug('courseTypeVal==='+courseTypeVal);
                                     }
                                     
                                     String commaSepratedList= DOL_AppConstants.NULL_EMPTY_STRING + '';
@@ -1036,12 +1000,12 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                     
                                     commaSepratedList = commaSepratedList.subString(0,commaSepratedList.length());
                                     
-                                  //  system.debug('comma seprated list is----> '+commaSepratedList);
+                                    system.debug('comma seprated list is----> '+commaSepratedList);
                                     
                                     LicenseObj.Course_Type__c = commaSepratedList ;
                                 }
                                 if(QuestionObjFieldAPIName == 'Delivery_Method__c'){
-                                //    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     deliveryMethod.add(ans.Answer_Text__c);
                                     String delMethodStr = DOL_AppConstants.NULL_EMPTY_STRING + '';
                                     for(String str : deliveryMethod){
@@ -1049,28 +1013,28 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                     }
                                     delMethodStr = delMethodStr.subString(0,delMethodStr.length());
                                     
-                                //    system.debug('delMethodStr----> '+delMethodStr);
+                                    system.debug('delMethodStr----> '+delMethodStr);
                                     LicenseObj.Delivery_Method__c = delMethodStr ;
                                 } 
                                 if(QuestionObjFieldAPIName == 'License_Email__c'){
-                                 //   system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     LicenseObj.License_Email__c = ans.Answer_Text__c;
                                 }
                                 if(QuestionObjFieldAPIName == 'License_Phone__c'){
-                                 //   system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     LicenseObj.License_Phone__c = ans.Answer_Text__c;
                                 }  
                                 if(QuestionObjFieldAPIName == 'Website__c'){
-                                //    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     LicenseObj.Website__c = ans.Answer_Text__c;
                                 } 
                                 if(QuestionObjFieldAPIName == 'Provider_Type__c'){
-                                //    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     LicenseObj.Provider_Type__c = ans.Answer_Text__c;
                                 } 
                                 if(QuestionObjFieldAPIName == 'Pre_Approval__c'){
                                     
-                                 //   system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     if(ans.QuestionDOL__r.Question_Body__c == 'Is the Provider an accredited college?' && ans.Answer_Text__c == DOL_AppConstants.YES)
                                     {
                                         preApproval.add('College'); 
@@ -1087,102 +1051,101 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                         preApproval.add('USPAP Instructor');
                                         
                                     }   
-                                   // system.debug('preApproval---'+preApproval);
+                                    system.debug('preApproval---'+preApproval);
+                                   
                                 }
-                                if(ans.QuestionDOL__r.Question_Body__c == 'When does your IDECC approval expire?')
-                                {
-                                 //   System.debug('inside::IDECC');
-                                    preApproval.add('IDECC');
-                                    
-                                }
-                                String preApprovalString = DOL_AppConstants.NULL_EMPTY_STRING + '';
-                                if(!preApproval.isEmpty()){
-                                    for(String str : preApproval)
+                                 if(ans.QuestionDOL__r.Question_Body__c == 'When does your IDECC approval expire?')
                                     {
-                                        preApprovalString += str + ';' ;
+                                        preApproval.add('IDECC');
+                                        
                                     }
-                                    // remove last additional comma from string
-                                    
-                                    preApprovalString = preApprovalString.subString(0,preApprovalString.length());
-                                    
-                                   // system.debug('preApproval----> '+preApprovalString);
-                                    
-                                    LicenseObj.Pre_Approval__c = preApprovalString;
-                                }
+                                    String preApprovalString = DOL_AppConstants.NULL_EMPTY_STRING + '';
+                                    if(!preApproval.isEmpty()){
+                                        for(String str : preApproval)
+                                        {
+                                            preApprovalString += str + ';' ;
+                                        }
+                                        // remove last additional comma from string
+                                        
+                                        preApprovalString = preApprovalString.subString(0,preApprovalString.length());
+                                        
+                                        system.debug('preApproval----> '+preApproval);
+                                        
+                                        LicenseObj.Pre_Approval__c = preApprovalString;
+                                    }
                                 if(QuestionObjFieldAPIName == 'USPAP_Courses_Expiration_Date__c'){
-                                  //  system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     LicenseObj.USPAP_Courses_Expiration_Date__c = Date.valueOf(ans.Answer_Text__c);
                                     
                                 }
                                 if(QuestionObjFieldAPIName == 'IDECC_Approval_Expiration_Date__c'){
-                                 //   system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     LicenseObj.IDECC_Approval_Expiration_Date__c = Date.valueOf(ans.Answer_Text__c);
                                 }
                                 if(QuestionObjFieldAPIName == 'AQB_Approval_Expiration_Date__c'){
-                               //     system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
-                                  //  LicenseObj.AQB_Approval_Expiration_Date__c = Date.valueOf(ans.Answer_Text__c);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    LicenseObj.AQB_Approval_Expiration_Date__c = Date.valueOf(ans.Answer_Text__c);
                                 }
                                 
                                 
                                 if(QuestionObjFieldAPIName == 'Course_Title__c'){
-                                  //  system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     LicenseObj.Course_Title__c = ans.Answer_Text__c;
                                 }
                                 if(QuestionObjFieldAPIName == 'Event_City__c'){
-                                   // system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     LicenseObj.Event_City__c = ans.Answer_Text__c;
                                 }
                                 if(QuestionObjFieldAPIName == 'Event_Date__c'){
-                                   // system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     LicenseObj.Event_Date__c = Date.valueOf(ans.Answer_Text__c);
                                     
                                 }
                                 if(QuestionObjFieldAPIName == 'Event_State__c' && !statePicklistValues.isEmpty()){
-                                    Polaris_DynamicSQL.MapgetPicklistFieldValues(DOL_AppConstants.LICENSE,QuestionObjFieldAPIName);
-                                  //  system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     LicenseObj.Event_State__c = statePicklistValues.get(ans.Answer_Text__c);
                                 }
                                 if(QuestionObjFieldAPIName == 'Clock_Hours_Continuing_Education__c'){
-                                   // system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
-                                  //  system.debug('CE '+Decimal.valueOf(ans.Answer_Text__c));
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('CE '+Decimal.valueOf(ans.Answer_Text__c));
                                     LicenseObj.Clock_Hours_Continuing_Education__c = Decimal.valueOf(ans.Answer_Text__c)  ;
                                 }
                                 if(QuestionObjFieldAPIName == 'Clock_Hours_Pre_Qualifying__c'){
-                                   // system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
-                                   // system.debug('CPRE '+Decimal.valueOf(ans.Answer_Text__c));
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('CPRE '+Decimal.valueOf(ans.Answer_Text__c));
                                     LicenseObj.Clock_Hours_Pre_Qualifying__c = Decimal.valueOf(ans.Answer_Text__c);
                                 }
                                 if(QuestionObjFieldAPIName == 'Clock_Hours_Qualifying_Elective__c'){
-                                   // system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
-                                   // system.debug('CQL '+Decimal.valueOf(ans.Answer_Text__c));
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('CQL '+Decimal.valueOf(ans.Answer_Text__c));
                                     LicenseObj.Clock_Hours_Qualifying_Elective__c = Decimal.valueOf(ans.Answer_Text__c);
                                 }
                                 if(QuestionObjFieldAPIName == 'Alternate_Clock_Hours_Continuing_Educa__c'){
-                                  //  system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
-                                  //  system.debug('CE ALT'+Decimal.valueOf(ans.Answer_Text__c));
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('CE ALT'+Decimal.valueOf(ans.Answer_Text__c));
                                     LicenseObj.Alternate_Clock_Hours_Continuing_Educa__c = Decimal.valueOf(ans.Answer_Text__c);
                                 }
                                 if(QuestionObjFieldAPIName == 'Continuing_Education_Licensure_Levels__c') {
-                                  //  system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     LicenseObj.Continuing_Education_Licensure_Levels__c = ans.Answer_Text__c;
                                 }
                                 if(QuestionObjFieldAPIName == 'Pre_Qualifying_Licensure_Levels__c') {
-                                  //  system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     LicenseObj.Pre_Qualifying_Licensure_Levels__c = ans.Answer_Text__c;
                                 }
                                 if(QuestionObjFieldAPIName == 'Qualifying_Elective_Licensure_Levels__c') {
-                                  //  system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName); 
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName); 
                                     LicenseObj.Qualifying_Elective_Licensure_Levels__c = ans.Answer_Text__c;
                                 }    
                                 
                                 
                                 
-                               // system.debug('licenseID------'+LicenseObj); 
+                                system.debug('licenseID------'+LicenseObj); 
                             }
                         }
                         
                     } 
-                  //  System.debug('LicenseObj : '+LicenseObj);
+                    System.debug('LicenseObj : '+LicenseObj);
                     if(isAppraiserCourse){
                         update LicenseObj;
                     }
@@ -1196,17 +1159,17 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                             }
                         }
                     }
-                  //  system.debug('lstAnswers '+lstAnswers);
+                    system.debug('lstAnswers '+lstAnswers);
                     if(appListOtherDetils[0].Answers1__r != null && appListOtherDetils[0].Answers1__r.size()>0){
                         for(BGCK__Answer__c ans : appListOtherDetils[0].Answers1__r){
                             ans.License__c = licenseID[0].Id; 
                             ans.Question2__c = ans.QuestionDOL__r.Question_Body__c.replaceAll('<span[^>]*>','');
-                         //   System.debug('ans.Question2__c==' + ans.Question2__c);
+                            System.debug('ans.Question2__c==' + ans.Question2__c);
                             if(ans.Question_Section__c == DOL_AppConstants.CERTIFICATIONS) {
                                 ans.Answer_Text__c = DOL_AppConstants.YES; 
                             }
                             if(ans.Create_Endorsement_Record__c && ans.QuestionDOL__r.Data_Type__c == DOL_AppConstants.YES_NO && ans.Answer_Text__c==DOL_AppConstants.YES)
-                           {
+                            {
                                 Endorsement__c endorsment = new Endorsement__c();
                                 endorsment.Endorsement_Type__c = ans.Endorsement_Type__c;
                                 endorsment.License_Type__c = appListOtherDetils[0].Credential_Type__c;
@@ -1235,11 +1198,11 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                             lstAnswers.add(ans);
                         }
                         update lstAnswers;
-                      // system.debug('lstEndorsements'+lstEndorsements);
+                        system.debug('lstEndorsements'+lstEndorsements);
                         insert lstEndorsements;
                         if(appListOtherDetils[0].Credential_Type__c == DOL_AppConstants.NOTARY_PUBLIC && lstEndorsements.size()>0)
                         {
-                            List<Electronic_Notary_Provider_Information__c> lstproviders = [SELECT id,Description__c,Effective_Date__c,Endorsement__c FROM Electronic_Notary_Provider_Information__c where Application_BG__c =:appListOtherDetils[0].Id and Application_BG__c!=null];
+                            List<Electronic_Notary_Provider_Information__c> lstproviders = [SELECT id,Description__c,Effective_Date__c,Endorsement__c FROM Electronic_Notary_Provider_Information__c where Application_BG__c =:appListOtherDetils[0].Id];
                             
                             for(Electronic_Notary_Provider_Information__c provider : lstproviders)
                             {
@@ -1252,18 +1215,17 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     List<MUSW__Submission__c> lstSubmissions= new List<MUSW__Submission__c>(); 
                     if(appListOtherDetils[0].MUSW__Submissions__r != null && appListOtherDetils[0].MUSW__Submissions__r.size()>0){
                         for(MUSW__Submission__c submissions : appListOtherDetils[0].MUSW__Submissions__r){
-                            
+                            submissions.MUSW__License2__c = licenseID[0].Id; 
                             if(submissions!=null && submissions.ContentDocumentId__c != null ) {
-                                submissions.MUSW__License2__c = licenseID[0].Id; 
                                 submissions.IsSANFileUploadTrue__c = true;
-                                //submissions.MUSW__Required__c = true;
                                 submissions.SAN_Image_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Applications';
+								submissions.MUSW__Required__c = true;
                                 mapSubmissionToFile.put(submissions.ID, submissions.ContentDocumentId__c.replace(';',''));
-                                lstSubmissions.add(submissions); 
+                                lstSubmissions.add(submissions);
                             }
-                            
+                             
                         }
-                        update lstSubmissions;                
+                       update lstSubmissions;                
                     }
                     update appList[0];
                     
@@ -1271,7 +1233,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             }
             if(childlicenseRecordID!=null && licenseID[0].Application_Method__c == 'Upgrade')
             {
-                List<MUSW__License2__c> lic = [SELECT id,Upgraded_License__c FROM MUSW__License2__c where id=:childlicenseRecordID and id!=null];
+                List<MUSW__License2__c> lic = [SELECT id,Upgraded_License__c FROM MUSW__License2__c where id=:childlicenseRecordID];
                 if(!lic.isEmpty()){
                     lic[0].Upgraded_License__c = licenseID[0].id;
                     update lic[0];
@@ -1297,16 +1259,16 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             Id branchLicenseRT = SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Branch_License_Account').getRecordTypeId();
             //Get COurse Record TYpe Id
             // List<MUSW_Application2__c> applicationList = [SELECT Id,Application_Type__c,Board__c,License_Type__c,MUSW__Account__c,MUSW__Applicant__c FROM MUSW__Application2__c where id IN: appId];
-            //List<LnP_ProfessionalCode__mdt> professionCodeMaps = [SELECT MasterLabel, License_Type__c, Profession_Code__c FROM LnP_ProfessionalCode__mdt];
-           // System.debug('***appIDvalues::'+appId);
+           // List<LnP_ProfessionalCode__mdt> professionCodeMaps = [SELECT MasterLabel, License_Type__c, Profession_Code__c FROM LnP_ProfessionalCode__mdt];
+            System.debug('***appIDvalues::'+appId);
             List<MUSW__Application2__c> applicationList =new List<MUSW__Application2__c>();
             List<Account>  lstacc = new List<Account>();
             for(Id applicationID : appId){
                 String appliID = DOL_AppConstants.NULL_EMPTY_STRING + '\''+applicationID+'\'';
                 applicationList = Database.query('Select Id,MUSW__Account__r.Id,Parent_License__c,Parent_License__r.Ultimate_Parent_Account__c,Parent_License__r.Ultimate_Parent_Account__r.Name,MUSW__Account__r.UBI_Number__c,Branch_License__c,MUSW__Account__c,MUSW__Account__r.Extension__c,MUSW__Account__r.Business_Website__c,MUSW__Account__r.Business_Phone__c,MUSW__Account__r.Email__c,MUSW__Account__r.Name,MUSW__Account__r.Doing_Business_As_1__c,MUSW__Account__r.First_Name_Primary_Contact__c,MUSW__Account__r.Last_Name_Primary_Contact__c,MUSW__Account__r.Phone_Primary_Contact__c,MUSW__Account__r.Course_Provider__c,Stage__c, MUSW__Applicant__c,MUSW__Applicant__r.FirstName,MUSW__Applicant__r.MiddleName,MUSW__Applicant__r.LastName, Application_Type__c,MUSW__Account__r.Business_Structure__c,Application_Method__c, Credential_Type__c, (select Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Endorsement_Type__c,QuestionDOL__r.Course_Type_Question__c,QuestionDOL__r.RecordType.DeveloperName,QuestionDOL__r.RecordType.Name,Question_Section__c ,QuestionDOL__r.Section__c from Answers1__r) from MUSW__Application2__c where Id = '+appliID);
-              //  System.debug('***Application List***'+applicationList);
+                System.debug('***Application List***'+applicationList);
                 for(MUSW__Application2__c application : applicationList){
-                    //system.debug('application::'+application);
+                    system.debug('application::'+application);
                     MUSW__License2__c  mstLicense =  new MUSW__License2__c();
                     mstLicense.MUSW__Applicant__c = application.MUSW__Applicant__c;
                     mstLicense.Application_Type__c = application.Application_Type__c;
@@ -1315,18 +1277,19 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     mstLicense.App_Submitted_Date__c = System.today();
                     if(application.MUSW__Account__c!=null)
                     {
-                       // system.debug('***application.Application_Type__c :'+application.Application_Type__c);
+                        system.debug('***application.Application_Type__c :'+application.Application_Type__c);
                         if(application.Credential_Type__c == 'Appraiser Course'){
                             mstLicense.RecordTypeId = courseRT;
-                          //  system.debug('***mstLicense.RecordTypeId : '+mstLicense.RecordTypeId);
+                            system.debug('***mstLicense.RecordTypeId : '+mstLicense.RecordTypeId);
                         }
                         else{
                             //US-1320 to create a new Main License Account. -- start
                             mstLicense.RecordTypeId = businessRT;
                             //mstLicense.License_Printable_Name__c = application.MUSW__Account__r.Name+' '+ doingBusinessAs;
-                           // system.debug('****mstLicense.RecordTypeId : '+mstLicense.RecordTypeId);
+                            system.debug('****mstLicense.RecordTypeId : '+mstLicense.RecordTypeId);
                         }
                         Account acc = new Account();
+                        
                         acc.ParentId = application.MUSW__Account__r.Id;
                         acc.Business_Structure__c = application.MUSW__Account__r.Business_Structure__c ;
                         acc.First_Name_Primary_Contact__c  = application.MUSW__Account__r.First_Name_Primary_Contact__c;
@@ -1340,7 +1303,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         acc.RecordTypeId = mainLicenseRT ;
                         acc.UBI_Number__c = application.MUSW__Account__r.UBI_Number__c;
                         if(application.Branch_License__c){
-                            acc.Name = application.Parent_License__r.Ultimate_Parent_Account__r.Name+'-'+application.Credential_Type__c;
+                             acc.Name = application.Parent_License__r.Ultimate_Parent_Account__r.Name+'-'+application.Credential_Type__c;
                             mstLicense.Parent_License__c = application.Parent_License__c;
                             acc.Parentid = application.MUSW__Account__c;
                             mstLicense.isBranch_License__c = true;
@@ -1360,7 +1323,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     {
                         mstLicense.RecordTypeId = individualRT;
                         //mstLicense.License_Printable_Name__c = firstName+' '+ MiddleName+' '+ LastName;
-                        //system.debug('***mstLicense.RecordTypeId***'+mstLicense.RecordTypeId);
+                        system.debug('***mstLicense.RecordTypeId***'+mstLicense.RecordTypeId);
                     }
                     mstLicense.Application__c = application.id;
                     // mstLicense.MUSW__Applicant__c = application.MUSW__Applicant__c;
@@ -1368,13 +1331,13 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     mstLicense.MUSW__Status__c = DOL_AppConstants.GENERATE_FEE;
                     mstLicense.Name = DOL_AppConstants.NULL_EMPTY_STRING + 'System Number';
                     
-                    /*if(!professionCodeMaps.isEmpty()){
-for(LnP_ProfessionalCode__mdt professionCodeMap : professionCodeMaps){
-if(mstLicense.Credential_Type__c == professionCodeMap.License_Type__c){
-mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
-}
-} 
-} */
+                   /* if(!professionCodeMaps.isEmpty()){
+                        for(LnP_ProfessionalCode__mdt professionCodeMap : professionCodeMaps){
+                            if(mstLicense.Credential_Type__c == professionCodeMap.License_Type__c){
+                                mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
+                            }
+                        } 
+                    }*/
                     
                     String printableName = DOL_AppConstants.NULL_EMPTY_STRING + '';
                     String firstName = DOL_AppConstants.NULL_EMPTY_STRING + '' ;
@@ -1383,34 +1346,34 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                     String doingBusinessAs = DOL_AppConstants.NULL_EMPTY_STRING + '';
                     boolean differentNameVersion = false;
                     //License_Type__mdt licenseTypemtd = new License_Type__mdt();
-                   // System.debug('***application.Answers1__r**'+application.Answers1__r);
-                   // System.debug('***application.Answers1__r.size()**'+application.Answers1__r.size());
+                    System.debug('***application.Answers1__r**'+application.Answers1__r);
+                    System.debug('***application.Answers1__r.size()**'+application.Answers1__r.size());
                     if(application.Answers1__r != null && application.Answers1__r.size()>0){
-                      //  System.debug('****In Answers if Loop****');
+                        System.debug('****In Answers if Loop****');
                         for(BGCK__Answer__c ans : application.Answers1__r){
-                        //    System.debug('****In Answers Loop****');
+                            System.debug('****In Answers Loop****');
                             //Added code by Babita
                             if(ans.QuestionDOL__r.RecordType.DeveloperName =='Review_and_Submit'){
-                          //      system.debug(' in course info rec type filter');
+                                system.debug(' in course info rec type filter');
                                 String QuestionObjFieldAPIName = ans.QuestionDOL__r.QuestionFieldAPI__c;
-                             //   system.debug('QuestionObjFieldAPIName--'+QuestionObjFieldAPIName);
+                                system.debug('QuestionObjFieldAPIName--'+QuestionObjFieldAPIName);
                                 
                                 if(QuestionObjFieldAPIName == 'Camping_Resorts__c'){
-                              //      system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     mstLicense.Camping_Resorts__c = Decimal.ValueOf(ans.Answer_Text__c);
                                 }
                                 if(QuestionObjFieldAPIName == 'Initial_Contracts__c'){
-                               //     system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     mstLicense.Initial_Contracts__c = Decimal.ValueOf(ans.Answer_Text__c);
                                 }
                             }
                             
                             if(ans.QuestionDOL__r.RecordType.DeveloperName =='Background_Questions'){
-                              //  system.debug(' in course info rec type filter');
+                                system.debug(' in course info rec type filter');
                                 String QuestionObjFieldAPIName = ans.QuestionDOL__r.QuestionFieldAPI__c;
-                                //system.debug('QuestionObjFieldAPIName--'+QuestionObjFieldAPIName);
+                                system.debug('QuestionObjFieldAPIName--'+QuestionObjFieldAPIName);
                                 if(QuestionObjFieldAPIName == 'Military__c'){
-                                    //system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     if(ans.Answer_Text__c == DOL_AppConstants.YES)
                                     {
                                         mstLicense.Military__c = true; 
@@ -1418,7 +1381,7 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                                     
                                 }
                                 if(QuestionObjFieldAPIName == 'Military_Spouse__c'){
-                                 //   system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     if(ans.Answer_Text__c == DOL_AppConstants.YES)
                                     {
                                         mstLicense.Military_Spouse__c = true; 
@@ -1426,35 +1389,34 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                                     
                                 }
                                 if(QuestionObjFieldAPIName == 'Timeshare_Projects__c'){
-                                 //   system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     mstLicense.Timeshare_Projects__c = Decimal.ValueOf(ans.Answer_Text__c);
                                 }
                                 if(QuestionObjFieldAPIName == 'Apartment_Units__c'){
-                                //    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     mstLicense.Apartment_Units__c = Decimal.ValueOf(ans.Answer_Text__c);
                                 }
                                 if(QuestionObjFieldAPIName == 'Interval_fees__c'){
-                                //    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     mstLicense.Interval_fees__c = Decimal.ValueOf(ans.Answer_Text__c);
                                 }
                                 if(QuestionObjFieldAPIName == 'Advertising_Fees__c'){
-                                  //  system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     mstLicense.Advertising_Fees__c = Decimal.ValueOf(ans.Answer_Text__c);
                                 }
                                 if(QuestionObjFieldAPIName == 'Pieces_of_Personal_Property__c'){
-                                 //   system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     mstLicense.Pieces_of_Personal_Property__c = Decimal.ValueOf(ans.Answer_Text__c);
                                 }
                                 if(QuestionObjFieldAPIName == 'Camping_Resorts__c'){
-                                 //   system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     mstLicense.Camping_Resorts__c = Decimal.ValueOf(ans.Answer_Text__c);
                                 }
                                 if(QuestionObjFieldAPIName == 'Initial_Contracts__c'){
-                                  //  system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+                                    system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
                                     mstLicense.Initial_Contracts__c = Decimal.ValueOf(ans.Answer_Text__c);
                                 }
-                                if(QuestionObjFieldAPIName == 'Date_Fiscal_Year_Ends__c'){
-                                  //  system.debug('QuestionObjFieldAPIName '+QuestionObjFieldAPIName);
+								if(QuestionObjFieldAPIName == 'Date_Fiscal_Year_Ends__c'){
                                     mstLicense.Date_Fiscal_Year_Ends__c = Date.valueOf(ans.Answer_Text__c);
                                 }
                             }
@@ -1473,7 +1435,8 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                             if(ans.QuestionDOL__r.Question_Body__c=='Middle Name or initial' && MiddleName == '' ){
                                 MiddleName = ans.Answer_Text__c != null ? ans.Answer_Text__c : ''+' ';
                             }
-                            if((ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') ||ans.QuestionDOL__r.Question_Body__c.contains('How will you be signing your notary public commission?')) && (ans.Answer_Text__c.contains('Using my full legal name') || ans.Answer_Text__c.contains('Use my full legal name')))
+							
+							if((ans.QuestionDOL__r.Question_Body__c.contains('How do you want your name displayed on your license') ||ans.QuestionDOL__r.Question_Body__c.contains('How will you be signing your notary public commission?')) && (ans.Answer_Text__c.contains('Using my full legal name') || ans.Answer_Text__c.contains('Use my full legal name')))
                             {
                                 mstLicense.Using_my_legal_name_as_print_name__c = true;
                             }
@@ -1481,6 +1444,7 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                             {
                                 mstLicense.Using_my_legal_name_as_print_name__c = false;
                             }
+                            
                             if(ans.QuestionDOL__r.Question_Body__c=='Last Name' && LastName == '' ){
                                 LastName = ans.Answer_Text__c != null ? ans.Answer_Text__c : ''+' ';
                             }
@@ -1497,7 +1461,7 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                             
                             if(ans.QuestionDOL__r.RecordType.DeveloperName == 'Financial_Guarantee'){
                                 //system.debug('after If : ans.Question__r.RecordType.DeveloperName::'+ans.Question__r.RecordType.DeveloperName);
-                               // system.debug('Financial Guarantee entered');
+                                system.debug('Financial Guarantee entered');
                                 String quesBody = ans.QuestionDOL__r.Question_Body__c;
                                 String answerText = ans.Answer_Text__c;
                                 String stringToDate = DOL_AppConstants.NULL_EMPTY_STRING + '';
@@ -1539,17 +1503,17 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                     
                     
                     if(application.Credential_Type__c == DOL_AppConstants.NOTARY_PUBLIC){
-                        // mstLicense.MUSW__Expiration_Date__c = mstLicense.Expiration_Date_of_Bond__c;
+                       // mstLicense.MUSW__Expiration_Date__c = mstLicense.Expiration_Date_of_Bond__c;
                         
                         if(!(mstLicense.Effective_Date_of_Bond__c < system.today())){
                             mstLicense.MUSW__Issue_Date__c = mstLicense.Effective_Date_of_Bond__c;       
                         }
                     }
-                  //  System.debug('mstLicense : '+mstLicense);
+                    System.debug('mstLicense : '+mstLicense);
                     
                     if(mstLicense.RecordTypeId == individualRT){
                         mstLicense.License_Printable_Name__c = (MiddleName == null)?(firstName+' '+ LastName):(firstName+' '+ MiddleName+' '+ LastName);
-                            mstLicense.Print_First_Name__c = firstName !=null ? firstName : '';
+                        mstLicense.Print_First_Name__c = firstName !=null ? firstName : '';
                         mstLicense.Print_Middle_Name__c = MiddleName !=null ? MiddleName : '';
                         mstLicense.Print_Last_Name__c = LastName !=null ? LastName : '';
                     }
@@ -1566,13 +1530,13 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
             }
             
             try{
-                List<MUSW__License2__c> mstList = new List<MUSW__License2__c>();
+               List<MUSW__License2__c> mstList = new List<MUSW__License2__c>();
                 if(!lstAcc.isEmpty()){
                     insert lstAcc;
                     for(MUSW__License2__c lic : lstLisence ){
                         lic.MUSW__Primary_Licensee__c =  lstAcc[0].id;
                         mstList.add(lic);
-                       // System.debug('***mstList***'+mstList);
+                        System.debug('***mstList***'+mstList);
                     }
                     Set<Id> seetAcc = new Set<Id>();
                     seetAcc.add(lstAcc[0].Id);
@@ -1604,7 +1568,7 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
         {
             List<MUSW__Account_Contact__c> muswAccConList = new List<MUSW__Account_Contact__c>();
             List<Account> accList  = [select id,  RecordTypeID from Account where id =:setId];
-            User currentUser = [SELECT Id,Name,firstname,lastname,ContactId,email from User Where ID = :UserInfo.getUserId() LIMIT 1];
+            User currentUser = [SELECT Id,Name,firstname,middlename,lastname,ContactId,email from User Where ID = :UserInfo.getUserId() LIMIT 1];
             for(Account acc : accList){
                 Id businessRT = SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Business_Account').getRecordTypeId();
                 if(acc.RecordTypeID == businessRT ){
@@ -1617,7 +1581,7 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                     ac.Account_Admin__c = true;
                     ac.Email__c = currentUser.Email;
                     ac.First_Name__c = currentUser.firstname;
-                    ac.Middle_Name__c = currentUser.firstname;
+                    ac.Middle_Name__c = currentUser.middlename;
                     ac.Last_Name__c = currentUser.lastName;
                     ac.Email__c = currentUser.email;
                     ac.Title__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Administrator';
@@ -1659,13 +1623,13 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
             Map<Id, Contact> conMap = new Map<Id, Contact>();
             id userId = UserInfo.getUserId();
             User u = [select id, contactId from User where id = : userId];
-          //  system.debug('u----' + u);
+            system.debug('u----' + u);
             Id getContactId = DOL_AppConstants.NULL_EMPTY_STRING + '003r000000BnY6T';
-          //  system.debug('getContactId----' + getContactId);
+            system.debug('getContactId----' + getContactId);
             list<Contact> conlist = new list<Contact>();
             for(Contact con : [Select Id, LastName, Birthdate, Email from contact where Id=:getContactId]){
                 conMap.put(con.Id, con);
-            //    system.debug('conMap----' + conMap);
+                system.debug('conMap----' + conMap);
             }
             return conMap;
         }catch(Exception ex)
@@ -1685,9 +1649,9 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                                                      County__c, Country__c,MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
                                                      Primary_Account__c,LastModifiedDate from MUSW__Parcel__c 
                                                      where Status__c ='Active' AND ((MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
-                                                                                    OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId 
-                                                                                        and Application_BG__c!=null))];
-               // System.debug('lstAddress===' + lstAddress);
+                                                     OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId 
+                                                     and Application_BG__c!=null))];
+                System.debug('lstAddress===' + lstAddress);
                 if(!lstAddress.isEmpty()){
                     for(MUSW__Parcel__c parcelAddress : lstAddress) {
                         if(mapAddress.containsKey(parcelAddress.Address_Type__c)) {
@@ -1697,7 +1661,7 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                         }
                     }
                 }
-                //System.debug('mapAddress from method===' + mapAddress);
+                System.debug('mapAddress from method===' + mapAddress);
             }
             return  mapAddress ;
         }catch(Exception ex)
@@ -1715,16 +1679,16 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                                                      County__c, Country__c, MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
                                                      Primary_Account__c,LastModifiedDate from MUSW__Parcel__c 
                                                      where Status__c ='Active' AND ((MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
-                                                                                    OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId 
-                                                                                        AND Application_BG__c !=null))]){
-                                                                                            allAddressList.add(allAddressRecords);
-                                                                                        }
+                                                     OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId 
+                                                     AND Application_BG__c !=null))]){
+                                                         allAddressList.add(allAddressRecords);
+                                                     }
         }
         List<MUSW__Parcel__c> lstParcels = new List<MUSW__Parcel__c>();
         List<MUSW__License_Parcel__c> licenseParcelList = new List <MUSW__License_Parcel__c>();
         if(!allAddressList.isEmpty()){
             for(MUSW__Parcel__c parcelInstance : allAddressList){
-               // system.debug('parcelInstance==' + parcelInstance);
+                system.debug('parcelInstance==' + parcelInstance);
                 if(parcelInstance.RecordType.Name == 'Affiliated Location'){
                     parcelInstance.License__c = licenseId;
                     lstParcels.add(parcelInstance);
@@ -1748,32 +1712,36 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                 upsert licenseParcelList; 
             }
             catch(DmlException e){
-             //   System.debug('Error while inserting new Parcel---' + e.getMessage());
+                System.debug('Error while inserting new Parcel---' + e.getMessage());
             }
-         //   System.debug('licenseParcelList===' + licenseParcelList);
+            System.debug('licenseParcelList===' + licenseParcelList);
             if(!lstParcels.isEmpty()){
                 update lstParcels;
             }             
         }
-      //  System.debug('allAddressList===' + allAddressList);
-        //  return  allAddressList ;
+        System.debug('allAddressList===' + allAddressList);
+      //  return  allAddressList ;
     }
     //Fetch BackgroundInformation
     public static Map<String,List<LnP_BackgroundSection__c>> getBackgroundInformation (Set<Id> appId) {
-        
-        Map<String, List<LnP_BackgroundSection__c>> mapBackgroundInfo =  new Map<String,List<LnP_BackgroundSection__c>>();
-        List<LnP_BackgroundSection__c> lstBackground = [SELECT Id, RecordType.name , Application_BG__c FROM LnP_BackgroundSection__c WHERE Application_BG__c IN :appId and RecordTypeID != null];
-        if(!lstBackground.isEmpty()){
-            for(LnP_BackgroundSection__c backgroundInfo : lstBackground) {
-                if(mapBackgroundInfo.containsKey(backgroundInfo.RecordType.name )) {
-                    mapBackgroundInfo.get(backgroundInfo.RecordType.name ).add(backgroundInfo);
-                } else {
-                    mapBackgroundInfo.put(backgroundInfo.RecordType.name, new List<LnP_BackgroundSection__c>{backgroundInfo});
+        try{
+            Map<String, List<LnP_BackgroundSection__c>> mapBackgroundInfo =  new Map<String,List<LnP_BackgroundSection__c>>();
+            List<LnP_BackgroundSection__c> lstBackground = [SELECT Id, RecordType.name , Application_BG__c FROM LnP_BackgroundSection__c WHERE Application_BG__c IN :appId and RecordTypeID != null];
+            if(!lstBackground.isEmpty()){
+                for(LnP_BackgroundSection__c backgroundInfo : lstBackground) {
+                    if(mapBackgroundInfo.containsKey(backgroundInfo.RecordType.name )) {
+                        mapBackgroundInfo.get(backgroundInfo.RecordType.name ).add(backgroundInfo);
+                    } else {
+                        mapBackgroundInfo.put(backgroundInfo.RecordType.name, new List<LnP_BackgroundSection__c>{backgroundInfo});
+                    }
                 }
             }
+            return  mapBackgroundInfo ;  
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
         }
-        return  mapBackgroundInfo ;  
-        
     }
     
     public static String getFormattedValue(String str) {
@@ -1818,10 +1786,10 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
                 abc.addAll(mapSubmissionToFile.values());
             }
             List<ContentDocumentLink> lstContent = new List<ContentDocumentLink>();
-          //  system.debug('inside the submissions');
+            system.debug('inside the submissions');
             for(ContentDocumentLink cont : [select  ContentDocumentId,Id,LinkedEntityId FROM ContentDocumentLink where  LinkedEntityId =:UserInfo.getUserId()]){
                 
-               // system.debug('inside the submissions'+cont);
+                system.debug('inside the submissions'+cont);
                 lstContent.add(cont);
             }
             if(!lstContent.isEmpty()){
@@ -1847,14 +1815,13 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
         }
     }
     
-    @AuraEnabled
-    public static Id getCommunityUserContactId(){
+    private static Id getCommunityUserContactId(){
         try{
             Id contactId;
             for(User userRecord: [Select Id, username, contactId from User where Id = :UserInfo.getUserId() LIMIT 1]){
                 contactId = userRecord.contactId;
             }
-            //System.debug('contactId===' + contactId);
+            System.debug('contactId===' + contactId);
             return contactId;
         }catch(Exception ex)
         {
@@ -1868,7 +1835,7 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
     public static void getUpgradeLicenseId(Id licUpgradeId){
         try{
             updateRecordId = licUpgradeId;
-          //  System.debug('Testing updateRecordId'+updateRecordId);
+            System.debug('Testing updateRecordId'+updateRecordId);
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
@@ -1876,33 +1843,7 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
         }
         
     }
-    
-    @AuraEnabled
-    public static List<MUSW__Parcel__c> getAllAddressForValidation(Id accountOrContactId, Id applicationId){
-        try{
-        //    system.debug('accountOrContactId==='+ accountOrContactId + 'application Id--' + applicationId);
-            List<MUSW__Parcel__c> allAddressList = new List<MUSW__Parcel__c>();
-            if(String.isNotBlank(accountOrContactId)){
-                for(MUSW__Parcel__c addressRecords : [Select Id, Address_Type__c, is_Physical_and_Mailing_Address_Same__c, MUSW__Street2__c, 
-                                                      MUSW__Unit__c, MUSW__City__c,MUSW__State__c, Canadian_provinces__c, 
-                                                      County__c, Country__c, MUSW__Post_Zip_Code__c,Application_BG__c, MUSW__Primary_Contact__c,
-                                                      Primary_Account__c,LastModifiedDate FROM MUSW__Parcel__c 
-                                                      WHERE Status__c ='Active' AND ((MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :accountOrContactId)
-                                                                                     OR (Primary_Account__c!= null AND Primary_Account__c = :accountOrContactId AND Application_BG__c = :applicationId 
-                                                                                        ))]){
-                                                                                            allAddressList.add(addressRecords);
-                                                                                        }  
-             //   system.debug('allAddressList'+allAddressList);
-            }
-            return allAddressList;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
-    }
-    
+
     @AuraEnabled
     public static Map<String, String> MapgetPicklistFieldValues(String objectName, String pickListFieldName){
         try{
@@ -1915,7 +1856,7 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
             for (Schema.PicklistEntry aPickListValue : pick_list_values) {    
                 picklistValues.put(aPickListValue.getLabel(), aPickListValue.getValue()); 
             }
-            //system.debug('picklistValues'+picklistValues);
+            system.debug('picklistValues'+picklistValues);
             return picklistValues;
         }catch(Exception ex)
         {
@@ -1923,5 +1864,4 @@ mstLicense.Profession_Code__c = professionCodeMap.Profession_Code__c;
             throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
-    
 }
