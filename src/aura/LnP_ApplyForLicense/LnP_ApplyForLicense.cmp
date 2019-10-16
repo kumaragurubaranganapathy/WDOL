@@ -56,6 +56,7 @@
     <aura:attribute name="showErrorMsgs" type="Boolean" default="false"/>
     <aura:attribute name="saveAndSubmit" type="Boolean" default="false" />
     <aura:attribute name="approExpirationFlag" type="Boolean" default="false" />
+	<aura:attribute name="fetchAddress" type="Boolean" default="false" />
 	<aura:attribute name="showErrorMsgsOfAttachments" type="Boolean" default="false"/>
     <aura:handler name="CmpEvent" event="c:LnP_applyLicense" action="{!c.handleComponentEvent}"/> <!-- Added by AD -->
     
