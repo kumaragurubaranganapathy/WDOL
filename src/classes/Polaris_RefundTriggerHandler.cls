@@ -155,24 +155,22 @@ so we only have to use 1 SOQL query to do all checks.
        // system.debug('==refundeeContactIdList=='+refundeeContactIdList);
         try{
             if(!refundeeContactIdList.isEmpty()){
-                //Fetch the parcel contact using refundee Id
-                List<MUSW__Parcel_Contact2__c> parcelContactList = [Select Id,Name, MUSW__Contact__c, MUSW__Contact_Type__c,Mailing__c,
-                                                                    MUSW__Parcel__r.MUSW__Street_Number__c,MUSW__Parcel__r.MUSW__Street_Direction__c,MUSW__Parcel__r.MUSW__Street2__c, 
-                                                                    MUSW__Parcel__r.MUSW__Street_Suffix__c,MUSW__Parcel__r.MUSW__Unit__c ,MUSW__Parcel__r.MUSW__Unit_Type__c,
-                                                                    MUSW__Parcel__r.MUSW__City__c ,MUSW__Parcel__r.MUSW__Post_Zip_Code__c ,MUSW__Parcel__r.MUSW__State__c,
-                                                                    MUSW__Parcel__r.Country__c 
-                                                                    from MUSW__Parcel_Contact2__c 
-                                                                    where MUSW__Contact__c IN: refundeeContactIdList];
-                //system.debug('==parcelContactList=='+parcelContactList);
-                Map<Id,MUSW__Parcel_Contact2__c> parcelContactMap = new Map<Id,MUSW__Parcel_Contact2__c>();
-                if(!parcelContactList.isEmpty()){
-                    for(MUSW__Parcel_Contact2__c parcelCont:parcelContactList){
-                        if(!parcelContactMap.containsKey(parcelCont.MUSW__Contact__c)){
-                            parcelContactMap.put(parcelCont.MUSW__Contact__c,parcelCont);
+                //Fetch the parcel using refundee Id
+                List<MUSW__Parcel__c> parcelList = [Select Id,Name, MUSW__Primary_Contact__c, Address_Type__c, MUSW__Street_Number__c,MUSW__Street_Direction__c,MUSW__Street2__c, 
+                                                                    MUSW__Street_Suffix__c,MUSW__Unit__c ,MUSW__Unit_Type__c,MUSW__City__c ,
+                                                                    MUSW__Post_Zip_Code__c ,MUSW__State__c,Country__c 
+                                                                    from MUSW__Parcel__c 
+                                                                    where MUSW__Primary_Contact__c IN: refundeeContactIdList];
+                //system.debug('==parcelList=='+parcelList);
+                Map<Id,MUSW__Parcel__c> parcelMap = new Map<Id,MUSW__Parcel__c>();
+                if(!parcelList.isEmpty()){
+                    for(MUSW__Parcel__c parcel:parcelList){
+                        if(!parcelMap.containsKey(parcel.MUSW__Primary_Contact__c)){
+                            parcelMap.put(parcel.MUSW__Primary_Contact__c,parcel);
                         }
                     }
                 }
-                //system.debug('==parcelContactMap=='+parcelContactMap);
+                //system.debug('==parcelMap=='+parcelMap);
                 //Fetch the contact list using refundee Id
                 List<Contact> contactList = [select Id,Name,MailingAddress,MailingCity,MailingCountry,
                                             MailingGeocodeAccuracy,MailingLatitude,MailingLongitude,
@@ -181,70 +179,72 @@ so we only have to use 1 SOQL query to do all checks.
                                             where Id IN:refundeeContactIdList];
                 //system.debug('==contactList=='+contactList);
                 List<Contact> upsertContactList = new List<Contact>(); 
+                //Assign the Parcel Address to Contact Mailing Address
                 if(!contactList.isEmpty()){
                     for(Contact cont:contactList){
-                        MUSW__Parcel_Contact2__c parcelCont = parcelContactMap.get(cont.Id);
-                        if(parcelCont != null){
+                        MUSW__Parcel__c parcelRec = parcelMap.get(cont.Id);
+                        if(parcelRec != null){
                             Contact contact = new Contact();
                             contact.Id = cont.Id;
                             String streetValue = '';
-                            if(String.isNotBlank(parcelCont.MUSW__Parcel__r.MUSW__Street_Number__c)){
-                                streetValue = parcelCont.MUSW__Parcel__r.MUSW__Street_Number__c;
+                            if(String.isNotBlank(parcelRec.MUSW__Street_Number__c)){
+                                streetValue = parcelRec.MUSW__Street_Number__c;
                             }
-                            if(String.isNotBlank(parcelCont.MUSW__Parcel__r.MUSW__Street_Direction__c)){
+                            if(String.isNotBlank(parcelRec.MUSW__Street_Direction__c)){
                                 if(String.isNotBlank(streetValue)){
-                                    streetValue = streetValue+' '+parcelCont.MUSW__Parcel__r.MUSW__Street_Direction__c;
+                                    streetValue = streetValue+' '+parcelRec.MUSW__Street_Direction__c;
                                 }else{
-                                    streetValue = parcelCont.MUSW__Parcel__r.MUSW__Street_Direction__c;
+                                    streetValue = parcelRec.MUSW__Street_Direction__c;
                                 }
                             }
-                            if(String.isNotBlank(parcelCont.MUSW__Parcel__r.MUSW__Street2__c)){
+                            if(String.isNotBlank(parcelRec.MUSW__Street2__c)){
                                 if(String.isNotBlank(streetValue)){
-                                    streetValue = streetValue+' '+parcelCont.MUSW__Parcel__r.MUSW__Street2__c;
+                                    streetValue = streetValue+' '+parcelRec.MUSW__Street2__c;
                                 }else{
-                                    streetValue = parcelCont.MUSW__Parcel__r.MUSW__Street2__c;
+                                    streetValue = parcelRec.MUSW__Street2__c;
                                 }
                             }
-                            if(String.isNotBlank(parcelCont.MUSW__Parcel__r.MUSW__Street_Suffix__c)){
+                            if(String.isNotBlank(parcelRec.MUSW__Street_Suffix__c)){
                                 if(String.isNotBlank(streetValue)){
-                                    streetValue = streetValue+' '+parcelCont.MUSW__Parcel__r.MUSW__Street_Suffix__c;
+                                    streetValue = streetValue+' '+parcelRec.MUSW__Street_Suffix__c;
                                 }else{
-                                    streetValue = parcelCont.MUSW__Parcel__r.MUSW__Street_Suffix__c;
+                                    streetValue = parcelRec.MUSW__Street_Suffix__c;
                                 }
                             }
-                            if(String.isNotBlank(parcelCont.MUSW__Parcel__r.MUSW__Unit_Type__c)){
+                            if(String.isNotBlank(parcelRec.MUSW__Unit_Type__c)){
                                 if(String.isNotBlank(streetValue)){
-                                    streetValue = streetValue+','+parcelCont.MUSW__Parcel__r.MUSW__Unit_Type__c;
+                                    streetValue = streetValue+','+parcelRec.MUSW__Unit_Type__c;
                                 }else{
-                                    streetValue = parcelCont.MUSW__Parcel__r.MUSW__Unit_Type__c;
+                                    streetValue = parcelRec.MUSW__Unit_Type__c;
                                 }
                             }
-                            if(String.isNotBlank(parcelCont.MUSW__Parcel__r.MUSW__Unit__c)){
+                            if(String.isNotBlank(parcelRec.MUSW__Unit__c)){
                                 if(String.isNotBlank(streetValue)){
-                                    streetValue = streetValue+' '+parcelCont.MUSW__Parcel__r.MUSW__Unit__c;
+                                    streetValue = streetValue+' '+parcelRec.MUSW__Unit__c;
                                 }else{
-                                    streetValue = parcelCont.MUSW__Parcel__r.MUSW__Unit__c;
+                                    streetValue = parcelRec.MUSW__Unit__c;
                                 }
                             }
                             if(String.isNotBlank(streetValue)){
                                 contact.MailingStreet = streetValue;
                             }
-                            if(String.isNotBlank(parcelCont.MUSW__Parcel__r.MUSW__City__c)){
-                                contact.MailingCity = parcelCont.MUSW__Parcel__r.MUSW__City__c;
+                            if(String.isNotBlank(parcelRec.MUSW__City__c)){
+                                contact.MailingCity = parcelRec.MUSW__City__c;
                             }
-                            if(String.isNotBlank(parcelCont.MUSW__Parcel__r.Country__c)){
-                                contact.MailingCountry = parcelCont.MUSW__Parcel__r.Country__c;
+                            if(String.isNotBlank(parcelRec.Country__c)){
+                                contact.MailingCountry = parcelRec.Country__c;
                             }
-                            if(String.isNotBlank(parcelCont.MUSW__Parcel__r.MUSW__Post_Zip_Code__c)){
-                                contact.MailingPostalCode = parcelCont.MUSW__Parcel__r.MUSW__Post_Zip_Code__c;
+                            if(String.isNotBlank(parcelRec.MUSW__Post_Zip_Code__c)){
+                                contact.MailingPostalCode = parcelRec.MUSW__Post_Zip_Code__c;
                             }
-                            if(String.isNotBlank(parcelCont.MUSW__Parcel__r.MUSW__State__c)){
-                                contact.MailingState = parcelCont.MUSW__Parcel__r.MUSW__State__c;
+                            if(String.isNotBlank(parcelRec.MUSW__State__c)){
+                                contact.MailingState = parcelRec.MUSW__State__c;
                             }
                             upsertContactList.add(contact);
                         }
                     }
                //     system.debug('==upsertContactList=='+upsertContactList);
+                    //Upsert the contact List
                     if(!upsertContactList.isEmpty()){
                         upsert upsertContactList;
                     }
