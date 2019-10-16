@@ -577,7 +577,7 @@ public with sharing class Add_BusinessController {
     @AuraEnabled 
     public static Boolean saveOwnerRecord(String accCon ){        
         try{
-		List<MUSW__Account_Contact__c> accConRec = (List<MUSW__Account_Contact__c>)JSON.deserialize(accCon, List<MUSW__Account_Contact__c>.class);         
+        List<MUSW__Account_Contact__c> accConRec = (List<MUSW__Account_Contact__c>)JSON.deserialize(accCon, List<MUSW__Account_Contact__c>.class);         
             update accConRec;
             return true;
         }
@@ -595,7 +595,7 @@ public with sharing class Add_BusinessController {
             
             List<task> tsk = [select id,Whatid,Status from task where Whatid=:accConId.Id limit 1];
             
-            System.debug('accConId::'+accConId+' : tsk : '+tsk);
+            //System.debug('accConId::'+accConId+' : tsk : '+tsk);
             if(action == 'Remove'){
                 accConId.Status__c = 'Deleted';
                 if(!tsk.isEmpty()){
@@ -894,7 +894,7 @@ public with sharing class Add_BusinessController {
     @AuraEnabled
     public static String setLocationTable(String applicationId){
         try{
-            System.debug('applicationId::'+ applicationId);
+            //System.debug('applicationId::'+ applicationId);
             
             Id LocationRT = Schema.SObjectType.MUSW__Parcel__c.getRecordTypeInfosByName().get('Affiliated Location').getRecordTypeId(); 
             List<SObject> columnDataList = new List<SObject>();
@@ -1177,6 +1177,24 @@ public with sharing class Add_BusinessController {
         }
     } 
     
+    @AuraEnabled
+    public static boolean checkIfCourseAccount(String accntId){
+        DOL_AppUtility.isAuthenticatedUser() ;
+        Boolean courseAcc = false;
+        try{
+            
+            //System.debug('accntId----'+accntId);
+            Account selectedAcc = [SELECT Id,Name,Course_Provider__c FROM Account WHERE Id =: accntId LIMIT 1];
+            if(selectedAcc != null && selectedAcc.Course_Provider__c != null){
+                courseAcc = selectedAcc.Course_Provider__c;
+            }
+            
+        }catch(Exception ex){
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            
+        }
+        return courseAcc;
+    }
     
      @AuraEnabled
     public static boolean setAbandonStatus(String record_Id_String){
