@@ -1131,14 +1131,14 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                             if(ans.QuestionDOL__r.Question_Body__c== DOL_AppConstants.LASTNAME && LastName == '' ){
                                 LastName = ans.Answer_Text__c;
                             }
-                            
-                            if(ans.QuestionDOL__r.Question_Body__c == DOL_AppConstants.HOW_DO_YOU_WANT_YOUR_NAME_DISPLAYED_ON_YOUR_LICENSE && ans.Answer_Text__c == DOL_AppConstants.USE_MY_FULL_LEGAL_NAME && firstName == '' ){
+                           // System.debug(ans.QuestionDOL__r.Question_Body__c.contains(DOL_AppConstants.HOW_DO_YOU_WANT_YOUR_NAME_DISPLAYED_ON_YOUR_LICENSE) + ' ' +  ans.Answer_Text__c.contains(DOL_AppConstants.USE_MY_FULL_LEGAL_NAME) + ' '+ firstName  + ' '+ MiddleName + ' ' + LastName );
+                            if(ans.QuestionDOL__r.Question_Body__c.contains(DOL_AppConstants.HOW_DO_YOU_WANT_YOUR_NAME_DISPLAYED_ON_YOUR_LICENSE) && (ans.Answer_Text__c.contains('Using my full legal name') || ans.Answer_Text__c.contains(DOL_AppConstants.USE_MY_FULL_LEGAL_NAME)) && firstName == '' ){
                                 firstName  = application.MUSW__Applicant__r.FirstName;
                             }
-                            if(ans.QuestionDOL__r.Question_Body__c == DOL_AppConstants.HOW_DO_YOU_WANT_YOUR_NAME_DISPLAYED_ON_YOUR_LICENSE  && ans.Answer_Text__c == DOL_AppConstants.USE_MY_FULL_LEGAL_NAME && MiddleName == '' ){
+                            if(ans.QuestionDOL__r.Question_Body__c.contains(DOL_AppConstants.HOW_DO_YOU_WANT_YOUR_NAME_DISPLAYED_ON_YOUR_LICENSE)  && (ans.Answer_Text__c.contains('Using my full legal name') || ans.Answer_Text__c.contains(DOL_AppConstants.USE_MY_FULL_LEGAL_NAME)) && MiddleName == '' ){
                                 MiddleName  = application.MUSW__Applicant__r.MiddleName;
                             }
-                            if(ans.QuestionDOL__r.Question_Body__c == DOL_AppConstants.HOW_DO_YOU_WANT_YOUR_NAME_DISPLAYED_ON_YOUR_LICENSE  && ans.Answer_Text__c == DOL_AppConstants.USE_MY_FULL_LEGAL_NAME && LastName == '' ){
+                            if(ans.QuestionDOL__r.Question_Body__c.contains(DOL_AppConstants.HOW_DO_YOU_WANT_YOUR_NAME_DISPLAYED_ON_YOUR_LICENSE)  && (ans.Answer_Text__c.contains('Using my full legal name') || ans.Answer_Text__c.contains(DOL_AppConstants.USE_MY_FULL_LEGAL_NAME)) && LastName == '' ){
                                 LastName  = application.MUSW__Applicant__r.LastName;
                             }
                         }
@@ -1206,10 +1206,10 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 Id BusinessLicRT =  SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get(DOL_AppConstants.BUSINESS).getRecordTypeId();
                 Id CourseLicRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get(DOL_AppConstants.COURSE).getRecordTypeId();
                 if(liceseIDRenewal.RecordTypeId == individualLicRT){
-                    liceseIDRenewal.License_Printable_Name__c = firstName+' '+ MiddleName+' '+ LastName;
-                    liceseIDRenewal.Print_First_Name__c = firstName;
-                    liceseIDRenewal.Print_Middle_Name__c = MiddleName;
-                    liceseIDRenewal.Print_Last_Name__c = LastName;
+                    liceseIDRenewal.License_Printable_Name__c = (MiddleName == null)?(firstName+' '+ LastName):(firstName+' '+ MiddleName+' '+ LastName);
+                    liceseIDRenewal.Print_First_Name__c = firstName !=null ? firstName : '';
+                    liceseIDRenewal.Print_Middle_Name__c =  MiddleName !=null ? MiddleName : '';
+                    liceseIDRenewal.Print_Last_Name__c = LastName !=null ? LastName : '';
                 }
                 if(liceseIDRenewal.RecordTypeId == BusinessLicRT){
                     liceseIDRenewal.License_Printable_Name__c = application.MUSW__Account__r.Name+' '+ doingBusinessAs;
