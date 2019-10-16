@@ -4,8 +4,7 @@
     <aura:attribute name="isLoggedIn" type="Boolean" default="false" />
     <aura:attribute name="isValidCommunityUser" type="Boolean" default="false" /> 
     <aura:attribute name="helpPage" type="Boolean" default="false" /> 
-    <aura:handler name="PortalArticleHandler" event="c:PortalArticles" action="{!c.handlePortalArticle}"/>
-    
+    <aura:handler name="PortalArticleHandler" event="c:PortalArticles" action="{!c.handlePortalArticle}"/>    
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
     <aura:if isTrue="{!v.isPageLoaded}">
@@ -21,12 +20,13 @@
             </aura:if>
             <!--<aura:if isTrue="{!!v.isValidCommunityUser}"> -->
             <aura:if isTrue="{!!v.helpPage}">
-                <c:LnP_DynamicPortalArticleRenderer isLoggedIn="{!v.isLoggedIn}" />
+                <c:LnP_DynamicPortalArticleRenderer aura:id="get-started" isLoggedIn="{!v.isLoggedIn}" />
                 
-                
-                <aura:if isTrue="{!v.displayotherprofessionspage}">   
-                    <c:LnP_DynamicPortalArticleRenderer articleTitle="Other Professions"/>
-                </aura:if>
+                <div class="{!v.displayotherprofessionspage?'other-prof-wrapper':'slds-hide'}" id="other-prof">
+                     
+                        <c:LnP_DynamicPortalArticleRenderer aura:id="other-prof" articleTitle="Other Professions"/>
+                    
+                </div>
                 <aura:set attribute="else">
                     <div class="help-wrapper">
                         <h2> Questions? Need help?</h2>
