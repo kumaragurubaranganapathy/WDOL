@@ -359,6 +359,13 @@ public class DOL_TestDataFactory {
         reApp.Renewal_Status__c = 'Draft';
         reApp.License__c = licId;
         reApp.Permit__c = permitId;
+        reApp.Policy_Amount__c =100.00;
+         reApp.Advertising_Fees__c =100.00;
+         reApp.Interval_fees__c =100.00;
+         reApp.Initial_Contracts__c =1;
+         reApp.Timeshare_Projects__c =1; 
+        reApp.Apartment_Units__c =1;
+         reApp.Camping_Resorts__c =1;
         insert reApp;
         return reApp;
     }
