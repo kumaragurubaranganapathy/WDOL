@@ -809,11 +809,12 @@ margin-right:10%;
     .THIS .page-width .field-item .slds-form-element__control,.THIS .page-width .field-size .slds-form-element__control,.THIS .portal-registration-form-container .field-item .slds-form-element__control,.THIS .personal-info .field-size .slds-form-element__control{
         width:100%;
     }
-    .THIS .slds-table tbody td, .THIS .slds-table tbody td div{
+    .THIS .slds-table tbody td{
         padding:0.75rem;
         font-size:0.8125rem;
+        padding-left:0;
         border:none;
-    }
+    }    
     .THIS .slds-table tbody tr{
         border:solid 1px t(grayBorder);
         margin-top:1rem;
@@ -864,6 +865,13 @@ margin-right:10%;
     .THIS .slds-max-medium-table_stacked tr:last-of-type{
         border-bottom:2px solid t(sectionBG);
     }
+    .THIS .slds-table.slds-max-medium-table_stacked tbody td{
+        padding:0.75rem;
+        font-size:0.8125rem;
+        color:t(LnGFormTitleColor);
+        padding-left:0;
+        /*border:none;*/
+    }
 }
 .THIS .slds-spinner_container {
     position:fixed;
@@ -890,10 +898,10 @@ margin-right:10%;
     color:t(buttonWhite);
 }
 @media screen and (max-width: 1279.9px){
-    .THIS .slds-table tbody td, .THIS .slds-table tbody td div{
+    .THIS .slds-table tbody td{
         padding:0.75rem;
         font-size:0.8125rem;
-        color:t(LnGFormTitleColor);
-        border:none;
+        color:t(LnGFormTitleColor);        
+        /*border:none;*/
     }
 }
