@@ -735,11 +735,11 @@
                 
                 if(type === "success"){
                     
-                    var licenseDat = component.get("v.detailLicenseData");
+                    var licenseDat = component.get("v.licenseId");
                     
-                    this.fetchBusinessRelationShipRecords(component, event, helper,licenseDat[0].id);
+                    this.fetchBusinessRelationShipRecords(component, event, helper,licenseDat);
                     
-                    this.fetchPeerRelationShipDataRecords(component, event, helper,licenseDat);
+                   // this.fetchPeerRelationShipDataRecords(component, event, helper,licenseDat);
                 }
                 
             } else if (state === "ERROR") {
