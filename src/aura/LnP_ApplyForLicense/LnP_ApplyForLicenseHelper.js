@@ -94,7 +94,98 @@
         component.set("v.certificateError", "");
         component.set("v.attestationError", "");
     },
-    goToNextTab : function(component, event, helper) {
+    goToNextTabDecision : function(component, event){
+        var licenseWrapper = component.get("v.licenseWrapper");
+        var tabNumber = component.get("v.currentTab") - 1;
+        var valueVal;
+        if(licenseWrapper[tabNumber].subheader === 'Personal Information' || licenseWrapper[tabNumber].subheader === 'Business Information' || licenseWrapper[tabNumber].subheader === 'Course Information') {
+            var accountRecordId= component.get("v.recordId");
+            var objectRecordName= component.get("v.objectName");
+            var accountOrContactId;
+            if($A.util.isEmpty(accountRecordId) || $A.util.isUndefined(accountRecordId) || accountRecordId == 'null'){
+                accountOrContactId = component.get("v.contactId");
+            }else{
+                accountOrContactId = component.get("v.recordId");
+            }
+            var applicationId= component.get("v.applicationId");
+            
+            
+            var action=component.get("c.getAllAddressForValidation");
+            action.setParams({'accountOrContactId': accountOrContactId, 'applicationId':applicationId });
+            
+            action.setCallback(this, function(response){
+                var stateResponse = response.getState();
+                if (stateResponse === "SUCCESS") {              
+                    var allAddresses = response.getReturnValue();
+                    if (!($A.util.isEmpty(allAddresses) || $A.util.isUndefined(allAddresses))) {
+                        component.set("v.allAddresses",allAddresses);
+                        var mandatoryAddress = licenseWrapper[tabNumber].mandatorySubsection;
+                        var addedAddress = component.get("v.allAddresses");
+                        if(addedAddress !== null && addedAddress.length !=undefined && addedAddress.length>0){
+                            if(mandatoryAddress !== null){
+                                var mandatoryAddressSections = mandatoryAddress.split(",");
+                                var addressFlag = mandatoryAddressSections.every(
+                                    function(item,index){
+                                        for(var k=0; k<addedAddress.length; k++){
+                                            if(addedAddress[k].Address_Type__c.toLowerCase() == item.toLowerCase() || addedAddress[k].is_Physical_and_Mailing_Address_Same__c == true ){
+                                                return true;
+                                            }
+                                        }
+                                    }
+                                )
+                                if(addressFlag){
+                                    component.set("v.fetchAddress", true);
+                                }else{
+                                    component.set("v.fetchAddress", false);
+                                    var toastEvent = $A.get("e.force:showToast");
+                                    toastEvent.setParams({
+                                        "title": "ERROR!",
+                                        "message": "Address is mandatory",
+                                        "type": "error"
+                                    });
+                                    toastEvent.fire();
+                                }
+                            }else{
+                                component.set("v.fetchAddress", true);
+                            } 
+                        }
+                    }else{
+                        var mandatoryAddress = licenseWrapper[tabNumber].mandatorySubsection;
+                        if(mandatoryAddress !== null){
+                            component.set("v.fetchAddress", false);
+                            var toastEvent = $A.get("e.force:showToast");
+                            toastEvent.setParams({
+                                "title": "ERROR!",
+                                "message": "Address is mandatory",
+                                "type": "error"
+                            });
+                            toastEvent.fire();
+                        }else{
+                            component.set("v.fetchAddress", true);
+                        }    
+                    }
+                    if(component.get("v.fetchAddress")){
+                        this.goToNextTab(component, event);
+                    }
+                }
+                else{
+                    component.set("v.fetchAddress", false);
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "ERROR!",
+                        "message": "An unexpected error has occurred. Please try again later.",
+                        "type": "error"
+                    });
+                    toastEvent.fire();
+                }
+            });
+            $A.enqueueAction(action);
+        }else{
+            this.goToNextTab(component, event);
+        }
+    },
+    goToNextTab : function(component,event) {
+        var tabNumber = component.get("v.currentTab");
         if(component.get("v.saveAndSubmit") != true){
             this.checkFieldValidations(component, event); 
         }else{
@@ -1354,5 +1445,23 @@
             }
         } 
         component.set("v.licenseWrapper",tabsList);
-    }
+    },
+    getloggedInContactDetails : function(component,event){
+        var action = component.get("c.getCommunityUserContactId");
+        action.setCallback(this, function(response){
+            var stateResponse = response.getState();
+            if (stateResponse === "SUCCESS") {              
+                var contactRecordId = response.getReturnValue();
+                if (!($A.util.isEmpty(contactRecordId) || $A.util.isUndefined(contactRecordId))) {
+                    component.set("v.contactId",contactRecordId);
+                    console.log('set contactId' + component.get("v.contactId"));
+                    //this.getAllAddressForValidation(component);
+                }
+            }
+            else{
+                alert('Error with fetching contactId');
+            }
+        });
+        $A.enqueueAction(action); 
+    },
 })

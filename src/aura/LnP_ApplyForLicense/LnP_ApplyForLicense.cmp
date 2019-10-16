@@ -13,6 +13,8 @@
     <aura:handler name="LnP_setCurrTabEvent" event="c:LnP_setCurrTabEvent" action="{!c.getCurrTab}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute name ="recordId" type="String"/>
+    <aura:attribute name ="contactId" type="String"/>
+    <aura:attribute name ="allAddresses" type="List"/>
     <aura:attribute name ="licenseRecordID" type="String"/>
     <aura:attribute name="objectName" type ="String"/>
     <aura:attribute name="SectionError" type="string[]" default="[]"/>
@@ -45,7 +47,7 @@
     <aura:attribute name="emailDistributionValues" type="String" default="false" description="emailDistribution checkbox validation flag" />
     <aura:attribute name="emailDistributionError" type="String" default="" description="emailDistribution error message"/>  
     <aura:attribute name="cartRedirect" type="Boolean" default="false" />
-    <aura:attribute name="nextFlag" type="Boolean" default="true"/>
+    <aura:attribute name="nextFlag" type="Boolean" default="false"/>
     <aura:attribute name="isbusinsessLicense" type="Boolean" default="false"/>
     <!--<aura:attribute name="noFeesFlag" type="Boolean" default="false"/> -->
     <!--<aura:attribute name="regexFlag" type="Boolean" default="false"/>-->

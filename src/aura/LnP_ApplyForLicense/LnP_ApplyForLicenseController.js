@@ -14,16 +14,17 @@
             urlEvent.fire();
             return false;
         }
-        console.log('inside init');        
-        helper.setApplicationType(component, event, helper);
-        helper.fetchDataFromServer(component, event, helper);       
+        helper.setApplicationType(component,event);
+		helper.fetchDataFromServer(component,event);
+        helper.getloggedInContactDetails(component,event);
     },
+   
     previousTab : function(component, event, helper) {
 		helper.goToPreviousTab(component, event, helper);
 	},
     nextTab : function(component, event, helper) {
-		helper.goToNextTab(component, event, helper);
-        
+        console.log("Entered Next Tab");
+		helper.goToNextTabDecision(component,event);
        // helper.checkMandatory(component, event, helper);
       
 	},
