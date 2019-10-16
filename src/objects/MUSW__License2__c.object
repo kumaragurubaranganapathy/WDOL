@@ -5461,8 +5461,8 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
         <fullName>Real_Estate_Appraisers_All</fullName>
         <columns>MUSW__Applicant__c</columns>
         <columns>NAME</columns>
-        <columns>Credential_Type__c</columns>
         <columns>MUSW__Status__c</columns>
+        <columns>Credential_Type__c</columns>
         <columns>Application_Type__c</columns>
         <columns>Application_Method__c</columns>
         <columns>Owner_Full_Name__c</columns>
@@ -5472,6 +5472,11 @@ Important metric i.e. Paper vs Online Report is based on this picklist.</descrip
             <field>Application_Type__c</field>
             <operation>equals</operation>
             <value>Appraisers - Real Estate</value>
+        </filters>
+        <filters>
+            <field>MUSW__Status__c</field>
+            <operation>equals</operation>
+            <value>Withdrawn,Denied,Active,Inactive,Expired,Suspended,Revoked,Canceled</value>
         </filters>
         <label>Real Estate Appraisers - All</label>
     </listViews>
