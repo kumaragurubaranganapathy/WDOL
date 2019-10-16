@@ -1,8 +1,8 @@
 public class LnP_HomePageWidgetApexController {
-	 @AuraEnabled
+     @AuraEnabled
     public static Map<String,String> getCustomLabelMap(){
        try{
-       System.debug('Exe Here0000 ');
+   //    System.debug('Exe Here0000 ');
        Map<String, String> mapWidgetLabels = new Map<String, String>();
        mapWidgetLabels = DE_LandingPageCustomLabels.getWidgetLabels();
 

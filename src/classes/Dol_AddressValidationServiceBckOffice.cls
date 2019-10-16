@@ -47,7 +47,7 @@ public class Dol_AddressValidationServiceBckOffice {
         Dom.XMLNode address = envelope.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/').getChildElement('doAddressCheckResponse','urn:MelissaDataAddressCheckService').getChildElement('doAddressCheckResult','urn:MelissaDataAddressCheckService').getChildElement('Record','urn:mdWebServiceAddress').getChildElement('Address', 'urn:mdWebServiceAddress');
         validatedAddress.street = address.getChildElement('Address1', 'urn:mdWebServiceAddress').getText();
         validatedAddress.street2 = address.getChildElement('Suite', 'urn:mdWebServiceAddress').getText();
-        System.debug('suite2'+validatedAddress.street2);
+        //System.debug('suite2'+validatedAddress.street2);
         if(Dol_IntegrationUtil.isBlank(validatedAddress.street2)){
             validatedAddress.street2 = null;
         }
@@ -56,7 +56,7 @@ public class Dol_AddressValidationServiceBckOffice {
         String zipRange ;
         if(address.getChildElement('Zip', 'urn:mdWebServiceAddress').getText() != null){
           zipRange = address.getChildElement('Zip', 'urn:mdWebServiceAddress').getText();
-            System.debug('zip**'+address.getChildElement('Plus4', 'urn:mdWebServiceAddress').getText());
+            //System.debug('zip**'+address.getChildElement('Plus4', 'urn:mdWebServiceAddress').getText());
             string plus4 = address.getChildElement('Plus4', 'urn:mdWebServiceAddress').getText();
                 
             if(plus4 != null && plus4 != '' && plus4 !=' ' && plus4 != 'undefined'){
@@ -64,9 +64,9 @@ public class Dol_AddressValidationServiceBckOffice {
             }
         }
         validatedAddress.zip = zipRange;
-        System.debug('zipRange'+zipRange);
+        //System.debug('zipRange'+zipRange);
         validatedAddress.country = address.getChildElement('Country', 'urn:mdWebServiceAddress').getChildElement('Name', 'urn:mdWebServiceAddress').getText() == 'United States of America' ? 'United States' : '';
-        System.debug('validatedAddress'+validatedAddress);
+        //System.debug('validatedAddress'+validatedAddress);
         return validatedAddress;
         }
         catch(Exception ex)
@@ -85,7 +85,7 @@ public class Dol_AddressValidationServiceBckOffice {
         
         Id sRecordId = recordId;
         String objName = sRecordId.getSObjectType().getDescribe().getName();
-        system.debug('!!!! createTimeEntry.objName = ' + objName);
+        //System.debug('!!!! createTimeEntry.objName = ' + objName);
         
         return objName;
         }
@@ -98,8 +98,8 @@ public class Dol_AddressValidationServiceBckOffice {
      @AuraEnabled 
     public static List<String> getStates(sObject objObject, string fld) {
         try{
-      system.debug('objObject:' + objObject);
-      system.debug('fld:' + fld);
+      //System.debug('objObject:' + objObject);
+      //System.debug('fld:' + fld);
       List<String> allOpts = new list <String> ();
       // Get the object type of the SObject.
       Schema.sObjectType objType = objObject.getSObjectType();
@@ -113,7 +113,7 @@ public class Dol_AddressValidationServiceBckOffice {
       for (Schema.PicklistEntry a: values) {
        allOpts.add(a.getValue());
       }
-      system.debug('allOpts ---->' + allOpts);
+      //System.debug('allOpts ---->' + allOpts);
       return allOpts;
         }
         catch(Exception ex)
@@ -131,10 +131,15 @@ public class Dol_AddressValidationServiceBckOffice {
         String state;
         String zip;
         String country;
+        //System.debug('selectedAddress='+selectedAddress);
+        //System.debug('isAptInfo='+isAptInfo);
+        //System.debug('isAddrValidated='+isAddrValidated);
+        //System.debug('countyValue='+countyValue);
+
         try{
             if(Dol_IntegrationUtil.isNotBlank(selectedAddress)){
                 selectedAddress= selectedAddress.replaceAll('\\<.*?\\>', '');
-                system.debug('selectedAddress='+selectedAddress);
+                //System.debug('selectedAddress='+selectedAddress);
                 List<String> Addresslist = selectedAddress.split(',');
                 if(Dol_IntegrationUtil.isNotempty(Addresslist)){
                     addres1 = Addresslist[0] != null ? Addresslist[0].trim() : '';
@@ -166,8 +171,10 @@ public class Dol_AddressValidationServiceBckOffice {
                                   AND MUSW__State__c=:state AND MUSW__State__c!= null AND MUSW__Post_Zip_Code__c=:zip AND MUSW__Post_Zip_Code__c != null 
                                   AND Country__c=:country AND Country__c != null AND (Primary_Account__c =:parentId OR MUSW__Primary_Contact__c =:parentId) Limit 1];
             }
+            //System.debug('existingParcel'+existingParcel);
             if(Dol_IntegrationUtil.isNotempty(existingParcel)){
                 if (Dol_IntegrationUtil.isNotBlank(parentSobjName) && parentSobjName =='Account'){
+                    //System.debug('parentSobjName=='+parentSobjName);
                     if(Dol_IntegrationUtil.isNotBlank(existingParcel[0].Primary_Account__c) && existingParcel[0].Primary_Account__c == parentId){
                         existingParcel[0].Melissa_Address_Verified__c = isAddrValidated;
                         if(aptInfo!= null){
@@ -176,9 +183,11 @@ public class Dol_AddressValidationServiceBckOffice {
                             existingParcel[0].County__c = countyValue.trim(); 
                         }
                         updtexistingParcel.add(existingParcel[0]);
+                        //System.debug('updtexistingParcel1=='+updtexistingParcel);
                     }
                 }
                 if (Dol_IntegrationUtil.isNotBlank(parentSobjName) && parentSobjName =='Contact'){
+                    //System.debug('parentSobjName=='+parentSobjName);
                     if(Dol_IntegrationUtil.isNotBlank(existingParcel[0].MUSW__Primary_Contact__c) && existingParcel[0].MUSW__Primary_Contact__c == parentId){
                         existingParcel[0].Melissa_Address_Verified__c = isAddrValidated;
                         if(aptInfo!= null){
@@ -187,6 +196,7 @@ public class Dol_AddressValidationServiceBckOffice {
                             existingParcel[0].County__c = countyValue.trim(); 
                         }
                         updtexistingParcel.add(existingParcel[0]);
+                        //System.debug('updtexistingParcel2=='+updtexistingParcel);
                     }
                 }
             }else{
@@ -216,17 +226,17 @@ public class Dol_AddressValidationServiceBckOffice {
                     updtexistingParcel.add(parcel);
                 } 
             }
-            System.debug('updtexistingParcel**' + updtexistingParcel);
+            //System.debug('updtexistingParcel**' + updtexistingParcel);
             if (Dol_IntegrationUtil.isNotempty(updtexistingParcel)){
                 upsert updtexistingParcel;
                 parceLId = [select id from MUSW__Parcel__c where id =:updtexistingParcel[0].id AND id != null Limit 1].id;
             }
             }catch(Exception e){
-            System.debug('Dol_AddressValidationService - Exception: '+e);
+            //System.debug('Dol_AddressValidationService - Exception: '+e);
             DOL_CreateErrorLog_Exception.logApplicationError(e);
             throw new AuraHandledException('An error occurred: '+e.getMessage());  
         }
-        system.debug('parceLId=='+parceLId);
+        //System.debug('parceLId=='+parceLId);
         return parceLId;
     }
     @AuraEnabled
@@ -234,13 +244,13 @@ public class Dol_AddressValidationServiceBckOffice {
         try{
         List<selectOption> selectCounty = new List<selectOption>();
         String stateValue = state;
-        System.debug('statevalue::'+stateValue);
-        String cityValue = city;
-        System.debug('cityvalue::'+cityValue);
-        List<LnP_City_County_Map__mdt> cityCountyMap = new List<LnP_City_County_Map__mdt>();
         //System.debug('statevalue::'+stateValue);
+        String cityValue = city;
+        //System.debug('cityvalue::'+cityValue);
+        List<LnP_City_County_Map__mdt> cityCountyMap = new List<LnP_City_County_Map__mdt>();
+        ////System.debug('statevalue::'+stateValue);
         cityCountyMap = [SELECT MasterLabel, City__c, County__c FROM LnP_City_County_Map__mdt];
-        System.debug('cityCountyMap::'+cityCountyMap);
+        //System.debug('cityCountyMap::'+cityCountyMap);
         
         MUSW__Parcel__c par = new MUSW__Parcel__c();
         if(stateValue != 'Washington' && stateValue != 'WA'){
@@ -259,9 +269,9 @@ public class Dol_AddressValidationServiceBckOffice {
                 }
             }
     }
-         System.debug('selectCounty::'+selectCounty);
+         //System.debug('selectCounty::'+selectCounty);
     return selectCounty;
-           //System.debug('selectCounty::'+selectCounty);
+           ////System.debug('selectCounty::'+selectCounty);
         }
         catch(Exception ex)
         {

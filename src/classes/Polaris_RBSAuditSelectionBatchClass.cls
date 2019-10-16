@@ -15,12 +15,12 @@ global class Polaris_RBSAuditSelectionBatchClass implements Database.Batchable<s
         return Database.getQueryLocator('SELECT Id, Name,MUSW__Status__c,Credential_Type__c,Application_Type__c,Is_Renewal_Eligible__c,Renewal_Eligible_Start_Date__c,MUSW__Expiration_Date__c,MUSW__Renewal_Date__c,MUSW__Applicant__c,Selected_for_Audit__c,Audit_Completed_Flag__c FROM MUSW__License2__c WHERE Selected_for_Audit__c= False AND MUSW__Expiration_Date__c != NULL AND Audit_Completed_Flag__c = False AND MUSW__Status__c = \'Active\' AND In_Audit_Selection_Window__c= True');
     }
     global void execute(Database.BatchableContext bc, List<MUSW__License2__c> RBSLicenseList){
-        system.debug('RBSLicenseList---'+RBSLicenseList);
+       // system.debug('RBSLicenseList---'+RBSLicenseList);
         // process each batch of records
         
         List<License_Type__mdt> RBSAppListForAudit = new List<License_Type__mdt>();
         RBSAppListForAudit = [SELECT Application_Type__c,Credential_Type__c,Is_Available_for_Audit__c,Object_Name__c,RBS_RE__c FROM License_Type__mdt WHERE RBS_RE__c = 'RBS' AND Is_Available_for_Audit__c = True AND Object_Name__c = 'MUSW__License2__c'];
-        system.debug('RBSAppListForAudit--'+RBSAppListForAudit);
+       // system.debug('RBSAppListForAudit--'+RBSAppListForAudit);
         
         Map<String,List<MUSW__License2__c>> rbsApplicationMap = new Map<String,List<MUSW__License2__c>>();
         Map<String,List<MUSW__License2__c>> UpdatedApplicationMap = new Map<String,List<MUSW__License2__c>>();
@@ -31,10 +31,10 @@ global class Polaris_RBSAuditSelectionBatchClass implements Database.Batchable<s
                  if(masterDataList.Credential_Type__c == app.Credential_Type__c){
                      if(rbsApplicationMap.containsKey(masterDataList.Credential_Type__c)){
                          rbsApplicationMap.get(masterDataList.Credential_Type__c).add(app);
-                         system.debug('rbsApplicationMap--- in if'+rbsApplicationMap);
+                        // system.debug('rbsApplicationMap--- in if'+rbsApplicationMap);
                      } else {
                          rbsApplicationMap.put(masterDataList.Credential_Type__c, new List<MUSW__License2__c>{app});
-                    system.debug('rbsApplicationMap --in else '+rbsApplicationMap);
+                 //   system.debug('rbsApplicationMap --in else '+rbsApplicationMap);
                      }
                  }
              }
@@ -50,7 +50,7 @@ global class Polaris_RBSAuditSelectionBatchClass implements Database.Batchable<s
         //Call the method for review
     }
     global void finish(Database.BatchableContext bc){
-        system.debug('Batch Completed');
+   //     system.debug('Batch Completed');
         // execute any post-processing operations
     }   
 }

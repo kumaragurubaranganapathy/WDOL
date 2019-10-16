@@ -2,19 +2,26 @@ public with sharing class LnP_ProgramType{
     
     @AuraEnabled
     public Static Map<String, List<String>> getDependency(sObject objDetail, string contrfieldApiName,string depfieldApiName){
+        try{
         return LnP_getDependentPicklist.getDependentMap(objDetail, contrfieldApiName, depfieldApiName);
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     
     @AuraEnabled
     public static string deleteCustomerEnvelope(Customer_Envelope__c custEnv){
-        system.debug('custEnv : '+custEnv);
+      //  system.debug('custEnv : '+custEnv);
         try{
             delete custEnv;
             return 'success';
-        }catch(Exception e){
-            System.debug('Exception : '+ e.getMessage() );
-            return 'fail';
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
         
     }
@@ -34,6 +41,7 @@ public with sharing class LnP_ProgramType{
     
     @AuraEnabled 
     public static Map<String, String> getPayment() {
+        try{
         Map<String, String> mapOptions = new Map<String, String>();
         Schema.DescribeFieldResult fieldResult = MUSW__Receipt__c.MUSW__Payment_Method__c.getDescribe();
         List<Schema.PicklistEntry> pList = fieldResult.getPicklistValues();
@@ -43,11 +51,17 @@ public with sharing class LnP_ProgramType{
         }
         
         Return mapOptions;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
         
     } 
     
     @AuraEnabled         
     public static Map<String, String> getProgramType() {
+        try{
         Map<String, String> mapOptions = new Map<String, String>();
         Schema.DescribeFieldResult fieldResult = MUSW__Deposit__c.wadol_Program_Type__c.getDescribe();
         List<Schema.PicklistEntry> pList = fieldResult.getPicklistValues();
@@ -56,10 +70,16 @@ public with sharing class LnP_ProgramType{
             mapOptions.put(p.getValue(), p.getLabel());
         }
         Return mapOptions;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     } 
     
     @AuraEnabled        
     public static Map<String, String> getFormNumber() {
+        try{
         Map<String, String> mapOptions = new Map<String, String>();
         Schema.DescribeFieldResult fieldResult = MUSW__Deposit__c.Form_number__c.getDescribe();
         List<Schema.PicklistEntry> pList = fieldResult.getPicklistValues();
@@ -68,79 +88,123 @@ public with sharing class LnP_ProgramType{
             mapOptions.put(p.getValue(), p.getLabel());
         }
         Return mapOptions;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     } 
     
     
     @AuraEnabled
     public static MUSW__Deposit__c getDepositInfo(){
-        system.debug('inside the controller');
+        try{
+     //   system.debug('inside the controller');
         MUSW__Deposit__c depositInfo=[SELECT id,Date_Today_s__c FROM MUSW__Deposit__c LIMIT 1];
-        system.debug('return is' +depositInfo);
+     //   system.debug('return is' +depositInfo);
         return depositInfo;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     @AuraEnabled
     public static void saveReciept(List<MUSW__Receipt__c> recList){        
-        system.debug('the reclist is:' +recList);
+        try{
+     //   system.debug('the reclist is:' +recList);
         insert recList;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     @AuraEnabled
     public static List<ListView> getObjViews() {
+        try{
         List<ListView> listviews = 
             [SELECT Id, Name FROM ListView WHERE SobjectType =: DOL_AppConstants.NULL_EMPTY_STRING + 'Customer_Envelope__c'];
         
         return listviews;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     @AuraEnabled
     //public static void saveReciptRecords(){
     public static MUSW__Receipt__c saveReciptRecords(MUSW__Receipt__c receiptRecord){
+        try{
         receiptRecord.Intake_Method__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Validation Room';
-        system.debug('inside save method');
-        system.debug('the reclist is' +receiptRecord);
+      //  system.debug('inside save method');
+      //  system.debug('the reclist is' +receiptRecord);
         insert receiptRecord;
         return receiptRecord;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     } 
     @AuraEnabled
     public static MUSW__Receipt__c updateRecieptRec(MUSW__Receipt__c recList){
-        system.debug('recList : '+recList);      
+        try{
+    //    system.debug('recList : '+recList);      
         update recList;
         return recList;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     @AuraEnabled        
     public static MUSW__Deposit__c saveDeposit_Receipt_Records(MUSW__Deposit__c depRecList){
         
-        system.debug('depRecList before insert: ' + depRecList); 
+      //  system.debug('depRecList before insert: ' + depRecList); 
         try{
             insert depRecList;
-            system.debug('depRecList after insert : ' + depRecList); 
-        }catch(Exception e){
-            system.debug('Exception : ' + e.getMessage());
-            system.debug('Exception : ' + e.getStackTraceString());
+          //  system.debug('depRecList after insert : ' + depRecList); 
+            return depRecList; 
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
-        return depRecList; 
+        
     }
     @AuraEnabled        
     public static MUSW__Deposit__c updateDepositRec(MUSW__Deposit__c depList){
-        system.debug('before depList : '+depList);
+        try{
+    //    system.debug('before depList : '+depList);
         update depList   ;
-         system.debug('after depList : '+depList);
+     //    system.debug('after depList : '+depList);
         return depList;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     //new class
     @AuraEnabled
     public static string updateEnvelopRec(String programType,List<MUSW__Receipt__c> recRecLstArr ,List<MUSW__Deposit__c> depRecLstArr ,Customer_Envelope__c customerEnvelopeRec,String parRecordId){
-        system.debug('programType : '+programType);
-        system.debug('List<MUSW__Receipt__c> : '+ recRecLstArr);
-        system.debug('List<MUSW__Deposit__c> : '+ depRecLstArr);
-        system.debug('Customer_Envelope__c : '+ customerEnvelopeRec);
-        system.debug('Customer_Envelope__c id is: '+ customerEnvelopeRec.Id);
-        system.debug('customerEnvelopeRec.Validation_number__c : '+ customerEnvelopeRec.Validation_number__c);
-        system.debug('parentRecordId is: '+ parRecordId);
+        try{
+    //    system.debug('programType : '+programType);
+     //   system.debug('List<MUSW__Receipt__c> : '+ recRecLstArr);
+     //   system.debug('List<MUSW__Deposit__c> : '+ depRecLstArr);
+     //   system.debug('Customer_Envelope__c : '+ customerEnvelopeRec);
+    //    system.debug('Customer_Envelope__c id is: '+ customerEnvelopeRec.Id);
+     //   system.debug('customerEnvelopeRec.Validation_number__c : '+ customerEnvelopeRec.Validation_number__c);
+       // system.debug('parentRecordId is: '+ parRecordId);
         String lockBoxId= parRecordId;
         
-        system.debug('lockBoxId---> is: '+ lockBoxId);
+        //system.debug('lockBoxId---> is: '+ lockBoxId);
         if( recRecLstArr != null && depRecLstArr != null){
             createPayableReceipt(recRecLstArr,depRecLstArr);
         }        
@@ -153,7 +217,7 @@ public with sharing class LnP_ProgramType{
         if(customerEnvelopeRec != null){
             update customerEnvelopeRec  ;
         }
-        system.debug('updated customerEnvelopeRec '+customerEnvelopeRec);
+        //system.debug('updated customerEnvelopeRec '+customerEnvelopeRec);
         if(depRecLstArr != null && !depRecLstArr.isEmpty()){
             list<MUSW__Deposit__c> updateDepLst = new list<MUSW__Deposit__c>();
             for(MUSW__Deposit__c d : depRecLstArr){            
@@ -163,7 +227,7 @@ public with sharing class LnP_ProgramType{
             }
             if(!updateDepLst.isEmpty()){
                 update updateDepLst;  
-                system.debug('updateDepLst : '+updateDepLst);
+          //      system.debug('updateDepLst : '+updateDepLst);
             } 
         }
         
@@ -175,27 +239,33 @@ public with sharing class LnP_ProgramType{
             }
             if(!updateRecLst.isEmpty()){
                 update updateRecLst;  
-                system.debug('updateRecLst : '+updateRecLst);
+            //    system.debug('updateRecLst : '+updateRecLst);
             } 
         }
         
-        try{ 
-        }catch(exception e){
-            system.debug('***EXCEPTION : '+e.getMessage());
-            system.debug('Exception : ' + e.getStackTraceString());
-            return 'failure';
-        }        
+               
         return 'success';
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }    
     
     @AuraEnabled    
     public static Customer_Envelope__c getValidationNumberInfo(){
-        system.debug('inside getValidationNumberInfo');
+        try{
+        //system.debug('inside getValidationNumberInfo');
         Customer_Envelope__c customerEnvelopeRec=new Customer_Envelope__c();          
         insert customerEnvelopeRec;
-        system.debug('customerEnvelopeRec : '+customerEnvelopeRec);
+        //system.debug('customerEnvelopeRec : '+customerEnvelopeRec);
         return [SELECT id,Date_Today_s__c,Validation_number__c FROM Customer_Envelope__c WHERE Id =: customerEnvelopeRec.Id LIMIT 1];
         //return customerEnvelopeRec;
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     
     public static void createPayableReceipt(List<MUSW__Receipt__c> recRecLstArr ,List<MUSW__Deposit__c> depRecLstArr){
@@ -213,10 +283,10 @@ public with sharing class LnP_ProgramType{
             }            
         }
         
-        DateTime myDateTime =  Datetime.now();   
+        Datetime myDateTime = Datetime.now();  
         BGBK.PaymentService paymentServiceObj = new BGBK.PaymentService();
-        system.debug('payables : ' +payables);
-        system.debug('receiptMap : '+receiptMap);
+       // system.debug('payables : ' +payables);
+        //system.debug('receiptMap : '+receiptMap);
         paymentServiceObj.processPayment(payables, receiptMap,null,myDateTime);
         //  global virtual Boolean processPayment(List<BGBK.Payable> payables, Map<MUSW__Receipt__c,Decimal> receiptAmounts, Id payerAccountId, Datetime processingDatetime) {
         

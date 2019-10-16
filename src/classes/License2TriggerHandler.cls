@@ -33,9 +33,9 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
         //afterMethod();
      if(DOL_AppUtility.IsLicenseTriggerFired == false) {
          DOL_AppUtility.IsLicenseTriggerFired = true;
-         List<MUSW__License2__c> triggerOld = Trigger.Old;
+        List<MUSW__License2__c> triggerOld = Trigger.Old;
         List<MUSW__License2__c> triggerNew = Trigger.New;
-		 Set<Id> licenseReviewList = new Set<Id>();
+         Set<Id> licenseReviewList = new Set<Id>();
          for(MUSW__License2__c lic : triggerNew ){
             if(lic.MUSW__Total_Balance__c == 0 && lic.MUSW__Status__c == 'Pending License Fee' && (lic.Credential_Type__c == 'Architect' || lic.Credential_Type__c == 'Landscape Architect')){
                   licenseReviewList.add(lic.id);
@@ -89,9 +89,9 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             
        // }
         }
-		//Added by Abhilasha for bug 6999
-	    List<MUSW__License2__c> triggerNew = Trigger.New;
-		WA_License_utility.updateProfessionCode(triggerNew);
+        //Added by Abhilasha for bug 6999
+        List<MUSW__License2__c> triggerNew = Trigger.New;
+        WA_License_utility.updateProfessionCode(triggerNew);
         
         beforeMethod();
         //Dol_IsLicenseRecordUpdatedForASC start
@@ -108,7 +108,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
     
     //Added by Abhilasha for bug 6999
     //
-		DRESequence();
+         DRESequence();
         if(trigger.isBefore && trigger.isupdate && DOL_AppUtility.IsLicenseTriggerFired == false) {
         List<MUSW__License2__c> triggerNew = Trigger.New;
         WA_License_utility.updateProfessionCode(triggerNew);
@@ -120,7 +120,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
         beforeMethod();
         
         //This is to Update sequence number & Automation Rules
-        DRESequence();
+       
         }
       //  Notificationdate();
       //  
@@ -145,14 +145,14 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
         Set<MUSW__License2__c> setLicense = new Set<MUSW__License2__c>();
         setLicense.addAll(triggerNew);
         List<Endorsement__c> listEndorsement = [SELECT id,License__c,Status__c FROM Endorsement__c where License__c IN:setLicense AND Status__c='Pending Add' ];
-        System.debug('trigger size'+triggerNew.size());
+        //System.debug('trigger size'+triggerNew.size());
         Set<Id> parentSetLicenseId = new Set<Id>();
         Set<Id> childSetLicenseId = new Set<Id>();
         for(Integer i = 0; i < triggerNew.size(); i++) {
-            System.debug('in for loop');
+            //System.debug('in for loop');
             MUSW__License2__c licenseNew = triggerNew[i];
             //get the license id to update submission list             
-            System.debug('license status '+ licenseNew.MUSW__Status__c);            
+            //System.debug('license status '+ licenseNew.MUSW__Status__c);            
             if(licenseNew.MUSW__Status__c == 'Active')
             {
                 parentSetLicenseId .add(licenseNew.Id);
@@ -185,7 +185,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
                 ta.Sub_status__c = 'Accepted';
                 lstupdateTask.add(ta);
             }
-			
+            
             if(lstupdateChildAssociation.size() > 0)
             {
                 update lstupdateChildAssociation;
@@ -207,7 +207,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             update lstupdateChildLicenses;
         }
         if(!listEndorsement.isEmpty()){
-            system.debug('listEndorsement : '+listEndorsement);
+            //System.debug('listEndorsement : '+listEndorsement);
             update listEndorsement; 
         }
         
@@ -227,7 +227,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             if(!licenseIDs.isEmpty()){
                 relatedRenewalApplications = [SELECT Id,License__c, Renewal_Status__c, License__r.MUSW__Status__c,License__r.Polaris_DHP__c,Renewal_Reinstatement_Type__c,License__r.MUSW__Applicant__r.Email,License__r.MUSW__Applicant__c,License__r.CreatedById,License__r.Name FROM Renewal_Application__c WHERE License__c IN :Trigger.newMap.keySet() AND Renewal_Reinstatement_Type__c='Renewal'];
             }   
-            System.debug('Starttttt');
+            //System.debug('Starttttt');
             
             List<Renewal_Application__c> updaterelatedRenewalApplications = new List<Renewal_Application__c>();
             List<Task> insertLicenseDHPTask = new List<Task>();
@@ -237,7 +237,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             if(!relatedRenewalApplications.isEmpty()){
                 for(Renewal_Application__c relatedRenewalApplicationRecord :relatedRenewalApplications ){
                     if(relatedRenewalApplicationRecord.License__r.MUSW__Status__c == 'Inactive' && relatedRenewalApplicationRecord.License__r.Polaris_DHP__c==true ){
-                        System.debug('Update');
+                        //System.debug('Update');
                         Task licenseDHPTask = new Task();
                         relatedRenewalApplicationRecord.Renewal_Status__c = 'Pending Payment';
                         licenseDHPTask.WhatId = relatedRenewalApplicationRecord.License__c;
@@ -258,15 +258,15 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             }
             if(relatedRenewalApplications.size() > 0){
                 update updaterelatedRenewalApplications;
-                //System.debug('Test......'+licenseDHPTask.Status);
+                ////System.debug('Test......'+licenseDHPTask.Status);
             }
             if(insertLicenseDHPTask.size() > 0){
              insert insertLicenseDHPTask;
             }
     }
-	
+          
         Set<String> statusList = new Set<String> {'Inactive','Canceled','Expired'};
-	 //Update FE Branch Status to 'Expired'
+     //Update FE Branch Status to 'Expired'
         List<MUSW__License2__c> childFEBranchLicense = [select Parent_License__c, Credential_Type__c,MUSW__Status__c,Sub_Status__c,MUSW__Expiration_Date__c FROM MUSW__License2__c WHERE Parent_License__c IN :newMapLicense.keySet() AND Parent_License__r.Credential_Type__c='Funeral Establishment' AND Parent_License__r.MUSW__Status__c IN:statusList AND MUSW__Status__c = 'Active' AND Credential_Type__c='Funeral Establishment Branch'];
         List<MUSW__License2__c> updateChildFEBranchLicense = new List<MUSW__License2__c>();
         for(MUSW__License2__c childFEB : childFEBranchLicense)
@@ -276,7 +276,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
              updateChildFEBranchLicense.add(childFEB);
         }
         if(!updateChildFEBranchLicense.isEmpty()){
-           system.debug('updateChildFEBranchLicense : '+updateChildFEBranchLicense);
+           //System.debug('updateChildFEBranchLicense : '+updateChildFEBranchLicense);
             update updateChildFEBranchLicense;
         }
     }
@@ -466,8 +466,8 @@ Parameter      : Nil
         } 
           
     }
-	
-	public void approveReview(Set<Id>licenseReviewList)
+    
+    public void approveReview(Set<Id>licenseReviewList)
     {
         List<MUSW__Review__c> lstUpdateReview = new List<MUSW__Review__c>();
         List<Task> lstupdateTask = new List<Task>();

@@ -2,7 +2,7 @@
    Date : 6/27/2019
 */
 global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, Database.Stateful{
-    	integer BienniumYear = 0;
+        integer BienniumYear = 0;
         integer FiscalMonth  =0;
         integer FiscalYear = 0;
     map<String,List<BGBK__Item__c>> mapRefundIDItem= new map<String,List<BGBK__Item__c>>();
@@ -47,7 +47,7 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
     String strQuery = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT id,Receipt_Refund__c,Receipt_Refund__r.BGBK__Refund2__c,BGBK__Refund2__c, name,BGBK__Fund__r.GL__c,Agency__c,Transaction_Code_Type__c,Debit_Credit__c,Transaction_Code__c,Program_Index__c,BGBK__Amount__c,GL_To_AFRS__c,BGBK__Fund__r.Accounting_System__c,BGBK__Fee__r.Agency__c, ';
             strQuery+='BGBK__Fund__r.Fund__c,Intake_Method__c,Payment_Method__c,BGBK__Fund__r.Major_Group__c,BGBK__Fund__r.Major_Source__c,BGBK__Fund__r.Sub_Source__c ';
             strQuery+='FROM BGBK__Item__c WHERE Journal_Voucher_Detail__c = null AND (BGBK__Refund2__c != null OR Receipt_Refund__c != null )';
-            
+       //  system.debug('query$$'+strQuery);   
         return Database.getQueryLocator(strQuery);
     }
  public void execute(Database.BatchableContext objContext, List<BGBK__Item__c> lstItemRecords) {
@@ -57,11 +57,11 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
         List<BGBK__Item__c> lstItemRecordsForJV = new List<BGBK__Item__c>();
         Map<String, List<BGBK__Item__c>> mapItemsData = new Map<String, List<BGBK__Item__c>>();
         Map<String, Decimal> mapTotalItemAmount = new Map<String, Decimal>();
-     	Map<String, String> mapTotalItemIds = new Map<String, String>();
+        Map<String, String> mapTotalItemIds = new Map<String, String>();
         Map<String, String> mapRefundIDItemID = new Map<String, String>();
-     	Map<String, String> mapItemIDRefundID = new Map<String, String>();
-     	Map<String, String> mapRefundIDjvID = new Map<String, String>();
-     	decimal currentSeq=0 ;
+        Map<String, String> mapItemIDRefundID = new Map<String, String>();
+        Map<String, String> mapRefundIDjvID = new Map<String, String>();
+        decimal currentSeq=0 ;
      
         String sToBeGroupedFields= null;
      for(BGBK__Item__c objItem : lstItemRecords){
@@ -86,16 +86,16 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
         
          
      }  
-     system.debug('mapRefundIDItemID'+mapRefundIDItemID);
-     system.debug('mapRefundIDItem$$'+mapRefundIDItem);
-     system.debug('mapItemIDRefundID'+mapItemIDRefundID);
+  //   system.debug('mapRefundIDItemID'+mapRefundIDItemID);
+     // system.debug('mapRefundIDItem$$'+mapRefundIDItem);
+//     system.debug('mapItemIDRefundID'+mapItemIDRefundID);
      JV_Sequence__c objJVseq =[SELECT Current_sequence__c,id from JV_Sequence__c limit 1];
         if(objJVseq.id != null){
             currentSeq=objJVseq.Current_sequence__c;
         }
      //Insert JV
      for(String refundID:mapRefundIDItem.keySet()){
-         system.debug('refundID$$'+refundID);
+      //   system.debug('refundID$$'+refundID);
         Journal_Voucher__c objJV = new  Journal_Voucher__c();
          objJV.Journal_Voucher_Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Refund JV';
             objJV.Document_Title__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Refund JV';
@@ -110,7 +110,7 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             objJV.Approved__c=true;
             objJV.Approved_by_Date__c=date.today();
             objJV.Date_of_Deposit__c=date.today();
-         	string sTemp =String.Valueof(FiscalMonth);
+            string sTemp =String.Valueof(FiscalMonth);
              if(sTemp.length() == 1){
                  sTemp = DOL_AppConstants.NULL_EMPTY_STRING + '0'+ sTemp;
              }
@@ -124,10 +124,10 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             //objJV.Fiscal_Year__c =FiscalYear;
             objJV.Biennium_Year__c= String.valueOf(BienniumYear); 
             objJV.RecordTypeId =Schema.SObjectType.Journal_Voucher__c.getRecordTypeInfosByName().get(DOL_AppConstants.sJVAutomated).getRecordTypeId();
-         	if(currentSeq > 9998){
+            if(currentSeq > 9998){
                 currentSeq =0;
             } else{
-            	currentSeq++;
+                currentSeq++;
             }
              sTemp =String.Valueof(currentSeq);
             if(sTemp.length() == 1){
@@ -141,9 +141,9 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             }
             objJV.Current_Document_Number__c= DOL_AppConstants.NULL_EMPTY_STRING + '240V'+ sTemp;
          
-         	lstJV.add(objJV);
-     	}
-     	if(lstJV.size()>0){
+            lstJV.add(objJV);
+        }
+        if(lstJV.size()>0){
             Insert lstJV;
             for(Journal_Voucher__c objJV:lstJV){
                 mapRefundIDjvID.put(objJV.Refund1__c, objJV.Id);
@@ -153,10 +153,10 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             objJVseq.Current_sequence__c=currentSeq;
             update objJVseq;
         }
-     system.debug('mapRefundIDjvID$$'+mapRefundIDjvID);
+    // system.debug('mapRefundIDjvID$$'+mapRefundIDjvID);
         for(BGBK__Item__c objItem : lstItemRecords){
-            system.debug('lstItemRecords$$'+lstItemRecords);
-            system.debug('mapRefundIDjvID.get(mapItemIDRefundID.get(objItem.Id));$$'+mapRefundIDjvID.get(mapItemIDRefundID.get(objItem.Id)));
+      //      system.debug('lstItemRecords$$'+lstItemRecords);
+        //    system.debug('mapRefundIDjvID.get(mapItemIDRefundID.get(objItem.Id));$$'+mapRefundIDjvID.get(mapItemIDRefundID.get(objItem.Id)));
             objItem.Journal_Voucher__c = mapRefundIDjvID.get(mapItemIDRefundID.get(objItem.Id));
                 
                 lstItemRecordsForJV.add(objItem);
@@ -165,7 +165,7 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
                    sToBeGroupedFields = objItem.Transaction_Code__c+objItem.Program_Index__c
                     +objItem.BGBK__Fund__r.Fund__c+objItem.GL_To_AFRS__c+objItem.Agency__c+objItem.Transaction_Code_Type__c+objItem.Debit_Credit__c+mapItemIDRefundID.get(objItem.Id);
                }
-                	//Aggregate item records for AFRS accounting system
+                    //Aggregate item records for AFRS accounting system
                    else if((objItem.BGBK__Fund__r.Accounting_System__c == DOL_AppConstants.sJVAFRES)){
                         
                         sToBeGroupedFields = objItem.Transaction_Code__c+objItem.Program_Index__c
@@ -175,7 +175,7 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
                 
                // Group item records in  mapItemsData based on agregation
                if(mapItemsData <> null && mapItemsData.containsKey(sToBeGroupedFields)){
-          			mapItemsData.get(sToBeGroupedFields).add(objItem);
+                    mapItemsData.get(sToBeGroupedFields).add(objItem);
                 }
                 else{
                        mapItemsData.put(sToBeGroupedFields, new List<BGBK__Item__c>{objItem});
@@ -184,7 +184,7 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
                 //Calculate total amount of grouped item records
                 Decimal dTemp = 0.0;
                 if(mapTotalItemAmount <> null && mapTotalItemAmount.containsKey(sToBeGroupedFields)){
-                	dTemp = mapTotalItemAmount.get(sToBeGroupedFields) + objItem.BGBK__Amount__c.abs();
+                    dTemp = mapTotalItemAmount.get(sToBeGroupedFields) + objItem.BGBK__Amount__c.abs();
                 }
                 else{
                     dTemp = objItem.BGBK__Amount__c.abs();
@@ -233,14 +233,14 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             objJVD.Subsidiary_Account_Debit__c = DOL_AppConstants.NULL_EMPTY_STRING + '';
             objJVD.Subsidiary_Account_Credit__c = DOL_AppConstants.NULL_EMPTY_STRING + '';
             objJVD.JournalVoucher__c = objJournalWrapper.objItemsData.Journal_Voucher__c; 
-            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == 'AFRS' 
+            if(objJournalWrapper.objItemsData.BGBK__Fund__r.Accounting_System__c == DOL_AppConstants.sJVAFRES 
             && (objJournalWrapper.objItemsData.Transaction_Code__c=='951' || objJournalWrapper.objItemsData.Transaction_Code__c=='455'||objJournalWrapper.objItemsData.Transaction_Code__c=='198'||objJournalWrapper.objItemsData.Transaction_Code__c=='449')
             && (objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c =='5199' || objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c =='3205' || objJournalWrapper.objItemsData.BGBK__Fund__r.GL__c =='3210')){
                 objJVD.Add_to_Interface__c=true;
-            	objJVD.Add_to_PDF__c=true;	
+                objJVD.Add_to_PDF__c=true;  
             }else{
                 objJVD.Add_to_Interface__c=false;
-            	objJVD.Add_to_PDF__c=false;
+                objJVD.Add_to_PDF__c=false;
             }
             
             
@@ -248,7 +248,7 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
             listJVDtoInsert.add(objJVD);
         }
         if(listJVDtoInsert.size()>0){
-        	 Insert listJVDtoInsert;
+             Insert listJVDtoInsert;
         }
         //stamp JVD id on Item record.
          List<BGBK__Item__c> lstItemToUpdate= new List<BGBK__Item__c>();
@@ -264,7 +264,7 @@ global class Lnp_Journal_Voucher_Refund implements Database.batchable<SObject>, 
                     
               }
         if(lstItemToUpdate.size()>0){
-        	 update lstItemToUpdate;
+             update lstItemToUpdate;
         }
     }
     

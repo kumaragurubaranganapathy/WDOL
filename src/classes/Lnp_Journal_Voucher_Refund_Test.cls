@@ -40,7 +40,7 @@ public class Lnp_Journal_Voucher_Refund_Test {
         insert objItem;  
         objItem=[select Payment_Method__c,Debit_Credit__c,Intake_Method__c,BGBK__Fund__r.GL__c,Transaction_Code__c,BGBK__Fund__r.Accounting_System__c from BGBK__Item__c where id=:objItem.Id];
         //objItem=[select Payment_Method__c,Debit_Credit__c,Intake_Method__c,BGBK__Fund__r.GL__c,Transaction_Code__c,BGBK__Fund__r.Accounting_System__c from BGBK__Item__c where id=:objItem.Id];
-        system.debug('item$$'+objItem.Debit_Credit__c+objItem.Payment_Method__c +objItem.Intake_Method__c+objItem.BGBK__Fund__r.GL__c+ objItem.Transaction_Code__c+objItem.BGBK__Fund__r.Accounting_System__c);
+     //   system.debug('item$$'+objItem.Debit_Credit__c+objItem.Payment_Method__c +objItem.Intake_Method__c+objItem.BGBK__Fund__r.GL__c+ objItem.Transaction_Code__c+objItem.BGBK__Fund__r.Accounting_System__c);
         test.startTest();
         
         Lnp_Journal_Voucher_Refund_SCHED sh1 = new Lnp_Journal_Voucher_Refund_SCHED();

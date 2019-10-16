@@ -34,7 +34,7 @@ public class FeeTriggerHandler_Test {
         update objFee2; 
         
         objFee.MUSW__Type__c = 'Trust Expense - Mileage';
-        system.debug('objFee---'+objFee);
+        //System.debug('objFee---'+objFee);
         update objFee;
         
         Double totalDue = 0;
@@ -89,7 +89,7 @@ public class FeeTriggerHandler_Test {
         update objFee2; 
         
         objFee.MUSW__Type__c = 'Trust Expense - Mileage';
-        system.debug('objFee---'+objFee);
+        //System.debug('objFee---'+objFee);
         update objFee;
         
         Double totalDue = 0;

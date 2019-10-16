@@ -29,12 +29,12 @@ public class ComplaintMainTriggerHandlerTest {
         MUSW__Complaint2__c complaintRecord1 = DOL_TestDataFactory.createComplaintRecord('Cemeteries','Active', licObj.Id);
         MUSW__Complaint2__c complaintRecord2 = DOL_TestDataFactory.createComplaintRecord('Cemeteries','Active', licObj.Id);
         
-        System.debug('***complaintRecord***'+complaintRecord1);  
+        //System.debug('***complaintRecord***'+complaintRecord1);  
         complaintRecord1.MUSW__State__c = 'Closed';
         complaintRecord2.MUSW__State__c = 'Closed';
         update complaintRecord1;
         update complaintRecord2;
-        System.debug('***licObj**'+licObj);
+        //System.debug('***licObj**'+licObj);
         System.assertEquals(null, licObj.Open_Complaints__c);
         Database.DeleteResult delCompl = Database.delete(complaintRecord2.Id, false);
         System.assert(delCompl.isSuccess());

@@ -17,10 +17,10 @@ global class Polaris_AuditSelectionBatchClass implements Database.Batchable<sObj
     }
      global void execute(Database.BatchableContext bc, List<Renewal_Application__c> renewalAppList){
         // process each batch of records
-        system.debug('renewalAppList---'+renewalAppList);
+       // system.debug('renewalAppList---'+renewalAppList);
         List<License_Type__mdt> REAppListForAudit = new List<License_Type__mdt>();
         REAppListForAudit = [SELECT Application_Type__c,Credential_Type__c,Is_Available_for_Audit__c,Object_Name__c,RBS_RE__c FROM License_Type__mdt WHERE RBS_RE__c = 'RE' AND Is_Available_for_Audit__c = True AND Object_Name__c = 'Renewal_Application__c'];
-     	system.debug('REAppListForAudit--'+REAppListForAudit);
+       // system.debug('REAppListForAudit--'+REAppListForAudit);
          
         Map<String,List<Renewal_Application__c>> renApplicationMap = new Map<String,List<Renewal_Application__c>>();
         Map<String,List<Renewal_Application__c>> UpdatedApplicationMap = new Map<String,List<Renewal_Application__c>>();
@@ -31,10 +31,10 @@ global class Polaris_AuditSelectionBatchClass implements Database.Batchable<sObj
                  if(masterDataList.Credential_Type__c == app.Credential_Type__c){
                      if(renApplicationMap.containsKey(masterDataList.Credential_Type__c)){
                          renApplicationMap.get(masterDataList.Credential_Type__c).add(app);
-                         system.debug('renApplicationMap--- in if'+renApplicationMap);
+                        // system.debug('renApplicationMap--- in if'+renApplicationMap);
                      } else {
                          renApplicationMap.put(masterDataList.Credential_Type__c, new List<Renewal_Application__c>{app});
-                         system.debug('renApplicationMap --in else '+renApplicationMap);
+                       //  system.debug('renApplicationMap --in else '+renApplicationMap);
                      }
                  }
              }
@@ -53,7 +53,7 @@ global class Polaris_AuditSelectionBatchClass implements Database.Batchable<sObj
 
      }
      global void finish(Database.BatchableContext bc){
-        system.debug('Batch Completed');
+       // system.debug('Batch Completed');
         // execute any post-processing operations
     }    
 }

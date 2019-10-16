@@ -15,7 +15,7 @@ public class LnP_Dashboard_2_Header_ApexController {
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -41,12 +41,12 @@ conParcel = lstContact[0];
                                                         mailingAddressData = mailingAddressRecord;
                                                     } 
         
-        system.debug('mailingAddressData'+mailingAddressData);
+    //    system.debug('mailingAddressData'+mailingAddressData);
         return mailingAddressData;
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -55,9 +55,9 @@ conParcel = lstContact[0];
         try{
         List<User> userInfoData = new  List<User>();
         String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+UserInfo.getUserId()+'\'';
-        System.debug('User Id ' + queryCondition);
+      //  System.debug('User Id ' + queryCondition);
         String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
+        //system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         Id getContactId = DOL_AppConstants.NULL_EMPTY_STRING + '003r000000EOhBB';
@@ -79,14 +79,14 @@ conParcel = lstContact[0];
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
         string appId = DOL_AppConstants.NULL_EMPTY_STRING + '';
         return appId = application.Id;
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     
@@ -96,9 +96,9 @@ conParcel = lstContact[0];
         Boolean redirect = false;
         List<User> userInfoData = new  List<User>();
         String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+UserInfo.getUserId()+'\'';
-        System.debug('User Id ' + queryCondition);
+        //System.debug('User Id ' + queryCondition);
         String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
+        //system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         
@@ -110,7 +110,7 @@ conParcel = lstContact[0];
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
 }

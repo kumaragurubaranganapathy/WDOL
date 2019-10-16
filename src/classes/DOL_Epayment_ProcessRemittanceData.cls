@@ -13,7 +13,7 @@ global class DOL_Epayment_ProcessRemittanceData implements Database.Batchable<sO
     }
 
     global Database.QueryLocator start(Database.BatchableContext BC){
-        System.debug('DOL_Epayment_ProcessRemittanceData::start...');
+        //System.debug('DOL_Epayment_ProcessRemittanceData::start...');
         return Database.getQueryLocator([ 
                 select id, File_Name__c, INFO__c, Input__c, Status__c, Input_Type__c 
                 from DOL_Integration_Batch_Input__c 

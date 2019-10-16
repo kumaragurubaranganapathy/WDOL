@@ -2,6 +2,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String getRecordTypeId(String sObjectName, String recordTypeDeveloperName){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
             Map<String, Schema.RecordTypeInfo> recordTypeMap =  Schema.getGlobalDescribe().get(sObjectName).getDescribe().getRecordTypeInfosByDeveloperName(); 
             if(recordTypeMap.containsKey(recordTypeDeveloperName)){
@@ -17,8 +18,16 @@ public without sharing class LnP_DashboardApexController_2 {
         
     }
     
+    @AuraEnabled 
+    public static MUSW__License2__c fetchLicenseDetails(String licenseID)
+    {
+        DOL_AppUtility.isAuthenticatedUser() ;
+        return [SELECT id,Credential_Type__c,No_of_Associations__c FROM MUSW__License2__c WHERE id=:licenseID];
+    }
+    
     @AuraEnabled
     public static Boolean createAssociationTask(Id associationID){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         Associations__c association = [SELECT id, Association_Type__c,Parent_License__r.MUSW__Applicant__c,Parent_License__r.Application_Type__c,Parent_License__r.Credential_Type__c,Parent_License__r.Name,Child_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Child_License__r.Name,Child_License__r.MUSW__Applicant__c FROM Associations__c where id=:associationID ];
         Contact childcon = [Select id,Email,Full_Name__c FROM Contact where id=:association.Child_License__r.MUSW__Applicant__c];
@@ -58,6 +67,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static Employment_History__c getEducationalHistory(String licenseId){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
             Employment_History__c employmentHistoryObj =   [SELECT id, Start_Date__c, Job_Title__c, Country__c, City__c, Employer__c, End_date__c, Zip_code__c, County__c, Total_Hours__c,
                                                             Street_Address__c,  State__c FROM Employment_History__c where License__c =: licenseId LIMIT 1];
@@ -75,11 +85,12 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static Map<String,String> getDBJSON(){
+        DOL_AppUtility.isAuthenticatedUser() ;
         Map<String, String> mapJSON = new Map<String, String>();
         try{
-            System.debug('mapJSON::');
+          //  System.debug('mapJSON::');
             mapJSON = getDashboardJSON(); 
-            System.debug('mapJSON: after::'+ mapJSON );
+       //     System.debug('mapJSON: after::'+ mapJSON );
         
     }catch(Exception ex)
         {
@@ -91,6 +102,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String uploadAdditionalDocuments(String licenseId){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         Id  licenseId_id = licenseId;
         Schema.SObjectType sObjType = licenseId_id.getSobjectType();
@@ -115,6 +127,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static void setLicenseToInreview(String licenseId){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         Id  licenseId_id = licenseId;
         Schema.SObjectType sObjType = licenseId_id.getSobjectType();
@@ -132,7 +145,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static boolean setAbandonStatus(String record_Id_String){
-        
+        DOL_AppUtility.isAuthenticatedUser() ;
         Boolean operationsuccesssful = false;
         
         try{
@@ -180,6 +193,8 @@ public without sharing class LnP_DashboardApexController_2 {
             
             operationsuccesssful = false;
             
+        //    system.debug('setAbandonStatus --> '+ e);
+            
             return  operationsuccesssful;   
         }
         
@@ -188,6 +203,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String setCurrentLicenseTable(){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{  
             
             List<String> businessLicensesTobeIgnored;
@@ -215,7 +231,7 @@ public without sharing class LnP_DashboardApexController_2 {
                 List<String> statusFilterList = licenseStatusesToBeFiltered;//new List<String>{'Active','Expired','Inactive','Canceled','Revoked','Suspended','Sunset'};
             List<SObject> columnDataList = [Select id,Name,Application_Type__c,Renew_Reinstatement_in_progress__c,Credential_Type__c,MUSW__Expiration_Date__c,MUSW__Status__c,Sub_Status__c,
                                             RecordType.Name,Is_Renewal_Eligible__c, Is_Late_Renewal_Eligible__c,Is_Reinstatement_Eligible__c,Application__r.isRenewal__c,Application_Method__c,
-                                            CreatedDate
+                                            CreatedDate,MUSW__Total_Balance__c
                                             from MUSW__License2__c
                                             where Credential_Type__c NOT In :businessLicensesTobeIgnored AND 
                                             MUSW__Status__c In :statusFilterList AND 
@@ -235,6 +251,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String ProfessionalRelationshipTable(){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{  
             List<String> columnHeaderList = new List<String>{'Name','Role','Title','Phone','Email'};
                 List<String> statusFilterList = new List<String>{'Active'};
@@ -255,21 +272,25 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String seperateAccountContactRelationship(String AccountContactId){
+        DOL_AppUtility.isAuthenticatedUser() ;
         return JSON.serialize(Polaris_RelationshipsUtilty.removeAffliationRecord(AccountContactId));
     }
     
     @AuraEnabled
     public static String seperateAssociateRelationship(String associateId){
+        DOL_AppUtility.isAuthenticatedUser() ;
         return JSON.serialize(Polaris_RelationshipsUtilty.removeAssociationRecord(associateId));
     }
     
     @AuraEnabled
     public static String updateAssociateRelationship(String associateId,String status){
+        DOL_AppUtility.isAuthenticatedUser() ;
         return JSON.serialize(Polaris_RelationshipsUtilty.updateAssociationRecord(associateId, Status));
     }
     
     @AuraEnabled
     public static String DraftNewLicenseApplicationsTable(){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         List<String> businessLicensesTobeIgnored;
         
@@ -335,6 +356,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String setDraftMaintananceRequestApplicationsData(){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
         List<String> columnHeaderList = new List<String>{'Request Type', 'Request Against', 'Status','Last Updated'};
@@ -357,6 +379,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String setDraftAMRAppLicenseData(String licenseId){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         String AMRlicenseId = licenseId;
         Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
@@ -380,6 +403,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String PendingNewLicenseApplicationsTable(){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{  
             
             Portal_Dashboard_Settings__mdt dashboardSettings = [SELECT Dashboard_Type__c,Draft_Applications_statuses__c,License_Statuses__c,License_Types__c,Pending_Applications_statuses__c FROM Portal_Dashboard_Settings__mdt WHERE Dashboard_Type__c = 'Professional'];
@@ -399,7 +423,7 @@ public without sharing class LnP_DashboardApexController_2 {
                 /*  List<String> statusFilterList = new List<String>{'Submitted','In-Review','In Review','Under Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};*/
                 List<String> statusFilterList = new List<String>();
             statusFilterList = dashboardSettings.Pending_Applications_statuses__c.split(',');
-            List<SObject> columnDataList = [Select id,Name,Application_Number__c,Application_Type__c,Credential_Type__c,Application_Method__c,MUSW__Status__c,Sub_Status__c
+            List<SObject> columnDataList = [Select id,Name,Application_Number__c,Application_Type__c,Credential_Type__c,Application_Method__c,MUSW__Status__c,Sub_Status__c,MUSW__Total_Balance__c
                                             from MUSW__License2__c
                                             where 
                                             Credential_Type__c NOT In :businessLicensesTobeIgnored AND
@@ -419,18 +443,19 @@ public without sharing class LnP_DashboardApexController_2 {
     }
     @AuraEnabled
     public static Boolean showExamsTabOnDashboard(String licenseId){
+          DOL_AppUtility.isAuthenticatedUser() ;
         try{
-            system.debug('license id '+licenseId);
+        //    system.debug('license id '+licenseId);
             String RBSLicenseId = licenseId;
             Boolean showExamFlag;
             MUSW__License2__c lic = [SELECT Id, Application_Type__c, Credential_Type__c FROM MUSW__License2__c WHERE Id =: licenseId];
-            system.debug('lic----'+lic);  
+         //   system.debug('lic----'+lic);  
             License_Type__mdt licenseExamDetails = [SELECT Application_Type__c,Credential_Type__c,Credential__c,Has_Exams__c,Object_Name__c FROM License_Type__mdt WHERE 
                                                    Application_Type__c =: lic.Application_Type__c AND Credential_Type__c =: lic.Credential_Type__c AND Object_Name__c = 'MUSW__License2__c' AND Has_Exams__c = TRUE ];
             
-            system.debug('licenseExamDetails---'+licenseExamDetails);
+        //    system.debug('licenseExamDetails---'+licenseExamDetails);
             showExamFlag = licenseExamDetails.Has_Exams__c;
-            system.debug('showExamFlag'+ showExamFlag);
+          //  system.debug('showExamFlag'+ showExamFlag);
             return showExamFlag;
         }catch(Exception ex){
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
@@ -439,9 +464,10 @@ public without sharing class LnP_DashboardApexController_2 {
     }
     @AuraEnabled
     public static String PendingRenewApplicationsTable(){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{  
             
-            List<String> columnHeaderList = new List<String>{'License','Profession','License Type','Expiration Date','Status','Sub-status',''};
+            List<String> columnHeaderList = new List<String>{'License','Profession','License Type','Expiration Date','Status','Sub-status'};
             List<String> statusFilterList = new List<String>{'Submitted','In-Review','In Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
                     
                     List<SObject> columnDataList = [Select id,Name,License_Number__c,Credential_Type__c,License__r.Application_Method__c, Renewal_Expiration_Date__c,Renewal_Status__c,Application_Type__c,Sub_Status__c
@@ -464,6 +490,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String PendingMaintananceRequestApplicationsTable(){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{  
             
             List<String> columnHeaderList = new List<String>{'Request','Request Type', 'Request Against', 'Status'};
@@ -471,7 +498,7 @@ public without sharing class LnP_DashboardApexController_2 {
                     List<SObject> columnDataList = [Select  id,name,Status__c,License_Type__c, Service_Request_Type__c, FORMAT(LastModifiedDate) FormattedLastModifiedDate, LastModifiedDate
                                                     from Request__c
                                                     where Status__c IN :statusFilterList AND Contact__c in(Select ContactId From User Where Id =: UserInfo.getUserId())  ORDER BY CreatedDate asc];
-            system.debug('**********columnDataList********'+columnDataList.size());
+          //  system.debug('**********columnDataList********'+columnDataList.size());
             LnP_DashboardApexController_2.lightningDataTableWrapper wrapperObj = new LnP_DashboardApexController_2.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
             return JSON.serialize(wrapperObj,true); 
@@ -485,6 +512,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String CompletedMaintananceRequestApplicationsTable(){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{  
             
             List<String> columnHeaderList = new List<String>{'Request#','Request Type', 'Request Against', 'Completion Date'};
@@ -503,16 +531,10 @@ public without sharing class LnP_DashboardApexController_2 {
             return null;
         }
     }
-	
-	@AuraEnabled 
-    public static MUSW__License2__c fetchLicenseDetails(String licenseID)
-    {
-        DOL_AppUtility.isAuthenticatedUser() ;
-        return [SELECT id,Credential_Type__c,No_of_Associations__c FROM MUSW__License2__c WHERE id=:licenseID];
-    }
     
     @AuraEnabled
     public static String fetchLicenseDetailsTable(String licenseId){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         if(licenseId != null){
             List<MUSW__License2__c> msusLicenseData = [select id,Name,Polaris_DHP__c,RecordTypeId, Credential_Type__c, MUSW__Status__c, Sub_Status__c,MUSW__Applicant__r.Name,Original_Issue_Date__c, MUSW__Issue_Date__c, MUSW__Expiration_Date__c, Application_Type__c,Application_Method__c,
@@ -531,6 +553,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String[] fetchEndorsementDetails(String licenseId){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         List<Endorsement__c> endorsementDataList = new List<Endorsement__c>();
         List<String> EndorsementList= new List<String>();
@@ -540,7 +563,7 @@ public without sharing class LnP_DashboardApexController_2 {
             }
             
         }
-        system.debug('fetchEndorsementDetails --> '+JSON.serialize(endorsementDataList)); 
+      //  system.debug('fetchEndorsementDetails --> '+JSON.serialize(endorsementDataList)); 
         
         return EndorsementList; 
         }catch(Exception ex)
@@ -552,10 +575,11 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @auraEnabled
     public static String getBusinessRelationShipData(String license_id){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
-        List<String> columnHeaderList = new List<String>{'Name','Role','License Type','Phone','Email'};
+        List<String> columnHeaderList = new List<String>{'License number','Name','Role','License Type','Invitation status','Phone','Email'};
             List<String> statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
-                List<SObject> columnDataList = [Select Id,Parent_License__r.MUSW__Primary_Licensee__r.Name, Association_Type__c,Status__c,
+                List<SObject> columnDataList = [Select Id,Parent_License__r.Name,Parent_License__r.MUSW__Primary_Licensee__r.Name, Association_Type__c,Status__c,
                                                 Parent_License__r.Credential_Type__c,Parent_License__r.MUSW__Primary_Licensee__r.Business_Phone__c,Parent_License__r.MUSW__Primary_Licensee__r.Email__c        
                                                 FROM Associations__c
                                                 WHERE Child_License__c =: license_id AND Status__c IN : statusFilterList] ;
@@ -572,7 +596,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String setPeerRelationShipTable(String licenseType, String licenseId){
-        
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         List<String> columnHeaderList;   
         
@@ -618,6 +642,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static Contact getContact(){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         Contact conObj;
         List<Contact> ConList =  [SELECT Id 
@@ -637,21 +662,22 @@ public without sharing class LnP_DashboardApexController_2 {
     }
     
     public static Map<String, String> getDashboardJSON() {
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         Map <String, String> mapJSON = new Map <String, String>();
         //mapJSON.put('Card Menu List','[{"header":"Notifications", "url":"/dashboard", "icon": "LnP__Notification_E.svg", "class":"slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"},{"header":"Service Requests:", "url":"/dashboard", "icon": "LnP__ServiceRequest_E.svg", "class":"slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"},{"header":"My To Do List", "url":"/dashboard", "icon": "LnP__ToDoList_E.svg", "class":"slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"},{"header":"All Applications", "url":"/dashboard", "icon": "LnP__Applications_E.svg", "class":"slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1"}]');
         mapJSON.put('Card Menu List','[{"header":"All Applications", "url":"/dashboard", "icon": "LnP__Applications_E.svg", "class":"slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1"}]');
         mapJSON.put('Application Header List','["Number","Type", "Status", "Created Date", "Link", "Expiration Date", "Add Association"]');        
         //CR start 
-        System.debug('User@@@'+userInfo.getUserId());
+     //   System.debug('User@@@'+userInfo.getUserId());
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';//0050b000004XiXjAAK
         // String queryCondition1 = ' Id=\''+UserInfo.getUserId()+'\'';
         String queryStr = 'SELECT ContactId FROM User WHERE  '+queryCondition;
-        system.debug('queryStr@@@ '+queryStr);
+     //   system.debug('queryStr@@@ '+queryStr);
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         //String queryCondition1 = ' MUSW_Applicant__c =\''+userInfoData[0].ContactId+'\'';
-        system.debug('userInfoData[0].ContactId@@@ '+userInfoData[0].ContactId);
+    //    system.debug('userInfoData[0].ContactId@@@ '+userInfoData[0].ContactId);
         list<MUSW__License2__c> lstLicenses;
         list<MUSW__Application2__c> applicationList;
         if(userInfoData[0].ContactId != null){
@@ -730,7 +756,7 @@ public without sharing class LnP_DashboardApexController_2 {
         }
         
         List<MUSW__Account_Contact__c> AcctConList = [ select id,Account_Admin__c,Associate_Status__c from MUSW__Account_Contact__c where OwnerId =:userInfo.getUserId() and Account_Admin__c = true and Associate_Status__c =:'Active' ];
-        system.debug(JSON.serialize(applicationMap));
+      //  system.debug(JSON.serialize(applicationMap));
         mapJSON.put('Application Item List',JSON.serialize(applicationMap));
         mapJSON.put('License Item List',JSON.serialize(mapLicenses));
         String businessFlag = 'false';
@@ -741,7 +767,7 @@ public without sharing class LnP_DashboardApexController_2 {
             }
         }
         mapJSON.put('businessFlag',businessFlag );
-        System.debug('mapJSON :'+mapJSON);
+      //  System.debug('mapJSON :'+mapJSON);
         return mapJSON;
         }catch(Exception ex)
         {
@@ -752,13 +778,12 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static boolean isValidCommunityUser(){
-        
         return DE_LandingPageCustomLabels.isValidCommunityUser();
     }
     
     @AuraEnabled
     public static String fetchLicenseRelatedEmploymentNEducationalHistoryRecords(String relatedRecordId){
-        
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         List<String> columnHeaderList = new List<String>{'Start Date','Job Title','Employer','End Date','Total Hours','Street Address','County','State','Country','City','Zip Code','Status'};   
             
@@ -781,6 +806,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String fetchRenewalRelatedEmploymentNEducationalHistoryRecords(String relatedRecordId){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         List<String> columnHeaderList = new List<String>{'Name Of Institution','Degree','Minor','Major','Start Date','End Date','Country','State','Status'};
             
@@ -813,6 +839,7 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static String helptextFetch(){
+        DOL_AppUtility.isAuthenticatedUser() ;
         Map<String, String> helptextMap = new Map<String, String>();            
         try{
             List<Dashboard_Helptext__mdt> helptextList = [SELECT Id, DeveloperName, Status__c, Sub_Status__c, Object__c, Help_Text__c FROM Dashboard_Helptext__mdt];
@@ -824,7 +851,7 @@ public without sharing class LnP_DashboardApexController_2 {
                 }
                 
             }    
-            system.debug('helptextMap::'+helptextMap);            
+        //    system.debug('helptextMap::'+helptextMap);            
             return JSON.serialize(helptextMap);
         }
         catch(Exception e){
@@ -835,13 +862,14 @@ public without sharing class LnP_DashboardApexController_2 {
     
     @AuraEnabled
     public static Boolean checkActiveCart(){
+        DOL_AppUtility.isAuthenticatedUser() ;
         try{
         Boolean redirect = false;
        List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
-        System.debug('User Id ' + queryCondition);
+       // System.debug('User Id ' + queryCondition);
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
+       // system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         

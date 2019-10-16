@@ -2,7 +2,7 @@ public class LnP_SaveBackgroundDetails {
     @AuraEnabled
     public static List<SObject> returnIds(String  ObjectName, String applicationId, String recordTypeID,String flowType ){
       try{
-      system.debug('flowType : '+flowType);
+    //  system.debug('flowType : '+flowType);
         String appCondition = DOL_AppConstants.NULL_EMPTY_STRING + '';
         if(flowType=='Endorsement' || flowType=='CE Audit')
         {
@@ -13,18 +13,18 @@ public class LnP_SaveBackgroundDetails {
         }
      
       String query= DOL_AppConstants.NULL_EMPTY_STRING + 'Select id from ' + ObjectName + ' where ' + appCondition +'AND RecordTypeId = \'' +recordTypeID + '\'';
-      System.debug('query '+query);
+      //System.debug('query '+query);
         List<SObject> lId = Database.query(query);
-      System.debug('lId>______ '+lId);  
+      //System.debug('lId>______ '+lId);  
         return lId;
       }catch(Exception ex)
         {DOL_CreateErrorLog_Exception.logApplicationError(ex);
             throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
-	@AuraEnabled
+    @AuraEnabled
     public static void deleteTableRecord(String recordId){
-        System.debug('---recordId2---'+recordId);
+      //  System.debug('---recordId2---'+recordId);
         Id recId = (Id)recordId;
         String sobjectType = recId.getSObjectType().getDescribe().getName();
         String recCondition = DOL_AppConstants.NULL_EMPTY_STRING + 'Id =\''+recId+'\'';
@@ -34,7 +34,7 @@ public class LnP_SaveBackgroundDetails {
             try{
                 delete recList[0];
                 if(Test.isRunningTest()){
-                    System.debug('Enter Try If');
+        //            System.debug('Enter Try If');
                     integer intTest =1/0;
                 }
             }catch(Exception ex)
@@ -47,7 +47,7 @@ public class LnP_SaveBackgroundDetails {
     @AuraEnabled
     public static String updateEducationHistoryRecord(Id educationHistoryRecordId, Id requestId){
         try{
-        System.debug('educationHistoryRecordId==' + educationHistoryRecordId + 'requestId==' + requestId);
+     //   System.debug('educationHistoryRecordId==' + educationHistoryRecordId + 'requestId==' + requestId);
         List<Database.SaveResult> srList = new List<Database.SaveResult>();
         String outputResponse;
         List<Education_History__c> educationHistoryRecordList = new List<Education_History__c>();
@@ -65,15 +65,15 @@ public class LnP_SaveBackgroundDetails {
         for (Database.SaveResult sr : srList) {
             if (sr.isSuccess()) {
                 // Operation was successful, so get the ID of the record that was processed
-                System.debug('Successfully inserted review record. review ID: ' + sr.getId());
+              //  System.debug('Successfully inserted review record. review ID: ' + sr.getId());
                 outputResponse = DOL_AppConstants.sSuccessResponse;
             }
             else {
                 // Operation failed, so get all errors                
                 for(Database.Error err : sr.getErrors()) {
-                    System.debug('The following error has occurred.');                    
-                    System.debug(err.getStatusCode() + ': ' + err.getMessage());
-                    System.debug('Review fields that affected this error: ' + err.getFields());
+                 //   System.debug('The following error has occurred.');                    
+                   // System.debug(err.getStatusCode() + ': ' + err.getMessage());
+                    //System.debug('Review fields that affected this error: ' + err.getFields());
                 }
                 outputResponse = DOL_AppConstants.sFailedResponse;
             }

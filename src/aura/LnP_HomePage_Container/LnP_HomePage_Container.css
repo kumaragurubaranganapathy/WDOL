@@ -1,5 +1,4 @@
-.THIS .main-title{
-    font-weight: bold;
+.THIS .main-title{    
     color: t(headerColor);	
     margin:2rem 7.5rem 0;
 }
@@ -14,6 +13,14 @@
 }
 .THIS .list-style li:first-of-type{
     margin-top:1rem;
+}
+.THIS .other-prof-wrapper .main-wrapper{
+    padding-top:0; 
+}
+@media only screen and (min-width: 768px) and (max-width: 1279.9px){
+    .THIS .main-title{
+        margin:2rem 5.5rem 0;
+    }
 }
 @media t(mqSmall){
     .THIS .main-title{

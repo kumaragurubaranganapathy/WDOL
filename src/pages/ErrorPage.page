@@ -1,0 +1,30 @@
+<apex:page lightningStyleSheets="true" sidebar="false" showHeader="false" >
+     <apex:slds />
+   
+ <apex:includeLightning />
+    
+    <div id="lightning" />
+    
+    <script>
+    
+    
+    $Lightning.use("c:Sampletest", function() {
+        
+        $Lightning.createComponent("c:VFErrorPage",
+                                   
+                                   "",
+                                   
+                                   "lightning",
+                                   
+                                   function(cmp) {
+                                       
+                                       // do some stuff
+                                       
+                                   });
+        
+    });
+    
+    
+    </script>
+    
+</apex:page>

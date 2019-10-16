@@ -42,7 +42,7 @@ public class Polaris_ReceiptRefundTriggerHandler_Test {
         try{
             BGBK__Receipt_Refund__c recRefund = DOL_TestDataFactory.createReceiptRefund(ref.Id,receipt.Id,null);
         }catch(Exception ex){
-            system.debug(ex.getMessage());
+           // system.debug(ex.getMessage());
             system.assert(ex.getMessage().contains('Refund cannot be created as US Bank payment status is not settled!'));
         }
         

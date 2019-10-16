@@ -55,7 +55,7 @@ System.debug('feePaymentRecList : ' +feePaymentRecList );*/
                                                           ]){
                                                               licenseIdSet.add(feePaymentRec.Related_To_License__c);
                                                           }  
-                System.debug('licenseIdSet : ' +licenseIdSet ); 
+  //              System.debug('licenseIdSet : ' +licenseIdSet ); 
             }
             
             List<MUSW__License2__c> licenseToBeUpdated = new List<MUSW__License2__c>();
@@ -70,7 +70,7 @@ System.debug('feePaymentRecList : ' +feePaymentRecList );*/
                                       FROM MUSW__License2__c 
                                       WHERE Id IN :licenseIdSet                                                          
                                      ];
-                System.debug('licenseToBeUpdated : ' +licenseToBeUpdated );
+    //            System.debug('licenseToBeUpdated : ' +licenseToBeUpdated );
             }
             
             
@@ -88,7 +88,7 @@ System.debug('feePaymentRecList : ' +feePaymentRecList );*/
                               AND Program_Type__c =: licenseToBeUpdated[0].Application_Type__c                                                        
                               Limit 1];   
             }
-            system.debug('mastConfig ' + mastConfig);
+      //      system.debug('mastConfig ' + mastConfig);
             
             
             // for Fee Creation logic
@@ -112,14 +112,14 @@ System.debug('feePaymentRecList : ' +feePaymentRecList );*/
                     feeRec.Application_Method__c = licRec.Application_Method__c;
                     feeRec.Profession_Code__c = licRec.Profession_Code__c;
                   
-                      system.debug('feeRec ' + feeRec);
+        //              system.debug('feeRec ' + feeRec);
                     feeTobeInserted.add(feeRec);
                 }
-                system.debug('Before Insert ' + feeTobeInserted);
+          //      system.debug('Before Insert ' + feeTobeInserted);
                 if(!feeTobeInserted.isEmpty()){
                     insert feeTobeInserted;
                 }
-                system.debug('after Insert ' + feeTobeInserted);  
+            //    system.debug('after Insert ' + feeTobeInserted);  
             }
             
             //for Sub Status logic
@@ -132,14 +132,14 @@ System.debug('feePaymentRecList : ' +feePaymentRecList );*/
                     //licRec.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Inactive';
                     licRec.DHP_Stamp_Date__c = System.today();
                     licRec.Polaris_Dishonored_Receipt_ID__c = receiptRec.Name;
-                    system.debug('licRec.Polaris_Dishonored_Receipt_ID__c : '+licRec.Polaris_Dishonored_Receipt_ID__c);
+                //    system.debug('licRec.Polaris_Dishonored_Receipt_ID__c : '+licRec.Polaris_Dishonored_Receipt_ID__c);
                     licenseToBeUpdatedwithDHP.add(licRec);
                 }
-                system.debug('Before Update ' + licenseToBeUpdatedwithDHP);
+              //  system.debug('Before Update ' + licenseToBeUpdatedwithDHP);
                 if(!licenseToBeUpdatedwithDHP.isEmpty()){
                     update licenseToBeUpdatedwithDHP;
                 }
-                system.debug('after Update ' + licenseToBeUpdatedwithDHP);            
+                //system.debug('after Update ' + licenseToBeUpdatedwithDHP);            
             }
             
             //for Status - > Inactive logic
@@ -150,11 +150,11 @@ System.debug('feePaymentRecList : ' +feePaymentRecList );*/
                     licRec.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Inactive';
                     licenseToBeUpdatedInactive.add(licRec);
                 }
-                system.debug('Before Update ' + licenseToBeUpdatedInactive);
+                //system.debug('Before Update ' + licenseToBeUpdatedInactive);
                 if(!licenseToBeUpdatedInactive.isEmpty()){
                     update licenseToBeUpdatedInactive;
                 }
-                system.debug('after Update ' + licenseToBeUpdatedInactive);            
+                //system.debug('after Update ' + licenseToBeUpdatedInactive);            
             }
             if(Test.isRunningTest()){
                 Integer i= 8/0;

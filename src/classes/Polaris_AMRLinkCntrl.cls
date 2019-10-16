@@ -27,19 +27,19 @@ public class Polaris_AMRLinkCntrl {
                    setConId.add(contDocLink.ContentDocumentId);
                 }
                 if(!setConId.isEmpty()){
-                    system.debug('--setConId'+setConId);
-                ContentVersion conVersion = [SELECT CreatedDate,ContentDocumentId,Id,Title FROM ContentVersion WHERE ContentDocumentId IN:setConId and ContentDocumentId!=null AND (Title LIKE '%License_Certificate%' OR Title LIKE '%Self-print_Certificate%' OR Title LIKE '%Appraiser_Course_Certificate%' ) AND Title!=null  ORDER BY CreatedDate DESC NULLS FIRST LIMIT 1];
-            	return conVersion.ContentDocumentId;
+                 //   system.debug('--setConId'+setConId);
+                ContentVersion conVersion = [SELECT CreatedDate,ContentDocumentId,Id,Title FROM ContentVersion WHERE ContentDocumentId IN:setConId and ContentDocumentId!=null AND (Title LIKE '%License_Certificate%' OR Title LIKE '%Self-print_Certificate%' OR Title LIKE '%Appraiser_Course_Certificate%') AND Title!=null  ORDER BY CreatedDate DESC NULLS FIRST LIMIT 1];
+                return conVersion.ContentDocumentId;
                 }  
             }
             else{             
-            	MUSW__License2__c lic = [SELECT id,Print_License_Email__c,Print_License_DES__c,Application__c FROM MUSW__License2__c where id=:licId and id!=null];
+                MUSW__License2__c lic = [SELECT id,Print_License_Email__c,Print_License_DES__c,Application__c FROM MUSW__License2__c where id=:licId and id!=null];
                if(printType == 'email')
                 {
-                    lic.Print_License_Email__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Yes';
+                    lic.Print_License_Email__c= 'Yes';
                 }else if(printType=='DES')
                 {
-                    lic.Print_License_DES__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Yes';
+                    lic.Print_License_DES__c= 'Yes';
                 }
                 try{
                     update lic;
@@ -66,7 +66,7 @@ public class Polaris_AMRLinkCntrl {
     {
         try{
         String appId = DOL_AppConstants.NULL_EMPTY_STRING + '';
-        system.debug('licId : '+licId);
+      //  system.debug('licId : '+licId);
         if(licId!=null){
             MUSW__License2__c lic = [SELECT id,Application__c FROM MUSW__License2__c where id=:licId and id!=null];
             appId = lic.Application__c;
@@ -98,7 +98,8 @@ public class Polaris_AMRLinkCntrl {
         }
       
     }
-	@AuraEnabled
+     
+    @AuraEnabled
     public static String fetchBusinessInfo(String accId)
     {
         return [SELECT id,Name From Account where id=:accId].Name;
@@ -125,7 +126,7 @@ public class Polaris_AMRLinkCntrl {
         try{
         Account acct = null;
         list<Account> acctlist = [select id,name,ThirdPary_Billing_Code__c from account where id=:licId];
-        system.debug('acctlist==='+acctlist);
+      //  system.debug('acctlist==='+acctlist);
         if(!acctlist.isEmpty())
         {
             acct = acctlist[0];
@@ -143,7 +144,7 @@ public class Polaris_AMRLinkCntrl {
     {
         try{
         String websiteInfo = DOL_AppConstants.NULL_EMPTY_STRING + '';
-        system.debug('licId : '+licId);
+     //   system.debug('licId : '+licId);
         if(licId!=null){
             MUSW__License2__c lic = [SELECT id,Website__c FROM MUSW__License2__c where id=:licId and id!=null];
             websiteInfo = lic.Website__c;
@@ -160,35 +161,35 @@ public class Polaris_AMRLinkCntrl {
     {   
          try{
          string randomcharacter= DOL_AppConstants.NULL_EMPTY_STRING + '';
-        system.debug('websiteInfo==='+ websiteInfo+'==licId=='+licId);
+      //  system.debug('websiteInfo==='+ websiteInfo+'==licId=='+licId);
         if(String.isNotBlank(websiteInfo) && websiteInfo == 'createCode' && String.isNotBlank(licId)){
         String value = DOL_AppConstants.NULL_EMPTY_STRING + 'success';
         /*List<User> userInfoData = new  List<User>();
         String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+UserInfo.getUserId()+'\'';
-        System.debug('User Id ' + queryCondition);
+     //   System.debug('User Id ' + queryCondition);
         String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
+     //   system.debug('queryStr '+queryStr);
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         //system.debug('userInfoData==='+userInfoData);
         string AccountId= userInfoData[0].Contact.AccountId;
         //string AccountId= userInfoData[0].AccountId;*/
         list<account> acctlist = [select id,name,ThirdPary_Billing_Code__c from account where id=:licId and id!=null];
-        system.debug('acctlist==='+acctlist);
+       // system.debug('acctlist==='+acctlist);
        
         if(!acctlist.isEmpty())
         {
              randomcharacter= Polaris_AMRLinkCntrl.generateRandomString(6);  
-            system.debug('randomcharacter==='+randomcharacter);
+       //     system.debug('randomcharacter==='+randomcharacter);
             Account  accts= new Account();
             accts.id=acctlist[0].id;
             //accts.id=AccountId;
             accts.ThirdPary_Billing_Code__c=randomcharacter;
-            system.debug('accts==='+accts);
+        //    system.debug('accts==='+accts);
             upsert  accts;
             }
         //return value;===============================
         }else{
-            system.debug('dferfer'+ websiteInfo);
+       //     system.debug('dferfer'+ websiteInfo);
             MUSW__License2__c lic = [SELECT id,Website__c FROM MUSW__License2__c where id=:licId and id!=null];
             lic.Website__c =  websiteInfo;
             update lic;
@@ -206,26 +207,26 @@ public class Polaris_AMRLinkCntrl {
     public static String createCodeValue(String test)
     {            
        try{
-       system.debug('createcode===');
+   //    system.debug('createcode===');
         String value = DOL_AppConstants.NULL_EMPTY_STRING + 'success';
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+sTRING.escapeSingleQuotes(UserInfo.getUserId())+'\'';
-        System.debug('User Id ' + queryCondition);
+     //   System.debug('User Id ' + queryCondition);
         String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
+     //   system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
-        system.debug('userInfoData==='+userInfoData);
+    //    system.debug('userInfoData==='+userInfoData);
         string AccountId= userInfoData[0].Contact.AccountId;
         list<account> acctlist = [select id,name,ThirdPary_Billing_Code__c from account where id=:AccountId];
-        system.debug('acctlist==='+acctlist);
+   //     system.debug('acctlist==='+acctlist);
         if(!acctlist.isEmpty())
         {
             string randomcharacter= Polaris_AMRLinkCntrl.generateRandomString(5);  
             Account  accts= new Account();
             accts.id=acctlist[0].id;
             accts.ThirdPary_Billing_Code__c=randomcharacter;
-            system.debug('accts==='+accts);
+           // system.debug('accts==='+accts);
             upsert  accts;
             }
         return value;
@@ -257,41 +258,41 @@ public class Polaris_AMRLinkCntrl {
     public static String insertRequest(String licId,String licenseType, String board,String ServiceRequestType,String acctId)
     {
         try{
-        List<User> userInfoData = new  List<User>();
-        String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+String.escapeSingleQuotes(UserInfo.getUserId())+'\'';
-        System.debug('User Id ' + queryCondition);
-        String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition+ 'Limit 1';
-        system.debug('queryStr '+queryStr);
-        
-        userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
-        Id getContactId = DOL_AppConstants.NULL_EMPTY_STRING + '003r000000EOhBB';
-        if(userInfoData[0].ContactId != null){
-            getContactId = userInfoData[0].ContactId;
-        }
-        system.debug('licenseType'+licenseType+'board');
-        Request__c application = new Request__c();
-        application.Profession__c = board; 
-        application.License_Type__c = licenseType;        
-        application.Stage__c = 0;
-        application.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Draft';
-        application.Service_Request_Type__c = ServiceRequestType;
-        application.Contact__c = getContactId;
-		if(acctId != null && acctId != ''){
+            List<User> userInfoData = new  List<User>();
+            String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id=\''+String.escapeSingleQuotes(UserInfo.getUserId())+'\'';
+       //     System.debug('User Id ' + queryCondition);
+            String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition+ 'Limit 1';
+         //   system.debug('queryStr '+queryStr);
+            
+            userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
+            Id getContactId = DOL_AppConstants.NULL_EMPTY_STRING + '003r000000EOhBB';
+            if(userInfoData[0].ContactId != null){
+                getContactId = userInfoData[0].ContactId;
+            }
+         //   system.debug('licenseType'+licenseType+'board');
+            Request__c application = new Request__c();
+            application.Profession__c = board; 
+            application.License_Type__c = licenseType;        
+            application.Stage__c = 0;
+            application.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Draft';
+            application.Service_Request_Type__c = ServiceRequestType;
+            application.Contact__c = getContactId;
+            if(acctId != null && acctId != ''){
                 application.Account__c = acctId;  
             }  
-        if(licId != null && licId != ''){
-            application.License__c = licId;  
-        }  
-        try
-        {          
-            insert application;
-        }
-        catch(Exception e){
-            DOL_CreateErrorLog_Exception.logApplicationError(e);
-            throw new AuraHandledException('An error occurred: '+e.getMessage());
-        }
-        string appId = DOL_AppConstants.NULL_EMPTY_STRING + '';
-        return appId = application.Id;
+            if(licId != null && licId != ''){
+                application.License__c = licId;  
+            }  
+            try
+            {          
+                insert application;
+            }
+            catch(Exception e){
+                DOL_CreateErrorLog_Exception.logApplicationError(e);
+                throw new AuraHandledException('An error occurred: '+e.getMessage());
+            }
+            string appId = DOL_AppConstants.NULL_EMPTY_STRING + '';
+            return appId = application.Id;
         }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);

@@ -22,7 +22,7 @@ global class Dol_BatchMonitoring{
     }
 
     global static String createBatchRequest(String batchId){
-        System.debug('starting***');
+        //System.debug('starting***');
         String childRecordId;
         List<Dol_Batch_Monitor__c> batchList;
         String childRecId=null;
@@ -41,7 +41,7 @@ global class Dol_BatchMonitoring{
                 }
             }
         }catch (Exception e){
-            System.debug('exception occoured'+e.getMessage()+e.getStackTraceString());
+            //System.debug('exception occoured'+e.getMessage()+e.getStackTraceString());
             DebugErrorLoggger.LogError(e, '', '','Dol_BatchMonitoring','createBatchRequest','Create Method failed');
         }
         
@@ -62,7 +62,7 @@ global class Dol_BatchMonitoring{
             upsert childRec;
             return true;
         }catch (Exception e){
-            System.debug('exception occoured'+e.getMessage()+e.getStackTraceString());
+            //System.debug('exception occoured'+e.getMessage()+e.getStackTraceString());
             DebugErrorLoggger.LogError(e, '', '','Dol_BatchMonitoring','updateBatchRequest','Update Method failed');
             return false;
         }

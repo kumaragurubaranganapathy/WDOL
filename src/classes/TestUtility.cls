@@ -41,6 +41,29 @@ public class TestUtility {
         dep.wadol_Program_Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Geologist';
         return dep;
     }
+    
+    public static MUSW__License2__c getBusinessLicense(){
+        MUSW__License2__c testLicence = new MUSW__License2__c();
+        testLicence.RecordTypeId= Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
+        testLicence.Application_Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Architects';
+        testLicence.Credential_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Architect';
+        return testLicence;
+    }
+    
+    public static Renewal_Application__c getRenewalApplication(MUSW__License2__c licenseRecord){
+        Renewal_Application__c tempRenewalApplication = new Renewal_Application__c();
+        tempRenewalApplication.Applicant__c = licenseRecord.MUSW__Applicant__c;
+        tempRenewalApplication.Application_Type__c = licenseRecord.Application_Type__c;
+        tempRenewalApplication.Phone__c = licenseRecord.Phone__c;
+        tempRenewalApplication.Credential_Type__c = licenseRecord.Credential_Type__c;
+        tempRenewalApplication.Credential__c = licenseRecord.Credential_Type__c;
+        tempRenewalApplication.Licensee__c = licenseRecord.MUSW__Primary_Licensee__c;
+        tempRenewalApplication.License__c = licenseRecord.Id;
+        tempRenewalApplication.Renewal_Status__c = 'Generate Fee';
+        tempRenewalApplication.Renewal_Reinstatement_Type__c = 'Renewal';
+        return tempRenewalApplication;
+    }
+    
     public static MUSW__License2__c getLicense(){
         MUSW__License2__c testLicen = new MUSW__License2__c();
         testLicen.RecordTypeId= DOL_AppConstants.NULL_EMPTY_STRING + '012r000000074cjAAA';
@@ -66,8 +89,12 @@ public class TestUtility {
         return testLicenseApp;
     }
     
-    public static String getDolEpaymentRtpcPojoJson(Id cartId,String feeIds,Id receiptId,Double paymentDue ){
-        DOL_ePaymentRTPCPOJO rtpcReq = new DOL_ePaymentRTPCPOJO();
+    public static String getRtpcInput(Id cartId,
+                                         String feeIds,
+                                         Id receiptId,
+                                         Double paymentDue,
+                                         Id conId){
+        DOL_RTPC_Input rtpcReq = new DOL_RTPC_Input();
         rtpcReq.ConfirmationId = DOL_AppConstants.NULL_EMPTY_STRING + 'QWERT1234';
         rtpcReq.UserID = DOL_AppConstants.NULL_EMPTY_STRING + 'ABCD';
         rtpcReq.BillerProductCode = DOL_AppConstants.NULL_EMPTY_STRING + 'ABCD';
@@ -88,20 +115,20 @@ public class TestUtility {
         rtpcReq.CardType = DOL_AppConstants.NULL_EMPTY_STRING + 'VISA';
         rtpcReq.PaymentAuthorization = DOL_AppConstants.NULL_EMPTY_STRING + 'Yes';
         
-        DOL_ePaymentRTPCPOJO.Parameter p1 = new DOL_ePaymentRTPCPOJO.Parameter();
+        DOL_RTPC_Input.Parameter p1 = new DOL_RTPC_Input.Parameter();
         p1.ParameterName = DOL_AppConstants.NULL_EMPTY_STRING + 'SFDClicId';
         p1.ParameterValue = receiptId;
-        DOL_ePaymentRTPCPOJO.Parameter p2 = new DOL_ePaymentRTPCPOJO.Parameter();
+        DOL_RTPC_Input.Parameter p2 = new DOL_RTPC_Input.Parameter();
         p2.ParameterName = DOL_AppConstants.NULL_EMPTY_STRING + 'SFDCId';
         p2.ParameterValue = cartId;
-        DOL_ePaymentRTPCPOJO.Parameter p3 = new DOL_ePaymentRTPCPOJO.Parameter();
+        DOL_RTPC_Input.Parameter p3 = new DOL_RTPC_Input.Parameter();
         p3.ParameterName = DOL_AppConstants.NULL_EMPTY_STRING + 'SFDCfeeIds';
         p3.ParameterValue = feeIds;
-        DOL_ePaymentRTPCPOJO.Parameter p4 = new DOL_ePaymentRTPCPOJO.Parameter();
+        DOL_RTPC_Input.Parameter p4 = new DOL_RTPC_Input.Parameter();
         p4.ParameterName = DOL_AppConstants.NULL_EMPTY_STRING + 'SFDCappId';
-        p4.ParameterValue = DOL_AppConstants.NULL_EMPTY_STRING + '';
+        p4.ParameterValue = conId;
         
-        List<DOL_ePaymentRTPCPOJO.Parameter> params = new List<DOL_ePaymentRTPCPOJO.Parameter>();
+        List<DOL_RTPC_Input.Parameter> params = new List<DOL_RTPC_Input.Parameter>();
         params.add(p1);
         params.add(p2);
         params.add(p3);
@@ -112,7 +139,12 @@ public class TestUtility {
         return JSON.serialize(rtpcReq);
     }
     
-    public static DOL_EpaymentRemittanceInput getDOLEpaymentRemittanceInput(Decimal totalDue,Id receiptId,Id cartId,String feeIds){
+    public static DOL_EpaymentRemittanceInput getDOLEpaymentRemittanceInput(Decimal totalDue,
+                                                                            Id receiptId,
+                                                                            Id cartId,
+                                                                            String feeIds,
+                                                                           	Id conId
+                                                                           ){
         DOL_EpaymentRemittanceInput input = new DOL_EpaymentRemittanceInput();
         input.recordIndicator = DOL_AppConstants.NULL_EMPTY_STRING + 'Detail';
         input.transactionConfirmationId = DOL_AppConstants.NULL_EMPTY_STRING + 'Detail';
@@ -169,10 +201,69 @@ public class TestUtility {
         input.sfdcParameter3Name= DOL_AppConstants.NULL_EMPTY_STRING + 'SFDCfeeIds';
         input.sfdcParameter3Value=feeIds;
         input.sfdcParameter4Name= DOL_AppConstants.NULL_EMPTY_STRING + 'SFDCappId';
-        input.sfdcParameter4Value= DOL_AppConstants.NULL_EMPTY_STRING + 'ABC';
+        input.sfdcParameter4Value= conId;
         input.filename= DOL_AppConstants.NULL_EMPTY_STRING + 'ABC.xml';
         
         return input;
+    }
+    
+    public static DOL_DOR_Input getDolDorInput(){
+        DOL_DOR_Input dorInput = new DOL_DOR_Input();
+        dorInput.polarisID= DOL_AppConstants.NULL_EMPTY_STRING + '';
+        dorInput.dorLicenseFullUBI= DOL_AppConstants.NULL_EMPTY_STRING + '6027340270010001';
+        dorInput.dorLicenseUBI= DOL_AppConstants.NULL_EMPTY_STRING + '602734027';
+        dorInput.dorLicenseBusID= DOL_AppConstants.NULL_EMPTY_STRING + '001';
+        dorInput.dorLicenseLocID= DOL_AppConstants.NULL_EMPTY_STRING + '0001';
+        dorInput.dorLicenseStatus= DOL_AppConstants.NULL_EMPTY_STRING + '';
+        dorInput.dorLicenseCode= DOL_AppConstants.NULL_EMPTY_STRING + '';
+        dorInput.dorLicenseFirstIssuanceDate= DOL_AppConstants.NULL_EMPTY_STRING + '20110805';
+        dorInput.dorLicenseExpirationDate= DOL_AppConstants.NULL_EMPTY_STRING + '20190731';
+        dorInput.dorLicenseNumber= DOL_AppConstants.NULL_EMPTY_STRING + '';
+        dorInput.dorBusinessType= DOL_AppConstants.NULL_EMPTY_STRING + 'Sole Proprietor';
+        dorInput.dorEntityName= DOL_AppConstants.NULL_EMPTY_STRING + '';
+        dorInput.dorBusinessName= DOL_AppConstants.NULL_EMPTY_STRING + 'ROBERT G. LIEBLING, ARCHITECT';
+        dorInput.dorOwnerFirstName= DOL_AppConstants.NULL_EMPTY_STRING + 'ROBERT';
+        dorInput.dorOwnerMiddleName= DOL_AppConstants.NULL_EMPTY_STRING + 'GARY';
+        dorInput.dorOwnerLastName= DOL_AppConstants.NULL_EMPTY_STRING + 'LIEBLING';
+        dorInput.dorLocMailAddr1= DOL_AppConstants.NULL_EMPTY_STRING + '23612 SE 165TH ST';
+        dorInput.dorLocMailAddr2= DOL_AppConstants.NULL_EMPTY_STRING + '';
+        dorInput.dorLocMailCity= DOL_AppConstants.NULL_EMPTY_STRING + 'ISSAQUAH';
+        dorInput.dorLocMailState= DOL_AppConstants.NULL_EMPTY_STRING + 'WA';
+        dorInput.dorLocMailZip= DOL_AppConstants.NULL_EMPTY_STRING + '980278413';
+        dorInput.dorLocPhysicalAddr1= DOL_AppConstants.NULL_EMPTY_STRING + '23612 SE 165TH ST';
+        dorInput.dorLocPhysicalAddr2= DOL_AppConstants.NULL_EMPTY_STRING + '';
+        dorInput.dorLocPhysicalCity= DOL_AppConstants.NULL_EMPTY_STRING + 'ISSAQUAH';
+        dorInput.dorLocPhysicalState= DOL_AppConstants.NULL_EMPTY_STRING + 'WA';
+        dorInput.dorLocPhysicalZip= DOL_AppConstants.NULL_EMPTY_STRING + '980278413';
+        dorInput.dorLocOpenDate= DOL_AppConstants.NULL_EMPTY_STRING + '20070501';
+        dorInput.dorTradeName= DOL_AppConstants.NULL_EMPTY_STRING + 'ROBERT G. LIEBLING, ARCHITECT';
+        dorInput.dolProfCode= DOL_AppConstants.NULL_EMPTY_STRING + '20811';
+        dorInput.fileName= DOL_AppConstants.NULL_EMPTY_STRING + '';
+        dorInput.dorEndorsementCode= DOL_AppConstants.NULL_EMPTY_STRING + '0052';
+        dorInput.dorLicenseStatus = DOL_AppConstants.NULL_EMPTY_STRING + 'Active';
+        List<DOL_DOR_Input.GovernPerson> govPersonList = new List<DOL_DOR_Input.GovernPerson>();
+        
+        DOL_DOR_Input.GovernPerson govPerson = new DOL_DOR_Input.GovernPerson();
+        govPerson.dorGovPerFirstName = DOL_AppConstants.NULL_EMPTY_STRING + 'Gov First Name';
+        govPerson.dorGovPerMiddleName = DOL_AppConstants.NULL_EMPTY_STRING + 'Middle Name';
+        govPerson.dorGovPerLastName = DOL_AppConstants.NULL_EMPTY_STRING + 'LastName';
+        govPersonList.add(govPerson);
+        return dorInput;
+    }
+    
+    public static DOL_NCR_Input getNCRInput(Id licenseId, String validationAmount){
+        DOL_NCR_Input ncrInput = new DOL_NCR_Input();
+        ncrInput.FileName = DOL_AppConstants.NULL_EMPTY_STRING + 'FileName';
+        ncrInput.ImageLabel = DOL_AppConstants.NULL_EMPTY_STRING + 'ImageLabel';
+        ncrInput.LicenseNumber = DOL_AppConstants.NULL_EMPTY_STRING + '1111';
+        ncrInput.ncrFileImageURL = DOL_AppConstants.NULL_EMPTY_STRING + 'ImageUrl';
+        ncrInput.ProfCode = DOL_AppConstants.NULL_EMPTY_STRING + '23104';
+        ncrInput.ValidationDate = DOL_AppConstants.NULL_EMPTY_STRING + '22092019';
+        ncrInput.ValidationItemNum = DOL_AppConstants.NULL_EMPTY_STRING + '2222';
+        ncrInput.ValidationSeqNum = DOL_AppConstants.NULL_EMPTY_STRING + '001';
+        ncrInput.PolarisRecordID = licenseId;
+        ncrInput.ValidationAmount = validationAmount;
+        return ncrInput;
     }
     
 }

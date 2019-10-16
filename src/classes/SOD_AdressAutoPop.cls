@@ -10,9 +10,9 @@ public class SOD_AdressAutoPop {
             + '&key=' +objCS.Key__c
             + '&prefix=' + strPrefix;
         
-        system.debug('URL = '+url);
+     //   system.debug('URL = '+url);
         SOD_Autocomplete_Wrapper response = SOD_Autocomplete_Wrapper.parse(makeAPICall(url));
-        system.debug('response111' +response);
+     //   system.debug('response111' +response);
         return response;
         }catch(Exception ex)
         {
@@ -31,12 +31,12 @@ public class SOD_AdressAutoPop {
             + '&city=' +city
             + '&state=' +state;
         
-        system.debug('URL = '+url);
+  //      system.debug('URL = '+url);
         List<SOD_ZipCode_Wrapper> objZip = SOD_ZipCode_Wrapper.parse(makeAPICall(url));
-        system.debug(objZip[0].zipcodes[0].zipcode);
+  //      system.debug(objZip[0].zipcodes[0].zipcode);
         return objZip[0].zipcodes[0].zipcode;
     }*/
-    
+    @TestVisible
     private static string makeAPICall(string url) {
         
         Http http = new Http();
@@ -46,14 +46,14 @@ public class SOD_AdressAutoPop {
         httpRequest.setEndpoint(url);
         httpRequest.setTimeout(120000);
         httpResponse = http.send(httpRequest); 
-        system.debug('httpResponse = '+httpResponse);
+   //     system.debug('httpResponse = '+httpResponse);
         
         if (httpResponse.getStatusCode() == 200){
-            system.debug(httpResponse.getBody());
+         //   system.debug(httpResponse.getBody());
             return httpResponse.getBody();    
         } else {
-            System.debug(httpResponse.getStatusCode());
-            System.debug(httpResponse.getBody());
+         //   System.debug(httpResponse.getStatusCode());
+       //     System.debug(httpResponse.getBody());
             throw new AuraHandledException(httpResponse.getBody());
         }  
     }

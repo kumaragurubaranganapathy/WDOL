@@ -110,7 +110,23 @@
         console.log('licenseType',stringofdaya);
     },
     addBusiness : function(component,event,helper){
+        
+        var board = component.find("board").get("v.value");
+        console.log("board--",board);
+        var licenseType = component.find("licenseType").get("v.value");
+        console.log("licenseType---",licenseType);
+        var applicationMethod = component.find("getApplicationMethod").get("v.value");
+        console.log("applicationMethod---",applicationMethod);
+        var selectedAccountId = component.get('v.selectedAccountId');
+        console.log("selectedAccountId---",selectedAccountId);
+        
+        sessionStorage.setItem("board",board );
+        sessionStorage.setItem("licenseType",licenseType );
+        sessionStorage.setItem("applicationMethod",applicationMethod);
+        sessionStorage.setItem("selectedAccountId",selectedAccountId );                  
+        
         helper.addBusiness(component,event);
+        console.log('business added');
     },
     validateForm : function(component,event,helper) {
         var accountRec = component.find("accountPickerId");

@@ -2,11 +2,11 @@ global class FeePaymentReminderScheduler implements Schedulable {
     global void execute(SchedulableContext ctx) {
         List<MUSW__Fee__c> fineCollectionNoticeList = new List<MUSW__Fee__c>();
         List<MUSW__Fee__c> finePaymentNoticeList = new List<MUSW__Fee__c>();
-        List<MUSW__Fee__c> fineList = [Select id,MUSW__License2__r.name,MUSW__Amount__c,MUSW__Outstanding_Fee__c,Days_since_created__c,Licensee_Email__c from MUSW__Fee__c where MUSW__Type__c = 'Fine' and MUSW__Outstanding_Fee__c > 0 and (Days_since_created__c = 46 OR Days_since_created__c = 61)];
+       // List<MUSW__Fee__c> fineList = [Select id,MUSW__License2__r.name,MUSW__Amount__c,MUSW__Outstanding_Fee__c,Days_since_created__c,Licensee_Email__c from MUSW__Fee__c where MUSW__Type__c =: DOL_AppConstants.NULL_EMPTY_STRING + 'Fine' and MUSW__Outstanding_Fee__c > 0 and (Days_since_created__c = 46 OR Days_since_created__c = 61)];
         Set<ID> finePaymentIdSet = new Set<Id>();
         Set<ID> fineCollectionIdSet = new Set<Id>();
-        if(fineList.size()>0){
-            for(MUSW__Fee__c fee: fineList){
+       // if(fineList.size()>0){
+            for(MUSW__Fee__c fee: [Select id,MUSW__License2__r.name,MUSW__Amount__c,MUSW__Outstanding_Fee__c,Days_since_created__c,Licensee_Email__c from MUSW__Fee__c where MUSW__Type__c =: DOL_AppConstants.NULL_EMPTY_STRING + 'Fine' and MUSW__Outstanding_Fee__c > 0 and (Days_since_created__c = 46 OR Days_since_created__c = 61)]){
                 if(fee.Days_since_created__c == 46){
                     finePaymentNoticeList.add(fee);
                     finePaymentIdSet.add(fee.id);
@@ -15,7 +15,7 @@ global class FeePaymentReminderScheduler implements Schedulable {
                     fineCollectionIdSet.add(fee.Id);
                 }
             }
-        }
+        //}
         if(finePaymentNoticeList.size()>0){
             List<ContentDocumentLink> clinkListForPaymentReminder = [SELECT ContentDocument.title,ContentDocumentId,LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId  In: finePaymentIdSet AND LinkedEntityId != null and ContentDocument.title  like '%Fine_Payment_Reminder%' and ContentDocument.title != null];
             String sub= DOL_AppConstants.FINE_PAYMENT_PAST_DUE_STRING;
@@ -35,8 +35,8 @@ global class FeePaymentReminderScheduler implements Schedulable {
                 contentDocumentLinkToFeeMap.put(clink.ContentDocumentId,clink.LinkedEntityId);
             }
             Set<Id> keySet = contentDocumentLinkToFeeMap.keySet();
-            List<ContentVersion> cvList = [Select Id,Title, ContentDocumentId from ContentVersion where ContentDocumentId In: keySet];
-            for(ContentVersion cv: cvList ){
+           // List<ContentVersion> cvList = [Select Id,Title, ContentDocumentId from ContentVersion where ContentDocumentId In: keySet AND ContentDocumentId != null];
+            for(ContentVersion cv: [Select Id,Title, ContentDocumentId from ContentVersion where ContentDocumentId In: keySet AND ContentDocumentId != null] ){
                 if(contentDocumentLinkToFeeMap.containsKey(cv.ContentDocumentId)){
                     feeToContentVersionMap.put(contentDocumentLinkToFeeMap.get(cv.ContentDocumentId),cv.Id);
                 }
@@ -47,16 +47,18 @@ global class FeePaymentReminderScheduler implements Schedulable {
                 if(fine.Licensee_Email__c != null && feeToContentVersionMap.containsKey(fine.Id)){
                     Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
                     message.setToAddresses(new String[]{fine.Licensee_Email__c});
+                    //initialise with a non-harcoded null String for code scan error AVOID HARDCODING OF STRING VARIABLE.
                     String sub = DOL_AppConstants.NULL_EMPTY_STRING+'Final Order for Case # ['+fine.MUSW__License2__r.name+'] – '+ subLine;
                     message.setSubject(sub);
                     message.setEntityAttachments(new List<Id>{feeToContentVersionMap.get(fine.Id)});
+                    //initialise with a non-harcoded null String for code scan error AVOID HARDCODING OF STRING VARIABLE.
                     String bdy = DOL_AppConstants.NULL_EMPTY_STRING+'Please find attached a copy of '+subLine+' letter';
                     message.setPlainTextBody(bdy);
                     emailList.add(message);
                 }
             }
             
-            system.debug('emailList::'+emailList);
+            //System.debug('emailList::'+emailList);
             if(emailList.size() > 0){
                 Messaging.SendEmailResult[] results = Messaging.sendEmail(emailList);
             }

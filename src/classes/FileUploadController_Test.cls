@@ -33,7 +33,7 @@ public class FileUploadController_Test {
            
         } catch(Exception e) {
             DOL_CreateErrorLog_Exception.logApplicationError(e);
-            system.debug('Error '+e);
+            //System.debug('Error '+e);
             //system.assertEquals(e.getMessage().contains('error'), true, 'Error msg');
           
         }

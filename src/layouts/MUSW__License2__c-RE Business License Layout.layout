@@ -742,6 +742,13 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Historical_Operator_ID__c</fields>
+        <fields>Historical_Transaction_Date__c</fields>
+        <fields>Historical_Transaction_Type__c</fields>
+        <relatedList>License_History__c.License__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>Type__c</fields>
         <fields>Description__c</fields>
         <fields>CREATED_DATE</fields>

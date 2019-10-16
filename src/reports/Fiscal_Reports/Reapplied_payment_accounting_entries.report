@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>BGBK__Item__c$Name</field>
+    </columns>
+    <columns>
+        <field>BGBK__Item__c$BGBK__Type__c</field>
+    </columns>
+    <columns>
+        <field>BGBK__Item__c$BGBK__Amount__c</field>
+    </columns>
+    <columns>
+        <field>BGBK__Item__c$Fee_Payment__c</field>
+    </columns>
+    <columns>
+        <field>BGBK__Item__c$Payment_Method__c</field>
+    </columns>
+    <columns>
+        <field>BGBK__Item__c$Intake_Method__c</field>
+    </columns>
+    <columns>
+        <field>BGBK__Item__c$Journal_Voucher_Detail__c.JournalVoucher__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>BGBK__Item__c$BGBK__Type__c</column>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>008X-Reapplied Payment</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Reapplied payment accounting entries</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Items__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>BGBK__Item__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_THISWEEK</interval>
+    </timeFrameFilter>
+</Report>

@@ -18,6 +18,7 @@ public class LnP_PaymentReceiptStatusCtlr_Test {
         insert receipt5;
         LnP_PaymentReceiptStatusCtlr.getPaymentTotals(parameter,todayDate);
         LnP_PaymentReceiptStatusCtlr.paymentReceiptRecordsUpdate(parameter,todayDate);
+        LnP_PaymentReceiptStatusCtlr.getPmtInitialTotals();
         Test.stopTest();
     }
 }

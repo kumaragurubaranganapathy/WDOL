@@ -36,15 +36,15 @@ global class DOL_AbondonedPendingActions implements Schedulable {
         for (Database.SaveResult sr : srList) {
             if (sr.isSuccess()) {
                 // Operation was successful, so get the ID of the record that was processed
-                //System.debug('Successfully updated license record. review ID: ' + sr.getId());
+                ////System.debug('Successfully updated license record. review ID: ' + sr.getId());
                 outputResponse ='Successfull';
             }
             else {
                 // Operation failed, so get all errors                
                 for(Database.Error err : sr.getErrors()) {
-                    System.debug('The following error has occurred.');                    
-                    System.debug(err.getStatusCode() + ': ' + err.getMessage());
-                    System.debug('License fields that affected this error: ' + err.getFields());
+                    //System.debug('The following error has occurred.');                    
+                    //System.debug(err.getStatusCode() + ': ' + err.getMessage());
+                    //System.debug('License fields that affected this error: ' + err.getFields());
                 }
                 outputResponse ='Fail';
             }

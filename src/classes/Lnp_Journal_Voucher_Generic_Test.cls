@@ -21,7 +21,7 @@ public class Lnp_Journal_Voucher_Generic_Test {
         MUSW__Fee_Payment__c objFeePayment = new MUSW__Fee_Payment__c(  MUSW__Payment_Amount__c =100.00);
         objFeePayment.MUSW__Receipt__c=objReceipt.Id;    
         objFeePayment.MUSW__Fee__c=objFee.id;
-		insert objFeePayment;
+        insert objFeePayment;
         
         JV_Sequence__c objJVSeq = new JV_Sequence__c(Current_sequence__c =0.0);
         insert objJVSeq;
@@ -33,15 +33,15 @@ public class Lnp_Journal_Voucher_Generic_Test {
         objItem.Fee_Payment__c =objFeePayment.id;
         objItem.BGBK__Transaction__c=objTransaction.id;
         objItem.BGBK__Fund__c=objFund.id;
-		insert objItem;  
+        insert objItem;  
         objItem=[select Payment_Method__c,Debit_Credit__c,Intake_Method__c,BGBK__Fund__r.GL__c,Transaction_Code__c,BGBK__Fund__r.Accounting_System__c from BGBK__Item__c where id=:objItem.Id];
-        system.debug('item$$'+objItem.Debit_Credit__c+objItem.Payment_Method__c +objItem.Intake_Method__c+objItem.BGBK__Fund__r.GL__c+ objItem.Transaction_Code__c+objItem.BGBK__Fund__r.Accounting_System__c);
+      //  system.debug('item$$'+objItem.Debit_Credit__c+objItem.Payment_Method__c +objItem.Intake_Method__c+objItem.BGBK__Fund__r.GL__c+ objItem.Transaction_Code__c+objItem.BGBK__Fund__r.Accounting_System__c);
         test.startTest();
         //Lnp_Journal_Voucher_Generic objJV = new Lnp_Journal_Voucher_Generic();
-	    //DataBase.executeBatch(objJV);
-		Lnp_Journal_Voucher_Generic_SCHED sh1 = new Lnp_Journal_Voucher_Generic_SCHED();
+        //DataBase.executeBatch(objJV);
+        Lnp_Journal_Voucher_Generic_SCHED sh1 = new Lnp_Journal_Voucher_Generic_SCHED();
 
-		String sch = '0 0 23 * * ?'; 
+        String sch = '0 0 23 * * ?'; 
         system.schedule('Test Territory Check', sch, sh1); 
         test.stopTest();
     }

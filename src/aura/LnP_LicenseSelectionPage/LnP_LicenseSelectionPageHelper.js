@@ -145,8 +145,7 @@
         
         if(applicationMethod!=''){
             if(licenseType != ''){
-                var action = component.get("c.questionForLicenceTyep");
-                component.set("v.spinner",true);
+                var action = component.get("c.questionForLicenceTyep");                
                 helper.hideOrShowSpinner(component, event, helper);
                 action.setParams({
                     "Board": board, 
@@ -418,6 +417,7 @@
         component.find("button1").set('v.disabled',false);
     },
     startApplicationHelper : function(component, event, helper){
+        helper.hideOrShowSpinner(component, event, helper);
         var isBusinessLicenseSelection =false;
         console.log('inside startApplicationHelper');
         var parsedUrl = new URL(document.location);
@@ -497,6 +497,7 @@
                             sessionStorage.setItem("header","true");
                             sessionStorage.setItem("applicationId",result); 
                             sessionStorage.setItem("contactRecId",contactRecId); 
+                            helper.hideOrShowSpinner(component, event, helper);
                             window.location.href= $A.get("$Label.c.Polaris_Portal_URL")+'s/apply-for-license'+queryParam;
                         } 
                         else if(sessionStorage.getItem("header")){
@@ -504,6 +505,7 @@
                             console.log('%%%%%'+urlEvent);
                             var str = "/lightningwashington/s/apply-for-license"+queryParam;
                             console.log('$$$$$$'+str);
+                            helper.hideOrShowSpinner(component, event, helper);
                             urlEvent.setParams({
                                 "url": str
                             });
@@ -518,9 +520,8 @@
         }
         
     },
-    hideOrShowSpinner: function(component, event, helper){
-        var spinner = component.find('spinner');
-        $A.util.toggleClass(spinner, 'slds-hide');
+    hideOrShowSpinner: function(component, event, helper){             
+        component.set("v.spinner",!component.get("v.spinner"));
     },
     fetchLicenseList  : function (component, event, helper){
         var board=component.get("v.board");

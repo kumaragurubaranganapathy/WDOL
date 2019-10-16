@@ -78,7 +78,7 @@ public class AssociationUtility {
           }
      }
      
-     system.debug('AssociationUtility :: restrictChildLicensesCount all relationships'+JSON.serialize(parentLicense2ChildLicenseIdListMap)); 
+     //System.debug('AssociationUtility :: restrictChildLicensesCount all relationships'+JSON.serialize(parentLicense2ChildLicenseIdListMap)); 
      
      for(Id parentLicense_id :parentLicense2ChildLicenseIdListMap.keyset()){
          
@@ -109,8 +109,8 @@ public class AssociationUtility {
      
      for(Associations__c assoc_Obj: triggerNewAssociationList){
          
-         system.debug('In Restrict CHild license COunt........'+JSON.serialize(assoc_Obj));
-         system.debug('In Restrict CHild license COunt........ maxed out'+JSON.serialize(parentIdsMaxedOut));
+         //System.debug('In Restrict CHild license COunt........'+JSON.serialize(assoc_Obj));
+         //System.debug('In Restrict CHild license COunt........ maxed out'+JSON.serialize(parentIdsMaxedOut));
          
          if(parentIdsMaxedOut.contains(assoc_Obj.Parent_License__c)){
              

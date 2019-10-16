@@ -8,8 +8,8 @@ public class Dol_UBISearchTransform {
         String businessStatus = DOL_AppConstants.NULL_EMPTY_STRING + '';
         
         List<String> ubiafterHash = ubi.split('-');
-        System.debug('UBI after split'+ubi.split('-'));
-        System.debug('First term'+ubiafterHash[0].trim());
+        //System.debug('UBI after split'+ubi.split('-'));
+        //System.debug('First term'+ubiafterHash[0].trim());
         if(Dol_IntegrationUtil.isNotEmpty(ubiafterHash)){
             newUBI = ubiafterHash[0].trim() + ubiafterHash[1].trim() + ubiafterHash[2].trim();
         }
@@ -27,12 +27,12 @@ public class Dol_UBISearchTransform {
                     businessStatus = responseDeatil.entity.active !=null ? responseDeatil.entity.active.trim() : '';
                     governingdetails = responseDeatil.entity.governingPerson;
                     
-                    system.debug('governingdetails'+governingdetails[0].title);
-                    system.debug('businessName'+responseDeatil.entity.businessName);
+                    //System.debug('governingdetails'+governingdetails[0].title);
+                    //System.debug('businessName'+responseDeatil.entity.businessName);
                     if(Dol_IntegrationUtil.isNotBlank(accountId)){
                         selectedAccount = [select Id, Name from Account where id=:accountId AND id != null limit 1];
                     }
-                    System.debug('selectedAccount'+selectedAccount);
+                    //System.debug('selectedAccount'+selectedAccount);
                     //follwoing two conditions have been removed as per User Story 1436
                     /* if(selectedAccount!= null && selectedAccount.name!= null && Dol_IntegrationUtil.isNotBlank(businessName) && selectedAccount.name != businessName && !businessStatus.equalsIgnoreCase('active')){
                         status = 'MismatchInactive'+'-'+'businessName';
@@ -63,8 +63,8 @@ public class Dol_UBISearchTransform {
                         acc.Account_Status__c = businessStatus;
                         
                         accountConList = [Select id,Title__c,Last_Name__c,Middle_Name__c,First_Name__c from MUSW__Account_Contact__c where MUSW__Account__c =:accountId AND MUSW__Account__c != null];
-                        system.debug('accountConList=='+accountConList);
-                        system.debug('governingdetails=='+governingdetails);
+                        //System.debug('accountConList=='+accountConList);
+                        //System.debug('governingdetails=='+governingdetails);
                         if(Dol_IntegrationUtil.isNotEmpty(governingdetails) && Dol_IntegrationUtil.isNotEmpty(accountConList)){
                                 for(Dol_SOSResponse.GoverningPersons govdetail : governingdetails){ 
                                     governingName= DOL_AppConstants.NULL_EMPTY_STRING + '';
@@ -73,7 +73,7 @@ public class Dol_UBISearchTransform {
                                     if(govdetail.middleName != null){ governingName+= govdetail.middleName;}
                                     if(govdetail.lastName != null){ governingName+= govdetail.lastName;}
                                     governingMap.put(governingName,govdetail);
-                                    system.debug('governingMap'+governingMap);
+                                    //System.debug('governingMap'+governingMap);
                                     
                                 }
                                 for(MUSW__Account_Contact__c accountCon : accountConList){ 
@@ -83,16 +83,16 @@ public class Dol_UBISearchTransform {
                                     if(accountCon.Middle_Name__c != null){ accountName+= accountCon.Middle_Name__c;}
                                     if(accountCon.Last_Name__c != null){ accountName+= accountCon.Last_Name__c;}
                                     accountConMap.put(accountName,accountCon);
-                                    system.debug('accountConMap'+accountConMap);
+                                    //System.debug('accountConMap'+accountConMap);
                                 }
 
                                 for(String govName : governingMap.keySet()){
                                     if(!accountConMap.containsKey(govName)){
-                                        system.debug('accountConMapmismatch');
+                                        //System.debug('accountConMapmismatch');
                                     	uniqueGovList.add(governingMap.get(govName));
                                     }
                                 }
-                            	system.debug('uniqueGovList'+uniqueGovList);
+                            	//System.debug('uniqueGovList'+uniqueGovList);
                                 for(Dol_SOSResponse.GoverningPersons govdetail : uniqueGovList){
                                 	MUSW__Account_Contact__c newAccountCon = new MUSW__Account_Contact__c();
                                     newAccountCon.Title__c = govdetail.title != null ? govdetail.title.trim() : '' ;
@@ -126,9 +126,9 @@ public class Dol_UBISearchTransform {
                                 upsert acc;
                                 status = DOL_AppConstants.NULL_EMPTY_STRING + 'success';
                             }
-                            System.debug('newAccountConList'+newAccountConList);
+                            //System.debug('newAccountConList'+newAccountConList);
                             if(newAccountConList != null){
-                                System.debug('newAccountConList'+newAccountConList);
+                                //System.debug('newAccountConList'+newAccountConList);
                                 upsert newAccountConList ;
                                 status = DOL_AppConstants.NULL_EMPTY_STRING + 'success'; 
                             } 
@@ -148,11 +148,11 @@ public class Dol_UBISearchTransform {
             
                 
         }catch (Exception e){
-            System.debug('exception occoured'+e.getMessage()+e.getStackTraceString());
+            //System.debug('exception occoured'+e.getMessage()+e.getStackTraceString());
             DOL_CreateErrorLog_Exception.logApplicationError(e);
             throw new AuraHandledException('An error occurred: '+e.getMessage());
         }
-            System.debug('status==' + status);
+            //System.debug('status==' + status);
             return status;
     }
     

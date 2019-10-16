@@ -2,7 +2,7 @@ public class ContactValidator {
     
     public static ValidationError validate (ValidationError e, String recordId, String grouping, String licenseType, String applicationType){
         ValidationError error = new ValidationError();
-        System.debug('movement::'+recordId);
+        //System.debug('movement::'+recordId);
         Contact c = [Select Id, Birthdate, Phone,Driver_s_License_Number__c,Municipality__c, Served_in_Military__c, Spouse_Served_in_the_Military__c, Email, Gender__c,
                      Country_of_Military_Service__c, Branch_of_Military_Service__c, Ethnicity__c,
                      Still_Serving_in_Military__c, Honorable_Discharge__c, Start_Date_Military_Service__c, 
@@ -22,7 +22,7 @@ public class ContactValidator {
         for(Application_Field__c reqField : lstRequiredFields){
             setRequiredFields.add(reqField.Name);
         }
-        system.debug(setRequiredFields);
+        //System.debug(setRequiredFields);
         
         if(c != null) {
             error = validateRecord(e, c, setRequiredFields);
@@ -32,7 +32,7 @@ public class ContactValidator {
     }
     
     private static ValidationError validateRecord (ValidationError e, Contact c, Set<String> setRequiredFields) {
-        System.debug('===>Contact Validation');
+        //System.debug('===>Contact Validation');
         
         if(setRequiredFields.contains('Email') && c.Email == null){
             e.addError('Email', 'You must enter an Email.');

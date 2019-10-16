@@ -101,7 +101,7 @@ global class DOL_Process_NCR_Data_Batch implements Database.Batchable<sObject>{
         if(String.isNotBlank(ncrInput.PolarisRecordID) )
             license = dolDao.getLicenseAndRenewalRecordByLicenseId(ncrInput.PolarisRecordID);
         else if(String.isNotBlank(ncrInput.LicenseNumber))
-            license = dolDao.getLicenseAndRenewalRecordByLicenseNumber(ncrInput.LicenseNumber);
+            license = dolDao.getLicenseAndRenewalRecordByLicenseNumber(ncrInput.LicenseNumber,ncrInput.ProfCode);
         else{
             throw new CustomException('PolarisRecordID and LicenseNumber both are blank');
         }

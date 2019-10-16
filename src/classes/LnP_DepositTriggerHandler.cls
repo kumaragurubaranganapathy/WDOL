@@ -28,7 +28,7 @@ public with sharing class LnP_DepositTriggerHandler implements BGCM.ITriggerHand
         map<Id,Id> mapDepositReceipt = new map<Id,Id>();  
         set<Id>receiptIds = new Set<Id>();
         if(!depositIds.isEmpty()){
-            for(MUSW__Payable_Receipt__c payRec: [Select Id,MUSW__Receipt__c, MUSW__Deposit__c,MUSW__Receipt__r.Id,MUSW__Deposit__r.Id from MUSW__Payable_Receipt__c Where MUSW__Deposit__c IN:depositIds]){
+            for(MUSW__Payable_Receipt__c payRec: [Select Id,MUSW__Receipt__c, MUSW__Deposit__c,MUSW__Receipt__r.Id,MUSW__Deposit__r.Id from MUSW__Payable_Receipt__c Where MUSW__Deposit__c IN:depositIds and MUSW__Deposit__c!=null]){
                 receiptIds.add(payRec.MUSW__Receipt__c);
                 mapDepositReceipt.put(payRec.MUSW__Deposit__c,payRec.MUSW__Receipt__c);
             }
@@ -39,7 +39,7 @@ public with sharing class LnP_DepositTriggerHandler implements BGCM.ITriggerHand
                                                                 Agency_Code__c, 
                                                                 Voucher_Number__c 
                                                                 from MUSW__Receipt__c 
-                                                                where ID IN : receiptIds]);
+                                                                where ID IN : receiptIds and id!=null]);
         }
         list<MUSW__Receipt__c> finalReceiptToUpdate = new  list<MUSW__Receipt__c>();
         if(!mapDepositReceipt.isEmpty()){
@@ -54,7 +54,7 @@ public with sharing class LnP_DepositTriggerHandler implements BGCM.ITriggerHand
                 }
             }
         }
-        system.debug('finalReceiptToUpdate : ' +finalReceiptToUpdate);
+       // system.debug('finalReceiptToUpdate : ' +finalReceiptToUpdate);
         if(!finalReceiptToUpdate.isEmpty())
             update finalReceiptToUpdate; 
         
@@ -81,7 +81,7 @@ public with sharing class LnP_DepositTriggerHandler implements BGCM.ITriggerHand
                 depositRec.Old_Available_Amount__c = olddeposit.MUSW__Available_Amount__c;
                 
             }  
-	    if(olddeposit.wadol_Program_Type__c != depositRec.wadol_Program_Type__c){
+            if(olddeposit.wadol_Program_Type__c != depositRec.wadol_Program_Type__c){
                 String ProgramType = depositRec.wadol_Program_Type__c;
                 List<Master_ConfigData_Listing__c> mastConfigList = new List<Master_ConfigData_Listing__c>();
                 mastConfigList =[Select Id, Revenue_Account_Code__c,Listing_Type__c,Program_Type__c from Master_ConfigData_Listing__c where Listing_Type__c ='Overshort Queue' AND Program_Type__c INCLUDES(:ProgramType)];

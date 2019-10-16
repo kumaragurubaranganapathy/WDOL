@@ -15,7 +15,7 @@ public class DE_LandingPageCustomLabels {
    public static Map<String, String> getWidgetLabels(){
         Map<String, String> mapWidgetLabels = new Map<String, String>();
         String userType= UserInfo.getUserType();
-        System.debug('userType '+ userType);
+        //System.debug('userType '+ userType);
         if(userType=='Standard'){
            mapWidgetLabels.put('ApplyForLicenseHeader',Label.DE_Portal_Home_Apply_For_License+','+Label.DE_Portal_Home_Apply_For_License_Content+','+'./dashboard');
         }
@@ -93,15 +93,15 @@ public class DE_LandingPageCustomLabels {
         mapJSON.put('Card Menu List','[{"header":"All Applications", "url":"/dashboard", "icon": "LnP__Applications_E.svg", "class":"slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1"}]');
         mapJSON.put('Application Header List','["Number","Type", "Status", "Created Date", "Link", "Expiration Date", "Add Association"]');        
        //CR start 
-         System.debug('User@@@'+userInfo.getUserId());
+         //System.debug('User@@@'+userInfo.getUserId());
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';//0050b000004XiXjAAK
        // String queryCondition1 = ' Id=\''+UserInfo.getUserId()+'\'';
         String queryStr = 'SELECT ContactId FROM User WHERE  '+queryCondition;
-        system.debug('queryStr@@@ '+queryStr);
+        //System.debug('queryStr@@@ '+queryStr);
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         //String queryCondition1 = ' MUSW_Applicant__c =\''+userInfoData[0].ContactId+'\'';
-        system.debug('userInfoData[0].ContactId@@@ '+userInfoData[0].ContactId);
+        //System.debug('userInfoData[0].ContactId@@@ '+userInfoData[0].ContactId);
         list<MUSW__License2__c> lstLicenses;
         list<MUSW__Application2__c> applicationList;
         if(userInfoData[0].ContactId != null){
@@ -180,7 +180,7 @@ public class DE_LandingPageCustomLabels {
              }
         
         List<MUSW__Account_Contact__c> AcctConList = [ select id,Account_Admin__c,Associate_Status__c from MUSW__Account_Contact__c where OwnerId =:userInfo.getUserId() and Account_Admin__c = true and Associate_Status__c =:'Active' ];
-        system.debug(JSON.serialize(applicationMap));
+        //System.debug(JSON.serialize(applicationMap));
         mapJSON.put('Application Item List',JSON.serialize(applicationMap));
         mapJSON.put('License Item List',JSON.serialize(mapLicenses));
         String businessFlag = 'false';
@@ -191,7 +191,7 @@ public class DE_LandingPageCustomLabels {
             }
         }
         mapJSON.put('businessFlag',businessFlag );
-        System.debug('mapJSON :'+mapJSON);
+        //System.debug('mapJSON :'+mapJSON);
         return mapJSON;
     }
   

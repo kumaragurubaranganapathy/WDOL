@@ -326,4 +326,9 @@ public class DOL_AppConstants {
     //FeePaymentReminderScheduler
     public static final String FINE_PAYMENT_PAST_DUE_STRING = 'Fine Payment Past Due';
     public static final String NOTICE_OF_COLLECTIONS_STRING = 'Notice of Collections';
+	
+	//MuleApiHeaderConstant
+    public static final String MULE_AUTHORIZATION_KEY = 'Authorization';
+    public static final String MULE_AUTHORIZATION_VALUE_METADATA_LABEL = 'Mule Authorization Code';
+    public static final String MULE_AUTHORIZATION_VALUE_CONSTANT = 'Basic ';
 }

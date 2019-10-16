@@ -129,6 +129,7 @@
         var applicationId = '';
         if (!notEligible) {
             try {
+                var that = this;
                 const server = component.find('server');
                 const startAnApplication = component.get('c.startRenewalApplication');
                 server.callServer(
@@ -145,7 +146,7 @@
                         applicationId = response;
                         sessionStorage.setItem("applicationId", applicationId);
                         console.log('applicationId ' + applicationId);
-                        component.set("v.spinner",false);
+                        that.hideOrShowSpinner(component,event,helper);
                         var accURL = window.location.href;
                         var accUrlShort = accURL.slice(0, accURL.lastIndexOf("/"));
                         accUrlShort = accUrlShort + "/polaris-renewal";//+ applicationId;

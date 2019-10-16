@@ -19,7 +19,7 @@ public class ViolationAddEditBatch implements Database.Batchable<MUSW__Inspectio
     
     public void execute(Database.BatchableContext bc, List<MUSW__Inspection_Violation__c> scopedIvs)
     {
-        system.debug('scopedIvs=' + scopedIvs);
+      //  system.debug('scopedIvs=' + scopedIvs);
         update scopedIvs;
     }
     
@@ -42,7 +42,7 @@ public class ViolationAddEditBatch implements Database.Batchable<MUSW__Inspectio
                 foins.Close_Inspection__c = true;
                 foins.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Completed with open violations';
             }
-            System.debug('fieldObservations=' +fieldObservations );
+          //  System.debug('fieldObservations=' +fieldObservations );
             update fieldObservations;
         }
     }

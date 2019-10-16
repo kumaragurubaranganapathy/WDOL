@@ -10,11 +10,23 @@ H ADARSH                        12-August-2018             Initial Creation
 ================================================================================= */
 
 
-public class Utilityclass_withsharing {   
+public with sharing class Utilityclass_withsharing {   
     public static final String sSize = DOL_AppConstants.NULL_EMPTY_STRING + 'Size';
     public static Boolean bIsTestClass = false;
     public static final list<String> lstEmptyError= new list<String>{'List is empty'}; 
     static final List<String> lstObjExcl = new List<String>{'User'};
+        
+    /**
+      * @author: Mangesh Madhukar, A
+      * @method: isAllowedToAccess
+      * @desc Checks if the user is authorized to access sobject
+      * @param objType -- SObjectType 
+      * @return Boolean - true if allowed to access else false
+      */
+    public static Boolean isAllowedToAccess(Schema.SObjectType objType) {     
+        return objType.getDescribe().isAccessible();
+    }
+    
     /*********************************************************************
      * Method Name:insertList
      * Description:This method is used to Insert Records 
@@ -26,8 +38,8 @@ public class Utilityclass_withsharing {
             
                   Boolean bAccessCheck = checkDMLAccess(lstForInsert, 'insert');
                  if(bAccessCheck)
-				    insert lstForInsert;
-				 else
+                    insert lstForInsert;
+                 else
                   throw new NoAccessException();
             
         }
@@ -43,10 +55,10 @@ public class Utilityclass_withsharing {
     public static List<SObject> updateList(List<SObject> lstForUpdate) {    
         if(!lstForUpdate.isEmpty()){
             
-			 Boolean bAccessCheck = checkDMLAccess(lstForUpdate, 'update');
+             Boolean bAccessCheck = checkDMLAccess(lstForUpdate, 'update');
             if(bAccessCheck)
              update lstForUpdate;
-			 else
+             else
                 throw new NoAccessException();
              
            
@@ -62,10 +74,10 @@ public class Utilityclass_withsharing {
     public static List<SObject> deleteList(List<SObject> lstForDelete) {
         if(!lstForDelete.isEmpty()) {  
            
-		    Boolean bAccessCheck = checkDMLAccess(lstForDelete, 'delete');
+            Boolean bAccessCheck = checkDMLAccess(lstForDelete, 'delete');
             if(bAccessCheck)
                  delete lstForDelete;
-			 else
+             else
                 throw new NoAccessException();
            
             
@@ -81,10 +93,10 @@ public class Utilityclass_withsharing {
     public static List<SObject> upsertList(List<SObject> lstForUpsert) {
         if(!lstForUpsert.isEmpty()){
             
-			 Boolean bAccessCheck = checkDMLAccess(lstForUpsert, 'upsert');
-			 if(bAccessCheck)
-			   upsert lstForUpsert;
-		    else
+             Boolean bAccessCheck = checkDMLAccess(lstForUpsert, 'upsert');
+             if(bAccessCheck)
+               upsert lstForUpsert;
+            else
                 throw new NoAccessException();
            
                  
@@ -100,17 +112,17 @@ public class Utilityclass_withsharing {
     public static Boolean checkObjectFieldAccess(String sObjectName, String sSubQuery) {
         Schema.SObjectType convertType = Schema.getGlobalDescribe().get(sObjectName);
         Schema.DescribeSObjectResult objectDescription = convertType.getDescribe();
-        System.debug(sObjectName + ' isQueryable:'+objectDescription.isQueryable());
+       // System.debug(sObjectName + ' isQueryable:'+objectDescription.isQueryable());
         if(objectDescription.isQueryable()) {
             list<String> lstFieldNames = sSubQuery.split(',');
             Map<String, SObjectField> fields = convertType.getDescribe().fields.getMap();
             for(String sFieldName : lstFieldNames) {
                 sFieldName = sFieldName.trim();
-                System.debug('sFieldName:'+sFieldName);
+              //  System.debug('sFieldName:'+sFieldName);
                 sFieldName = sFieldName.contains('__r') ? sFieldName.substringBefore('.').removeEnd('r') + 'c'  : sFieldName;
                 if(sFieldName != null && sFieldName != '') {
                     DescribeFieldResult fieldDescribe = fields.get(sFieldName).getDescribe();
-                    System.debug(sFieldName + ' isAccessible: '+fieldDescribe.isAccessible());
+                //    System.debug(sFieldName + ' isAccessible: '+fieldDescribe.isAccessible());
                     if(!fieldDescribe.isAccessible()) {
                         return fieldDescribe.isAccessible();
                     }
@@ -146,7 +158,7 @@ public class Utilityclass_withsharing {
     ********************************************************************************************/
     public static Boolean checkSecurityAccessDML(List<SObject> lstForDML) {
         if(System.label.ProfileFieldAccessCheck == 'Yes' || bIsTestClass) {
-            System.debug('lstForDML:'+lstForDML);
+          //  System.debug('lstForDML:'+lstForDML);
             list<String> lstFieldNames = new list<String>();
             Map<String, Object> fieldsToValue = lstForDML[0].getPopulatedFieldsAsMap();
             if(!fieldsToValue.isEmpty())
@@ -158,20 +170,20 @@ public class Utilityclass_withsharing {
             if(convertType != null) {
                 Schema.DescribeSObjectResult objectDescription = convertType.getDescribe();
                 if(objectDescription != null && !objectDescription.getName().contains('Share') && !lstObjExcl.contains(objectDescription.getName())){
-                    System.debug(convertType + ' isQueryable:'+objectDescription.isQueryable());
+               //     System.debug(convertType + ' isQueryable:'+objectDescription.isQueryable());
                     if(objectDescription.isQueryable()) {
                         Map<String, SObjectField> fields = convertType.getDescribe().fields.getMap();
                         if(fields != null) {
-                            System.debug('fields:'+fields);
+                     //       System.debug('fields:'+fields);
                             for(String sFieldName : lstFieldNames) {
                                 sFieldName = sFieldName.trim();
-                                System.debug('sFieldName:'+sFieldName);
+                             //   System.debug('sFieldName:'+sFieldName);
                                 sFieldName = sFieldName.contains('__r') ? sFieldName.substringBefore('.').removeEnd('r') + 'c'  : sFieldName;
                                 if(sFieldName != null && sFieldName != '') {
-                                    System.debug('fields.get(sFieldName)'+fields.get(sFieldName));
+                               //     System.debug('fields.get(sFieldName)'+fields.get(sFieldName));
                                     if(fields.containsKey(sFieldName)){
                                         DescribeFieldResult fieldDescribe = fields.get(sFieldName).getDescribe();
-                                        System.debug(sFieldName + ' isAccessible: '+fieldDescribe.isAccessible());
+                                //        System.debug(sFieldName + ' isAccessible: '+fieldDescribe.isAccessible());
                                         if(!fieldDescribe.isAccessible()) {
                                             return fieldDescribe.isAccessible();
                                         }
@@ -236,19 +248,19 @@ public class Utilityclass_withsharing {
                 }
                 else{
                     fields= convertType.getDescribe().fields.getMap();
-                    System.debug('1=='+fields);
+               //     System.debug('1=='+fields);
                     for(String sFieldName : lstFieldNames){
-                        System.debug('2=='+sFieldName);
+                   //     System.debug('2=='+sFieldName);
                         fieldDescribe = fields.get(sFieldName).getDescribe();
-                        System.debug('3=='+fieldDescribe);
+                 //       System.debug('3=='+fieldDescribe);
                         if(fieldDescribe.isUpdateable()){
                             bDMLAllowed=true;
-                            System.debug('4=='+bDMLAllowed);
+                   //         System.debug('4=='+bDMLAllowed);
                         }
                         else // If logged in user doesn't have insert access on field
                         {
                             bDMLAllowed=false;
-                            System.debug('5=='+bDMLAllowed);
+                          //  System.debug('5=='+bDMLAllowed);
                             throw new NoAccessException();
                             //break;
                         }
@@ -260,12 +272,12 @@ public class Utilityclass_withsharing {
 
         return bDMLAllowed;
     }
-	  /********************************************************************************************
-		METHOD NAME    : checkDMLAccess
-		DESCRIPTION    : This method is used to check update access for object and fields.
-		RETURN TYPE    : Boolean
-		PARAMETER      : List
-		********************************************************************************************/ 
+      /********************************************************************************************
+        METHOD NAME    : checkDMLAccess
+        DESCRIPTION    : This method is used to check update access for object and fields.
+        RETURN TYPE    : Boolean
+        PARAMETER      : List
+        ********************************************************************************************/ 
     public static Boolean checkDMLAccess(List<SObject> lstForUpdate, String sAction) {
         Map<String, Object> fieldsToValue = new Map<String, Object>();
         if(!lstForUpdate.isEmpty()){
@@ -278,16 +290,16 @@ public class Utilityclass_withsharing {
             Schema.SObjectType objType = lstForUpdate.get(0).getSObjectType();            
             Schema.DescribeSObjectResult objectDescription = objType.getDescribe();
             String objName = objectDescription.getName();
-            if(!objName.contains('Share') && !lstObjExcl.contains(objName))	{
+            if(!objName.contains('Share') && !lstObjExcl.contains(objName)) {
                 if(!objectDescription.isAccessible()){
                     throwException('', objName, '');
                 }
-                else	{
+                else    {
                     fields = objType.getDescribe().fields.getMap();
                     switch on sAction {
                         when 'update'
                         {
-                            if(!(UserInfo.getUserType() == 'Guest' && (objName == 'Contact' || objName == 'Account')))	{
+                            if(!(UserInfo.getUserType() == 'Guest' && (objName == 'Contact' || objName == 'Account')))  {
                                 if(!objectDescription.isUpdateable()){
                                     throwException('UPDATE', objName, '');
                                 }
@@ -305,7 +317,7 @@ public class Utilityclass_withsharing {
                                 checkFieldAccess(fields, 'insert', objName, lstFieldNames);
                             }
                         }
-                        when 'upsert'	{
+                        when 'upsert'   {
                             if(!objectDescription.isCreateable()){
                                  throwException('INSERT', objName, '');
                             }
@@ -314,7 +326,7 @@ public class Utilityclass_withsharing {
                             }
                             checkFieldAccess(fields, 'upsert', objName, lstFieldNames);
                         }
-                        when 'delete'	{
+                        when 'delete'   {
                             if(!objectDescription.isDeletable()){
                                 throwException('DELETE', objName, '');
                             }
@@ -332,13 +344,10 @@ public class Utilityclass_withsharing {
      * Return Type: List of Queried Results.
      * *********************************************************************************/
      public static List<SObject> queryRecords(String sQueryToRun) {        
-       
+     //   system.debug('sQueryToRun---'+sQueryToRun);
         list<SObject> lstResult = new list<SObject>();
-        
-        try{
         lstResult = Database.query(sQueryToRun);
-        }catch(Exception ex){}
-       
+       // system.debug('lstResult'+lstResult);
         return lstResult;
     }
     /*************************************************************************************
@@ -348,9 +357,9 @@ public class Utilityclass_withsharing {
      * Return Type: List of Queried Results.
      * *********************************************************************************/
      public static List<SObject> queryRecordsInClause(String sQueryToRun, Set<String> inclauseList) {        
-       	sQueryToRun = sQueryToRun.replace('XXX', 'inclauseList');
+        sQueryToRun = sQueryToRun.replace('XXX', 'inclauseList');
         list<SObject> lstResult = new list<SObject>();
-        system.debug('sQueryToRunfiles'+sQueryToRun); 
+    //    system.debug('sQueryToRunfiles'+sQueryToRun); 
         lstResult = Database.query(sQueryToRun);
         
         return lstResult;
@@ -382,23 +391,24 @@ public class Utilityclass_withsharing {
         String sQuery = String.join(lstFields, ',');
         return sQuery;
     }
-	
-	 public static void checkFieldAccess(Map<String, SObjectField> fields, String sAction, String objName, List<String> lstFieldNames)	{
+    
+     public static void checkFieldAccess(Map<String, SObjectField> fields, String sAction, String objName, List<String> lstFieldNames)  {
         DescribeFieldResult fieldDescribe;
         for(String sFieldName : lstFieldNames){
             if(fields.containsKey(sFieldName)){
                 fieldDescribe = fields.get(sFieldName).getDescribe();
+        //        System.debug('isPermissible::'+fieldDescribe.isPermissionable()+' isCalculated::'+fieldDescribe.isCalculated()+' isAutonumber::'+fieldDescribe.isAutoNumber());
                 if(fieldDescribe.isPermissionable() && !fieldDescribe.isCalculated() && !fieldDescribe.isAutoNumber())   {
                     if(!fieldDescribe.isAccessible()){
                         throwException('', objName, sFieldName);
                     }
                     else    {
-                        if(sAction == 'insert' || sAction == 'upsert')	{
+                        if(sAction == 'insert' || sAction == 'upsert')  {
                             if(!fieldDescribe.isCreateable()){
                                 throwException('INSERT', objName, sFieldName);
                             }
                         }
-                        if(sAction == 'update' || sAction == 'upsert')	{
+                        if(sAction == 'update' || sAction == 'upsert')  {
                             if(!fieldDescribe.isUpdateable()){    
                                 throwException('UPDATE', objName, sFieldName);
                             }
@@ -408,14 +418,14 @@ public class Utilityclass_withsharing {
             }   
         }
     }
-	
-	public static void throwException(String sAction, String sObjName, String sFldName)	{
+    
+    public static void throwException(String sAction, String sObjName, String sFldName) {
         String sError = DOL_AppConstants.NULL_EMPTY_STRING + 'User does not have ' + (String.isNotBlank(sAction) ? sAction + ' ' :  '');
         sError += 'access to the ';
-        if(String.isNotBlank(sFldName))	{
+        if(String.isNotBlank(sFldName)) {
             sError += 'Field: ' + sFldName + ' in the Object: ' + sObjName;
         }
-        else	{
+        else    {
             sError += 'Object: ' + sObjName;
         }
         AuraHandledException e = new AuraHandledException(sError);

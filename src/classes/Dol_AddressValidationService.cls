@@ -1,14 +1,15 @@
 public class Dol_AddressValidationService {
     @auraEnabled
     public static Dol_AddressValidationService.AddrWrapper validateAddress(String addrLine1,String addrLine2,String city, String state, String zip){
+        try{
         String licenseKey;
         Dol_AddressValidationService.AddrWrapper validatedAddress = new Dol_AddressValidationService.AddrWrapper();
         
-        Dol_Integration_Settings__mdt customSettings = [SELECT MasterLabel, DeveloperName, Value__c  FROM Dol_Integration_Settings__mdt where DeveloperName =: DOL_AppConstants.NULL_EMPTY_STRING + 'Address_LicenseKey' Limit 1];
+        Dol_Integration_Settings__mdt customSettings = [SELECT MasterLabel, DeveloperName, Value__c  FROM Dol_Integration_Settings__mdt where DeveloperName ='Address_LicenseKey' Limit 1];
         if(customSettings != null){
             licenseKey = customSettings.Value__c.trim();
         }
-        String requestbody = DOL_AppConstants.NULL_EMPTY_STRING + '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:MelissaDataAddressCheckService\" xmlns:urn1=\"urn:mdWebServiceAddress\">'
+        String requestbody = '<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:MelissaDataAddressCheckService\" xmlns:urn1=\"urn:mdWebServiceAddress\">'
         +'<soapenv:Header/>'
         +'<soapenv:Body>'
         +'<urn:doAddressCheck>'
@@ -46,7 +47,7 @@ public class Dol_AddressValidationService {
         Dom.XMLNode address = envelope.getChildElement('Body', 'http://schemas.xmlsoap.org/soap/envelope/').getChildElement('doAddressCheckResponse','urn:MelissaDataAddressCheckService').getChildElement('doAddressCheckResult','urn:MelissaDataAddressCheckService').getChildElement('Record','urn:mdWebServiceAddress').getChildElement('Address', 'urn:mdWebServiceAddress');
         validatedAddress.street = address.getChildElement('Address1', 'urn:mdWebServiceAddress').getText();
         validatedAddress.street2 = address.getChildElement('Suite', 'urn:mdWebServiceAddress').getText();
-        System.debug('suite2'+validatedAddress.street2);
+        //System.debug('suite2'+validatedAddress.street2);
         if(Dol_IntegrationUtil.isBlank(validatedAddress.street2)){
             validatedAddress.street2 = null;
         }
@@ -55,7 +56,7 @@ public class Dol_AddressValidationService {
         String zipRange ;
         if(address.getChildElement('Zip', 'urn:mdWebServiceAddress').getText() != null){
           zipRange = address.getChildElement('Zip', 'urn:mdWebServiceAddress').getText();
-            System.debug('zip**'+address.getChildElement('Plus4', 'urn:mdWebServiceAddress').getText());
+            //System.debug('zip**'+address.getChildElement('Plus4', 'urn:mdWebServiceAddress').getText());
             string plus4 = address.getChildElement('Plus4', 'urn:mdWebServiceAddress').getText();
                 
             if(plus4 != null && plus4 != '' && plus4 !=' ' && plus4 != 'undefined'){
@@ -63,47 +64,73 @@ public class Dol_AddressValidationService {
             }
         }
         validatedAddress.zip = zipRange;
-        System.debug('zipRange'+zipRange);
+        //System.debug('zipRange'+zipRange);
         validatedAddress.country = address.getChildElement('Country', 'urn:mdWebServiceAddress').getChildElement('Name', 'urn:mdWebServiceAddress').getText() == 'United States of America' ? 'United States' : '';
-        System.debug('validatedAddress'+validatedAddress);
+        //System.debug('validatedAddress'+validatedAddress);
         return validatedAddress;
+        }
+          catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     @AuraEnabled
     public static Dol_AddressValidationService.AddrWrapper validateInputAddress(String addrLine1,String addrLine2,String city, String state, String zip){
+        try{
         return validateAddress(addrLine1,addrLine2,city,state,zip);
+        }catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
 
      @AuraEnabled
     public static String getObjAPI(String recordId) {
-        if(recordId == null || recordId == '') {
-            return null;
+        try{
+            if(recordId == null || recordId == '') {
+                return null;
+            }
+            
+            Id sRecordId = recordId;
+            String objName = sRecordId.getSObjectType().getDescribe().getName();
+            //System.debug('!!!! createTimeEntry.objName = ' + objName);
+            
+            return objName;
         }
-        
-        Id sRecordId = recordId;
-        String objName = sRecordId.getSObjectType().getDescribe().getName();
-        system.debug('!!!! createTimeEntry.objName = ' + objName);
-        
-        return objName;
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
      @AuraEnabled 
     public static List<String> getStates(sObject objObject, string fld) {
-      system.debug('objObject:' + objObject);
-      system.debug('fld:' + fld);
-      List<String> allOpts = new list <String> ();
-      // Get the object type of the SObject.
-      Schema.sObjectType objType = objObject.getSObjectType();
-     
-      // Describe the SObject using its object type.
-      Schema.DescribeSObjectResult objDescribe = objType.getDescribe();
-     
-      // Get a map of fields for the SObject
-      Map<String, Schema.SObjectField > fieldMap = objDescribe.fields.getMap();
-      List<Schema.PicklistEntry> values = fieldMap.get(fld).getDescribe().getPickListValues();
-      for (Schema.PicklistEntry a: values) {
-       allOpts.add(a.getValue());
-      }
-      system.debug('allOpts ---->' + allOpts);
-      return allOpts;
+        try{
+          //System.debug('objObject:' + objObject);
+          //System.debug('fld:' + fld);
+          List<String> allOpts = new list <String> ();
+          // Get the object type of the SObject.
+          Schema.sObjectType objType = objObject.getSObjectType();
+         
+          // Describe the SObject using its object type.
+          Schema.DescribeSObjectResult objDescribe = objType.getDescribe();
+         
+          // Get a map of fields for the SObject
+          Map<String, Schema.SObjectField > fieldMap = objDescribe.fields.getMap();
+          List<Schema.PicklistEntry> values = fieldMap.get(fld).getDescribe().getPickListValues();
+          for (Schema.PicklistEntry a: values) {
+           allOpts.add(a.getValue());
+          }
+          //System.debug('allOpts ---->' + allOpts);
+          return allOpts;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+        }
     }
     @auraEnabled
     public static Boolean saveAddress(string selectedAddress,Boolean isAptInfo, String parentId,String applicationId){
@@ -119,7 +146,7 @@ public class Dol_AddressValidationService {
         try{
             if(Dol_IntegrationUtil.isNotBlank(selectedAddress)){
                 selectedAddress= selectedAddress.replaceAll('\\<.*?\\>', '');
-                system.debug('selectedAddress='+selectedAddress);
+                //System.debug('selectedAddress='+selectedAddress);
                 List<String> Addresslist = selectedAddress.split(',');
                 if(Dol_IntegrationUtil.isNotempty(Addresslist)){
                     addres1 = Addresslist[0] != null ? Addresslist[0].trim() : '';
@@ -139,7 +166,7 @@ public class Dol_AddressValidationService {
                         country = Addresslist[5] != null ? Addresslist[5].trim() : '';
                     }
                 }
-                List<LnP_Parcel__c > existingParcel = [SELECT id,Unit__c  from LnP_Parcel__c where Street__c  =:addres1 AND City__c =:city AND State_Province__c =:state AND Zip_Postal_Code__c =:zip AND Country__c =:country Limit 1];
+                List<LnP_Parcel__c > existingParcel = [SELECT id,Unit__c  from LnP_Parcel__c where Street__c  =:addres1 AND City__c =:city AND State_Province__c =:state AND Zip_Postal_Code__c =:zip AND Country__c =:country AND Street__c  =null AND City__c =null AND State_Province__c =null AND Zip_Postal_Code__c =: null AND Country__c = null Limit 1];
                 if(Dol_IntegrationUtil.isNotempty(existingParcel)){
                     if(Dol_IntegrationUtil.isNotBlank(applicationId)) {    
                         MUSW__Application2__c app = new  MUSW__Application2__c (id=applicationId);
@@ -158,14 +185,14 @@ public class Dol_AddressValidationService {
                     parcel.Country__c = country;
                     /*if(Dol_IntegrationUtil.isNotBlank(parentId)){
                         String sObjectName = getObjAPI(parentId) ;
-                        system.debug('sObjectName'+sObjectName);
+                        //System.debug('sObjectName'+sObjectName);
                         if(sObjectName == 'Contact'){
-                            system.debug('sObjectNameconatct');
+                            //System.debug('sObjectNameconatct');
                             
                             parcel.MUSW__Primary_Contact__c = parentId;
                         }
                     }   */
-                    System.debug('parcel' + parcel);
+                    //System.debug('parcel' + parcel);
                     if(parcel != null){
                         upsert parcel;
                         if(Dol_IntegrationUtil.isNotBlank(parcel.id)){
@@ -180,10 +207,12 @@ public class Dol_AddressValidationService {
                   }
                 }
             }catch(Exception e){
-            System.debug('Dol_AddressValidationService - Exception: '+e);
-            DebugErrorLoggger.LogError(e, '', '','Dol_AddressValidationService','saveAddress','saveAddress Method failed');  
+            //System.debug('Dol_AddressValidationService - Exception: '+e);
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
+            
+            throw new AuraHandledException('An error occurred: '+e.getMessage());
         }
-        system.debug('success=='+success);
+        //System.debug('success=='+success);
         return success;
     }
     public class AddrWrapper {

@@ -81,7 +81,7 @@ public class Dol_AddrValidationServiceBckOffice_Test{
      public static void testmethod1(){
          test.startTest();
          
-     		Dol_AddressValidationServiceBckOffice.validateAddress('501 MURPHY RANCH RD','','MILPITAS', 'CA', '95035');
+        Dol_AddressValidationServiceBckOffice.validateAddress('501 MURPHY RANCH RD','','MILPITAS', 'CA', '95035');
           test.stopTest();
   }
   
@@ -89,7 +89,7 @@ public class Dol_AddrValidationServiceBckOffice_Test{
      public static void testmethod2(){
          Account acc = new Account(name = DOL_AppConstants.NULL_EMPTY_STRING + 'testaccount');
          insert acc;
-         contact con = new contact(LastName = DOL_AppConstants.NULL_EMPTY_STRING + 'test Last' , Accountid = acc.id);
+         contact con = new contact(LastName = DOL_AppConstants.NULL_EMPTY_STRING + 'test Last' , Accountid = acc.id, Unique_ID_To_Provide__c  = 'SSN');
          insert con;
         
          MUSW__Parcel__c par = new MUSW__Parcel__c (MUSW__Street2__c= DOL_AppConstants.NULL_EMPTY_STRING + '501 MURPHY RANCH RD',MUSW__City__c= DOL_AppConstants.NULL_EMPTY_STRING + 'MILPITAS',MUSW__State__c= DOL_AppConstants.NULL_EMPTY_STRING + 'CA',MUSW__Post_Zip_Code__c= DOL_AppConstants.NULL_EMPTY_STRING + '95035',
@@ -97,15 +97,15 @@ public class Dol_AddrValidationServiceBckOffice_Test{
          insert par;
          
          test.startTest();
-     		Dol_AddressValidationServiceBckOffice.getObjAPI(con.id);
-         	MUSW__Parcel__c parcelobj = new MUSW__Parcel__c();
-         	Dol_AddressValidationServiceBckOffice.getStates(parcelobj, 'MUSW__State__c');
-         	Dol_AddressValidationServiceBckOffice.getCountyValue('WA', 'TACOMA');
-         	Dol_AddressValidationServiceBckOffice.getCountyValue('CA', 'TACOMA');
-         	Dol_AddressValidationServiceBckOffice.saveAddress('501 MURPHY RANCH RD,MILPITAS,CA,95035,United States',false, true,'Asotin',acc.id);
-         	Dol_AddressValidationServiceBckOffice.saveAddress('501 MURPHY RANCH RD,MILPITAS,CA,95035,United States',false, true,'Asotin',con.id);
-        	Dol_AddressValidationServiceBckOffice.saveAddress('231 WEST,apt 286,CINCINNATI,OH,45202,United States',true, false,'Asotin',acc.id);
-         	Dol_AddressValidationServiceBckOffice.saveAddress('231 WEST,apt 286,CINCINNATI,OH,45202,United States',true, false,'Asotin',con.id);
+        Dol_AddressValidationServiceBckOffice.getObjAPI(con.id);
+          MUSW__Parcel__c parcelobj = new MUSW__Parcel__c();
+          Dol_AddressValidationServiceBckOffice.getStates(parcelobj, 'MUSW__State__c');
+          Dol_AddressValidationServiceBckOffice.getCountyValue('WA', 'TACOMA');
+          Dol_AddressValidationServiceBckOffice.getCountyValue('CA', 'TACOMA');
+          Dol_AddressValidationServiceBckOffice.saveAddress('501 MURPHY RANCH RD,MILPITAS,CA,95035,United States',false, true,'Asotin',acc.id);
+          Dol_AddressValidationServiceBckOffice.saveAddress('501 MURPHY RANCH RD,MILPITAS,CA,95035,United States',false, true,'Asotin',con.id);
+          Dol_AddressValidationServiceBckOffice.saveAddress('231 WEST,apt 286,CINCINNATI,OH,45202,United States',true, false,'Asotin',acc.id);
+          Dol_AddressValidationServiceBckOffice.saveAddress('231 WEST,apt 286,CINCINNATI,OH,45202,United States',true, false,'Asotin',con.id);
           test.stopTest();
   }
   

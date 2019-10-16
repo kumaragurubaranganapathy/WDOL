@@ -1,11 +1,17 @@
 public class ContactTriggerHandler implements BGCM.ITriggerHandler {
     public void onAfterDelete() {}
     public void onAfterInsert() {
-       // AfterMethod();
+     if(DOL_AppUtility.isContactTrigger == false){
+        DOL_AppUtility.isContactTrigger = true;
+         AfterMethod();
+        }
     }
     public void onAfterUndelete() {}
     public void onAfterUpdate() {
-      //  AfterMethod();
+      if(DOL_AppUtility.isContactTrigger == false){
+        DOL_AppUtility.isContactTrigger = true;
+         AfterMethod();
+        }
     }
     public void onBeforeDelete() {}
     public void onBeforeInsert() {
@@ -15,8 +21,10 @@ public class ContactTriggerHandler implements BGCM.ITriggerHandler {
     }
     public void onBeforeUndelete() {}
     public void onBeforeUpdate() {
-        
-        /* Added this part of code to change last 4 digits of SSN when SSN is changed in ViewPII page */
+    
+    if(DOL_AppUtility.isContactTrigger == false){
+
+         /* Added this part of code to change last 4 digits of SSN when SSN is changed in ViewPII page */
         list<Contact> triggerNew = trigger.new;
         for(Contact con: triggerNew){
             Contact oldcon = new Contact();
@@ -31,13 +39,14 @@ public class ContactTriggerHandler implements BGCM.ITriggerHandler {
         }
         
         BeforeMethod();
+        }
     }
     
     public void last4SSN(){
         for(Contact c: (list<contact>)Trigger.New){
             if(c.Social_Security_Number_Encrypted__c != null){
                 c.Last_4_Digits_of_SSN__c = c.Social_Security_Number_Encrypted__c.right(4);
-                system.debug('Last 4 SSN:>>>>'+c.Last_4_Digits_of_SSN__c);
+                //System.debug('Last 4 SSN:>>>>'+c.Last_4_Digits_of_SSN__c);
             } 
         }
     }
@@ -57,19 +66,19 @@ public class ContactTriggerHandler implements BGCM.ITriggerHandler {
             if(c.Deceased_Date__c != null){
                 c.Contact_Status__c = Label.St_Inactive;
                 c.Archived_Email_Address__c = c.Email;
-                c.Email = ''; // Initializing to null to block email sends
+                c.Email = DOL_AppConstants.NULL_EMPTY_STRING; // Initializing to null to block email sends
                 deceasedcontacts.add(String.valueOf(c.Id).substring(0, 15));
             }
-            system.debug('deceasedcontacts-->'+deceasedcontacts);
+            //System.debug('deceasedcontacts-->'+deceasedcontacts);
             //Update Contact Status if DOR Response Code was received
             if(c.Contact_Status__c == 'On Hold'){
                 if(c.Dor_Response__c == 'CL' || c.Dor_Response__c == 'IC' || c.Dor_Response__c == 'HO' || c.Dor_Response__c == 'OK'){
-                    c.Contact_Status__c = 'Active';
+                    c.Contact_Status__c = DOL_AppConstants.ACTIVE;
                     c.DOR_Response_Date__c = null;
                 }
             }else{
                 if(c.Dor_Response__c == 'CD' || c.Dor_Response__c == 'HD' || c.Dor_Response__c == 'AA'){
-                    c.Contact_Status__c = 'On Hold';
+                    c.Contact_Status__c = DOL_AppConstants.CONTACT_STATUS_ON_HOLD;
                 }
             }
         }
@@ -79,32 +88,19 @@ public class ContactTriggerHandler implements BGCM.ITriggerHandler {
  List<Affiliation__c> deceasedAffiliations = [ Select id,Status__c from Affiliation__c  where (Contact_Id__c=:deceasedcontacts or related_contact__c=:deceasedcontacts) and Permit_Plan_Review__c!=null ];
       
         if(deceasedAffiliations.size()>0){
-            for(Affiliation__c dcAff : deceasedAffiliations)
+            for(Affiliation__c dcAff : [ Select id,Status__c from Affiliation__c  where (Contact_Id__c=:deceasedcontacts or related_contact__c=:deceasedcontacts) and Permit_Plan_Review__c!=null ])
           {
             dcAff.status__c = Label.St_Inactive;
           }
             update deceasedAffiliations;
-            system.debug('update success');
+            //System.debug('update success');
        }
     }
     
-   /* public void AfterMethod(){
+    public void AfterMethod(){
         Set<Id> conIds = new Set<Id>();
-         if(Trigger.isInsert){
-            System.debug('in if is insert');
-          System.debug('SecurityCodeHelper.isContactSecurityCodeSet '+SecurityCodeHelper.isContactSecurityCodeSet);
             if(!SecurityCodeHelper.isContactSecurityCodeSet){
                 SecurityCodeHelper.setContactSecurityCode();
-            }
          }
-        
-        for(Contact c: (list<contact>)Trigger.New){
-            if(c.Contact_Status__c ==Label.St_Inactive){
-                conIds.add(c.Id);
-            }
-        }
-        if(conIds.size() > 0){
-            DeactivateUserHelper.updateUser(conIds);
-        }
-    }*/
+    }
 }

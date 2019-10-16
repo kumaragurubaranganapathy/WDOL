@@ -140,6 +140,7 @@ padding: 10px;
 }
 .THIS .tab-style{
     padding-top:0;
+    padding-bottom:0;
 }
 .THIS .table-name{
     padding:1rem 0;
@@ -177,7 +178,7 @@ padding: 10px;
     padding-left:2rem;
 }
 .THIS .tabs-wrapper{
-    padding:1.25rem 0;
+    padding:1.25rem 0 0;
 }
 .THIS .header-wrapper{
     padding-top:1.5rem;
@@ -292,6 +293,17 @@ padding: 10px;
     }
     
     
+}
+@media only screen and (max-width:1279.9px){
+    .THIS .header-details .field-style, .THIS .lic-details-wrapper .field-style{
+        width:100%; 
+        padding-bottom:0;
+        margin-bottom:1rem;
+        margin-right:0;
+    }
+    .THIS .header-details .field-style:last-of-type, .THIS .lic-details-wrapper .field-style:last-of-type{
+        margin-bottom:0;
+    }
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px){
     .THIS.dashboard-wrapper{

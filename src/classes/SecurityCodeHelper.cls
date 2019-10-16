@@ -12,11 +12,11 @@ public class SecurityCodeHelper {
         Integer len = 5;
         for(Contact contactRecord : (List<Contact>)Trigger.New){
             Blob blobKey = crypto.generateAesKey(128);
-            System.debug('blobKey '+blobKey);   
+           // System.debug('blobKey '+blobKey);   
             String key = EncodingUtil.convertToHex(blobKey);
-            System.debug('key '+key);   
+          //  System.debug('key '+key);   
             String pwd = key.substring(0,len);
-            System.debug('pwd '+pwd);   
+           // System.debug('pwd '+pwd);   
             //system.debug('security code::' + String.valueOf(contactRecord.Id).substring(10,15)+ pwd);
             String contactId = contactRecord.Id;
             String securityCode = contactId.substring(10,15)+pwd;
@@ -37,11 +37,11 @@ public class SecurityCodeHelper {
         Integer len = 5;
         for(Account accountRecord : (List<Account>)Trigger.New){
             Blob blobKey = crypto.generateAesKey(128);
-            System.debug('blobKey '+blobKey);   
+          //  System.debug('blobKey '+blobKey);   
             String key = EncodingUtil.convertToHex(blobKey);
-            System.debug('key '+key);   
+          //  System.debug('key '+key);   
             String pwd = key.substring(0,len);
-            System.debug('pwd '+pwd);   
+          //  System.debug('pwd '+pwd);   
             String accountId = accountRecord.Id;
             String securityCode = accountId.substring(10,15)+pwd;
             Account accountToUpdate = new Account(Id = accountId,

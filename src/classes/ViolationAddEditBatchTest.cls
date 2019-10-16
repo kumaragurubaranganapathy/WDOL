@@ -3,9 +3,9 @@ public class ViolationAddEditBatchTest{
 
 
     @isTest(SeeAllData=true)
-    private static void testBatch(){
+    private static void testBatch(){ 
     
-        TriggerService.setLock();
+        //TriggerService.setLock();
         BGCM.TestMock tm = new BGCM.TestMock();
         MUSW__Parcel__c par = new MUSW__Parcel__c(Name= DOL_AppConstants.NULL_EMPTY_STRING + 'zsdfsf');
         insert par;
@@ -14,7 +14,8 @@ public class ViolationAddEditBatchTest{
         c.MUSW__Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Other';
         c.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'New';
         c.MUSW__Parcel__c = par.id;
-        insert c; system.debug('c======' + c);
+        insert c; 
+        //system.debug('c======' + c);
 
         MUSW__Inspection__c ins = new MUSW__Inspection__c();
                 

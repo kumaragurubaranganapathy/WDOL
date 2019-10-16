@@ -16,7 +16,7 @@ public without sharing class FeeCreatedByDelegate {
          **/
     public void shareFeeRecords(List < MUSW__Fee__c > FeeShareRecords) {
         
-        System.debug('FeeShareRecords' +FeeShareRecords);
+        //System.debug('FeeShareRecords' +FeeShareRecords);
 		List<BGBK__Cart__c> cartList = new List<BGBK__Cart__c>();
         List<Id> FeeIds = new List<Id>();
         Set < Id > ContactIdsSet = new Set < Id > ();
@@ -32,9 +32,9 @@ public without sharing class FeeCreatedByDelegate {
 
         if (CartIds.size() > 0) {
             try {
-                CartList = [select Id, BGBK__Contact__c from BGBK__Cart__c where Id IN: CartIds];
+                CartList = [select Id, BGBK__Contact__c from BGBK__Cart__c where Id IN: CartIds AND ID != null];
             } catch (exception e) {
-                ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'FeeCreatedByDelegate', 'Error Occured while Querying cart List in fee by Delegate Class', 'sharefeeRecords', 'FeeCreatedByDelegate', 'HIGH');
+                DOL_CreateErrorLog_Exception.logApplicationError(e);
             }
         }
 		if (CartList.size() > 0) {
@@ -47,7 +47,7 @@ public without sharing class FeeCreatedByDelegate {
         if (FeeIds.size() > 0 && ContactIdsSet.size() > 0) {
             list < Id > contactids = new List < id > ();
             contactids.addAll(ContactIdsSet);
-            System.debug('contactids in 49' +contactids);
+            //System.debug('contactids in 49' +contactids);
             UtilityCOntroller.ShareRecords_CreatedByDelegate(ContactIds, FeeIds, 'MUSW__Fee__c', 'FeeCreatedByDelegate');
         }
     }

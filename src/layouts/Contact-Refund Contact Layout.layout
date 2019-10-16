@@ -255,6 +255,12 @@
         <fields>MUSW__Alert_Indicator__c</fields>
         <relatedList>MUSW__License2__c.MUSW__Applicant__c</relatedList>
     </relatedLists>
+	<relatedLists>
+        <fields>NAME</fields>
+        <fields>MUSW__Account__c</fields>
+        <fields>Email__c</fields>
+        <relatedList>MUSW__Account_Contact__c.MUSW__Contact__c</relatedList>
+    </relatedLists> 
     <relatedLists>
         <fields>NAME</fields>
         <fields>Service_Request_Type__c</fields>

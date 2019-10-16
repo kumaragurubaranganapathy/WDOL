@@ -64,7 +64,7 @@ public without Sharing class DOL_License_Linking {
                 ac.Title__c = 'Administrator';
                 lstac.add(ac);
                 Utilityclass_withsharing.insertList(lstac);
-                system.debug('ac234567'+ac);
+                //System.debug('ac234567'+ac);
                 message = 'User linked with  account succeessfully!'; 
             } else {
                 message = 'Account already  linked with  your contact';
@@ -85,9 +85,9 @@ public without Sharing class DOL_License_Linking {
     public static List<MUSW__License2__c> getLicenseList(String securityCode,String firstname,string lastname,string ssn, String licenseNumber, String licenseType, Date dob) {
         DOL_AppUtility.isAuthenticatedUser() ;
         List<MUSW__License2__c> lstlicense = new List<MUSW__License2__c>();
-        system.debug('abcd123'+securityCode);
+        //System.debug('abcd123'+securityCode);
         if(securityCode != '') {
-            system.debug('abcd'+securityCode);
+            //System.debug('abcd'+securityCode);
             for(MUSW__License2__c accCon  : [select id ,MUSW__Applicant__r.Name,MUSW__Applicant__c,Name,Credential_Type__c,MUSW__Status__c,Email__c
                                              from MUSW__License2__c where MUSW__Applicant__r.Security_Code__c =:securityCode ]) {
                                                  // MUSW__License__c license = new MUSW__License__c(); 
@@ -323,7 +323,8 @@ public without Sharing class DOL_License_Linking {
         }
         return message;
     }
-   public static List<MUSW__Fee__c> fetchFeeFromInvoice(Set<Id> invoiceIds){
+    
+    public static List<MUSW__Fee__c> fetchFeeFromInvoice(Set<Id> invoiceIds){
         DOL_AppUtility.isAuthenticatedUser() ;
         List<MUSW__Fee__c> invoiceFee =[SELECT Id, BGBK__Invoice__c FROM MUSW__Fee__c WHERE BGBK__Invoice__c IN :invoiceIds];
         return invoiceFee; 

@@ -9,9 +9,9 @@ public with sharing class PolarisFeedbackController {
             String licenseIdNeeded;
             List<User_Feedback__c> userfeedbackObjList = new List<User_Feedback__c>();
             List<MUSW__License2__c> licenseList = [Select id,name,MUSW__Applicant__c, Application_Method__c, Profession_Code__c, createdDate from MUSW__License2__c where MUSW__Applicant__c =:portalUser order by CreatedDate desc limit 1 ];
-            System.debug('***licenseList'+licenseList);              
+           // System.debug('***licenseList'+licenseList);              
             List<Renewal_Application__c> renewalList = [select id,License__c,License__r.Profession_Code__c,Applicant__c,Renewal_Reinstatement_Type__c,createdDate from Renewal_Application__c order by createdDate desc limit 1];
-            System.debug('***RenewalList'+renewalList);            
+          //  System.debug('***RenewalList'+renewalList);            
             List<Request__c> AMRList = [select id,License__c,License__r.Profession_Code__c,Contact__c,Service_Request_Type__c,createdDate from Request__c order by createdDate desc limit 1];
                             
             List<Endorsement__c> EndorsmentList = [select id,License__c,License__r.Profession_Code__c,License__r.MUSW__Applicant__c,createdDate from Endorsement__c order by createdDate desc limit 1];            
@@ -25,24 +25,24 @@ public with sharing class PolarisFeedbackController {
                         if(licenseList[0].createdDate > renewalList[0].createdDate){
                         licenseIdNeeded = 'license';
                         holdCreatedDate = licenseList[0].createdDate;
-                        System.debug('*** if Renewal holdCreatedDate**'+holdCreatedDate);
-            		}
-                	else{
+                   //     System.debug('*** if Renewal holdCreatedDate**'+holdCreatedDate);
+                    }
+                    else{
                         holdCreatedDate = renewalList[0].createdDate;
-                        System.debug('***else Renewal holdCreatedDate**'+holdCreatedDate);
+                    //    System.debug('***else Renewal holdCreatedDate**'+holdCreatedDate);
                         licenseIdNeeded = 'Renewal';
-                	}
+                    }
                 }
                 if(!AMRList.isEmpty() ){
                     if( holdCreatedDate==null || holdCreatedDate < AMRList[0].createdDate){
                         holdCreatedDate = AMRList[0].createdDate;
-                    	licenseIdNeeded = 'AMR';
+                        licenseIdNeeded = 'AMR';
                     }
                 }
                 if(!EndorsmentList.isEmpty() && (holdCreatedDate==null || holdCreatedDate < EndorsmentList[0].createdDate)){
                     licenseIdNeeded = 'Endorsment';
                     holdCreatedDate = EndorsmentList[0].createdDate;
-            	}
+                }
             }
                          
             if(holdCreatedDate == null || licenseIdNeeded =='License'){
@@ -73,16 +73,16 @@ public with sharing class PolarisFeedbackController {
                 userfeedback.Type__c = 'Endorsement Application';
             }
             userfeedbackObjList.add(userfeedback);
-            System.debug('***Apex Created Record***'+userfeedback);
+       //     System.debug('***Apex Created Record***'+userfeedback);
             if(userfeedbackObjList != null && userfeedbackObjList.size()>0){
                 Utilityclass_withsharing.insertList(userfeedbackObjList);
-                System.debug('***Insertion done***');
+            //    System.debug('***Insertion done***');
             }
         }
         catch(Exception ex){
-        	//DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            //DOL_CreateErrorLog_Exception.logApplicationError(ex);
             //throw new AuraHandledException('An error occurred: '+ex.getMessage());
-            System.debug('*****ex***'+ex);
+         //   System.debug('*****ex***'+ex);
         } 
     }//End of CreateRecord method
     
@@ -92,7 +92,7 @@ public with sharing class PolarisFeedbackController {
             for(User userRecord: [Select Id, username, contactId from User where Id = :UserInfo.getUserId() LIMIT 1]){
                 contactId = userRecord.contactId;
             }
-            System.debug('***contactId***' + contactId);
+           // System.debug('***contactId***' + contactId);
             return contactId;
         }catch(Exception ex)
         {

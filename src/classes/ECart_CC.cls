@@ -18,12 +18,12 @@ public with sharing class ECart_CC{
     }
     
     public void onPageLoad(){
-    	system.debug('onPageLoad start');
+    	//System.debug('onPageLoad start');
     	con = m_cs.getActiveContact();
     	
     	Set<String> setRelatedType = new Set<String>();
         for(MUSW__Fee__c f : feeList){
-            System.debug('f>>>>>>>>>' +f);
+            //System.debug('f>>>>>>>>>' +f);
               if(f.Related_To_Type__c!=null)
     			setRelatedType.add(f.Related_To_Type__c);
         }
@@ -31,7 +31,7 @@ public with sharing class ECart_CC{
         payForOptions = new List<SelectOption>();
         payForOptions.add(new SelectOption('None', 'None'));
         for(String relatedType : setRelatedType){
-            System.debug(' relatedType '+relatedType);
+            //System.debug(' relatedType '+relatedType);
         	payForOptions.add(new SelectOption(relatedType, relatedType));
         }
         
@@ -42,10 +42,10 @@ public with sharing class ECart_CC{
     
     public List <MUSW__Fee__c> feeList {
         get {
-        	system.debug('feeList ' + feeList);
+        	//System.debug('feeList ' + feeList);
             if (feeList == null) {
                 feeList = m_cs.getCartFees(true);
-                system.debug('feeList2 ' + feeList);
+                //System.debug('feeList2 ' + feeList);
             }
             return feeList;
         }
@@ -87,7 +87,7 @@ public with sharing class ECart_CC{
     }
     
     public void resetFeeList() {
-        system.debug('in resetFee List');
+        //System.debug('in resetFee List');
         fees = null;
     }
     

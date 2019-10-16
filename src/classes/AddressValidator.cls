@@ -25,7 +25,7 @@ public class AddressValidator {
             query = SOQL_FILTER_CREDENTIAL_TYPE_FOR_BOARD;
         }
         else{
-            System.debug('query for address');
+            //System.debug('query for address');
             
             /*COMMENTING AS PART OF CODE STANDARDS FIX*/ 
             

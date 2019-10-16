@@ -4,12 +4,12 @@ global class LnP_SendToCollectionAgencyReminder implements Schedulable {
     global void execute(SchedulableContext ctx) {
        // Map<Id,Id> licenseToAttachmentIdMap = new Map<Id,Id>();
         List<MUSW__Fee__c> feeList = [SELECT Id,Name,Related_To_Name__c,MUSW__Outstanding_Fee__c,MUSW__Type__c FROM MUSW__Fee__c WHERE MUSW__Type__c =:'Fine' AND MUSW__Outstanding_Fee__c>0 AND CreatedDate < last_n_days:60];
-        system.debug('feeList::'+feeList);
+      //  system.debug('feeList::'+feeList);
       
         // Send reminder emails
         List<Messaging.SingleEmailMessage> emailList = new list<Messaging.SingleEmailMessage>();
         for(MUSW__Fee__c fee : feeList){
-            system.debug('teh fee is' +fee);
+        //    system.debug('teh fee is' +fee);
                 Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
                 message.setToAddresses(email);
                 message.setSubject('Reminder Notification to Collection Agency For the fees');
@@ -22,7 +22,7 @@ global class LnP_SendToCollectionAgencyReminder implements Schedulable {
                 emailList.add(message);
             
         }
-        system.debug('emailList::'+emailList);
+      //  system.debug('emailList::'+emailList);
         if(emailList.size() > 0){
             Messaging.SendEmailResult[] results = Messaging.sendEmail(emailList);
         }

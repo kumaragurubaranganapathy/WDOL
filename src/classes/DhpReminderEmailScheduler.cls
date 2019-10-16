@@ -37,7 +37,7 @@ global class DhpReminderEmailScheduler implements Schedulable {
             }
         }
         
-        system.debug('emailList::'+emailList);
+        //System.debug('emailList::'+emailList);
         if(emailList.size() > 0){
             Messaging.SendEmailResult[] results = Messaging.sendEmail(emailList);
         }
