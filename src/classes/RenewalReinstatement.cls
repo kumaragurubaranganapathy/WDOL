@@ -79,6 +79,8 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
            system.debug('renewalIdList::'+ renewalIdList);
            Map<Id,Boolean> autoReneMap = new Map<Id,Boolean>();
            List<MUSW__Review__c> revList = new List<MUSW__Review__c>();
+           Set<MUSW__Review__c> setReview = new Set<MUSW__Review__c>();
+           List<MUSW__Review__c> resultRevList = new List<MUSW__Review__c>();
            List<Renewal_Application__c> renewList = new List<Renewal_Application__c>();
            List<Renewal_Application__c> renewToUpdate = new List<Renewal_Application__c>();
            List<String> LicensetoRenew =  new List<String>();
@@ -137,8 +139,10 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
                 renewToUpdate.add(ren);
            
            }
-           if(!revList.isEmpty()){
-                insert revList;
+           setReview.addAll(revList);
+           resultRevList.addAll(setReview);
+           if(!resultRevList.isEmpty()){
+                insert resultRevList;
            }
            if(!renewToUpdate.isEmpty()){
                 update renewToUpdate;
