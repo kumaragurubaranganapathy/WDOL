@@ -1,4 +1,7 @@
 public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler {
+    public void onBeforeInsert() {
+        insertLicenseParcelUpdatedForASC ();
+    }
     public void onAfterDelete() {}
     public void onAfterInsert() {
         if(DOL_AppUtility.isDolLicenseParcelTrigger== false) {
@@ -15,9 +18,7 @@ public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler
         }
     }
     public void onBeforeDelete() {}
-    public void onBeforeInsert() {
-        insertLicenseParcelUpdatedForASC ();
-    }
+
     public void onBeforeUndelete() {}
     public void onBeforeUpdate() {  
         updateLicenseParcelUpdatedForASC();
@@ -39,7 +40,7 @@ public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler
         List<MUSW__License_Parcel__c> triggerNew = Trigger.New;
         Map<Id,MUSW__License_Parcel__c> oldMapLicense = (Map<Id,MUSW__License_Parcel__c>)Trigger.OldMap;
         for(MUSW__License_Parcel__c licP : triggerNew){
-            System.debug('inside Lic update');
+          //  System.debug('inside Lic update');
             if(licP.Mailing__c == true && oldMapLicense.get(licP.id).Mailing__c != true && licP.IsLicenseParcelUpdatedForASC__c != true && licP.MUSW__License2__c != null
                && (licP.License_Type__c =='Certified Residential Appraiser' 
                    || licP.License_Type__c == 'Certified General Appraiser' || licP.License_Type__c =='State Licensed Appraiser') ) {
@@ -71,10 +72,7 @@ public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler
                 } else if(!licenseMap.isEmpty() && lp.Physical__c == true && lp.Mailing__c == false && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null)  {
                         licRec.Public_Address__c = lp.MUSW__Parcel__c;
                     
-                } else if(!licenseMap.isEmpty() && lp.Physical__c == true  && lp.Mailing__c == true && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null) {
-                    licRec.MUSW__Parcel__c = lp.MUSW__Parcel__c;
-                    licRec.Public_Address__c = lp.MUSW__Parcel__c; 
-                }
+                }                
                 if(licenseMap.containsKey(lp.MUSW__License2__c)) {
                     licenseMap.put(lp.MUSW__License2__c,licRec);
                 } 
@@ -91,7 +89,7 @@ public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler
     
     private static void updateLicenseRecordwithAddressAfterUpdate () {
         DOL_AppUTility.runfromDolBatchUpdateLicenseStatus = true;
-        system.debug('inside test');
+       // system.debug('inside test');
         List<MUSW__License_Parcel__c> triggerNew = Trigger.New;
         MUSW__License2__c licRec = new MUSW__License2__c();
         List<MUSW__License2__c> licensetoUpdate = new list<MUSW__License2__c>();

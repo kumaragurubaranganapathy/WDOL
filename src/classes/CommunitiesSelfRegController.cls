@@ -32,7 +32,7 @@ public class CommunitiesSelfRegController {
 
         String profileId = null; // To be filled in by customer.
         String roleEnum = null; // To be filled in by customer.
-        String accountId = ''; // To be filled in by customer.
+        String accountId = DOL_AppConstants.NULL_EMPTY_STRING; // To be filled in by customer.
         
         String userName = email;
 
@@ -56,7 +56,7 @@ public class CommunitiesSelfRegController {
             
             // This message is used for debugging. Do not display this in the UI to the end user.
             // It has the information around why the user creation failed.
-            System.debug(ex.getMessage());
+            //System.debug(ex.getMessage());
         }
         
         if (userId != null) { 

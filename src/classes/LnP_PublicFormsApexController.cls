@@ -1,5 +1,5 @@
 public class LnP_PublicFormsApexController {
-	@AuraEnabled
+    @AuraEnabled
     public static Map<String,String> getFormsJSON(){
          Map<String, String> mapJSON = new Map<String, String>();
          try{
@@ -22,7 +22,7 @@ public class LnP_PublicFormsApexController {
             + '&auth-token=' +objCS.AuthToken__c
             + '&prefix=' + strPrefix;        
         
-        system.debug('URL = '+url);
+       // system.debug('URL = '+url);
                 try{
            SOD_Autocomplete_Wrapper response = SOD_Autocomplete_Wrapper.parse(makeAPICall(url));
            return response; 
@@ -43,14 +43,14 @@ public class LnP_PublicFormsApexController {
             httpRequest.setEndpoint(url);
             httpRequest.setTimeout(120000);
             httpResponse = http.send(httpRequest); 
-            system.debug('httpResponse = '+httpResponse);
+         //   system.debug('httpResponse = '+httpResponse);
             
             if (httpResponse.getStatusCode() == 200){
-                system.debug(httpResponse.getBody());
+             //   system.debug(httpResponse.getBody());
                 return httpResponse.getBody();    
             } else {
-                System.debug(httpResponse.getStatusCode());
-                System.debug(httpResponse.getBody());
+           //     System.debug(httpResponse.getStatusCode());
+             //   System.debug(httpResponse.getBody());
                 throw new AuraHandledException(httpResponse.getBody());
             }
     }
@@ -63,7 +63,7 @@ public class LnP_PublicFormsApexController {
           try{
             PageReference lgn = Site.login(usrnm, pwd, startUrl);
             aura.redirect(lgn);
-            system.debug('lgn='+lgn);
+         //   system.debug('lgn='+lgn);
           }catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);

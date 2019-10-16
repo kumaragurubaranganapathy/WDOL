@@ -70,8 +70,8 @@ public class Utilities {
     }
     
     public static Contact getFullProfileDetails(String contactId){
-        System.debug('ContactId' +contactId);
-        System.debug('Entered here');
+      //  System.debug('ContactId' +contactId);
+      //  System.debug('Entered here');
         return [Select Id ,
                 FirstName, 
                 Name,

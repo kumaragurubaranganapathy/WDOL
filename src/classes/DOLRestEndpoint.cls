@@ -21,7 +21,7 @@ global class DOLRestEndpoint {
     */
     @HttpPost
     global static DOL_RestResponse postRequest(){
-        system.debug('Inside DOLRestEndpoint postRequest');
+        //System.debug('Inside DOLRestEndpoint postRequest');
         RestRequest req = RestContext.request;
         DOL_RestResponse resp = new DOL_RestResponse();
         String jsonBody;
@@ -48,7 +48,8 @@ global class DOLRestEndpoint {
     /**
     ** Name 			: processRequest
     ** Input			: jsonBody :- requestBody, requestType :- header value
-    ** Functionality	: call the required APEX class based on requestType
+    ** Functionality	: call DOL_SaveDataForIntegrationBatch with body and Input type
+                            based on requestType, if requestType not matches with any throw Exception
     ** Return			: HTTPRestResponse
     ** Author			: Laltu Banerjee
     ** Note             : This method called from DOLRestEndpoint -> postRequest()
@@ -78,9 +79,9 @@ global class DOLRestEndpoint {
     ** Description  : To wrap the outgoing HTTP response
      */
     global class DOL_RestResponse{
-        String log {get; set;}
-        String statusCode {get; set;}
-        String status {get; set;}
+        String log;
+        String statusCode;
+        String status;
         
         /**
         ** set the response from HTTPRestResponse

@@ -7,14 +7,17 @@ public static void updateRenewalFields(List<MUSW__License2__c> licenseList){
     
     }
     List<MUSW__License2__c> licenseToUpdate = new List<MUSW__License2__c>();
-    List<Renewal_Reinstatement_Eligibility__c> reneList = [select id,Active__c,License_Type__c,Renewal_Grace_Period_N_Days_After_Expiry__c,Renewal_Eligible_N_Days_Before_Expiry__c,Program_Type__c,Credential_Or_Permit__c,Late_Ren_Eligible_Until_N_Days_After_Exp__c,Reinstatement_Eligible_End_Date__c from Renewal_Reinstatement_Eligibility__c 
+   /* List<Renewal_Reinstatement_Eligibility__c> reneList = [select id,Active__c,License_Type__c,Renewal_Grace_Period_N_Days_After_Expiry__c,Renewal_Eligible_N_Days_Before_Expiry__c,Program_Type__c,Credential_Or_Permit__c,Late_Ren_Eligible_Until_N_Days_After_Exp__c,Reinstatement_Eligible_End_Date__c from Renewal_Reinstatement_Eligibility__c 
                                                            where Active__c = true 
                                                            and  Credential_Or_Permit__c = 'Credential'
-                                                           and Program_Type__c IN: programList];
+                                                           and Program_Type__c IN: programList];*/
     
    for(MUSW__License2__c license : licenseList){
    
-       for(Renewal_Reinstatement_Eligibility__c rerinsta : reneList){
+       for(Renewal_Reinstatement_Eligibility__c rerinsta : [select id,Active__c,License_Type__c,Renewal_Grace_Period_N_Days_After_Expiry__c,Renewal_Eligible_N_Days_Before_Expiry__c,Program_Type__c,Credential_Or_Permit__c,Late_Ren_Eligible_Until_N_Days_After_Exp__c,Reinstatement_Eligible_End_Date__c from Renewal_Reinstatement_Eligibility__c 
+                                                           where Active__c = true 
+                                                           and  Credential_Or_Permit__c = 'Credential'
+                                                           and Program_Type__c IN: programList]){
            if(rerinsta.Program_Type__c == license.Application_Type__c  && rerinsta.License_Type__c.contains(license.Credential_Type__c) ){
                
                if(rerinsta.Renewal_Eligible_N_Days_Before_Expiry__c != null){
@@ -34,39 +37,21 @@ public static void updateRenewalFields(List<MUSW__License2__c> licenseList){
            }
        
        }
-   
-   
    }
-     
-   
-       if(!licenseToUpdate.isEmpty()){
-           try{
-                //   update licenseToUpdate;
-               }catch(Exception e){
-                   System.debug(e.getmessage());
-               }   
-       }    
-                                                        
-
-
 }
 
 public static void updateProfessionCode(List<MUSW__License2__c> licenseList){
-   System.debug('inside updateProfessionCode');
    List<LnP_ProfessionalCode__mdt> professionCode = [SELECT MasterLabel, License_Type__c, Profession_Code__c FROM LnP_ProfessionalCode__mdt];
     Map<String,String> professionCodeMap = new Map<String,String>(); 
     if(!professionCode.isEmpty()){
         for(LnP_ProfessionalCode__mdt pfcode : professionCode){
-            System.debug('inside updateProfessionCode'+ pfcode.License_Type__c + ' '+pfcode.Profession_Code__c );
            professionCodeMap.put(pfcode.License_Type__c,pfcode.Profession_Code__c);
         } 
     }
     
     for(MUSW__License2__c lic : licenseList){
-        System.debug('inside updateProfessionCode' + professionCodeMap.get(lic.Credential_Type__c));
+       // System.debug('inside updateProfessionCode' + professionCodeMap.get(lic.Credential_Type__c));
         lic.Profession_Code__c = professionCodeMap.get(lic.Credential_Type__c);
     }
 }
-
-
 }

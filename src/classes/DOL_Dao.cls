@@ -1,6 +1,6 @@
 /************************************************************************************************************
 ** Name             : DOL_Dao
-** Description   	: Data access class, Dol database operations.
+** Description      : Data access class, Dol database operations.
 ** Version          : 1.0
 **-------------------------------------
 ** Revision History:

@@ -14,37 +14,37 @@ public class LnP_CreateAuditClass {
     //Generic class to calculate ten percent of records of each License Type
     
     public static List<SObject> calculateTenPercentRecords(List<SObject> appList){
-        system.debug('appList 123'+appList);
+     //   system.debug('appList 123'+appList);
         Integer listSize = appList.size();
-        system.debug('listSize---'+listSize);
+     //   system.debug('listSize---'+listSize);
         Integer tenPerRecList = (listSize < 10 ) ? 1 : (listSize*0.1).intValue();
-        system.debug('tenPerRecList---'+tenPerRecList);
+     //   system.debug('tenPerRecList---'+tenPerRecList);
         List<SObject> selectedRenApp = new List<SObject>();  
-        System.debug('tenPerRecList::'+tenPerRecList);
+     //   System.debug('tenPerRecList::'+tenPerRecList);
         
         for(Integer i= 0; i< tenPerRecList;i++){
             if(appList.size() !=0){
                 selectedRenApp.add(appList[i]);
-                system.debug('selectedRenApp---'+selectedRenApp); 
+            //    system.debug('selectedRenApp---'+selectedRenApp); 
             }
             
         }
-        system.debug('tenPerRecList---'+tenPerRecList);
+       // system.debug('tenPerRecList---'+tenPerRecList);
         return selectedRenApp;
     } 
     
     // Create an updated map with ten percent records selected of each RE License type 
     public static Map<String,List<Renewal_Application__c>> getUpdatedRenewalAppMap(Map<String,List<Renewal_Application__c>> renApplicationMap){
-        system.debug('renApplicationMap---'+renApplicationMap);
+      //  system.debug('renApplicationMap---'+renApplicationMap);
         Map<String,List<Renewal_Application__c>> updatedRenAppMap = new Map<String,List<Renewal_Application__c>>();
        
         for(String key : renApplicationMap.keySet()){
-            system.debug('keySet--'+key);
-            system.debug('value--'+renApplicationMap.get(key));
+           // system.debug('keySet--'+key);
+            //system.debug('value--'+renApplicationMap.get(key));
             
             List<Renewal_Application__c> updatedList = new List<Renewal_Application__c>();
             updatedList = calculateTenPercentRecords(renApplicationMap.get(key));
-            system.debug('updatedList---'+updatedList);
+           // system.debug('updatedList---'+updatedList);
             updatedRenAppMap.put(key,updatedList);
          }
         return updatedRenAppMap;
@@ -52,16 +52,16 @@ public class LnP_CreateAuditClass {
     
     // Create an updated map with ten percent records selected of each RBS License type 
     public static Map<String,List<MUSW__License2__c>> getUpdatedLicenseMap(Map<String,List<MUSW__License2__c>> rbsAppMap ){
-        system.debug('rbsAppMap---'+rbsAppMap);
+       // system.debug('rbsAppMap---'+rbsAppMap);
         Map<String,List<MUSW__License2__c>> updatedLicenseMap = new Map<String,List<MUSW__License2__c>>();
         
         for(String key : rbsAppMap.keySet()){
             List<MUSW__License2__c> updatedRBSList = new List<MUSW__License2__c>();
-            system.debug('keySet--'+key);
-            system.debug('value--'+rbsAppMap.get(key));
+            //system.debug('keySet--'+key);
+//            system.debug('value--'+rbsAppMap.get(key));
             
            updatedRBSList = calculateTenPercentRecords(rbsAppMap.get(key));
-           system.debug('updatedList---'+updatedRBSList);
+  //         system.debug('updatedList---'+updatedRBSList);
            updatedLicenseMap.put(key,updatedRBSList);
             
         }
@@ -72,9 +72,9 @@ public class LnP_CreateAuditClass {
  public static void createAuditForRE(List<Renewal_Application__c> appList){
         List<MUSW__Review__c> auditList = new List<MUSW__Review__c>();
         List<Renewal_Application__c> updateFlagforAuditList = new List<Renewal_Application__c>();
-        system.debug('appList---'+appList);
+    //    system.debug('appList---'+appList);
         Id recordTypeId = Schema.SObjectType.MUSW__Review__c.getRecordTypeInfosByName().get('CE Audit Review').getRecordTypeId();
-        system.debug(' ce audit review record type '+recordTypeId);
+      //  system.debug(' ce audit review record type '+recordTypeId);
         for(Renewal_Application__c renApp : appList){
             MUSW__Review__c newAuditReviewRec = new MUSW__Review__c();
                 newAuditReviewRec.Renewal_Application__c = renApp.Id;
@@ -85,10 +85,12 @@ public class LnP_CreateAuditClass {
                 newAuditReviewRec.Review_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'CE Audit';
                 newAuditReviewRec.License_Type__c = renApp.Credential_Type__c;
             
+            auditList.add(newAuditReviewRec);
+        //    system.debug('auditList 1-------'+auditList);
+            
             renApp.Selected_for_Audit__c = true;
             updateFlagforAuditList.add(renApp);
-            auditList.add(newAuditReviewRec);
-            system.debug('auditList 1-------'+auditList);
+           
         }
      if(!auditList.isEmpty()){
          insert auditList;
@@ -103,22 +105,21 @@ public class LnP_CreateAuditClass {
         List<Request__c> requestList = new List<Request__c>();
         List<MUSW__License2__c> updateFlagOnLicenseList = new List<MUSW__License2__c>();
         
-        system.debug('licenseList---'+licenseList);
+//        system.debug('licenseList---'+licenseList);
         Id recordTypeId = Schema.SObjectType.MUSW__Review__c.getRecordTypeInfosByName().get('CE Audit Review').getRecordTypeId();
-        system.debug(' ce audit review record type '+recordTypeId);
+  //      system.debug(' ce audit review record type '+recordTypeId);
         for(MUSW__License2__c licenseApp : licenseList){
             
             Request__c newCEAuditRequest = new Request__c();
-                newCEAuditRequest.Profession__c = licenseApp.Application_Type__c;
-                newCEAuditRequest.License_Type__c = licenseApp.Credential_Type__c;
-                newCEAuditRequest.Service_Request_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'CE Audit';
-                newCEAuditRequest.Stage__c = 0;
-                newCEAuditRequest.License__c = licenseApp.id;
-                newCEAuditRequest.Contact__c = licenseApp.MUSW__Applicant__c;
-                newCEAuditRequest.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Draft';
+            newCEAuditRequest.Profession__c = licenseApp.Application_Type__c;
+            newCEAuditRequest.License_Type__c = licenseApp.Credential_Type__c;
+            newCEAuditRequest.Service_Request_Type__c = DOL_AppConstants.NULL_EMPTY_STRING + 'CE Audit';
+            newCEAuditRequest.Stage__c = 0;
+            newCEAuditRequest.License__c = licenseApp.id;
+            newCEAuditRequest.Contact__c = licenseApp.MUSW__Applicant__c;
+            newCEAuditRequest.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Draft';
            
            requestList.add(newCEAuditRequest); 
-           
            
           /* MUSW__Review__c newAuditReviewRec = new MUSW__Review__c(
                 recordTypeId = recordTypeId,
@@ -130,11 +131,11 @@ public class LnP_CreateAuditClass {
             ); 
           
             auditList.add(newAuditReviewRec);
-            system.debug('auditList-------'+auditList); */
+    //        system.debug('auditList-------'+auditList); */
             
             licenseApp.Selected_for_Audit__c = true;
             updateFlagOnLicenseList.add(licenseApp);
-           system.debug('newCEAuditRequest----'+newCEAuditRequest);
+      //     system.debug('newCEAuditRequest----'+newCEAuditRequest);
            
         }
         

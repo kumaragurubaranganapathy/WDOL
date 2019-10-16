@@ -14,14 +14,14 @@ global class Polaris_InactiveLicensefromReceiptBatch implements Database.Batchab
         return Database.getQueryLocator('SELECT Id,Inactivate_License_Date__c FROM MUSW__Receipt__c WHERE DHP__c = True AND Inactivate_License_Date__c != null' );
     }
     global void execute(Database.BatchableContext bc, List<MUSW__Receipt__c> DHPReceiptList){
-        system.debug('Scope : '+DHPReceiptList);
+       // system.debug('Scope : '+DHPReceiptList);
         
         SET<Id> receiptIds = new SET<Id>();
         if(!DHPReceiptList.isEmpty()){
             for(MUSW__Receipt__c rec : DHPReceiptList){
                 receiptIds.add(rec.Id);
             }
-            system.debug('receiptIds : '+receiptIds); 
+        //    system.debug('receiptIds : '+receiptIds); 
         }
          
         //querying the Fee Payment junction obj
@@ -33,7 +33,7 @@ global class Polaris_InactiveLicensefromReceiptBatch implements Database.Batchab
                                                      FROM MUSW__Fee_Payment__c 
                                                      WHERE MUSW__Receipt__c IN : receiptIds AND MUSW__Receipt__c != NULL 
                                                     ];
-        system.debug('feepaymentList : '+feepaymentList);
+       // system.debug('feepaymentList : '+feepaymentList);
         
         
         Map<Id,Id> receiptFeePaymentMap = new Map<Id,Id>();  //map of receipt and fee Id
@@ -49,10 +49,10 @@ global class Polaris_InactiveLicensefromReceiptBatch implements Database.Batchab
                 feetoLicenseMap.put(feePay.MUSW__Fee__c,feePay.Related_To_License__c );
             }
             
-            system.debug('feeIds : '+feeIds);
-            system.debug('relatedFeeLicense : '+relatedFeeLicense);
-            system.debug('receiptFeePaymentMap : '+receiptFeePaymentMap);
-            system.debug('feetoLicenseMap : '+feetoLicenseMap);
+        //    system.debug('feeIds : '+feeIds);
+         //   system.debug('relatedFeeLicense : '+relatedFeeLicense);
+        //    system.debug('receiptFeePaymentMap : '+receiptFeePaymentMap);
+          //  system.debug('feetoLicenseMap : '+feetoLicenseMap);
         }
         
         
@@ -69,16 +69,16 @@ global class Polaris_InactiveLicensefromReceiptBatch implements Database.Batchab
                                                                        from MUSW__Fee__c where Id IN :feeIds and ID != NULL
                                                                       ]) ;
         
-        system.debug('licenseToUpdate : '+licenseToUpdate);
-        system.debug('feesToCompare : '+feesToCompare);
+     //   system.debug('licenseToUpdate : '+licenseToUpdate);
+     //   system.debug('feesToCompare : '+feesToCompare);
         
         list<MUSW__License2__c> finalLicenseList =  new list<MUSW__License2__c>();
         
         //already checked for Null/Empty above
         //
         for(MUSW__Receipt__c rec : DHPReceiptList){
-            system.debug('rec.Inactivate_License_Date__c : ' + rec.Inactivate_License_Date__c);
-            System.debug('System.today() : '+System.today());
+         //   system.debug('rec.Inactivate_License_Date__c : ' + rec.Inactivate_License_Date__c);
+         //   System.debug('System.today() : '+System.today());
             if(rec.Inactivate_License_Date__c == System.today()){
                 
                 //getting the Fee to check if its Outstanding Amount is greater than 0
@@ -107,16 +107,16 @@ global class Polaris_InactiveLicensefromReceiptBatch implements Database.Batchab
                 
             }//end : check for todays date
         }//end of For
-        system.debug('finalLicenseList : '+finalLicenseList);
+      //  system.debug('finalLicenseList : '+finalLicenseList);
         If(!finalLicenseList.isEmpty()){
             update finalLicenseList;
-            system.debug('AFTER finalLicenseList : '+finalLicenseList);
+          //  system.debug('AFTER finalLicenseList : '+finalLicenseList);
         }
         
         //Call the method for review
     }
     global void finish(Database.BatchableContext bc){
-        system.debug('Batch Completed');
+     //   system.debug('Batch Completed');
         // execute any post-processing operations
     }   
 }

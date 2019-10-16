@@ -122,8 +122,8 @@ public class Polaris_MangeEndorsementCntrl {
         {
             lstEndoTypes = endoType.split(',');
         }
-        system.debug('endoType--'+endoType);
-        system.debug('lstEndoTypes--'+lstEndoTypes);
+      //  system.debug('endoType--'+endoType);
+      //  system.debug('lstEndoTypes--'+lstEndoTypes);
         return lstEndoTypes;
         }catch(Exception ex)
         {
@@ -205,16 +205,16 @@ public class Polaris_MangeEndorsementCntrl {
         try{
         List<User> userInfoData = new  List<User>();
         String queryCondition = DOL_AppConstants.NULL_EMPTY_STRING + ' Id= \''+sTRING.escapeSingleQuotes(UserInfo.getUserId())+'\'';
-        System.debug('User Id ' + queryCondition);
+      //  System.debug('User Id ' + queryCondition);
         String queryStr = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
+      //  system.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         Id getContactId = DOL_AppConstants.NULL_EMPTY_STRING + '003r000000EOhBB';
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
-        system.debug('licenseType'+licenseType+'board');
+     //   system.debug('licenseType'+licenseType+'board');
         Request__c application = new Request__c();
         application.Profession__c = board; 
         application.License_Type__c = licenseType;        
@@ -263,15 +263,15 @@ public class Polaris_MangeEndorsementCntrl {
                 }
             }
         }
-        system.debug('lstAnswers :'+lstAnswers);
-        system.debug('setEndorsementType :'+setEndorsementType);
+      //  system.debug('lstAnswers :'+lstAnswers);
+      //  system.debug('setEndorsementType :'+setEndorsementType);
         update lstAnswers;
         List<Endorsement__c> lstEndorsement = [SELECT id,Status__c,License__c,Endorsement_Type__c,Date_Requested_for_Adding_Endorsement__c FROM Endorsement__c where License__c =:licId ];
         map<String, Endorsement__c> mapEndorsement= new  map<String, Endorsement__c>();
         for(Endorsement__c endo : [SELECT id,Status__c,License__c,Endorsement_Type__c,Date_Requested_for_Adding_Endorsement__c FROM Endorsement__c where License__c =:licId ])
         {
             String key = endo.Endorsement_Type__c+'_'+endo.Status__c;
-            system.debug('key'+key);
+           // system.debug('key'+key);
             mapEndorsement.put(key,endo);
         }
         List<Endorsement__c> lstNewEndorsement = new List<Endorsement__c> ();
@@ -291,7 +291,7 @@ public class Polaris_MangeEndorsementCntrl {
                     newEndo.Date_Requested_for_Adding_Endorsement__c = System.today();
                     newEndo.License_Type__c = licenseType;
                     newEndo.License__c = licId;
-                    system.debug('newEndo :'+newEndo);
+                 //   system.debug('newEndo :'+newEndo);
                     setNewEndorsement.add(newEndo);   
                 }
             
@@ -299,8 +299,8 @@ public class Polaris_MangeEndorsementCntrl {
         
         lstNewEndorsement.addAll(setNewEndorsement);
         lstEndorsement = mapEndorsement.values();
-        system.debug('lstEndorsement : '+lstEndorsement);
-        system.debug('lstNewEndorsement : '+lstNewEndorsement);
+       // system.debug('lstEndorsement : '+lstEndorsement);
+      //  system.debug('lstNewEndorsement : '+lstNewEndorsement);
         update lstEndorsement;
         insert lstNewEndorsement;
         }catch(Exception ex)

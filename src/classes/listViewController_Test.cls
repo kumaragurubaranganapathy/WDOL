@@ -9,6 +9,6 @@ public class listViewController_Test {
      
          String listViewDetails = (listViewController.listValues(ObjInfo) != null) ? ('Success'):('Fail');
         Test.stopTest();
-         system.debug('listViewDetails---'+listViewDetails);
+      //   system.debug('listViewDetails---'+listViewDetails);
     }
 }

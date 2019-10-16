@@ -12,7 +12,7 @@ Database.Batchable<sObject>, Database.Stateful , Database.AllowsCallouts {
     
     
     global Database.QueryLocator start(Database.BatchableContext BC){
-        System.debug('Dol_Batch_UpdateASCFlagOnLicense::start...');
+        //System.debug('Dol_Batch_UpdateASCFlagOnLicense::start...');
           return Database.getQueryLocator([select id, IsLicenseParcelUpdatedForASC__c, MUSW__License2__c, MUSW__License2__r.Send_information_to_ASC__c, 
                                            MUSW__License2__r.MUSW__Applicant__r.IsContactRecordUpdatedForASC__c, MUSW__Parcel__c,
                                            MUSW__Parcel__r.IsParcelRecordUpdatedForASC__c from MUSW__License_Parcel__c 
@@ -21,14 +21,14 @@ Database.Batchable<sObject>, Database.Stateful , Database.AllowsCallouts {
     }
     
     global void execute(Database.BatchableContext BC, List<MUSW__License_Parcel__c> licenseParcelList){      
-        System.debug('... licenseParcelList -'+licenseParcelList);
+        //System.debug('... licenseParcelList -'+licenseParcelList);
         List<MUSW__License2__c> finalLicenseList= new List<MUSW__License2__c>();
-        contactList = new List<Contact>();
+		contactList = new List<Contact>();
         parcelList = new List<MUSW__Parcel__c>();
         licParcelList = new List<MUSW__License_Parcel__c>();
         if(Dol_IntegrationUtil.isNotEmpty(licenseParcelList)){
             for(MUSW__License_Parcel__c licenseParRecord : licenseParcelList){
-                //licenseParRecord.MUSW__License2__r.Send_information_to_ASC__c = true;
+            	//licenseParRecord.MUSW__License2__r.Send_information_to_ASC__c = true;
                 if(Dol_IntegrationUtil.isNotBlank(licenseParRecord.MUSW__License2__r.MUSW__Applicant__c) && licenseParRecord.MUSW__License2__r.MUSW__Applicant__r.IsContactRecordUpdatedForASC__c == true){
                     Contact con = new Contact(id = licenseParRecord.MUSW__License2__r.MUSW__Applicant__c,IsContactRecordUpdatedForASC__c = false);
                     if(!contactList.contains(con)){
@@ -57,13 +57,13 @@ Database.Batchable<sObject>, Database.Stateful , Database.AllowsCallouts {
                 }
                 
             }
-            System.debug('finalLicenseList -'+finalLicenseList);
+            //System.debug('finalLicenseList -'+finalLicenseList);
             Database.UpsertResult[] lsr;
             if(Dol_IntegrationUtil.isNotEmpty(finalLicenseList)) {
                 try{
                     lsr = Database.upsert(finalLicenseList,false);
                 } catch(Exception e) {
-                    System.debug('Dol_Batch_UpdateASCFlagOnLicense - Exception: '+e);
+                    //System.debug('Dol_Batch_UpdateASCFlagOnLicense - Exception: '+e);
                     DebugErrorLoggger.LogError(e, '', '','Dol_Batch_UpdateASCFlagOnLicense','BatchExecute','Batch Execute Method failed');
                 }
             }
@@ -80,23 +80,23 @@ Database.Batchable<sObject>, Database.Stateful , Database.AllowsCallouts {
                 try{
                     conatctListUpst = Database.upsert(contactList,false);
                 } catch(Exception e) {
-                    System.debug('Dol_Batch_UpdateASCFlagOnLicense - Exception: '+e);
+                    //System.debug('Dol_Batch_UpdateASCFlagOnLicense - Exception: '+e);
                     DebugErrorLoggger.LogError(e, '', '','Dol_Batch_UpdateASCFlagOnLicense','Batchfinish','Batch finish Method failed');
                 }
             }
-            if(Dol_IntegrationUtil.isNotEmpty(parcelList)) {
+        	if(Dol_IntegrationUtil.isNotEmpty(parcelList)) {
                 try{
                     parcelListUpst = Database.upsert(parcelList,false);
                 } catch(Exception e) {
-                    System.debug('Dol_Batch_UpdateASCFlagOnLicense - Exception: '+e);
+                    //System.debug('Dol_Batch_UpdateASCFlagOnLicense - Exception: '+e);
                     DebugErrorLoggger.LogError(e, '', '','Dol_Batch_UpdateASCFlagOnLicense','Batchfinish','Batch finish Method failed');
                 }
             }
-            if(Dol_IntegrationUtil.isNotEmpty(licParcelList)) {
+        	if(Dol_IntegrationUtil.isNotEmpty(licParcelList)) {
                 try{
                     licParcelListUpst = Database.upsert(licParcelList,false);
                 } catch(Exception e) {
-                    System.debug('Dol_Batch_UpdateASCFlagOnLicense - Exception: '+e);
+                    //System.debug('Dol_Batch_UpdateASCFlagOnLicense - Exception: '+e);
                     DebugErrorLoggger.LogError(e, '', '','Dol_Batch_UpdateASCFlagOnLicense','Batchfinish','Batch finish Method failed');
                 }
             }

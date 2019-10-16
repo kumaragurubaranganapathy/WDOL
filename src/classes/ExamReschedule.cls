@@ -4,11 +4,11 @@ public class ExamReschedule {
     @AuraEnabled
     public static List<Education_History__c> getEducationHistoryData(String licenseId){
         try{
-        System.debug('licenseId=== ' + licenseId);
+        //System.debug('licenseId=== ' + licenseId);
         List<Education_History__c> educationHistoryList = new List<Education_History__c>();
             Id educationHistoryRecordId = Schema.SObjectType.Education_History__c.getRecordTypeInfosByName().get('Exam').getRecordTypeId() ;
             if(String.isNotBlank(licenseId)){
-                system.debug('inside debug');
+                //System.debug('inside debug');
                 for(Education_History__c educationHistoryRecods: [Select Id, Name, License__c, License_Type__c, Exam_Type__c, Scheduled_Date__c,
                                                                   Status__c, Exam_Result_Expiry_Date__c, End_date__c, Exam_Pass_Date__c,Reschedule_Possible__c,Program_Type__c,Submit_Exam_Results__c
                                                                   From Education_History__c Where License__c = :licenseId AND License__c != null AND RecordTypeId != null
@@ -33,15 +33,15 @@ public class ExamReschedule {
         List<User> userInfoData = new  List<User>();
         //String queryCondition = ' Id=\''+String.escapeSingleQuotes(UserInfo.getUserId())+'\'';
         String queryCondition = DOL_AppConstants.EMPTY_SPACE+DOL_AppConstants.ID_STRING+'=\''+String.escapeSingleQuotes(UserInfo.getUserId())+'\'';
-        System.debug('User Id ' + queryCondition);
+        //System.debug('User Id ' + queryCondition);
         String queryStr = DOL_AppConstants.SELECT_STRING+DOL_AppConstants.EMPTY_SPACE+'Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
+        //System.debug('queryStr '+queryStr);
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         Id getContactId = DOL_AppConstants.CONTACT_ID_EXPLICIT_STRING;
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
-        system.debug('licenseType'+licenseType+'board');
+        //System.debug('licenseType'+licenseType+'board');
         Request__c application = new Request__c();
         application.Profession__c = board; 
         application.License_Type__c = licenseType;        
@@ -68,7 +68,7 @@ public class ExamReschedule {
     @AuraEnabled
     public static String createReviewRecord(MUSW__License2__c licenseRecord, Id requestId){
         try{
-        System.debug('licenseRecord==' + licenseRecord + 'requestId==' + requestId);
+        //System.debug('licenseRecord==' + licenseRecord + 'requestId==' + requestId);
         Database.SaveResult[] srList;
         String outputResponse;
         Id reviewRecordId = Schema.SObjectType.MUSW__Review__c.getRecordTypeInfosByName().get('License Review').getRecordTypeId() ;
@@ -90,15 +90,15 @@ public class ExamReschedule {
         for (Database.SaveResult sr : srList) {
             if (sr.isSuccess()) {
                 // Operation was successful, so get the ID of the record that was processed
-                System.debug('Successfully inserted review record. review ID: ' + sr.getId());
+                //System.debug('Successfully inserted review record. review ID: ' + sr.getId());
                 outputResponse = DOL_AppConstants.sSuccessResponse;
             }
             else {
                 // Operation failed, so get all errors                
                 for(Database.Error err : sr.getErrors()) {
-                    System.debug('The following error has occurred.');                    
-                    System.debug(err.getStatusCode() + ': ' + err.getMessage());
-                    System.debug('Review fields that affected this error: ' + err.getFields());
+                    //System.debug('The following error has occurred.');                    
+                    //System.debug(err.getStatusCode() + ': ' + err.getMessage());
+                    //System.debug('Review fields that affected this error: ' + err.getFields());
                 }
                 outputResponse = DOL_AppConstants.sFailedResponse;
             }

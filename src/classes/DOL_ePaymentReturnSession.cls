@@ -9,7 +9,7 @@
 *************************************************************************************************************/
 public class DOL_ePaymentReturnSession {
 	
-    public String ReturnValue ; // getting receiptId in Return Value
+    public String ReturnValue ; 
     public String TransactionConfirmationID ;
     public String UserID ;
     public String BillerProductCode ;
@@ -40,7 +40,7 @@ public class DOL_ePaymentReturnSession {
     
     public void mapDataFromSessionString(String sessionString){
         List<String> sessionDataList = sessionString.split('&');
-        system.debug(''+sessionDataList.size());
+        //System.debug(''+sessionDataList.size());
         Map<String,String> sessionDataMap = new Map<String,String>();
         String[] tempArr;
         for(String input : sessionDataList){
@@ -74,10 +74,11 @@ public class DOL_ePaymentReturnSession {
 		SFDCappId = sessionDataMap.get('SFDCappId');
 		SFDClicId = sessionDataMap.get('SFDClicId');
         sfdcFeeIds = getSelectedFees();
-        system.debug('return value '+ReturnValue);     
+        //System.debug('return value '+ReturnValue);     
     }
 
     public void updateReceipt(MUSW__Receipt__c receipt) {
+        
         if(! String.isBlank(TransactionConfirmationID)){
             receipt.MUSW__Payment_Gateway_Transaction_Number__c = TransactionConfirmationID;
             receipt.Transaction_Confirmation_ID__c = TransactionConfirmationID;
@@ -97,6 +98,15 @@ public class DOL_ePaymentReturnSession {
                 receipt.MUSW__Card_Type__c = CreditCardType;
         }
     }
+
+    /*//8051
+    public void updateTransactionDetails(BGBK.PaymentTransactionInfo pti) {
+            pti.transactionId = TransactionConfirmationID;
+	        pti.transactionStatus = BGBK.PaymentTransactionInfo.TransactionStatusType.SUCCESS;
+	        pti.transactionResponse = new Map<String,String>();
+	        pti.isNonGatewayTransaction = false;
+	        pti.receiptPayableAmount = PaymentAmount;
+    }*/
 
     private List<String> getSelectedFees(){
         List<String> feeList = new List<String>();

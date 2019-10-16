@@ -51,7 +51,7 @@ public class TestTrigger
         
         ids.add(ins.Id);
         
-        TriggerService.setLock();
+        //TriggerService.setLock();
         
         //Branch1
         MUSW__Inspection__c reins11 = new MUSW__Inspection__c(MUSW__Parcel__c=par.Id, MUSW__Complaint2__c=com.Id, MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Re-inspection',MUSW__Previous_Inspection__c= ins.Id);
@@ -90,7 +90,7 @@ public class TestTrigger
         reins22.MUSW__Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Completed with open violations';
         update reins22;
         
-        TriggerService.releaseLock();
+        //TriggerService.releaseLock();
         //Check if the ins Inspection_Chain_Closed__c = false
         MUSW__Inspection__c insBefore = [select Inspection_Chain_Closed__c from MUSW__Inspection__c where Id = :ins.Id ]; 
         system.assert(insBefore.Inspection_Chain_Closed__c == false);
@@ -118,9 +118,10 @@ public class TestTrigger
         insert par;
         MUSW__Violation_Type__c ord = new MUSW__Violation_Type__c(MUSW__Code_Number__c= DOL_AppConstants.NULL_EMPTY_STRING + '1=234.5TEST', Name= DOL_AppConstants.NULL_EMPTY_STRING + 'Test Ordinance X');
         insert ord;
-        TriggerService.setLock();
+        //TriggerService.setLock();
         MUSW__Complaint2__c com = new MUSW__Complaint2__c(MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'TestTypeComp', MUSW__Origin__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Test', MUSW__Parcel__c=par.Id);
-        insert com;system.debug('com======' + com);
+        insert com;
+        //system.debug('com======' + com);
         MUSW__Inspection__c ins = new MUSW__Inspection__c(MUSW__Parcel__c=par.Id, MUSW__Complaint2__c=com.Id, MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'TESTInspection');
         insert ins;
         MUSW__Violation__c v1 = new MUSW__Violation__c(MUSW__Type__c=ord.Id, MUSW__Complaint2__c=com.Id);
@@ -139,10 +140,10 @@ public class TestTrigger
         
         Test.stopTest();
     }   
-    
+     
     static testmethod void testIVDeduper()
     {
-        TriggerService.setLock();
+        //TriggerService.setLock();
         MUSW__Parcel__c par = new MUSW__Parcel__c(MUSW__Street2__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Test St', MUSW__Street_Number__c= DOL_AppConstants.NULL_EMPTY_STRING + '14B', MUSW__City__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Testville', MUSW__Parcel_Number2__c= DOL_AppConstants.NULL_EMPTY_STRING + '1000TEST400');
         insert par;
         MUSW__Violation_Type__c ord = new MUSW__Violation_Type__c(MUSW__Code_Number__c= DOL_AppConstants.NULL_EMPTY_STRING + '1=234.5TEST', Name= DOL_AppConstants.NULL_EMPTY_STRING + 'Test Ordinance X');

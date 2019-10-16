@@ -3,11 +3,11 @@ decimal currentSeq=0;
     
 public void onInsert(List<Journal_Voucher__c> journalVoucherList)
 {
-    system.debug('the values are:' +journalVoucherList[0].Document_Type__c);
+    //System.debug('the values are:' +journalVoucherList[0].Document_Type__c);
     JV_Sequence__c objJVseq =[SELECT Current_sequence__c,id from JV_Sequence__c limit 1];
         if(objJVseq.id != null){
             currentSeq=objJVseq.Current_sequence__c;
-            system.debug('the current sequence number is' +currentSeq);
+            //System.debug('the current sequence number is' +currentSeq);
             
         }
     //Journal_Voucher__c jvRec=[Select id,Document_Type__c,Current_Document_Number__c from Journal_Voucher__c where id =: journalVoucherList[0].id]; 
@@ -22,7 +22,7 @@ public void onInsert(List<Journal_Voucher__c> journalVoucherList)
               
                 
              objJVseq.Current_sequence__c=currentSeq;
-                system.debug('the increased currentSeq' +currentSeq);
+                //System.debug('the increased currentSeq' +currentSeq);
             string sTemp =String.Valueof(currentSeq);
             if(sTemp.length() == 1){
                 sTemp = DOL_AppConstants.NULL_EMPTY_STRING + '000'+ sTemp;
@@ -33,10 +33,12 @@ public void onInsert(List<Journal_Voucher__c> journalVoucherList)
             else if(sTemp.length() == 3){
                 sTemp = DOL_AppConstants.NULL_EMPTY_STRING + '0'+ sTemp;
             }
+            
+      
                 
-      if(journalVoucherRec.Document_Type__c == 'Manual CreditJournal - User Created' || journalVoucherRec.Document_Type__c == 'Manual JV -User Created - Correction JV or one system to another JV' ||
-         journalVoucherRec.Document_Type__c == 'Manual JV -Remittance JV from a validation number' || journalVoucherRec.Document_Type__c == 'RemittanceTransfer in POLARIS - User Created' ||
-         journalVoucherRec.Document_Type__c == 'ManualTransfer - User Created' || journalVoucherRec.Document_Type__c == 'ManualTransfer - System Generated to other agencies'
+      if(journalVoucherRec.Document_Type__c == DOL_AppConstants.sJVTriggerOne || journalVoucherRec.Document_Type__c ==  DOL_AppConstants.sJVTriggerTwo ||
+         journalVoucherRec.Document_Type__c == DOL_AppConstants.sJVTriggerThree || journalVoucherRec.Document_Type__c == DOL_AppConstants.sJVTriggerFour ||
+         journalVoucherRec.Document_Type__c == DOL_AppConstants.sJVTriggerFive || journalVoucherRec.Document_Type__c == DOL_AppConstants.sJVTriggerSix
           ){
               journalVoucherRec.Current_Document_Number__c= DOL_AppConstants.NULL_EMPTY_STRING + '240V'+sTemp;
                 }
@@ -58,7 +60,7 @@ update objJVseq;
     
     
     public void onBeforeInsert(List<Journal_Voucher__c> journalVoucherList){
-        system.debug('inside trigger');
+        //System.debug('inside trigger');
         Id manualrecTypeId = Schema.SObjectType.Journal_Voucher__c.getRecordTypeInfosByName().get('Journal Voucher Manual').getRecordTypeId();
         datetime currentTime= system.now();
         Decimal currentHour= currentTime.hourGmt();

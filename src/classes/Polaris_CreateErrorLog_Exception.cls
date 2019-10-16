@@ -7,29 +7,31 @@
 * ---------------------------------------------------------------------------------------------------------------------------------------- *
 * 08/21/2018   Mangesh Abhang/Deloitte           Initial Creation
 **/
-public class Polaris_CreateErrorLog_Exception extends Exception {
+public with Sharing class  Polaris_CreateErrorLog_Exception extends Exception {
     
     //Method to add error in system
     public static void addError(Exception e,String cname,String cmethod) {
         List<Polaris_Custom_Exception__c> LstError = new List<Polaris_Custom_Exception__c>();
         try
         {
-            system.debug('inside inside');
+            //system.debug('inside inside');
             LstError = createErrorLogs(e, cname, cmethod);
-            system.debug('error'+LstError);
+           // system.debug('error'+LstError);
             if(LstError != NULL && !LstError.isEmpty())
             {
-                insert LstError;
+                Utilityclass_withsharing.insertList(LstError);
+               // insert LstError;
             }
         }
         catch(Exception ex)
         {
-            System.debug(ex);
+          //  System.debug(ex);
         }
 
     }
 
     public static List<Polaris_Custom_Exception__c> createErrorLogs(Exception e,String cname,String cmethod) {
+        Utilityclass_withsharing.isAllowedToAccess(LoginHistory.SObjectType);
         List<Polaris_Custom_Exception__c> lstError = new List<Polaris_Custom_Exception__c>();
             String QueryLimit = DOL_AppConstants.NULL_EMPTY_STRING + '1. SOQL Queries used / SOQL Queries allowed: ' + Limits.getQueries() + '/' + Limits.getLimitQueries();
             String DMLimit = DOL_AppConstants.NULL_EMPTY_STRING + '2. Number of records queried so far /  Number allowed: ' + Limits.getDmlRows() + '/' + Limits.getLimitDmlRows();
@@ -77,18 +79,30 @@ public class Polaris_CreateErrorLog_Exception extends Exception {
             return log.Id;
             }
         }catch(Exception e){
-            System.debug(e);
+           // System.debug(e);
         }
         return null;        
     }
 
     private static void logToDB(Polaris_Custom_Exception__c log){
+        List<Polaris_Custom_Exception__c> LstError = new List<Polaris_Custom_Exception__c>();
         log.QueryLimit__c = DOL_AppConstants.NULL_EMPTY_STRING + 'SOQL Queries used / SOQL Queries allowed: ' + Limits.getQueries() + '/' + Limits.getLimitQueries();
         log.DMLimit__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Number of records queried so far /  Number allowed: ' + Limits.getDmlRows() + '/' + Limits.getLimitDmlRows();
         log.DMLStat__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Number of DML statements used so far / Number allowed: ' +  Limits.getDmlStatements() + '/' + Limits.getLimitDmlStatements();   
         log.CPUT_Limit__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Amount of CPU time (in ms) used so far / CPU usage time (in ms) allowed: ' + Limits.getCpuTime() + '/' + Limits.getLimitCpuTime();
         log.Session_Id__c=UserInfo.getSessionId().substring(15);
-        insert log;
+        LstError.add(log);
+        try
+        {
+            if(!LstError.isEmpty())
+            {
+                Utilityclass_withsharing.insertList(LstError);
+            }
+        }
+        catch(Exception ex)
+        {
+           // System.debug(ex);
+        }
     }
 
 }

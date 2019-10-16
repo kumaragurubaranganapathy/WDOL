@@ -19,7 +19,7 @@ public with sharing class DOL_PDFDataDisplayController {
 
     public DOL_PDFDataDisplayController(ApexPages.StandardController stdController) {
         this.licenseData = (MUSW__License2__c)stdController.getRecord();
-        system.debug('MUSW__License2__c: '+licenseData);
+        //System.debug('MUSW__License2__c: '+licenseData);
         licenseRecordData = new MUSW__License2__c(); 
         questionRecordList = new List<Question__c>();
         qualifyingEducationRecordList = new List<LnP_BackgroundSection__c>();
@@ -45,14 +45,14 @@ public with sharing class DOL_PDFDataDisplayController {
                                                        Where Id = :licenseData.Id LIMIT 1]){
                                                            licenseRecordData = licenseRecordInstance;
                                                        }
-        System.debug('licenseRecordData== ' + licenseRecordData);
+        //System.debug('licenseRecordData== ' + licenseRecordData);
         if(!licenseRecordData.Answers2__r.isEmpty()){
             for(BGCK__Answer__c answerRecords: licenseRecordData.Answers2__r){
                 answerRecords.Question2__c = answerRecords.QuestionDOL__r.Question_Body__c.replaceAll('<span[^>]*>','');
                 answerRecordList.add(answerRecords);
             } 
         }
-        System.debug('answerRecordList--' + answerRecordList);
+        //System.debug('answerRecordList--' + answerRecordList);
         Id questionRecordTypeId = Schema.SObjectType.Question__c.getRecordTypeInfosByDeveloperName().get('Review_and_Submit').getRecordTypeId() ;
         for(Question__c questionRecordInstance : [Select Id, Question_Body__c, Order_Number__c, Status__c, Section__c From Question__c 
                                                   Where Application_Type__c = :licenseRecordData.Application_Type__c
@@ -64,7 +64,7 @@ public with sharing class DOL_PDFDataDisplayController {
                                                   AND RecordTypeId = :questionRecordTypeId Order By Order_Number__c ASC]){
                                                       questionRecordList.add(questionRecordInstance);
                                                   }
-        System.debug('questionRecordList==' + questionRecordList);
+        //System.debug('questionRecordList==' + questionRecordList);
         
         Id qualifyingEducationRecordTypeId = Schema.SObjectType.LnP_BackgroundSection__c.getRecordTypeInfosByDeveloperName().get('Qualifying_Education').getRecordTypeId() ;
         Id qualifyingExperienceRecordTypeId = Schema.SObjectType.LnP_BackgroundSection__c.getRecordTypeInfosByDeveloperName().get('Qualifying_Experience').getRecordTypeId() ;

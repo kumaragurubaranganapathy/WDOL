@@ -8,7 +8,7 @@ public class Polaris_ReceiptRefundTriggerHandler {
             }
         }
         Map<Id,MUSW__Receipt__c> receiptMap = new Map<id,MUSW__Receipt__c>([Select id, name, US_Bank_Payment_Status__c,MUSW__Payment_Method__c from MUSW__Receipt__c where id in: receiptIds and MUSW__Payment_Method__c in: onlinePaymentMethod and US_Bank_Payment_Status__c !='Settled']);
-        system.debug('receiptMap::'+receiptMap);
+      //  system.debug('receiptMap::'+receiptMap);
         if(receiptMap.size()>0){
             for(BGBK__Receipt_Refund__c recRef: newList){
                 if(receiptMap.containsKey(recRef.BGBK__Receipt__c)){

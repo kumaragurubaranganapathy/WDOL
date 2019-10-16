@@ -11,18 +11,18 @@
  global with sharing class DOL_Batch_ApplictionsStatusUpdate implements Database.Batchable<sObject>{
  
  global Database.QueryLocator start(Database.BatchableContext BC){
-   String queryDraftApplications = 'select id,LastModifiedDate,MUSW__Status__c from MUSW__Application2__c where ((MUSW__Status__c=\'Draft\' OR MUSW__Status__c=\'Withdrawn\') OR (MUSW__Status__c=\'Pending\' OR MUSW__Status__c=\'Under Review\')) OR MUSW__Status__c=\'Abandoned\'';
+   String queryDraftApplications = DOL_AppConstants.QUERY_DRAFT_APPLICATIONS;
    return Database.getQueryLocator(queryDraftApplications);
  }
  
   global void execute(Database.BatchableContext BC, List<MUSW__Application2__c> listDraftApplication) {
      Date targetDate = Date.today().addDays(-30);
-     Time targetTime = Time.newInstance(23, 59, 59, 0);
+     Time targetTime = Time.newInstance(21, 30, 0, 0);
      List<MUSW__Application2__c>  applicationListToUpdateStatus = new List<MUSW__Application2__c>();
      List<MUSW__Application2__c>  applicationDeleteAbandoned = new List<MUSW__Application2__c>();
         for(MUSW__Application2__c appDraft : listDraftApplication) {
             if(appDraft.MUSW__Status__c != 'Abandoned' && appDraft.LastModifiedDate <= Datetime.newInstanceGmt(targetDate, targetTime)){
-            appDraft.MUSW__Status__c = 'Abandoned';
+            appDraft.MUSW__Status__c = DOL_AppConstants.ABANDONED_STRING;
             appDraft.Is_Abandoned__c = true;
             applicationListToUpdateStatus.add(appDraft);}
             
@@ -40,8 +40,8 @@
             }
            }
         catch(Exception e){
-            System.debug(e);
-            DOL_CreateErrorLog_Exception.createErrorLogs(e,'DOL_Batch_ApplictionsStatusUpdate','execute');
+            //System.debug(e);
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
            }
     }
     

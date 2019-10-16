@@ -176,11 +176,10 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
             if(dorResponses != null && ! dorResponses.isEmpty()){
                 Map<String,String> headerMap = new  Map<String,String>();
                 headerMap.put('Content-Type','application/json');
-				headerMap.put(DOL_AppConstants.MULE_AUTHORIZATION_KEY, 
+                headerMap.put(DOL_AppConstants.MULE_AUTHORIZATION_KEY, 
                                 DOL_AppConstants.MULE_AUTHORIZATION_VALUE_CONSTANT+DOL_AppConstants.integrationSettingsMetadataMap.get(DOL_AppConstants.MULE_AUTHORIZATION_VALUE_METADATA_LABEL));
                 String url = 'callout:DOL_Mule_API/v1/dorUpload';
                 String responseString = JSON.serialize(dorResponses);
-                //String url = 'https://dol-polaris-exp-dev.us-e2.cloudhub.io/api/v1/dorUpload';
                 HttpResponse httpResp = DOL_HTTP_Utility.doHttpRequest(url,
                                                         'POST',
                                                         responseString,
@@ -371,19 +370,7 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
             acc.Loc_Id__c = dorInput.dorLicenseLocID;
             updateFound = true;
         }	
-        if(! String.isBlank(dorInput.dorBusinessType)){
-            acc.Business_Structure__c = dorInput.dorBusinessType;
-            updateFound = true;
-            // Here we have hardcoded sole proprietor
-            // because it is required for only few transaction where
-            // Business Type is sole proprietor
-            if(dorInput.dorBusinessType.trim().equalsIgnoreCase('sole proprietor')){
-                if(!String.isBlank(dorInput.dorOwnerFirstName) || !String.isBlank(dorInput.dorOwnerMiddleName))
-                    acc.First_Name_Primary_Contact__c = dorInput.dorOwnerFirstName+' '+dorInput.dorOwnerMiddleName;
-                if(! String.isBlank(dorInput.dorOwnerLastName))
-                    acc.Last_Name_Primary_Contact__c = dorInput.dorOwnerLastName;
-            }
-        }
+        
         if(! String.isBlank(dorInput.dorBusinessName) ){
             acc.Name = dorInput.dorBusinessName;
             acc.Business_Name__c = dorInput.dorBusinessName;
@@ -404,6 +391,19 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
         if(! String.isBlank(dorInput.dorTradeName)){
             acc.DBA_Name__c = dorInput.dorTradeName;
             updateFound = true;
+        }
+        if(! String.isBlank(dorInput.dorBusinessType)){
+            acc.Business_Structure__c = dorInput.dorBusinessType;
+            updateFound = true;
+            // Here we have hardcoded sole proprietor
+            // because it is required for only few transaction where
+            // Business Type is sole proprietor
+            if(dorInput.dorBusinessType.trim().equalsIgnoreCase('sole proprietor')){
+                if(!String.isBlank(dorInput.dorOwnerFirstName) || !String.isBlank(dorInput.dorOwnerMiddleName))
+                    acc.First_Name_Primary_Contact__c = dorInput.dorOwnerFirstName+' '+dorInput.dorOwnerMiddleName;
+                if(! String.isBlank(dorInput.dorOwnerLastName))
+                    acc.Last_Name_Primary_Contact__c = dorInput.dorOwnerLastName;
+            }
         }
         if(updateFound){
             acc.RecordTypeId = accountRecTypeId;
@@ -721,6 +721,106 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
             throw error;
         }
     }
+
+    /*
+    private List<Account> getAllUniqueAccounts(List<DOR_sObject> dorSobjectLst){
+        List<Account> uniqueAccounts = new List<Account>();
+        Map<String,Boolean> ubiFoundMap = new Map<String,Boolean>();
+        Account tempAccount;
+        String key;
+        for(DOR_sObject obj : dorSobjectLst ){
+            tempAccount = obj.acc;
+            if(tempAccount != null ){
+                key = tempAccount.UBI_Number__c+tempAccount.Bus_Id__c+tempAccount.Loc_Id__c;
+                if(ubiFoundMap.get(key) == null ){
+                    uniqueAccounts.add(tempAccount);
+                    ubiFoundMap.put(key,true);
+                }
+            }
+        }
+        return uniqueAccounts;
+    }
+
+    private String getErrorMsg(List<Database.Error> dbErrors){
+        String errorMsg = '';
+        if(dbErrors != null && dbErrors.size() > 0 ){
+            for(Database.Error error : dbErrors ){
+                errorMsg += error.message;
+            }
+        }
+        return errorMsg;
+    }
+    */
+
+    /*
+    private void saveBulkRecords(List<DOR_sObject> dorSObjectLst){
+        Database.UpsertResult[] result;
+        Integer i;
+        if(dorSObjectLst != null && dorSObjectLst.size() > 0 ){
+            // extract all unique accounts
+            // Account Start
+            List<Account> uniqueAccounts = getAllUniqueAccounts(dorSObjectLst);
+            result = Database.upsert(uniqueAccounts,false);
+            Account tempAccount;
+            Database.UpsertResult tempResult;
+            String key;
+            Id tempAccId;
+            Map<String,String> accountResultMap = new Map<String,String>();
+            for(i=0;i<uniqueAccounts.size();i++){
+                tempAccount = uniqueAccounts.get(i);
+                tempResult = result.get(i);
+                key = tempAccount.UBI_Number__c+tempAccount.Bus_Id__c+tempAccount.Loc_Id__c;
+                if(tempResult.isSuccess() )
+                    accountResultMap.put(key,tempResult.getId());
+                else
+                    accountResultMap.put(key, getErrorMsg(tempResult.getErrors()) );
+            }
+
+            for(DOR_sObject obj : dorSObjectLst){
+                tempAccount = obj.acc;
+                if(tempAccount != null ){
+                    key = tempAccount.UBI_Number__c+tempAccount.Bus_Id__c+tempAccount.Loc_Id__c;
+                    try{
+                        tempAccount.Id = Id.valueOf(accountResultMap.get(key));
+                        obj.canProcessFurther = true;
+                    }catch(Exception e){
+                        obj.errorMsg = accountResultMap.get(key);
+                        obj.canProcessFurther = false;
+                    }
+                }
+                else{
+                    obj.canProcessFurther = true;
+                }
+            }
+            // Account Ends
+            // License Starts
+            List<MUSW__License2__c> allLicense = new List<MUSW__License2__c>();
+            for(DOR_sObject obj :  dorSObjectLst){
+                if(obj.canProcessFurther && obj.license != null){
+                    if(obj.acc != null)
+                        obj.license.MUSW__Primary_Licensee__c = obj.acc.Id;
+                    allLicense.add(obj.license);
+                }
+            }
+            result = Database.upsert(allLicense,false);
+            for(DOR_sObject obj :  dorSObjectLst){
+                if(obj.canProcessFurther && obj.license != null){
+                    tempResult = result.get(i);
+                    if(tempResult.isSuccess())
+                        obj.canProcessFurther = true;
+                    else{
+                        obj.canProcessFurther = false;
+                        obj.errorMsg = getErrorMsg(tempResult.getErrors());
+                    }
+                        
+                        // need to start from here
+                }
+            }
+            // License Ends
+
+        }
+    }
+    */
 
     
     

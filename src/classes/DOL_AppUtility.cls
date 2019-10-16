@@ -8,7 +8,7 @@ public class DOL_AppUtility {
     public static Boolean isFeePaymentRunOnce = false;
     public static Boolean runfromDolBatchUpdateLicenseStatus = false;
     public static Boolean isDolLicenseParcelTrigger = false;
-	public static Boolean isContactTrigger = false;
+    public static Boolean isContactTrigger = false;
     //public static List<String> lstErrorLogIds = new List<String>();
     
     @AuraEnabled
@@ -72,11 +72,11 @@ public class DOL_AppUtility {
     }
 
     /**
-    ** Name 			: getDate
-    ** Input			: String, dateFormat 
-    ** Functionality	: return date in required format
-    ** Return			: String, Date in required format
-    ** Author			: Laltu Banerjee
+    ** Name             : getDate
+    ** Input            : String, dateFormat 
+    ** Functionality    : return date in required format
+    ** Return           : String, Date in required format
+    ** Author           : Laltu Banerjee
     ** Note             : 
     ** Date (MM/DD/YYYY): 06/23/2019
     */
@@ -86,11 +86,11 @@ public class DOL_AppUtility {
     }
     
     /**
-    ** Name 			: getString
-    ** Input			: List of String 
-    ** Functionality	: Merge the whole list into single string
-    ** Return			: String
-    ** Author			: Laltu Banerjee
+    ** Name             : getString
+    ** Input            : List of String 
+    ** Functionality    : Merge the whole list into single string
+    ** Return           : String
+    ** Author           : Laltu Banerjee
     ** Date (MM/DD/YYYY): 06/23/2019
     */
 
@@ -103,11 +103,11 @@ public class DOL_AppUtility {
     }
 
     /**
-    ** Name 			: getDate
-    ** Input			: input Date String and input date format
-    ** Functionality	: convert the string into date
-    ** Return			: Date
-    ** Author			: Laltu Banerjee
+    ** Name             : getDate
+    ** Input            : input Date String and input date format
+    ** Functionality    : convert the string into date
+    ** Return           : Date
+    ** Author           : Laltu Banerjee
     ** Note             : Here we are using standard input
                         : Y = Year, M = Month, D = Date
     ** Date (MM/DD/YYYY): 06/23/2019
@@ -137,11 +137,11 @@ public class DOL_AppUtility {
     }
 
     /**
-    ** Name 			: getDateString
-    ** Input			: input Date String and input date format
-    ** Functionality	: get the date String into format Y-M-D
-    ** Return			: String 
-    ** Author			: Laltu Banerjee
+    ** Name             : getDateString
+    ** Input            : input Date String and input date format
+    ** Functionality    : get the date String into format Y-M-D
+    ** Return           : String 
+    ** Author           : Laltu Banerjee
     ** Note             : Here we are using standard input
                         : Y = Year, M = Month, D = Date
     ** Date (MM/DD/YYYY): 06/23/2019
@@ -171,11 +171,11 @@ public class DOL_AppUtility {
     }
 
     /**
-    ** Name 			: getDateTime
-    ** Input			: input DateTime String and input dateTime format
-    ** Functionality	: get the dateTime  String into DateTime
-    ** Return			: DateTime 
-    ** Author			: Laltu Banerjee
+    ** Name             : getDateTime
+    ** Input            : input DateTime String and input dateTime format
+    ** Functionality    : get the dateTime  String into DateTime
+    ** Return           : DateTime 
+    ** Author           : Laltu Banerjee
     ** Note             : Here we are using standard input
                         : Y = Year, M = Month, D = Date, H= hour, m = minute, S = second
     ** Date (MM/DD/YYYY): 06/23/2019
@@ -206,7 +206,7 @@ public class DOL_AppUtility {
                     s += inputStrDateTimeArr[i];
                 }
             }
-            System.debug('Date time '+Y+'-'+M+'-'+D+' '+h+':'+mi+':'+s);
+            //System.debug('Date time '+Y+'-'+M+'-'+D+' '+h+':'+mi+':'+s);
             return DateTime.valueOf(Y+'-'+M+'-'+D+' '+h+':'+mi+':'+s);
         }catch(Exception error){
             DOL_CreateErrorLog_Exception.logApplicationError(error);
@@ -215,11 +215,11 @@ public class DOL_AppUtility {
     }
 
     /**
-    ** Name 			: getDateTime
-    ** Input			: input DateTime String and input dateTime format
-    ** Functionality	: get the DateTime String
-    ** Return			: String 
-    ** Author			: Laltu Banerjee
+    ** Name             : getDateTime
+    ** Input            : input DateTime String and input dateTime format
+    ** Functionality    : get the DateTime String
+    ** Return           : String 
+    ** Author           : Laltu Banerjee
     ** Note             : Here we are using standard input
                         : Y = Year, M = Month, D = Date, H= hour, m = minute, S = second
     ** Date (MM/DD/YYYY): 06/23/2019
@@ -258,11 +258,11 @@ public class DOL_AppUtility {
     }
 
     /**
-    ** Name 			: isValidDecimalValue
-    ** Input			: string input
-    ** Functionality	: checks if input is decimal or not
-    ** Return			: Boolean 
-    ** Author			: Laltu Banerjee
+    ** Name             : isValidDecimalValue
+    ** Input            : string input
+    ** Functionality    : checks if input is decimal or not
+    ** Return           : Boolean 
+    ** Author           : Laltu Banerjee
     ** Date (MM/DD/YYYY): 06/23/2019
     */
     public static Boolean isValidDecimalValue(String input){
@@ -297,7 +297,7 @@ public class DOL_AppUtility {
     }
 
     // Get Generic Query String
-    // Will return a select query with all fields
+    // Will return a select query with all custom fields
     // The return string qualified for query
     // User need to add where condition into return query string
     //@author Laltu Banerjee

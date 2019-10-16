@@ -3,12 +3,15 @@ public class ExamReschedule_Test {
     
     @isTest
     public static void getEducationHistoryDataTest(){
+        
         Id AccRecTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('User Account').getRecordTypeId();
         Id ConRecTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Contact').getRecordTypeId();
         Id LicRecTypeId = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Individual').getRecordTypeId();
         Id ReviewRecTypeId = Schema.SObjectType.MUSW__Review__c.getRecordTypeInfosByName().get('License Review').getRecordTypeId();
         Id ExamRecTypeId = Schema.SObjectType.Education_History__c.getRecordTypeInfosByName().get('Exam').getRecordTypeId();
-        User newUser;
+        Id appRecId = Schema.SObjectType.MUSW__Application2__c.getRecordTypeInfosByName().get('Registration').getRecordTypeId();
+        
+        MUSW__Application2__c app = DOL_TestDataFactory.createApplication(appRecId);
         
         Account acc = DOL_TestDataFactory.createAccount(AccRecTypeId);  
         //insert acc;
@@ -21,12 +24,13 @@ public class ExamReschedule_Test {
                 Name='System Number', 
                 RecordTypeId = LicRecTypeId,
                 MUSW__Primary_Licensee__c = acc.id, 
+                Application__c = app.Id,
                 Application_Type__c = 'Geologist',
                 Credential_Type__c = 'Geologist',
                 Application_Method__c = 'General Application',
                 MUSW__Applicant__c =  con.Id);
             insert licObj;
-            System.debug('***licObj***'+licObj);
+            //System.debug('***licObj***'+licObj);
             
             MUSW__Review__c testReview = new MUSW__Review__c();
             testReview.Name = 'General Application Review';
@@ -75,7 +79,7 @@ public class ExamReschedule_Test {
             
         }catch(Exception e){
             DOL_CreateErrorLog_Exception.logApplicationError(e);
-            system.debug('Exception e '+ e);
+            //System.debug('Exception e '+ e);
         }
         
         
@@ -132,6 +136,11 @@ public class ExamReschedule_Test {
         delete testExamRecord;
         test.stopTest();
         
+    }
+    
+    @isTest
+    public static void unitTest03(){
+        List<Education_History__c> examRecs = ExamReschedule.getEducationHistoryData('');
     }
     
     

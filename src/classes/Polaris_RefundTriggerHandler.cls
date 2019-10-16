@@ -103,6 +103,7 @@ so we only have to use 1 SOQL query to do all checks.
                 }
             }
         }
+        
         if(receiptsToBeUpdated.size() > 0){
             update receiptsToBeUpdated;
         }
@@ -140,7 +141,7 @@ so we only have to use 1 SOQL query to do all checks.
         List<BGBK__Receipt_Refund__c> receiptRefundToBeUpdated = new List<BGBK__Receipt_Refund__c>();
         for(BGBK__Receipt_Refund__c recRef: receiptRefundList){
             if(recRef.Status__c != recRef.BGBK__Refund2__r.Status__c || recRef.Stage__c != recRef.BGBK__Refund2__r.Stage__c){
-            	recRef.Status__c = recRef.BGBK__Refund2__r.Status__c;
+                recRef.Status__c = recRef.BGBK__Refund2__r.Status__c;
                 recRef.Stage__c = recRef.BGBK__Refund2__r.Stage__c;
                 receiptRefundToBeUpdated.add(recRef);
             }
@@ -151,7 +152,7 @@ so we only have to use 1 SOQL query to do all checks.
     }
 
     public static void updateContactMailingAddress(List<String> refundeeContactIdList){
-        system.debug('==refundeeContactIdList=='+refundeeContactIdList);
+       // system.debug('==refundeeContactIdList=='+refundeeContactIdList);
         try{
             if(!refundeeContactIdList.isEmpty()){
                 //Fetch the parcel contact using refundee Id
@@ -243,7 +244,7 @@ so we only have to use 1 SOQL query to do all checks.
                             upsertContactList.add(contact);
                         }
                     }
-                    system.debug('==upsertContactList=='+upsertContactList);
+               //     system.debug('==upsertContactList=='+upsertContactList);
                     if(!upsertContactList.isEmpty()){
                         upsert upsertContactList;
                     }

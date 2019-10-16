@@ -350,7 +350,7 @@ public class DOL_TestDataFactory {
     }
     
     //Create Renewal Application
-    public static Renewal_Application__c createRenewalApplication(Id recTypeId, Id licId, Id permitId){
+    public static Renewal_Application__c createRenewalApplication(Id recTypeId, Id licId){
         Renewal_Application__c reApp = new Renewal_Application__c(recordTypeId = recTypeId);
         reApp.Application_Type__c = 'Architects';
         reApp.Credential_Type__c = 'Architect';
@@ -358,7 +358,7 @@ public class DOL_TestDataFactory {
         reApp.Renewal_Reinstatement_Type__c = 'Renewal';
         reApp.Renewal_Status__c = 'Draft';
         reApp.License__c = licId;
-        reApp.Permit__c = permitId;
+        //reApp.Permit__c = permitId;
         reApp.Policy_Amount__c =100.00;
          reApp.Advertising_Fees__c =100.00;
          reApp.Interval_fees__c =100.00;

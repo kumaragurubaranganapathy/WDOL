@@ -10,24 +10,25 @@ public with sharing class Add_BusinessController {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
-    }
+    }    
+    
     
     @AuraEnabled 
     public static String insertRequestBusiness(String acctId,String ServiceRequestType){
         try{
-        system.debug('acctId--'+acctId);
+        //System.debug('acctId--'+acctId);
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
-        System.debug('User Id ' + queryCondition);
+        //System.debug('User Id ' + queryCondition);
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
+        //System.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         Id getContactId = '003r000000EOhBB';
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
-       //system.debug('licenseType'+licenseType+'board');
+       ////System.debug('licenseType'+licenseType+'board');
         Request__c application = new Request__c();
         application.Profession__c = ServiceRequestType; 
         application.License_Type__c = ServiceRequestType;        
@@ -128,7 +129,7 @@ public with sharing class Add_BusinessController {
     
     @AuraEnabled
     public static boolean createAccountContactObject(String aId){
-        System.debug('inside createAccount::');
+        //System.debug('inside createAccount::');
         MUSW__Account_Contact__c retRes ;
         User currentUser = [SELECT Id,Name,firstname,middlename,lastname,ContactId,email from User Where ID = :UserInfo.getUserId() LIMIT 1];
         list<MUSW__Account_Contact__c> businessList = new list<MUSW__Account_Contact__c>([SELECT Id, MUSW__Contact__c, MUSW__Account__r.Name, MUSW__Account__r.BillingStreet, MUSW__Account__r.BillingCity, MUSW__Account__r.BillingState, MUSW__Account__r.BillingPostalCode, MUSW__Account__r.BillingCountry FROM MUSW__Account_Contact__c WHERE MUSW__Contact__c =: currentUser.ContactId AND MUSW__Account__c =: aId ]);
@@ -143,12 +144,12 @@ public with sharing class Add_BusinessController {
                 ac.Account_Admin__c = true;
                 ac.Email__c = currentUser.Email;
                 ac.First_Name__c = currentUser.firstname;
-                ac.Middle_Name__c = currentUser.middlename;
+                ac.Middle_Name__c = currentUser.Middlename;
                 ac.Last_Name__c = currentUser.lastName;
                 ac.Email__c = currentUser.email;
                 ac.Title__c = 'Administrator';
                 insert ac;
-                system.debug('ac234567'+ac);
+                //System.debug('ac234567'+ac);
                 return true;
             } 
         }catch(Exception ex)
@@ -192,7 +193,7 @@ public with sharing class Add_BusinessController {
                                               ac.Associate_Status__c = status;
                                               lstContact.add(ac);                                 
                                           }
-        system.debug('updatedList'+lstContact);
+        //System.debug('updatedList'+lstContact);
         if(!lstContact.isEmpty ()){
             update lstContact;
         }
@@ -261,14 +262,14 @@ public with sharing class Add_BusinessController {
             statusFilterList = dashboardSettings.get(0).License_Statuses__c.split(',');
         }  
         
-        system.debug('accountId---'+accountId);
+        //System.debug('accountId---'+accountId);
         Id courseRecordTypeId = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Course').getRecordTypeId();
         
         List<MUSW__License2__c> courseList = [SELECT Id,Name,Course_Name__c,Course_Number__c,Credential_Type__c,MUSW__Status__c,
                                               Application_Type__c,What_Licensure_Level__c,What_program_are_you_interested_in__c,MUSW__Primary_Licensee__c,
-                                              Course_Status__c, Course_Title__c,Course_Type__c,Course_Topic__c,MUSW__Primary_Licensee__r.Id,Ultimate_Parent_Account__c,
+                                              Course_Status__c, Course_Title__c,Renew_Reinstatement_in_progress__c,Course_Type__c,Course_Topic__c,MUSW__Primary_Licensee__r.Id,Ultimate_Parent_Account__c,
                                               Provider_School_Name__c,Clock_Hours__c,Delivery_Method__c,Clock_Hours_Continuing_Education__c,Is_Renewal_Eligible__c,
-                                              Is_Reinstatement_Eligible__c,Renew_Reinstatement_in_progress__c,Is_Late_Renewal_Eligible__c,Application__r.isRenewal__c,Application_Method__c,MUSW__Expiration_Date__c,
+                                              Is_Reinstatement_Eligible__c,Is_Late_Renewal_Eligible__c,Application__r.isRenewal__c,Application_Method__c,MUSW__Expiration_Date__c,
                                               Clock_Hours_Pre_Qualifying__c,Clock_Hours_Qualifying_Elective__c,Continuing_Education_Licensure_Levels__c
                                               FROM MUSW__License2__c WHERE RecordTypeId =: courseRecordTypeId AND MUSW__Status__c IN:statusFilterList AND Ultimate_Parent_Account__c =:accountId];
         
@@ -283,7 +284,7 @@ public with sharing class Add_BusinessController {
     @AuraEnabled
     public static List<MUSW__License2__c> getBusinessLicenses(String accountId,Boolean branch,String LicenseId){
         try{
-        system.debug('accountId----'+accountId);
+        //System.debug('accountId----'+accountId);
         Id businessRecordTypeId = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
         List<MUSW__License2__c> businessList = new List<MUSW__License2__c>();
         
@@ -314,6 +315,23 @@ public with sharing class Add_BusinessController {
             return null;
         }
     }
+    @AuraEnabled
+    public static List<Request__c> CompletedMaintananceRequestApplicationsTable(String accountId){
+        
+        try{
+            List<Request__c> requestList = [Select  id,Name,License_Type__c, Service_Request_Type__c, End_Time__c
+                                                    from Request__c
+                                                    where Status__c =:'Approved' AND Account__c=:accountId  ORDER BY CreatedDate asc];
+          //System.debug('requestList--'+requestList);
+            return requestList;
+        }
+        catch(Exception ex)
+        {
+            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+            return null;
+        }
+       
+    }
     
     @AuraEnabled
     public static List<MUSW__Application2__c> getAllApplications(String accountId){
@@ -325,9 +343,9 @@ public with sharing class Add_BusinessController {
             statusFilterList = dashboardSettings.get(0).Draft_Applications_statuses__c.split(',');    
         }
         
-        system.debug('account id ---'+accountId);
+        //System.debug('account id ---'+accountId);
         Id businessRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId();
-        system.debug('businessRecordTypeId---'+businessRecordTypeId);
+        //System.debug('businessRecordTypeId---'+businessRecordTypeId);
         List<MUSW__Application2__c> applicationList = [SELECT Id, MUSW__Applicant__c,Application_Method__c,Application_Number__c,MUSW__Account__c,
                                                        MUSW__Decision_Date__c,MUSW__Description__c,Geolocation__c,
                                                        Attestation__c,Attestation_Date__c,MUSW__Completion_Date__c,License__c,License__r.Name,
@@ -337,7 +355,7 @@ public with sharing class Add_BusinessController {
                                                        MUSW__Issued_Number__c,Parent_License__c,
                                                        Reason_for_Submitting_Service_Request__c 
                                                        FROM MUSW__Application2__c WHERE MUSW__Status__c IN :statusFilterList AND MUSW__Account__c =: accountId];
-        system.debug('applicationList--'+applicationList);
+        //System.debug('applicationList--'+applicationList);
         
         return applicationList;
         }catch(Exception ex)
@@ -352,9 +370,9 @@ public with sharing class Add_BusinessController {
     @AuraEnabled 
     public static List<Renewal_Application__c> getAllRenewalApplications(String accountId){
         try{
-        system.debug('accountId---'+accountId);
+        //System.debug('accountId---'+accountId);
         String businessRecordTypeId = Schema.SObjectType.Renewal_Application__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
-        system.debug('businessRecordTypeId---'+businessRecordTypeId);
+        //System.debug('businessRecordTypeId---'+businessRecordTypeId);
         List<Renewal_Application__c> renewalAppList = [SELECT Additional_Address__c,Applicant__c,Application_Type__c,Application__c,AttestationFullName__c,Attestation_Date__c,Attestation__c,
                                                        Auto_Renew__c,Bad_Check__c,Business_License__c,CE_Hours__c,Community_Address__c,Community_ID_Number__c,Community_Name__c,Community_Owner__c,
                                                        County__c,Credential_Type__c,Credential__c,External_Id__c,External_source_c__c,Generate_Invoice__c,Id,FORMAT(LastModifiedDate) FormattedLastModifiedDate, LastModifiedDate,Licensee__c,
@@ -455,7 +473,7 @@ public with sharing class Add_BusinessController {
             }
             
         }
-        system.debug('fetchEndorsementDetails --> '+JSON.serialize(endorsementDataList)); 
+        //System.debug('fetchEndorsementDetails --> '+JSON.serialize(endorsementDataList)); 
         
         return EndorsementList; 
         }catch(Exception ex)
@@ -505,12 +523,12 @@ public with sharing class Add_BusinessController {
             sObject objData;
             Associations__c assoc;
             MUSW__Account_Contact__c accCon;
-            system.debug('tsk::'+ tsk);
-            system.debug('type::'+ type);
-            system.debug('actionClicked::'+ actionClicked);
+            //System.debug('tsk::'+ tsk);
+            //System.debug('type::'+ type);
+            //System.debug('actionClicked::'+ actionClicked);
             if(type == 'License Relationship'){
                 assoc = [select id,Status__c,invitation_send_date__c from Associations__c  where id=:tsk.Whatid];
-                system.debug('assoc::'+ assoc);
+                //System.debug('assoc::'+ assoc);
                 if(actionClicked == 'Accepted'){
                     assoc.Status__c = 'Active';
                     if(tsk != null){
@@ -632,7 +650,7 @@ public with sharing class Add_BusinessController {
             
             List<task> tsk = [select id,Whatid,Status from task where Whatid=:accConId.Id limit 1];
             
-            System.debug('accConId::'+accConId+' : tsk : '+tsk);
+            //System.debug('accConId::'+accConId+' : tsk : '+tsk);
             if(action == 'Remove'){
                 accConId.Status__c = 'Deleted';
                 if(!tsk.isEmpty()){
@@ -683,7 +701,9 @@ public with sharing class Add_BusinessController {
     @AuraEnabled
     public static Boolean createAssociationTask(Id associationID){
         Associations__c association = [SELECT id, Child_License__r.MUSW__Applicant__c FROM Associations__c where id=:associationID ];
+        //System.debug('createAssociationTask****Association::'+association+' Applicant::'+association.Child_License__r.MUSW__Applicant__c);
         Contact con = [Select id,Email FROM Contact where id=:association.Child_License__r.MUSW__Applicant__c];
+        //System.debug('createAssociationTask****Contact::'+con);
         try{
             task t = new task();
             t.Whatid = associationID;
@@ -708,15 +728,15 @@ public with sharing class Add_BusinessController {
         List<String> columnHeaderList;
         List<String> statusFilterList;
         String role = (Type == 'Administrators') ? 'Administrator': 'Owner';
-        System.debug('role::'+role);
-        System.debug('Type::'+ Type);
-        System.debug('AccountId::'+queryId);
+        //System.debug('role::'+role);
+        //System.debug('Type::'+ Type);
+        //System.debug('AccountId::'+queryId);
         if(sObjectName == 'MUSW__Account_Contact__c'){
             if(Type == 'Administrators'){
-                System.debug('inside admin::');
+                //System.debug('inside admin::');
                 columnHeaderList = new List<String>{'Name','Role','Email','Status','Actions'};
             }else{
-                System.debug('inside owner');
+                //System.debug('inside owner');
                 if(isAMR){
                     columnHeaderList = new List<String>{'Name','Role','DCP','Email','Status'};
                 }else{
@@ -733,6 +753,7 @@ public with sharing class Add_BusinessController {
                 statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
                     sObjList =[select id,Association_Type__c,Name,Status__c,Child_License__r.Applicant_Full_Name__c,Parent_License__r.Applicant_Full_Name__c,Child_License__r.Application_Type__c,Parent_License__r.Application_Type__c,Child_License__r.Credential_Type__c,Parent_License__r.Credential_Type__c,Child_License__r.Email__c,Parent_License__r.Email__c,Child_License__r.Name,Parent_License__r.Name,Child_License__r.MUSW__Status__c,Parent_License__r.MUSW__Status__c from Associations__c where Parent_License__c =: queryId and Status__c != 'Deleted']; 
         }
+            //System.debug('SobjectList--'+sObjList);
         Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,sObjList);
         return JSON.serialize(wrapperObj,true);
         }catch(Exception ex)
@@ -746,11 +767,11 @@ public with sharing class Add_BusinessController {
     public static String setPeerRelationShipTable(String licenseId){
         
         String licenseType ='';
-        System.debug('Checkkkk######## License Id'+licenseId);
+        //System.debug('Checkkkk######## License Id'+licenseId);
         
         MUSW__License2__c lic = [SELECT id,MUSW__Status__c,Credential_Type__c FROM MUSW__License2__c where id=:licenseId];
         licenseType = lic.Credential_Type__c;
-        System.debug('Checkkkk######## '+licenseType);
+        //System.debug('Checkkkk######## '+licenseType);
         
         List<String> columnHeaderList;   
         List<String> statusFilterList = new List<String>{'Active'};
@@ -805,7 +826,7 @@ public with sharing class Add_BusinessController {
                 
                 statusFilterList = dashboardSettings.get(0).Pending_Applications_statuses__c.split(',');
             } 
-            system.debug('accountID::'+accountID);
+            //System.debug('accountID::'+accountID);
             List<String> columnHeaderList = new List<String>{'Application','Profession','License Type','Application Method','Status','Sub-status'};
                 //List<String> statusFilterList = new List<String>{'In-Review','In Review','Pending Payment','Payment Pending','Pending Additional Qualifications','Pending Action'};
                 Id businessRT = SObjectType.MUSW__License2__c.getRecordTypeInfosByDeveloperName().get('Business').getRecordTypeId();        
@@ -848,7 +869,7 @@ public with sharing class Add_BusinessController {
                                                 Provider_School_Name__c,Clock_Hours__c,Delivery_Method__c,Clock_Hours_Continuing_Education__c,
                                                 Clock_Hours_Pre_Qualifying__c,Clock_Hours_Qualifying_Elective__c,Continuing_Education_Licensure_Levels__c,Sub_Status__c,MUSW__Status__c
                                                 FROM MUSW__License2__c WHERE MUSW__Status__c In: statusFilterList AND RecordType.Id =: courseRecordTypeId AND Ultimate_Parent_Account__c =: accountID ORDER BY CreatedDate asc];
-            system.debug('columnDataList---'+columnDataList);
+            //System.debug('columnDataList---'+columnDataList);
             Add_BusinessController.lightningDataTableWrapper wrapperObj = new Add_BusinessController.lightningDataTableWrapper(columnHeaderList,columnDataList);
             
             return JSON.serialize(wrapperObj,true);
@@ -992,7 +1013,8 @@ public with sharing class Add_BusinessController {
         }
     }
     
-    @AuraEnabled
+    //Commented by Dharan Shah - 10th Oct, 2019 - Confirmed with Siddhesh Sinkar - This method is not required anymore
+    /*@AuraEnabled
     public static boolean checkDCP(String accountId){
         try{
         Account acc = [select id,Name from Account where id=: accountId limit 1];
@@ -1010,7 +1032,7 @@ public with sharing class Add_BusinessController {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return null;
         }
-    } 
+    }*/ 
     
     @AuraEnabled
     public static String helptextFetch(){
@@ -1025,7 +1047,7 @@ public with sharing class Add_BusinessController {
                 }
                 
             }    
-            system.debug('helptextMap::'+helptextMap);            
+            //System.debug('helptextMap::'+helptextMap);            
             return JSON.serialize(helptextMap);
         }catch(Exception ex)
         {
@@ -1069,34 +1091,20 @@ public with sharing class Add_BusinessController {
             return null;
         }
     }
-    @AuraEnabled
-    public static List<Request__c> CompletedMaintananceRequestApplicationsTable(String accountId){        
-        try{
-            List<Request__c> requestList = [Select  id,Name,License_Type__c, Service_Request_Type__c, End_Time__c
-                                                    from Request__c
-                                                    where Status__c =:'Approved' AND Account__c=:accountId  ORDER BY CreatedDate asc];
-          system.debug('requestList--'+requestList);
-            return requestList;
-        }
-        catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
-        }
-    }
+    
     @AuraEnabled
     public static Boolean checkActiveCart(){
         try{
         Boolean redirect = false;
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
-        System.debug('User Id ' + queryCondition);
+        //System.debug('User Id ' + queryCondition);
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
+        //System.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         
-        List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Contact__c =:userInfoData[0].ContactId and BGBK__Status__c =: 'Open' and BGBK__Total_Amount__c > 0 ];
+        List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Contact__c =:userInfoData[0].ContactId and BGBK__Status__c =: DOL_AppConstants.NULL_EMPTY_STRING + 'Open' and BGBK__Total_Amount__c > 0 ];
         if(!crtList.isEmpty()){
             redirect = true;
         }
@@ -1114,8 +1122,8 @@ public with sharing class Add_BusinessController {
         Boolean redirect = false;
         
         if(accountId != null){
-           // List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Account__c =:accountId and BGBK__Status__c = 'Open' and BGBK__Total_Amount__c > 0];
-           // if(!crtList.isEmpty()){
+            //List<BGBK__Cart__c> crtList = [select id from BGBK__Cart__c where BGBK__Account__c =:accountId and BGBK__Status__c = 'Open' and BGBK__Total_Amount__c > 0];
+            //if(!crtList.isEmpty()){
                 
                 User objUser = [select id,contactid from user where id=: userinfo.getUserId() limit 1];
                 contact objCon = new Contact ();
@@ -1124,7 +1132,7 @@ public with sharing class Add_BusinessController {
                 update objCon;
             
                 redirect = true;
-           // }
+            //}
         }
         return redirect;
         }catch(Exception ex)
@@ -1141,16 +1149,16 @@ public with sharing class Add_BusinessController {
         try{
         List<User> userInfoData = new  List<User>();
         String queryCondition = ' Id=\''+UserInfo.getUserId()+'\'';
-        System.debug('User Id ' + queryCondition);
+        //System.debug('User Id ' + queryCondition);
         String queryStr = 'SELECT Username, ContactId, Contact.Name, Contact.AccountId, Contact.Account.Name FROM User WHERE  '+queryCondition + 'Limit 1';
-        system.debug('queryStr '+queryStr);
+        //System.debug('queryStr '+queryStr);
         
         userInfoData = Utilityclass_withsharing.queryRecords(queryStr);
         Id getContactId = '003r000000EOhBB';
         if(userInfoData[0].ContactId != null){
             getContactId = userInfoData[0].ContactId;
         }
-        system.debug('licenseType'+licenseType+'board');
+        //System.debug('licenseType'+licenseType+'board');
         Request__c application = new Request__c();
         application.Profession__c = board; 
         application.License_Type__c = licenseType;        
@@ -1166,7 +1174,8 @@ public with sharing class Add_BusinessController {
             insert application;
         }
         catch(Exception e){
-            HandleException.LogException(e,'Polaris_AMRLinkCntrl','insertRequest');            
+            //HandleException.LogException(e,'Polaris_AMRLinkCntrl','insertRequest');  
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
         }
         string appId = '';
         return appId = application.Id;
@@ -1246,7 +1255,7 @@ public with sharing class Add_BusinessController {
             
             operationsuccesssful = false;
             
-            system.debug('setAbandonStatus --> '+ e);
+            //System.debug('setAbandonStatus --> '+ e);
             
             return  operationsuccesssful;   
         }

@@ -27,7 +27,7 @@ public class Lnp_GenericDataTable_ApexControllerTest {
                                                                          'General Application');
             liceId.MUSW__Applicant__c = con.Id;
             update liceId;
-            system.debug('liceId : '+liceId.MUSW__Applicant__c);
+          //  system.debug('liceId : '+liceId.MUSW__Applicant__c);
             
             
             

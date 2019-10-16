@@ -18,6 +18,7 @@ public without sharing class Utilityclass_withoutsharing {
     public static List<SObject> insertList(List<SObject> lstForInsert){
 		List<SObject> insertlsit1=new List<SObject>();
             insertlsit1=Utilityclass_withsharing.insertList(lstForInsert);
+        
         return insertlsit1;
     }    
      /*********************************************************************

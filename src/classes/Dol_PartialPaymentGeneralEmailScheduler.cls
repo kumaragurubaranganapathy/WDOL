@@ -5,11 +5,11 @@ global class Dol_PartialPaymentGeneralEmailScheduler implements Schedulable {
         Map<Id,Id> invoiceToAttachmentMap = new Map<Id,Id>();
         Set<Id> invIdSet = new Set<Id>();
         List<BGBK__Bill__c> invoiceList = [Select id,BGBK__Recipient2__c,BGBK__Recipient2__r.Email__c from BGBK__Bill__c where CreatedDate = Yesterday and BGBK__Recipient2__r.Email__c != null];
-        system.debug('invoiceList::'+invoiceList);
+        //System.debug('invoiceList::'+invoiceList);
         for(BGBK__Bill__c inv : invoiceList){
             invIdSet.add(inv.Id);
         }
-        system.debug('invIdSet::'+invIdSet);
+        //System.debug('invIdSet::'+invIdSet);
         for(ContentDocumentLink clink: [SELECT ContentDocument.title,ContentDocumentId,LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId In: invIdSet and ContentDocument.title like 'Partial_Payment%' ] ){
             contentDocumentLinkToInvoiceMap.put(clink.ContentDocumentId,clink.LinkedEntityId);
         }
@@ -33,7 +33,7 @@ global class Dol_PartialPaymentGeneralEmailScheduler implements Schedulable {
         }
         
         
-        system.debug('emailList::'+emailList);
+        //System.debug('emailList::'+emailList);
         if(emailList.size() > 0){
             Messaging.SendEmailResult[] results = Messaging.sendEmail(emailList);
         }

@@ -117,13 +117,13 @@ public class RequestTriggerHandler  implements BGCM.ITriggerHandler  {
                 }
                 
                 string query = ' SELECT ' +       String.join( fieldNames, ', ' ) +   ' FROM ' +ObjectName +' where '+condition;
-                system.debug('query'+query);
+           //     system.debug('query'+query);
                 SObject detail = Database.query(query);
                 for(BGCK__Answer__c ans : [SELECT Id,Answer_Text__c,License__c,Create_Endorsement_Record__c,Endorsement_Type__c,QuestionDOL__r.Question_Body__c,QuestionDOL__r.Data_Type__c,QuestionDOL__r.Endorsement_Type__c,Question_Section__c,Request__c,QuestionDOL__r.QuestionFieldAPI__c,QuestionDOL__r.Parent_Object_API_Name__c,QuestionDOL__r.QuestionObjectName__c,QuestionDOL__r.RecordType.DeveloperName FROM BGCK__Answer__c where Request__c=:lstrequest[0].Id])
                 {
                     detail.put(ans.QuestionDOL__r.QuestionFieldAPI__c,ans.Answer_Text__c);
                 }
-                system.debug('detail--'+detail);
+             //   system.debug('detail--'+detail);
                 
                 update detail;
         
@@ -145,7 +145,7 @@ public class RequestTriggerHandler  implements BGCM.ITriggerHandler  {
     {      
       lic.License_Printable_Name__c = (con.MiddleName == null)?(con.FirstName+' '+ con.LastName):(con.FirstName+' '+ con.MiddleName+' '+ con.LastName);
             lic.Print_First_Name__c = con.FirstName !=null ? con.FirstName : '';
-            lic.Print_Middle_Name__c = con.MiddleName !=null ? con.MiddleName : '';
+            lic.Print_Middle_Name__c = con.MiddleName !=null ? con.MiddleName : ' ';
             lic.Print_Last_Name__c = con.LastName !=null ? con.LastName : '';      
     }
     if(!lstLicence.isEmpty())
@@ -209,7 +209,7 @@ public class RequestTriggerHandler  implements BGCM.ITriggerHandler  {
             upsert updatelstLicenseParcel; 
         }
         catch(DmlException e){
-            System.debug('Error while inserting new Parcel---' + e.getMessage());
+           // System.debug('Error while inserting new Parcel---' + e.getMessage());
         }
     }
 }

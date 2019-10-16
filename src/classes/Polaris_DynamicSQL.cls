@@ -84,7 +84,7 @@ public without sharing class Polaris_DynamicSQL {
     {
         try{
         Map<String, Object> message = (Map<String, Object>)JSON.deserializeUntyped(dataString);
-        system.debug('message : ' + message);
+      //  system.debug('message : ' + message);
         
         Boolean AgreeCheck = (Boolean)message.get('agreeCheck');
         
@@ -165,10 +165,10 @@ String pemail = (String)pdata.get('email');*/
             complaint.Complainant_Zipcode__c =  (String)idata.get('zipcode');
         }
         
-        system.debug('complaint : '+complaint);
+      //  system.debug('complaint : '+complaint);
         update complaint;
-        system.debug('AgreeCheck : '+AgreeCheck);
-        system.debug('bdata : '+bdata);
+     //   system.debug('AgreeCheck : '+AgreeCheck);
+     //   system.debug('bdata : '+bdata);
         
         return complaint.Name;
         }catch(Exception ex)
@@ -181,8 +181,8 @@ String pemail = (String)pdata.get('email');*/
     @AuraEnabled
     public static List<SObject> generateQueryLimit(String objectName, List<String> lstFieldsName, Map<String,String> mapValues,Integer limitvalue){
         try{
-        system.debug('inside');
-        system.debug('mapValues'+mapValues);
+       // system.debug('inside');
+      //  system.debug('mapValues'+mapValues);
         Map<String, Schema.SObjectField> fields = Schema.getGlobalDescribe().get(objectName).getDescribe().SObjectType.getDescribe().fields.getMap();
       //  system.debug('fields'+);
         List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
@@ -192,7 +192,7 @@ String pemail = (String)pdata.get('email');*/
             Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
             sqlObj.FieldName = attributeName;
             sqlObj.FieldValue = mapValues.get(attributeName);
-            system.debug('FieldValue1234 '+strFieldName);
+          //  system.debug('FieldValue1234 '+strFieldName);
             if(strFieldName =='MULTIPICKLIST') {
                 sqlObj.Operator = DOL_AppConstants.NULL_EMPTY_STRING + 'includes';
             } else {
@@ -201,11 +201,11 @@ String pemail = (String)pdata.get('email');*/
            
             creterias.add(sqlObj);
         }
-        system.debug('criterias1234 '+creterias);
+     //   system.debug('criterias1234 '+creterias);
         String whereClause = generateWhereQuery(creterias);
         String fieldNames  = String.join(lstFieldsName, ' ,');        
         String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+''+' limit '+limitvalue;
-        SYSTEM.debug('QUERY1234'+query);
+       // SYSTEM.debug('QUERY1234'+query);
         List<SObject>  lstRecords  = new List<SObject> () ;
         //List<SObject>  lstRecords  = new List<SObject> () ;
         lstRecords = Utilityclass_withoutsharing.queryRecords(query); 
@@ -223,9 +223,9 @@ String pemail = (String)pdata.get('email');*/
                                                            Boolean showDeciplinary)
     {
         try{
-            system.debug('inside');
-            system.debug('mapValues'+mapValues);
-            system.debug(' sumeet OR Check '+mapORValues);
+         //   system.debug('inside');
+         //   system.debug('mapValues'+mapValues);
+        //    system.debug(' sumeet OR Check '+mapORValues);
             
             List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
             for (String attributeName : mapValues.keyset()) {
@@ -254,7 +254,7 @@ String pemail = (String)pdata.get('email');*/
                 whereClause += 'and '+ generateWhereQuery(creterias);
             String fieldNames  = String.join(lstFieldsName, ' ,');
             String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+ 'Limit 49999';
-            SYSTEM.debug('QUERY--'+query);
+       //     SYSTEM.debug('QUERY--'+query);
             List<SObject>  lstRecords  = new List<SObject> () ;
             //List<SObject>  lstRecords  = new List<SObject> () ;
             lstRecords = Utilityclass_withoutsharing.queryRecords(query); 
@@ -341,12 +341,12 @@ String pemail = (String)pdata.get('email');*/
                 }
                 if(!mapDeciplinary.isEmpty()) {
                     for(String abc : mapDeciplinary.keySet()) {
-                        system.debug('mapDeciplinaryinside '+mapDeciplinary);
+                      //  system.debug('mapDeciplinaryinside '+mapDeciplinary);
                         // string isAction = mapDeciplinary.get(abc);
                         // lstRecords.add(isAction);
                         for(MUSW__License_Parcel__c sob : lstrec) {
                             if(abc == sob.MUSW__License2__c) {
-                                system.debug('mapDeciplinaryinside123 '+mapDeciplinary);
+                             //   system.debug('mapDeciplinaryinside123 '+mapDeciplinary);
                                 sob.MUSW__License2__r.AIDS_Affidavit__c = mapDeciplinary.get(abc).isDisciplinaryAction;
                                 sob.MUSW__License2__r.Project_Address__c = mapDeciplinary.get(abc).documentId;
                             }
@@ -369,8 +369,8 @@ String pemail = (String)pdata.get('email');*/
                                                     Map<String,String> mapValues, Boolean bIsStatusIncluded, Boolean showDeciplinary){
                                                           try{
                                                           Map<String,disciPlinaryAction> mapDeciplinary = new Map<String,disciPlinaryAction>();
-                                                        system.debug('inside');
-                                                        system.debug('mapValues'+mapValues);
+                                                       // system.debug('inside');
+                                                       // system.debug('mapValues'+mapValues);
                                                         List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
                                                         for (String attributeName : mapValues.keyset()) {
                                                             Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
@@ -384,23 +384,23 @@ String pemail = (String)pdata.get('email');*/
                                                         Map<String, SObject> mapAllRec = new Map<String, SObject>();
                                                         String fieldNames  = String.join(lstFieldsName, ' ,');
                                                         String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+ 'Limit 49999';
-                                                        SYSTEM.debug('QUERYGenerate'+query);
+                                                       // SYSTEM.debug('QUERYGenerate'+query);
                                                         List<SObject>  lstRecords  = new List<SObject> () ;
                                                         //List<SObject>  lstRecords  = new List<SObject> () ;
                                                         lstRecords = Utilityclass_withoutsharing.queryRecords(query); 
                                                         
                                                         if(!bIsStatusIncluded && !lstRecords.isEmpty())
                                                         {
-                                                            system.debug('is true'+bIsStatusIncluded);
+                                                        //    system.debug('is true'+bIsStatusIncluded);
                                                             List<SObject>  lstTempRecords = new List<SObject>();
                                                             lstTempRecords.addAll(lstRecords);
                                                             lstRecords = new List<SObject>();
-                                                            system.debug('is true'+objectName);
+                                                        //    system.debug('is true'+objectName);
                                                             if(objectName == 'MUSW__License_Parcel__c')
                                                             {  
-                                                                system.debug('is true objectname '+objectName);
+                                                          //      system.debug('is true objectname '+objectName);
                                                                 List<MUSW__License_Parcel__c> lstSSData = (List<MUSW__License_Parcel__c>)lstTempRecords;
-                                                                system.debug('fdsf'+lstSSData);
+                                                           //     system.debug('fdsf'+lstSSData);
                                                                 for(MUSW__License_Parcel__c oData : lstSSData)
                                                                 {
                                                                     if(Label.SearchStatusFilter.contains(oData.MUSW__License2__r.MUSW__Status__c)){
@@ -443,7 +443,8 @@ String pemail = (String)pdata.get('email');*/
                                                         }
                                                         
                                                         else if(bIsStatusIncluded)
-                                                        { system.debug('is false'+bIsStatusIncluded);
+                                                        { 
+                                                        //system.debug('is false'+bIsStatusIncluded);
                                                             if(objectName == 'MUSW__License_Parcel__c')
                                                             {
                                                                List<SObject>  lstTempRecords = new List<SObject>();
@@ -482,7 +483,7 @@ String pemail = (String)pdata.get('email');*/
                                                                     for(MUSW__License_Parcel__c sob : lstrec) {
                                                                         if(abc == sob.MUSW__License2__c) {
                                                                             sob.MUSW__License2__r.AIDS_Affidavit__c = mapDeciplinary.get(abc).isDisciplinaryAction;
-                                                                            system.debug('mapDeciplinary.get(abc)'+mapDeciplinary.get(abc));
+                                                                          //  system.debug('mapDeciplinary.get(abc)'+mapDeciplinary.get(abc));
                                                                             sob.MUSW__License2__r.Project_Address__c = mapDeciplinary.get(abc).documentId;
                                                                         }
                                                                     }
@@ -506,8 +507,8 @@ String pemail = (String)pdata.get('email');*/
                                                     Map<String,String> mapValues, Boolean bIsStatusIncluded, Boolean showDeciplinary){
                                                           try{
                                                           Map<String,disciPlinaryAction> mapDeciplinary = new Map<String,disciPlinaryAction>();
-                                                        system.debug('inside');
-                                                        system.debug('mapValues'+mapValues);
+                                                     //   system.debug('inside');
+                                                      //  system.debug('mapValues'+mapValues);
                                                         List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
                                                         for (String attributeName : mapValues.keyset()) {
                                                             Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
@@ -521,23 +522,23 @@ String pemail = (String)pdata.get('email');*/
                                                         Map<String, SObject> mapAllRec = new Map<String, SObject>();
                                                         String fieldNames  = String.join(lstFieldsName, ' ,');
                                                         String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
-                                                        SYSTEM.debug('QUERYGenerate'+query);
+                                                      //  SYSTEM.debug('QUERYGenerate'+query);
                                                         List<SObject>  lstRecords  = new List<SObject> () ;
                                                         //List<SObject>  lstRecords  = new List<SObject> () ;
                                                         lstRecords = Utilityclass_withoutsharing.queryRecords(query); 
                                                         
                                                         if(!bIsStatusIncluded && !lstRecords.isEmpty())
                                                         {
-                                                            system.debug('is true'+bIsStatusIncluded);
+                                                         //   system.debug('is true'+bIsStatusIncluded);
                                                             List<SObject>  lstTempRecords = new List<SObject>();
                                                             lstTempRecords.addAll(lstRecords);
                                                             lstRecords = new List<SObject>();
-                                                            system.debug('is true'+objectName);
+                                                          //  system.debug('is true'+objectName);
                                                             if(objectName == 'MUSW__License_Parcel__c')
                                                             {  
-                                                                system.debug('is true objectname '+objectName);
+                                                             //   system.debug('is true objectname '+objectName);
                                                                 List<MUSW__License_Parcel__c> lstSSData = (List<MUSW__License_Parcel__c>)lstTempRecords;
-                                                                system.debug('fdsf'+lstSSData);
+                                                              //  system.debug('fdsf'+lstSSData);
                                                                 for(MUSW__License_Parcel__c oData : lstSSData)
                                                                 {
                                                                     if(Label.SearchStatusFilter.contains(oData.MUSW__License2__r.MUSW__Status__c)){
@@ -580,7 +581,8 @@ String pemail = (String)pdata.get('email');*/
                                                         }
                                                         
                                                         else if(bIsStatusIncluded)
-                                                        { system.debug('is false'+bIsStatusIncluded);
+                                                        {
+                                                        // system.debug('is false'+bIsStatusIncluded);
                                                             if(objectName == 'MUSW__License_Parcel__c')
                                                             {
                                                                List<SObject>  lstTempRecords = new List<SObject>();
@@ -640,10 +642,10 @@ String pemail = (String)pdata.get('email');*/
     public static List<SObject> generateQuery(String objectName, List<String> lstFieldsName, Map<String,String> mapValues){
         try{
         Map<String, Schema.SObjectField> fields = Schema.getGlobalDescribe().get(objectName).getDescribe().SObjectType.getDescribe().fields.getMap();
-        system.debug('fields1234'+fields);
+      //  system.debug('fields1234'+fields);
         List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
         for (String attributeName : mapValues.keyset()) {
-            system.debug('attributeName1234 '+attributeName);
+          //  system.debug('attributeName1234 '+attributeName);
             Schema.DisplayType targetType = fields.get(attributeName) !=  null ? fields.get(attributeName).getDescribe().getType() : null;
             string strFieldName = DOL_AppConstants.NULL_EMPTY_STRING + '';    
                 if(targetType !=null) {
@@ -662,15 +664,15 @@ String pemail = (String)pdata.get('email');*/
             }
             creterias.add(sqlObj);
         }
-        system.debug('criterias'+creterias);
+     //   system.debug('criterias'+creterias);
         String whereClause = generateWhereQuery(creterias);
         String fieldNames  = String.join(lstFieldsName, ' ,');
         String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
-        SYSTEM.debug('QUERY'+query);
+       // SYSTEM.debug('QUERY'+query);
         List<SObject>  lstRecords  = new List<SObject> () ;
         //List<SObject>  lstRecords  = new List<SObject> () ;
         lstRecords = Utilityclass_withoutsharing.queryRecords(query); 
-        system.debug('lstRecords----'+lstRecords);
+    //    system.debug('lstRecords----'+lstRecords);
         return   lstRecords; 
         }catch(Exception ex)
         {
@@ -680,11 +682,11 @@ String pemail = (String)pdata.get('email');*/
     } 
     
     @AuraEnabled
-    public static Map<String, List<String>> getPicklistOptions(sObject sObj, String conField, String depField){	
+    public static Map<String, List<String>> getPicklistOptions(sObject sObj, String conField, String depField){ 
         try{
         Map<String, List<String>> mapConDep = new Map<String, List<String>>();
         mapConDep = LnP_dependentPicklist_UpdateCtrl.getDependentMap(sObj, conField, depField);
-        system.debug('mapConDepJSON ' + JSON.serialize(mapConDep));
+    //    system.debug('mapConDepJSON ' + JSON.serialize(mapConDep));
         return mapConDep;
         }catch(Exception ex)
         {
@@ -727,7 +729,7 @@ String pemail = (String)pdata.get('email');*/
             sqlObj.value = aPickListValue.getValue();
             picklistValues.add(sqlObj); 
         }
-         system.debug('picklistValues'+picklistValues);
+    //     system.debug('picklistValues'+picklistValues);
         return picklistValues;
         }catch(Exception ex)
         {
@@ -747,10 +749,10 @@ String pemail = (String)pdata.get('email');*/
             
             if(val.License_Type__c != ''){
                 LicenseTypeVal = val.License_Type__c.split(';'); 
-                system.debug('LicenseTypeVal==='+LicenseTypeVal);
+            //    system.debug('LicenseTypeVal==='+LicenseTypeVal);
             }
             PicklistValueMap.put(val.Program_Type__c,LicenseTypeVal);
-            system.debug('PicklistValueMap---'+PicklistValueMap);
+          //  system.debug('PicklistValueMap---'+PicklistValueMap);
         }
         return PicklistValueMap;
        }catch(Exception ex)
@@ -764,8 +766,8 @@ String pemail = (String)pdata.get('email');*/
     public static List<SObject> generateQueryWithORparent(String objectName, List<String> lstFieldsName, 
                                                           Map<String,String> mapValues, Boolean bIsStatusIncluded){
                                                               try{
-                                                              system.debug('inside');
-                                                              system.debug('mapValues'+mapValues);
+                                                         //     system.debug('inside');
+                                                             // system.debug('mapValues'+mapValues);
                                                               List<Polaris_DynamicSQL> creterias = new  List<Polaris_DynamicSQL> ();
                                                               for (String attributeName : mapValues.keyset()) {
                                                                   Polaris_DynamicSQL sqlObj = new Polaris_DynamicSQL();
@@ -779,7 +781,7 @@ String pemail = (String)pdata.get('email');*/
                                                               Map<String, SObject> mapAllRec = new Map<String, SObject>();
                                                               String fieldNames  = String.join(lstFieldsName, ' ,');
                                                               String query = DOL_AppConstants.NULL_EMPTY_STRING + 'SELECT  '+fieldNames+'  FROM  '+objectName+'  WHERE  '+whereClause+'';
-                                                              SYSTEM.debug('QUERY'+query);
+                                                            //  SYSTEM.debug('QUERY'+query);
                                                               List<SObject>  lstRecords  = new List<SObject> () ;
                                                               //List<SObject>  lstRecords  = new List<SObject> () ;
                                                               lstRecords = Utilityclass_withoutsharing.queryRecords(query); 
@@ -871,13 +873,13 @@ String pemail = (String)pdata.get('email');*/
         List<ContentDocumentLink> lstCon;
                 integer count = 0;
                 for (MUSW__Submission__c sub: [select Public_Distribution_URL__c,MUSW__License2__c ,ID from MUSW__Submission__c  where MUSW__License2__c = :lstname and  Public_Disciplinary_Action__c  = true ]) {
-                    system.debug('anyways'+sub);
+                   // system.debug('anyways'+sub);
                     setDoc.add(sub.Id);
                     disciPlinaryAction obj = new disciPlinaryAction();
                     for(String key  : lstname) {
                     if(key.equals(sub.MUSW__License2__c)){
                         // count++;
-                        system.debug('inside later');
+                     //   system.debug('inside later');
                         obj.isDisciplinaryAction = true;
                         obj.documentId = sub.Public_Distribution_URL__c;
                         mapDesciplinaryAction.put(key,obj); 

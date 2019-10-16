@@ -26,7 +26,7 @@ public class PolarisFeedbackControllerTest {
                 Application_Method__c = 'General Application',
                 MUSW__Applicant__c =  con.Id);
             insert licObj;
-            System.debug('***licObj***'+licObj);
+                     //    System.debug('***licObj***'+licObj);
          
             //Insert  RenewalObj
             
@@ -38,7 +38,7 @@ public class PolarisFeedbackControllerTest {
                                                                             Renewal_Status__c='Draft');
             
             Insert renewalObj;
-            System.debug('***renewalObj'+renewalObj); 
+          //  System.debug('***renewalObj'+renewalObj); 
             User_Feedback__c feedbackObjRenew = new User_Feedback__c(Name='FeedbackName',
                                                                      Renewal_Reinstatement_Application__c=renewalObj.Id,
                                                                      Name__c=con.Id,
@@ -53,7 +53,7 @@ public class PolarisFeedbackControllerTest {
                                                Service_Request_Type__c='Update Legal Name',
                                                Status__c='Draft');
             insert AMRObj;
-            System.debug('***AMRObj'+AMRObj); 
+        //    System.debug('***AMRObj'+AMRObj); 
             User_Feedback__c feedbackObjAMR = new User_Feedback__c(Name='FeedbackName',
                                                                    AMR_Application__c=AMRObj.Id,
                                                                    Name__c=con.Id,
@@ -98,7 +98,7 @@ public class PolarisFeedbackControllerTest {
                                                                         Renewal_Status__c='Draft');
         
         Insert renewalObj;
-        System.debug('***renewalObj'+renewalObj); 
+      //  System.debug('***renewalObj'+renewalObj); 
         User_Feedback__c feedbackObjRenew = new User_Feedback__c(Name='FeedbackName',
                                                                  Renewal_Reinstatement_Application__c=renewalObj.Id,
                                                                  Name__c=con.Id,
@@ -113,7 +113,7 @@ public class PolarisFeedbackControllerTest {
                                                Service_Request_Type__c='Update Legal Name',
                                                Status__c='Draft');
             insert AMRObj;
-            System.debug('***AMRObj'+AMRObj); 
+          //  System.debug('***AMRObj'+AMRObj); 
             User_Feedback__c feedbackObjAMR = new User_Feedback__c(Name='FeedbackName',
                                                                    AMR_Application__c=AMRObj.Id,
                                                                    Name__c=con.Id,

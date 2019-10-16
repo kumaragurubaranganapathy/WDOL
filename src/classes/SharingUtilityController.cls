@@ -2,7 +2,7 @@
 * Name: SharingUtilityController
 * Type: Class
 * Description: Sharing Utility controller for ApexUserSharingModel
-* Date:        Developer/Company                 	Description
+* Date:        Developer/Company                    Description
 * ---------------------------------------------------------------------------------------------------------------------------------------- *
 * 08/16/2018   Srikanth Kottam/Deloitte           Initial Creation
 **/
@@ -35,7 +35,7 @@ public without sharing class SharingUtilityController {
         
         if(lstRes.isEmpty() == false )
         {
-            ErrorLogger.logDMLDatabaseResultErrors(UserInfo.getUserId(), null, lstRes, null,'sObject','Insert recordstobe inserted', 'Sharing_Utility_InsertRecords', 'SharingUtilityController','Severity', 'SharingUtilityController');
+            //ErrorLogger.logDMLDatabaseResultErrors(UserInfo.getUserId(), null, lstRes, null,'sObject','Insert recordstobe inserted', 'Sharing_Utility_InsertRecords', 'SharingUtilityController','Severity', 'SharingUtilityController');
         }
     }
     
@@ -54,7 +54,7 @@ public without sharing class SharingUtilityController {
             for (Database.DeleteResult dr: dlList) {
                 if (dr.isSuccess()) {
                 } else {
-                    ErrorLogger.logDMLDatabaseResultErrors(UserInfo.getUserId(), dlList,null, null,'sObject','Delete records', 'Sharing_Utility_DeleteRecords', 'SharingUtilityController','Severity', 'SharingUtilityController');
+                    //ErrorLogger.logDMLDatabaseResultErrors(UserInfo.getUserId(), dlList,null, null,'sObject','Delete records', 'Sharing_Utility_DeleteRecords', 'SharingUtilityController','Severity', 'SharingUtilityController');
                     lstRes.add(dr);
                     
                     //logDMLDatabaseResultErrors(String userId, Database.deleteResult[] deleteResult, Database.saveResult[] saveresult, Database.upsertResult[] upsertResult, String sObjectName, String eventType, String componentName, String errClassName, String severityLevel, String moduleName) ;
@@ -65,7 +65,7 @@ public without sharing class SharingUtilityController {
             }
             if(lstRes.isEmpty() == false )
             {
-              ErrorLogger.logDMLDatabaseResultErrors(UserInfo.getUserId(), lstRes,null, null,'sObject','Delete records', 'Sharing Utility DeleteRecords', 'SharingUtilityController','Severity', 'SharingUtilityController');
+              //ErrorLogger.logDMLDatabaseResultErrors(UserInfo.getUserId(), lstRes,null, null,'sObject','Delete records', 'Sharing Utility DeleteRecords', 'SharingUtilityController','Severity', 'SharingUtilityController');
             }
         }
      
@@ -84,7 +84,7 @@ public without sharing class SharingUtilityController {
             if (sr.isSuccess()) {
             } else {
                 lstRes.add(sr);
-                ErrorLogger.logDMLDatabaseResultErrors(UserInfo.getUserId(), null, null, results,'sObject','upsert records', 'Sharing_Utility_UpsertRecords', 'SharingUtilityController','Severity', 'SharingUtilityController');
+               // ErrorLogger.logDMLDatabaseResultErrors(UserInfo.getUserId(), null, null, results,'sObject','upsert records', 'Sharing_Utility_UpsertRecords', 'SharingUtilityController','Severity', 'SharingUtilityController');
                 //logDMLDatabaseResultErrors(String userId, Database.deleteResult[] deleteResult, Database.saveResult[] saveresult, Database.upsertResult[] upsertResult, String sObjectName, String eventType, String componentName, String errClassName, String severityLevel, String moduleName) ;
                 for (Database.Error err: sr.getErrors()) {
                 }
@@ -92,7 +92,7 @@ public without sharing class SharingUtilityController {
         }
         if(lstRes.isEmpty() == false )
             {
-            ErrorLogger.logDMLDatabaseResultErrors(UserInfo.getUserId(), null, null, lstRes,'sObject','upsertrecords', 'Sharing Utility UpsertRecords', 'SharingUtilityController','Severity', 'SharingUtilityController');
+            //ErrorLogger.logDMLDatabaseResultErrors(UserInfo.getUserId(), null, null, lstRes,'sObject','upsertrecords', 'Sharing Utility UpsertRecords', 'SharingUtilityController','Severity', 'SharingUtilityController');
         }   
         
     }
@@ -107,9 +107,9 @@ public without sharing class SharingUtilityController {
 
         if (ContactIds.size() > 0) {
             try {
-                users = [Select Id, ContactId from User where ContactId in: ContactIds AND UserType =: DOL_AppConstants.NULL_EMPTY_STRING +'PowerCustomerSuccess'];
+                users = [Select Id, ContactId from User where ContactId in: ContactIds AND UserType =: DOL_AppConstants.NULL_EMPTY_STRING + 'PowerCustomerSuccess' and ContactId!= null and UserType!=null];
             } catch (Exception e) {
-                ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'SharingUtilityController','Error Occured while querying the delegated users', 'shareRecords', 'LicVerification UsersharingModel', label.str_HIGH);
+                //ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'SharingUtilityController','Error Occured while querying the delegated users', 'shareRecords', 'LicVerification UsersharingModel', label.str_HIGH);
             }
         }
 
@@ -141,7 +141,7 @@ public without sharing class SharingUtilityController {
     public List < User_Sharing_Model__mdt > Sharing_Utility_queryCustomMetaDataRecords(String TriggeringObject, String TriggeringEvent) {
         List < User_Sharing_Model__mdt > customMdtShareRecords = new List < User_Sharing_Model__mdt > ();
         if (TriggeringObject != '') {
-            customMdtShareRecords = [select Id, DeveloperName, Object_Relationship__c, Shared_Object__c, Object_to_Share__c, Triggering_Event__c, Triggering_Object__c, User_Access_Level__c, Sharing_Reason__c,Created_By_Delegate__c from User_Sharing_Model__mdt where Triggering_Object__c =: TriggeringObject and Triggering_Event__c =: TriggeringEvent and Created_By_Delegate__c=false];
+            customMdtShareRecords = [select Id, DeveloperName, Object_Relationship__c, Shared_Object__c, Object_to_Share__c, Triggering_Event__c, Triggering_Object__c, User_Access_Level__c, Sharing_Reason__c,Created_By_Delegate__c from User_Sharing_Model__mdt where Triggering_Object__c =: TriggeringObject and Triggering_Object__c!= null and Triggering_Event__c =: TriggeringEvent and Triggering_Event__c!= null and Created_By_Delegate__c=false and Created_By_Delegate__c!=null];
             
         }
         
@@ -183,8 +183,9 @@ public without sharing class SharingUtilityController {
                         sobj = sobj.getSObject(objectRel[i]);
                     }
                 } catch (Exception e) {
-                    if(!Test.isRunningTest()) ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'SharingUtilityController', 'Error Occured while prepare a map of sObject', 'shareRecords', 'LicVerification UsersharingModel', label.Str_HIGH);
-                	system.debug('Exception in Sharing_Utility_BreakObjectRelationship: '+e);
+                    //if(!Test.isRunningTest()) ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'SharingUtilityController', 'Error Occured while prepare a map of sObject', 'shareRecords', 'LicVerification UsersharingModel', label.Str_HIGH);
+                    DOL_CreateErrorLog_Exception.logApplicationError(e);
+                 //   system.debug('Exception in Sharing_Utility_BreakObjectRelationship: '+e);
                 }
             }
         } else {
@@ -198,7 +199,8 @@ public without sharing class SharingUtilityController {
             shareRecords = Database.Query(QueryString); 
         }
         catch(exception e){
-            ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'SharingUtilityController', 'Error Occured while prepare a_map of sObject', 'shareRecords', 'LicVerification UsersharingModel', label.Str_HIGH);
+            //ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'SharingUtilityController', 'Error Occured while prepare a_map of sObject', 'shareRecords', 'LicVerification UsersharingModel', label.Str_HIGH);
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
         }
         
         return shareRecords;
@@ -222,7 +224,8 @@ public without sharing class SharingUtilityController {
                         sobj = sobj.getSObject(objectRel[i]);
                     }
                 } catch (Exception e) {
-                    ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'SharingUtilityController', 'Error Occured while prepare a map of sObject', 'shareRecords', 'LicVerification UsersharingModel', label.Str_HIGH);
+                    //ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'SharingUtilityController', 'Error Occured while prepare a map of sObject', 'shareRecords', 'LicVerification UsersharingModel', label.Str_HIGH);
+                    DOL_CreateErrorLog_Exception.logApplicationError(e);
                 }
             }
         } else {
@@ -258,7 +261,7 @@ public without sharing class SharingUtilityController {
             sObject sObj = Schema.getGlobalDescribe().get(ShareObjectName).newSObject();
             if(lstContactId != null){
             for(Id ContactId : lstContactId){
-            	Id UserId = null;
+                Id UserId = null;
                 if (ContactUserMap.get(ContactId) != null) {
                     UserId = ContactUserMap.get(ContactId);
                 }
@@ -273,10 +276,11 @@ public without sharing class SharingUtilityController {
                         ShareObjectRecords.add(sObj);  
                     }
                 }catch(exception e){
-                   ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'SharingUtilityController','Error Occured while creating the sharerecord', 'dynamicShareObjectUpsert', 'SharingUtilityController',label.Str_HIGH); 
+                    //ErrorLogger.logGeneralException(e, UserInfo.getUserId(), 'SharingUtilityController','Error Occured while creating the sharerecord', 'dynamicShareObjectUpsert', 'SharingUtilityController',label.Str_HIGH); 
+                    DOL_CreateErrorLog_Exception.logApplicationError(e);
                 }
             }
-        	}
+            }
         }
         
         if(ShareObjectRecords.size()>0){
@@ -290,8 +294,9 @@ public without sharing class SharingUtilityController {
             AccountContacts = [select MUSW__Account__c, MUSW__Contact__c from MUSW__Account_Contact__c where MUSW__Account__c In: AccountsObjectMap.keySet() AND Associate_Status__c =: DOL_AppConstants.NULL_EMPTY_STRING + 'Active'];
         }
         Catch(Exception e) {
-             ErrorLogger.logGeneralException(e, UserInfo.getUserId(), ControllerName, 'Error Occured while querying Account Contact Records', 'shareRecords', ControllerName, label.Str_HIGH);
-         }
+            //ErrorLogger.logGeneralException(e, UserInfo.getUserId(), ControllerName, 'Error Occured while querying Account Contact Records', 'shareRecords', ControllerName, label.Str_HIGH);
+            DOL_CreateErrorLog_Exception.logApplicationError(e); 
+        }
         return AccountContacts;
     }
     
@@ -307,38 +312,38 @@ public without sharing class SharingUtilityController {
            Map<Id,Id> AccountSobject = new Map<Id,Id>();
            List<MUSW__Fee__c> feeList = new List<MUSW__Fee__c>();
            List<User_Sharing_Model__mdt> customMdtShareRecords = Sharing_Utility_queryCustomMetaDataRecords(ObjectName, TriggeringEvent);
-           System.debug('customMdtShareRecords in line 338' +customMdtShareRecords);
+         //  System.debug('customMdtShareRecords in line 338' +customMdtShareRecords);
            Set<User_Sharing_Model__mdt> newcustomMdtShareRecords= new Set<User_Sharing_Model__mdt>();
            String feeQuery;
            if(ObjectName == 'MUSW__Fee__c'){
                feeQuery = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Name, MUSW__License2__c, MUSW__Permit2__c from '+ObjectName+' where ID IN :RecordIds';
            }
-           system.debug('feeQuery>>>'+feeQuery);
+       //    system.debug('feeQuery>>>'+feeQuery);
            if (feeQuery != null && feeQuery != '') {
                 feeList = Database.Query(feeQuery);
            }
-           system.debug('feeList>>>'+feeList);
+         //  system.debug('feeList>>>'+feeList);
            if(feeList.size() > 0){
-           	for(MUSW__Fee__c fee : feeList){
+            for(MUSW__Fee__c fee : feeList){
                for(User_Sharing_Model__mdt customMdtShareRecord: customMdtShareRecords){
                    if(fee.MUSW__License2__c != null){
                        if(customMdtShareRecord.DeveloperName.contains('Credential')){
-                       		newcustomMdtShareRecords.add(customMdtShareRecord);
-                       		system.debug('Entered MUSW__License2__c');
+                            newcustomMdtShareRecords.add(customMdtShareRecord);
+                         //   system.debug('Entered MUSW__License2__c');
                        }    
                     } else if(fee.MUSW__Permit2__c != null){
                         if(customMdtShareRecord.DeveloperName.contains('Permit')){
                             newcustomMdtShareRecords.add(customMdtShareRecord);
-                            system.debug('Entered MUSW__Permit2__c');
+                         //   system.debug('Entered MUSW__Permit2__c');
                         }   
                     } else{
                             newcustomMdtShareRecords.add(customMdtShareRecord);
-                            system.debug('Entered Else');
+                         //   system.debug('Entered Else');
                     }
                }
               }
            }
-           system.debug('newcustomMdtShareRecords>>>'+newcustomMdtShareRecords);
+      //     system.debug('newcustomMdtShareRecords>>>'+newcustomMdtShareRecords);
            try {
                for (User_Sharing_Model__mdt customMdtShareRecord: newcustomMdtShareRecords) {
                    if (customMdtShareRecord.Shared_Object__c != null) {
@@ -348,7 +353,7 @@ public without sharing class SharingUtilityController {
                                if (QueryString != null && QueryString != '') {
                                    sObjectRecordList = Database.Query(QueryString);
                                    
-                                   System.debug('Entered' +sObjectRecordList);
+                              //     System.debug('Entered' +sObjectRecordList);
                                    if (sObjectRecordList.size() > 0) {
                                        for(sObject sObj:sObjectRecordList) {
                                            Sharing_Utility_BreakObjectRelationship(customMdtShareRecord.Object_Relationship__c, AccountIds, AccountSobject, sObj);
@@ -360,7 +365,8 @@ public without sharing class SharingUtilityController {
                    }
                }
            }catch(exception e){
-               ErrorLogger.logGeneralException(e, UserInfo.getUserId(), ControllerName, 'ShareRecords CreatedByDelegate', 'shareRecords', ControllerName, Label.Str_HIGH);
+               //ErrorLogger.logGeneralException(e, UserInfo.getUserId(), ControllerName, 'ShareRecords CreatedByDelegate', 'shareRecords', ControllerName, Label.Str_HIGH);
+               DOL_CreateErrorLog_Exception.logApplicationError(e);
            }
     }
     
@@ -425,7 +431,9 @@ public without sharing class SharingUtilityController {
         try{
             if(customMdtShareRecords.size()>0)
             {
-                for (User_Sharing_Model__mdt customMdtShareRecord: customMdtShareRecords) {
+                for (User_Sharing_Model__mdt customMdtShareRecord: [select Id, DeveloperName, Object_Relationship__c, Shared_Object__c, Sharing_Reason__c, Object_to_Share__c, Triggering_Event__c, Triggering_Object__c, User_Access_Level__c from User_Sharing_Model__mdt where Triggering_Object__c =:ObjectName
+            and Created_By_Delegate__c = true
+        ]) {
                     if (customMdtShareRecord.Shared_Object__c != null) {
                         Map < String, Schema.SObjectField > fieldMap = Sharing_Utility_getfieldMap(customMdtShareRecord.Shared_Object__c); 
                         List < Id > RecordIds = new List < Id > ();
@@ -482,7 +490,8 @@ public without sharing class SharingUtilityController {
                 }
             }
         }catch(Exception e){
-            ErrorLogger.logGeneralException(e, UserInfo.getUserId(), ControllerName, ControllerName, 'ShareRecords CreatedByDelegate', ControllerName, label.str_HIGH);
+            //ErrorLogger.logGeneralException(e, UserInfo.getUserId(), ControllerName, ControllerName, 'ShareRecords CreatedByDelegate', ControllerName, label.str_HIGH);
+            DOL_CreateErrorLog_Exception.logApplicationError(e);
         }
     }
 }

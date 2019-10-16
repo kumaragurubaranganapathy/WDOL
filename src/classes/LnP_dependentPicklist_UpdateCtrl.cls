@@ -1,5 +1,5 @@
 public class LnP_dependentPicklist_UpdateCtrl {
-	
+    
     @AuraEnabled 
     public static Map<String, List<String>> getDependentMap(sObject objDetail, string contrfieldApiName,string depfieldApiName) {
         try{
@@ -47,8 +47,8 @@ public class LnP_dependentPicklist_UpdateCtrl {
             }
         }
         string jsonstring = JSON.serialize(objResults);
-        system.debug('jsonstring'+jsonstring);
-        system.debug('objResults'+objResults.keySet());
+      //  system.debug('jsonstring'+jsonstring);
+        //system.debug('objResults'+objResults.keySet());
         return objResults;
         }catch(Exception ex)
         {

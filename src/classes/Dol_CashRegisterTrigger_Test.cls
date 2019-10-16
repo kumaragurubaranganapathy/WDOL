@@ -13,7 +13,7 @@ public class Dol_CashRegisterTrigger_Test {
             
             Cash_Register__c cashRegister = DOL_TestDataFactory.createValidationRoomCashRegister(validationRoomRecTypeId, 100, 100, 100, 100);
         }catch(Exception ex){
-            System.debug('ex:'+ex.getMessage());
+            //System.debug('ex:'+ex.getMessage());
             system.assert(ex.getMessage().contains('is not matching'));
         }
         test.stopTest();

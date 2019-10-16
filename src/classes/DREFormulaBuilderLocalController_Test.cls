@@ -8,7 +8,7 @@ public class DREFormulaBuilderLocalController_Test {
         dreFormulaBuild.selectedObject = DOL_AppConstants.LICENSE;
         dreFormulaBuild.getObjects();
         test.stopTest();
-        system.debug('Complete');
+        //System.debug('Complete');
     }
     
 }

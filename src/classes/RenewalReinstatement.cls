@@ -79,8 +79,8 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
            system.debug('renewalIdList::'+ renewalIdList);
            Map<Id,Boolean> autoReneMap = new Map<Id,Boolean>();
            List<MUSW__Review__c> revList = new List<MUSW__Review__c>();
-           Set<MUSW__Review__c> setReview = new Set<MUSW__Review__c>();
-           List<MUSW__Review__c> resultRevList = new List<MUSW__Review__c>();
+           //Set<MUSW__Review__c> setReview = new Set<MUSW__Review__c>();
+           //List<MUSW__Review__c> resultRevList = new List<MUSW__Review__c>();
            List<Renewal_Application__c> renewList = new List<Renewal_Application__c>();
            List<Renewal_Application__c> renewToUpdate = new List<Renewal_Application__c>();
            List<String> LicensetoRenew =  new List<String>();
@@ -91,8 +91,8 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
            List<Auto_Renew_Reinstate__mdt> reinstateMdt = [select Id,DeveloperName,License_Type__c  from Auto_Renew_Reinstate__mdt where DeveloperName =: DOL_AppConstants.NULL_EMPTY_STRING + 'Auto_Reinstate' and DeveloperName != null limit 1];
            LicensetoReinstate = (!reinstateMdt.isEmpty())?reinstateMdt[0].License_Type__c.split(',') : null;
            system.debug('LicensetoReinstate::'+ LicensetoReinstate);
-           List<Renewal_Application__c> getRenewRecords = [select id,Name,License__r.MUSW__Expiration_Date__c,Renewal_Status__c,licenserecordtype__c,AccountStatus__c,Physical_Address_Modified__c,renewal_reinstatement_type__c,license_business_name__c,license_number__c,applicant_full_name__c,License__c,application_type__c,Credential_Type__c from Renewal_Application__c where id IN:renewalIdList];
-           system.debug('inside renewal');
+           List<Renewal_Application__c> getRenewRecords = [select id,Name,License__r.MUSW__Expiration_Date__c,Renewal_Status__c,licenserecordtype__c,AccountStatus__c,Physical_Address_Modified__c,renewal_reinstatement_type__c,license_business_name__c,license_number__c,applicant_full_name__c,License__c,application_type__c,Credential_Type__c from Renewal_Application__c where id IN:renewalIdList limit 1];
+           system.debug('**inside renewal records'+getRenewRecords);
            for(Renewal_Application__c renewal : getRenewRecords){
                System.debug('renewal:: '+renewal.Renewal_Status__c );
                system.debug('renewal.License__r.MUSW__Primary_Licensee__r.AccountStatus__c ');
@@ -129,20 +129,35 @@ public static Map<Id,Boolean> autoRenewReinstatement(List<Renewal_Application__c
                 rev.License__c = ren.License__c;
                 rev.Renewal_Application__c = ren.id;
                 revList.add(rev);
+                System.debug('***revList'+revList);
                 if(autoReneMap.keyset().contains(ren.id)){
                    ren.Auto_Renew__c = autoReneMap.get(ren.id);
                    ren.Renewal_Status__c = DOL_AppConstants.COMPLETE;
-                   
+                   System.debug('***Inside If***');
                 }else{
                     ren.Renewal_Status__c = DOL_AppConstants.IN_REVIEW;
+                    System.debug('***Inside ELSE***');
                 }
                 renewToUpdate.add(ren);
+                System.debug('***renewToUpdate'+renewToUpdate);
            
            }
-           setReview.addAll(revList);
-           resultRevList.addAll(setReview);
-           if(!resultRevList.isEmpty()){
-                insert resultRevList;
+           //setReview.addAll(revList);
+           //resultRevList.addAll(setReview);
+           for(integer i=0;i<revList.size();i++) {
+             MUSW__Review__c revReci = revList.get(i);
+         for(integer j=0;j<revList.size();j++) {
+
+             MUSW__Review__c revRecj = revList.get(j); 
+             if(revReci.Name == revRecj.Name && i!=j) {
+                 revList.remove(j); 
+                 system.debug('REMOVED::'+j);  
+             }
+         }
+     }
+           
+           if(!revList.isEmpty()){
+                insert revList;
            }
            if(!renewToUpdate.isEmpty()){
                 update renewToUpdate;

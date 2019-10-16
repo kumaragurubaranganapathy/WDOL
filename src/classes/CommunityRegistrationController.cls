@@ -19,6 +19,7 @@ public without sharing class CommunityRegistrationController {
                 for (Integer i = 0; i < dmEx.getNumDml(); i++) {
                     Database.rollback(sp);
                 }
+                throw new AuraHandledException('An error occurred: '+dmEx.getMessage());
             }
             try{
                 if (contactRecord != null ) {
@@ -27,6 +28,7 @@ public without sharing class CommunityRegistrationController {
             } catch(DMLException dmEx) {
                 Database.rollback(sp);
                 successmsg = dmEx.getMessage(); 
+                throw new AuraHandledException('An error occurred: '+dmEx.getMessage());
             }
             
         }
@@ -36,7 +38,8 @@ public without sharing class CommunityRegistrationController {
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
+            
         }
     }
     public static Contact handleAccountContactCreation(String firstN,String middleN,String lastN,String phoneN,String email,String pwd,String confirmpwd, String birthdate) {
@@ -47,7 +50,7 @@ public without sharing class CommunityRegistrationController {
         ID DEFAULT_ACCOUNT_OWNERID =  users[0].Id;
         Account acc = new Account(name = firstN + middleN + lastN,OwnerId = DEFAULT_ACCOUNT_OWNERID);
         insert acc;
-        System.debug('Account Creation done' + acc.id);                                
+        //System.debug('Account Creation done' + acc.id);                                
         
         retRes = new Contact(
             LastName = lastN,
@@ -58,19 +61,19 @@ public without sharing class CommunityRegistrationController {
         );
         
         insert retRes ;
-        System.debug('Contact Creation done' + retRes.id);                                      
+        //System.debug('Contact Creation done' + retRes.id);                                      
         
         return retRes ;
         }
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     public static String handleCommunityUserOperations(Contact con,  Id accId , string passwordIn  ) {
         try{
-        system.debug('inside handle');
+        //System.debug('inside handle');
         profile profileId = [SELECT ID FROM profile WHERE name=: DOL_AppConstants.NULL_EMPTY_STRING + 'eSLA Customer Community Plus Login User'];
         String successmsg = DOL_AppConstants.NULL_EMPTY_STRING;
         try {
@@ -113,8 +116,9 @@ public without sharing class CommunityRegistrationController {
            
         } catch (Exception ex){
             successmsg = ex.getMessage();
-            system.debug('exception'+ex.getMessage());
-            successmsg = ex.getMessage();        
+            //System.debug('exception'+ex.getMessage());
+            successmsg = ex.getMessage();  
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
         
         return successmsg ;
@@ -122,7 +126,7 @@ public without sharing class CommunityRegistrationController {
         catch(Exception ex)
         {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
-            return null;
+            throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
     

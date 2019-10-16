@@ -17,8 +17,8 @@
      database.executebatch(autoCloseApplicationBatch);
    }
    catch (Exception e){
-     System.debug('Scheduler Exception');
-     DOL_CreateErrorLog_Exception.createErrorLogs(e,'DOL_Batch_ApplictionsStatusUpdateScheduler','execute');
+     //System.debug('Scheduler Exception');
+     DOL_CreateErrorLog_Exception.logApplicationError(e);
    }
   }
   

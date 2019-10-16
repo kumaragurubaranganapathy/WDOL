@@ -42,7 +42,7 @@ public class DOL_ePaymentSessionTransferDetails {
 											String paymentMethod,String relatedContactId,String cartId,
 											List<String> sfdcFeeIds, Boolean isPortalUser)
 	{
-		System.debug('input for ePaymentTransferDetails, productCode '+productCode+' totalDueAmountSelected '+totalDueAmountSelected+' paymentMethod '+paymentMethod+' relatedContactId '+relatedContactId+' cartId '+cartId+' sfdcFeeIds '+sfdcFeeIds);
+		////System.debug('input for ePaymentTransferDetails, productCode '+productCode+' totalDueAmountSelected '+totalDueAmountSelected+' paymentMethod '+paymentMethod+' relatedContactId '+relatedContactId+' cartId '+cartId+' sfdcFeeIds '+sfdcFeeIds);
 		this.productCode = productCode;
 		this.totalDueAmountSelected = totalDueAmountSelected;		
         this.paymentMethod = paymentMethod;

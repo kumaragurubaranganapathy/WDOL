@@ -104,7 +104,7 @@ public with sharing class LightningSelfRegisterControllerTest {
         try{
            System.assertEquals(LightningSelfRegisterController.setExperienceId(null),null );
         }catch(Exception e){
-            system.debug('Exception '+e);
+            //system.debug('Exception '+e);
         }
                 
     } 
@@ -114,7 +114,7 @@ public with sharing class LightningSelfRegisterControllerTest {
             System.assertEquals(LightningSelfRegisterController.setExperienceId(''),null );
         }
         catch(Exception e){
-            system.debug('Exception '+e);
+           // system.debug('Exception '+e);
         }
         
     } 

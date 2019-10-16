@@ -8,7 +8,7 @@ public with sharing class LightningLoginFormControllerTest {
          System.assertEquals('Argument 1 cannot be null', LightningLoginFormController.login('testUser', null, null));
           System.assertEquals('Argument 1 cannot be null', LightningLoginFormController.login(' ', 'null', null));
      }catch(Exception e){
-         system.debug('Exception '+e);
+        // system.debug('Exception '+e);
      }
  }
 
@@ -18,7 +18,7 @@ public with sharing class LightningLoginFormControllerTest {
          LightningLoginFormController controller = new LightningLoginFormController();
          System.assertNotEquals(controller, null);
      }catch(Exception e){
-         system.debug('Exception '+e);
+         // system.debug('Exception '+e);
      }
      
  }
@@ -28,7 +28,7 @@ public with sharing class LightningLoginFormControllerTest {
      try{
           System.assertEquals(true, LightningLoginFormController.getIsUsernamePasswordEnabled());
      }catch(Exception e){
-         system.debug('Exception '+e);
+         //system.debug('Exception '+e);
      }
  
  }
@@ -38,7 +38,7 @@ public with sharing class LightningLoginFormControllerTest {
      try{
          System.assertEquals(false, LightningLoginFormController.getIsSelfRegistrationEnabled()); 
      }catch(Exception e){
-         System.debug('Exception '+e);
+        // System.debug('Exception '+e);
      }
  
  }
@@ -48,7 +48,7 @@ public with sharing class LightningLoginFormControllerTest {
      try{
  System.assertEquals(null, LightningLoginFormController.getSelfRegistrationUrl());         
      }catch(Exception e){
-         system.debug('Exception '+e);
+        // system.debug('Exception '+e);
      }
  
  }
@@ -59,7 +59,7 @@ public with sharing class LightningLoginFormControllerTest {
            Auth.AuthConfiguration authConfig = LightningLoginFormController.getAuthConfig();
         System.assertNotEquals(null, authConfig);  
         }catch(Exception e){
-            system.debug(' Exception '+e);
+          //  system.debug(' Exception '+e);
         }
        
     }
@@ -69,7 +69,7 @@ public with sharing class LightningLoginFormControllerTest {
         try{
            System.assertEquals(LightningLoginFormController.setExperienceId(null),null );
         }catch(Exception e){
-            system.debug('Exception '+e);
+            //system.debug('Exception '+e);
         }
                 
     } 
@@ -80,7 +80,7 @@ public with sharing class LightningLoginFormControllerTest {
             LightningLoginFormController.getForgotPasswordUrl();
         }
         catch(Exception e){
-            system.debug('Exception '+e);
+           // system.debug('Exception '+e);
         }
     }
     
@@ -90,7 +90,7 @@ public with sharing class LightningLoginFormControllerTest {
             System.assertEquals(LightningLoginFormController.setExperienceId(''),null );
         }
         catch(Exception e){
-            system.debug('Exception '+e);
+            //system.debug('Exception '+e);
         }
         
     } 

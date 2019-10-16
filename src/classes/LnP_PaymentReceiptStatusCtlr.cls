@@ -27,10 +27,10 @@ public class LnP_PaymentReceiptStatusCtlr {
         totalAmount.put('ACH',achAmount);
         return totalAmount;
     }
-	@auraEnabled 
+    @auraEnabled 
     public static Map<String,String> getPaymentTotals(String paymentParameter,Date selectedDate){
-        system.debug('PaymentParameter=='+paymentParameter);
-        system.debug('selectedDate=='+selectedDate);
+     //   system.debug('PaymentParameter=='+paymentParameter);
+       // system.debug('selectedDate=='+selectedDate);
         Map<String,String> totalAmount = new Map<String,String>();
         try{
             List<MUSW__Receipt__c> receiptList = getPaymentReceiptRecords(paymentParameter,selectedDate);
@@ -70,14 +70,14 @@ public class LnP_PaymentReceiptStatusCtlr {
         }catch(Exception ex){
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
         }
-        system.debug('total Amount==='+totalAmount);
+     //   system.debug('total Amount==='+totalAmount);
         return totalAmount;
     }
 
     @AuraEnabled
     public static string paymentReceiptRecordsUpdate(String paymentParameter,Date selectedDate){
-        system.debug('PaymentParameter=='+paymentParameter);
-        system.debug('selectedDate=='+selectedDate);
+     //   system.debug('PaymentParameter=='+paymentParameter);
+     //   system.debug('selectedDate=='+selectedDate);
         String status = '';
         try{
             List<MUSW__Receipt__c> receiptList =  getPaymentReceiptRecords(paymentParameter,selectedDate);
@@ -91,7 +91,7 @@ public class LnP_PaymentReceiptStatusCtlr {
                     updateReceiptList.add(receiptRec);
                 }
             }
-            system.debug('updateReceiptList==='+updateReceiptList);
+         //   system.debug('updateReceiptList==='+updateReceiptList);
             if(!updateReceiptList.isEmpty()){
                 upsert updateReceiptList;
                 status = 'success';
@@ -102,12 +102,12 @@ public class LnP_PaymentReceiptStatusCtlr {
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
             status = 'error';
         }
-        system.debug('total Amount==='+status);
+    //    system.debug('total Amount==='+status);
         return status;
     }
     public static List<MUSW__Receipt__c> getPaymentReceiptRecords(String paymentParameter,Date selectedDate){
-        system.debug('PaymentParameter=='+paymentParameter);
-        system.debug('selectedDate=='+selectedDate);
+    //    system.debug('PaymentParameter=='+paymentParameter);
+        //system.debug('selectedDate=='+selectedDate);
         List<MUSW__Receipt__c> receiptList = new List<MUSW__Receipt__c>();
         try{
             String[] pmtTypeArray = null;
@@ -123,7 +123,7 @@ public class LnP_PaymentReceiptStatusCtlr {
             DateTime endDateTime = DateTime.newInstance(startDate,Time.newInstance(23,59,59,999));
             if(String.isNotBlank(paymentParameter)){
                 pmtTypeArray = paymentParameter.split('-');
-                system.debug('selectedDate=='+selectedDate);
+                //system.debug('selectedDate=='+selectedDate);
                 if(pmtTypeArray != null && pmtTypeArray.size() > 0){
                     if(String.isNotBlank(pmtTypeArray[0])){
                         isAmexChecked = Boolean.valueOf(pmtTypeArray[0]);
@@ -171,9 +171,9 @@ public class LnP_PaymentReceiptStatusCtlr {
                         selectQueryString += ' MUSW__Payment_Method__c=\'ACH\'';
                     }
                     selectQueryString += ' )'; 
-                    system.debug('QueryString=='+selectQueryString);  
+                    //system.debug('QueryString=='+selectQueryString);  
                     receiptList =  Database.query(selectQueryString);
-                    system.debug('receiptList=='+receiptList);
+                    //system.debug('receiptList=='+receiptList);
                 }
             }
 
@@ -183,8 +183,8 @@ public class LnP_PaymentReceiptStatusCtlr {
         return receiptList;
     }
     public static String formatCurrency(Decimal i) {
-		if(i==null) i=0;
-	    String s = ( i.setScale(2) + 0.001 ).format();
-	    return s.substring(0,s.length()-1);
-	}
+        if(i==null) i=0;
+        String s = ( i.setScale(2) + 0.001 ).format();
+        return s.substring(0,s.length()-1);
+    }
 }

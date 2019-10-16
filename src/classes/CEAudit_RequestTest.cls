@@ -1,6 +1,6 @@
 @isTest
 private class CEAudit_RequestTest {
-   @isTest
+    @isTest
     static void requestDataFetch(){
         Id accRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('User_Account').getRecordTypeId();
         Account acc = DOL_TestDataFactory.createAccount(accRecordTypeId);
@@ -11,8 +11,9 @@ private class CEAudit_RequestTest {
 
         Test.startTest();
         String requestRecordFetched = (CEAudit_Request.getLicenseRecordData(request.Id)!=null) ? ('The request record is '+CEAudit_Request.getLicenseRecordData(request.Id)) : ('The request record fetched is null');
-        CEAudit_Request.getLicenseRecordData(lic.Id);
+        Id reqId = '5003000000D8cuIQAA';
+        CEAudit_Request.getLicenseRecordData(reqId);
         Test.stopTest();
-        System.debug('Final Request fetched::'+requestRecordFetched);
+        //System.debug('Final Request fetched::'+requestRecordFetched);
     }
 }

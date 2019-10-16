@@ -25,7 +25,7 @@ public with Sharing class AccountValidator {
 ' Parent__r.Parent__r.Parent__r.Credential_Type__c = :grouping and ' + applicationType + ' = true';*/
             
             query = SQOL_CREDENTIAL_FILTER_FOR_GROUPING;
-            System.debug('Query1::'+query);
+            //System.debug('Query1::'+query);
         }
         else{
             //COMMENTING AS PER SECURITY STANDARDS REPORT;
@@ -34,11 +34,11 @@ public with Sharing class AccountValidator {
 ' Parent__r.Parent__r.Parent__r.Program_Area__c = :grouping and ' + applicationType + ' = true';*/
             
             query = SQOL_PROGRAM_AREA_FILTER_FOR_GROUPING;
-            System.debug('Query2::'+query);
+            //System.debug('Query2::'+query);
             
         }
         List<Application_Field__c> lstRequiredFields = Database.query(query);
-        System.debug('FINAL QUERY::'+Database.query(query));
+        //System.debug('FINAL QUERY::'+Database.query(query));
         Set<String> setRequiredFields = new Set<String>();
         for(Application_Field__c reqField : lstRequiredFields){
             setRequiredFields.add(reqField.Name);

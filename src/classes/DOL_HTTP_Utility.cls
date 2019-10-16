@@ -1,18 +1,22 @@
-/**
+/*****************************************************************************
 * User Story: 2298
 * Class Name: DOL_HTTP_Utility
 * Test Class Name: ****
 * Description: HTTP utility class
 * Date:        Developer/Company                    Description
-* ----------------------------------------------------------------------------*
+* ---------------------------------------------------------------------------*
 * 07/08/2019   Laltu Banerjee/Deloitte           Initial Creation
 **/
 public class DOL_HTTP_Utility {
     
-    public static HttpResponse doHttpRequest(String url,String requestType, String requestBody, String urlParams, String headers){
+    public static HttpResponse doHttpRequest(String url,
+                                             String requestType, 
+                                             String requestBody, 
+                                             String urlParams, 
+                                             String headers){
         List<HttpApiHeader> httpApiHeaders = null;
         List<HttpUrlParam> httpUrlParams = null;
-        String params = '';
+        String params = DOL_AppConstants.NULL_EMPTY_STRING;
         if(headers != null && headers != '')
         	httpApiHeaders = new HttpApiHeader().parse(headers);
         if(urlParams != null && urlParams != '')
@@ -31,14 +35,19 @@ public class DOL_HTTP_Utility {
         for(HttpApiHeader h : httpApiHeaders){
             req.setHeader(h.key, h.value);
         }
-        System.debug('req = '+req);
+        //System.debug('req = '+req);
         Http http = new Http();
         return http.send(req);
     }
 
-    public static HttpResponse doHttpRequest(String url,String requestType, String requestBody, Map<String,String> paramMap, Map<String,String> headerMap ){
+    public static HttpResponse doHttpRequest(String url,
+                                             String requestType, 
+                                             String requestBody, 
+                                             Map<String,String> paramMap, 
+                                             Map<String,String> headerMap ){
+        
         List<HttpApiHeader> httpApiHeaders = null;
-        String params = '';
+        String params = DOL_AppConstants.NULL_EMPTY_STRING;
         if(headerMap != null && headerMap.size() > 0 ){
             httpApiHeaders = new List<HttpApiHeader>();
             for( String hm : headerMap.keySet()){
@@ -55,7 +64,7 @@ public class DOL_HTTP_Utility {
                 req.setHeader(h.key, h.value);
             }
         }
-        System.debug('req = '+req);
+        //System.debug('req = '+req);
         Http http = new Http();
         return http.send(req);
 

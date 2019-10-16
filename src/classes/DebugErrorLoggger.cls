@@ -4,21 +4,21 @@ public class DebugErrorLoggger implements BGCM.ErrorLogger {
     
     /** Receive notification of a potentially system recoverable error  - DO NOT Change this method, internal to BasicGov */
     public void logError(Exception e) {
-        System.debug('An exception has occurred with message : [' +e.getMessage() + '] of type [' + e.getTypeName() + ']' );
+        //System.debug('An exception has occurred with message : [' +e.getMessage() + '] of type [' + e.getTypeName() + ']' );
         log_into_object(e, 'Critical','BasicGov',null,null,null,null,null,null);
      } //end method
 
 
     /** Receive notification of a non-recoverable error - DO NOT Change this method, internal to BasicGov */
     public void logFatalError(Exception e){
-        System.debug('An exception has occurred with message : [' +e.getMessage() + '] of type [' + e.getTypeName() + ']' );
+        //System.debug('An exception has occurred with message : [' +e.getMessage() + '] of type [' + e.getTypeName() + ']' );
         log_into_object(e, 'Fatal','BasicGov',null,null,null,null,null,null); 
     }//End Method
 
 
     /** Receive notification of a system warning - DO NOT Change this method, internal to BasicGov */
     public void logWarning(Exception e) {
-        System.debug('An exception has occurred with message : [' +e.getMessage() + '] of type [' + e.getTypeName() + ']' );
+        //System.debug('An exception has occurred with message : [' +e.getMessage() + '] of type [' + e.getTypeName() + ']' );
         log_into_object(e, 'Warning','BasicGov',null,null,null,null,null,null);
     }//end Method
     

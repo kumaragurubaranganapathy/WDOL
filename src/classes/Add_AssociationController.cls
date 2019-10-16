@@ -8,6 +8,7 @@ public with sharing class Add_AssociationController {
         List<MUSW__License2__c> results;    
         if (Schema.sObjectType.MUSW__License2__c.isAccessible()){   
         results = [SELECT Id,Name,MUSW__Applicant__c FROM MUSW__License2__c WHERE Name =: searchLicense limit 1];
+            //System.debug('Results::'+results);
         }
         
         if(!results.isEmpty()){
@@ -30,9 +31,9 @@ public with sharing class Add_AssociationController {
             }
             try{
                 insert assc ;   
-                System.debug('assc::'+assc);
+                //System.debug('assc::'+assc);
             }catch(Exception e){
-                System.debug('exception::'+e);
+                //System.debug('exception::'+e);
                 DOL_CreateErrorLog_Exception.logApplicationError(e);
                 
                 throw new AuraHandledException('An error occurred: '+e.getMessage());
@@ -53,7 +54,7 @@ public with sharing class Add_AssociationController {
      public static List<Associations__c> getAssociations(Id parentId) {
          try{
          List<Associations__c> listAssoc = [select id,Name__c,Child_Contact_Name__c,Child_License_Name__c,Parent_License_Name__c,Submitted_Date__c from Associations__c where Parent_License__c =:parentId];
-         System.debug('listAssoc::'+listAssoc);
+         //System.debug('listAssoc::'+listAssoc);
          return listAssoc;
          }
            catch(Exception ex)

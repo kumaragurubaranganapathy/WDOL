@@ -1,6 +1,6 @@
 public class Polaris_UtilityClass {
     
-    public  EmailTemplate getEmailTemplate(string templateName) {
+    public EmailTemplate getEmailTemplate(string templateName) {
         List<EmailTemplate> emailTemplateList = [SELECT Id, Subject, HtmlValue
                                                  FROM EmailTemplate
                                                  WHERE Name =: templateName
@@ -28,10 +28,10 @@ public class Polaris_UtilityClass {
     public static List<String> getPicklist(){
         List<String> options = new List<String>();
       //  Schema.SObjectType sobject = 
-      system.debug('inaise it');
+     // system.debug('inaise it');
         {
             Schema.DescribeFieldResult fieldResult = MUSW__License2__c.Credential_Type__c.getDescribe();
-            System.debug('fieldResult---->>> ' + fieldResult);
+        //    System.debug('fieldResult---->>> ' + fieldResult);
             List<Schema.PicklistEntry> pList = fieldResult.getPicklistValues();
             for (Schema.PicklistEntry p: pList) {
                 options.add(p.getLabel());
@@ -44,10 +44,10 @@ public class Polaris_UtilityClass {
     public static List<String> getProgramPicklist(){
         List<String> options = new List<String>();
         //  Schema.SObjectType sobject = 
-        system.debug('inaise it');
+     //   system.debug('inaise it');
         {
             Schema.DescribeFieldResult fieldResult = MUSW__License2__c.Application_Type__c.getDescribe();
-            System.debug('fieldResult---->>> ' + fieldResult);
+          //  System.debug('fieldResult---->>> ' + fieldResult);
             List<Schema.PicklistEntry> pList = fieldResult.getPicklistValues();
             for (Schema.PicklistEntry p: pList) {
                 options.add(p.getLabel());

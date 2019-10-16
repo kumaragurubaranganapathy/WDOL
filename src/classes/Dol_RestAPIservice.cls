@@ -138,7 +138,7 @@ public class Dol_RestAPIservice {
             String requestPayload = json.serialize(imageBody);
             req.setBody(requestPayload);
             Http http = new Http();
-             System.debug('getTokenImage req=='+req.getBody());
+			 System.debug('getTokenImage req=='+req.getBody());
             if(!Test.isRunningTest()) {
                 res = http.send(req);
                 System.debug('getTokenImage response**'+res);

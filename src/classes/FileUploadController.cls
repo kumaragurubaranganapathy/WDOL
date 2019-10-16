@@ -4,7 +4,7 @@ public class FileUploadController {
     public static void deleteFiles(Id documentId){
         try{
         List<ContentDocument> contdoc = [select id from contentDocument where id =: documentId];
-        system.debug('contdoc'+contdoc);
+        //System.debug('contdoc'+contdoc);
         delete contdoc;
         }catch(Exception ex)
         {
@@ -17,7 +17,7 @@ public class FileUploadController {
     public static Integer FileSize(Id docId){
         try{
         List<ContentDocument> contdoc = [select id,ContentSize from contentDocument where id =: docId];
-        system.debug('contdoc ------------->'+contdoc);
+        //System.debug('contdoc ------------->'+contdoc);
         return contdoc[0].ContentSize;
         }catch(Exception ex)
         {
