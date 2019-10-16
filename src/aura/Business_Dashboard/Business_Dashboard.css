@@ -1,12 +1,7 @@
 .THIS.business-outer-wrapper{
     padding: 2rem 8.3vw;
 }
-/*.THIS .license-outer-wrapper{
-    padding:40px 100px;
-    width:100%;
-}*/
 .THIS .page-title{
-    font-size:1.875rem;
     color:t(LnGFormTitleColor);
     font-weight:600;
 }
@@ -35,7 +30,6 @@
     margin:0.5rem 0 1rem;
 }
 .THIS .screen-title{
-    font-size:1.875rem;
     font-weight:600;
     color:t(LnGFormTitleColor);  
     margin-bottom:1.5rem;
@@ -92,11 +86,11 @@
     padding-bottom:1rem;
 }
 .THIS .section-header{  
-  font-size: 1rem;
-  font-weight: bold;  
-  color: t(headerItemColor);
-  padding-bottom:0.5rem;
-  border-bottom:solid 1px t(headerUnderline);
+    font-size: 1rem;
+    font-weight: bold;  
+    color: t(headerItemColor);
+    padding-bottom:0.5rem;
+    border-bottom:solid 1px t(headerUnderline);
 }
 .THIS .data-style{
     font-weight:normal;
@@ -128,7 +122,7 @@
 }
 .THIS .business-name{
     font-size:1.25rem;
-	color:t(primary);	
+    color:t(primary);	
     text-decoration:underline;
     white-space:nowrap; 
     font-weight:bold;
@@ -165,7 +159,7 @@
     padding-top:54px;
 }
 .THIS .Account-name{
-    font-size:1.75rem;
+    
     font-weight:bold;    
     margin-bottom:1.25rem;
     color:t(LnGFormTitleColor);
@@ -234,7 +228,7 @@
     margin-top:1.5rem;
 }
 .THIS .add-biz-btn{
-     
+    
     padding: 0.625rem 1.5rem;    
     font-size:1rem;    
     line-height:1.29;
@@ -263,30 +257,12 @@
     }
     .THIS .phy-address{
         padding-bottom:12px;
-    }
-    .THIS .header-item{
-        padding-bottom:1rem;
-        width:100%;
-    }
-    .THIS .header-item:last-of-type{
-        padding-bottom:0;
-    }
+    }    
     .THIS.business-outer-wrapper{
         padding:1.25rem 1rem;
-    }
-    .THIS .business-card{
-        width:100%;
-        padding:1rem 1.25rem;
-        margin-bottom:1rem;
-    }
-    .THIS .business-card:last-of-type{
-        margin-bottom:0;
-    }
+    }    
     .THIS .add-biz-btn{
         width:100%;
-    }
-    .THIS .biz-welcome{
-        margin:1.25rem 0; 
     }
     .THIS .user-info-wrapper{
         border-right:solid 1px t(grayBorder);
@@ -333,12 +309,42 @@
 .THIS .change-link:hover {
     text-decoration: none;
 }
-@media only screen and (min-width: 768px) and (max-width: 1023px){ 
+@media only screen and (min-width: 768px) and (max-width: 1279.9px){ 
     .THIS.business-outer-wrapper{
         margin:1.5rem 5.5rem;
         padding:0;
     }
     .THIS .nav-links li{
         padding:22px 20px;
+    }
+    .THIS .header-item{
+        display: flex;   
+    }
+}
+@media only screen and (max-width:1279.9px){
+    .THIS .business-card{
+        width:100%;
+        padding:1rem 1.25rem;
+        margin-bottom:1rem;
+    }
+    .THIS .business-card:last-of-type{
+        margin-bottom:0;
+    }
+    .THIS .business-card:nth-child(3n+2){
+        margin:0 0 1rem;
+    }
+    .THIS .biz-welcome{
+        margin-top:1.5rem;
+    }
+    .THIS .field-style{  
+        display:block;    
+    }    
+    .THIS .header-item{
+        padding-bottom:1rem;
+        width:100%;
+        margin-right:0;
+    }
+    .THIS .header-item:last-of-type{
+        padding-bottom:0;
     }
 }
