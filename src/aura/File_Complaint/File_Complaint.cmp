@@ -59,9 +59,9 @@
                     <div class="slds-grid slds-path__track">
                         <div class="slds-grid slds-path__scroller-container">
                             <div class="slds-path__scroller" role="application">
-                                <ul class="slds-path__nav" role="listbox">
+                                <ul title="Chevrons" class="slds-path__nav" role="listbox">
                                     <aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
-                                        <li class="slds-path__item" role="presentation">
+                                        <li class="slds-path__item" role="option">
                                             <a style="cursor: default;" title="{!tabPath.header}" href="javascript:void(0)" aria-label="{!tabPath.header}">
                                                 <aura:if isTrue="{!tabPath.errorImage}">
                                                     <div id ="{!'ExcIcon'+(var+1)}" class="{!(lessthan((var+1),v.currentTab)==true?'':'slds-hide')+' icon'}">
@@ -78,7 +78,7 @@
                                             <span class="{!(((var+1)==v.currentTab)?'active-path-title':(lessthan((var+1),v.currentTab)==true?'is-complete-path':'inactive-path-title'))+' slds-path__title'}">{!tabPath.header}</span>
                                         </li>
                                         <aura:if isTrue="{!lessthan((var+1),v.totalTabs)}">
-                                            <hr id="totaltabs" class="{!'slds-show_medium ' + ((lessthan((var+1),v.currentTab)==true)?'active-path':'')}"></hr>
+                                            <hr class="{!'slds-show_medium ' + ((lessthan((var+1),v.currentTab)==true)?'active-path':'')}"></hr>
                                             <hr id="{!var}" class="{!'slds-hide_medium ' + (or(var == v.currentTab-1 , var == v.currentTab-2 )?(var == v.currentTab-2?'active-path':''):'slds-hide')}"></hr>
                                         </aura:if>
                                     </aura:iteration>
