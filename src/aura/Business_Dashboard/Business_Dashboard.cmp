@@ -183,6 +183,8 @@
                                     <lightning:layoutItem size="12" class="phy-address"  mediumDeviceSize="6" largeDeviceSize="4">
                                         <aura:iteration items="{!v.PhysicalAddressData}" var="addressvar">
                                             <div class="field-style"> 
+                                                <div class="label-style">Physical Address:</div> 
+                                                <div class="address">
                                                     {!addressvar.MUSW__Street2__c}<br />
                                                     {!addressvar.MUSW__City__c},
                                                     {!addressvar.MUSW__State__c + ' '} {!addressvar.MUSW__Post_Zip_Code__c}
@@ -385,7 +387,7 @@
                                 </aura:iteration>
                             </lightning:layout>
                             <lightning:layout class="action-links slds-wrap"> 
-                                <lightning:layoutItem size="12" mediumDeviceSize="4" class="change-link-wrapper">
+                                <lightning:layoutItem size="12" largeDeviceSize="4" class="change-link-wrapper">
                                     <a class="change-link" onclick="{!c.updateContactInfo}" href="javascript:void(0);">Update business information</a>
                                 </lightning:layoutItem>        
                             </lightning:layout>
