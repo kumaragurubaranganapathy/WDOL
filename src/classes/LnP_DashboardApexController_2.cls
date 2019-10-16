@@ -577,9 +577,9 @@ public without sharing class LnP_DashboardApexController_2 {
     public static String getBusinessRelationShipData(String license_id){
         DOL_AppUtility.isAuthenticatedUser() ;
         try{
-        List<String> columnHeaderList = new List<String>{'Name','Role','License Type','Phone','Email'};
+        List<String> columnHeaderList = new List<String>{'License number','Name','Role','License Type','Invitation status','Phone','Email'};
             List<String> statusFilterList = new List<String>{'Active','Inactive','Canceled','Declined','Invited','No Response','Pending','Deleted'};
-                List<SObject> columnDataList = [Select Id,Parent_License__r.MUSW__Primary_Licensee__r.Name, Association_Type__c,Status__c,
+                List<SObject> columnDataList = [Select Id,Parent_License__r.Name,Parent_License__r.MUSW__Primary_Licensee__r.Name, Association_Type__c,Status__c,
                                                 Parent_License__r.Credential_Type__c,Parent_License__r.MUSW__Primary_Licensee__r.Business_Phone__c,Parent_License__r.MUSW__Primary_Licensee__r.Email__c        
                                                 FROM Associations__c
                                                 WHERE Child_License__c =: license_id AND Status__c IN : statusFilterList] ;
