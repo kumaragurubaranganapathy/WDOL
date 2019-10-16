@@ -580,7 +580,8 @@ public with sharing class CartController
     }
     
     private Account[] m_accs = new Account[]{};
-    public List<SelectOption> accounts
+	//Commenting as this is not in being referred anywhere in Cart page
+   /* public List<SelectOption> accounts
     {
         get
         {
@@ -599,14 +600,14 @@ public with sharing class CartController
             return accounts;
         }
         set;
-    }
+    }*/
     
     /*public void removeFee()
     {
          m_cs.removeFeeFromCart(feeSelected);
     }*/
-    
-    public void accountChanged()
+    //Commenting as this method is not in being referred anywhere in Cart page
+    /*public void accountChanged()
     {
         for (Account acc : m_accs)
         {                
@@ -616,7 +617,7 @@ public with sharing class CartController
                 break;
             }
         }
-    }
+    }*/
 
     /*
     * Repopulate the financials attached to the cart when coming back to items tab 
