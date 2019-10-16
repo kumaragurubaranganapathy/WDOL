@@ -13,46 +13,49 @@
         <headerColor>#0070D2</headerColor>
         <logo>servlet</logo>
         <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
     <description>Application for Polaris</description>
     <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>POLARIS</label>
     <navType>Standard</navType>
-    <tab>standard-home</tab>
-    <tab>MUSW__License2__c</tab>
-    <tab>MUSW__Review__c</tab>
-    <tab>standard-Account</tab>
-    <tab>standard-Contact</tab>
-    <tab>MUSW__Submission__c</tab>
-    <tab>Renewal_Application__c</tab>
-    <tab>Request__c</tab>
-    <tab>Education_History__c</tab>
-    <tab>MUSW__Application2__c</tab>
-    <tab>BGCK__Question__c</tab>
-    <tab>Master_Expiration_Rule__c</tab>
-    <tab>MUSW_Application2__c</tab>
-    <tab>Master_ConfigData_Listing__c</tab>
-    <tab>LnP_Licence_Application__c</tab>
-    <tab>Master_Exam_List__c</tab>
-    <tab>Customer_Envelope__c</tab>
-    <tab>Employment_History__c</tab>
-    <tab>BGBK__Item__c</tab>
-    <tab>Cash_Register__c</tab>
-    <tab>Fingerprint_Results__c</tab>
-    <tab>Endorsement__c</tab>
-    <tab>Journal_Voucher__c</tab>
-    <tab>Associations__c</tab>
-    <tab>Action__c</tab>
-    <tab>Lockbox_Envelope__c</tab>
-    <tab>BGBK__Refund2__c</tab>
-    <tab>DOL_Mule_API_Info__c</tab>
-    <tab>Warrant__c</tab>
-    <tab>User_Feedback__c</tab>
-    <tab>Electronic_Notary_Provider_Information__c</tab>
-    <tab>NCR_File_Data__c</tab>
-    <tab>DOL_Integration_Batch_Input__c</tab>
-    <tab>Journal_Voucher_Detail__c</tab>
-    <tab>MUSW__Inspection_Violation__c</tab>
-    <tab>Legal_Activity__c</tab>
+    <tabs>standard-home</tabs>
+    <tabs>MUSW__License2__c</tabs>
+    <tabs>MUSW__Review__c</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>MUSW__Submission__c</tabs>
+    <tabs>Renewal_Application__c</tabs>
+    <tabs>Request__c</tabs>
+    <tabs>Education_History__c</tabs>
+    <tabs>MUSW__Application2__c</tabs>
+    <tabs>BGCK__Question__c</tabs>
+    <tabs>Master_Expiration_Rule__c</tabs>
+    <tabs>MUSW_Application2__c</tabs>
+    <tabs>Master_ConfigData_Listing__c</tabs>
+    <tabs>LnP_Licence_Application__c</tabs>
+    <tabs>Master_Exam_List__c</tabs>
+    <tabs>Customer_Envelope__c</tabs>
+    <tabs>Employment_History__c</tabs>
+    <tabs>BGBK__Item__c</tabs>
+    <tabs>Cash_Register__c</tabs>
+    <tabs>Fingerprint_Results__c</tabs>
+    <tabs>Endorsement__c</tabs>
+    <tabs>Journal_Voucher__c</tabs>
+    <tabs>Associations__c</tabs>
+    <tabs>Action__c</tabs>
+    <tabs>Lockbox_Envelope__c</tabs>
+    <tabs>BGBK__Refund2__c</tabs>
+    <tabs>DOL_Mule_API_Info__c</tabs>
+    <tabs>Warrant__c</tabs>
+    <tabs>User_Feedback__c</tabs>
+    <tabs>Electronic_Notary_Provider_Information__c</tabs>
+    <tabs>NCR_File_Data__c</tabs>
+    <tabs>DOL_Integration_Batch_Input__c</tabs>
+    <tabs>Journal_Voucher_Detail__c</tabs>
+    <tabs>MUSW__Inspection_Violation__c</tabs>
+    <tabs>Legal_Activity__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>
