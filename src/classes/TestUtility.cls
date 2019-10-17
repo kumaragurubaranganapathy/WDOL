@@ -22,8 +22,8 @@ public class TestUtility {
         parcel.Country__c= DOL_AppConstants.NULL_EMPTY_STRING + 'United States';
         parcel.MUSW__City__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Columbia';
         parcel.MUSW__Street_Number__c= DOL_AppConstants.NULL_EMPTY_STRING + '12';
-        parcel.MUSW__State__c= DOL_AppConstants.NULL_EMPTY_STRING + 'WI';
-        parcel.MUSW__Post_Zip_Code__c= DOL_AppConstants.NULL_EMPTY_STRING + '65021';
+        parcel.MUSW__State__c= DOL_AppConstants.NULL_EMPTY_STRING + 'WA';
+        parcel.MUSW__Post_Zip_Code__c= DOL_AppConstants.NULL_EMPTY_STRING + '665021';
         parcel.County__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Adams';
         parcel.Address_Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'HOME';
         parcel.Status__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Active';
@@ -207,18 +207,18 @@ public class TestUtility {
         return input;
     }
     
-    public static DOL_DOR_Input getDolDorInput(){
+    public static DOL_DOR_Input getDolDorInput(String polarisID,String dorLicenseUBI){
         DOL_DOR_Input dorInput = new DOL_DOR_Input();
-        dorInput.polarisID= DOL_AppConstants.NULL_EMPTY_STRING + '';
+        dorInput.polarisID= polarisID;
         dorInput.dorLicenseFullUBI= DOL_AppConstants.NULL_EMPTY_STRING + '6027340270010001';
-        dorInput.dorLicenseUBI= DOL_AppConstants.NULL_EMPTY_STRING + '602734027';
+        dorInput.dorLicenseUBI= dorLicenseUBI;
         dorInput.dorLicenseBusID= DOL_AppConstants.NULL_EMPTY_STRING + '001';
         dorInput.dorLicenseLocID= DOL_AppConstants.NULL_EMPTY_STRING + '0001';
         dorInput.dorLicenseStatus= DOL_AppConstants.NULL_EMPTY_STRING + '';
         dorInput.dorLicenseCode= DOL_AppConstants.NULL_EMPTY_STRING + '';
         dorInput.dorLicenseFirstIssuanceDate= DOL_AppConstants.NULL_EMPTY_STRING + '20110805';
         dorInput.dorLicenseExpirationDate= DOL_AppConstants.NULL_EMPTY_STRING + '20190731';
-        dorInput.dorLicenseNumber= DOL_AppConstants.NULL_EMPTY_STRING + '';
+        dorInput.dorLicenseNumber= DOL_AppConstants.NULL_EMPTY_STRING + '223319';
         dorInput.dorBusinessType= DOL_AppConstants.NULL_EMPTY_STRING + 'Sole Proprietor';
         dorInput.dorEntityName= DOL_AppConstants.NULL_EMPTY_STRING + '';
         dorInput.dorBusinessName= DOL_AppConstants.NULL_EMPTY_STRING + 'ROBERT G. LIEBLING, ARCHITECT';

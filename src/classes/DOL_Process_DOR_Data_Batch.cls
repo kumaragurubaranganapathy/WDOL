@@ -1,7 +1,7 @@
 /**
 * User Story: 2298
 * Class Name: DOL_Process_DOR_Data_Batch
-* Test Class Name: ****
+* Test Class Name: DOL_Process_DOR_Data_Batch_Test
 * Description: Batch to process the DOR records from DOL_Integration_Batch_Input__c
 * Date:        Developer/Company                    Description
 * ------------------------------------------------------------------------------------------------*
@@ -97,17 +97,6 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
             }
         }
         System.debug('ubiAccountMap '+ubiAccountMap.size());
-        /* if(! inputDorLicenseUBIs.isEmpty() ){
-            String accountUbiQuery = 'Select Id, UBI_Number__c from Account where UBI_Number__c IN :inputDorLicenseUBIs';
-            List<Account> accRecords = ((List<Account>) Database.query(accountUbiQuery));
-            if(! accRecords.isEmpty() ){
-                for(Account acc : accRecords){
-                    ubiAccountMap.put(acc.UBI_Number__c,acc);
-                }
-            }
-        }*/
-
-        //licenceMap = new Map<Id,MUSW__License2__c>([ select id, MUSW__Primary_Licensee__c, MUSW__Parcel__c, ( select id from Account_Contacts__r ) from MUSW__License2__c where id IN :polarisIds ]);
         
         // Iterate through the records and get the updated
         // MUSW__License2__c, Account, MUSW__Account_Contact__c, MUSW__Parcel__c
@@ -171,6 +160,7 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
     }
     
     global void finish(Database.BatchableContext BC){
+        String responseString = DOL_AppConstants.NULL_EMPTY_STRING;
         try{
             // API call to send DOR result
             if(dorResponses != null && ! dorResponses.isEmpty()){
@@ -179,14 +169,20 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
                 headerMap.put(DOL_AppConstants.MULE_AUTHORIZATION_KEY, 
                                 DOL_AppConstants.MULE_AUTHORIZATION_VALUE_CONSTANT+DOL_AppConstants.integrationSettingsMetadataMap.get(DOL_AppConstants.MULE_AUTHORIZATION_VALUE_METADATA_LABEL));
                 String url = 'callout:DOL_Mule_API/v1/dorUpload';
-                String responseString = JSON.serialize(dorResponses);
+                responseString = JSON.serialize(dorResponses);
                 HttpResponse httpResp = DOL_HTTP_Utility.doHttpRequest(url,
                                                         'POST',
                                                         responseString,
                                                         null,headerMap);
-                System.debug(httpResp.getStatusCode());
-                System.debug(httpResp.getBody());
+            }
+        }
+        catch(Exception error){
+            DOL_CreateErrorLog_Exception.logApplicationError(error);
+        }
 
+        // Save the DOR response into content Version
+        if(String.isNotBlank(responseString)){
+            try{
                 String fileName = 'DOR_Response_file'+'_'+DOL_AppUtility.getDate('ddMMYYhhmmss')+'.txt';
 				DOL_Integration_Batch_Input__c batchInput = new DOL_Integration_Batch_Input__c();
 				batchInput.Input_Type__c = 'DOR';
@@ -197,12 +193,11 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
                 batchInput.INFO__c = 'Content Version created , contentDocumentId is '+contentDocId;
 				batchInput.Status__c = 'CONTENT VERSION CREATED';
 				update batchInput;
+            }catch(Exception error){
+                DOL_CreateErrorLog_Exception.logApplicationError(error);
             }
         }
-        catch(Exception error){
-            System.debug('error occured :- '+error.getMessage()+' stack trace '+error.getStackTraceString());
-            DOL_CreateErrorLog_Exception.logApplicationError(error);
-        }
+        
     }
 
     private void updateUbiAccountMap(Account acc){
@@ -493,6 +488,7 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
         return null;
     }
 
+    // get parcel from dorInput
     private MUSW__Parcel__c getUpdatedMailingParcel(DOL_DOR_Input dorInput){
         MUSW__Parcel__c parcel = new MUSW__Parcel__c();
         updateFound = false;
@@ -525,6 +521,9 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
         }
         return null;
     }
+
+    // Object for storing all sObject
+    // required for current transaction
 
     class DOR_sObject{
         MUSW__License2__c license;
@@ -722,108 +721,7 @@ global class DOL_Process_DOR_Data_Batch implements Database.Batchable<sObject>,
         }
     }
 
-    /*
-    private List<Account> getAllUniqueAccounts(List<DOR_sObject> dorSobjectLst){
-        List<Account> uniqueAccounts = new List<Account>();
-        Map<String,Boolean> ubiFoundMap = new Map<String,Boolean>();
-        Account tempAccount;
-        String key;
-        for(DOR_sObject obj : dorSobjectLst ){
-            tempAccount = obj.acc;
-            if(tempAccount != null ){
-                key = tempAccount.UBI_Number__c+tempAccount.Bus_Id__c+tempAccount.Loc_Id__c;
-                if(ubiFoundMap.get(key) == null ){
-                    uniqueAccounts.add(tempAccount);
-                    ubiFoundMap.put(key,true);
-                }
-            }
-        }
-        return uniqueAccounts;
-    }
-
-    private String getErrorMsg(List<Database.Error> dbErrors){
-        String errorMsg = '';
-        if(dbErrors != null && dbErrors.size() > 0 ){
-            for(Database.Error error : dbErrors ){
-                errorMsg += error.message;
-            }
-        }
-        return errorMsg;
-    }
-    */
-
-    /*
-    private void saveBulkRecords(List<DOR_sObject> dorSObjectLst){
-        Database.UpsertResult[] result;
-        Integer i;
-        if(dorSObjectLst != null && dorSObjectLst.size() > 0 ){
-            // extract all unique accounts
-            // Account Start
-            List<Account> uniqueAccounts = getAllUniqueAccounts(dorSObjectLst);
-            result = Database.upsert(uniqueAccounts,false);
-            Account tempAccount;
-            Database.UpsertResult tempResult;
-            String key;
-            Id tempAccId;
-            Map<String,String> accountResultMap = new Map<String,String>();
-            for(i=0;i<uniqueAccounts.size();i++){
-                tempAccount = uniqueAccounts.get(i);
-                tempResult = result.get(i);
-                key = tempAccount.UBI_Number__c+tempAccount.Bus_Id__c+tempAccount.Loc_Id__c;
-                if(tempResult.isSuccess() )
-                    accountResultMap.put(key,tempResult.getId());
-                else
-                    accountResultMap.put(key, getErrorMsg(tempResult.getErrors()) );
-            }
-
-            for(DOR_sObject obj : dorSObjectLst){
-                tempAccount = obj.acc;
-                if(tempAccount != null ){
-                    key = tempAccount.UBI_Number__c+tempAccount.Bus_Id__c+tempAccount.Loc_Id__c;
-                    try{
-                        tempAccount.Id = Id.valueOf(accountResultMap.get(key));
-                        obj.canProcessFurther = true;
-                    }catch(Exception e){
-                        obj.errorMsg = accountResultMap.get(key);
-                        obj.canProcessFurther = false;
-                    }
-                }
-                else{
-                    obj.canProcessFurther = true;
-                }
-            }
-            // Account Ends
-            // License Starts
-            List<MUSW__License2__c> allLicense = new List<MUSW__License2__c>();
-            for(DOR_sObject obj :  dorSObjectLst){
-                if(obj.canProcessFurther && obj.license != null){
-                    if(obj.acc != null)
-                        obj.license.MUSW__Primary_Licensee__c = obj.acc.Id;
-                    allLicense.add(obj.license);
-                }
-            }
-            result = Database.upsert(allLicense,false);
-            for(DOR_sObject obj :  dorSObjectLst){
-                if(obj.canProcessFurther && obj.license != null){
-                    tempResult = result.get(i);
-                    if(tempResult.isSuccess())
-                        obj.canProcessFurther = true;
-                    else{
-                        obj.canProcessFurther = false;
-                        obj.errorMsg = getErrorMsg(tempResult.getErrors());
-                    }
-                        
-                        // need to start from here
-                }
-            }
-            // License Ends
-
-        }
-    }
-    */
-
-    
-    
+    // Object for storing DOR Response
     class DOR_Response{
         String polarisID;
         String dorLicenseFullUBI;
