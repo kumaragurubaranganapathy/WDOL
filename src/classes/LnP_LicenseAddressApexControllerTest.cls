@@ -47,8 +47,7 @@ public class LnP_LicenseAddressApexControllerTest {
         MUSW__License2__c lic2 = [Select id from MUSW__License2__c where Credential_Type__c='Cemetery' limit 1];
         Request__c testRequest1 = [Select id From Request__c where License_Type__c='Cemetery' limit 1];
         
-        String addressStringone = 'Businessfirst, Olympia, WA, 9887, United States';
-        String addressStringtwo = 'Businessfirst,Businesstwo, Olympia, WA, 9887, United States';
+        
         test.startTest();
         LnP_LicenseAddressApexController.getAllAddress(con.Id,testApp.Id);
         LnP_LicenseAddressApexController.getPhysicalAddress(lic1.Id);
@@ -57,6 +56,7 @@ public class LnP_LicenseAddressApexControllerTest {
         LnP_LicenseAddressApexController.getCountyValue('WA','Olympia');
         LnP_LicenseAddressApexController.getCountyValue('AL','Test');
         LnP_LicenseAddressApexController.sameAddUpdate(parcel.Id,'MUSW__Parcel__c',con.Id,true,testApp.Id);
+        LnP_LicenseAddressApexController.sameAddUpdate(parcel.Id,'MUSW__Parcel__c',con.Id,false,testApp.Id);
         LnP_LicenseAddressApexController.sameAddUpdate(parcelPhysical.Id,'MUSW__Parcel__c',con.Id,true,testApp.Id);
         LnP_LicenseAddressApexController.deleteTableRecord(parcel.Id,'MAILING ADDRESS','MUSW__Parcel__c',testApp.Id);
         LnP_LicenseAddressApexController.getStates(parcel,'County__c');
@@ -82,9 +82,12 @@ public class LnP_LicenseAddressApexControllerTest {
         Request__c testRequest1 = [Select id From Request__c where License_Type__c='Cemetery' limit 1];
         String addressStringone = 'Businessfirst, Olympia, WA, 9887, United States';
         String addressStringtwo = 'Businessfirst,Businesstwo, Olympia, WA, 9887, United States';
+        String addressStringthree = 'Businessfirst,Businesstwo, Olympia, WA, 9887, Canada';
         test.startTest();
         LnP_LicenseAddressApexController.integrationsaveAddress(addressStringone,false,testApp.Id,false,'MAILING ADDRESS','Adams',con.Id,'Contact',false,false);
-        LnP_LicenseAddressApexController.integrationsaveAddress(addressStringone,true,testApp2.Id,true,'PHYSICAL ADDRESS','Adams',acc.Id,'Account',true,true);
+        LnP_LicenseAddressApexController.integrationsaveAddress(addressStringtwo,true,testApp2.Id,true,'PHYSICAL ADDRESS','Adams',acc.Id,'Account',true,true);
+        LnP_LicenseAddressApexController.integrationsaveAddress(addressStringthree,true,testApp2.Id,true,'PHYSICAL ADDRESS','Adams',acc.Id,'Account',true,true);
+        LnP_LicenseAddressApexController.integrationsaveAddress(addressStringthree,false,testApp.Id,false,'MAILING ADDRESS','Adams',con.Id,'Contact',false,false);
         LnP_LicenseAddressApexController.AffiliatedLocation(JSON.serialize(parcel),true,true);
         LnP_LicenseAddressApexController.AffiliatedLocation(JSON.serialize(parcel),true,false);
         LnP_LicenseAddressApexController.AffiliatedLocation(JSON.serialize(parcel),false,true);
@@ -131,6 +134,11 @@ public class LnP_LicenseAddressApexControllerTest {
          LnP_LicenseAddressApexController.getloggedInContactData();
          LnP_LicenseAddressApexController.getAutoComplete('test');
          StaticResourceCalloutMock mock = new StaticResourceCalloutMock();
+         mock.setStaticResource('HttpStaticfakeResp');
+         mock.setStatusCode(200);
+        mock.setHeader('Content-Type', 'application/xml');
+         Test.setMock(HttpCalloutMock.class, mock);
+         HttpRequest res = null;
          test.stopTest();
          
      }
