@@ -294,7 +294,8 @@
                         </div>
                     </lightning:layoutItem>
                     <lightning:layoutItem size="12" mediumDeviceSize="3" class="{!empty(v.ServiceLink)?'slds-hide':(v.showMoreAMR?'amr-links exp-actions':'amr-links slds-show_medium')}">
-                        <c:Polaris_AMRLink board="{!v.LicenseData.Application_Type__c}" licenseType="{!v.LicenseData.Credential_Type__c}" applicationMethod="{!v.LicenseData.Application_Method__c}" recordId="{!v.LicenseData.Id}" accountId="{!v.selectedAccount}" />
+                        
+                        <c:Polaris_AMRLink board="{!v.LicenseData.Application_Type__c}" licenseType="{!v.LicenseData.Credential_Type__c}" applicationMethod="{!v.LicenseData.Application_Method__c}" recordId="{!v.LicenseData.Id}" accountId="{!v.LicenseData.Ultimate_Parent_Account__c}" />
                     </lightning:layoutItem>
                     
                 </lightning:layout>
@@ -466,7 +467,7 @@
                                             <lightning:layoutItem size="12" class="contact-item" mediumDeviceSize="6" largeDeviceSize="4">
                                                 <div class="label-style">Physical Address:</div> 
                                                 <aura:if isTrue="{!!empty(v.PhysicalAddressData)}">
-                                                    <aura:iteration items="{!v.AddressData}" var="addressvar">
+                                                    <aura:iteration items="{!v.PhysicalAddressData}" var="addressvar">
                                                         <div class="address data-style">
                                                             
                                                             {!addressvar.MUSW__Street2__c}<br />
@@ -483,11 +484,8 @@
                                             
                                             <lightning:layoutItem size="12" mediumDeviceSize="6" class="contact-item" largeDeviceSize="4">
                                                 <div class="label-style">Mailing Address:</div> 
-                                                <aura:if isTrue="{!!empty(v.AddressData)}">
-                                                    <aura:iteration items="{!v.PhysicalAddressData}" var="addressvar">
-                                                        
-                                                        
-                                                        
+                                                <aura:if isTrue="{!!empty(v.MailingAddressData)}">
+                                                    <aura:iteration items="{!v.MailingAddressData}" var="addressvar">
                                                         <div class="address data-style">
                                                             
                                                             {!addressvar.MUSW__Street2__c}<br />
@@ -597,7 +595,7 @@
                                 </div>
                             </lightning:layoutItem>
                             <lightning:layoutItem size="12" mediumDeviceSize="3" class="{!empty(v.ServiceLink)?'slds-hide':(v.showMoreAMR?'amr-links exp-actions':'amr-links slds-show_medium')}">
-                                <c:Polaris_AMRLink board="{!v.LicenseData.Application_Type__c}" licenseType="{!v.LicenseData.Credential_Type__c}" applicationMethod="{!v.LicenseData.Application_Method__c}" ServiceLink="{!v.ServiceLink}" recordId="{!v.LicenseData.Id}" accountId="{!v.selectedAccount}" />
+                                <c:Polaris_AMRLink board="{!v.LicenseData.Application_Type__c}" licenseType="{!v.LicenseData.Credential_Type__c}" applicationMethod="{!v.LicenseData.Application_Method__c}" ServiceLink="{!v.ServiceLink}" recordId="{!v.LicenseData.Id}" accountId="{!v.LicenseData.Ultimate_Parent_Account__c}" />
                             </lightning:layoutItem>
                             
                         </lightning:layout>
