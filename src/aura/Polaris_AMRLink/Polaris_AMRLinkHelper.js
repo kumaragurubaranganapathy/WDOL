@@ -39,7 +39,7 @@
         if(AMRType== 'Self Service')
         {
             if(link == 'Update Mailing Address'){
-                window.location.href = $A.get("$Label.c.Polaris_Portal_Self_Service")+'?par1='+licID+'&par2=address';
+                window.location.href = $A.get("$Label.c.Polaris_Portal_Self_Service")+'?par1='+licID+'&par2=address&par3='+component.get("v.accountId");
             }
             else if(link == 'Update License Webaddress')
             {
@@ -76,7 +76,7 @@
             "licenseType": component.get("v.licenseType"),
             "board":component.get("v.board"),
             "ServiceRequestType": component.get("v.ServiceRequestType"),
-			"acctId":component.get("v.accountId"),			
+            "acctId":component.get("v.accountId"),
         });
         action.setCallback(this, function(actionResult){
             
@@ -129,6 +129,7 @@
         sessionStorage.setItem("applicationType", component.get("v.applicationMethod"));
         sessionStorage.setItem("flowType", "Application");
         sessionStorage.setItem("accountRecordID",component.get("v.accountId"));
+        console.log('***accountRecordID***'+component.get("v.accountId"));
         sessionStorage.setItem("LicenseRecordID",component.get("v.recordId"));
         return new Promise($A.getCallback(function(resolve, reject) {
 				console.log('inside eligible::');

@@ -14,7 +14,9 @@
     <aura:attribute name="contactName" type="String" />
     <aura:attribute name="accountName" type="String" />
     <aura:attribute name="contactId" type="Id" />
+    <aura:attribute name="accountId" type="Id" />
     <aura:attribute name="AMRName" type="String" />
+    <aura:attribute name="objectName" type="String" />    
     <aura:attribute name="iscontactAddress" type="Boolean" default="false" />
     <aura:attribute name="fieldsValidated" type="Boolean" default="false" />
     <aura:attribute name="outputcode" type="String" default=""/>
@@ -58,9 +60,8 @@
             </lightning:recordEditForm>
         </aura:if>
         <!-- Form end -->
-        <aura:if isTrue="{!v.address}">
-            
-            <c:LnP_LicenseAddress changeOnlyMailingAdd="false" applicationId="{!v.appId}" aura:id="lnpStoreAddress"/>
+        <aura:if isTrue="{!v.address}">            
+                <c:LnP_LicenseAddress changeOnlyMailingAdd="false" applicationId="{!v.appId}" aura:id="lnpStoreAddress" accountId = "{!v.accountId}" objectName = "{!v.objectName}"/>
             <div class="action-buttons"> 
                 <lightning:button variant="neutral" type="cancel" name="Back" label="Back" title="Back" onclick="{!c.cancel}"/>
                 <lightning:button variant="brand" type="save" name="save" label="Submit" title="Submit" onclick="{!c.cancel}"/>

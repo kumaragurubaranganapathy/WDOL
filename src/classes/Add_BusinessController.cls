@@ -446,7 +446,7 @@ public with sharing class Add_BusinessController {
     @AuraEnabled 
     public static MUSW__License2__c getLicenseData(String Id){
         try{
-        List<MUSW__License2__c>  lic = [SELECT id, Name,Application_Method__c,MUSW__Issue_Date__c,Original_Issue_Date__c, Application_Type__c,Ultimate_Parent_Account__r.Email__c,Ultimate_Parent_Account__r.Business_Phone__c,Ultimate_Parent_Account__r.Name,Ultimate_Parent_Account__r.Doing_Business_As_1__c, Credential_Type__c, MUSW__Expiration_Date__c, MUSW__Status__c, Sub_Status__c, MUSW__Parcel__r.Address_Type__c,
+        List<MUSW__License2__c>  lic = [SELECT id, Name,Application_Method__c,MUSW__Issue_Date__c,Original_Issue_Date__c, Application_Type__c,Ultimate_Parent_Account__r.Email__c,Ultimate_Parent_Account__r.Business_Phone__c,Ultimate_Parent_Account__r.Name,Ultimate_Parent_Account__r.Doing_Business_As_1__c, Credential_Type__c, MUSW__Expiration_Date__c, MUSW__Status__c, Sub_Status__c, MUSW__Parcel__r.Address_Type__c,Ultimate_Parent_Account__c,
                                         MUSW__Parcel__r.MUSW__Street__c,MUSW__Parcel__r.MUSW__City__c,MUSW__Parcel__r.MUSW__State__c,MUSW__Parcel__r.MUSW__Post_Zip_Code__c FROM MUSW__License2__c WHERE id=:Id limit 1];
         if(!lic.isEmpty()){
             return lic[0];
