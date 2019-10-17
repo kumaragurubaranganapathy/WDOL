@@ -5,30 +5,20 @@ public without sharing class Dol_IntegrationUtil{
           List<AsyncApexJob> asyncJobList = [SELECT ApexClass.Name,JobType,Status,CreatedById from AsyncApexJob where ApexClassId IN (SELECT Id FROM ApexClass WHERE Name =:zBatchName) and Status= 'Processing'];
           System.debug('***********isBatchRunning:asyncJobList***********:'+asyncJobList);
           if(asyncJobList != null && asyncJobList.size() > 1){
-          	yesRunning = true;
+            yesRunning = true;
           }
           return yesRunning;
-	}
-	
-	// Check for the batch status 'Holding', 'Queued', 'Preparing', 'Processing'
-	public static Boolean isBatchInQueue(String zBatchName){
-          Boolean isBtchInQueue = false;
-          List<AsyncApexJob> asyncJobList = [SELECT ApexClass.Name,JobType,Status,CreatedById from AsyncApexJob where ApexClassId IN (SELECT Id FROM ApexClass WHERE Name =:zBatchName) and Status IN ('Holding', 'Queued', 'Preparing', 'Processing')];
-          System.debug('***********isBatchInQueue:asyncJobList***********:'+asyncJobList);
-          if(asyncJobList != null && asyncJobList.size() >= 1){
-          	isBtchInQueue = true;
-          }
-          return isBtchInQueue;
-	}
+  }
+  
 
     /** 
-	 * Method name  : isNotBlank
+   * Method name  : isNotBlank
      * Description  : This method checks if the given string is white space, empty (''), or null; otherwise, returns false.
      * Return Type  : Boolean
      * Parameter    : String
      */
-	public static boolean isBlank(String str) {
-    	return String.isBlank(str) || str.equalsIgnoreCase('null') || str.trim().equalsIgnoreCase('null');
+  public static boolean isBlank(String str) {
+      return String.isBlank(str) || str.equalsIgnoreCase('null') || str.trim().equalsIgnoreCase('null');
     }
 
     /** 
@@ -41,15 +31,6 @@ public without sharing class Dol_IntegrationUtil{
         return (!isBlank(str));
      }
      
-    /**
-     * Method name  : isDateBlank
-     * Description  : This method checks if the date field is blank
-     * Return Type  : Boolean
-     * Parameter    : Date
-     */
-     public static Boolean isDateBlank(Date dateValue) {
-        return dateValue == null || dateValue.format().trim() == null || dateValue.format().trim().length() == 0;
-     }
 
     /**
      * Returns true if the list is null or empty. Else, returns false.
