@@ -26,7 +26,7 @@ public class DOL_TestDataFactory {
                                                                        Last_Name__c = 'LastName', 
                                                                        Title__c = 'Mrs.', 
                                                                        Email__c = 'firstlastname@mailinator.com',
-                                                                       MUSW__Account__c=accId,  
+                                                                       MUSW__Account__c=accId,	
                                                                        MUSW__Contact__c=conId );
         insert accCon;
         return accCon;
@@ -262,15 +262,13 @@ public class DOL_TestDataFactory {
             
     }
     public static User createPortalAccountUser(){
+        UserRole portalRole = [Select Id From UserRole Where PortalType = 'None' Limit 1];
+        system.debug('portalRole is ' + portalRole);
         
-        //system.debug('portalRole is ' + portalRole);
-        UserRole ur = new UserRole(Name = 'AdminRole');
-        insert ur;
         Profile profile1 = [Select Id from Profile where name = 'System Administrator'];
         User portalAccountOwner1 = new User(
-            UserRoleId = ur.Id,
+            UserRoleId = portalRole.Id,
             ProfileId = profile1.Id,
-            //role = 'Manager',
             Username = System.now().millisecond() + 'test2@test.com',
             Alias = 'batman',
             Email='bruce.wayne@wayneenterprises.com',
@@ -288,7 +286,6 @@ public class DOL_TestDataFactory {
         
         System.runAs ( portalAccountOwner1 ) {
             //Create account
-           
             Account portalAccount1 = new Account(
                 Name = 'TestAccount',
                 OwnerId = portalAccountOwner1.Id
@@ -311,7 +308,6 @@ public class DOL_TestDataFactory {
             user1 = new User(
                 Username = System.now().millisecond() + 'test12345@test.com',
                 ContactId = contact1.Id,
-               // UserRoleId = portalRole.Id,
                 ProfileId = portalProfile.Id,
                 Alias = 'test123',
                 Email = 'test12345@test.com',
@@ -509,7 +505,7 @@ public class DOL_TestDataFactory {
     //Create an Inspection Record
     public static MUSW__Inspection__c createInspection(Id recordTypeId, String type, String programType, String credType){
         MUSW__Inspection__c inspec = new MUSW__Inspection__c(Name = 'System Number', RecordTypeId = recordTypeId, MUSW__Type__c = type, Application_Type__c = programType, Credential_Type__c = credType, MUSW__Status__c = 'Pending');
-        insert inspec;
+    	insert inspec;
         return inspec;
     }
     
