@@ -8,8 +8,7 @@ public class LnP_HomePageWidgetApexController {
 
        return mapWidgetLabels;
        }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+        {   DOL_CreateErrorLog_Exception.logApplicationError(ex);
             throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
@@ -24,8 +23,7 @@ public class LnP_HomePageWidgetApexController {
          usrInfo.add(userName);
          return usrInfo;
          }catch(Exception ex)
-        {
-            DOL_CreateErrorLog_Exception.logApplicationError(ex);
+        {   DOL_CreateErrorLog_Exception.logApplicationError(ex);
             throw new AuraHandledException('An error occurred: '+ex.getMessage());
         }
     }
