@@ -874,7 +874,7 @@ return null;
         }
     }
     
-    @AuraEnabled 
+    /*@AuraEnabled 
     public static Boolean removeAffiliationRequest(List<Id> parcelIdList,Id RequestId){
         
         try{
@@ -898,7 +898,7 @@ return null;
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
             return false;
         }
-    } 
+    } */
     
     @AuraEnabled
     public static Boolean undoAffiliateRequest(Id parcelId,String status,String license){
@@ -1236,7 +1236,7 @@ return parcelList;
                     }
                     try{
                         if(!licenseParcelListToBeUpdated.isEmpty()){
-                            insert licenseParcelListToBeUpdated;
+                            upsert licenseParcelListToBeUpdated;
                         } 
                     }catch(DmlException e){
                   //      System.debug('Error while inserting license Parcel when not same address---' + e.getMessage());
