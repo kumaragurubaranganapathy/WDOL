@@ -93,6 +93,23 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+	 <fields>
+        <fullName>Association_Type_Short__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(Association_Type__c, 
+&quot;Designated Engineer&quot;, &quot;DE&quot;, 
+&quot;Designated Land Surveyor&quot;, &quot;LS&quot;,
+&quot;Funeral Director Intern&quot;,&quot;,SPONSOR&quot;,
+&quot;Embalmer Intern&quot;, &quot;,SPONSOR&quot;,
+&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Association Type Short</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Association_Type__c</fullName>
         <externalId>false</externalId>
