@@ -1,21 +1,23 @@
 ({
     doInit : function(component, event, helper) {
-        var recordId = decodeURIComponent(window.location.search.substring(1).split('&')[0].split('par1=')[1]);
+         var recordId = decodeURIComponent(window.location.search.substring(1).split('&')[0].split('par1=')[1]);
         console.log('recordId==' + recordId);
         var value = decodeURIComponent(window.location.search.substring(1).split('&')[1].split('par2=')[1]);  
         console.log('value==' + value);
-        
-        var accvalue = decodeURIComponent(window.location.search.substring(1).split('&')[2].split('par3=')[1]);
-        if(accvalue=='undefined')
+        if(window.location.search.substring(1).includes('par3'))
         {
-            accvalue = undefined;
+            var accvalue = decodeURIComponent(window.location.search.substring(1).split('&')[2].split('par3=')[1]);
+            if(accvalue=='undefined')
+            {
+                accvalue = undefined;
+            }
+            else
+            {
+                component.set("v.objectName",'Account');
+            }
+            console.log('accvalue==' + accvalue);
+            component.set("v.accountId",accvalue);
         }
-        else
-        {
-            component.set("v.objectName",'Account');
-        }
-        console.log('accvalue==' + accvalue);
-        component.set("v.accountId",accvalue);
         if(value.toLowerCase() == "contact"){
             component.set("v.objectApiName", 'Contact');
             component.set("v.fieldApiNames", ['Email','Other_Email__c','MobilePhone','Phone']);
