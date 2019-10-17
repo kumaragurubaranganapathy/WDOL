@@ -35,12 +35,12 @@
             <div class="slds-grid slds-path__scroller-container">
                 <div class="slds-path__scroller" role="application">
                     
-					<ul class="{!(v.totalTabs == 6?'six-circles':'')+(v.totalTabs == 5?'five-circles':'')+(v.totalTabs == 4?'four-circles':'')+(v.totalTabs == 3?'three-circles':'')+(v.totalTabs == 2?'two-circles':'')+' slds-path__nav'}">
+					<ul class="{!(v.totalTabs == 6?'six-circles':'')+(v.totalTabs == 5?'five-circles':'')+(v.totalTabs == 4?'four-circles':'')+(v.totalTabs == 3?'three-circles':'')+(v.totalTabs == 2?'two-circles':'')+' slds-path__nav'}" role="listbox" title="chevron-list">
 						<aura:iteration items="{!v.path}" var="tabPath" indexVar="var">
                            
                             
                             <!--li data-id="{!(var+1)}" onclick="{!c.setCurrTab}" class="slds-path__item" role="presentation"  onclick="{!c.setCurrTab}"-->
-							<li data-id="{!(var+1)}" class="{!'slds-path__item'+ (v.feesRequired? (tabPath.header == 'Review and Submit'?' fee-path':''):'')}" role="presentation">
+							<li data-id="{!(var+1)}" class="{!'slds-path__item'+ (v.feesRequired? (tabPath.header == 'Review and Submit'?' fee-path':''):'')}" role="option">
 								<span style="cursor: default;" title="{!tabPath.header}">
                                     <!-- {!(var+1) + ' '}{!v.currentTab} -->
                                     <aura:if isTrue="{!tabPath.errorImage}">
