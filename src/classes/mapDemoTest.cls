@@ -5,6 +5,7 @@ public class mapDemoTest {
         insert parcel;
         MUSW__Inspection__c inspection = TestUtility.getInspection();
         inspection.MUSW__Parcel__c=parcel.id;
+		insert inspection;
         Test.startTest();
         mapDemo.getMarkers();
         mapDemo.getRoute();
