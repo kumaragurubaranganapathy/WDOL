@@ -1076,7 +1076,6 @@ monexaSessionKey = gateway.getSessionKey(r.MUSW__Amount_Tendered__c);
             if(processSuccessful)   {
                 onPaymentConfirmation();
                 m_cs.closeCart(totalPayment, accountSelected, cart.BGBK__Contact__c, cart.BGBK__Process_DateTime__c);
-                //sendPdf();
             } else {
                 if(sp != null)
                     Database.rollback(sp);     
@@ -1490,17 +1489,21 @@ if((receiptVOs[i].r.MUSW__Amount_Tendered__c - receiptVOs[i].r.MUSW__Amount_Used
     }
     
     /*
-* Get the Cart Service instance
-* @param Id parent id
-* @param Id cart Id
-* @return BGBK.CartService
-*/
+	* Get the Cart Service instance
+	* @param Id parent id
+	* @param Id cart Id
+	* @return BGBK.CartService
+	*/
     public static BGBK.CartService getCartService(Id pid, Id cId){
         transient BGBK.CartService tempService = (pid != null || cId != null) ? new BGBK.CartService(pid, cId) : new BGBK.CartService();
         return tempService;
     }
     
-    
+    public void emailReceiptForEpayment(){ 
+        if(requestFromEPayment && processSuccessful)
+            sendPdf();
+    }
+	
     public void sendPdf()
     {
         //System.debug('inside send pdf method$$'+processSuccessful);

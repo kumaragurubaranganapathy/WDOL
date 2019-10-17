@@ -795,6 +795,7 @@
                 browser back button.</b></p>            
         </apex:pageblock>
         
+		<apex:actionFunction name="sendEmailForEpayment" action="{!emailReceiptForEpayment}" reRender="none" />
         <apex:actionFunction name="sendEmailJS" action="{!sendPdf}" reRender="" rendered="{!NOT(keepPolling)}"/>
         <apex:actionFunction name="refreshTotalJS" action="{!refreshTotal}" reRender="totals,totalOutstanding,msg">
             <apex:param name="itemIdsUnselected" assignTo="{!itemsUnselected}" value="" />
@@ -832,7 +833,11 @@
             
         </style>
         
-        <script>
+        <script type='text/Javascript'>
+		
+		window.onload = function(){
+                sendEmailForEpayment();
+            }
         /* Loop through the input checkbox and return the list of unselected items */
         function getUnselectedItems()
         {
