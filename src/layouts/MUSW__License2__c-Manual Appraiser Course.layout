@@ -77,6 +77,22 @@
                 <behavior>Edit</behavior>
                 <field>Trigger_RFI__c</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Required</behavior>
+                <field>Print_First_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Print_Middle_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Print_Last_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>License_Printable_Name__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
