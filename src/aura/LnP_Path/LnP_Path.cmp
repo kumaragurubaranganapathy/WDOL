@@ -41,7 +41,7 @@
                             
                             <!--li data-id="{!(var+1)}" onclick="{!c.setCurrTab}" class="slds-path__item" role="presentation"  onclick="{!c.setCurrTab}"-->
 							<li data-id="{!(var+1)}" class="{!'slds-path__item'+ (v.feesRequired? (tabPath.header == 'Review and Submit'?' fee-path':''):'')}" role="presentation">
-								<a style="cursor: default;" title="{!tabPath.header}">
+								<span style="cursor: default;" title="{!tabPath.header}">
                                     <!-- {!(var+1) + ' '}{!v.currentTab} -->
                                     <aura:if isTrue="{!tabPath.errorImage}">
 									<!--	<img id ="{!'ExcIcon'+(var+1)}" src="{!$Resource.delawareSVGs + '/Icons/exclamation-mark.svg'}" class="{!(lessthan((var+1),v.currentTab)==true?'':'slds-hide')+' icon'}" alt="{!tabPath.header+' icon'}"/>-->
@@ -68,7 +68,7 @@
                                         </div>-->
                                     </div>
                                     <!--<img id ="{!'MobIcon'+(var+1)}" src="{!$Resource.delawareSVGs + '/Icons/disabledmenu.svg'}" class="{!(greaterthan((var+1),v.currentTab)==true?'mobile-tab-view':'slds-hide')+' icon'}" alt="{!tabPath.header+' icon'}"/>-->
-								</a>
+								</span>
 								<span class="{!(((var+1)==v.currentTab)?'active-path-title':(lessthan((var+1),v.currentTab)==true?'is-complete-path':'inactive-path-title'))+' slds-path__title'}">{!tabPath.header == 'Review and Submit'?(v.feesRequired?'Review':tabPath.header):tabPath.header}</span>
 							</li>
 							<aura:if isTrue="{!lessthan((var+1),v.totalTabs)}">

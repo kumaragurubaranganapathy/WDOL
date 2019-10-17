@@ -1,24 +1,30 @@
 ({
     doInit : function(component, event, helper) {
         //debugger;
-        var action = component.get("c.getDefaultProgramType");       
+        var action = component.get("c.getDefaultProgramType");  
+        var _invalidValues = $A.get("$Label.c.Polaris_ProgramType");
+        var _invalidValuesArr = _invalidValues.split(',');
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
                 var result = response.getReturnValue();           
                 var industryMap = [];
+                
                 if(result){
                     for(var key in result){
-                        if( key !== 'Delegated Municipality' && key !== 'Manufactured Homes' && key !== 'Program Unknown' && key !== 'Misc Payments'){
+                        if(!_invalidValuesArr.includes(key)){
+                            industryMap.push({key: key, value: result[key]}); 
+                        }
+                        /*  if( key !== 'Delegated Municipality' && key !== 'Manufactured Homes' && key !== 'Program Unknown' && key !== 'Misc Payments'){
                             industryMap.push({key: key, value: result[key]});
-                        }                        
+                        } */                          
                     }                    
                     component.set("v.industryMap", industryMap);
                 }
             }
         });
         
-            
+        
         var action2 = component.get("c.getValidationNumberInfo");
         action2.setCallback(this, function(response) {
             var state = response.getState();
@@ -35,7 +41,7 @@
         }
     },
     
-   /* selectChange: function(component,event,helper) {
+    /* selectChange: function(component,event,helper) {
         //alert(JSON.stringify(component.get("v.customerEnvelopeRec")));
       //var checkCmp = component.find("dhp");
        // alert("checkCmp : "+checkCmp.get("v.value"));
