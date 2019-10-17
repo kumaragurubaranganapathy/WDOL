@@ -200,7 +200,7 @@ public class LnP_DashboardApexController_2_Test {
         //LnP_DashboardApexController_2.showExamsTabOnDashboard(lic.Id);
         //fetchLicenseRelatedEmploymentNEducationalHistoryRecords(String relatedRecordId);
         //fetchRenewalRelatedEmploymentNEducationalHistoryRecords(String relatedRecordId);
-                
+              LnP_DashboardApexController.getDBJSON();  
         Test.stopTest();
     }
 }

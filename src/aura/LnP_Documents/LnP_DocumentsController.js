@@ -5,19 +5,26 @@
         var action = component.get("c.getProgramType");
         var action1 = component.get("c.getFormNumber");
         var action2 = component.get("c.getDependency");
-              
-        var ShowNewResultValue = event.getParam("PassResult");
         
+        var ShowNewResultValue = event.getParam("PassResult");
+        var _invalidValues = $A.get("$Label.c.Polaris_ProgramType");
+        var _invalidValuesArr = _invalidValues.split(',');
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
                 var result = response.getReturnValue();
                 var industryMap = [];
-                for(var key in result){
-                    industryMap.push({key: key, value: result[key]});
+                
+                if(result){
+                    for(var key in result){                        
+                        if(!_invalidValuesArr.includes(key)){
+                            industryMap.push({key: key, value: result[key]}); 
+                        }                      
+                    }
+                    //console.log("IndustryMap : " + industryMap);
+                    component.set("v.industryMap", industryMap);
                 }
-                //console.log("IndustryMap : " + industryMap);
-                component.set("v.industryMap", industryMap);
+                
             }
         });
         action1.setCallback(this, function(response) {
@@ -66,7 +73,7 @@
     
     goToCustomerEnvelopePage:function(component,event,helper){
         //debugger;
-         helper.CreateCERecord(component, event );        
+        helper.CreateCERecord(component, event );        
     },
     
     saveCustomerEnvelopeRecord :function(component, event, helper){
@@ -108,7 +115,7 @@
     
     gotoListView : function (component, event, helper) {
         //for deleting the Customer Envelope record on failure or cancellations
-         var servercall = component.get("c.deleteCustomerEnvelope");
+        var servercall = component.get("c.deleteCustomerEnvelope");
         servercall.setParams({
             "custEnv": component.get("v.customerEnvelopeRec")
         });
@@ -118,7 +125,7 @@
                 //console.log(JSON.stringify(response.getReturnValue()));
             }
         });      
-		 
+        
         
         var action = component.get("c.getObjViews");
         action.setCallback(this, function(response){

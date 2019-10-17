@@ -1994,7 +1994,7 @@
         <filters>
             <field>US_Bank_Payment_Status__c</field>
             <operation>equals</operation>
-            <value>Processed,Settled</value>
+            <value>Processed</value>
         </filters>
         <filters>
             <field>ACH_BillerBusinessDate__c</field>
@@ -2011,6 +2011,130 @@
             <value>Returned</value>
         </filters>
         <label>US Bank Settlement</label>
+    </listViews>
+    <listViews>
+        <fullName>US_Bank_Settlement_ACH</fullName>
+        <columns>CREATED_DATE</columns>
+        <columns>NAME</columns>
+        <columns>MUSW__Amount_Tendered__c</columns>
+        <columns>Remittance_Process_Date_Time__c</columns>
+        <columns>Settlement_Date__c</columns>
+        <columns>US_Bank_Payment_Status__c</columns>
+        <columns>MUSW__Receipt_Paid_By__c</columns>
+        <columns>MUSW__Payment_Method__c</columns>
+        <columns>MUSW__Card_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>US_Bank_Payment_Status__c</field>
+            <operation>equals</operation>
+            <value>Processed</value>
+        </filters>
+        <filters>
+            <field>ACH_BillerBusinessDate__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>DHP__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Returned</value>
+        </filters>
+        <filters>
+            <field>MUSW__Payment_Method__c</field>
+            <operation>equals</operation>
+            <value>ACH</value>
+        </filters>
+        <label>US Bank Settlement - ACH</label>
+    </listViews>
+    <listViews>
+        <fullName>US_Bank_Settlement_AMEX</fullName>
+        <columns>CREATED_DATE</columns>
+        <columns>NAME</columns>
+        <columns>MUSW__Amount_Tendered__c</columns>
+        <columns>Remittance_Process_Date_Time__c</columns>
+        <columns>Settlement_Date__c</columns>
+        <columns>US_Bank_Payment_Status__c</columns>
+        <columns>MUSW__Receipt_Paid_By__c</columns>
+        <columns>MUSW__Payment_Method__c</columns>
+        <columns>MUSW__Card_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>US_Bank_Payment_Status__c</field>
+            <operation>equals</operation>
+            <value>Processed</value>
+        </filters>
+        <filters>
+            <field>ACH_BillerBusinessDate__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>DHP__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Returned</value>
+        </filters>
+        <filters>
+            <field>MUSW__Payment_Method__c</field>
+            <operation>equals</operation>
+            <value>Credit Card</value>
+        </filters>
+        <filters>
+            <field>MUSW__Card_Type__c</field>
+            <operation>equals</operation>
+            <value>Amex,Discover</value>
+        </filters>
+        <label>US Bank Settlement - AMEX &amp; Discover</label>
+    </listViews>
+    <listViews>
+        <fullName>US_Bank_Settlement_Visa_MC_Discover</fullName>
+        <columns>CREATED_DATE</columns>
+        <columns>NAME</columns>
+        <columns>MUSW__Amount_Tendered__c</columns>
+        <columns>Remittance_Process_Date_Time__c</columns>
+        <columns>Settlement_Date__c</columns>
+        <columns>US_Bank_Payment_Status__c</columns>
+        <columns>MUSW__Receipt_Paid_By__c</columns>
+        <columns>MUSW__Payment_Method__c</columns>
+        <columns>MUSW__Card_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>US_Bank_Payment_Status__c</field>
+            <operation>equals</operation>
+            <value>Processed</value>
+        </filters>
+        <filters>
+            <field>ACH_BillerBusinessDate__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>DHP__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Returned</value>
+        </filters>
+        <filters>
+            <field>MUSW__Payment_Method__c</field>
+            <operation>equals</operation>
+            <value>Credit Card</value>
+        </filters>
+        <filters>
+            <field>MUSW__Card_Type__c</field>
+            <operation>equals</operation>
+            <value>MasterCard,Visa</value>
+        </filters>
+        <label>US Bank Settlement - Visa &amp; MasterCard</label>
     </listViews>
     <listViews>
         <fullName>Visa</fullName>
