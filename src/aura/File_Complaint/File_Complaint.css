@@ -293,7 +293,10 @@
 .THIS .confirmation-content ol ul li {
     margin-left: 15px;
 }
-
+.THIS .confirmation-content ol ul li.nodots {
+    list-style:none;
+    margin-left:0px;
+}
 .THIS .slds-path__nav {
     display: flex;
     align-items: center;
