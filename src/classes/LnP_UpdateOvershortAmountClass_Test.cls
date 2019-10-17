@@ -25,6 +25,7 @@ public class LnP_UpdateOvershortAmountClass_Test {
         System.assertNotEquals(testAccount.Id, null);
         
         Contact testContact = CreateTestDataUtility.createContact(testAccount.id);  
+        testContact.Unique_ID_To_Provide__c = 'SSN';
         insert testContact;
         
         /*
@@ -55,6 +56,7 @@ public class LnP_UpdateOvershortAmountClass_Test {
         MUSW__Receipt__c receipt = DOL_TestDataFactory.createReceipt('Credit Card',200.0,'Portal');
         //receipt.BGBK__Cart__c = testCart.Id;
         //receipt.Status__c = DOL_AppConstants.NULL_EMPTY_STRING + 'Draft';
+        receipt.US_Bank_Payment_Status__c = 'Settled';
         receipt.MUSW__Amount_Available__c = 10;
         //receipt.Selected_Fees__c = String.join(feeIds,',');
         update receipt;

@@ -77,7 +77,7 @@ public class FeeTriggerHandler implements BGCM.ITriggerHandler{
             //Merging code from FeeUpdateCart Trigger **by Abhilasha**Start
             if(fees.size() >0){
                 Boolean bulkDataload = fees.size() > 100;
-                if (!bulkDataload){
+                if (!bulkDataload && !Test.isRunningTest()){
                     BGBK.CartManager.addFeesToCart(fees);
                 } 
             }
