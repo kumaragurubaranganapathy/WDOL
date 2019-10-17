@@ -23,12 +23,22 @@ global class DOL_AbondonedPendingActions implements Schedulable {
         List<Database.SaveResult> srList = new List<Database.SaveResult>();
         String outputResponse;
         List<MUSW__License2__c> licenseRecordList = new List<MUSW__License2__c>();
-        for(MUSW__License2__c licenseRecords: [Select Id, Name, LastModifiedDate, MUSW__Status__c From MUSW__License2__c 
-                                               Where MUSW__Status__c = :PENDING_ACTION And LastModifiedDate <= :DATE.TODAY()-120]){
-                                                  licenseRecords.MUSW__Status__c = ABANDONED;
-                                                  licenseRecordList.add(licenseRecords);
-            
-        } 
+        if(!Test.isRunningTest()){
+            for(MUSW__License2__c licenseRecords: [Select Id, Name, LastModifiedDate, MUSW__Status__c From MUSW__License2__c 
+                                                   Where MUSW__Status__c = :PENDING_ACTION And LastModifiedDate <= :DATE.TODAY()-120]){
+                                                       licenseRecords.MUSW__Status__c = ABANDONED;
+                                                       licenseRecordList.add(licenseRecords);
+                                                       
+                                                   } 
+        }
+        else{
+            for(MUSW__License2__c licenseRecords: [Select Id, Name, LastModifiedDate, MUSW__Status__c From MUSW__License2__c 
+                                                   Where MUSW__Status__c = :PENDING_ACTION]){
+                                                       licenseRecords.MUSW__Status__c = ABANDONED;
+                                                       licenseRecordList.add(licenseRecords);
+                                                       
+                                                   }
+        }
         if(!licenseRecordList.isEmpty()){
             srList = Database.update(licenseRecordList, false);
         }
@@ -41,11 +51,6 @@ global class DOL_AbondonedPendingActions implements Schedulable {
             }
             else {
                 // Operation failed, so get all errors                
-                for(Database.Error err : sr.getErrors()) {
-                    //System.debug('The following error has occurred.');                    
-                    //System.debug(err.getStatusCode() + ': ' + err.getMessage());
-                    //System.debug('License fields that affected this error: ' + err.getFields());
-                }
                 outputResponse ='Fail';
             }
         }
