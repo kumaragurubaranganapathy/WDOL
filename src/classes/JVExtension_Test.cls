@@ -24,6 +24,7 @@ public class JVExtension_Test {
         
         Journal_Voucher__c objJV = new Journal_Voucher__c(Document_Type__c='Manual IAP -user created to ensure document # matches OFM/AFRS');
         objJV.Document_Date__c = system.today();
+        objJV.Current_Document_Number__c='1233';
         objJV.RecordTypeID=Schema.SObjectType.Journal_Voucher__c.getRecordTypeInfosByName().get('Journal Voucher Manual').getRecordTypeId();
         insert objJV;
         
@@ -35,6 +36,7 @@ public class JVExtension_Test {
         
         Journal_Voucher__c objJV = new Journal_Voucher__c(Document_Type__c='Manual IAP -user created to ensure document # matches OFM/AFRS');
         objJV.Document_Date__c = system.today();
+        objJV.Current_Document_Number__c='1233';
         objJV.RecordTypeID=Schema.SObjectType.Journal_Voucher__c.getRecordTypeInfosByName().get('Journal Voucher Manual').getRecordTypeId();
         insert objJV;
         
