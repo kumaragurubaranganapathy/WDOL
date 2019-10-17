@@ -113,12 +113,8 @@
     },
     inputClick : function(component,event){        
         var currentValue;
-        /*var outFields = component.find("outputEditfield");
-        var endDateField;
-        outFields.forEach(function(elem){
-            if(elem.get("v.fieldName"==="End_date__c"))
-                endDateField = elem;
-        }); */
+        var cardNum = component.get("v.cardNumber");
+        
         var currElem = event.getSource();
         if(currElem.get("v.fieldName")==="Current__c"){
             currentValue = currElem.get("v.value");
@@ -131,14 +127,16 @@
                     }
                 }
             }
-            /*cardNum++;
-            component.set("v.cardNumber",cardNum); */            
+           
         } 
-        var currElement = event.getSource().get('v.value'); 
-        console.log('currElement--'+currElement);
-        var currfield=event.getSource().get('v.fieldName');
-        var masking = event.getSource().get('v.id');
-        var patternArray=masking.split(",")
+        var currElement = event.getSource().get('v.value');         
+        var currfield=event.getSource().get('v.fieldName');        
+        var masking = event.getSource().get('v.id').split("=");         
+        var patternArray;
+        if(!($A.util.isEmpty(masking[0]) || $A.util.isUndefined(masking[0]))){
+            patternArray = masking[0].split(",")  
+        }       
+        
         var strlength=patternArray[0];
         var sliceIndex=patternArray[1];
         var intervalIndex=patternArray[2];
@@ -150,20 +148,18 @@
                 var phone = trimmedNo.slice(0, sliceIndex)+delimiter+trimmedNo.slice(sliceIndex,endIndex) + delimiter + trimmedNo.slice(endIndex);
                 event.getSource().set('v.value',phone); 
             }
-        }		
+        }
     },
-    inputEditClick : function(component,event){        
+    inputEditClick : function(component,event){         
         var currElem = event.getSource();
-        //var inputFields = component.find("inputEditField");
+        
         var currentValue;
-        //var cardIndex; 
-        //var cardClass;
+       
         if(currElem.get("v.fieldName")==="Current__c"){
             currentValue = currElem.get("v.value"); 
-            //cardClass = currElem.get("v.class");
-            //cardIndex = parseInt(cardClass.split("itemRow=")[1]);
+            
             component.set("v.currentEditValue",currentValue);           
-            //component.set("v.cardIndex",cardIndex);
+            
             if(currentValue == true){
                 var fieldValuesWrapper = component.find("validateEditField");
                 for(var i=0; i<fieldValuesWrapper.length; i++){
@@ -173,10 +169,10 @@
                 }
             }            
         }
-		var currElement = event.getSource().get('v.value'); 
+        var currElement = event.getSource().get('v.value'); 
         var currfield=event.getSource().get('v.fieldName');
-        var masking = event.getSource().get('v.id');
-        var patternArray=masking.split(",")
+        var masking = event.getSource().get('v.id').split("=");       	
+        var patternArray=masking[0].split(",");
         var strlength=patternArray[0];
         var sliceIndex=patternArray[1];
         var intervalIndex=patternArray[2];
@@ -188,17 +184,7 @@
                 var phone = trimmedNo.slice(0, sliceIndex)+delimiter+trimmedNo.slice(sliceIndex,endIndex) + delimiter + trimmedNo.slice(endIndex);
                 event.getSource().set('v.value',phone); 
             }
-        }
-        /*inputFields.forEach(function(elem){
-            var fieldName = elem.get("v.fieldName");
-            if(fieldName==="Current__c"){
-                currentValue = elem.get("v.value");               
-            }                         
-            if(fieldName==="End_date__c"&&currentValue)
-                $A.util.addClass(elem,'slds-hide');            
-            else if(fieldName==="End_date__c"&&!currentValue)
-                $A.util.removeClass(elem,'slds-hide');            
-        }); */
+        }        
     },
     test: function(component,event){ 
         /*   console.log("in test");

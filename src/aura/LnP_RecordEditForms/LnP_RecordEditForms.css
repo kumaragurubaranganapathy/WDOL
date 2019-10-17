@@ -13,7 +13,7 @@
     margin-bottom:0.8rem;
 }
 .THIS .recItem label{
-    padding-bottom:0; 
+    padding-bottom:5px; 
 }
 .THIS .itemLayoutInp .slds-checkbox_standalone input{
    top:-8px;
@@ -88,7 +88,7 @@
     text-align:right;
 }
 .THIS .inlineFields .slds-form-element__static{
-    color:t(sentenceclr);
+    color:t(fieldclr);
 }
 .THIS .itemLayoutInp .slds-checkbox_standalone .slds-checkbox_faux{
    top:-4px;
@@ -232,6 +232,6 @@
     padding: 0px 20px 0px 10px;
 }
 .THIS .edit-field a{
-    color:t(LnGPlaceholderText);
+    color:t(fieldclr);
     pointer-events:none;
 }
