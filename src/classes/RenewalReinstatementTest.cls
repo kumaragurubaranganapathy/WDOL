@@ -21,7 +21,7 @@ public class RenewalReinstatementTest {
         update license;
                 
         //Insert Renewal Application
-        Renewal_Application__c renew = DOL_TestDataFactory.createRenewalApplication(renewalRecordTypeId, license.Id, null);
+        Renewal_Application__c renew = DOL_TestDataFactory.createRenewalApplication(renewalRecordTypeId, license.Id);
         renew.Renewal_Status__c = 'Pending Payment';
         update renew;
         
