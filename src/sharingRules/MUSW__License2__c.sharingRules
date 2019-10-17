@@ -10,7 +10,7 @@
         <criteriaItems>
             <field>Application_Type__c</field>
             <operation>equals</operation>
-            <value>Collection Agency,On-site Wastewater,Architects,Landscape Architects,Cemeteries,Land Surveyors,Geologist,Funerals,Engineers</value>
+            <value>Land Surveyors,Collection Agency,Architects,On-site Wastewater,Cemeteries,Engineers,Funerals,Geologist,Landscape Architects</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -23,10 +23,10 @@
         <criteriaItems>
             <field>Application_Type__c</field>
             <operation>equals</operation>
-            <value>Appraisal Management Companies,Camping Resorts,Notary Public,Appraisers - Real Estate,Timeshares</value>
+            <value>Appraisal Management Companies,Appraisers - Real Estate,Notary Public,Camping Resorts,Timeshares</value>
         </criteriaItems>
     </sharingCriteriaRules>
-    <sharingCriteriaRules>
+	<sharingCriteriaRules>
         <fullName>Sharing_to_Accounting_Roles</fullName>
         <accessLevel>Edit</accessLevel>
         <description>BUG - 7938</description>
@@ -34,7 +34,6 @@
         <sharedTo>
             <group>Finance_Team</group>
         </sharedTo>
-        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
         <criteriaItems>
             <field>Application_Type__c</field>
             <operation>equals</operation>
