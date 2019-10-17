@@ -33,7 +33,6 @@
     <tabs>MUSW__Application2__c</tabs>
     <tabs>BGCK__Question__c</tabs>
     <tabs>Master_Expiration_Rule__c</tabs>
-    <tabs>MUSW_Application2__c</tabs>
     <tabs>Master_ConfigData_Listing__c</tabs>
     <tabs>LnP_Licence_Application__c</tabs>
     <tabs>Master_Exam_List__c</tabs>
