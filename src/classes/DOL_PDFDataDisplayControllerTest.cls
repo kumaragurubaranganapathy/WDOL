@@ -21,9 +21,6 @@ public class DOL_PDFDataDisplayControllerTest{
         Id questionRecordTypeId = Schema.SObjectType.Question__c.getRecordTypeInfosByDeveloperName().get('Review_and_Submit').getRecordTypeId() ;
         Question__c questionRecord = DOL_TestDataFactory.createQuestion(questionRecordTypeId);
         
-        //answer record data
-        Answer__c answerRecord = DOL_TestDataFactory.createAnswer(licenseRecord.Id, questionRecord.Id);
-        
         //qualifying education record
         Id qualifyingEducationRecordTypeId = Schema.SObjectType.LnP_BackgroundSection__c.getRecordTypeInfosByDeveloperName().get('Qualifying_Education').getRecordTypeId();
         LnP_BackgroundSection__c qualifyingEducationRecord = DOL_TestDataFactory.createBackgroundSection();
