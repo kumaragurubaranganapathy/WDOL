@@ -32,7 +32,7 @@
     </values>
     <values>
         <field>Item_Transaction_Type__c</field>
-        <value xsi:nil="true"/>
+        <value xsi:type="xsd:string">Accounts Receivable</value>
     </values>
     <values>
         <field>JV_name__c</field>
