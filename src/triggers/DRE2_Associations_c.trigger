@@ -12,7 +12,9 @@ trigger DRE2_Associations_c on Associations__c (after insert, before update, bef
     List<MUSW__License2__c> lictoUpdate = new List<MUSW__License2__c>();
     if(Trigger.isAfter && Trigger.isInsert){
         for(Associations__c assoc : Trigger.new){
-             mapIdCount.put(assoc.Child_License__c,1);
+              if(assoc.Status__c == 'Active'){
+                mapIdCount.put(assoc.Child_License__c,1);
+              }
         }
     }
     if(Trigger.isBefore && Trigger.isUpdate && runAgain == false){
