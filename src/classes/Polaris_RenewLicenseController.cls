@@ -71,7 +71,7 @@ public class Polaris_RenewLicenseController {
             //Fetching Section
             List<LnP_License_Type_Sections_Setting__mdt> lstSections = new List<LnP_License_Type_Sections_Setting__mdt>();        
             lstSections = Polaris_RenewLicenseService.fetchSection(board,licenseType,renewReinstate);
-            system.debug('lstSections---'+lstSections);
+           // system.debug('lstSections---'+lstSections);
             if(!lstSections.isEmpty())
             {
                 sections = lstSections[0].Sections__c;
@@ -279,7 +279,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 //Created for Course Information Section
                 else if(section == DOL_AppConstants.COURSE_INFORMATION && !lstApps.isEmpty()){
                     licenseWrapper.personalInfoObjectName = DOL_AppConstants.ACCOUNT;
-                    system.debug('Account---'+ lstApps[0].MUSW__Account__c);
+                 //   system.debug('Account---'+ lstApps[0].MUSW__Account__c);
                     licenseWrapper.accountId = lstApps[0].MUSW__Account__c;
                     licenseWrapper.fieldJson = jsonApplicationFields;
                 } //end
@@ -307,7 +307,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 lstLicenseWrapper.add(licenseWrapper);
                 tabIndex++;
             }
-            system.debug('lstLicenseWrapper : '+JSON.serialize(lstLicenseWrapper));            
+          //  system.debug('lstLicenseWrapper : '+JSON.serialize(lstLicenseWrapper));            
             return JSON.serialize(lstLicenseWrapper);  
         }catch(Exception ex)
         {
@@ -352,12 +352,12 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     listFieldSub = objWrapper.labelFieldsMap;
                 }
             }
-            system.debug('List Fields '+Json.serialize(listFieldSub));
+           // system.debug('List Fields '+Json.serialize(listFieldSub));
             for(LnP_ApplyForLicenseWrapper.MapLabelToFields fieldMap : listFields){
                 if((fieldMap.submissionDetails != '' && fieldMap.submissionDetails != null) ){
                     if (fieldMap.value != null && fieldMap.value != '' ) {
                         Map<String, String> mapAttachment = (Map<String, String>)JSON.deserialize(fieldMap.submissionDetails,Map<String, String>.class);
-                        system.debug('mapAttachment12344'+mapAttachment);
+                      //  system.debug('mapAttachment12344'+mapAttachment);
                         if(mapAttachment.containsKey(fieldMap.value)){
                             submissionList.addAll(mapAttachment.get(fieldMap.value).split(DOL_AppConstants.COMMA));
                         }
@@ -380,7 +380,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             String mastSubCond3 = DOL_AppConstants.NULL_EMPTY_STRING + 'Credential_Type__c =\''+LicenseType+'\'';
             String mastSubCond4 = DOL_AppConstants.NULL_EMPTY_STRING + 'Title__c IN: XXX ORDER BY  Order_No__c ASC';
             String strSubmission = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id, Order_No__c,Name,Title__c,Question__c,Expected_Answer__c,Submission_Type__c, Required__c,  Active__c, Default__c, Application_Type__c, Credential_Type__c, Application_Method__c from MUSW__Master_Submission_List__c where ' +mastSubCond1+ ' AND '+mastSubCond2+ ' AND '+mastSubCond3+ ' AND ' +mastSubCond4 ;
-            system.debug('submissionList'+submissionList);
+       //     system.debug('submissionList'+submissionList);
             masterSubmissionList = Utilityclass_withsharing.queryRecordsInClause(strSubmission,submissionList);
             Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields> submissions = new Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields>();
             Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields> warapperMapSorted = new Map<Decimal,LnP_ApplyForLicenseWrapper.MapLabelToFields>();
@@ -455,18 +455,18 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         String accountId= DOL_AppConstants.NULL_EMPTY_STRING + '';
         if(!wrapperList.isEmpty()){
             accountId =  wrapperList[0].accountId != null ? wrapperList[0].accountId : '';
-            system.debug('accountId---'+accountId);
+         //   system.debug('accountId---'+accountId);
         }
         wrapperList = fetchSubmission(wrapperList, Board,  LicenseType,  ApplicationType);
         Id contactAccountId;
         Id contactRecordId = getCommunityUserContactId();
-        System.debug('contactRecordId for insert application===' + contactRecordId + 'accountIdFromApplication---' + accountIdFromApplication);
+       // System.debug('contactRecordId for insert application===' + contactRecordId + 'accountIdFromApplication---' + accountIdFromApplication);
         if(String.isNotBlank(accountIdFromApplication)){
             contactAccountId = accountIdFromApplication;
         }else{
             contactAccountId = contactRecordId;
         }
-        System.debug('Entered mapAddress method---' + appId);
+      //  System.debug('Entered mapAddress method---' + appId);
         mapAddress = getAddresses(contactAccountId, appId);
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> listFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
         List<LnP_ApplyForLicenseWrapper.MapLabelToFields> submissionFields = new List<LnP_ApplyForLicenseWrapper.MapLabelToFields>();
@@ -491,7 +491,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                 submissionFields = objWrapper.labelFieldsMap;
             }
         }
-        System.debug('listFields'+JSON.serialize(listFields));
+      //  System.debug('listFields'+JSON.serialize(listFields));
         if(listFields.size()>0){
             Integer count = 0;
             Integer questioncount = 0;
@@ -631,7 +631,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
         
         finalRequest.compositeRequest = requestDetailsList;
         String JSONstr = JSON.serialize(finalRequest);
-        System.debug('JSONstr-->'+JSONstr);
+      //  System.debug('JSONstr-->'+JSONstr);
         Map<String,Object> field = (Map<String,Object>)JSON.deserializeUntyped(JSONstr);
         List<Object> keyValueList = new List<Object>();
         keyValueList = (List<Object>)field.get('compositeRequest');
@@ -762,10 +762,10 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             String licenseID;
             Boolean checkSuccess = false;
             setapplicationId.add(applicationId);
-            System.debug('callcompositeAPI::');
+       //     System.debug('callcompositeAPI::');
             String appCondition = DOL_AppConstants.NULL_EMPTY_STRING + 'Id=\''+applicationId+'\'';
             String strApp = DOL_AppConstants.NULL_EMPTY_STRING + 'Select Id,MUSW__Account__c, Stage__c, Form_JSON__c, Application_Type__c,  Credential_Type__c, Application_Method__c from MUSW__Application2__c where '+appCondition;
-            system.debug('strApp---'+strApp);
+         //   system.debug('strApp---'+strApp);
             appList = Utilityclass_withsharing.queryRecords(strApp);
             String stringJSON = DOL_AppConstants.NULL_EMPTY_STRING + '';
             stringJSON = appList[0].Form_JSON__c;
@@ -797,18 +797,24 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     strJsonForm = strJsonForm.replace('[,', '['); //prevent opening bracket from having a comma after it
                     strJsonForm = strJsonForm.replace(',]', ']');            
                     
-                    HttpRequest req = new HttpRequest();
-                    String url = System.Label.CompositeAPIURL;
-                    req.setEndpoint(url);
-                    req.setMethod(DOL_AppConstants.POST);
-                    String sessionId=UserInfo.getSessionId();
-                    req.setHeader('Authorization', 'Bearer '+ sessionId);
-                    req.setHeader('Content-Type','application/json');                   
-                    req.setBody(strJsonForm);
-                    req.setTimeout(60000);     
-                    Http http = new Http();
-                    HTTPResponse res = http.send(req);
-                    if(res.getStatusCode() == 200) {
+                    if(!Test.isRunningTest()){
+                        HttpRequest req = new HttpRequest();
+                        String url = System.Label.CompositeAPIURL;
+                        req.setEndpoint(url);
+                        req.setMethod(DOL_AppConstants.POST);
+                        String sessionId=UserInfo.getSessionId();
+                        req.setHeader('Authorization', 'Bearer '+ sessionId);
+                        req.setHeader('Content-Type','application/json');                   
+                        req.setBody(strJsonForm);
+                        req.setTimeout(60000);     
+                        Http http = new Http();
+                        HTTPResponse res = http.send(req);
+                        if(res.getStatusCode() == 200) {
+                            checkSuccess = true;
+                        }
+                    }
+                    else
+                    {
                         checkSuccess = true;
                     }
                     
@@ -874,9 +880,9 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                             if(ans.QuestionDOL__r.QuestionObjectName__c == DOL_AppConstants.RENEWAL_APPLICATION)  {
                                 ans.Renewal_Reinstatement_Application__c = licenseID;   
                                 // map course fields here
-                                if(ans.QuestionDOL__r.RecordType.DeveloperName == DOL_AppConstants.COURSE_INFORMATION){
+                                if(ans.QuestionDOL__r.RecordType.Name == DOL_AppConstants.COURSE_INFORMATION){
                                     String QuestionObjFieldAPIName = ans.QuestionDOL__r.QuestionFieldAPI__c;
-                                    system.debug(' in course info rec type filter');
+                                  //  system.debug(' in course info rec type filter');
                                     if(QuestionObjFieldAPIName == DOL_AppConstants.EMAIL){
                                         RenewalObj.Email__c = ans.Answer_Text__c;
                                     }
@@ -901,7 +907,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                             
                                         }
                                         String preApprovalString = DOL_AppConstants.NULL_EMPTY_STRING + '';
-                                        system.debug('preApproval----'+preApproval);
+                                    //    system.debug('preApproval----'+preApproval);
                                        
                                         for(String str : preApproval)
                                         {    if(preApproval.size() > 1){
@@ -915,7 +921,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                         // remove last additional comma from string
                                         
                                         preApprovalString = preApprovalString.subString(0,preApprovalString.length());
-                                        system.debug('preApprovalString---'+preApprovalString);
+                                   //     system.debug('preApprovalString---'+preApprovalString);
                                         RenewalObj.Pre_Approval__c = preApprovalString;
                                     }
                                     if(QuestionObjFieldAPIName == DOL_AppConstants.DELIVERY_METHOD){
@@ -1105,7 +1111,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     for(BGCK__Answer__c ans : application.Answers1__r)
                     {  
                         //updated field name from 'QuestionObjectName__c' to 'Parent_Object_API_Name__c'
-                        system.debug('anshey'+ans);
+                  //      system.debug('anshey'+ans);
                         if( ans.QuestionDOL__r != null) {
                             if(ans.Answer_Text__c != null && ans.QuestionDOL__r.QuestionFieldAPI__c != null 
                                && ans.QuestionDOL__r.Parent_Object_API_Name__c == 'Renewal_Application__c' && ans.QuestionDOL__r.RecordType.DeveloperName == 'Background_Questions')
@@ -1159,7 +1165,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         }
                     }
                     for(BGCK__Answer__c ans : application.Answers1__r){                    
-                        if(ans.QuestionDOL__r.RecordType.DeveloperName == DOL_AppConstants.FINANCIAL_GUARANTEE){
+                        if(ans.QuestionDOL__r.RecordType.Name == DOL_AppConstants.FINANCIAL_GUARANTEE){
                             
                             String quesBody = ans.QuestionDOL__r.Question_Body__c;
                             String answerText = ans.Answer_Text__c;
@@ -1297,13 +1303,13 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             Map<Id, Contact> conMap = new Map<Id, Contact>();
             id userId = UserInfo.getUserId();
             User u = [select id, contactId from User where id = : userId];
-            system.debug('u----' + u);
+       //     system.debug('u----' + u);
             Id getContactId = DOL_AppConstants.NULL_EMPTY_STRING + '003r000000BnY6T';
-            system.debug('getContactId----' + getContactId);
+          //  system.debug('getContactId----' + getContactId);
             list<Contact> conlist = new list<Contact>();
             for(Contact con : [Select Id, LastName, Birthdate, Email from contact where Id=:getContactId]){
                 conMap.put(con.Id, con);
-                system.debug('conMap----' + conMap);
+            //    system.debug('conMap----' + conMap);
             }
             return conMap;
         }catch(Exception ex)
@@ -1324,7 +1330,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                                      Primary_Account__c,LastModifiedDate, Status__c from MUSW__Parcel__c 
                                                      where Status__c ='Active' AND ((MUSW__Primary_Contact__c!=null AND MUSW__Primary_Contact__c = :contactAccountId)
                                                      OR (Primary_Account__c!=null AND Primary_Account__c = :contactAccountId AND Application_BG__c =:appId and Application_BG__c!=null))];
-                System.debug('lstAddress===' + lstAddress);
+             //   System.debug('lstAddress===' + lstAddress);
                 if(!lstAddress.isEmpty()){
                     for(MUSW__Parcel__c parcelAddress : lstAddress) {
                         if(mapAddress.containsKey(parcelAddress.Address_Type__c)) {
@@ -1334,7 +1340,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         }
                     }
                 }
-                System.debug('mapAddress from method===' + mapAddress);
+            //    System.debug('mapAddress from method===' + mapAddress);
             }
             return  mapAddress ;
         }catch(Exception ex)
@@ -1346,7 +1352,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
     
     @Future
     public static void getAllAddressesForComposite(String renewalLicenseId, Id idOfLicenseWhichIsRenewed){
-        System.debug('renewalLicenseId---' + renewalLicenseId + 'license Id which is renewed--' + idOfLicenseWhichIsRenewed);
+   //     System.debug('renewalLicenseId---' + renewalLicenseId + 'license Id which is renewed--' + idOfLicenseWhichIsRenewed);
         List<MUSW__License_Parcel__c> licenseParcelList = new List <MUSW__License_Parcel__c>();
             for(MUSW__License_Parcel__c licenseParcel : [Select Id, MUSW__License2__c, Renewal_Reinstatement_Application__c, MUSW__Parcel__r.Id, Status__c
                                                          From MUSW__License_Parcel__c Where MUSW__License2__c = :idOfLicenseWhichIsRenewed
@@ -1354,15 +1360,15 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                                                              licenseParcel.Renewal_Reinstatement_Application__c = renewalLicenseId;
                                                              licenseParcelList.add(licenseParcel);
                                                          }
-            System.debug('licenseParcelList==='+ licenseParcelList);
+         //   System.debug('licenseParcelList==='+ licenseParcelList);
             if(!licenseParcelList.isEmpty()){
                 try{
                     update licenseParcelList; 
                 }
                 catch(DmlException e){
-                    System.debug('Error while updating---' + e.getMessage());
+             //       System.debug('Error while updating---' + e.getMessage());
                 }
-                System.debug('licenseParcelList===' + licenseParcelList);   
+          //      System.debug('licenseParcelList===' + licenseParcelList);   
         }          
     }
     //Fetch BackgroundInformation
@@ -1493,7 +1499,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             for(User userRecord: [Select Id, username, contactId from User where Id = :UserInfo.getUserId() LIMIT 1]){
                 contactId = userRecord.contactId;
             }
-            System.debug('contactId===' + contactId);
+     //       System.debug('contactId===' + contactId);
             return contactId;
         }catch(Exception ex)
         {
