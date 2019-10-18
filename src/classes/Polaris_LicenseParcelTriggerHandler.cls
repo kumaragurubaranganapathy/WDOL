@@ -72,7 +72,10 @@ public class Polaris_LicenseParcelTriggerHandler implements BGCM.ITriggerHandler
                 } else if(!licenseMap.isEmpty() && lp.Physical__c == true && lp.Mailing__c == false && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null)  {
                         licRec.Public_Address__c = lp.MUSW__Parcel__c;
                     
-                }                
+                }   else if(!licenseMap.isEmpty() && (lp.Physical__c == true  && lp.Mailing__c == true) && lp.MUSW__Parcel__c != null && lp.MUSW__License2__c != null) {
+                    licRec.MUSW__Parcel__c = lp.MUSW__Parcel__c;
+                    licRec.Public_Address__c = lp.MUSW__Parcel__c;       
+                }             
                 if(licenseMap.containsKey(lp.MUSW__License2__c)) {
                     licenseMap.put(lp.MUSW__License2__c,licRec);
                 } 
