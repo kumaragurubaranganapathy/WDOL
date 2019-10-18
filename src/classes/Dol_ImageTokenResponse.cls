@@ -17,10 +17,10 @@ public class Dol_ImageTokenResponse{
 		public String UserName{get;set;}	//nswain@deloitte.com
 		public boolean ValidToken{get;set;}
 	}
-    class Request {
+    public class Request {
        public ImageToken imageTokenReq{get;set;}
     }
-    class Error {
+    public class Error {
        public String ErrorMessage {get;set;}
        public String[] MemberNames{get;set;}
     }
