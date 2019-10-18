@@ -637,7 +637,9 @@ _______________________________________________________________
                                         <lightning:layoutItem size="12" mediumDeviceSize="6" class="field-style license-item">
                                             <div class="label-style">Expiration Date</div>
                                             <aura:if isTrue="{!task.Expiration_Date__c  ? true :false}">
-                                                <div class="data-style">{!task.Expiration_Date__c}</div>
+                                                <div class="data-style">
+                                                    <lightning:formattedDateTime value="{!task.Expiration_Date__c}" year="numeric" month="long" day="2-digit" />
+                                                </div>
                                                 <aura:set attribute="else">
                                                     <span class="data-style">None</span>
                                                 </aura:set>
