@@ -50,7 +50,7 @@ public without sharing class CommunityRegistrationController {
         ID DEFAULT_ACCOUNT_OWNERID =  users[0].Id;
         Account acc = new Account(name = firstN + middleN + lastN,OwnerId = DEFAULT_ACCOUNT_OWNERID);
         insert acc;
-        //System.debug('Account Creation done' + acc.id);                                
+        System.debug('Account Creation done' + acc.id);                                
         
         retRes = new Contact(
             LastName = lastN,
@@ -59,9 +59,8 @@ public without sharing class CommunityRegistrationController {
             AccountId = acc.Id,
             Birthdate =Date.valueOf(birthdate)
         );
-        
         insert retRes ;
-        //System.debug('Contact Creation done' + retRes.id);                                      
+        	System.debug('Contact Creation done' + retRes.id);                                      
         
         return retRes ;
         }

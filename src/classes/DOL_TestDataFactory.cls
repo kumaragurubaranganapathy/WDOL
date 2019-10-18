@@ -62,7 +62,7 @@ public class DOL_TestDataFactory {
     //
         //method for creating License
     public static MUSW__License2__c createLicenseIndividual(Id recordTypeId, Id accId,String programType, String licenseType,String applicationMethod){
-        MUSW__License2__c license = new MUSW__License2__c(Name='System Number', RecordTypeId = recordTypeId,MUSW__Applicant__c = accId, Application_Type__c = programType,Credential_Type__c = licenseType,Application_Method__c = applicationMethod,Manual_Fee_Generation__c = true);
+        MUSW__License2__c license = new MUSW__License2__c(MUSW__Status__c='Active',Name='System Number', RecordTypeId = recordTypeId,MUSW__Applicant__c = accId, Application_Type__c = programType,Credential_Type__c = licenseType,Application_Method__c = applicationMethod,Manual_Fee_Generation__c = true);
         insert license;
         return license;
     }
@@ -244,6 +244,23 @@ public class DOL_TestDataFactory {
         return recRef;
     }
     
+    //Create User
+    public static User createUser(String lastName, String aliasName, Id profileId,String emailId,Id contactId ){
+        User newUser = new User(
+            profileId = profileId,
+            username = emailId,
+            email = emailId,
+            emailencodingkey = 'UTF-8',
+            localesidkey = 'en_US',
+            languagelocalekey = 'en_US',
+            timezonesidkey = 'America/Los_Angeles',
+            alias=aliasName,
+            lastname=lastName,
+            contactId = contactId);
+        return newUser;
+        
+    }
+    
     //Create Portal User
     public static User createPortalUser(String lastName, String aliasName, Id profileId,String emailId,Id contactId ){
         //UserRole ur = [Select Id, PortalType, PortalAccountId From UserRole where PortalType = 'Customer User' limit 1];
@@ -314,7 +331,7 @@ public class DOL_TestDataFactory {
                // UserRoleId = portalRole.Id,
                 ProfileId = portalProfile.Id,
                 Alias = 'test123',
-                Email = 'test12345@test.com',
+                Email = 'TestDataTest@test.com',
                 EmailEncodingKey = 'UTF-8',
                 LastName = 'McTesty',
                 CommunityNickname = 'test12345',
@@ -525,6 +542,49 @@ public class DOL_TestDataFactory {
         MUSW__Inspection_Violation__c inspVio = new MUSW__Inspection_Violation__c(MUSW__Inspection__c = inpectionId, MUSW__Violation__c = violationId);
         insert inspVio;
         return inspVio;
+    }
+    
+    // create Generic Questions 
+    public static Question__c createQuestionData(String qBody,String dataType,String ObjectName,String AppType,String CredType,String ExtrnlId,String QueFieldAPI,String AppMethod,String showFor,String queSubSection,String SubHeader,String Section,String RecordTypeId,Boolean isRequired,String responses){
+        Question__c ques = new Question__c();
+        ques.Question_Body__c = qBody;
+        ques.Data_Type__c = dataType;
+        ques.Parent_Object_API_Name__c = ObjectName;
+        ques.Application_Type__c = AppType;
+        ques.Credential_Type__c = CredType;
+        ques.External_Id__c = ExtrnlId;
+        ques.QuestionFieldAPI__c = QueFieldAPI;
+        ques.Application_Method__c = AppMethod;
+        ques.status__c = 'Active';
+        ques.Show_For__c = showFor;
+        ques.Sub_Sub_Header__c = SubHeader;
+        ques.Section__c = Section;
+        ques.RecordTypeId = RecordTypeId;
+        ques.QuestionObjectName__c = ques.Parent_Object_API_Name__c;
+        ques.isRequired__c = isRequired;
+        ques.Possible_Responses__c = responses;
+        ques.Effective_Date__c = System.today() -1 ;
+        insert ques;
+        return ques;
+    }
+  
+  // to create generic answers   
+   public static BGCK__Answer__c createAnswersGeneric(Boolean valid,String ansText,Id QueId,Id appId){
+        BGCK__Answer__c answ = new BGCK__Answer__c();
+        answ.BGCK__Valid__c = valid;
+        answ.Answer_Text__c = ansText;
+        answ.QuestionDOL__c = QueId;
+        answ.Application_BG__c = appId;
+        insert answ;
+        return answ;
+    }
+    
+    public static Employment_History__c getEmploymentHistory(Id recId, Id licId){
+        Employment_History__c empHistory = new Employment_History__c();
+        empHistory.License__c = licId;
+        empHistory.Employer__c = DOL_AppConstants.NULL_EMPTY_STRING+'Test Employer';
+        insert empHistory;
+        return empHistory;
     }
         
 }//Class End
