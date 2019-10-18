@@ -248,7 +248,7 @@
                                                 <h2 class="headings underline">Attachments</h2>
                                             </aura:if>                                            
                                             <aura:iteration items="{!section.labelFieldsMap}" var="question" indexVar="questionItem">
-                                                <h2 class="{!and(question.questionSection!='null',question.fieldType!='Attachment')?'sectionwidth headings':'slds-hide'}">{!question.questionSection=='General Questions'?'Request Information':question.questionSection}</h2>
+                                                <h2 class="{!and(question.questionSection!='null',question.fieldType!='Attachment')?'sectionwidth headings':'slds-hide'}">{!question.questionSection=='General Questions'?'Request Information':(question.questionSection!=null?question.questionSection:'heading')}</h2>
                                                 <div class="{!and(question.questionSection!='null',question.fieldType!='Attachment')?'sectiondetail sentences':'slds-hide'}">{!question.questionSectionDetail}</div>
                                                 <aura:if isTrue="{!question.fieldType=='Picklist'}">
                                                     <!--div id="{!'q'+questionItem}" class="{!(question.isChild)?'slds-hide field-item ':'field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
