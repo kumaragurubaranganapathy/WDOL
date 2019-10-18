@@ -260,7 +260,7 @@
                                     </div-->
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') +' field-item devide-list hiddenLabel slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 '}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:select name="{!section.sectionName+questionItem}"  value="{!question.value}" onchange="{!c.showDependentQuestions}">
+                                                        <lightning:select name="{!section.sectionName+questionItem}"  value="{!question.value}" onchange="{!c.showDependentQuestions}" label="{!question.label}" class="label-hide">
                                                             <aura:iteration items="{!question.fieldValueOptions}" var="option">
                                                                 
                                                                 <option value="{!option}">{!option}</option>
@@ -276,7 +276,8 @@
                                                                               options="{!question.radioValueOptions}"
                                                                               value="{!question.value}"
                                                                               type="radio"
-                                                                              onchange="{!c.showDependentQuestions}"/>
+                                                                              onchange="{!c.showDependentQuestions}"
+																			  label="{!question.label}" class="label-hide"/>
                                                     </div>
                                                     
                                                 </aura:if>
@@ -287,7 +288,8 @@
                                                                               options="{!question.radioValueOptions}"
                                                                               value="{!question.value}"
                                                                               type="radio"
-                                                                              onchange="{!c.showDependentQuestions}"/>
+                                                                              onchange="{!c.showDependentQuestions}"
+																			  label="{!question.label}" class="label-hide"/>
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!and(question.fieldType=='Yes_No' , question.endorsementType!=null)}">
@@ -297,7 +299,8 @@
                                                                               options="{!question.radioValueOptions}"
                                                                               value="{!question.value}"
                                                                               type="radio"
-                                                                              onchange="{!c.showDependentQuestions}"/>
+                                                                              onchange="{!c.showDependentQuestions}"
+																			  label="{!question.label}" class="label-hide"/>
                                                     </div>
                                                 </aura:if>
                                                 
@@ -309,7 +312,8 @@
                                                         <lightning:checkboxGroup name="{!section.sectionName+questionItem+'checkbox'}"                                                                                 
                                                                                  options="{!question.radioValueOptions}"
                                                                                  value="{!question.multiValues}"
-                                                                                 onchange="{!c.showDependentQuestions}"/>
+                                                                                 onchange="{!c.showDependentQuestions}"
+																				 label="{!question.label}" class="label-hide"/>
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Text'}">
@@ -317,21 +321,21 @@
                                                      <!--   <span  class="{!(question.label=='Middle Name or Initial'?'middlename':'')+' slds-form-element__label'}"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
                                                         <lightning:input name="{!section.sectionName+questionItem}" value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3" variant="label-hidden" />-->
                                                         <span  class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:input name="{!section.sectionName+questionItem}" value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3" variant="label-hidden" />
+                                                        <lightning:input name="{!section.sectionName+questionItem}" value="{!question.value}" type="{!question.fieldType}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3 label-hide" variant="label-hidden" label="{!question.label}" />
                                                     </div>
                                                 </aura:if> 
                                                 <aura:if isTrue="{!question.fieldType=='Textarea'}">
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + (question.isMandatoryQues?' ':' not-required ') + 'field-item devide-list slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <div class="slds-form-element  field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3">
                                                             <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                            <ui:inputTextArea value="{!question.value}" rows="5" />
+                                                            <ui:inputTextArea value="{!question.value}" rows="5" label="{!question.label}" class="label-hide"/>
                                                         </div>
                                                     </div>
                                                 </aura:if>
                                                 <aura:if isTrue="{!question.fieldType=='Date'}">
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + ' field-item devide-list hiddenLabel slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:input dateStyle="long" type="date" name="{!section.sectionName+questionItem}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3"/>
+                                                        <lightning:input dateStyle="long" type="date" name="{!section.sectionName+questionItem}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3 label-hide" label="{!question.label}"/>
                                                     </div>
                                                     
                                                 </aura:if>
