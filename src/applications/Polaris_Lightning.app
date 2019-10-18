@@ -9,12 +9,6 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Education_History__c</pageOrSobjectType>
     </actionOverrides>
-    <brand>
-        <headerColor>#0070D2</headerColor>
-        <logo>servlet</logo>
-        <logoVersion>1</logoVersion>
-        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
-    </brand>
     <description>Application for Polaris</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
