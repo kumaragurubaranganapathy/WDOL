@@ -273,7 +273,7 @@
                             if(item.regex == "Date-Validation"){
                                 var valueVal = fieldValuesWrapper[index].get("v.value");
                                 var today = new Date();
-                                var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                var compareDate = today.getFullYear()+'/'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'/'+today.getDate();
                                 compareDate = new Date(compareDate);
                                 var enteredDate = new Date(valueVal);
                                 if(enteredDate < compareDate){
@@ -321,7 +321,7 @@
 							if(item.Regex_Validation__c == "Date-Validation"){
 								var valueVal = fieldValuesWrapper[index].get("v.value");
 								var today = new Date();
-								var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+								var compareDate = today.getFullYear()+'/'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'/'+today.getDate();
 								compareDate = new Date(compareDate);
 								var enteredDate = new Date(valueVal);
 								if(enteredDate < compareDate){

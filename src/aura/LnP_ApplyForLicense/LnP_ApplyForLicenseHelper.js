@@ -802,7 +802,7 @@
                                 if(item.Regex_Validation__c == "Date-Validation"){
                                     var valueVal = fieldValuesWrapper[index].get("v.value");
                                     var today = new Date();
-                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    var compareDate = today.getFullYear()+'/'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'/'+today.getDate();
                                     compareDate = new Date(compareDate);
                                     var enteredDate = new Date(valueVal);
                                     if(enteredDate < compareDate){
@@ -893,7 +893,7 @@
                                 if(item.Regex_Validation__c == "Date-Validation"){
                                     var valueVal = fieldValuesWrapper[index].get("v.value");
                                     var today = new Date();
-                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    var compareDate = today.getFullYear()+'/'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'/'+today.getDate();
                                     compareDate = new Date(compareDate);
                                     var enteredDate = new Date(valueVal);
                                     if(enteredDate < compareDate){
@@ -995,7 +995,7 @@
                             if(item.regex == "Date-Validation"){
                                 var valueVal = item.value;
 								var today = new Date();
-								var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+								var compareDate = today.getFullYear()+'/'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'/'+today.getDate();
 								compareDate = new Date(compareDate);
                                 var enteredDate = new Date(valueVal);
 								if(enteredDate < compareDate){
@@ -1008,7 +1008,7 @@
                                 var valueVal = item.value;
                                 var enteredDate = new Date(valueVal);
                                 var today = new Date();
-                                var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                var compareDate = today.getFullYear()+'/'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'/'+today.getDate();
                                 compareDate = new Date(compareDate);
                                 if(enteredDate > today){
                                     return true;
@@ -1055,7 +1055,7 @@
                                 if(item.regex == "Date-Validation"){
                                     var valueVal = item.value;
                                     var today = new Date();
-                                    var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    var compareDate = today.getFullYear()+'/'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'/'+today.getDate();
                                     compareDate = new Date(compareDate);
                                     var enteredDate = new Date(valueVal);
                                     if(enteredDate < compareDate){
@@ -1068,7 +1068,7 @@
                                     var valueVal = item.value;
                                     var enteredDate = new Date(valueVal);
                                     var today = new Date();
-                                    //var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+                                    //var compareDate = today.getFullYear()+'/'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'/'+today.getDate();
                                     //compareDate = new Date(compareDate);
                                     if(enteredDate > today){
                                         return true;

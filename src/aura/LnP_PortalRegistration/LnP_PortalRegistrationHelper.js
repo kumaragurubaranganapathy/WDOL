@@ -118,7 +118,7 @@
         var valueVal = component.find("birthdate").get("v.value");
         console.log('valueVal==' + valueVal);
         var today = new Date();
-        var compareDate = today.getFullYear()+'-'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'-'+today.getDate();
+        var compareDate = today.getFullYear()+'/'+(today.getMonth().length>1?(today.getMonth()+1):'0'+(today.getMonth()+1))+'/'+today.getDate();
         compareDate = new Date(compareDate);
         var enteredDate = new Date(valueVal);
         if(enteredDate < compareDate){
