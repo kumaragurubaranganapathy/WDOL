@@ -173,8 +173,7 @@ display:none;
 }
 .THIS .revAndSubCompletionFont{
     margin:8px 0 20px 0;
-    color: t(fieldclr);
-    font-size:14px;  
+    color: t(fieldclr);      
     /*padding:5px 0;    */
     -moz-user-select: none;
     -ms-user-select: none;
@@ -454,21 +453,17 @@ color: t(primary);
         margin:0 1rem;
     }
     .THIS .subheader{
-        padding-left:29px;
+        margin: 1rem 1rem 0
     }
     .THIS .save-buttons{
-        flex-direction:column-reverse;
-        
+        flex-direction:column-reverse;        
     }
     .THIS .buttonpos button {       
         margin: 10px 0;
         height: 42px;    
         font-size: 14px;
         font-weight: bold;
-    }
-    .THIS .subheader {
-        margin-left: 0;
-    }
+    }   
     .THIS .id-field .account-label{
         display:inline-block;
     }
