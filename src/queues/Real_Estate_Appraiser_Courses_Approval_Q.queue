@@ -2,6 +2,11 @@
 <Queue xmlns="http://soap.sforce.com/2006/04/metadata">
     <doesSendEmailToMembers>true</doesSendEmailToMembers>
     <name>Real Estate Appraiser Courses Approval Q</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>Real_Est_Appraise_Course_Refund_Approver</publicGroup>
+        </publicGroups>
+    </queueMembers>
     <queueSobject>
         <sobjectType>BGBK__Refund2__c</sobjectType>
     </queueSobject>

@@ -2,6 +2,11 @@
 <Queue xmlns="http://soap.sforce.com/2006/04/metadata">
     <doesSendEmailToMembers>true</doesSendEmailToMembers>
     <name>Camping Resorts Approval Queue</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>Camping_Resorts_Refund_Approvers</publicGroup>
+        </publicGroups>
+    </queueMembers>
     <queueSobject>
         <sobjectType>BGBK__Refund2__c</sobjectType>
     </queueSobject>
