@@ -98,7 +98,7 @@
     <aura:attribute name= "changeOnlyMailingAdd" type ="Boolean" default= "true"/>
     <aura:if isTrue= "{!v.isApplicationFlow}">
     <aura:if isTrue= "{!v.changeAddress}">        
-        <div id="usAddr" class ="usAddress">
+        <div class ="usAddress">
             <div class="address-type">
                 <h1>Update your Mailing Address</h1>
             </div>
@@ -200,7 +200,7 @@
     <aura:set attribute="else">
         
         
-        <div id="usAddr" class ="usAddress">
+        <div class ="usAddress">
             <div class="address-type">
                 <aura:if isTrue="{!not(v.changeOnlyMailingAdd)}">
                     <h2>Mailing Address</h2>
@@ -252,7 +252,7 @@
         </div>
         <br/><br/>
         <aura:if isTrue="{!v.changeOnlyMailingAdd}">
-        <div id="usAddr" class = "usAddress">
+        <div class = "usAddress">
             <div class="address-type">
                 <h2>Your Physical Address</h2>
             </div>
@@ -359,7 +359,7 @@
     </aura:if>
     </aura:if>
     <aura:if isTrue= "{!v.isAMR}">
-        <div id="usAddr" class = "usAddress">
+        <div class = "usAddress">
             <div class="address-type">
                 <h2>Current Physical Address</h2>
                
@@ -381,7 +381,7 @@
                 <lightning:button variant="brand" type="submit" name="Add Physical Address" label="Add Physical Address" onclick="{!c.addPhysicalAddAMR}" class="slds-m-right_x-large cancelbtn" />              
          </div> -->
        <!-- <aura:if isTrue= "{!v.openPhysicalAddressAMR}">-->
-        <div id="usAddr" class = "usAddress">
+        <div class = "usAddress">
             <div class="address-type">
                 <h2 class="addressTy">New Physical Address</h2>
                 
