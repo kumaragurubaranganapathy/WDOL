@@ -1,9 +1,15 @@
-@isTest
+@IsTest
 public class TestUtility_Test {
-	@isTest
-    public static void test(){
+	@IsTest
+    public static void testUtilityMethods(){
         TestUtility.getContact();
-        TestUtility.getDOLEpaymentRemittanceInput(null, null, null, null);
-        TestUtility.getDolEpaymentRtpcPojoJson(null, null, null, null);
+        TestUtility.getCEnvelope();
+        TestUtility.getAccount();
+        TestUtility.getParcel();
+        TestUtility.getInspection();
+        TestUtility.getDeposit();
+        TestUtility.getBusinessLicense();
+        TestUtility.getApp();
+        TestUtility.getLicenseApp();
     }
 }

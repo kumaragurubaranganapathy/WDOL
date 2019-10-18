@@ -16,11 +16,11 @@ public class AddressValidatorTest {
         
         Application_Subsection__c appSubSec = DOL_TestDataFactory.createApplicationSubSection('Camping Resorts', 'Camping Resort Company');
         
-        Id permitRecordType = Schema.SObjectType.MUSW__Permit2__c.getRecordTypeInfosByDeveloperName().get('Universal_Default_Permit_Record_Type').getRecordTypeId();
-        MUSW__Permit2__c permit = DOL_TestDataFactory.createPermit(permitRecordType);
+        //Id permitRecordType = Schema.SObjectType.MUSW__Permit2__c.getRecordTypeInfosByDeveloperName().get('Universal_Default_Permit_Record_Type').getRecordTypeId();
+        //MUSW__Permit2__c permit = DOL_TestDataFactory.createPermit(permitRecordType);
         
-        MUSW__Permit_Parcel__c permPar = DOL_TestDataFactory.createPermitParcel(permit.Id, parcel.Id);
-        MUSW__Permit_Parcel__c permPar2 = DOL_TestDataFactory.createPermitParcel(permit.Id, parcel.Id);
+        //MUSW__Permit_Parcel__c permPar = DOL_TestDataFactory.createPermitParcel(permit.Id, parcel.Id);
+        //MUSW__Permit_Parcel__c permPar2 = DOL_TestDataFactory.createPermitParcel(permit.Id, parcel.Id);
         
     }
     
@@ -31,12 +31,12 @@ public class AddressValidatorTest {
         
         MUSW__Parcel__c parcel = [SELECT Id, Name, Status__c FROM MUSW__Parcel__c LIMIT 1];
         
-        List<MUSW__License_Parcel__c> licParcel = [SELECT Id, Mailing__c, Physical__c, Public__c FROM MUSW__License_Parcel__c];
-        
         Application_Subsection__c appSubSec = [SELECT Id, Name, License__c FROM Application_Subsection__c LIMIT 1];
         appSubSec.Name = 'Mailing Camping Resort Company';
         appSubSec.License__c = true;
         update appSubSec;
+          
+        List<MUSW__License_Parcel__c> licParcel = [SELECT Id, Mailing__c, Physical__c, Public__c FROM MUSW__License_Parcel__c];
         
         ValidationError ve = new ValidationError();
         AddressValidator.validate(ve, 'Camping Resort Company', 'Camping Resort Company', 'License__c', licId);
@@ -52,19 +52,18 @@ public class AddressValidatorTest {
         licParcel[0].Mailing__c = true;
         licParcel[0].Physical__c = true;
         licParcel[0].Public__c = true;
-        update licParcel[0];
+        update licParcel;
         AddressValidator.validate(ve, 'Camping Resort Company', 'Camping Resort Company', 'License__c', licId);
         
-        MUSW__Permit2__c permit = [SELECT Id FROM MUSW__Permit2__c LIMIT 1];
-        
+        /*MUSW__Permit2__c permit = [SELECT Id FROM MUSW__Permit2__c LIMIT 1];
+
         List<MUSW__Permit_Parcel__c> permParcel = [SELECT Id, Mailing__c, Physical__c, Public__c FROM MUSW__Permit_Parcel__c];
         permParcel[1].Mailing__c = false;
         permParcel[1].Public__c = false;
         permParcel[1].Physical__c = false;
         update permParcel[1];
         
-        AddressValidator.validate(ve, 'POWTS', 'Electrical', 'Permit__c', String.valueOf(permit.Id));
+        AddressValidator.validate(ve, 'POWTS', 'Electrical', 'Permit__c', String.valueOf(permit.Id));*/
         
     }
-    
 }

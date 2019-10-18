@@ -7,6 +7,9 @@
 .THIS .devide-list .field-item{
     width:100%;
 }
+.THIS .underline{
+    width:100%;
+}
 .THIS .field-item .uiOutputRichText{
     font-size:t(fieldlabelsize);
     color:t(fieldclr);
@@ -33,7 +36,7 @@
 }
 .THIS .slds-form-element__label{
     font-size: 14px; 
-	font-weight:600;
+    font-weight:600;
     color:t(LnGFormTitleColor);
     word-break: normal;
     overflow-wrap: normal;
@@ -42,8 +45,7 @@
     width:auto;
 }
 .THIS .sectionwidth{
-    width: 100%;
-    height: 30px;
+    width: 100%;    
     border-bottom: .5px solid #d6d7d9;
     margin-bottom: 1rem;   
 }
@@ -290,7 +292,7 @@
     .THIS.content-wrapper .field-item .slds-form-element__control{
         width:100%;
     }
-    .THIS .subheader{
+    .THIS .subheader{        
         font-size:1rem;
     }
     .THIS .button-section.slds-m-top_xx-large{

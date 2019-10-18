@@ -64,6 +64,9 @@ public class TestUtility {
         return tempRenewalApplication;
     }
     
+    /*
+     * Commenting the below as not refrenced from org
+     * Also hardcoded recordType will break in higher enviroment
     public static MUSW__License2__c getLicense(){
         MUSW__License2__c testLicen = new MUSW__License2__c();
         testLicen.RecordTypeId= DOL_AppConstants.NULL_EMPTY_STRING + '012r000000074cjAAA';
@@ -78,6 +81,7 @@ public class TestUtility {
         insert RenewApp;
         return RenewApp;
     }
+	*/
     public static MUSW__Application2__c getApp(){
         MUSW__Application2__c testApp = new MUSW__Application2__c();
         testApp.MUSW__Type__c= DOL_AppConstants.NULL_EMPTY_STRING + 'Change Name';
