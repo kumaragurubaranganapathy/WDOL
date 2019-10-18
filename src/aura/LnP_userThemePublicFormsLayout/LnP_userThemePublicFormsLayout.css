@@ -720,6 +720,19 @@ margin-right:10%;
     text-decoration:underline;
 }
 
+.THIS .label-hide.slds-form-element > label.slds-form-element__label {
+    display: none;
+}
+.THIS .label-hide.slds-form-element fieldset > legend.slds-form-element__label {
+    display: none;
+}
+.THIS .validate .uiInputTextArea .textarea{
+    border:1px solid #5b616b;
+    margin-bottom: 0.8rem;
+}
+.THIS .uiInputTextArea .form-element__label{
+    display:none;
+}
 @media only screen and (max-width:767.9px){    
     .THIS .next-button{
         display:block;

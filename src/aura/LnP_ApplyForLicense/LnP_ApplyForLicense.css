@@ -25,6 +25,7 @@
 }
 .THIS .validate .no-help.field-item{
     width:100%;
+    padding-right:0;
 }
 /*.THIS .personal-info .slds-media.slds-listbox__option .slds-media__body span[title*="--None--"]{
 display:none;
@@ -341,7 +342,7 @@ color: t(primary);
     margin-bottom:1rem;
     padding-bottom:0;
 }
-.THIS .validate .uiInputTextArea{
+.THIS .validate .uiInputTextArea .textarea{
     border:1px solid #5b616b;
     margin-bottom: 0.8rem;
 }
@@ -372,6 +373,9 @@ color: t(primary);
     
 }
 .THIS .validate .slds-form-element__label .uiOutputRichText br{
+    display:none;
+}
+.THIS .form-element__label{
     display:none;
 }
 /*.THIS .validate .field-item{ 
