@@ -390,63 +390,6 @@
             <restricted>true</restricted>
             <valueSetName>County</valueSetName>
             <valueSettings>
-                <controllingFieldValue>UT</controllingFieldValue>
-                <controllingFieldValue>VT</controllingFieldValue>
-                <controllingFieldValue>VA</controllingFieldValue>
-                <controllingFieldValue>WV</controllingFieldValue>
-                <controllingFieldValue>WI</controllingFieldValue>
-                <controllingFieldValue>GU</controllingFieldValue>
-                <controllingFieldValue>WY</controllingFieldValue>
-                <controllingFieldValue>GA</controllingFieldValue>
-                <controllingFieldValue>HI</controllingFieldValue>
-                <controllingFieldValue>ID</controllingFieldValue>
-                <controllingFieldValue>IL</controllingFieldValue>
-                <controllingFieldValue>IN</controllingFieldValue>
-                <controllingFieldValue>IA</controllingFieldValue>
-                <controllingFieldValue>KS</controllingFieldValue>
-                <controllingFieldValue>KY</controllingFieldValue>
-                <controllingFieldValue>LA</controllingFieldValue>
-                <controllingFieldValue>ME</controllingFieldValue>
-                <controllingFieldValue>AL</controllingFieldValue>
-                <controllingFieldValue>AK</controllingFieldValue>
-                <controllingFieldValue>AZ</controllingFieldValue>
-                <controllingFieldValue>AR</controllingFieldValue>
-                <controllingFieldValue>CA</controllingFieldValue>
-                <controllingFieldValue>CO</controllingFieldValue>
-                <controllingFieldValue>CT</controllingFieldValue>
-                <controllingFieldValue>DE</controllingFieldValue>
-                <controllingFieldValue>FL</controllingFieldValue>
-                <controllingFieldValue>MD</controllingFieldValue>
-                <controllingFieldValue>MA</controllingFieldValue>
-                <controllingFieldValue>MI</controllingFieldValue>
-                <controllingFieldValue>MN</controllingFieldValue>
-                <controllingFieldValue>MS</controllingFieldValue>
-                <controllingFieldValue>MO</controllingFieldValue>
-                <controllingFieldValue>MT</controllingFieldValue>
-                <controllingFieldValue>NE</controllingFieldValue>
-                <controllingFieldValue>NV</controllingFieldValue>
-                <controllingFieldValue>NH</controllingFieldValue>
-                <controllingFieldValue>NJ</controllingFieldValue>
-                <controllingFieldValue>NM</controllingFieldValue>
-                <controllingFieldValue>NY</controllingFieldValue>
-                <controllingFieldValue>NC</controllingFieldValue>
-                <controllingFieldValue>AS</controllingFieldValue>
-                <controllingFieldValue>ND</controllingFieldValue>
-                <controllingFieldValue>OH</controllingFieldValue>
-                <controllingFieldValue>MP</controllingFieldValue>
-                <controllingFieldValue>OK</controllingFieldValue>
-                <controllingFieldValue>OR</controllingFieldValue>
-                <controllingFieldValue>PA</controllingFieldValue>
-                <controllingFieldValue>RI</controllingFieldValue>
-                <controllingFieldValue>PR</controllingFieldValue>
-                <controllingFieldValue>VI</controllingFieldValue>
-                <controllingFieldValue>SC</controllingFieldValue>
-                <controllingFieldValue>SD</controllingFieldValue>
-                <controllingFieldValue>TN</controllingFieldValue>
-                <controllingFieldValue>TX</controllingFieldValue>
-                <valueName>Out of State</valueName>
-            </valueSettings>
-            <valueSettings>
                 <controllingFieldValue>WA</controllingFieldValue>
                 <valueName>Adams</valueName>
             </valueSettings>
@@ -2990,10 +2933,6 @@ CASE( MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Out of State</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pacific</fullName>
                 <default>false</default>
             </values>
@@ -4325,22 +4264,6 @@ CASE( MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Asotin</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Benton</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Chelan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Clallam</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Clark</fullName>
                 <default>false</default>
             </values>
@@ -4349,23 +4272,7 @@ CASE( MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cowlitz</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Douglas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ferry</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Franklin</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Garfield</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4373,35 +4280,7 @@ CASE( MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Grays Harbor</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Island</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Jefferson</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>King</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kitsap</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kittitas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Klickitat</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Lewis</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4409,75 +4288,7 @@ CASE( MUSW__AlertCode__c,
                 <default>false</default>
             </values>
             <values>
-                <fullName>Mason</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Okanogan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Out of State</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pacific</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pend Oreille</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Pierce</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>San Juan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Skagit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Skamania</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Snohomish</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spokane</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Stevens</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Thurston</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wahkiakum</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Walla Walla</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Whatcom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Whitman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yakima</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
