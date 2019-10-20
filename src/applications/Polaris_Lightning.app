@@ -24,7 +24,7 @@
     <tabs>Renewal_Application__c</tabs>
     <tabs>Request__c</tabs>
     <tabs>Education_History__c</tabs>
-    <tab>standard-report</tab>
+    <tabs>standard-report</tabs>
     <tabs>MUSW__Application2__c</tabs>
     <tabs>BGCK__Question__c</tabs>
     <tabs>Master_Expiration_Rule__c</tabs>
