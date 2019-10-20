@@ -163,7 +163,9 @@ public class SharingUtilityController_Test {
         User u1 = DOL_TestDataFactory.createPortalUser('Portal Lname', 'pLnamePortal', profile1.Id, 'test785@mailinator.com', con.Id);
         List<User> uList = new List<User>();
         uList.add(u1);
-        
+        Profile profile2 = [Select Id from Profile where name = 'eSLA Customer Community Plus Login User'];
+        User u2 = DOL_TestDataFactory.createPortalUser('Portal Lname', 'pLtal', profile2.Id, 'test785@mailinator.com', con.Id);
+        insert u2;
         Map<Id,Id> accIdMap = new Map<Id,Id>();
         accIdMap.put(a.Id,a.Id);
         
@@ -202,7 +204,7 @@ public class SharingUtilityController_Test {
         uc.shareRecords(accIdMap, accIdSet, 'Id', 'Edit', '', 'Account', 'Manual');
         uc.shareRecords(accIdMap, accIdSet, 'MUSW__Account__c', 'Edit', '', 'MUSW__Account_Contact__c', 'Share_Account_Contact__c');
         uc.ShareRecords_CreatedByDelegate(conList, conList, 'Contact', '');
-        
+        uc.ShareRecords_CreatedByDelegate(conList, conList, 'MUSW__Fee__c', '');
         test.stopTest();
     }
     
