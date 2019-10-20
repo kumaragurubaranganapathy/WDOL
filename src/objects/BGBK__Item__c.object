@@ -387,6 +387,50 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>JV_Document_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>Journal_Voucher_Detail__r.JournalVoucher__r.Current_Document_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>JV Document Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+        <fullName>JV_Document_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Journal_Voucher_Detail__r.JournalVoucher__r.Document_Title__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>JV Document Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>JV_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Journal_Voucher_Detail__r.JournalVoucher__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>JV Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>JV_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Journal_Voucher_Detail__r.JournalVoucher__r.Journal_Voucher_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>JV Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Journal_Voucher_Detail_Grouping__c</fullName>
         <externalId>false</externalId>
