@@ -797,7 +797,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                     strJsonForm = strJsonForm.replace('[,', '['); //prevent opening bracket from having a comma after it
                     strJsonForm = strJsonForm.replace(',]', ']');            
                     
-                    if(!Test.isRunningTest()){
+                    
                         HttpRequest req = new HttpRequest();
                         String url = System.Label.CompositeAPIURL;
                         req.setEndpoint(url);
@@ -808,6 +808,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                         req.setBody(strJsonForm);
                         req.setTimeout(60000);     
                         Http http = new Http();
+                    if(!Test.isRunningTest()){
                         HTTPResponse res = http.send(req);
                         if(res.getStatusCode() == 200) {
                             checkSuccess = true;
@@ -1170,15 +1171,15 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
                             String quesBody = ans.QuestionDOL__r.Question_Body__c;
                             String answerText = ans.Answer_Text__c;
                             String stringToDate = DOL_AppConstants.NULL_EMPTY_STRING + '';
-                            if(quesBody == DOL_AppConstants.BOND_POLICY_NUMBER){
+                            if(quesBody == 'Bond or Policy Number'){
                                 liceseIDRenewal.Bond_Number__c = String.valueOf(answerText);
                             }
                             
-                            if(quesBody == DOL_AppConstants.BOND_INSURANCE_COMPANY){
+                            if(quesBody == 'Bond or Insurance Company Name'){
                                 liceseIDRenewal.Surety_Bond_Company_Name__c = String.valueOf(answerText);
                             }
                             
-                            if(quesBody == DOL_AppConstants.BOND_POLICY_AMOUNT){
+                            if(quesBody == 'Bond or Policy Amount'){
                                 liceseIDRenewal.Policy_Amount__c = String.valueOf(answerText);
                             }
                             
