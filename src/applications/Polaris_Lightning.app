@@ -36,6 +36,5 @@
     <tabs>Warrant__c</tabs>
     <tabs>User_Feedback__c</tabs>
     <tabs>Electronic_Notary_Provider_Information__c</tabs>
-
     <uiType>Lightning</uiType>
 </CustomApplication>
