@@ -37,7 +37,7 @@ public class CartControllerTest {
         inv.BGBK__Total_Fees__c = 100;
         insert inv;
         
-        MUSW__Deposit__c dep = new MUSW__Deposit__c(Name='System Number',wadol_Program_Type__c= 'Architects',MUSW__Amount__c = 100);
+        MUSW__Deposit__c dep = new MUSW__Deposit__c(Name='System Number',wadol_Program_Type__c= 'Architects',MUSW__Amount__c = 10);
         dep.BGBK__Cart__c = testCart.Id;
         insert dep;
         
@@ -65,10 +65,12 @@ public class CartControllerTest {
         // create Receipt
         MUSW__Receipt__c receipt = new MUSW__Receipt__c();
         receipt.BGBK__Cart__c = testCart.Id;
+        
         receipt.Status__c = 'Draft';
         receipt.Bank_Name__c = DOL_AppConstants.NULL_EMPTY_STRING + 'DOL Bank';
         receipt.MUSW__Payment_Gateway_Transaction_Number__c = DOL_AppConstants.NULL_EMPTY_STRING + '000000ABCD';
         receipt.Selected_Fees__c = String.join(feeIds,',');
+        receipt.MUSW__Amount_Tendered__c = 100;
         insert receipt;
         
         MUSW__Receipt__c re2 = new MUSW__Receipt__c();
@@ -141,6 +143,15 @@ public class CartControllerTest {
         String paymentComment = cartCtrl.paymentComment;
         String transactionNum = cartCtrl.transactionNum;
         Decimal totalBalance = cartCtrl.totalBalance;
+        cartCtrl.delRecIndex = 0;
+        
+        cartCtrl.delReceipt();
+        Map<Integer, MUSW__Deposit__c> m_depositsIndexMap = new Map<Integer, MUSW__Deposit__c>();
+        m_depositsIndexMap.put(0,dep);
+        m_depositsIndexMap.put(1,dep);
+        cartCtrl.m_depositsIndexMap = m_depositsIndexMap;
+        cartCtrl.currentRowIndex = 1;
+        cartCtrl.validateAmount();
         Test.stopTest();
         
         
@@ -231,6 +242,7 @@ public class CartControllerTest {
         cartCtrl.backToItems();
         cartCtrl.redirectToPaymentGateway();
         cartCtrl.returnToPrevPage();
+        
         
         Test.stopTest();
     }
@@ -420,8 +432,7 @@ public class CartControllerTest {
         //cartCtrl.refreshTotal();
         //cartCtrl.refreshTotalAndCheckout();
         //cartCtrl.contactChanged();
-        //cartCtrl.doReconcile();
-        //cartCtrl.cancelReconcile();
+        
         //cartCtrl.checkGatewayRequirementforPaymentMethod();
         cartCtrl.redirectToPaymentGateway();
         cartCtrl.returnToPrevPage();
@@ -512,7 +523,7 @@ public class CartControllerTest {
         //cartCtrl.validateAmount();
         cartCtrl.checkExistingReceipt();
         //cartCtrl.onPaymentConfirmation();
-        //cartCtrl.TransferFee();
+        cartCtrl.TransferFee();
         cartCtrl.process();
         cartCtrl.startPoll();
         //cartCtrl.batchJobPoll();
@@ -626,11 +637,111 @@ public class CartControllerTest {
         cartCtrl.redirectToPaymentGateway();
         CartController.ReceiptVO rvo = new CartController.ReceiptVO(re2,100, new BGBK.ReceiptService());
         cartCtrl.getExistingReceiptAmount(rvo);
+        List<CartController.ReceiptVO> rvoList = new List<CartController.ReceiptVO>();
+        rvoList.add(rvo);
+        cartCtrl.cleanReceiptsAfterPaymentFail(rvoList);
         Test.stopTest();
         
         
     }
     
+    @isTest
+    public static void testMethod7(){
+        test.startTest();
+        User portalUser =  DOL_TestDataFactory.createPortalAccountUser();
+        
+        system.runAs(portalUser){
+            Id accRecId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('User Account').getRecordTypeId();
+            Account acc = DOL_TestDataFactory.createAccount(accRecId);
+            
+            Id conRecId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Contact').getRecordTypeId();
+            Contact c = DOL_TestDataFactory.createContact(conRecId, acc.Id);
+            
+            Contact cq = [select AccountId from Contact where Id=:c.Id];
+            
+            MUSW__Account_Contact__c accCon = new MUSW__Account_Contact__c(MUSW__Account__c=acc.Id,	
+                                                                           MUSW__Contact__c=c.Id);
+            insert accCon;
+            
+            BGBK__Cart__c testCart = new BGBK__Cart__c(BGBK__Account__c= cq.AccountId, 
+                                                       BGBK__Contact__c= cq.Id, 
+                                                       BGBK__Expiration_DateTime__c=system.now().addDays(1));
+            insert testCart;
+            MUSW__Deposit__c dep = new MUSW__Deposit__c(Name='System Number',wadol_Program_Type__c= 'Architects',MUSW__Amount__c = 100);
+            dep.BGBK__Cart__c = testCart.Id;
+            insert dep;
+            
+            
+            
+            Id LicenseRecType = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Individual').getRecordTypeId();
+            MUSW__License2__c lic = DOL_TestDataFactory.createLicense(LicenseRecType, acc.Id, 'Architects', 'Architect', 'General Application');
+            
+            MUSW__Fee__c objFee = DOL_TestDataFactory.createFeeWithLicense('General',100.00,lic.id);
+            objFee.BGBK__Cart__c = testCart.Id;
+            update objFee;
+            
+            MUSW__Fee__c objFee2 = DOL_TestDataFactory.createFeeWithLicense('Trust Expense - Staff Hours',100.00,lic.id);
+            objFee2.BGBK__Cart__c = testCart.Id;
+            update objFee2; 
+            
+            Double totalDue = 0;
+            
+            List<String> feeIds = new List<String>();
+            feeIds.add(objFee.Id);
+            feeIds.add(objFee2.Id);
+            totalDue = objFee.MUSW__Amount__c;
+            
+            
+            // create Receipt
+            MUSW__Receipt__c receipt = new MUSW__Receipt__c();
+            receipt.BGBK__Cart__c = testCart.Id;
+            receipt.Status__c = 'Draft';
+            receipt.Bank_Name__c = DOL_AppConstants.NULL_EMPTY_STRING + 'DOL Bank';
+            receipt.MUSW__Payment_Gateway_Transaction_Number__c = DOL_AppConstants.NULL_EMPTY_STRING + '000000ABCD';
+            receipt.Selected_Fees__c = String.join(feeIds,',');
+            insert receipt;
+            
+            
+            List<MUSW__Fee__c> feeList = new List<MUSW__Fee__c>();
+            feeList.add(objFee);
+            feeList.add(objFee2);
+            
+            
+            
+            PageReference pageRef = Page.Cart;
+            pageRef.getParameters().put('feeId', String.valueOf(objFee.Id));
+            pageRef.getParameters().put('id', String.valueOf(testCart.Id));
+            Test.setCurrentPage(pageRef);
+            ApexPages.StandardSetController stdSetController = new ApexPages.StandardSetController(feeList);
+            stdSetController.setSelected(feeList);
+            CartController cartCtrl = new CartController(stdSetController);
+            cartCtrl.initOrder();
+            //cartCtrl.accountChanged();
+            cartCtrl.refreshFeesTab();
+            cartCtrl.checkout();
+            cartCtrl.review();
+            cartCtrl.addReceipt();
+            cartCtrl.preparePayables();
+            cartCtrl.checkExistingReceipt();
+            //cartCtrl.onPaymentConfirmation();
+            cartCtrl.process();
+            cartCtrl.startPoll();
+            //cartCtrl.batchJobPoll();
+            cartCtrl.abandon();
+            cartCtrl.backToItems();
+            cartCtrl.cancel();
+            cartCtrl.redirectToPaymentGateway();
+            cartCtrl.returnToPrevPage();
+            cartCtrl.con = null;
+            cartCtrl.contactChanged();
+            CartController.getCartService(null,null);
+            //cartCtrl.doReconcile();
+        	cartCtrl.cancelReconcile();
+            
+        }
+        test.stopTest();
+        
+    }
     
     
     @isTest
@@ -739,6 +850,7 @@ public class CartControllerTest {
         cartCtrl.initOrder();
         //cartCtrl.accountChanged();
         cartCtrl.refreshFeesTab();
+        cartCtrl.emailReceiptForEpayment();
         /*cartCtrl.checkout();
 cartCtrl.review();
 cartCtrl.addReceipt();
