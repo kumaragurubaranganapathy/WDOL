@@ -3,18 +3,45 @@ Date : 6/12/2019
 */
 global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>, Database.Stateful{
     
-    map<String,String> mapJVNameID= new map<String,String>();
-    map<String,String> mapJVFilterJVName= new map<String,String>();
-    map<String,Boolean> mapJVFilterAddToPDF= new map<String,Boolean>();
-    map<String,Boolean> mapJVFilterAddToInterface= new map<String,Boolean>();
-    List<string> lstJVID = new List<string>();
-    List<Journal_Voucher_meta__mdt> lstJVMeta = new List<Journal_Voucher_meta__mdt>();
-    List<Journal_Voucher__c> lstJV= new List<Journal_Voucher__c>();
-    JV_Sequence__c objJVseq = new JV_Sequence__c();
-    decimal currentSeq=0 ;
+    global map<String,String> mapJVNameID= new map<String,String>();
+    global map<String,String> mapJVFilterJVName= new map<String,String>();
+    global map<String,Boolean> mapJVFilterAddToPDF= new map<String,Boolean>();
+    global map<String,Boolean> mapJVFilterAddToInterface= new map<String,Boolean>();
+    global List<string> lstJVID = new List<string>();
+    global List<Journal_Voucher_meta__mdt> lstJVMeta = new List<Journal_Voucher_meta__mdt>();
+    global List<Journal_Voucher__c> lstJV= new List<Journal_Voucher__c>();
+    global JV_Sequence__c objJVseq = new JV_Sequence__c();
+    global decimal currentSeq=0 ;
     //BUG-7053 start
-    Set<String> jvIdSet = new Set<String>();
-    Set<String> itemSetKey =  new Set<String>();
+    global Set<String> jvIdSet = new Set<String>();
+    global Set<String> itemSetKey =  new Set<String>();
+    global Report_Master__c rptMasterObj {get; set;}
+    global Integer totalRecordCount{get; set;}
+    global String processItemRecIds {get; set;}
+    global String unProcessItemRecIds {get; set;}
+    global String jvRecordIds {get; set;} 
+    global String jvdRecordIds {get; set;} 
+    public Lnp_Journal_Voucher_Generic(){
+        DateTime currentDateTime = DateTime.now();
+    	Date currentDate = Date.today();
+        totalRecordCount = 0;
+        processItemRecIds = '';
+        unProcessItemRecIds = '';
+        jvRecordIds = '';
+        jvdRecordIds = '';
+        rptMasterObj = new Report_Master__c(type__c = 'Lnp_Journal_Voucher_Generic',
+											Job_Date__c = Date.today(),
+											Report_Month__c = currentDateTime .month(),
+											Start_Date__c = currentDateTime,
+											Report_Year__c = currentDateTime.year(),
+											Job_Status__c = 'In progress',
+                                            Total_Records__c = totalRecordCount,
+                                            Total_Record_Processed__c = processItemRecIds,
+                                            Total_Record_UnProcessed__c = unProcessItemRecIds,
+                                            Total_JV__c = jvRecordIds,
+                                            Total_JVD__c = jvdRecordIds);
+		insert rptMasterObj;
+    }
             
     public Database.QueryLocator start(Database.BatchableContext objContext) {
         try{  
@@ -177,8 +204,10 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         strQuery+= 'AND Intake_Method__c IN (\'';
         strQuery += String.join(new List<string>(lstValueIntakeMethod), '\',\'') + '\')'; 
         //Use below lines only for testing
-        //strQuery += ' AND CreatedDate >= 2019-10-19T02:52:00.000+0000 AND Intake_Method__c = \'Validation Room\'';
-        strQuery += ' ORDER BY CreatedDate DESC';
+        //strQuery += ' AND CreatedDate >= 2019-10-20T21:50:00.000+0000 ';
+        //strQuery += ' AND Intake_Method__c = \'Validation Room\'';
+        strQuery += ' ORDER BY Id DESC';
+        //strQuery += ' LIMIT 300';
         //system.debug('query$$'+strQuery);
         return Database.getQueryLocator(strQuery);
         }
@@ -191,6 +220,9 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
     public void execute(Database.BatchableContext objContext, List<BGBK__Item__c> lstItemRecords) {
         //system.debug('ListItem==='+lstItemRecords);
         //system.debug('mapJVNameID==='+mapJVNameID);
+        if(!lstItemRecords.isEmpty()){
+            totalRecordCount = totalRecordCount+lstItemRecords.size();
+        }
         List <Journal_Voucher_Detail__c> listJVDtoInsert = new List <Journal_Voucher_Detail__c>();
         List<DOL_AppUtility.JournalWrapper> lstJVDWrapperData = new List<DOL_AppUtility.JournalWrapper>();
         List<BGBK__Item__c> lstItemRecordsForJV = new List<BGBK__Item__c>();
@@ -226,7 +258,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
                 system.debug('WithougtKeyIM===='+strFilterKeyWithoutIM);
                 if((mapJVFilterJVName.containsKey(strFilterKey) && mapJVNameID.containsKey(mapJVFilterJVName.get(strFilterKey))) 
                         ||(mapJVFilterJVName.containsKey(strFilterKeyWithoutIM) && mapJVNameID.containsKey(mapJVFilterJVName.get(strFilterKeyWithoutIM))) ){
-                    System.debug('strFilterKey$$$'+strFilterKey);
+                    //System.debug('strFilterKey$$$'+strFilterKey);
                     if(mapJVNameID.containsKey(mapJVFilterJVName.get(strFilterKey))){
                         objItem.Journal_Voucher__c = mapJVNameID.get(mapJVFilterJVName.get(strFilterKey));
                     }else{
@@ -273,9 +305,20 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
                         sTemp= objItem.Id;
                     }
                     mapTotalItemIds.put(sToBeGroupedFields, sTemp);
-                }else{//Below is testing purpose to identify the non matching value.
+                    //Log the process Item records.
+                    if(String.isBlank(processItemRecIds)){
+                        processItemRecIds = objItem.Id;
+                    }else{
+                        processItemRecIds = processItemRecIds+','+objItem.Id;
+                    }
+                }else{//Below code to log the unprocess item records.
                     system.debug('===UnProcessItemRecord='+objItem);
                     unProcessItemList.add(objItem);
+                    if(String.isBlank(unProcessItemRecIds)){
+                        unProcessItemRecIds = objItem.Id;
+                    }else{
+                        unProcessItemRecIds = unProcessItemRecIds+','+objItem.Id;
+                    }
                 }
             }
             /*system.debug('===UnProcessItem=='+unProcessItemList);
@@ -363,7 +406,6 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
                     else if(mapJVFilterAddToPDF.containsKey(strFilterKeyWithoutPM)){
                         objJVD.Add_to_PDF__c=mapJVFilterAddToPDF.get(strFilterKeyWithoutPM);
                     }
-                   
                 }
                 listJVDtoInsert.add(objJVD);
             }
@@ -377,6 +419,12 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
             List<BGBK__Item__c> lstItemToUpdate= new List<BGBK__Item__c>();
             //system.debug('listJVDtoInsert=='+listJVDtoInsert);
             for(Journal_Voucher_Detail__c objJVD:listJVDtoInsert){
+                //Log the processed JVD record Ids
+                if(String.isBlank(jvdRecordIds)){
+                    jvdRecordIds = objJVD.Id;
+                }else{
+                    jvdRecordIds = jvdRecordIds+','+objJVD.Id;
+                }
                 List<String> lstItemIds = objJVD.Item_record_IDs__c.split(',');
                 //System.debug('==lstItemIds=='+lstItemIds);
                 for(string sItemId:lstItemIds){
@@ -400,7 +448,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
     global void finish(Database.BatchableContext objBatchableContext) {
         //system.debug('lstJVID$$'+lstJVID);
         //system.debug('lstJV$$'+lstJV);
-        system.debug('ItemKeySetValues=='+itemSetKey);
+        //system.debug('ItemKeySetValues=='+itemSetKey);
         decimal count = 0;
         List<Journal_Voucher__c> lstJVtoDelete= new List<Journal_Voucher__c>();
         try{
@@ -409,7 +457,14 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
                 if(!lstJVID.contains(objJV.id)){
                     count++;
                     lstJVtoDelete.add(objJV);
+                }else{//Log the processed JV record IDs
+                    if(String.isBlank(jvRecordIds)){
+                        jvRecordIds = objJV.Id;
+                    }else{
+                        jvRecordIds = jvRecordIds+','+objJV.Id;
+                    }
                 }
+            
             }
             //system.debug('==lstJVtoDelete=='+lstJVtoDelete);
             if(lstJVtoDelete.size()>0){
@@ -417,10 +472,31 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
                 objJVseq.Current_sequence__c = objJVseq.Current_sequence__c - count;
                 update objJVseq;
             }
+            //Update the report Master
+            
+            rptMasterObj.End_Date__c = DateTime.now();
+    		rptMasterObj.Job_Status__c ='Completed';
+            rptMasterObj.Total_Records__c = totalRecordCount;
+            if(String.isNotBlank(processItemRecIds)){
+                String[] itemRecIdsCount = processItemRecIds.split(',');
+                rptMasterObj.Total_Record_Processed__c = 'Item Process Count='+itemRecIdsCount.size()+'  Item Record Ids='+processItemRecIds;
+            }
+            if(String.isNotBlank(unProcessItemRecIds)){
+                String[] itemRecUnProcessIdsCount = unProcessItemRecIds.split(',');
+                rptMasterObj.Total_Record_UnProcessed__c = 'Item Un Process Count='+itemRecUnProcessIdsCount.size()+'  Item Record Ids='+unProcessItemRecIds;
+            }
+            if(String.isNotBlank(jvRecordIds)){
+                String[] jvRecCount = jvRecordIds.split(',');
+                rptMasterObj.Total_JV__c = 'JV Record Count='+jvRecCount.size()+'  JV Record Ids='+jvRecordIds;
+            }
+            if(String.isNotBlank(jvdRecordIds)){
+                String[] jvdRecCount = jvdRecordIds.split(',');
+                rptMasterObj.Total_JVD__c = 'JVD Record Count='+jvdRecCount.size()+'  JVD Record Ids='+jvdRecordIds;
+            }
+            upsert rptMasterObj; 
         }
         catch(Exception e){
             DOL_CreateErrorLog_Exception.logApplicationError(e);
-            
         }
     }
     
