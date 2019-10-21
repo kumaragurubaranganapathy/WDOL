@@ -36,7 +36,7 @@ public class LnP_PublicFormsApexController_Test{
         try { LnP_PublicFormsApexController.getAutoComplete('google');}
         catch(exception ex){}
         
-        LnP_PublicFormsApexController.makeAPICall('www.google.com');
+        
         
           
         Test.stopTest();
