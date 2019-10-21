@@ -8,7 +8,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Application_closed_RFI_final</template>
     </alerts>
@@ -20,7 +20,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Application_closed_RFP_final</template>
     </alerts>
@@ -32,7 +32,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Application_submission_final</template>
     </alerts>
@@ -44,7 +44,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Bond_expiration_final</template>
     </alerts>
@@ -56,7 +56,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_Appraiser_final</template>
     </alerts>
@@ -68,7 +68,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_Design_except_Engineer_final</template>
     </alerts>
@@ -80,7 +80,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_EIT_LSIT_GIT_final</template>
     </alerts>
@@ -92,7 +92,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_Engineer_final</template>
     </alerts>
@@ -104,7 +104,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_FD_Embalmer_final</template>
     </alerts>
@@ -116,7 +116,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_FD_Embalmer_Intern_final</template>
     </alerts>
@@ -128,7 +128,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_Notary_final</template>
     </alerts>
@@ -140,7 +140,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Active_Other_R1_final</template>
     </alerts>
@@ -152,7 +152,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Inactive_business_association_final</template>
     </alerts>
@@ -164,7 +164,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/First_license_issued_Inactive_supervisor_sponsor_association_final</template>
     </alerts>
@@ -176,7 +176,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/License_expiration_notice_New_application_final</template>
     </alerts>
@@ -188,7 +188,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/License_expiration_notice_renewal_allowed_final</template>
     </alerts>
@@ -200,7 +200,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/License_expiration_notice_renewal_allowed_final</template>
     </alerts>
@@ -212,7 +212,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Finance/First_License_Fee</template>
     </alerts>
@@ -224,7 +224,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_CE_audit_notification_final</template>
     </alerts>
@@ -236,7 +236,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_PDH_audit_approval_final</template>
     </alerts>
@@ -248,7 +248,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_PDH_audit_notification_final_1</template>
     </alerts>
@@ -260,7 +260,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_issued_Active_final</template>
     </alerts>
@@ -272,7 +272,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_issued_Active_final</template>
     </alerts>
@@ -284,7 +284,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_issued_Inactive_final</template>
     </alerts>
@@ -296,7 +296,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_reminder_business_final</template>
     </alerts>
@@ -308,7 +308,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Renewal_reminder_individual_final</template>
     </alerts>
@@ -320,7 +320,7 @@
             <field>MUSW__Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Retired_status_final</template>
     </alerts>

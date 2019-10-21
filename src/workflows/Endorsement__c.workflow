@@ -7,7 +7,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Approval_notification_supervisor_final</template>
     </alerts>
@@ -18,7 +18,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Electronic_Notary_software_provider_reminder_after_issuance_final</template>
     </alerts>
@@ -29,7 +29,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Electronic_Notary_software_provider_reminder_submission_final</template>
     </alerts>
@@ -40,7 +40,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Endorsement_add_approval_final</template>
     </alerts>
@@ -51,7 +51,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Endorsement_add_review_final</template>
     </alerts>
@@ -62,7 +62,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Endorsement_remove_request_final</template>
     </alerts>

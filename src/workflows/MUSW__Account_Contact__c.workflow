@@ -7,7 +7,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Account_Admin_accept_business_final</template>
     </alerts>
@@ -19,7 +19,7 @@
             <field>Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Account_Admin_accept_contact_final</template>
     </alerts>
@@ -30,7 +30,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Account_Admin_decline_business_final</template>
     </alerts>
@@ -42,7 +42,7 @@
             <field>Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Account_Admin_decline_contact_final</template>
     </alerts>
@@ -54,7 +54,7 @@
             <field>Email__c</field>
             <type>email</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Account_Admin_invitation_notification_contact_final</template>
     </alerts>

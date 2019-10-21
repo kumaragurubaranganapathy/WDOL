@@ -7,7 +7,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Maintenance_request_complete_final</template>
     </alerts>
@@ -18,7 +18,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Maintenance_submission_review_required_final</template>
     </alerts>

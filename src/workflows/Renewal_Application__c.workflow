@@ -8,7 +8,7 @@
             <field>Applicant__c</field>
             <type>contactLookup</type>
         </recipients>
-        <senderAddress>dolisdpolarisnonprod@dol.wa.gov</senderAddress>
+        <senderAddress>vagoel@deloitte.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>DOL_Licensing/Application_submission_renewal_reinstatement_final</template>
     </alerts>
