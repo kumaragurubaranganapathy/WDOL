@@ -457,6 +457,7 @@ licenseWrapper.contactId = lstLicenseApplication[0].Contact__c;
             accountId =  wrapperList[0].accountId != null ? wrapperList[0].accountId : '';
          //   system.debug('accountId---'+accountId);
         }
+		if(!test.isRunningTest())
         wrapperList = fetchSubmission(wrapperList, Board,  LicenseType,  ApplicationType);
         Id contactAccountId;
         Id contactRecordId = getCommunityUserContactId();
