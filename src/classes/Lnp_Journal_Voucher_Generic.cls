@@ -13,7 +13,8 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
     JV_Sequence__c objJVseq = new JV_Sequence__c();
     decimal currentSeq=0 ;
     //BUG-7053 start
-    set<String> jvIdSet = new Set<String>();
+    Set<String> jvIdSet = new Set<String>();
+    Set<String> itemSetKey =  new Set<String>();
             
     public Database.QueryLocator start(Database.BatchableContext objContext) {
         try{  
@@ -177,6 +178,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
         strQuery += String.join(new List<string>(lstValueIntakeMethod), '\',\'') + '\')'; 
         //Use below lines only for testing
         //strQuery += ' AND CreatedDate >= 2019-10-19T02:52:00.000+0000 AND Intake_Method__c = \'Validation Room\'';
+        strQuery += ' ORDER BY CreatedDate DESC';
         //system.debug('query$$'+strQuery);
         return Database.getQueryLocator(strQuery);
         }
@@ -213,16 +215,18 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
             }
             //System.debug('existingJVDMap=='+existingJVDMap);
             //BUG-7053 end
+            List<BGBK__Item__c> unProcessItemList = new List<BGBK__Item__c>();
             for(BGBK__Item__c objItem : lstItemRecords){
                 
                 string strFilterKey = objItem.Intake_Method__c+objItem.Payment_Method__c+objItem.BGBK__Fund__r.Accounting_System__c+objItem.Transaction_Code__c+objItem.BGBK__Fund__r.GL__c+objItem.Transaction_Type__c;
                 string strFilterKeyWithoutIM    = objItem.Intake_Method__c+objItem.BGBK__Fund__r.Accounting_System__c+objItem.Transaction_Code__c+objItem.BGBK__Fund__r.GL__c+objItem.Transaction_Type__c;
                 //system.debug('mapJVFilterJVName==='+mapJVFilterJVName);
-                //system.debug('strFilterKey$$$$===='+strFilterKey);
-                
+                itemSetKey.add(strFilterKey);
+                system.debug('strFilterKey===='+strFilterKey);
+                system.debug('WithougtKeyIM===='+strFilterKeyWithoutIM);
                 if((mapJVFilterJVName.containsKey(strFilterKey) && mapJVNameID.containsKey(mapJVFilterJVName.get(strFilterKey))) 
                         ||(mapJVFilterJVName.containsKey(strFilterKeyWithoutIM) && mapJVNameID.containsKey(mapJVFilterJVName.get(strFilterKeyWithoutIM))) ){
-                    //system.debug('strFilterKey$$$'+strFilterKey);
+                    System.debug('strFilterKey$$$'+strFilterKey);
                     if(mapJVNameID.containsKey(mapJVFilterJVName.get(strFilterKey))){
                         objItem.Journal_Voucher__c = mapJVNameID.get(mapJVFilterJVName.get(strFilterKey));
                     }else{
@@ -269,9 +273,13 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
                         sTemp= objItem.Id;
                     }
                     mapTotalItemIds.put(sToBeGroupedFields, sTemp);
+                }else{//Below is testing purpose to identify the non matching value.
+                    system.debug('===UnProcessItemRecord='+objItem);
+                    unProcessItemList.add(objItem);
                 }
             }
-            /*system.debug('===mapItemsData=='+mapItemsData);
+            /*system.debug('===UnProcessItem=='+unProcessItemList);
+            system.debug('===mapItemsData=='+mapItemsData);
             system.debug('===mapTotalItemIds=='+mapItemsData);
             system.debug('===mapTotalItemAmount=='+mapTotalItemAmount);*/
             for(string str :mapItemsData.keyset()){
@@ -392,6 +400,7 @@ global class Lnp_Journal_Voucher_Generic implements Database.batchable<SObject>,
     global void finish(Database.BatchableContext objBatchableContext) {
         //system.debug('lstJVID$$'+lstJVID);
         //system.debug('lstJV$$'+lstJV);
+        system.debug('ItemKeySetValues=='+itemSetKey);
         decimal count = 0;
         List<Journal_Voucher__c> lstJVtoDelete= new List<Journal_Voucher__c>();
         try{
