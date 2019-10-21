@@ -139,6 +139,7 @@ public class SharingUtilityController_Test {
         conObjMap.put(con.Id, con.Id);
         
         uc.Sharing_Utility_BreakObjectRelationship_for_UserUpgrade(objectRelationShip2, contactIds, conObjMap, newContact);
+        
      }
     
     @isTest
@@ -146,10 +147,13 @@ public class SharingUtilityController_Test {
         Id AccRecTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId();
         Account a = DOL_TestDataFactory.createAccount(AccRecTypeId);
         
+        
         Id conRecTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Contact').getRecordTypeId();
         Contact con = DOL_TestDataFactory.createContact(conRecTypeId, a.Id);
         
         MUSW__Account_Contact__c accCont = DOL_TestDataFactory.createAccountContact(con.Id, a.Id);
+        accCont.Associate_Status__c ='Active';
+        update accCont;
         List<Id> conList = new List<Id>();
         conList.add(con.Id);
         
@@ -164,8 +168,12 @@ public class SharingUtilityController_Test {
         List<User> uList = new List<User>();
         uList.add(u1);
         Profile profile2 = [Select Id from Profile where name = 'eSLA Customer Community Plus Login User'];
-        User u2 = DOL_TestDataFactory.createPortalUser('Portal Lname', 'pLtal', profile2.Id, 'test785@mailinator.com', con.Id);
-        insert u2;
+        UserRole userRole_1 = [SELECT Id FROM UserRole WHERE DeveloperName = 'DemoTesterCustomerUser' LIMIT 1];
+        User u2 = [SELECT Id, Username, UserRoleId FROM User WHERE Profile.Name = 'eSLA Customer Community Plus Login User' AND UserRoleId = :userRole_1.Id LIMIT 1];
+        //User u2 = DOL_TestDataFactory.createPortalUser('Portal Lname', 'pLtal', profile2.Id, 'test785@mailinator.com', con.Id);
+         u2.UserRoleId = userRole_1.id;
+        //insert u2;
+
         Map<Id,Id> accIdMap = new Map<Id,Id>();
         accIdMap.put(a.Id,a.Id);
         
@@ -176,7 +184,7 @@ public class SharingUtilityController_Test {
         conAccConMap.put(accCont.Id,conList);
         
         Map<Id,Id> conUserMap = new Map<Id,Id>();
-        conUserMap.put(con.Id,u1.Id);
+        conUserMap.put(con.Id,u2.Id);
         
         Id LicenseRecType = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Individual').getRecordTypeId();
         MUSW__License2__c lic = DOL_TestDataFactory.createLicense(LicenseRecType, a.Id, 'Architects', 'Architect', 'General Application');
@@ -192,7 +200,9 @@ public class SharingUtilityController_Test {
         
         Set<Id> feeList = new Set<Id>();
         feeList.add(objFee.Id);
-		     
+        List<Id> feeList2 = new List<Id>();
+        feeList2.add(objFee.Id);
+             
         SharingUtilityController uc = new SharingUtilityController();
         test.startTest();
         
@@ -204,6 +214,7 @@ public class SharingUtilityController_Test {
         uc.shareRecords(accIdMap, accIdSet, 'Id', 'Edit', '', 'Account', 'Manual');
         uc.shareRecords(accIdMap, accIdSet, 'MUSW__Account__c', 'Edit', '', 'MUSW__Account_Contact__c', 'Share_Account_Contact__c');
         uc.ShareRecords_CreatedByDelegate(conList, conList, 'Contact', '');
+        uc.ShareRecords_CreatedByDelegate(conList, feeList2, 'MUSW__Fee__c', '');
         uc.ShareRecords_CreatedByDelegate(conList, conList, 'MUSW__Fee__c', '');
         test.stopTest();
     }
