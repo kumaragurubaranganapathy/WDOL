@@ -18,7 +18,7 @@ public class DRE2_MUSW_Submission_Test {
         MUSW__License2__c lic1 = DOL_TestDataFactory.createLicense(LicRecTypeId1, a.Id, 'Architects', 'Architect', 'General Application');
         MUSW__Submission__c sb = DOL_TestDataFactory.createSubmission(lic1.Id);
         ContentVersion contentVersion = new ContentVersion(
-            Title = 'PublicShare',
+            Title = 'Self-print_Certificate',
             PathOnClient = 'Penguins.jpg',
             VersionData = Blob.valueOf('Test Content'),
             IsMajorVersion = true
@@ -41,9 +41,17 @@ public class DRE2_MUSW_Submission_Test {
         Account a = DOL_TestDataFactory.createAccount(AccRecTypeId);
         Id LicRecTypeId1 = Schema.SObjectType.MUSW__License2__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
         MUSW__License2__c lic1 = DOL_TestDataFactory.createLicense(LicRecTypeId1, a.Id, 'Architects', 'Architect', 'General Application');
+        MUSW__Complaint2__c cm = new MUSW__Complaint2__c(Name='Complaint'+System.Now(), Program_Type__c='Architects', MUSW__Status__c='Intake', License__c=lic1.Id);
+        insert cm;
         MUSW__Submission__c sb = DOL_TestDataFactory.createSubmission(lic1.Id);
+        sb.Public_Disciplinary_Action__c = true;
+        sb.Disciplinary_Action_End_Date__c = system.today();
+        sb.MUSW__License2__c = lic1.Id;
+        sb.Complaint__c = cm.id;
+        
+        update sb;
         ContentVersion contentVersion = new ContentVersion(
-            Title = 'PublicShare',
+            Title = 'Self-print_Certificate',
             PathOnClient = 'Penguins.jpg',
             VersionData = Blob.valueOf('Test Content'),
             IsMajorVersion = true
@@ -58,15 +66,9 @@ public class DRE2_MUSW_Submission_Test {
         cdl.shareType = 'V';
         insert cdl;
         
-        MUSW__Complaint2__c cm = new MUSW__Complaint2__c(Name='Complaint'+System.Now(), Program_Type__c='Architects', MUSW__Status__c='Intake', License__c=lic1.Id);
-        insert cm;
         
-        sb.Public_Disciplinary_Action__c = true;
-        sb.Disciplinary_Action_End_Date__c = system.today();
-        sb.MUSW__License2__c = lic1.Id;
-        sb.Complaint__c = cm.id;
         
-        update sb;
+        
     }
     
 }
