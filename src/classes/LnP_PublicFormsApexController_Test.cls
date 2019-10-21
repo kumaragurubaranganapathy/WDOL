@@ -17,6 +17,7 @@ public class LnP_PublicFormsApexController_Test{
         String usrnm = 'abachchan';
         String pwd = 'bachchan@123';
         //insert userDetails;
+        
         try{
             LnP_PublicFormsApexController.userlogin('abachchan','bachchan@123');
         }
@@ -24,10 +25,20 @@ public class LnP_PublicFormsApexController_Test{
             DOL_CreateErrorLog_Exception.logApplicationError(ex);
             //System.debug('Error');
         }
+        HttpResponse res = new HttpResponse();
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody('{"example":"test"}');
+        res.setStatusCode(200);
+
+        
         Test.startTest();
            Map<String,String> formJSONVal = LnP_PublicFormsApexController.getFormsJSON();
-           LnP_PublicFormsApexController.getAutoComplete('google');
-           //LnP_PublicFormsApexController.userlogin('abachchan','bachchan@123');
+        try { LnP_PublicFormsApexController.getAutoComplete('google');}
+        catch(exception ex){}
+        
+        LnP_PublicFormsApexController.makeAPICall('www.google.com');
+        
+          
         Test.stopTest();
     }
 }
