@@ -118,7 +118,7 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             
         }
         beforeMethod();
-        
+        BGCM.TriggerManager.execute('DRE2_MUSW_License2_c', new DRETriggerHandler());
         //This is to Update sequence number & Automation Rules
        
         }
