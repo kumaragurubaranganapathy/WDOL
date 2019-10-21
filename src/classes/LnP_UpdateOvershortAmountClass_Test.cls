@@ -65,14 +65,22 @@ public class LnP_UpdateOvershortAmountClass_Test {
         //dep.MUSW__Transfered_In_Amount__c = 10;
         //update dep;
         
-         /*try{
-            LnP_UpdateOvershortAmountClass.updateovershortdepositMethod(dep.Id);
+         try{
+            LnP_UpdateOvershortAmountClass.updateovershortdepositMethod(dep[0].Id);
         }
         catch(Exception e){
             DOL_CreateErrorLog_Exception.logApplicationError(e,'LnP_UpdateOvershortAmountClass',fees[0].Id);
             
-        //    System.debug('Error');
-        }*/
+            System.debug('Error');
+        }
+        
+        try{
+            LnP_UpdateOvershortAmountClass.payFromOverShort(fees[0].Id);
+        }
+        catch(Exception e){
+            DOL_CreateErrorLog_Exception.logApplicationError(e,'LnP_UpdateOvershortAmountClass',fees[0].Id);
+            System.debug('Error');
+        }
         
         Test.startTest();
         //LnP_UpdateOvershortAmountClass.updateovershortdepositMethod(dep.Id);
