@@ -13,14 +13,16 @@ public class Add_AssociationController_Test {
         
     }
     
-    /*@isTest
+    @isTest
     static void searchIDsTest(){
         MUSW__License2__c lic = [SELECT Id, Name FROM MUSW__License2__c LIMIT 1];
         //System.debug('lic.Name::'+lic.Name);
         Associations__c assoc = [SELECT Id, Name, Name__c, Child_Contact__c, Child_License__c, Source_Id__c, Submitted_Date__c, Parent_License__c FROM Associations__c LIMIT 1];
-        
+        TRY{
         List<MUSW__License2__c> lstLic = Add_AssociationController.searchForIds(String.valueOf(lic.Name), lic.Id);
-    }*/
+        }
+        Catch (Exception e){}
+    }
     
     @isTest
     static void getAssociationsSuccessTest(){
