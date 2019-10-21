@@ -31,8 +31,8 @@
                     <div class="help-wrapper">
                         <h2> Questions? Need help?</h2>
                         <ul class="list-style">
-                            <li>Call us <a href="tel:360-664-9696">360-664-9696</a></li>
-                            <li>Email us <a href="mailto:doleLicensingSupport@dol.wa.gov">doleLicensingSupport@dol.wa.gov</a></li>
+                            <li>Call us <a href="{!'tel:'+$Label.c.Phone_number_Activation_code}">{!$Label.c.Phone_number_Activation_code}</a></li>
+                            <li>Email us <a href="{!'mailto:'+$Label.c.DOL_Help_Email}">{!$Label.c.DOL_Help_Email}</a></li>
                         </ul>
                     </div>
                 </aura:set>

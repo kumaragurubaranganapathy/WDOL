@@ -53,10 +53,9 @@
                             </aura:iteration>
                         </ul>
                     </div>
-                    <div class="slds-m-top_small">Please take a screenshot and mail to</div>
-                    <div class="slds-m-bottom_small telstyle">{!$Label.c.ErrorEmailID}</div>
-                    <div>Or,reach out to us on</div>
-                    <div class="telstyle">{!$Label.c.Phone_number_Activation_code}</div>
+                    <div class="slds-m-top_small">Please take a screenshot of this page and <a href="{!$Label.c.DOL_Help_URL}" target="_blank"> contact us</a>.</div>                    
+                    <div>Or, reach out to us on</div>
+                    <div class="telstyle"><a href="{!'tel:'+ $Label.c.Phone_number_Activation_code}">{!$Label.c.Phone_number_Activation_code}</a></div>
                 </div>
             </aura:set>
         </aura:if>
