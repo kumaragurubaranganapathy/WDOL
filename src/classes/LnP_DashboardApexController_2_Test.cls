@@ -32,15 +32,30 @@ public class LnP_DashboardApexController_2_Test {
         
         // create Employment History
         Id employmentHistoryRecId = LnP_DashboardApexController_2.getRecordTypeId('Employment_History__c','Default_Employment_History');
-    	DOL_TestDataFactory.getEmploymentHistory(employmentHistoryRecId, lic.id);
+        DOL_TestDataFactory.getEmploymentHistory(employmentHistoryRecId, lic.id);
+        Id Renewal_ApplicationRecId = Schema.SObjectType.Renewal_Application__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
+        Renewal_Application__c renewObj = DOL_TestDataFactory.createRenewalApplication (Renewal_ApplicationRecId,lic.Id);
+        Id applicationRecId = Schema.SObjectType.MUSW__Application2__c.getRecordTypeInfosByName().get('General Service Request').getRecordTypeId();
+        MUSW__Application2__c applicationObj = DOL_TestDataFactory.createApplication(applicationRecId);
+        Request__c requestObj = DOL_TestDataFactory.createRequest(lic.Id, 'Architects','Architect');
+        Endorsement__c endoObj = DOL_TestDataFactory.createEndorsement(lic.Id,'Active');
+        
+        LnP_BackgroundSection__c backgroundSecObj = DOL_TestDataFactory.createBackgroundSection();
+        backgroundSecObj.License_Bg__c=lic.Id;
+        backgroundSecObj.Renewal_Reinstatement_Application__c = renewObj.Id;
+        backgroundSecObj.Status__c = 'Pending';
+        update backgroundSecObj;
         
         try{
             Test.startTest();
-            Id Renewal_ApplicationRecId = Schema.SObjectType.Renewal_Application__c.getRecordTypeInfosByName().get('Business').getRecordTypeId();
+            
             Schema.SObjectType sObjType = Renewal_ApplicationRecId.getSobjectType();
             String sobjName =  sObjType.getDescribe().getName();
             system.debug('sobjName'+sobjName);
-            LnP_DashboardApexController_2.setAbandonStatus(Renewal_ApplicationRecId);
+            //LnP_DashboardApexController_2.setAbandonStatus(Renewal_ApplicationRecId);
+            LnP_DashboardApexController_2.setAbandonStatus(String.valueOf(renewObj.Id));
+            LnP_DashboardApexController_2.setAbandonStatus(String.valueOf(applicationObj.Id));
+            LnP_DashboardApexController_2.setAbandonStatus(String.valueOf(requestObj.Id));
             LnP_DashboardApexController_2.uploadAdditionalDocuments(lic.Id);
             LnP_DashboardApexController_2.createAssociationTask(association.Id);
             LnP_DashboardApexController_2.getEducationalHistory(lic.Id);
@@ -78,6 +93,11 @@ public class LnP_DashboardApexController_2_Test {
             LnP_DashboardApexController_2.setDraftAMRAppLicenseData(lic.Id);
             LnP_DashboardApexController_2.showExamsTabOnDashboard(lic.Id);
             LnP_DashboardApexController_2.updateAssociateRelationship(association.Id,'FAKE');
+            Id employmentHistory = LnP_DashboardApexController_2.getRecordTypeId('Employment_History__c',null);
+            Employment_History__c eduHisObj = LnP_DashboardApexController_2.getEducationalHistory(null);
+            String testvalue = LnP_DashboardApexController_2.fetchLicenseDetailsTable(null);
+            String testvalue1 = LnP_DashboardApexController_2.fetchLicenseRelatedEmploymentNEducationalHistoryRecords(String.valueOf(lic.Id));
+            String testvalue2 = LnP_DashboardApexController_2.fetchRenewalRelatedEmploymentNEducationalHistoryRecords(String.valueOf(renewObj.Id));
             Test.stopTest();
         }
         catch(Exception ex){
@@ -87,11 +107,11 @@ public class LnP_DashboardApexController_2_Test {
     }
    
     @IsTest 
-   	public static void test_method_two(){
+    public static void test_method_two(){
         Test.startTest();
         User portaluser = DOL_TestDataFactory.createPortalAccountUser();
         System.runAs ( portaluser ) {
-        	LnP_DashboardApexController_2.getDBJSON();
+            LnP_DashboardApexController_2.getDBJSON();
         } 
         Test.stopTest();
     }
@@ -100,7 +120,7 @@ public class LnP_DashboardApexController_2_Test {
     public static void test_method_three(){
         try{
             Id businessAccount = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Business Account').getRecordTypeId();
-        	Account acc= DOL_TestDataFactory.createAccount(businessAccount);
+            Account acc= DOL_TestDataFactory.createAccount(businessAccount);
             Test.startTest();
             LnP_DashboardApexController_2.setAbandonStatus(acc.Id);
             LnP_DashboardApexController_2.uploadAdditionalDocuments(acc.Id);
