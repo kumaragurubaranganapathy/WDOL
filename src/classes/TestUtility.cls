@@ -230,7 +230,7 @@ public class TestUtility {
         dorInput.dorOwnerMiddleName= DOL_AppConstants.NULL_EMPTY_STRING + 'GARY';
         dorInput.dorOwnerLastName= DOL_AppConstants.NULL_EMPTY_STRING + 'LIEBLING';
         dorInput.dorLocMailAddr1= DOL_AppConstants.NULL_EMPTY_STRING + '23612 SE 165TH ST';
-        dorInput.dorLocMailAddr2= DOL_AppConstants.NULL_EMPTY_STRING + '';
+        dorInput.dorLocMailAddr2= DOL_AppConstants.NULL_EMPTY_STRING + 'Street No.123';
         dorInput.dorLocMailCity= DOL_AppConstants.NULL_EMPTY_STRING + 'ISSAQUAH';
         dorInput.dorLocMailState= DOL_AppConstants.NULL_EMPTY_STRING + 'WA';
         dorInput.dorLocMailZip= DOL_AppConstants.NULL_EMPTY_STRING + '980278413';
@@ -252,6 +252,8 @@ public class TestUtility {
         govPerson.dorGovPerMiddleName = DOL_AppConstants.NULL_EMPTY_STRING + 'Middle Name';
         govPerson.dorGovPerLastName = DOL_AppConstants.NULL_EMPTY_STRING + 'LastName';
         govPersonList.add(govPerson);
+        
+        dorInput.governPerson = govPersonList;
         return dorInput;
     }
     
