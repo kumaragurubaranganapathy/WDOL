@@ -23,7 +23,7 @@ public class DOL_License_Linking_Test {
         DOL_License_Linking.createAccountContact(a.Id);
     }
     
-    @isTest
+        @isTest
     public static void testVoidMethods(){
         DOL_License_Linking.getLicenseType();
         DOL_License_Linking.getProgramPicklist();
@@ -105,8 +105,22 @@ public class DOL_License_Linking_Test {
         DOL_License_Linking.createReviewRecord('Test Reveiw', lic1.Id, 'abc@mailinator.com');
         Account acc = DOL_TestDataFactory.createAccount(AccRecTypeId);
         Contact cont = DOL_TestDataFactory.createContactWithLastName(conRecTypeId,acc.Id,'dummyLN'); 
+        MUSW__Account_Contact__c accContact = DOL_TestDataFactory.createAccountContact(cont.Id, acc.Id);
+        Request__c rq = new Request__c(License__c = lic1.Id, Profession__c = 'Architects', License_Type__c = 'Architect',Contact__c = cont.Id);
+        insert rq;
+        BGBK__Cart__c testCart = new BGBK__Cart__c(BGBK__Account__c= cont.AccountId, 
+                                                   BGBK__Contact__c= cont.Id, 
+                                                   BGBK__Expiration_DateTime__c=system.now().addDays(1));
+        insert testCart;
+        
         DOL_License_Linking.updateLicenseContact(cont.Id);
+        
         DOL_License_Linking.searchLicenseNumber('Architects',lic1.Name);
+        Set<Id> invoiceIds = new Set<Id>();
+        invoiceIds.add(lic1.Id);
+        DOL_License_Linking.fetchFeeFromInvoice(invoiceIds);
     }
+    
+    
     
 }
