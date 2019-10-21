@@ -2231,6 +2231,12 @@
         <errorMessage>Cannot Reject more than the Remaining Amount of Receipts</errorMessage>
     </validationRules>
 	<validationRules>
+        <fullName>Prevent_DHP_if_status_is_not_settled</fullName>
+        <active>true</active>
+        <errorConditionFormula>DHP__c  &amp;&amp;  ISPICKVAL( Intake_Method__c , &apos;Portal&apos;) &amp;&amp;  NOT(ISPICKVAL( US_Bank_Payment_Status__c , &apos;Settled&apos;))</errorConditionFormula>
+        <errorMessage>Payment adjustment can not be made to portal receipts that have not been settled.</errorMessage>
+    </validationRules>
+	<validationRules>
         <fullName>Prevent_receipt_update_when_not_settled</fullName>
         <active>true</active>
         <errorConditionFormula>ISPICKVAL(Intake_Method__c, &apos;Portal&apos;)  &amp;&amp;   NOT(ISPICKVAL(US_Bank_Payment_Status__c, &apos;Settled&apos;)) &amp;&amp; MUSW__Amount_Available__c &gt; 0</errorConditionFormula>
