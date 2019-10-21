@@ -9,7 +9,7 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Education_History__c</pageOrSobjectType>
     </actionOverrides>
-    <description>Application for Polaris</description>
+    <description>Application for POLARIS</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
@@ -24,23 +24,17 @@
     <tabs>Renewal_Application__c</tabs>
     <tabs>Request__c</tabs>
     <tabs>Education_History__c</tabs>
+    <tabs>standard-report</tabs>
     <tabs>MUSW__Application2__c</tabs>
     <tabs>BGCK__Question__c</tabs>
     <tabs>Master_Expiration_Rule__c</tabs>
-    <tabs>Master_ConfigData_Listing__c</tabs>
     <tabs>Master_Exam_List__c</tabs>
     <tabs>Customer_Envelope__c</tabs>
-    <tabs>BGBK__Item__c</tabs>
-    <tabs>Cash_Register__c</tabs>
     <tabs>Fingerprint_Results__c</tabs>
     <tabs>Endorsement__c</tabs>
-    <tabs>Journal_Voucher__c</tabs>
     <tabs>Associations__c</tabs>
-    <tabs>Lockbox_Envelope__c</tabs>
-    <tabs>BGBK__Refund2__c</tabs>
     <tabs>Warrant__c</tabs>
     <tabs>User_Feedback__c</tabs>
     <tabs>Electronic_Notary_Provider_Information__c</tabs>
-    <tabs>DOL_Integration_Batch_Input__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

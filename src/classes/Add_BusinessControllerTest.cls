@@ -40,6 +40,14 @@ public class Add_BusinessControllerTest {
         
         Id appRecordTypeId = Schema.SObjectType.MUSW__Application2__c.getRecordTypeInfosByDeveloperName().get('General_Service_Request').getRecordTypeId();
         MUSW__Application2__c application = DOL_TestDataFactory.createApplication(appRecordTypeId);
+        
+        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
+        
+        User u2 = new User(Alias = 'newUser', Email='newuser@testorg.com',
+                           EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
+                           LocaleSidKey='en_US', ProfileId = p.Id,
+                           TimeZoneSidKey='America/Los_Angeles', UserName='newuser567@testorg.com');
+        insert u2;
     }
     
     @isTest
@@ -53,6 +61,7 @@ public class Add_BusinessControllerTest {
         Request__c req = [SELECT Id, Name FROM Request__c LIMIT 1];
         MUSW__Application2__c appl = [SELECT Id, Name FROM MUSW__Application2__c LIMIT 1];
         
+        MUSW__License_Parcel__c licParcel = [SELECT Id, Name FROM MUSW__License_Parcel__c LIMIT 1];
         
         for(Integer i = 0; i < 2; i++){
             Account accRec = DOL_TestDataFactory.createAccount(accRecordTypeId);
@@ -62,9 +71,11 @@ public class Add_BusinessControllerTest {
         
         Add_BusinessController.getRecordTypeIdAccount();
         Add_BusinessController.insertRequestBusiness(accId, 'Update Legal Name');
+        
         Add_BusinessController.getAllCourses(accId);
         Add_BusinessController.getAllAccounts();
         Add_BusinessController.getAccountData(accId);
+        
         Add_BusinessController.updateAccount(listAccount);
         
         Global_Settings__c gs = new Global_Settings__c(Name = 'gs', Disable_Triggers__c = true);
@@ -72,12 +83,10 @@ public class Add_BusinessControllerTest {
         Add_BusinessController.updateAccount(listAccount);
         
         Add_BusinessController.checkIfCourseAccount(accId);
-        Add_BusinessController.checkIfCourseAccount('Hello');
         
         Add_BusinessController.setAbandonStatus(String.valueOf(renApp.Id));
         Add_BusinessController.setAbandonStatus(String.valueOf(req.Id));
         Add_BusinessController.setAbandonStatus(String.valueOf(appl.Id));
-        Add_BusinessController.setAbandonStatus('Hello');
         
     }        
     
@@ -99,7 +108,6 @@ insert em;*/
         Add_BusinessController.createAccountContactObject(accId);
         Add_BusinessController.updateContactAccountStatus(accConId, 'Active', accId);
         Add_BusinessController.updateBusinessAccIDonContact(accId);
-        Add_BusinessController.updateBusinessAccIDonContact('Hello');
         
         
         accCon.MUSW__Account__c = acc.Id;
@@ -124,19 +132,14 @@ insert em;*/
         Add_BusinessController.getAllLicenses(accId);
         Add_BusinessController.setBusinessLicenseTable(accId, true, licId);
         Add_BusinessController.getLicenseData(licId);
-        Add_BusinessController.getLicenseData('Hello');
         
         Add_BusinessController.pendingNewLicenseApplicationsTbl(accId);
-        Add_BusinessController.pendingNewLicenseApplicationsTbl('Hello');
         
         Add_BusinessController.PendingRenewApplicationsTable(accId);
-        Add_BusinessController.PendingRenewApplicationsTable('Hello');
         
         Add_BusinessController.fetchPendingCourseData(accId);
-        Add_BusinessController.fetchPendingCourseData('Hello');
         
         Add_BusinessController.PendingMaintananceRequestApplicationsTable(accId);
-        Add_BusinessController.PendingMaintananceRequestApplicationsTable('Hello');
         
         Add_BusinessController.CompletedMaintananceRequestApplicationsTable(accId);
     }
@@ -187,7 +190,7 @@ insert em;*/
         Associations__c assoc = [SELECT Id, Name FROM Associations__c WHERE Parent_License__c =: licId LIMIT 1];
         List<String> listAction = new List<String>{'Remove','Resend'};
             
-        Add_BusinessController.removeOwnerRecord(accConId);
+            Add_BusinessController.removeOwnerRecord(accConId);
         
         Task tsk = [SELECT Id, WhatId FROM Task WHERE WhatId =: assoc.Id];
         for(String action : listAction){
@@ -233,14 +236,11 @@ insert em;*/
         String accConId = String.valueOf(accCon.Id);
         
         Add_BusinessController.getEndorsementData(licId);
-        Add_BusinessController.getEndorsementData('Hello');
         
         Add_BusinessController.getAddressData(licId);
-        Add_BusinessController.getAddressData('Hello');
         
         Add_BusinessController.getMandatoryActions();
         Add_BusinessController.setLocationTable(licId);
-        Add_BusinessController.setLocationTable('Hello');
         
         
         /*acc.Name = 'Appraisal Management Company Account';
@@ -248,19 +248,51 @@ update acc;
 Add_BusinessController.checkDCP(accId);*/
         Add_BusinessController.helptextFetch();
         Add_BusinessController.validateUBI('987876765');
-        Add_BusinessController.validateUBI('Hello');
         
         Add_BusinessController.checkActiveCart();
         Add_BusinessController.insertRequest(licId, 'Geologist', 'Geologist', 'Update Legal Name');
         Add_BusinessController.insertRequest(licId, '', 'Geologist', 'Update Legal Name');
         
         Add_BusinessController.saveOwnerRecord(accConId);
-        Add_BusinessController.saveOwnerRecord('Hello');
         
         List<MUSW__Account_Contact__c> lstAccCon = new List<MUSW__Account_Contact__c>();
         lstAccCon.add(accCon);
         String accConStr = JSON.serialize(lstAccCon);
         Add_BusinessController.saveOwnerRecord(accConStr);
         
-    }     
+    } 
+    
+    
+    @isTest
+    public static void exceptionHandleTest(){
+        Account acc = [SELECT Id, Name FROM Account WHERE Name = 'Test Account' LIMIT 1];
+        String accId = String.valueOf(acc.Id);
+        MUSW__License2__c lic = [SELECT Id, Name FROM MUSW__License2__c WHERE Name='System Number' LIMIT 1];
+        String licId = String.valueOf(lic.Id);
+        User user = [SELECT Id, Name FROM User LIMIT 1];
+        
+        Test.startTest();
+        Add_BusinessController.insertRequestBusiness(null, 'Geologist');
+        Add_BusinessController.createAccountContactObject(accId);
+        Add_BusinessController.getAccountData(licId);
+        Add_BusinessController.updateContactAccountStatus(null, null, null);
+        Add_BusinessController.getAllCourses('abcabc');
+        Add_BusinessController.getBusinessLicenses('abcabc',false,'jjlkj');
+        Add_BusinessController.getAllContacts(null);
+        Add_BusinessController.checkIfCourseAccount('Hello');
+        Add_BusinessController.setAbandonStatus('Hello');
+        Add_BusinessController.updateBusinessAccIDonContact('Hello');
+        Add_BusinessController.getLicenseData('Hello');       
+        Add_BusinessController.pendingNewLicenseApplicationsTbl('Hello');        
+        Add_BusinessController.PendingRenewApplicationsTable('Hello');        
+        Add_BusinessController.fetchPendingCourseData('Hello');
+        Add_BusinessController.PendingMaintananceRequestApplicationsTable('Hello');
+        Add_BusinessController.getEndorsementData('Hello');        
+        Add_BusinessController.getAddressData('Hello');
+        Add_BusinessController.setLocationTable('Hello');
+        Add_BusinessController.validateUBI('Hello');
+        Add_BusinessController.saveOwnerRecord('Hello');
+        
+        Test.stopTest();
+    }    
 }

@@ -118,7 +118,6 @@ public class License2TriggerHandler implements BGCM.ITriggerHandler {
             
         }
         beforeMethod();
-        
         //This is to Update sequence number & Automation Rules
        
         }

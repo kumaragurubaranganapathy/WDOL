@@ -219,6 +219,7 @@ global without sharing class DOL_JITHandler implements Auth.SamlJitHandler {
 		}
         return user;
     }
+    @TestVisible
     private static String encrypt(String data){
         //String keystr = WCB_App_SettingUtil.defaultSettings.Encryptionkey;
         String keystr = DOL_AppConstants.sJITKey;

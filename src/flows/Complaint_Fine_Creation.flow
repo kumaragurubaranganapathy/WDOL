@@ -59,7 +59,22 @@
         </rules>
     </decisions>
     <description>Change Owner when a fine is created</description>
-    <interviewLabel>Complaint_Fine_Creation-14_InterviewLabel</interviewLabel>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>IF(ISBLANK([MUSW__Fee__c].MUSW__Complaint2__c.MUSW__Primary_Contact__c.User__c), 
+[MUSW__Fee__c].OwnerId , 
+[MUSW__Fee__c].MUSW__Complaint2__c.MUSW__Primary_Contact__c.User__c.Id)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_2_myRule_1_A1_7088308780</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!myVariable_current.MUSW__Complaint2__r.MUSW__Primary_Contact__r.User__c}), 
+{!myVariable_current.OwnerId} , 
+{!myVariable_current.MUSW__Complaint2__r.MUSW__Primary_Contact__r.User__r.Id})</expression>
+    </formulas>
+    <interviewLabel>Complaint_Fine_Creation-18_InterviewLabel</interviewLabel>
     <label>Complaint Fine Creation</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -156,12 +171,12 @@
             <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
-                    <stringValue>Reference</stringValue>
+                    <stringValue>Formula</stringValue>
                 </value>
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>myVariable_current.Contact__r.User__r.Id</elementReference>
+                <elementReference>formula_2_myRule_1_A1_7088308780</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>

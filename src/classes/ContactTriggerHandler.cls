@@ -85,7 +85,7 @@ public class ContactTriggerHandler implements BGCM.ITriggerHandler {
         
         //Deactivate Affiliations for
         
- List<Affiliation__c> deceasedAffiliations = [ Select id,Status__c from Affiliation__c  where (Contact_Id__c=:deceasedcontacts or related_contact__c=:deceasedcontacts) and Permit_Plan_Review__c!=null ];
+		/*List<Affiliation__c> deceasedAffiliations = [ Select id,Status__c from Affiliation__c  where (Contact_Id__c=:deceasedcontacts or related_contact__c=:deceasedcontacts) and Permit_Plan_Review__c!=null ];
       
         if(deceasedAffiliations.size()>0){
             for(Affiliation__c dcAff : [ Select id,Status__c from Affiliation__c  where (Contact_Id__c=:deceasedcontacts or related_contact__c=:deceasedcontacts) and Permit_Plan_Review__c!=null ])
@@ -94,7 +94,7 @@ public class ContactTriggerHandler implements BGCM.ITriggerHandler {
           }
             update deceasedAffiliations;
             //System.debug('update success');
-       }
+       }*/
     }
     
     public void AfterMethod(){

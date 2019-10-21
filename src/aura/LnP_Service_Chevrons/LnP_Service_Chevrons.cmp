@@ -335,7 +335,7 @@
                                                 <aura:if isTrue="{!question.fieldType=='Date'}">
                                                     <div id="{!section.sectionName+questionItem}" class="{!(and(!question.value, and(question.isChild, !question.renderedOnUi))?'slds-hide':'') + ' field-item devide-list hiddenLabel slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1'}">
                                                         <span class="slds-form-element__label"><ui:outputRichText class="slds-text-longform" value="{!question.label}"/></span> 
-                                                        <lightning:input dateStyle="long" type="date" name="{!section.sectionName+questionItem}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3 label-hide"label="{!question.label}"/>
+                                                        <lightning:input dateStyle="long" type="date" name="{!section.sectionName+questionItem}" value="{!question.value}" class="field-item slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-3 label-hide" label="{!question.label}"/>
                                                     </div>
                                                     
                                                 </aura:if>

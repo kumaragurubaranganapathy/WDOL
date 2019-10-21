@@ -20,7 +20,7 @@ public class Polaris_MangeEndorsementCntrl_Test {
         bgAns.Request__c = req.Id;
         bgAns.License__c = lic1.Id;
         insert bgAns;
-        Polaris_MangeEndorsementCntrl.fetchData(lic1.Id);
+        Polaris_MangeEndorsementCntrl.fetchData(lic1.Id); 
     }
     
     @isTest

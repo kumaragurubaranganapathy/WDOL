@@ -74,6 +74,7 @@ public class DOL_JITHandler_Test {
             Test.startTest();
                 handObj.createUser(null, null, null,fedId, attributes, null);
             handObj.createUser(null, null, null,fedId, attributes2, null);
+            DOL_JITHandler.encrypt('errorMessage');
             //global User createUser(Id samlSsoProviderId, Id communityId, Id portalId, String federationIdentifier, Map<String, String> attributes, String assertion)
             Test.stopTest();
         }
