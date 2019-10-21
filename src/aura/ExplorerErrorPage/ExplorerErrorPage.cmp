@@ -43,7 +43,7 @@
             <aura:set attribute="else">
                 <div class="text-wrap">
                     <lightning:icon iconName="utility:warning" alternativeText="Warning!" variant="warning"/>
-                    
+                   
                     <ui:outputRichText class="errorHeading" value="{!$Label.c.ErrorText}"/>
                     <div class="slds-m-top_small">Error ReferenceID</div>
                     <div class="errorid">
@@ -53,9 +53,10 @@
                             </aura:iteration>
                         </ul>
                     </div>
-                    <div class="slds-m-top_small">Please take a screenshot of this page and <a href="{!$Label.c.DOL_Help_URL}" target="_blank"> contact us</a>.</div>                    
-                    <div>Or, reach out to us on</div>
-                    <div class="telstyle"><a href="{!'tel:'+ $Label.c.Phone_number_Activation_code}">{!$Label.c.Phone_number_Activation_code}</a></div>
+                    <div class="slds-m-top_small">Please take a screenshot of this page and <a href="{!$Label.c.DOL_Help_URL}" target="_blank"> contact us</a>.</div>
+                    
+                    <div>Or, reach out to us on <a href="{!'tel:'+ $Label.c.Phone_number_Activation_code}">{!$Label.c.Phone_number_Activation_code}</a>.</div>
+                    
                 </div>
             </aura:set>
         </aura:if>
