@@ -82,6 +82,9 @@ public class Polaris_TodoListTest {
             Polaris_TodoList.updateTask(acts.Id,'Accepted');
             Polaris_TodoList.updateTask(acts.Id,'Declined');
             
+            Polaris_TodoList.updateTaskAMR(acts.Id,'Accepted');
+            Polaris_TodoList.updateTaskAMR(acts.Id,'Declined');
+            
             Polaris_TodoList.hasBusinessAccounts();
             Polaris_TodoList.hasLicenses();
             Polaris_TodoList.getAllAccounts();
