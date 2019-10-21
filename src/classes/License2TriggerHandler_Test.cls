@@ -266,10 +266,10 @@ public class License2TriggerHandler_Test {
         rev.Review_Type__c= 'General Application';
         rev.MUSW__Completed_DateTime__c = system.now()+10;
         insert rev;
-        ReviewCompletionTimeComputation rc = new ReviewCompletionTimeComputation();
+        /*ReviewCompletionTimeComputation rc = new ReviewCompletionTimeComputation();
         
         
-        Decimal dec = rc.ReviewCompletionTimeComputation(rev);
+        Decimal dec = rc.ReviewCompletionTimeComputation(rev);*/ 
         
     }
     
