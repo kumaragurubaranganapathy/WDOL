@@ -931,7 +931,7 @@ cartCtrl.returnToPrevPage();*/
         receipt.Bank_Name__c = DOL_AppConstants.NULL_EMPTY_STRING + 'DOL Bank';
         receipt.MUSW__Payment_Gateway_Transaction_Number__c = DOL_AppConstants.NULL_EMPTY_STRING + '000000ABCD';
         receipt.Selected_Fees__c = String.join(feeIds,',');
-        receipt.Selected_Invoices__c=String.join(invIdList,',');
+        //receipt.Selected_Invoices__c=String.join(invIdList,',');
         receipt.MUSW__Payment_Method__c = 'ACH';
         insert receipt;
         
